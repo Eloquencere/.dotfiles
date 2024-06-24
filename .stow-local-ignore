@@ -1,0 +1,4 @@
+scripts
+\.git
+^/README.*
+^/LICENSE.*
