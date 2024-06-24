@@ -86,3 +86,5 @@ cd ~/Documents
 rm -rf install_script_temp_folder
 
 neofetch
+echo "Reboot the system now"
+
