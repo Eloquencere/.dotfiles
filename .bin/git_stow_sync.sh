@@ -18,7 +18,7 @@ fi
 
 echo -e "${BLUE}Pulling updates from dotfiles repo...${NC}"
 echo
-git pull origin master
+git pull origin main
 echo
 
 if [[ $needs_pop -eq 1 ]]; then
