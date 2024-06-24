@@ -1,4 +1,4 @@
-scripts
+.bin
 \.git
 ^/README.*
 ^/LICENSE.*
