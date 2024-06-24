@@ -30,7 +30,7 @@ sudo pacman -S --needed arch-wiki-docs arch-wiki-lite
 sudo pacman -S --needed p7zip unrar tar exfat-utils ntfs-3g
 sudo pacman -S --needed libreoffice-fresh vlc
 sudo pacman -S --needed fastfetch btop tree
-sudo pacman -S --needed xclip stow
+sudo pacman -S --needed xclip stow usbip
 # Others
 # yay -S preload # to open up software faster
 # sudo systemctl enable preload; sudo systemctl start preload
