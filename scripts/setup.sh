@@ -9,7 +9,7 @@
 # cd ~/dotfiles
 
 # sudo pacman -S stow
-# stow *
+# stow .
 # cd ~
 mkdir ~/Documents/install_script_temp_folder
 cd ~/Documents/install_script_temp_folder
