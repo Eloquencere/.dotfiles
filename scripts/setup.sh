@@ -34,11 +34,6 @@ cd ..
 rm -rf yay
 sudo pacman -S flatpak
 
-# Gnome Desktop Config
-
-# Bring minimise, maximise and close buttons to their positions
-gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
-gsettings set org.gnome.desktop.interface monospace-font-name 'JetBrainsMono Nerd Font' 
 # Uninstall bloat
 sudo pacman -Rs epiphan # Remove browsery
 # and contacts, weather, videos, tour
@@ -80,6 +75,12 @@ flatpak install bottles
 
 # Seting up backup schemes (timeshift)
 # betterfs for better backup & setup encrypted HDD
+
+# Gnome Desktop Config
+
+# Bring minimise, maximise and close buttons to their positions
+gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
+gsettings set org.gnome.desktop.interface monospace-font-name 'JetBrainsMono Nerd Font' 
 
 cd ~/Documents
 rm -rf install_script_temp_folder
