@@ -1,22 +1,8 @@
-# Run this script with chmod +x and sudo
-
-# Need to have ZSH as default
-# Note: Bring this script back from background
-
-# Setup dot files
-# git clone https://github.com/Eloquencere/dotfiles.git
-# mv dotfiles ~/
-# cd ~/dotfiles
-
-# sudo pacman -S stow
-# stow .
-# cd ~
 mkdir ~/Documents/install_script_temp_folder
 cd ~/Documents/install_script_temp_folder
 
 # Basic setup
-
-# nvim /etc/pacman.conf # uncomment 'color' & parallel downloads and add ILoveCandy at the end
+sudo python ~/.dotfiles/.bin/conf_pacman.py
 
 # Install fonts
 sudo pacman -S ttf-jetbrains-mono-nerd
@@ -44,7 +30,7 @@ sudo pacman -S --needed arch-wiki-docs arch-wiki-lite
 sudo pacman -S --needed p7zip unrar tar exfat-utils ntfs-3g
 sudo pacman -S --needed libreoffice-fresh vlc
 sudo pacman -S --needed fastfetch btop tree
-sudo pacman -S --needed xclip # clipboard for nvim
+sudo pacman -S --needed xclip stow
 # Others
 # yay -S preload # to open up software faster
 # sudo systemctl enable preload; sudo systemctl start preload
@@ -62,6 +48,8 @@ echo "Done"
 
 # Alacritty Terminal Emulator
 sudo pacman -S alacritty starship zellij
+
+# Need to test these out
 # gsettings set org.gnome.desktop.default-applications.terminal exec /usr/bin/alacritty
 # gsettings set org.gnome.desktop.default-applications.terminal exec-arg "--working-directory"
 
@@ -75,6 +63,11 @@ flatpak install bottles
 
 # Seting up backup schemes (timeshift)
 # betterfs for better backup & setup encrypted HDD
+
+# Initialising all dot files
+cd ~/.dotfiles
+stow .
+cd -
 
 # Gnome Desktop Config
 
