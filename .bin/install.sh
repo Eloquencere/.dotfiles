@@ -45,7 +45,6 @@ echo "Just keep pressing 'Enter' From here on" # Add a delay here
 yay -S brave-bin
 echo "Done"
 
-
 # Alacritty Terminal Emulator
 sudo pacman -S alacritty starship zellij
 
