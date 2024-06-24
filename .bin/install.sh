@@ -69,7 +69,6 @@ stow .
 cd -
 
 # Gnome Desktop Config
-
 # Bring minimise, maximise and close buttons to their positions
 gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
 gsettings set org.gnome.desktop.interface monospace-font-name 'JetBrainsMono Nerd Font' 
