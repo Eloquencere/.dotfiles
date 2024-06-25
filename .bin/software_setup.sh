@@ -13,7 +13,7 @@ yes | sudo pacman -Syu
 yes | sudo pacman -S base-devel git
 git clone https://aur.archlinux.org/yay.git
 cd yay
-makepkg -si
+yes | makepkg -si
 yay --version
 echo "Done, cleaning up"
 cd ..
@@ -68,8 +68,6 @@ yes | flatpak install bottles
 cd ~/.dotfiles
 stow .
 cd -
-source ~/.zshrc
-
 
 # Gnome Desktop Config
 # Bring minimise, maximise and close buttons to their positions
@@ -79,5 +77,4 @@ gsettings set org.gnome.desktop.interface monospace-font-name 'JetBrainsMono Ner
 cd ~/Documents
 rm -rf install_script_temp_folder
 
-neofetch
 echo "Reboot the system now"
