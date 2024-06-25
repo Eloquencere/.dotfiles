@@ -5,12 +5,12 @@ cd ~/Documents/install_script_temp_folder
 sudo python ~/.dotfiles/.bin/conf_pacman.py
 
 # Install fonts
-sudo pacman -S ttf-jetbrains-mono-nerd
+yes | sudo pacman -S ttf-jetbrains-mono-nerd
 
 # Installing yay and git and curl
 echo "Installing yay AUR package manager"
-sudo pacman -Syu
-sudo pacman -S base-devel git
+yes | sudo pacman -Syu
+yes | sudo pacman -S base-devel git
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
@@ -18,20 +18,20 @@ yay --version
 echo "Done, cleaning up"
 cd ..
 rm -rf yay/
-sudo pacman -S flatpak
+yes | sudo pacman -S flatpak
 
 # Uninstall bloat
-sudo pacman -Rs epiphany # Remove browser
+yes | sudo pacman -Rs epiphany # Remove browser
 # gstreamer1.0-vaapi # video player
 # and contacts, weather, tour
 
 
 # Basic software
-sudo pacman -S --needed arch-wiki-docs arch-wiki-lite
-sudo pacman -S --needed p7zip unrar tar exfat-utils ntfs-3g
-sudo pacman -S --needed libreoffice-fresh vlc
-sudo pacman -S --needed fastfetch btop tree
-sudo pacman -S --needed xclip stow usbip
+yes | sudo pacman -S --needed arch-wiki-docs arch-wiki-lite
+yes | sudo pacman -S --needed p7zip unrar tar exfat-utils ntfs-3g
+yes | sudo pacman -S --needed libreoffice-fresh vlc
+yes | sudo pacman -S --needed fastfetch btop tree
+yes | sudo pacman -S --needed xclip stow usbip
 # Others
 # yay -S preload # to open up software faster
 # sudo systemctl enable preload; sudo systemctl start preload
@@ -47,14 +47,14 @@ yay -S brave-bin
 echo "Done"
 
 # Alacritty Terminal Emulator
-sudo pacman -S alacritty starship zellij
+yes | sudo pacman -S alacritty starship zellij
 
 # Need to test these out
 # gsettings set org.gnome.desktop.default-applications.terminal exec /usr/bin/alacritty
 # gsettings set org.gnome.desktop.default-applications.terminal exec-arg "--working-directory"
 
 # Bottles(Wine) Emulator
-flatpak install bottles
+yes | flatpak install bottles
 
 # Language compilers and related packages
 # install pip for py n stuff
