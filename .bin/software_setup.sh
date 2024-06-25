@@ -17,7 +17,7 @@ makepkg -si
 yay --version
 echo "Done, cleaning up"
 cd ..
-rm -rf yay
+rm -rf yay/
 sudo pacman -S flatpak
 
 # Uninstall bloat
