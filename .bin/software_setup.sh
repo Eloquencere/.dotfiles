@@ -14,7 +14,6 @@ yes | sudo pacman -S base-devel git
 git clone https://aur.archlinux.org/yay.git
 cd yay
 yes | makepkg -si
-yay --version
 echo "Done, cleaning up"
 cd ..
 rm -rf yay/
