@@ -6,6 +6,10 @@ live_config_reload = true
 [env]
 TERM = "xterm-256color"
 
+[shell]
+program = "zellij"
+args = ["-l", "welcome"]
+
 [window]
 opacity = 0.8
 blur = true
