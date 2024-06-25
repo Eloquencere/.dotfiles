@@ -61,6 +61,10 @@ yes | flatpak install bottles
 
 # Onedriver
 
+
+# Remote machine tools
+yes | sudo pacman -S usbip
+
 # Seting up backup schemes (timeshift)
 # betterfs for better backup & setup encrypted HDD
 
