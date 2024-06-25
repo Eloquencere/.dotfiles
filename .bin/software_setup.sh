@@ -21,8 +21,9 @@ rm -rf yay
 sudo pacman -S flatpak
 
 # Uninstall bloat
-sudo pacman -Rs epiphany # Remove browsery
-# and contacts, weather, videos, tour
+sudo pacman -Rs epiphany # Remove browser
+# gstreamer1.0-vaapi # video player
+# and contacts, weather, tour
 
 
 # Basic software
