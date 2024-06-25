@@ -21,7 +21,7 @@ rm -rf yay
 sudo pacman -S flatpak
 
 # Uninstall bloat
-sudo pacman -Rs epiphan # Remove browsery
+sudo pacman -Rs epiphany # Remove browsery
 # and contacts, weather, videos, tour
 
 
