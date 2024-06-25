@@ -37,7 +37,8 @@ yes | sudo pacman -S --needed xclip stow usbip
 # Auto cpu-freq
 
 # Command line tools
-# fzf,  bat (& alias with cat), eza(& alias with ls), tlrc(alias with tldr), zoxide(alias with cd)
+yes | sudo pacman -S fzf
+# bat (& alias with cat), eza(& alias with ls), tlrc(alias with tldr), zoxide(alias with cd)
 
 # Brave
 echo "Installing Brave"
