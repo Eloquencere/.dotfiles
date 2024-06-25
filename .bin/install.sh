@@ -67,6 +67,8 @@ flatpak install bottles
 cd ~/.dotfiles
 stow .
 cd -
+source ~/.zshrc
+
 
 # Gnome Desktop Config
 # Bring minimise, maximise and close buttons to their positions
