@@ -1,4 +1,4 @@
-import fileinput, re
+import fileinput
 
 for line in fileinput.input("/etc/default/grub", inplace=True):
   if line.startswith("GRUB_DEFAULT="):
