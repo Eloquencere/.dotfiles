@@ -1,5 +1,5 @@
 # .dotfiles
-dotfile configs for my favourite tools
+dotfile configs for my favorite tools.
 
 
 ## Instructions
