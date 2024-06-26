@@ -21,22 +21,11 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath' # change this when I use a different ls and cd
 _comp_options+=(globdots) # Show hidden files
-alias ls='ls --color'
 
 # Enable colors and change prompt
 autoload -U colors && colors
 
 zinit cdreplay -q
-
-
-# Aliases
-alias n=nvim
-alias neofetch=fastfetch
-
-# Keybinds
-bindkey '^p' history-search-backward
-bindkey '^n' history-search-forward
-bindkey -s '^o' 'clear\n'
 
 # Bell
 unsetopt BEEP
@@ -47,18 +36,30 @@ SAVEHIST=$HISTSIZE
 HISTFILE=${XDG_CACHE_HOME}/zsh/.zsh_history
 HISDUP=erase
 setopt appendhistory
-setopt share_history
+setopt sharehistory
 setopt hist_ignore_space
 setopt hist_save_no_dups
 setopt hist_find_no_dups
 setopt hist_ignore_dups
 setopt hist_ignore_all_dups
 
+# Basic files to source
+[ -f "$ZDOTDIR/zsh-aliases.zsh" ] && source "$ZDOTDIR/zsh-aliases.zsh"
+[ -f "$ZDOTDIR/zsh-functions.zsh" ] && source "$ZDOTDIR/zsh-functions.zsh"
 
+# Keybinds
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
+bindkey -s '^o' 'clear\n'
 
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(starship init zsh)" # Loading starship
+
+# Aliases
+alias n=nvim
+alias neofetch=fastfetch
+alias ls='ls --color'
 
 # move all the aliases to .zprofile
 # Usbip config
