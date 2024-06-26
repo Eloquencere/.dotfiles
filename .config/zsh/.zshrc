@@ -28,12 +28,11 @@ autoload -U colors && colors
 
 zinit cdreplay -q
 
-# Loading starship
-eval "$(starship init zsh)"
 
 # Aliases
 alias n=nvim
 alias neofetch=fastfetch
+alias c=clear
 
 # Keybinds
 bindkey '^p' history-search-backward
@@ -59,6 +58,7 @@ setopt hist_ignore_all_dups
 
 # Shell integrations
 eval "$(fzf --zsh)"
+eval "$(starship init zsh)" # Loading starship
 
 # move all the aliases to .zprofile
 # Usbip config
