@@ -49,7 +49,7 @@ yes | sudo pacman -S fzf
 # Brave
 echo "Installing Brave"
 echo "Just keep pressing 'Enter' From here on" # Add a delay here
-yay -S brave-bin
+yay -S brave-bin  # Need to try echo "\n\n\n" | yes | yay -S brave-bin
 echo "Done"
 
 # Alacritty Terminal Emulator
@@ -57,7 +57,7 @@ yes | sudo pacman -S alacritty starship zellij
 
 
 # Bottles(Wine) Emulator
-yes | flatpak install bottles
+yes | flatpak install bottles # Doesn't work if system is not restarted
 
 # Language compilers and related packages
 # install 'pip' for py n stuff
