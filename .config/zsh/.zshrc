@@ -55,3 +55,11 @@ bindkey -s '^o' 'clear\n'
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(starship init zsh)" # Loading starship
+
+# Aliases
+alias ls='ls --color'
+alias n=nvim
+alias neofetch=fastfetch
+
+# Functions
+
