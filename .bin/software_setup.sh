@@ -2,10 +2,9 @@ mkdir ~/Documents/install_script_temp_folder
 cd ~/Documents/install_script_temp_folder
 
 # Basic setup
-sudo python3 ~/.dotfiles/.bin/conf_grub.py # removing grub screen on startup
+sudo python ~/.dotfiles/.bin/conf_grub.py # removing grub screen on startup
 sudo grub-mkconfig -o /boot/grub/grub.cfg
-
-sudo python3 ~/.dotfiles/.bin/conf_pacman.py
+sudo python ~/.dotfiles/.bin/conf_pacman.py
 
 # Temporary setup for zsh shell
 yes | sudo pacman -S zsh
