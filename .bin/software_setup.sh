@@ -60,7 +60,8 @@ yes | sudo pacman -S alacritty starship zellij
 yes | flatpak install bottles
 
 # Language compilers and related packages
-# install pip for py n stuff
+# install 'pip' for py n stuff
+# 'tio' serial monitor
 
 # Onedriver
 
