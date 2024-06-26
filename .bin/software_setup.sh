@@ -54,9 +54,6 @@ echo "Done"
 # Alacritty Terminal Emulator
 yes | sudo pacman -S alacritty starship zellij
 
-# Need to test these out
-# gsettings set org.gnome.desktop.default-applications.terminal exec /usr/bin/alacritty
-# gsettings set org.gnome.desktop.default-applications.terminal exec-arg "--working-directory"
 
 # Bottles(Wine) Emulator
 yes | flatpak install bottles
