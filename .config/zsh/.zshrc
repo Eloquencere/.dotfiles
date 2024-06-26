@@ -48,7 +48,7 @@ setopt hist_ignore_all_dups
 # Completion styling
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
-zstyle ':fzf-tab-complete:cd:*' fzf-preview 'ls --color $realpath' # change this when I use a different ls and cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath' # change this when I use a different ls and cd
 
 alias ls='ls --color'
 
