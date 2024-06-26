@@ -4,6 +4,11 @@ cd ~/Documents/install_script_temp_folder
 # Basic setup
 sudo python ~/.dotfiles/.bin/conf_pacman.py
 
+# Temporary setup for zsh shell
+yes | sudo pacman -S zsh
+chsh -s $(which zsh) 
+
+
 # Install fonts
 yes | sudo pacman -S ttf-jetbrains-mono-nerd
 
