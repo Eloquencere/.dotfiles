@@ -1,10 +1,10 @@
-import fileinput, re
+import fileinput
 
 for line in fileinput.input("/etc/pacman.conf", inplace=True):
-    if re.match("#Color", line):
+    if line.startswith("#Color"):
         print(line[1:], end='')
         print("ILoveCandy")
-    elif re.match("#ParallelDownloads", line):
+    elif line.startswith("#ParallelDownloads"):
         print(line[1:], end='')
     else:
         print(line, end='')
