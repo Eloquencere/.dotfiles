@@ -13,9 +13,18 @@ source "${ZINIT_HOME}/zinit.zsh"
 # Add in zsh plugins
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light Aloxaf/fzf-tab
+# find vim mode plugin
 
 # Load completions
 autoload -U compinit && compinit
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath' # change this when I use a different ls and cd
+_comp_options+=(globdots) # Show hidden files
+alias ls='ls --color'
+
+# Enable colors and change prompt
+autoload -U colors && colors
 
 zinit cdreplay -q
 
@@ -28,7 +37,6 @@ alias n=nvim
 alias neofetch=fastfetch
 
 # Keybinds
-bindkey -e
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 
@@ -37,8 +45,8 @@ unsetopt BEEP
 
 # History
 HISTSIZE=5000
-HISTFILE=~/.cache/zsh/.zsh_history
 SAVEHIST=$HISTSIZE
+HISTFILE=~/.cache/zsh/.zsh_history
 HISDUP=erase
 setopt appendhistory
 setopt share_history
@@ -48,12 +56,7 @@ setopt hist_find_no_dups
 setopt hist_ignore_dups
 setopt hist_ignore_all_dups
 
-# Completion styling
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath' # change this when I use a different ls and cd
 
-alias ls='ls --color'
 
 # Shell integrations
 eval "$(fzf --zsh)"
