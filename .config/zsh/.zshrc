@@ -37,6 +37,7 @@ alias c=clear
 # Keybinds
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
+bindkey -s '^o' 'clear\n'
 
 # Bell
 unsetopt BEEP
