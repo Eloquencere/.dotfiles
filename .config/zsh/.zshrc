@@ -30,7 +30,6 @@ zinit cdreplay -q
 
 # Loading starship
 eval "$(starship init zsh)"
-export STARSHIP_CONFIG=${XDG_CONFIG_HOME}/starship/starship.toml
 
 # Aliases
 alias n=nvim
