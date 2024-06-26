@@ -1,5 +1,5 @@
 # Set the directory of zinit and plugins
-ZINIT_HOME="${ZDOTDIR}/zinit.git"
+ZINIT_HOME="${XDG_DATA_HOME}/zinit/zinit.git"
 
 # Download Zinit, if it's not there yet
 if [ ! -d "$ZINIT_HOME" ]; then
@@ -30,7 +30,7 @@ zinit cdreplay -q
 
 # Loading starship
 eval "$(starship init zsh)"
-export STARSHIP_CONFIG=~/.config/starship/starship.toml
+export STARSHIP_CONFIG=${XDG_CONFIG_HOME}/starship/starship.toml
 
 # Aliases
 alias n=nvim
