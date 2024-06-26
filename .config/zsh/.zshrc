@@ -38,7 +38,6 @@ HISTFILE=~/.cache/.zsh_history
 SAVEHIST=$HISTSIZE
 HISDUP=erase
 setopt appendhistory
-setopt sharehistory
 setopt share_history
 setopt hist_ignore_space
 setopt hist_save_no_dups
