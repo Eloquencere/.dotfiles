@@ -6,7 +6,8 @@ sudo python ~/.dotfiles/.bin/conf_pacman.py
 
 # Temporary setup for zsh shell
 yes | sudo pacman -S zsh
-chsh -s $(which zsh) 
+chsh -s $(which zsh)
+yes | sudo pacman -S neovim
 
 
 # Install fonts
