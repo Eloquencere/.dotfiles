@@ -32,9 +32,12 @@ bindkey -e
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 
+# Bell
+unsetopt BEEP
+
 # History
 HISTSIZE=5000
-HISTFILE=~/.cache/.zsh_history
+HISTFILE=~/.cache/zsh/.zsh_history
 SAVEHIST=$HISTSIZE
 HISDUP=erase
 setopt appendhistory
