@@ -1,5 +1,5 @@
 # Set the directory of zinit and plugins
-ZINIT_HOME="${PWD}/zinit.git"
+ZINIT_HOME="${ZDOTDIR}/zinit.git"
 
 # Download Zinit, if it's not there yet
 if [ ! -d "$ZINIT_HOME" ]; then
