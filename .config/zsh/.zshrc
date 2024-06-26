@@ -32,7 +32,6 @@ zinit cdreplay -q
 # Aliases
 alias n=nvim
 alias neofetch=fastfetch
-alias c=clear
 
 # Keybinds
 bindkey '^p' history-search-backward
