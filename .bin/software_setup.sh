@@ -51,8 +51,8 @@ yes | sudo pacman -S fzf zoxide bat
 
 # Brave
 echo "Installing Brave"
-echo "Just keep pressing 'Enter' From here on" # Add a delay here
-yay -S brave-bin  # Need to try echo "\n\n\n" | yes | yay -S brave-bin
+echo "Just keep pressing 'Enter' From here on"
+yay -S brave-bin
 echo "Done"
 
 # Alacritty Terminal Emulator
