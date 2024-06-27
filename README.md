@@ -13,5 +13,5 @@ Run the script in .bin/install.sh
 ```
 cd ~/.dotfiles/.bin/
 chmod +x install.sh
-./install.sh
+source install.sh
 ```
