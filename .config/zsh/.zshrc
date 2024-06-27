@@ -58,6 +58,7 @@ eval "$(starship init zsh)" # Loading starship
 alias ls='ls --color'
 alias n=nvim
 alias neofetch=fastfetch
+alias cat=bat
 
 # Functions
 # Usbip config
