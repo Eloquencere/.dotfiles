@@ -63,6 +63,7 @@ alias ls='ls --color'
 alias n=nvim
 alias neofetch=fastfetch
 alias cat=bat
+alias tldr=tlrc
 
 # Functions
 # Usbip config
