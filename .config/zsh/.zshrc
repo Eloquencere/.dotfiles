@@ -7,6 +7,10 @@ if [ ! -d "$ZINIT_HOME" ]; then
 	git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
+if [ ! -d "$XDG_CACHE_HOME/zsh" ]; then
+	mkdir $XDG_CACHE_HOME/zsh
+fi
+
 # Source/ load zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
