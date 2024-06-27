@@ -46,7 +46,7 @@ yes | sudo pacman -S --needed xclip stow usbip
 # Auto cpu-freq
 
 # Command line tools
-yes | sudo pacman -S fzf zoxide
+yes | sudo pacman -S fzf zoxide bat
 # bat (& alias with cat), eza(& alias with ls), tlrc(alias with tldr), zoxide(alias with cd)
 
 # Brave
