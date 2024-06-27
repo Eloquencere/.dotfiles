@@ -19,7 +19,8 @@ zinit light Aloxaf/fzf-tab
 autoload -U compinit && compinit
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath' # change this when I use a different ls and cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 _comp_options+=(globdots) # Show hidden files
 
 # Enable colors and change prompt
@@ -50,6 +51,7 @@ bindkey -s '^o' 'clear\n'
 
 # Shell integrations
 eval "$(fzf --zsh)"
+eval "$(zoxide init --cmd cd zsh)"
 eval "$(starship init zsh)" # Loading starship
 
 # Aliases
