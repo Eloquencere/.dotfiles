@@ -20,7 +20,7 @@ zinit light Aloxaf/fzf-tab
 # find vim mode plugin
 
 # Load completions
-autoload -U compinit && compinit -d "$XDG_CACHE_HOME/zsh"
+autoload -U compinit && compinit
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
