@@ -4,8 +4,7 @@ cd ~/Documents/install_script_temp_folder
 # Basic setup
 sudo python ~/.dotfiles/.bin/conf_grub.py # removing grub screen on startup
 sudo grub-mkconfig -o /boot/grub/grub.cfg
-sudo touch /etc/modules-load.d/usbip.conf # adding basic conf to usbip 
-sudo sh -c "printf '%s\n%s\n' 'usbip-core' 'vhci-hcd' >> /etc/modules-load.d/usbip.conf"
+sudo sh -c "printf '%s\n%s\n' 'usbip-core' 'vhci-hcd' >> /etc/modules-load.d/usbip.conf" # adding basic conf to usbip 
 sudo python ~/.dotfiles/.bin/conf_pacman.py
 
 # Temporary setup for zsh shell
