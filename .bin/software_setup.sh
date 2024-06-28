@@ -11,7 +11,7 @@ sudo python ~/.dotfiles/.bin/conf_pacman.py
 yes | sudo pacman -S zsh
 chsh -s $(which zsh)
 yes | sudo pacman -S neovim
-# rm -f ~/.bash* -> need to verify if this doesn't break anything
+rm -f ~/.bash*
 
 yes | sudo -Syu 
 # Install fonts
