@@ -20,7 +20,7 @@ zinit light Aloxaf/fzf-tab
 # find vim mode plugin
 
 # Load completions
-autoload -U compinit && compinit -d $XDG_CACHE_HOME/zsh
+autoload -U compinit && compinit -d "$XDG_CACHE_HOME/zsh"
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
@@ -38,7 +38,7 @@ unsetopt BEEP
 # History
 HISTSIZE=5000
 SAVEHIST=$HISTSIZE
-HISTFILE=${XDG_CACHE_HOME}/zsh/.zsh_history
+HISTFILE="${XDG_CACHE_HOME}/zsh/.zsh_history"
 HISDUP=erase
 setopt appendhistory
 setopt sharehistory
@@ -52,6 +52,7 @@ setopt hist_ignore_all_dups
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 bindkey -s '^o' 'clear\n'
+bindkey -e
 
 # Shell integrations
 eval "$(fzf --zsh)"
