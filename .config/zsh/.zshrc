@@ -69,8 +69,6 @@ alias n=nvim
 
 # Functions
 # Usbip config
-# sudo modprobe usbip-core
-# sudo modprobe vhci-hcd
 SERVER_IP=1
 function usbip() {
 	if [[ $1 == "attach" ]]; then
