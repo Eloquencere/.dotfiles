@@ -79,6 +79,8 @@ function usbip() {
 	elif [[ $1 == "detach" ]]; then
 		shift
 		sudo usbip detach "$@"
+	else
+		sudo usbip "$@"
 	fi
 }
 
@@ -88,7 +90,7 @@ function lsusbip() {
 	printf "Devices from %s\n" "$SERVER_IP"
 	printf "%-10s %-50s %-10s\n" "BUSID" "DEVICE" "PORT"
 	regex='^\s+([-0-9]+):\s+(.*)\s+(\(.*\))$'
-	for server_device in server_devices; do
+	for server_device in "$server_devices[@]"; do
 		if [[ server_device =~ regex ]]; then
 			busid=$match[1]
 			device_name=$match[2]
