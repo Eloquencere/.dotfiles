@@ -12,7 +12,7 @@ chsh -s $(which zsh)
 yes | sudo pacman -S neovim
 # rm -f ~/.bash* -> need to verify if this doesn't break anything
 
-
+yes | sudo -Syu 
 # Install fonts
 yes | sudo pacman -S ttf-jetbrains-mono-nerd
 
