@@ -4,7 +4,6 @@ cd ~/Documents/install_script_temp_folder
 # Basic setup
 sudo python ~/.dotfiles/.bin/conf_grub.py # removing grub screen on startup
 sudo grub-mkconfig -o /boot/grub/grub.cfg
-sudo sh -c "printf '%s\n%s\n' 'usbip-core' 'vhci-hcd' >> /etc/modules-load.d/usbip.conf" # adding basic conf to usbip 
 sudo python ~/.dotfiles/.bin/conf_pacman.py
 
 # Temporary setup for zsh shell
@@ -74,6 +73,7 @@ yes | flatpak install bottles # Doesn't work if system is not restarted
 
 # Remote machine tools
 yes | sudo pacman -S usbip
+sudo sh -c "printf '%s\n%s\n' 'usbip-core' 'vhci-hcd' >> /etc/modules-load.d/usbip.conf" # adding basic conf to usbip 
 
 # Seting up backup schemes (timeshift)
 # betterfs for better backup & setup encrypted HDD
