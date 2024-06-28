@@ -47,8 +47,8 @@ yes | sudo pacman -S --needed xclip stow usbip
 
 # Command line tools
 sudo pacman -S man
-yes | sudo pacman -S fzf zoxide bat ripgrep
-yay -S tlrc
+yes | sudo pacman -S fzf zoxide eza bat fd ripgrep fzf
+yay -S tlrc-bin
 # bat (& alias with cat), eza(& alias with ls)
 
 # Brave
