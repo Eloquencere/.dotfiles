@@ -59,11 +59,12 @@ eval "$(zoxide init --cmd cd zsh)"
 eval "$(starship init zsh)" # Loading starship
 
 # Aliases
-alias ls='ls --color'
-alias n=nvim
 alias neofetch=fastfetch
+alias ls=eza --color=always --icons=always --git
+alias find=fd
 alias cat=bat
 alias grep=rg
+alias n=nvim
 
 # Functions
 # Usbip config
