@@ -46,8 +46,8 @@ yes | sudo pacman -S --needed xclip stow usbip
 # Auto cpu-freq
 
 # Command line tools
-sudo pacman -S man
 yes | sudo pacman -S fzf zoxide eza bat fd ripgrep fzf
+yes | sudo pacman -S man
 yay -S tlrc-bin
 # bat (& alias with cat), eza(& alias with ls)
 
@@ -60,10 +60,6 @@ echo "Done"
 # Alacritty Terminal Emulator
 yes | sudo pacman -S alacritty starship zellij
 
-
-# Bottles(Wine) Emulator
-yes | flatpak install bottles # Doesn't work if system is not restarted
-
 # Language compilers and related packages
 # install 'pip' for py n stuff
 # 'tio' serial monitor
@@ -74,6 +70,7 @@ yes | flatpak install bottles # Doesn't work if system is not restarted
 # Remote machine tools
 yes | sudo pacman -S usbip
 sudo sh -c "printf '%s\n%s\n' 'usbip-core' 'vhci-hcd' >> /etc/modules-load.d/usbip.conf" # adding basic conf to usbip 
+# nomachine
 
 # Seting up backup schemes (timeshift)
 # betterfs for better backup & setup encrypted HDD
