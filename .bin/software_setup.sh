@@ -38,7 +38,7 @@ yes | sudo pacman -Rs epiphany # Remove browser
 yes | sudo pacman -S --needed arch-wiki-docs arch-wiki-lite
 yes | sudo pacman -S --needed p7zip unrar tar exfat-utils ntfs-3g
 yes | sudo pacman -S --needed libreoffice-fresh vlc
-yes | sudo pacman -S --needed fastfetch btop tree
+yes | sudo pacman -S --needed fastfetch btop
 yes | sudo pacman -S --needed xclip stow usbip
 # Others
 # yay -S preload # to open up software faster
