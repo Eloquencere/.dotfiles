@@ -71,7 +71,7 @@ yay -S tio
 # Remote machine tools
 yes | sudo pacman -S usbip
 sudo sh -c "printf '%s\n%s\n' 'usbip-core' 'vhci-hcd' >> /etc/modules-load.d/usbip.conf" # adding basic conf to usbip 
-# nomachine
+# yay -S nomachine
 
 # Seting up backup schemes (timeshift)
 # betterfs for better backup & setup encrypted HDD
