@@ -64,8 +64,9 @@ yay -S tio
 # install 'pip' for py n stuff
 
 # Onedriver
+mkdir $HOME/OneDrive
 yay -S onedriver
-# rm -rf Music Pictures Templates Public
+# rm -rf ~/Music ~/Pictures ~/Templates ~/Public
 
 # Remote machine tools
 yes | sudo pacman -S usbip
