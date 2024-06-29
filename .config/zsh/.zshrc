@@ -7,10 +7,6 @@ if [ ! -d "$ZINIT_HOME" ]; then
 	git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
-if [ ! -d "$XDG_CACHE_HOME/zsh" ]; then
-	mkdir $XDG_CACHE_HOME/zsh
-fi
-
 # Source/ load zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
@@ -38,7 +34,7 @@ unsetopt BEEP
 # History
 HISTSIZE=5000
 SAVEHIST=$HISTSIZE
-HISTFILE="${XDG_CACHE_HOME}/zsh/.zsh_history"
+HISTFILE="$XDG_CACHE_HOME/zsh/.zsh_history"
 HISDUP=erase
 setopt appendhistory
 setopt sharehistory
