@@ -83,7 +83,7 @@ function usbip() {
 }
 
 function lsusbip() {
-	IFS=$'\n' read -r -d '' -A server_devices < <(usbip list --remote=$SERVER_IP | grep --regexp "^\s+[-0-9]+:")
+	IFS=$'\n' read -r -d '' -A server_devices < <(usbip list --remote=$SERVER_IP | grep --regexp "^\s+[-0-9]+:") # might need to add local IFS=
 	usbip_port_output=$(usbip port 2>/dev/null)
 	printf "Devices from %s\n" "$SERVER_IP"
 	printf "%-10s %-50s %-10s\n" "BUSID" "DEVICE" "PORT"
