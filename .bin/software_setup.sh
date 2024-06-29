@@ -79,6 +79,10 @@ sudo sh -c "printf '%s\n%s\n' 'usbip-core' 'vhci-hcd' >> /etc/modules-load.d/usb
 if [ ! -d "$HOME/.cache/zsh" ]; then
 	mkdir -p $HOME/.cache/zsh
 fi
+# Tools dir for EDA tools
+if [ ! -d "$HOME/Tools" ]; then
+	mkdir $HOME/Tools
+fi
 
 # Initialising all dot files
 cd ~/.dotfiles
