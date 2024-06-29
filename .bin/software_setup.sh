@@ -75,6 +75,11 @@ sudo sh -c "printf '%s\n%s\n' 'usbip-core' 'vhci-hcd' >> /etc/modules-load.d/usb
 # Seting up backup schemes (timeshift)
 # betterfs for better backup & setup encrypted HDD
 
+# very necessary to setup zsh_history
+if [ ! -d "$HOME/.cache/zsh" ]; then
+	mkdir -p $HOME/.cache/zsh
+fi
+
 # Initialising all dot files
 cd ~/.dotfiles
 stow .
