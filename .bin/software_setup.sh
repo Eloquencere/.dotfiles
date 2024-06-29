@@ -64,8 +64,8 @@ yay -S tio
 # install 'pip' for py n stuff
 
 # Onedriver
-mkdir $HOME/OneDrive
-yay -S onedriver
+# mkdir $HOME/OneDrive
+# yay -S onedriver
 # rm -rf ~/Music ~/Pictures ~/Templates ~/Public
 
 # Remote machine tools
