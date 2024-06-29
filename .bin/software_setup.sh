@@ -49,7 +49,6 @@ yes | sudo pacman -S --needed xclip stow usbip
 yes | sudo pacman -S fzf zoxide eza bat fd ripgrep fzf
 yes | sudo pacman -S man
 yay -S tlrc-bin
-# bat (& alias with cat), eza(& alias with ls)
 
 # Brave
 echo "Installing Brave"
@@ -59,13 +58,13 @@ echo "Done"
 
 # Alacritty Terminal Emulator
 yes | sudo pacman -S alacritty starship zellij
+yay -S tio
 
 # Language compilers and related packages
 # install 'pip' for py n stuff
-# 'tio' serial monitor
 
 # Onedriver
-
+# remove music, pictures, templates, public
 
 # Remote machine tools
 yes | sudo pacman -S usbip
