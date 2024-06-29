@@ -64,7 +64,8 @@ yay -S tio
 # install 'pip' for py n stuff
 
 # Onedriver
-# remove music, pictures, templates, public
+yay -S onedriver
+# rm -rf Music Pictures Templates Public
 
 # Remote machine tools
 yes | sudo pacman -S usbip
