@@ -46,8 +46,8 @@ setopt hist_ignore_dups
 setopt hist_ignore_all_dups
 
 # Keybinds
-bindkey '^p' line-up-or-search
-bindkey '^n' line-down-or-search
+# bindkey '^p' line-up-or-search
+# bindkey '^n' line-down-or-search
 
 ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
 
