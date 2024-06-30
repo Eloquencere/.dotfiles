@@ -47,7 +47,7 @@ setopt hist_ignore_all_dups
 
 # Keybinds
 bindkey '^p' line-up-or-search
-bindkey '^n' download-up-or-search
+bindkey '^n' down-up-or-search
 
 # Shell integrations
 eval "$(fzf --zsh)"
