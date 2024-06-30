@@ -49,6 +49,8 @@ setopt hist_ignore_all_dups
 bindkey '^p' line-up-or-search
 bindkey '^n' line-down-or-search
 
+ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
+
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
