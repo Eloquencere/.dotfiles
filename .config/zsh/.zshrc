@@ -10,10 +10,11 @@ fi
 # Source/ load zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
+zinit ice depth=1; zinit light jeffreytse/zsh-vi-mode
+
 # Add in zsh plugins
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light Aloxaf/fzf-tab
-# find vim mode plugin
 
 # Load completions
 autoload -U compinit && compinit
@@ -47,8 +48,6 @@ setopt hist_ignore_all_dups
 # Keybinds
 bindkey '^p' line-up-or-search
 bindkey '^n' download-up-or-search
-bindkey -s '^o' 'clear\n'
-bindkey -e
 
 # Shell integrations
 eval "$(fzf --zsh)"
