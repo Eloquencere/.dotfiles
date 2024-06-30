@@ -17,6 +17,7 @@ zinit light Aloxaf/fzf-tab
 
 # Load completions
 autoload -U compinit && compinit
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza --color=always --icons=always --all --long --no-filesize --no-user --no-time --no-permissions $realpath'
@@ -45,8 +46,8 @@ setopt hist_ignore_dups
 setopt hist_ignore_all_dups
 
 # Keybinds
-bindkey '^p' history-search-backward
-bindkey '^n' history-search-forward
+bindkey '^p' line-up-or-search
+bindkey '^n' download-up-or-search
 bindkey -s '^o' 'clear\n'
 bindkey -e
 
