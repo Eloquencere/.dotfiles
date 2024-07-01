@@ -64,6 +64,7 @@ alias find=fd
 alias cat=bat
 alias grep=rg
 alias n=nvim
+alias df=duf
 
 # Functions
 # Usbip config
