@@ -38,8 +38,8 @@ yes | sudo pacman -Rs epiphany # Remove browser
 yes | sudo pacman -S --needed arch-wiki-docs arch-wiki-lite
 yes | sudo pacman -S --needed p7zip unrar tar exfat-utils ntfs-3g
 yes | sudo pacman -S --needed libreoffice-fresh vlc
-yes | sudo pacman -S --needed fastfetch btop
-yes | sudo pacman -S --needed xclip stow usbip
+yes | sudo pacman -S --needed fastfetch btop # benchmarkers
+yes | sudo pacman -S --needed stow usbip
 # Others
 # yay -S preload # to open up software faster
 # sudo systemctl enable preload; sudo systemctl start preload
@@ -47,6 +47,7 @@ yes | sudo pacman -S --needed xclip stow usbip
 
 # Command line tools
 yes | sudo pacman -S fzf zoxide eza bat fd ripgrep fzf
+yes | sudo pacman -S jq gdu speedtest-cli
 sudo pacman -S man
 yay -S tlrc-bin
 
@@ -57,7 +58,8 @@ yay -S brave-bin
 echo "Done"
 
 # Alacritty Terminal Emulator
-yes | sudo pacman -S alacritty starship zellij
+yes | sudo pacman -S alacritty starship 
+yes | sudo zellij xclip
 yay -S tio
 
 # Language compilers and related packages
