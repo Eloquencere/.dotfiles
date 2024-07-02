@@ -67,6 +67,7 @@ yes | sudo pacman -S --needed go python perl
 yes | sudo pacman -S python-pip
 yes | sudo pacman -S nodejs-lts-iron
 sudo pacman -S gdb ghidra valgrind strace
+# Get the appropriate profilers for all other necessary programming languages
 # yes | sudo pacman -S zig
 # curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh # Rust
 # curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh # Haskell
