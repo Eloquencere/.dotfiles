@@ -47,7 +47,7 @@ yes | sudo pacman -S --needed stow usbip
 
 # Command line tools
 yes | sudo pacman -S fzf zoxide eza bat fd ripgrep fzf
-yes | sudo pacman -S jq gdu speedtest-cli duf
+yes | sudo pacman -S jq gdu speedtest-cli duf netcat
 sudo pacman -S man
 yay -S tlrc-bin
 
