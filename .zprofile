@@ -16,6 +16,9 @@ export TOOLS_HOME=$HOME/Tools
 # Starship config file
 export STARSHIP_CONFIG=${XDG_CONFIG_HOME}/starship/starship.toml
 
+# Rust
+# export PATH=$HOME/.cargo/bin:$PATH
+
 # QuestaSim
 export PATH="$TOOLS_HOME/Mentor_Graphics/questasim/linux_x86_64":$PATH
 export PATH="$TOOLS_HOME/Mentor_Graphics/questasim/RUVM_2021.2":$PATH
