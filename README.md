@@ -9,7 +9,7 @@ cd
 git clone https://github.com/Eloquencere/.dotfiles.git
 ```
 
-Run the script in .bin/install.sh
+Run the script in .bin/
 ```
 cd ~/.dotfiles/.bin/
 chmod +x install.sh
