@@ -7,5 +7,9 @@ yes | flatpak install bottles
 # Logisim evolution
 yay -S logisim-evolution
 
+# KiCAD
+sudo pacman -Syu kicad
+sudo pacman -Syu --asdeps kicad-library kicad-library-3d
+
 cd ~/Documents
 rm -rf install_script_temp_folder
