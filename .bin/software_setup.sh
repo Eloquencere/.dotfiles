@@ -62,8 +62,13 @@ yes | sudo pacman -S alacritty starship
 yes | sudo zellij xclip
 yay -S tio
 
-# Language compilers and related packages
-# install 'pip' for py n stuff
+# Language compilers and related packages - install these as early as possible in the script
+yes | sudo pacman -S --needed go python perl
+yes | sudo pacman -S python-pip
+yes | sudo pacman -S nodejs-lts-iron
+# yes | sudo pacman -S zig
+# curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh # Rust
+# curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh # Haskell
 
 # Onedriver
 # mkdir $HOME/OneDrive
