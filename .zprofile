@@ -16,6 +16,11 @@ export TOOLS_HOME=$HOME/Tools
 # Starship config file
 export STARSHIP_CONFIG=${XDG_CONFIG_HOME}/starship/starship.toml
 
+# Pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin":$PATH
+eval "$(pyenv init -)"
+
 # Rust
 # export PATH=$HOME/.cargo/bin:$PATH
 
