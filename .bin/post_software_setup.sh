@@ -5,7 +5,7 @@ cd ~/Documents/install_script_temp_folder
 yes | flatpak install bottles
 
 # install overleaf
-yay -S yacreader
+flatpak install yacreader
 sudo pacman -S obsidian zathura
 
 cd ~/Documents
