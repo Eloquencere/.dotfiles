@@ -59,7 +59,7 @@ echo "Done"
 
 # Alacritty Terminal Emulator
 yes | sudo pacman -S alacritty starship 
-yes | sudo zellij xclip
+yes | sudo pacman -S zellij xclip
 yay -S tio
 
 # Language compilers and related packages - install these as early as possible in the script
