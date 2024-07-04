@@ -32,8 +32,8 @@ autoload -U colors && colors
 # Improving performance
 zinit cdreplay -q
 
-# source "$ZDOTDIR/zsh-aliases"
-# source "$ZDOTDIR/zsh-functions"
+source "$ZDOTDIR/zsh-aliases.sh"
+source "$ZDOTDIR/zsh-functions.sh"
 
 # Set the directory for zinit and it's plugins
 ZINIT_HOME="${XDG_DATA_HOME}/zsh/zinit.git"
