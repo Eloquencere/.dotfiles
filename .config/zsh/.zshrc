@@ -67,4 +67,4 @@ ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
-eval "$(starship init zsh)" # Loading starship
+eval "$(starship init zsh)"
