@@ -1,4 +1,4 @@
-# Fixed
+# Static
 
 # Bell
 unsetopt BEEP
@@ -49,22 +49,5 @@ fi
 
 # Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
-
-# Add external plugins
-zinit ice depth=1; zinit light jeffreytse/zsh-vi-mode
-
-# Add zsh plugins
-zinit light zsh-users/zsh-syntax-highlighting
-zinit light Aloxaf/fzf-tab
-
-# fzf-tab plugin config
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza --color=always --icons=always --all --long --no-filesize --no-user --no-time --no-permissions $realpath'
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza --color=always --icons=always --all --long --no-filesize --no-user --no-time --no-permissions $realpath'
-
-# zsh-vi-mode config
-ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
-# Keybinds
-# bindkey '^p' line-up-or-search
-# bindkey '^n' line-down-or-search
 
 # Variable
