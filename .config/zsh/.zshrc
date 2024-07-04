@@ -1,3 +1,5 @@
+# Fixed
+
 # Bell
 unsetopt BEEP
 
@@ -32,6 +34,7 @@ autoload -U colors && colors
 # Improving performance
 zinit cdreplay -q
 
+# Source aliases & functions
 source "$ZDOTDIR/zsh-aliases.sh"
 source "$ZDOTDIR/zsh-functions.sh"
 
@@ -64,7 +67,4 @@ ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
 # bindkey '^p' line-up-or-search
 # bindkey '^n' line-down-or-search
 
-# Shell integrations
-eval "$(fzf --zsh)"
-eval "$(zoxide init --cmd cd zsh)"
-eval "$(starship init zsh)"
+# Variable
