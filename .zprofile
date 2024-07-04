@@ -1,6 +1,6 @@
 # Profile file. Runs on login. Environment variables are here
 
-# Fixed
+# Static
 
 # Clean-up
 export ZDOTDIR="$HOME/.config/zsh"
