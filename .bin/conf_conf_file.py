@@ -21,7 +21,7 @@ with open(file, 'r') as file_handle:
       stitched_lines.append(key_section+'\n')
   for line in file_handle:
     if line == '\n': break
-    stitched_line.append(line)
+    stitched_lines.append(line)
   
   stitched_lines.append(f"{text_to_append}\n")
 
