@@ -16,11 +16,11 @@ yes | sudo pacman -S neovim
 rm -f ~/.bash*
 
 # Basic software
-yes | sudo pacman -S --needed arch-wiki-docs arch-wiki-lite
-yes | sudo pacman -S --needed p7zip unrar tar exfat-utils ntfs-3g
-yes | sudo pacman -S --needed libreoffice-fresh vlc
-yes | sudo pacman -S --needed fastfetch btop # benchmarkers
-yes | sudo pacman -S --needed stow usbip gnu-netcat speedtest-cli
+yes | sudo pacman -S arch-wiki-docs arch-wiki-lite
+yes | sudo pacman -S p7zip unrar tar exfat-utils ntfs-3g
+yes | sudo pacman -S libreoffice-fresh vlc
+yes | sudo pacman -S fastfetch btop # benchmarkers
+yes | sudo pacman -S stow gnu-netcat speedtest-cli
 # Others
 # yay -S preload # to open up software faster
 # sudo systemctl enable preload; sudo systemctl start preload
