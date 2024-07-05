@@ -48,9 +48,6 @@ cd ~/.dotfiles
 stow .
 cd -
 
-# Basic plugins
-echo "zinit light zsh-users/zsh-syntax-highlighting" | python ~/.dotfiles/.bin/conf_conf_file.py ~/.config/zsh/.zshrc "# Add Plugins"
-
 # Zsh-vi-mode plugin
 echo "zinit ice depth=1; zinit light jeffreytse/zsh-vi-mode" | python ~/.dotfiles/.bin/conf_conf_file.py ~/.config/zsh/.zshrc "# Add Plugins"
 echo "ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
