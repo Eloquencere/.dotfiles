@@ -2,9 +2,12 @@ mkdir ~/Documents/install_script_temp_folder
 cd ~/Documents/install_script_temp_folder
 
 # Basic setup
-sudo python ~/.dotfiles/.bin/conf_grub.py # removing grub screen on startup
+sudo sed -i "s/^\(GRUB_DEFAULT=\).*/\10/g" /etc/default/grub
+sudo sed -i "s/^\(GRUB_TIMEOUT=\).*/\10/g" /etc/default/grub
+sudo sed -i "s/^\(GRUB_TIMEOUT_STYLE=\).*/\1hidden/g" /etc/default/grub
 sudo grub-mkconfig -o /boot/grub/grub.cfg
-sudo python ~/.dotfiles/.bin/conf_pacman.py
+sudo sed -i "s/^#\(Color .*\)/\1\nILoveCandy/g" /etc/pacman.conf
+sudo sed -i "s/^#\(ParallelDownloads .*\)/\1/g" /etc/pacman.conf
 
 # Temporary setup for zsh shell
 yes | sudo pacman -S zsh
