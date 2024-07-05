@@ -1,11 +1,6 @@
 # Bell
 unsetopt BEEP
 
-# Set zsh_history dir
-if [ ! -d $XDG_CACHE_HOME/zsh ]; then
-	mkdir $XDG_CACHE_HOME/zsh
-fi
-
 # History
 HISTSIZE=5000
 SAVEHIST=$HISTSIZE
@@ -46,3 +41,6 @@ fi
 
 # Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
+
+# Add Plugins
+zinit light zsh-users/zsh-syntax-highlighting
