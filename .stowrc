@@ -1,0 +1,6 @@
+--ignore=.stowrc
+--ignore=.bin
+--ignore=\.git
+--ignore=\.gitignore
+--ignore=^/README.*
+--ignore=^/LICENSE.*
