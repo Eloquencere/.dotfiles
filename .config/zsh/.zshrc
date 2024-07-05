@@ -1,5 +1,3 @@
-# Static
-
 # Bell
 unsetopt BEEP
 
@@ -48,5 +46,3 @@ fi
 
 # Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
-
-# Variable
