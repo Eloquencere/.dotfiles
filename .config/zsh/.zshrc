@@ -1,3 +1,6 @@
+# Source aliases
+source "$ZDOTDIR/zsh-aliases.sh"
+
 # Bell
 unsetopt BEEP
 
@@ -26,9 +29,6 @@ autoload -U colors && colors
 
 # Improving performance
 zinit cdreplay -q
-
-# Source aliases
-source "$ZDOTDIR/zsh-aliases.sh"
 
 # Set the directory for zinit and it's plugins
 ZINIT_HOME="${XDG_DATA_HOME}/zsh/zinit.git"
