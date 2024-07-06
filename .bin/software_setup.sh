@@ -24,7 +24,7 @@ yes | sudo pacman -S arch-wiki-docs arch-wiki-lite
 yes | sudo pacman -S p7zip unrar tar exfat-utils ntfs-3g
 yes | sudo pacman -S libreoffice-fresh vlc
 yes | sudo pacman -S fastfetch btop # benchmarkers
-yes | sudo pacman -S stow gnu-netcat speedtest-cli
+yes | sudo pacman -S stow speedtest-cli
 # Others
 # yay -S preload # to open up software faster
 # sudo systemctl enable preload; sudo systemctl start preload
