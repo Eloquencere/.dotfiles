@@ -63,7 +63,7 @@ zstyle ':fzf-tab:*' single-group color header # Show type even when only one gro
 # Increase fzf prompt size
 zstyle ':fzf-tab:*' fzf-pad 5
 zstyle ':fzf-tab:*' fzf-min-height 20
-zstyle ':fzf-tab:complete:(cd|ls|ll|lsd|lsdd|j|eza):*' fzf-preview '[[ -d $realpath ]] && eza -1 --color=always $realpath'
+zstyle ':fzf-tab:complete:(cd|ls|ll|lsd|lsdd|j|eza|touch):*' fzf-preview '[[ -d $realpath ]] && eza -1 --color=always $realpath'
 zstyle ':fzf-tab:complete:((micro|cut|cp|mv|rm|bat|less|code|vd|nvim|n):argument-rest|kate:*)' fzf-preview 'bat --color=always -- $realpath 2>/dev/null || ls --color=always -- $realpath'
 #zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza --color=always --icons=always --all --long --no-filesize --no-user --no-time --no-permissions $realpath'
 #zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza --color=always --icons=always --all --long --no-filesize --no-user --no-time --no-permissions $realpath'
