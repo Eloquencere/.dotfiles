@@ -9,4 +9,4 @@ export TOOLS_HOME=$HOME/Tools
 export DOTFILES_HOME=$HOME/.dotfiles
 
 # Sourcing local changes
-source local/zprofile-local.sh
+source $DOTFILES_HOME/local/zprofile-local.sh
