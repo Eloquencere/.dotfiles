@@ -17,7 +17,7 @@ setopt hist_ignore_dups
 setopt hist_ignore_all_dups
 
 # Completions
-autoload -U compinit && compinit
+autoload -Uz compinit && compinit
 _comp_options+=(globdots) # Show hidden files
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
@@ -26,7 +26,7 @@ zstyle ':completion:*' menu no
 zstyle ':completion:*' group-name '' # Group the completions by type
 
 # Enable colors
-autoload -U colors && colors
+autoload -Uz colors && colors
 
 # Set the directory for zinit and it's plugins
 ZINIT_HOME="${XDG_DATA_HOME}/zsh/zinit.git"
