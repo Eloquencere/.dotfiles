@@ -46,4 +46,4 @@ source "${ZINIT_HOME}/zinit.zsh"
 zinit light zsh-users/zsh-syntax-highlighting
 
 # Sourcing local changes
-source ../local/zshrc-local.sh
+source ../../local/zshrc-local.sh
