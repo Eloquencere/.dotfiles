@@ -8,7 +8,7 @@ alias cp="cp -i"
 alias mv='mv -i'
 alias rm='rm -i'
 
-# Local
+# ------- Local -------
 
 # Basic tools
 alias n=nvim
