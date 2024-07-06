@@ -8,8 +8,8 @@ SAVEHIST=$HISTSIZE
 HISDUP=erase
 export HISTTIMEFORMAT="[%F %T] "
 setopt extended_history
-setopt appendhistory
-setopt sharehistory
+setopt append_history
+setopt share_history
 setopt hist_ignore_space
 setopt hist_save_no_dups
 setopt hist_find_no_dups
