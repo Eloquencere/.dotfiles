@@ -83,4 +83,4 @@ eval "$(zoxide init --cmd cd zsh)"
 eval "$(pyenv init -)"
 
 # Source aliases
-[[ ! -f "$ZDOTDIR/my-aliases.sh" ]] || source "$ZDOTDIR/zsh-aliases.sh"
+[[ ! -f "$ZDOTDIR/zsh-aliases.sh" ]] || source "$ZDOTDIR/zsh-aliases.sh"
