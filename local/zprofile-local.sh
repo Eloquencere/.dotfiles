@@ -22,6 +22,7 @@ source $TOOLS_HOME/Xilinx/Vivado/2024.1/settings64.sh
 source $TOOLS_HOME/Xilinx/Vitis/2024.1/settings64.sh
 
 # usbip
+SERVER_IP=1
 function usbip() {
 	if [[ \$1 == "attach" ]]; then
 		shift
