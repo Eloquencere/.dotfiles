@@ -1,5 +1,3 @@
-# Static
-
 # Better readable format
 alias free='free -m' # show sizes in MB
 
