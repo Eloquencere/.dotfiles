@@ -58,13 +58,6 @@ ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exculde .git"
-# Configure command used for **<TAB> completion
-_fzf_compgen_path() {
-    fd --no-ignore-vcs --hidden --follow --exclude ".git" --exclude "conf" . "$1"
-}
-_fzf_compgen_dir() {
-    fd --type=d --hidden --exclude .git . "$1"
-}
 
 # fzf-tab
 zinit light Aloxaf/fzf-tab
