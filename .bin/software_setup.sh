@@ -43,11 +43,6 @@ cd ..
 rm -rf yay/
 yes | sudo pacman -S flatpak
 
-# Initialising all dot files
-cd ~/.dotfiles
-stow .
-cd -
-
 # Install fonts
 yes | sudo pacman -S ttf-jetbrains-mono-nerd
 
@@ -91,11 +86,12 @@ yes | sudo pacman -S python-pip pyenv
 # Remote machine tools
 yes | sudo pacman -S usbip
 sudo sh -c "printf '%s\n%s\n' 'usbip-core' 'vhci-hcd' >> /etc/modules-load.d/usbip.conf" # adding basic conf to usbip 
-
 # yay -S nomachine
 
-# Seting up backup schemes (timeshift)
-# betterfs for better backup & setup encrypted HDD
+# Initialising all dot files
+cd ~/.dotfiles
+stow .
+cd -
 
 # Gnome Desktop Config
 # Bring minimise, maximise and close buttons to their positions
