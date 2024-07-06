@@ -8,5 +8,16 @@ alias cp="cp -i"
 alias mv='mv -i'
 alias rm='rm -i'
 
-# Sourcing local changes
-source $DOTFILES_HOME/local/zsh-aliases-local.sh
+# Local
+
+# Basic tools
+alias n=nvim
+alias neofetch=fastfetch
+
+# Better command line utils
+alias ls="eza --color=always --icons=always --git"
+alias tree="ls --tree --git-ignore"
+alias find=fd
+alias cat=bat
+alias grep=rg
+alias df=duf
