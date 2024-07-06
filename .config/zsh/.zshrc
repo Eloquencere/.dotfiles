@@ -60,7 +60,7 @@ export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exculde .git"
 # Configure command used for **<TAB> completion
 _fzf_compgen_path() {
-    fd --hidden --exclude .git
+    fd --no-ignore-vcs --hidden --follow --exclude ".git" --exclude "conf" . "$1"
 }
 _fzf_compgen_dir() {
     fd --type=d --hidden --exclude .git . "$1"
