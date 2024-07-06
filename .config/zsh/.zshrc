@@ -4,6 +4,7 @@ unsetopt BEEP
 # History
 HISTSIZE=5000
 SAVEHIST=$HISTSIZE
+HISTFILE="$XDG_DATA_HOME/zsh/.zsh_history"
 HISDUP=erase
 setopt appendhistory
 setopt sharehistory
