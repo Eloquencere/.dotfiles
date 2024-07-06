@@ -1,6 +1,5 @@
 --ignore=.stowrc
 --ignore=.bin
---ignore=local
 --ignore=\.git
 --ignore=\.gitignore
 --ignore=^/README.*
