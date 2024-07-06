@@ -2,10 +2,12 @@
 unsetopt BEEP
 
 # History
+HISTFILE="$XDG_DATA_HOME/zsh/.zsh_history"
 HISTSIZE=5000
 SAVEHIST=$HISTSIZE
-HISTFILE="$XDG_DATA_HOME/zsh/.zsh_history"
 HISDUP=erase
+export HISTTIMEFORMAT="[%F %T] "
+setopt extended_history
 setopt appendhistory
 setopt sharehistory
 setopt hist_ignore_space
