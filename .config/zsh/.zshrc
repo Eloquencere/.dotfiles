@@ -56,8 +56,9 @@ zinit light zsh-users/zsh-syntax-highlighting
 # Zsh-Vi-Mode
 zinit ice depth=1; zinit light jeffreytse/zsh-vi-mode
 ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
-# bindkey '^p' line-up-or-search
-# bindkey '^n' line-down-or-search
+bindkey -M viins '^p' history-beginning-search-backward
+bindkey -M viins '^n' history-beginning-search-forward
+# can replace 'viins' with 'vicmd' too
 
 # fzf
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
