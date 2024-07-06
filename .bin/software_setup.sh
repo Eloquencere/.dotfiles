@@ -34,7 +34,6 @@ yes | sudo pacman -Rs epiphany # Remove browser
 # Installing yay and git and curl
 echo "Installing yay AUR package manager"
 yes | sudo pacman -Syu
-yes | sudo pacman -S base-devel git
 git clone https://aur.archlinux.org/yay.git
 cd yay
 yes | makepkg -si
