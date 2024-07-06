@@ -10,6 +10,6 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza --color=always --icons=always -
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza --color=always --icons=always --all --long --no-filesize --no-user --no-time --no-permissions $realpath'
 
 # Shell integrations
-eval "\$(starship init zsh)"
-eval "\$(fzf --zsh)"
-eval "\$(zoxide init --cmd cd zsh)"
+eval "$(starship init zsh)"
+eval "$(fzf --zsh)"
+eval "$(zoxide init --cmd cd zsh)"
