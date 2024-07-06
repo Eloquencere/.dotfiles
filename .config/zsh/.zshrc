@@ -30,8 +30,7 @@ autoload -Uz colors && colors
 
 # setopts
 setopt extendedglob # enables regex
-setopt nobeep 
-setopt autocd
+setopt nobeep
 
 # Set the directory for zinit and it's plugins
 ZINIT_HOME="${XDG_DATA_HOME}/zsh/zinit.git"
