@@ -1,0 +1,4 @@
+Gnome Settings
+
+Resolution - 1914x884 for display settings in gnome
+change DNS servers to primary - 1.1.1.1(cloudflare) & secondary - 8.8.8.8(google) & 8.8.4.4(google)
