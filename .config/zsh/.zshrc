@@ -76,8 +76,6 @@ zstyle ':fzf-tab:*' fzf-pad 5
 zstyle ':fzf-tab:*' fzf-min-height 20
 zstyle ':fzf-tab:complete:(cd|ls|jq|touch):*' fzf-preview '[[ -d $realpath ]] && eza -1 --color=always --icons=always --all $realpath'
 zstyle ':fzf-tab:complete:((cut|cp|mv|rm|cat|less|code|nvim|n):argument-rest|kate:*)' fzf-preview 'bat --color=always -- $realpath 2>/dev/null || eza -1 --color=always --icons=always --all -- $realpath'
-#zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza --color=always --icons=always --all --long --no-filesize --no-user --no-time --no-permissions $realpath'
-#zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza --color=always --icons=always --all --long --no-filesize --no-user --no-time --no-permissions $realpath'
 
 # Shell integrations
 eval "$(starship init zsh)"
