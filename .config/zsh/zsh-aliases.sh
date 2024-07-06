@@ -7,3 +7,6 @@ alias free='free -m' # show sizes in MB
 alias cp="cp -i"
 alias mv='mv -i'
 alias rm='rm -i'
+
+# Sourcing local changes
+source ../../local/zsh-aliases.sh
