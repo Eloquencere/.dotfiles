@@ -9,4 +9,4 @@ alias mv='mv -i'
 alias rm='rm -i'
 
 # Sourcing local changes
-source ../../local/zsh-aliases-local.sh
+source $DOTFILES_HOME/local/zsh-aliases-local.sh
