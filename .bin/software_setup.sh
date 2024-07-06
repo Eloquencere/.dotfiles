@@ -1,3 +1,7 @@
+echo "Welcome to the installer, this will be part 1 of installing all necessary tools for development
+This script will automatically reboot the system after it is done"
+sleep 10
+
 mkdir ~/Documents/install_script_temp_folder
 cd ~/Documents/install_script_temp_folder
 
@@ -100,4 +104,5 @@ gsettings set org.gnome.desktop.interface monospace-font-name 'JetBrainsMono Ner
 cd ~/Documents
 rm -rf install_script_temp_folder
 
-echo "Reboot the system now"
+sleep 10
+reboot
