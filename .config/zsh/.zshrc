@@ -45,7 +45,7 @@ zinit cdreplay -q
 # Add Plugins
 zinit light zsh-users/zsh-syntax-highlighting
 
-# Local
+# ------- Local ------
 
 # Zsh-Vi-Mode
 zinit ice depth=1; zinit light jeffreytse/zsh-vi-mode
