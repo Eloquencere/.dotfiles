@@ -5,6 +5,7 @@ cd ~/Documents/install_script_temp_folder
 pyenv install 3.12
 pyenv global 3.12
 pyenv shell 3.12
+pip install --upgrade pip
 # debugging
 pip install icecream
 # presentation
