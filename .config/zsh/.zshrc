@@ -22,7 +22,9 @@ autoload -U compinit && compinit
 _comp_options+=(globdots) # Show hidden files
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*:descriptions' format '#%d'
 zstyle ':completion:*' menu no
+zstyle ':completion:*' group-name '' # Group the completions by type
 
 # Enable colors
 autoload -U colors && colors
@@ -55,8 +57,16 @@ ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
 
 # fzf-tab
 zinit light Aloxaf/fzf-tab
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza --color=always --icons=always --all --long --no-filesize --no-user --no-time --no-permissions $realpath'
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza --color=always --icons=always --all --long --no-filesize --no-user --no-time --no-permissions $realpath'
+zstyle ':fzf-tab:*' show-group full
+zstyle ':fzf-tab:*' switch-group ctrl-h ctrl-l # Change keybinding to switch groups
+zstyle ':fzf-tab:*' single-group color header # Show type even when only one group
+# Increase fzf prompt size
+zstyle ':fzf-tab:*' fzf-pad 5
+zstyle ':fzf-tab:*' fzf-min-height 20
+zstyle ':fzf-tab:complete:(cd|ls|ll|lsd|lsdd|j|eza):*' fzf-preview '[[ -d $realpath ]] && eza -1 --color=always $realpath'
+zstyle ':fzf-tab:complete:((micro|cut|cp|mv|rm|bat|less|code|vd|nvim|n):argument-rest|kate:*)' fzf-preview 'bat --color=always -- $realpath 2>/dev/null || ls --color=always -- $realpath'
+#zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza --color=always --icons=always --all --long --no-filesize --no-user --no-time --no-permissions $realpath'
+#zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza --color=always --icons=always --all --long --no-filesize --no-user --no-time --no-permissions $realpath'
 
 # Shell integrations
 eval "$(starship init zsh)"
