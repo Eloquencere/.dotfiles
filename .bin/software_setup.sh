@@ -48,9 +48,6 @@ cd ~/.dotfiles
 stow .
 cd -
 
-# Zsh-vi-mode plugin
-# basic tools aliases
-
 # Install fonts
 yes | sudo pacman -S ttf-jetbrains-mono-nerd
 
@@ -61,9 +58,6 @@ yay -S tio
 
 # Command line tools
 yes | sudo pacman -S fzf zoxide eza bat fd ripgrep
-# add to env
-# aliases
-
 yes | sudo pacman -S  gdu duf jq
 
 sudo pacman -S man
@@ -83,7 +77,6 @@ yes | sudo pacman -S nodejs-lts-iron
 # Get the appropriate profilers for all other necessary programming languages
 # yes | sudo pacman -S zig
 # curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh # Rust
-# echo "export PATH=$HOME/.cargo/bin:$PATH" | python ~/.dotfiles/.bin/conf_conf_file.py ~/.zprofile "# Rust"
 # curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh # Haskell
 
 yes | sudo pacman -S --needed perl go python
