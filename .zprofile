@@ -8,6 +8,8 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export TOOLS_HOME="$HOME/Tools"
 export DOTFILES_HOME="$HOME/.dotfiles"
 
+# ------ Local ------
+
 # Starship
 export STARSHIP_CONFIG=${XDG_CONFIG_HOME}/starship/starship.toml
 
