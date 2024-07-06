@@ -44,3 +44,6 @@ source "${ZINIT_HOME}/zinit.zsh"
 
 # Add Plugins
 zinit light zsh-users/zsh-syntax-highlighting
+
+# Sourcing local changes
+source ../local/zshrc-local.sh
