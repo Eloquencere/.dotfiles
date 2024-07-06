@@ -55,7 +55,7 @@ ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
 
 # fzf-tab
 zinit light Aloxaf/fzf-tab
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --all --long --no-filesize --no-user --no-time --no-permissions --no-git $realpath'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza --color=always --icons=always --all --long --no-filesize --no-user --no-time --no-permissions --git-repos $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --all --long --no-filesize --no-user --no-time --no-permissions --no-git $realpath'
 
 # Shell integrations
