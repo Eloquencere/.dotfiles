@@ -78,10 +78,10 @@ zstyle ':fzf-tab:complete:(cd|ls|jq|touch|source):*' fzf-preview '[[ -d $realpat
 zstyle ':fzf-tab:complete:((cp|mv|rm|cat|code|nvim|n):argument-rest|kate:*)' fzf-preview 'bat --color=always -- $realpath 2>/dev/null || eza -1 --color=always --icons=always --all -- $realpath'
 
 # Shell integrations
-eval "$(starship init zsh)"
-eval "$(fzf --zsh)"
-eval "$(zoxide init --cmd cd zsh)"
-eval "$(pyenv init -)"
+source <(starship init zsh)
+source <(fzf --zsh)
+source <(zoxide init --cmd cd zsh)
+source <(pyenv init -)
 
 # Source aliases & functions
 [[ ! -f "$ZDOTDIR/zsh-aliases.sh" ]] || source "$ZDOTDIR/zsh-aliases.sh"
