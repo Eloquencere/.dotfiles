@@ -1,5 +1,6 @@
---ignore=.stowrc
 --ignore=.bin
+--ignore=ref
+--ignore=.stowrc
 --ignore=\.git
 --ignore=\.gitignore
 --ignore=^/README.*
