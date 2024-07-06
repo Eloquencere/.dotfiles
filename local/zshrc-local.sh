@@ -13,5 +13,3 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza --color=always --icons=
 eval "\$(starship init zsh)"
 eval "\$(fzf --zsh)"
 eval "\$(zoxide init --cmd cd zsh)"
-
-SERVER_IP=1
