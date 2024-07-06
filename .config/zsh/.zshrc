@@ -27,9 +27,6 @@ zstyle ':completion:*' menu no
 # Enable colors
 autoload -U colors && colors
 
-# Improving performance
-zinit cdreplay -q
-
 # Set the directory for zinit and it's plugins
 ZINIT_HOME="${XDG_DATA_HOME}/zsh/zinit.git"
 
@@ -41,6 +38,9 @@ fi
 
 # Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
+
+# Improving performance
+zinit cdreplay -q
 
 # Add Plugins
 zinit light zsh-users/zsh-syntax-highlighting
