@@ -1,5 +1,6 @@
-# Bell
-unsetopt BEEP
+# setopts
+setopt extendedglob # enables regex
+setopt nobeep
 
 # History
 HISTFILE="$XDG_DATA_HOME/zsh/.zsh_history"
@@ -21,16 +22,10 @@ autoload -Uz compinit && compinit
 _comp_options+=(globdots) # Show hidden files
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':completion:*:descriptions' format '#%d'
 zstyle ':completion:*' menu no
-zstyle ':completion:*' group-name '' # Group the completions by type
 
 # Enable colors
 autoload -Uz colors && colors
-
-# setopts
-setopt extendedglob # enables regex
-setopt nobeep
 
 # Set the directory for zinit and it's plugins
 ZINIT_HOME="${XDG_DATA_HOME}/zsh/zinit.git"
@@ -66,9 +61,6 @@ export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exculde .git
 
 # fzf-tab
 zinit light Aloxaf/fzf-tab
-zstyle ':fzf-tab:*' show-group full
-zstyle ':fzf-tab:*' switch-group ctrl-h ctrl-l # Change keybinding to switch groups
-zstyle ':fzf-tab:*' single-group color header # Show type even when only one group
 # Increase fzf prompt size
 zstyle ':fzf-tab:*' fzf-pad 5
 zstyle ':fzf-tab:*' fzf-min-height 20
