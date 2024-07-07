@@ -51,23 +51,23 @@ yes | sudo pacman -S ttf-jetbrains-mono-nerd
 # Alacritty Terminal Emulator
 yes | sudo pacman -S alacritty starship 
 yes | sudo pacman -S zellij xclip
-yay -S tio
+yay -S tio # Enter, enter, y, y
 
 # Command line tools
 yes | sudo pacman -S fzf zoxide eza bat fd ripgrep
 yes | sudo pacman -S  gdu duf jq
 
 echo "\ny" | sudo pacman -S man
-yay -S tlrc-bin
+yay -S tlrc-bin # enter, enter, y
 
 # Brave
 echo "Installing Brave"
 echo "Just keep pressing 'Enter' From here on"
-echo "\n\n\ny\ny" | yay -S brave-bin
+yay -S brave-bin # enter, enter, enter, y, y
 echo "Done"
 
 # Language compilers and related packages - install these as early as possible in the script
-sudo pacman -S gdb valgrind strace ghidra
+echo "3\ny" | sudo pacman -S gdb valgrind strace ghidra
 yes | sudo pacman -S --needed clang lldb
 yes | sudo pacman -S nodejs-lts-iron
 
