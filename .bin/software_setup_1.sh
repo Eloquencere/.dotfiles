@@ -33,7 +33,13 @@ yes | sudo pacman -Rs epiphany # Remove browser
 # gstreamer1.0-vaapi # video player
 # and contacts, weather, tour
 
+# Initialising all dot files
+cd ~/.dotfiles
+stow .
+cd -
+
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh # Rust
+source ~/.zprofile
 # Installing paru and git and curl
 echo "Installing paru AUR package manager"
 yes | sudo pacman -Syu
@@ -91,11 +97,6 @@ yes | sudo pacman -S usbip
 sudo sh -c "printf '%s\n%s\n' 'usbip-core' 'vhci-hcd' >> /etc/modules-load.d/usbip.conf" # adding basic conf to usbip 
 # paru -S nomachine
 # Download rust-desk
-
-# Initialising all dot files
-cd ~/.dotfiles
-stow .
-cd -
 
 # Gnome Desktop Config
 # Bring minimise, maximise and close buttons to their positions
