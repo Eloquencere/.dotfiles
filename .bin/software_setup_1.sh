@@ -44,8 +44,9 @@ yes | sudo pacman -Rs epiphany # Remove browser
 # gstreamer1.0-vaapi # video player
 # and contacts, weather, tour
 
-# Install fonts
+# Install fonts and extensions
 yes | sudo pacman -S ttf-jetbrains-mono-nerd
+flatpak install ExtensionManager
 
 # Alacritty Terminal Emulator
 yes | sudo pacman -S alacritty starship 
