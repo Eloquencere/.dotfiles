@@ -20,14 +20,13 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
 sudo sed -i "s/^#\(Color\)/\1\nILoveCandy/g" /etc/pacman.conf
 sudo sed -i "s/^#\(ParallelDownloads .*\)/\1/g" /etc/pacman.conf
 
-# Installing external package managers yay & paru(AUR), flatpak
+# Installing external package managers yay(AUR), flatpak
 yes | sudo pacman -Syu
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
 cd ..
 rm -rf yay/
-yay -S paru-bin
 yes | sudo pacman -S flatpak
 
 # Basic software
@@ -37,7 +36,7 @@ yes | sudo pacman -S libreoffice-fresh vlc
 yes | sudo pacman -S fastfetch btop # benchmarkers
 yes | sudo pacman -S stow speedtest-cli openbsd-netcat
 # Others
-paru -S preload # to open up software faster
+yay -S preload # to open up software faster
 sudo systemctl enable preload --now
 
 # Uninstall bloat
@@ -51,17 +50,17 @@ yes | sudo pacman -S ttf-jetbrains-mono-nerd
 # Alacritty Terminal Emulator
 yes | sudo pacman -S alacritty starship 
 yes | sudo pacman -S zellij xclip
-paru -S tio # Enter, enter, y, y
+yay -S tio # Enter, enter, y, y
 
 # Command line tools
 yes | sudo pacman -S fzf zoxide eza bat fd ripgrep
 yes | sudo pacman -S  gdu duf jq
 
 echo "\ny" | sudo pacman -S man
-paru -S tlrc-bin # enter, enter, y
+yay -S tlrc-bin # enter, enter, y
 
 # Brave
-paru -S brave-bin # enter, enter, enter, y, y
+yay -S brave-bin # enter, enter, enter, y, y
 
 # Language compilers and related packages - install these as early as possible in the script
 yes | sudo pacman -S --needed perl go python
@@ -79,13 +78,13 @@ yes | sudo pacman -S python-pip pyenv
 
 # Onedriver
 # mkdir $HOME/OneDrive
-# paru -S onedriver
+# yay -S onedriver
 # rm -rf ~/Music ~/Pictures ~/Templates ~/Public
 
 # Remote machine tools
 yes | sudo pacman -S usbip
 sudo sh -c "printf '%s\n%s\n' 'usbip-core' 'vhci-hcd' >> /etc/modules-load.d/usbip.conf" # adding basic conf to usbip 
-# paru -S nomachine
+# yay -S nomachine
 # Download rust-desk
 
 # Initialising all dot files
