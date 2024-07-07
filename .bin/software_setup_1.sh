@@ -74,19 +74,17 @@ paru -S brave-bin # enter, enter, enter, y, y
 echo "Done"
 
 # Language compilers and related packages - install these as early as possible in the script
+yes | sudo pacman -S --needed perl go python
 echo "3\ny" | sudo pacman -S gdb valgrind strace ghidra
 yes | sudo pacman -S --needed clang lldb
 yes | sudo pacman -S nodejs-lts-iron
+yes | sudo pacman -S python-pip pyenv
+# Need to change the location of the .pyenv folder & reflect it in .zprofile
 
-# Get the appropriate profilers for all other necessary programming languages
-# yes | sudo pacman -S zig
-# Download crate suite with quality of life crates
+# Download crate suite with quality of life crates for rust
 # curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh # Haskell
 # yes | sudo pacman -S zig
-
-yes | sudo pacman -S --needed perl go python
-yes | sudo pacman -S python-pip pyenv
-# Change the location of the .pyenv folder & reflect it in .zprofile
+# Get the appropriate profilers for all other necessary programming languages
 
 # Onedriver
 # mkdir $HOME/OneDrive
