@@ -22,7 +22,6 @@ pip install parse
 pip install pendulum # replaces datetime
 pip install pydantic
 pip install ruff # linter
-pip install pyfiglet # Best game engine for Python
 
 
 # installing virt-manager with qemu
