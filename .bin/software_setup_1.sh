@@ -79,7 +79,7 @@ yes | sudo pacman -S nodejs-lts-iron
 
 yes | sudo pacman -S --needed perl go python
 yes | sudo pacman -S python-pip pyenv
-
+# Change the location of the .pyenv folder & reflect it in .zprofile
 
 # Onedriver
 # mkdir $HOME/OneDrive
