@@ -12,7 +12,7 @@ genfstab -U -p /mnt > /mnt/etc/fstab
 arch-chroot /mnt
 
 # Computer name - "dev-machine"
-# user - "Eloquencer"
+# user - "eloquencer"
 
 pacman -S base-devel neovim
 pacman -S zsh
