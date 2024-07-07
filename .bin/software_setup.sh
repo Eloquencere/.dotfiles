@@ -58,13 +58,13 @@ yay -S tio
 yes | sudo pacman -S fzf zoxide eza bat fd ripgrep
 yes | sudo pacman -S  gdu duf jq
 
-sudo pacman -S man
+echo "\ny" | sudo pacman -S man
 yay -S tlrc-bin
 
 # Brave
 echo "Installing Brave"
 echo "Just keep pressing 'Enter' From here on"
-yay -S brave-bin
+echo "\n\n\ny\ny" | yay -S brave-bin
 echo "Done"
 
 # Language compilers and related packages - install these as early as possible in the script
