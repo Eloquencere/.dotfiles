@@ -75,6 +75,7 @@ yes | sudo pacman -S nodejs-lts-iron
 # Get the appropriate profilers for all other necessary programming languages
 # yes | sudo pacman -S zig
 # curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh # Rust
+# Download crate suite with quality of life crates
 # curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh # Haskell
 
 yes | sudo pacman -S --needed perl go python
