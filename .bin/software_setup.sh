@@ -90,6 +90,7 @@ yes | sudo pacman -S python-pip pyenv
 yes | sudo pacman -S usbip
 sudo sh -c "printf '%s\n%s\n' 'usbip-core' 'vhci-hcd' >> /etc/modules-load.d/usbip.conf" # adding basic conf to usbip 
 # yay -S nomachine
+# Download rust-desk
 
 # Initialising all dot files
 cd ~/.dotfiles
