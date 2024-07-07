@@ -42,7 +42,7 @@ sudo systemctl restart libvirtd.service
 yes | flatpak install bottles
 
 # install overleaf
-flatpak install yacreader
+flatpak install yacreader # y, y, y
 yes | sudo pacman -S obsidian zathura
 # Download overleaf
 
