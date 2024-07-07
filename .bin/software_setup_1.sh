@@ -76,6 +76,7 @@ yes | sudo pacman -S nodejs-lts-iron
 # curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh # Rust
 # Download crate suite with quality of life crates
 # curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh # Haskell
+# yes | sudo pacman -S zig
 
 yes | sudo pacman -S --needed perl go python
 yes | sudo pacman -S python-pip pyenv
