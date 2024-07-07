@@ -23,11 +23,10 @@ yes | sudo pacman -S arch-wiki-docs arch-wiki-lite
 yes | sudo pacman -S p7zip unrar tar exfat-utils ntfs-3g
 yes | sudo pacman -S libreoffice-fresh vlc
 yes | sudo pacman -S fastfetch btop # benchmarkers
-yes | sudo pacman -S stow speedtest-cli
+yes | sudo pacman -S stow speedtest-cli openbsd-netcat
 # Others
-# yay -S preload # to open up software faster
-# sudo systemctl enable preload; sudo systemctl start preload
-# Auto cpu-freq
+yay -S preload # to open up software faster
+sudo systemctl enable preload --now
 
 # Uninstall bloat
 yes | sudo pacman -Rs epiphany # Remove browser
