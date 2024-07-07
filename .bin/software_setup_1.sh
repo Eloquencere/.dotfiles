@@ -25,7 +25,7 @@ yes | sudo pacman -S libreoffice-fresh vlc
 yes | sudo pacman -S fastfetch btop # benchmarkers
 yes | sudo pacman -S stow speedtest-cli openbsd-netcat
 # Others
-yay -S preload # to open up software faster
+paru -S preload # to open up software faster
 sudo systemctl enable preload --now
 
 # Uninstall bloat
@@ -33,15 +33,16 @@ yes | sudo pacman -Rs epiphany # Remove browser
 # gstreamer1.0-vaapi # video player
 # and contacts, weather, tour
 
-# Installing yay and git and curl
-echo "Installing yay AUR package manager"
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh # Rust
+# Installing paru and git and curl
+echo "Installing paru AUR package manager"
 yes | sudo pacman -Syu
-git clone https://aur.archlinux.org/yay.git
-cd yay
-yes | makepkg -si
+git clone https://aur.archlinux.org/paru.git
+cd paru
+makepkg -si
 echo "Done, cleaning up"
 cd ..
-rm -rf yay/
+rm -rf paru/
 yes | sudo pacman -S flatpak
 
 # Install fonts
@@ -50,19 +51,19 @@ yes | sudo pacman -S ttf-jetbrains-mono-nerd
 # Alacritty Terminal Emulator
 yes | sudo pacman -S alacritty starship 
 yes | sudo pacman -S zellij xclip
-yay -S tio # Enter, enter, y, y
+paru -S tio # Enter, enter, y, y
 
 # Command line tools
 yes | sudo pacman -S fzf zoxide eza bat fd ripgrep
 yes | sudo pacman -S  gdu duf jq
 
 echo "\ny" | sudo pacman -S man
-yay -S tlrc-bin # enter, enter, y
+paru -S tlrc-bin # enter, enter, y
 
 # Brave
 echo "Installing Brave"
 echo "Just keep pressing 'Enter' From here on"
-yay -S brave-bin # enter, enter, enter, y, y
+paru -S brave-bin # enter, enter, enter, y, y
 echo "Done"
 
 # Language compilers and related packages - install these as early as possible in the script
@@ -72,7 +73,6 @@ yes | sudo pacman -S nodejs-lts-iron
 
 # Get the appropriate profilers for all other necessary programming languages
 # yes | sudo pacman -S zig
-# curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh # Rust
 # Download crate suite with quality of life crates
 # curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh # Haskell
 # yes | sudo pacman -S zig
@@ -83,13 +83,13 @@ yes | sudo pacman -S python-pip pyenv
 
 # Onedriver
 # mkdir $HOME/OneDrive
-# yay -S onedriver
+# paru -S onedriver
 # rm -rf ~/Music ~/Pictures ~/Templates ~/Public
 
 # Remote machine tools
 yes | sudo pacman -S usbip
 sudo sh -c "printf '%s\n%s\n' 'usbip-core' 'vhci-hcd' >> /etc/modules-load.d/usbip.conf" # adding basic conf to usbip 
-# yay -S nomachine
+# paru -S nomachine
 # Download rust-desk
 
 # Initialising all dot files
