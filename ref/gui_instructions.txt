@@ -2,12 +2,5 @@ Gnome Settings
 - Resolution - 1914x884 for display settings in gnome
 - Change DNS servers to primary - 1.1.1.1(cloudflare) & secondary - 8.8.8.8(google) & 8.8.4.4(google)
 
-Vivado Guide
-- Check the 'vitis' (first) option
-- Uncheck all devices except Zynq-7000
-- Tick on add desktop icons - debated
-- when choosing the FPGA board
-  - Click on the refresh button and type out 'zybo' and download the first board
-
 Virt-manager
 - Setup USB & clipboard & GPU pass through
