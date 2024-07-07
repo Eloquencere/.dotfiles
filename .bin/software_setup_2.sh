@@ -45,6 +45,7 @@ yes | flatpak install bottles
 flatpak install yacreader # y, y, y
 yes | sudo pacman -S obsidian zathura
 # Download overleaf
+# Download docker
 
 cd ~/Documents
 rm -rf install_script_temp_folder
