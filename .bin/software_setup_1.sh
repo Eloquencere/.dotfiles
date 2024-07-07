@@ -17,6 +17,7 @@ sudo sed -i "s/^#\(ParallelDownloads .*\)/\1/g" /etc/pacman.conf
 yes | sudo pacman -S zsh neovim
 chsh -s $(which zsh)
 rm -f ~/.bash*
+sudo pacman -Rs vim
 
 # Basic software
 yes | sudo pacman -S arch-wiki-docs arch-wiki-lite
