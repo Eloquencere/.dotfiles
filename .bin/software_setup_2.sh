@@ -30,7 +30,7 @@ pip install ruff
 # installing virt-manager with qemu
 yes | sudo pacman -Syu
 yes | sudo pacman -S --needed archlinux-keyring
-yes | sudo pacman -S qemu-desktop virt-manager virt-viewer dnsmasq vde2 bridge-utils openbsd-netcat
+yes | sudo pacman -S qemu-desktop virt-manager virt-viewer dnsmasq vde2 bridge-utils
 echo "n" | sudo pacman -S --needed ebtables iptables
 echo "n" | sudo pacman -S --needed libguestfs
 sudo systemctl enable libvirtd.service
