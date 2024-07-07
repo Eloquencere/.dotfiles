@@ -2,5 +2,11 @@ Gnome Settings
 - Resolution - 1914x884 for display settings in gnome
 - Change DNS servers to primary - 1.1.1.1(cloudflare) & secondary - 8.8.8.8(google) & 8.8.4.4(google)
 
+Gnome Extensions
+blur my shell
+dash to dock
+hot corners
+Appindicator and kstatusNotifierItem support
+
 Virt-manager
 - Setup USB & clipboard & GPU pass through
