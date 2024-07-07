@@ -1,4 +1,3 @@
-sudo pacman -Syu
-yay -Syu
+paru -Syu
 flatpak update
 zinit update --all
