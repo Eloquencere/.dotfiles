@@ -43,7 +43,7 @@ yes | flatpak install bottles
 
 # install overleaf
 flatpak install yacreader
-sudo pacman -S obsidian zathura
+yes | sudo pacman -S obsidian zathura
 # Download overleaf
 
 cd ~/Documents
