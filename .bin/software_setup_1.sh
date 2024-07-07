@@ -20,6 +20,16 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
 sudo sed -i "s/^#\(Color\)/\1\nILoveCandy/g" /etc/pacman.conf
 sudo sed -i "s/^#\(ParallelDownloads .*\)/\1/g" /etc/pacman.conf
 
+# Installing external package managers yay & paru(AUR), flatpak
+yes | sudo pacman -Syu
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+cd ..
+rm -rf yay/
+yay -S paru-bin
+yes | sudo pacman -S flatpak
+
 # Basic software
 yes | sudo pacman -S arch-wiki-docs arch-wiki-lite
 yes | sudo pacman -S p7zip unrar tar exfat-utils ntfs-3g
@@ -34,24 +44,6 @@ sudo systemctl enable preload --now
 yes | sudo pacman -Rs epiphany # Remove browser
 # gstreamer1.0-vaapi # video player
 # and contacts, weather, tour
-
-# Initialising all dot files
-cd ~/.dotfiles
-stow .
-cd -
-
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh # Rust
-source ~/.zprofile
-# Installing paru and git and curl
-echo "Installing paru AUR package manager"
-yes | sudo pacman -Syu
-git clone https://aur.archlinux.org/paru.git
-cd paru
-makepkg -si
-echo "Done, cleaning up"
-cd ..
-rm -rf paru/
-yes | sudo pacman -S flatpak
 
 # Install fonts
 yes | sudo pacman -S ttf-jetbrains-mono-nerd
@@ -69,10 +61,7 @@ echo "\ny" | sudo pacman -S man
 paru -S tlrc-bin # enter, enter, y
 
 # Brave
-echo "Installing Brave"
-echo "Just keep pressing 'Enter' From here on"
 paru -S brave-bin # enter, enter, enter, y, y
-echo "Done"
 
 # Language compilers and related packages - install these as early as possible in the script
 yes | sudo pacman -S --needed perl go python
@@ -80,12 +69,13 @@ echo "3\ny" | sudo pacman -S gdb valgrind strace ghidra
 yes | sudo pacman -S --needed clang lldb
 yes | sudo pacman -S nodejs-lts-iron
 yes | sudo pacman -S python-pip pyenv
-# Need to change the location of the .pyenv folder & reflect it in .zprofile
+# Need to change the location of the .pyenv folder & reflect it in .profile
 
+# curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh # Rust
 # Download crate suite with quality of life crates for rust
 # curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh # Haskell
 # yes | sudo pacman -S zig
-# Get the appropriate profilers for all other necessary programming languages
+# Get the appropriate profilers for other necessary programming languages
 
 # Onedriver
 # mkdir $HOME/OneDrive
@@ -97,6 +87,11 @@ yes | sudo pacman -S usbip
 sudo sh -c "printf '%s\n%s\n' 'usbip-core' 'vhci-hcd' >> /etc/modules-load.d/usbip.conf" # adding basic conf to usbip 
 # paru -S nomachine
 # Download rust-desk
+
+# Initialising all dot files
+cd ~/.dotfiles
+stow .
+cd -
 
 # Gnome Desktop Config
 # Bring minimise, maximise and close buttons to their positions
