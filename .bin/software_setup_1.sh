@@ -14,9 +14,8 @@ sudo sed -i "s/^#\(Color\)/\1\nILoveCandy/g" /etc/pacman.conf
 sudo sed -i "s/^#\(ParallelDownloads .*\)/\1/g" /etc/pacman.conf
 
 # Temporary setup for zsh shell
-yes | sudo pacman -S zsh
+yes | sudo pacman -S zsh neovim
 chsh -s $(which zsh)
-yes | sudo pacman -S neovim
 rm -f ~/.bash*
 
 # Basic software
