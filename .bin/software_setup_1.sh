@@ -47,6 +47,8 @@ sudo systemctl enable preload --now
 
 # Uninstall bloat
 yes | sudo pacman -Rs epiphany # Remove browser
+yes | sudo pacman -Rs gnome-contacts sushi gnome-weather
+yes | sudo pacman -Rs totem gnome-maps gnome-logs evince
 # gstreamer1.0-vaapi # video player
 # and contacts, weather, tour
 
