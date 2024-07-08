@@ -5,8 +5,12 @@ Gnome Settings
 Gnome Extensions
 blur my shell
 dash to dock
-hot corners
+CHC-E
 Appindicator and kstatusNotifierItem support
+AATWS
+Just Perfection
+  Under visibility disable:
+    Accessibility menu
 
 Virt-manager
 - Setup USB & clipboard & GPU pass through
