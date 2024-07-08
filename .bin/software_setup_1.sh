@@ -6,6 +6,7 @@ mkdir ~/Documents/install_script_temp_folder
 cd ~/Documents/install_script_temp_folder
 
 # Temporary setup for zsh shell
+yes | sudo pacman --needed base-devel
 yes | sudo pacman -S zsh neovim
 chsh -s $(which zsh)
 rm -f ~/.bash*
