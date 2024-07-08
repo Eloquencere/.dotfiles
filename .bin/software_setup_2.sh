@@ -1,6 +1,7 @@
 mkdir ~/Documents/install_script_temp_folder
 cd ~/Documents/install_script_temp_folder
 
+yes | sudo pacman -Rs gnome-console
 # Necessary Python libraries
 pyenv install 3.12
 pyenv global 3.12
