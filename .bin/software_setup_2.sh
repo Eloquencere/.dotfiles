@@ -36,10 +36,10 @@ sudo usermod -a -G libvirt $(whoami)
 sudo systemctl restart libvirtd.service
 
 # Bottles(Wine) Emulator
-yes | flatpak install bottles
+flatpak install bottles --assumeyes
 
 # install overleaf
-flatpak install yacreader # y, y, y
+flatpak install yacreader --assumeyes
 yes | sudo pacman -S obsidian zathura
 # Download overleaf
 # Download docker
