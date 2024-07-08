@@ -1,5 +1,5 @@
 default_shell "zsh"
 pane_frames false
 default_layout "compact"
-default_mode "tmux"
+// default_mode "tmux" // not working
 copy_command "xclip -selection clipboard"
