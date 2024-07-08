@@ -10,7 +10,13 @@ yes | sudo pacman -S zsh neovim
 chsh -s $(which zsh)
 rm -f ~/.bash*
 sudo pacman -Rs vim
-# yes | sudo pacman -S amd-ucode
+echo "Do you have an and or intel CPU?"
+read -p "a -> and & i -> intel: " cpu_name
+if [[ cpu_name == "a"]]; then
+  yes | sudo pacman -S amd-ucode
+elif [[ cpu_name == "i"]]; then
+  yes | sudo pacman -S intel-ucode
+fi
 
 # Basic setup
 sudo sed -i "s/^\(GRUB_DEFAULT=\).*/\10/g" /etc/default/grub
