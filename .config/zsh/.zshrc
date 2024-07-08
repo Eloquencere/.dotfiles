@@ -7,7 +7,6 @@ HISTFILE="$XDG_DATA_HOME/zsh/.zsh_history"
 HISTSIZE=5000
 SAVEHIST=$HISTSIZE
 HISDUP=erase
-export HISTTIMEFORMAT="[%F %T] "
 setopt extended_history
 setopt append_history
 setopt share_history
@@ -53,11 +52,6 @@ ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
 bindkey -M viins '^p' history-beginning-search-backward
 bindkey -M viins '^n' history-beginning-search-forward
 # can replace 'viins' with 'vicmd' too
-
-# fzf
-export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
-export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
-export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exculde .git"
 
 # fzf-tab
 zinit light Aloxaf/fzf-tab
