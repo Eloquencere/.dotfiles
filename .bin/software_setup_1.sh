@@ -54,7 +54,7 @@ yes | sudo pacman -Rs totem gnome-maps gnome-logs evince
 
 # Install fonts and extensions
 yes | sudo pacman -S ttf-jetbrains-mono-nerd
-flatpak install ExtensionManager
+flatpak install ExtensionManager --assumeyes
 
 # Alacritty Terminal Emulator
 yes | sudo pacman -S alacritty starship 
