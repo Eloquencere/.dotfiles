@@ -75,7 +75,7 @@ yay -S brave-bin # enter, enter, enter, y, y
 
 # Language compilers and related packages - install these as early as possible in the script
 yes | sudo pacman -S --needed perl go python
-echo "3\ny" | sudo pacman -S gdb valgrind strace ghidra
+sudo pacman -S gdb valgrind strace ghidra
 yes | sudo pacman -S --needed clang lldb
 yes | sudo pacman -S nodejs-lts-iron
 yes | sudo pacman -S python-pip pyenv
