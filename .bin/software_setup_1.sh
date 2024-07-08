@@ -26,7 +26,7 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
 sudo sed -i "s/^#\(Color\)/\1\nILoveCandy/g" /etc/pacman.conf
 sudo sed -i "s/^#\(ParallelDownloads .*\)/\1/g" /etc/pacman.conf
 
-# Installing external package managers yay(AUR), flatpak
+# Installing external package managers yay(AUR), flatpak(flathub)
 yes | sudo pacman -Syu
 git clone https://aur.archlinux.org/yay.git
 cd yay
