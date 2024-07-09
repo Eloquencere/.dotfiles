@@ -51,6 +51,7 @@ yes | sudo pacman -S stow speedtest-cli openbsd-netcat
 # Others
 yay -S preload # to open up software faster
 sudo systemctl enable preload --now
+yay -S tio # Enter, enter, y, y
 
 # Install fonts and extensions
 yes | sudo pacman -S ttf-jetbrains-mono-nerd
@@ -59,11 +60,10 @@ flatpak install ExtensionManager --assumeyes
 # Alacritty Terminal Emulator
 yes | sudo pacman -S alacritty starship 
 yes | sudo pacman -S zellij xclip
-yay -S tio # Enter, enter, y, y
 
 # Command line tools
 yes | sudo pacman -S fzf zoxide eza bat fd ripgrep
-yes | sudo pacman -S  gdu duf jq
+yes | sudo pacman -S hub gdu duf jq
 
 yay | sudo pacman -S man-db
 yay -S tlrc-bin # enter, enter, y
