@@ -51,7 +51,7 @@ yes | sudo pacman -S stow speedtest-cli openbsd-netcat
 # Others
 yay -S preload # to open up software faster
 sudo systemctl enable preload --now
-yay -S tio # Enter, enter, y, y
+yay -S tio
 
 # Install fonts and extensions
 yes | sudo pacman -S ttf-jetbrains-mono-nerd
@@ -66,10 +66,10 @@ yes | sudo pacman -S fzf zoxide eza bat fd ripgrep
 yes | sudo pacman -S hub gdu duf jq
 
 yay | sudo pacman -S man-db
-yay -S tlrc-bin # enter, enter, y
+yay -S tlrc-bin
 
 # Brave
-yay -S brave-bin # enter, enter, enter, y, y
+yay -S brave-bin
 
 # Language compilers and related packages - install these as early as possible in the script
 yes | sudo pacman -S --needed perl go python
@@ -77,24 +77,39 @@ sudo pacman -S gdb valgrind strace ghidra
 yes | sudo pacman -S --needed clang lldb
 yes | sudo pacman -S nodejs-lts-iron
 yes | sudo pacman -S python-pip pyenv
-# Need to change the location of the .pyenv folder & reflect it in .profile
+mv ~/.pyenv $HOME/.local/share/
 
-# curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh # Rust
-# Download crate suite with quality of life crates for rust
-# curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh # Haskell
+echo "Do you want to install rust?(Y/n)"
+read usr_input
+if [[ "$usr_input" == 'y' ]]; then
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh # Rust
+  # Download crate suite with quality of life crates for rust
+echo "Do you want to install haskell?(Y/n)"
+read usr_input
+if [[ "$usr_input" == 'y' ]]; then
+  curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh # Haskell
+
 # yes | sudo pacman -S zig
 # Get the appropriate profilers for other necessary programming languages
 
 # Onedriver
-# mkdir $HOME/OneDrive
-# yay -S onedriver
-# rm -rf ~/Music ~/Pictures ~/Templates ~/Public
+echo "Do you want to install onedriver?(Y/n)"
+read usr_input
+if [[ "$usr_input" == 'y' ]]; then
+  mkdir $HOME/OneDrive
+  yay -S onedriver
+  rm -rf ~/Music ~/Pictures ~/Templates ~/Public
+fi
 
 # Remote machine tools
 yes | sudo pacman -S usbip
 sudo sh -c "printf '%s\n%s\n' 'usbip-core' 'vhci-hcd' >> /etc/modules-load.d/usbip.conf" # adding basic conf to usbip 
-# yay -S nomachine
-# Download rust-desk
+echo "Do you want to install nomachine and rustdesk?(Y/n)"
+read usr_input
+if [[ "$usr_input" == 'y' ]]; then
+  yay -S nomachine
+  yay -S rustdesk-bin
+fi
 
 # Initialising all dot files
 cd ~/.dotfiles
