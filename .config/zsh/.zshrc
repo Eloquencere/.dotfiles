@@ -17,8 +17,8 @@ setopt hist_ignore_all_dups
 
 # Completions
 setopt correct
-setopt extendedglob # enables regex
 setopt autopushd
+setopt extendedglob # enables regex
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
