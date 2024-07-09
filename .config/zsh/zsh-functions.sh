@@ -1,6 +1,5 @@
 # Extracting arrchives
-ex()
-{
+ex() {
 	if [ -f "$1" ]; then
 		case $1 in
 			*.tbz2)    tar xjf $1 ;;
