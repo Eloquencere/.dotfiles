@@ -18,11 +18,11 @@ setopt hist_ignore_dups
 setopt hist_ignore_all_dups
 
 # Completions
-autoload -Uz compinit && compinit
-_comp_options+=(globdots) # Show hidden files
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
+_comp_options+=(globdots) # Show hidden files
+autoload -Uz compinit && compinit -i
 
 # Enable colors
 autoload -Uz colors && colors
