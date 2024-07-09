@@ -6,7 +6,7 @@ mkdir ~/Documents/install_script_temp_folder
 cd ~/Documents/install_script_temp_folder
 
 # Temporary setup for zsh shell
-yes | sudo pacman --needed base-devel
+yes | sudo pacman -S --needed base-devel
 yes | sudo pacman -S zsh neovim
 chsh -s $(which zsh)
 rm -f ~/.bash*
@@ -28,6 +28,11 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
 sudo sed -i "s/^#\(Color\)/\1\nILoveCandy/g" /etc/pacman.conf
 sudo sed -i "s/^#\(ParallelDownloads .*\)/\1/g" /etc/pacman.conf
 
+# Uninstall bloat
+yes | sudo pacman -Rs epiphany gnome-music gnome-calendar
+yes | sudo pacman -Rs gnome-contacts sushi gnome-weather
+yes | sudo pacman -Rs totem gnome-maps gnome-logs evince
+
 # Installing external package managers yay(AUR), flatpak(flathub)
 yes | sudo pacman -Syu
 git clone https://aur.archlinux.org/yay.git
@@ -47,13 +52,6 @@ yes | sudo pacman -S stow speedtest-cli openbsd-netcat
 yay -S preload # to open up software faster
 sudo systemctl enable preload --now
 
-# Uninstall bloat
-yes | sudo pacman -Rs epiphany gnome-music gnome-calendar
-yes | sudo pacman -Rs gnome-contacts sushi gnome-weather
-yes | sudo pacman -Rs totem gnome-maps gnome-logs evince
-# gstreamer1.0-vaapi # video player
-# and contacts, weather, tour
-
 # Install fonts and extensions
 yes | sudo pacman -S ttf-jetbrains-mono-nerd
 flatpak install ExtensionManager --assumeyes
@@ -67,7 +65,7 @@ yay -S tio # Enter, enter, y, y
 yes | sudo pacman -S fzf zoxide eza bat fd ripgrep
 yes | sudo pacman -S  gdu duf jq
 
-echo "\ny" | sudo pacman -S man
+yay | sudo pacman -S man-db
 yay -S tlrc-bin # enter, enter, y
 
 # Brave
