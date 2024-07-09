@@ -103,8 +103,9 @@ cd -
 
 # Gnome Desktop Config
 # Bring minimise, maximise and close buttons to their positions
+gsettings set org.gnome.mutter center-new-windows true
 gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
-gsettings set org.gnome.desktop.interface monospace-font-name 'JetBrainsMono Nerd Font' 
+gsettings set org.gnome.desktop.interface monospace-font-name 'JetBrainsMono Nerd Font'
 
 cd ~/Documents
 rm -rf install_script_temp_folder
