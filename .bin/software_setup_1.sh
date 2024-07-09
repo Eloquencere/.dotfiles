@@ -103,7 +103,7 @@ fi
 
 # Remote machine tools
 yes | sudo pacman -S usbip
-sudo sh -c "printf '%s\n%s\n' 'usbip-core' 'vhci-hcd' >> /etc/modules-load.d/usbip.conf" # adding basic conf to usbip 
+sudo sh -c "printf '%s\n%s\n' 'usbip-core' 'vhci-hcd' >> /etc/modules-load.d/usbip.conf"
 echo "Do you want to install nomachine and rustdesk?(Y/n)"
 read usr_input
 if [[ "$usr_input" == 'y' ]]; then
