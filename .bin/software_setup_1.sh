@@ -49,6 +49,7 @@ yes | sudo pacman -S p7zip unrar tar exfat-utils ntfs-3g
 yes | sudo pacman -S libreoffice-fresh vlc
 yes | sudo pacman -S fastfetch btop # benchmarkers
 yes | sudo pacman -S stow speedtest-cli openbsd-netcat
+yes | sudo pacman -S --needed less
 # Others
 paru -S preload # to open up software faster
 sudo systemctl enable preload --now
