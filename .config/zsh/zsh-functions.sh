@@ -2,28 +2,29 @@
 ex()
 {
 	if [ -f "$1" ]; then
-	case $1 in
-		*.tbz2)    tar xjf $1 ;;
-		*.tgz)     tar xzf $1 ;;
-		*.tar)     tar xf $1 ;;
-		*.tar.bz2) tar xjf $1 ;;
-		*.tar.gz)  tar xzf $1 ;;
-		*.tar.xz)  tar xf $1 ;;
-		*.tar.zst) unzstd $1 ;;
-		*.7z)      7z x $1 ;;
-		*.zip)     unzip $1 ;;
-		*.bz2)     bzip2 $1 ;;
-		*.gz)      gunzip $1 ;;
-		*.Z)       uncompress $1 ;;
-		*.rar)     unrar x $1 ;;
-		*.deb)     ar x $1 ;;
-		*)         echo "'$1' cannot be extracted via ex()" ;;
-	esac
+		case $1 in
+			*.tbz2)    tar xjf $1 ;;
+			*.tgz)     tar xzf $1 ;;
+			*.tar)     tar xf $1 ;;
+			*.tar.bz2) tar xjf $1 ;;
+			*.tar.gz)  tar xzf $1 ;;
+			*.tar.xz)  tar xf $1 ;;
+			*.tar.zst) unzstd $1 ;;
+			*.7z)      7z x $1 ;;
+			*.zip)     unzip $1 ;;
+			*.bz2)     bzip2 $1 ;;
+			*.gz)      gunzip $1 ;;
+			*.Z)       uncompress $1 ;;
+			*.rar)     unrar x $1 ;;
+			*.deb)     ar x $1 ;;
+			*)         echo "'$1' cannot be extracted via ex()" ;;
+		esac
+ 	fi
 }
 
 # usbip
 SERVER_IP=1
-function usbip() {
+usbip() {
 	if [[ $1 == "attach" ]]; then
 		shift
 		sudo usbip attach --remote=$SERVER_IP "$@"
@@ -34,7 +35,7 @@ function usbip() {
 		command usbip "$@"
 	fi
 }
-function lsusbip() {
+lsusbip() {
 	IFS=$'\n' read -r -d '' -A server_devices < <(usbip list --remote=$SERVER_IP | grep --regexp "^\s+[-0-9]+:") # might need to add local IFS=
 	local usbip_port_output=$(usbip port 2>/dev/null)
 	printf "Devices from %s\n" "$SERVER_IP"
