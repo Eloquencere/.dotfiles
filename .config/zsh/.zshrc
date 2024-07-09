@@ -1,6 +1,4 @@
 # setopts
-setopt correct
-setopt extendedglob # enables regex
 setopt nobeep
 
 # History
@@ -18,6 +16,9 @@ setopt hist_ignore_dups
 setopt hist_ignore_all_dups
 
 # Completions
+setopt correct
+setopt extendedglob # enables regex
+setopt autopushd
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
@@ -67,6 +68,7 @@ source <(starship init zsh)
 source <(fzf --zsh)
 source <(zoxide init --cmd cd zsh)
 source <(pyenv init -)
+source <(hub alias -s)
 
 # Source aliases & functions
 [[ ! -f "$ZDOTDIR/zsh-aliases.sh" ]] || source "$ZDOTDIR/zsh-aliases.sh"
