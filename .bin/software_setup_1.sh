@@ -59,21 +59,19 @@ paru -S tio
 yes | sudo pacman -S ttf-jetbrains-mono-nerd
 flatpak install ExtensionManager --assumeyes
 
-# Alacritty Terminal Emulator
-yes | sudo pacman -S alacritty starship 
-yes | sudo pacman -S zellij xclip
-
 # Command line tools
 yes | sudo pacman -S fzf zoxide eza bat fd ripgrep
 yes | sudo pacman -S hub gdu duf jq
-
 yes | sudo pacman -S man-db
 paru -S tlrc-bin
+
+# Terminal Emulator tools
+yes | sudo pacman -S alacritty starship tmux
 
 # Brave
 paru -S brave-bin
 
-# Language compilers and related packages - install these as early as possible in the script
+# Language compilers and related packages
 yes | sudo pacman -S --needed perl go python
 sudo pacman -S gdb valgrind strace ghidra
 yes | sudo pacman -S --needed clang lldb
