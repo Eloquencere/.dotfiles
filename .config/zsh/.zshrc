@@ -1,4 +1,5 @@
 # setopts
+setopt correct
 setopt extendedglob # enables regex
 setopt nobeep
 
