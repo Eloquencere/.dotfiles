@@ -22,18 +22,3 @@ export PYENV_ROOT="$HOME/.pyenv"
 
 # Rust
 # export PATH=$HOME/.cargo/bin:$PATH
-
-# QuestaSim
-export PATH="$TOOLS_HOME/Mentor_Graphics/questasim/linux_x86_64":$PATH
-export PATH="$TOOLS_HOME/Mentor_Graphics/questasim/RUVM_2021.2":$PATH
-export LM_LICENSE_FILE="$XDG_DATA_HOME/questasim/license.dat":$LM_LICENSE_FILE
-
-# SVUnit
-export PATH="$TOOLS_HOME/SVUnit/bin":$PATH
-
-# Symbiyosys
-export PATH="$TOOLS_HOME/YosysHQ/oss-cad-suite/bin":$PATH
-
-# Vivado
-source $TOOLS_HOME/Xilinx/Vivado/2024.1/settings64.sh
-source $TOOLS_HOME/Xilinx/Vitis/2024.1/settings64.sh
