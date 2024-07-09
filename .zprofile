@@ -17,8 +17,7 @@ export HISTTIMEFORMAT="[%F %T] "
 export STARSHIP_CONFIG=${XDG_CONFIG_HOME}/starship/starship.toml
 
 # Pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin":$PATH
+[[ -d $XDG_DATA_HOME/.pyenv/bin ]] && export PATH="XDG_DATA_HOME/.pyenv/bin":$PATH
 
 # Rust
 # export PATH=$HOME/.cargo/bin:$PATH
