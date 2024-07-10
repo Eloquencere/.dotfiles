@@ -13,6 +13,7 @@ CHC-E
 Appindicator and kstatusNotifierItem support
 AATWS
 Tilling assistant
+Hide Top Bar
 Just Perfection
   Under visibility disable:
     Accessibility menu
