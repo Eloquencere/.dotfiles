@@ -7,8 +7,8 @@ live_config_reload = true
 TERM = "xterm-256color"
 
 [shell]
-program = "zellij"
-args = ["-l", "welcome"]
+program = "tmux"
+# args = ["-l", "welcome"]
 
 [window]
 startup_mode = "Maximized"
