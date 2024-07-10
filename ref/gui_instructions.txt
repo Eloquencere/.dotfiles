@@ -4,6 +4,7 @@ yay installations
 Gnome Settings
 - Resolution - 1914x884 for display settings in gnome
 - Change DNS servers to primary - 1.1.1.1(cloudflare) & secondary - 8.8.8.8(google) & 8.8.4.4(google)
+- Under 'Multi-tasking' section disable 'active screen edges'
 
 Gnome Extensions
 blur my shell
@@ -11,6 +12,7 @@ dash to dock
 CHC-E
 Appindicator and kstatusNotifierItem support
 AATWS
+Tilling assistant
 Just Perfection
   Under visibility disable:
     Accessibility menu
