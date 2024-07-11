@@ -27,7 +27,7 @@ pip install pyglet # best game engine
 
 echo "do you want to install a VM software?(y/n)"
 read usr_input
-if [ "$usr_input" == "y" ]; then
+if [[ "$usr_input" == "y" ]]; then
    # installing virt-manager with qemu
    yes | sudo pacman -Syu
    yes | sudo pacman -S --needed archlinux-keyring
