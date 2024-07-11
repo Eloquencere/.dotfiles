@@ -74,7 +74,7 @@ yes | sudo pacman -S --needed perl go python
 sudo pacman -S gdb valgrind strace ghidra
 yes | sudo pacman -S --needed clang lldb
 yes | sudo pacman -S nodejs-lts-iron
-yes | sudo pacman -S python-pip pyenv
+yes | sudo pacman -S python-pip pyenv tk
 
 echo "Do you want to install rust?(Y/n)"
 read usr_input
