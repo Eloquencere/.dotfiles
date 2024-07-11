@@ -26,21 +26,23 @@ pip install pydantic
 pip install ruff # linter
 pip install pyglet # best game engine
 
-
-# installing virt-manager with qemu
-yes | sudo pacman -Syu
-yes | sudo pacman -S --needed archlinux-keyring
-yes | sudo pacman -S qemu-desktop virt-manager virt-viewer dnsmasq vde2 bridge-utils
-echo "n" | sudo pacman -S --needed ebtables iptables
-echo "n" | sudo pacman -S --needed libguestfs
-sudo systemctl enable libvirtd.service --now
-sudo usermod -a -G libvirt $(whoami)
-sudo systemctl restart libvirtd.service
+echo "do you want to install a VM software?(y/n)"
+read usr_input
+if [ "$usr_input" == "y" ]; then
+   # installing virt-manager with qemu
+   yes | sudo pacman -Syu
+   yes | sudo pacman -S --needed archlinux-keyring
+   yes | sudo pacman -S qemu-desktop virt-manager virt-viewer dnsmasq vde2 bridge-utils
+   echo "n" | sudo pacman -S --needed ebtables iptables
+   echo "n" | sudo pacman -S --needed libguestfs
+   sudo systemctl enable libvirtd.service --now
+   sudo usermod -a -G libvirt $(whoami)
+   sudo systemctl restart libvirtd.service
+fi
 
 # Bottles(Wine) Emulator
 flatpak install bottles --assumeyes
 
-# install overleaf
 flatpak install yacreader --assumeyes
 yes | sudo pacman -S obsidian zathura
 # Download overleaf
