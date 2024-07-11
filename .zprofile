@@ -17,7 +17,14 @@ export HISTTIMEFORMAT="[%F %T] "
 export STARSHIP_CONFIG=${XDG_CONFIG_HOME}/starship/starship.toml
 
 # Pyenv
-[[ -d $XDG_DATA_HOME/.pyenv/bin ]] && export PATH="XDG_DATA_HOME/.pyenv/bin":$PATH
+export PYENV_ROOT="$XDG_DATA_HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin":$PATH
+source <(pyenv init -)
 
 # Rust
 # export PATH=$HOME/.cargo/bin:$PATH
+
+# Questasim
+export PATH="$TOOLS_HOME/Mentor_Graphics/questasim/linux_x86_64":$PATH
+export PATH="$TOOLS_HOME/Mentor_Graphics/questasim/RUVM_2021.2":$PATH
+export LM_LICENSE_FILE="$XDG_DATA_HOME/questasim/license.dat":$LM_LICENSE_FILE
