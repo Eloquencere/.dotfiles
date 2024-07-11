@@ -6,7 +6,6 @@ yes | sudo pacman -Rs gnome-console
 pyenv install 3.12
 pyenv global 3.12
 pyenv shell 3.12
-exec zsh # restarting the shell
 pip install --upgrade pip
 # debugging
 pip install icecream
