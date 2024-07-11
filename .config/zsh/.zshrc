@@ -61,7 +61,7 @@ zinit light Aloxaf/fzf-tab
 zstyle ':fzf-tab:*' fzf-pad 5
 zstyle ':fzf-tab:*' fzf-min-height 20
 zstyle ':fzf-tab:complete:(cd|ls|jq|touch|source):*' fzf-preview '[[ -d $realpath ]] && eza --oneline --color=always --icons=always --all $realpath'
-zstyle ':fzf-tab:complete:((cp|mv|rm|cat|code|nvim|n):argument-rest|kate:*)' fzf-preview 'bat --color=always -- $realpath 2>/dev/null || eza --oneline --color=always --icons=always --all -- $realpath'
+zstyle ':fzf-tab:complete:((cp|mv|rm|cat|nvim):argument-rest|kate:*)' fzf-preview 'bat --color=always -- $realpath 2>/dev/null || eza --oneline --color=always --icons=always --all -- $realpath'
 
 # Shell integrations
 source <(starship init zsh)
