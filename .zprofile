@@ -25,6 +25,6 @@ source <(pyenv init -)
 # export PATH=$HOME/.cargo/bin:$PATH
 
 # Questasim
-export PATH="$TOOLS_HOME/Mentor_Graphics/questasim/linux_x86_64":$PATH
-export PATH="$TOOLS_HOME/Mentor_Graphics/questasim/RUVM_2021.2":$PATH
-export LM_LICENSE_FILE="$XDG_DATA_HOME/questasim/license.dat":$LM_LICENSE_FILE
+# export PATH="$TOOLS_HOME/Mentor_Graphics/questasim/linux_x86_64":$PATH
+# export PATH="$TOOLS_HOME/Mentor_Graphics/questasim/RUVM_2021.2":$PATH
+# export LM_LICENSE_FILE="$XDG_DATA_HOME/questasim/license.dat":$LM_LICENSE_FILE
