@@ -82,10 +82,12 @@ read usr_input
 if [[ "$usr_input" == 'y' ]]; then
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh # Rust
   # Download crate suite with quality of life crates for rust
+fi
 echo "Do you want to install haskell?(Y/n)"
 read usr_input
 if [[ "$usr_input" == 'y' ]]; then
   curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh # Haskell
+fi
 
 # yes | sudo pacman -S zig
 # Get the appropriate profilers for other necessary programming languages
