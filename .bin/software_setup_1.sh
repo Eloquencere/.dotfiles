@@ -75,7 +75,6 @@ sudo pacman -S gdb valgrind strace ghidra
 yes | sudo pacman -S --needed clang lldb
 yes | sudo pacman -S nodejs-lts-iron
 yes | sudo pacman -S python-pip pyenv
-mv ~/.pyenv $HOME/.local/share/
 
 echo "Do you want to install rust?(Y/n)"
 read usr_input
