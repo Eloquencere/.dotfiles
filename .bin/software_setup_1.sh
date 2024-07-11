@@ -11,7 +11,7 @@ yes | sudo pacman -S zsh neovim
 chsh -s $(which zsh)
 rm -f ~/.bash*
 yes | sudo pacman -Rs vim htop
-echo "Do you have an and or intel CPU?"
+echo "Do you have an amd or intel CPU?"
 echo "a -> amd & i -> intel: "
 read cpu_name
 if [[ "$cpu_name" == "a" ]]; then
