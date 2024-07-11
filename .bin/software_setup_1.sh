@@ -12,7 +12,7 @@ chsh -s $(which zsh)
 rm -f ~/.bash*
 yes | sudo pacman -Rs vim htop
 echo "Do you have an and or intel CPU?"
-echo "a -> and & i -> intel: "
+echo "a -> amd & i -> intel: "
 read cpu_name
 if [[ "$cpu_name" == "a" ]]; then
   yes | sudo pacman -S amd-ucode
