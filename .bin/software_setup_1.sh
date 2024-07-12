@@ -65,8 +65,6 @@ yay -S tlrc-bin
 
 # Terminal Emulator tools
 yes | sudo pacman -S alacritty starship tmux
-# Atuin
-curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
 
 # Brave
 yay -S brave-bin
