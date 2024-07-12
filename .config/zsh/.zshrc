@@ -3,17 +3,6 @@ setopt nobeep
 
 # History
 HISTFILE="$XDG_DATA_HOME/zsh/.zsh_history"
-HISTSIZE=5000
-SAVEHIST=$HISTSIZE
-HISDUP=erase
-setopt extended_history
-setopt append_history
-setopt share_history
-setopt hist_ignore_space
-setopt hist_save_no_dups
-setopt hist_find_no_dups
-setopt hist_ignore_dups
-setopt hist_ignore_all_dups
 
 # Completions
 autoload -Uz compinit && compinit -i
