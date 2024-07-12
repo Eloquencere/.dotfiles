@@ -17,6 +17,7 @@ Hide Top Bar
 Just Perfection
   Under visibility disable:
     Accessibility menu
+    app drawer on the dock
 
 Virt-manager
 - Setup USB & clipboard & GPU pass through
