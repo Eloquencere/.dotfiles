@@ -8,9 +8,6 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export TOOLS_HOME="$HOME/Tools"
 export DOTFILES_HOME="$HOME/.dotfiles"
 
-# History settings
-export HISTTIMEFORMAT="[%F %T] "
-
 # ------ Local ------
 
 # Starship
