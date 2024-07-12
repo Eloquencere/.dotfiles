@@ -1,4 +1,5 @@
 # setopts
+setopt correct
 setopt nobeep
 
 # History
@@ -6,8 +7,6 @@ HISTFILE="$XDG_DATA_HOME/zsh/.zsh_history"
 
 # Completions
 autoload -Uz compinit && compinit -i
-setopt correct
-setopt autopushd
 setopt extendedglob # enables regex
 _comp_options+=(globdots) # Show hidden files
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
