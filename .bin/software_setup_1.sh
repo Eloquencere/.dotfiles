@@ -60,7 +60,7 @@ flatpak install ExtensionManager --assumeyes
 
 # Command line tools
 yes | sudo pacman -S fzf zoxide eza bat fd ripgrep
-yes | sudo pacman -S hub gdu duf jq man-db
+yes | sudo pacman -S hub gdu duf jq man-db atuin
 yay -S tlrc-bin
 
 # Terminal Emulator tools
