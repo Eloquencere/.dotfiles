@@ -40,9 +40,6 @@ zinit load atuinish/atuin
 # Zsh-Vi-Mode
 zinit ice depth=1; zinit light jeffreytse/zsh-vi-mode
 ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
-bindkey -M viins '^p' history-beginning-search-backward
-bindkey -M viins '^n' history-beginning-search-forward
-# can replace 'viins' with 'vicmd' too
 
 # fzf-tab
 zinit light Aloxaf/fzf-tab
