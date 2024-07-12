@@ -67,7 +67,6 @@ zstyle ':fzf-tab:complete:((cp|mv|rm|cat|nvim):argument-rest|kate:*)' fzf-previe
 source <(starship init zsh)
 source <(fzf --zsh)
 source <(zoxide init --cmd cd zsh)
-source <(pyenv init -)
 source <(hub alias -s)
 
 # Source aliases & functions
