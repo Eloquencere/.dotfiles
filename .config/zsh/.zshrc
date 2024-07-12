@@ -16,10 +16,10 @@ setopt hist_ignore_dups
 setopt hist_ignore_all_dups
 
 # Completions
+autoload -Uz compinit && compinit -i
 setopt correct
 setopt autopushd
 setopt extendedglob # enables regex
-autoload -Uz compinit && compinit -i
 _comp_options+=(globdots) # Show hidden files
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
