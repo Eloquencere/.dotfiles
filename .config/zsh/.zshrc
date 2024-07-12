@@ -45,6 +45,7 @@ zinit cdreplay -q
 
 # Add Plugins
 zinit light zsh-users/zsh-syntax-highlighting
+zinit load atuinish/atuin
 
 # ------- Local ------
 
@@ -66,6 +67,7 @@ zstyle ':fzf-tab:complete:((cp|mv|rm|cat|nvim):argument-rest|kate:*)' fzf-previe
 # Shell integrations
 source <(starship init zsh)
 source <(fzf --zsh)
+source <(atuin init zsh)
 source <(zoxide init --cmd cd zsh)
 source <(hub alias -s)
 
