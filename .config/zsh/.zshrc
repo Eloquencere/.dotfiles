@@ -55,6 +55,10 @@ source <(atuin init zsh)
 source <(zoxide init --cmd cd zsh)
 source <(hub alias -s)
 
+# Atuin
+bindkey '^r' atuin-search
+bindkey -M viins '^p' atuin-up-search # Needs to be by-prefix 
+
 # Source aliases & functions
 [[ ! -f "$ZDOTDIR/zsh-aliases.sh" ]] || source "$ZDOTDIR/zsh-aliases.sh"
 [[ ! -f "$ZDOTDIR/zsh-functions.sh" ]] || source "$ZDOTDIR/zsh-functions.sh"
