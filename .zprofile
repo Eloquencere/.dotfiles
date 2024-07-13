@@ -13,6 +13,9 @@ export DOTFILES_HOME="$HOME/.dotfiles"
 # Starship
 export STARSHIP_CONFIG=${XDG_CONFIG_HOME}/starship/starship.toml
 
+# Atuin
+export ATUIN_NOBIND="true"
+
 # Pyenv
 export PYENV_ROOT="$XDG_DATA_HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin":$PATH
