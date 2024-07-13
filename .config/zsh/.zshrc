@@ -57,7 +57,7 @@ source <(hub alias -s)
 
 # Atuin
 bindkey '^r' atuin-search
-bindkey -M viins '^p' atuin-up-search # Needs to be by-prefix 
+bindkey '^[[A' atuin-up-search
 
 # Source aliases & functions
 [[ ! -f "$ZDOTDIR/zsh-aliases.sh" ]] || source "$ZDOTDIR/zsh-aliases.sh"
