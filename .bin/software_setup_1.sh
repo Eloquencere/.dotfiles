@@ -33,13 +33,15 @@ yes | sudo pacman -Rs epiphany gnome-music gnome-calendar
 yes | sudo pacman -Rs gnome-contacts sushi gnome-weather
 yes | sudo pacman -Rs totem gnome-maps gnome-logs evince
 
-# Installing external package managers yay(AUR), flatpak(flathub)
+# Installing external package managers paru(AUR), flatpak(flathub)
 yes | sudo pacman -Syu
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
 cd ..
 rm -rf yay/
+yay -S paru-bin
+yes | sudo pacman -Rs yay
 yes | sudo pacman -S flatpak
 
 # Basic software
@@ -50,9 +52,9 @@ yes | sudo pacman -S fastfetch btop # benchmarkers
 yes | sudo pacman -S stow speedtest-cli openbsd-netcat
 yes | sudo pacman -S --needed less
 # Others
-yay -S preload # to open up software faster
+paru -S preload # to open up software faster
 sudo systemctl enable preload --now
-yay -S tio
+paru -S tio
 
 # Install fonts and extensions
 yes | sudo pacman -S ttf-jetbrains-mono-nerd
@@ -61,13 +63,13 @@ flatpak install ExtensionManager --assumeyes
 # Command line tools
 yes | sudo pacman -S fzf zoxide eza bat fd ripgrep
 yes | sudo pacman -S hub gdu duf jq man-db atuin
-yay -S tlrc-bin
+paru -S tlrc-bin
 
 # Terminal Emulator tools
 yes | sudo pacman -S alacritty starship tmux
 
 # Brave
-yay -S brave-bin
+paru -S brave-bin
 
 # Language compilers and related packages
 yes | sudo pacman -S --needed perl go python
@@ -96,7 +98,7 @@ echo "Do you want to install onedriver?(Y/n)"
 read usr_input
 if [[ "$usr_input" == 'y' ]]; then
   mkdir $HOME/OneDrive
-  yay -S onedriver
+  paru -S onedriver
   rm -rf ~/Music ~/Pictures ~/Templates ~/Public
 fi
 
@@ -106,8 +108,8 @@ sudo sh -c "printf '%s\n%s\n' 'usbip-core' 'vhci-hcd' >> /etc/modules-load.d/usb
 echo "Do you want to install nomachine and rustdesk?(Y/n)"
 read usr_input
 if [[ "$usr_input" == 'y' ]]; then
-  yay -S nomachine
-  yay -S rustdesk-bin
+  paru -S nomachine
+  paru -S rustdesk-bin
 fi
 
 # Initialising all dot files
