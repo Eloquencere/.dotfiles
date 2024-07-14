@@ -5,9 +5,9 @@ vim.opt.clipboard:append("unnamedplus")
 -- Alternative of swapfile as undo file and git integration
 
 -- Whitespace
-vim.opt.tabstop = 4            -- Number of spaces a tab character takes up
-vim.opt.softtabstop = 4        
-vim.opt.shiftwidth = 4	       -- Amount of spaces ">>" & "<<" take up
+vim.opt.tabstop = 8            -- Number of spaces a tab character takes up
+vim.opt.softtabstop = 8        
+vim.opt.shiftwidth = 8	       -- Amount of spaces ">>" & "<<" take up
 vim.opt.smartindent = true
 vim.opt.breakindent = true
 vim.opt.formatoptions = tcqrn1
