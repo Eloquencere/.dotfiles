@@ -25,6 +25,7 @@ pip install parse
 pip install pendulum # replaces datetime
 pip install pydantic
 pip install ruff # linter
+pip install mypy # static typing
 pip install pyglet # best game engine
 
 echo "do you want to install a VM software?(y/n)"
