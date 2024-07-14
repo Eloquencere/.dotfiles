@@ -25,7 +25,7 @@ export PYENV_ROOT="$XDG_DATA_HOME/pyenv"
 source <(pyenv init -)
 
 # Rust
-# export PATH=$HOME/.cargo/bin:$PATH
+# export PATH=$XDG_DATA_HOME/cargo/bin:$PATH
 
 # Questasim
 # export PATH="$TOOLS_HOME/Mentor_Graphics/questasim/linux_x86_64":$PATH
