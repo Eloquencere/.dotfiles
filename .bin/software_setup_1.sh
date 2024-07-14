@@ -10,7 +10,7 @@ yes | sudo pacman -S --needed base-devel
 yes | sudo pacman -S zsh neovim
 chsh -s $(which zsh)
 rm -f ~/.bash*
-yes | sudo pacman -Rs vim htop
+yes | sudo pacman -Rs vim htop nano
 echo "Do you have an amd or intel CPU?"
 echo "a -> amd & i -> intel: "
 read cpu_name
