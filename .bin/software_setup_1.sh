@@ -61,9 +61,10 @@ yes | sudo pacman -S ttf-jetbrains-mono-nerd
 flatpak install ExtensionManager --assumeyes
 
 # Command line tools
-yes | sudo pacman -S fzf zoxide eza bat fd ripgrep
-yes | sudo pacman -S gdu duf jq man-db atuin
+yes | sudo pacman -S fzf zoxide eza bat fd ripgrep jq
 yes | sudo pacman -S hub github-cli
+yes | sudo pacman -S yazi atuin gdu duf
+yes | sudo pacman -S man-db
 paru -S tlrc-bin
 
 # Terminal Emulator tools
