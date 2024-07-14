@@ -1,7 +1,5 @@
 # Extracting archives
-# Create a compression function - cmp() which will work like - cmp <folder> <format>(.zip, .tar)
-# Need to create folders with those names and then extract to inside them
-ex() {
+exct() {
 	if [ -f "$1" ]; then
 		case $1 in
 			*.tbz2)    tar xjf $1 ;;
