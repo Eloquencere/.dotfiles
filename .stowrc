@@ -3,5 +3,5 @@
 --ignore=.stowrc
 --ignore=\.git
 --ignore=\.gitignore
---ignore=^/README.*
---ignore=^/LICENSE.*
+--ignore=^/README*
+--ignore=^/LICENSE*
