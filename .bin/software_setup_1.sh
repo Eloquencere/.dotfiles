@@ -55,6 +55,7 @@ yes | sudo pacman -S --needed less
 paru -S preload # to open up software faster
 sudo systemctl enable preload --now
 paru -S tio
+paru -S pipes.sh
 
 # Install fonts and extensions
 yes | sudo pacman -S ttf-jetbrains-mono-nerd
