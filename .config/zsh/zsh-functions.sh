@@ -35,8 +35,10 @@ usbip() {
 	fi
 }
 lsusbip() {
+	local server_devices usbip_port_output
+ 	local busid device_name vid_pid local
 	IFS=$'\n' read -r -d '' -A server_devices < <(usbip list --remote=$SERVER_IP | grep --regexp "^\s+[-0-9]+:") # might need to add local IFS=
-	local usbip_port_output=$(usbip port 2>/dev/null)
+	usbip_port_output=$(usbip port 2>/dev/null)
 	printf "Devices from %s\n" "$SERVER_IP"
 	printf "%-10s %-50s %-10s\n" "BUSID" "DEVICE" "PORT"
 	local regex="^\s+([-0-9]+):\s+(.*)\s+(\(.*\))$"
@@ -47,6 +49,6 @@ lsusbip() {
 			vid_pid=$match[3]
 		fi
 	done
-	local port_number=$(echo "$usbip_port_output" | grep --before-context=1 "$vid_pid" | sed --silent '1s/.*\([-0-9]\+\):.*/\1/p')
+	port_number=$(echo "$usbip_port_output" | grep --before-context=1 "$vid_pid" | sed --silent '1s/.*\([-0-9]\+\):.*/\1/p')
 	printf "%-10s %-50s %-10s\n" "$busid" "$device_name" "$port_number"
 }
