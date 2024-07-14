@@ -1,4 +1,5 @@
 # Extracting arrchives
+# Need to create folders with those names and then extract to inside them
 ex() {
 	if [ -f "$1" ]; then
 		case $1 in
