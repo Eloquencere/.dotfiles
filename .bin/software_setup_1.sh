@@ -85,6 +85,7 @@ echo "Do you want to install rust?(Y/n)"
 read usr_input
 if [[ "$usr_input" == 'y' ]]; then
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh # Rust
+  mv $HOME/.cargo $HOME/.local/share/cargo
   # Download crate suite with quality of life crates for rust
 fi
 echo "Do you want to install haskell?(Y/n)"
