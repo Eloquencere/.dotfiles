@@ -36,8 +36,8 @@ zstyle ':fzf-tab:complete:((cp|mv|rm|cat|nvim):argument-rest|kate:*)' fzf-previe
 
 # Shell integrations
 source <(starship init zsh)
-source <(fzf --zsh)
 source <(atuin init zsh)
+source <(fzf --zsh)
 source <(zoxide init --cmd cd zsh)
 source <(hub alias -s)
 
