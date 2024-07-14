@@ -116,6 +116,7 @@ read usr_input
 if [[ "$usr_input" == 'y' ]]; then
   paru -S nomachine
   paru -S rustdesk-bin
+  paru -S parsec-bin
 fi
 
 # Initialising all dot files
