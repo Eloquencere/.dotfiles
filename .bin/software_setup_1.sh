@@ -87,6 +87,7 @@ if [[ "$usr_input" == 'y' ]]; then
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh # Rust
   mv $HOME/.cargo $HOME/.local/share/cargo
   sudo sed -i "s/^\. \"\$HOME\/\.cargo\/env.*\"/. \"\$XDG_DATA_HOME\/cargo\/env\"/g" $HOME/.config/zsh/.zshenv
+  paru -S scriptisto
 fi
 echo "Do you want to install haskell?(Y/n)"
 read usr_input
