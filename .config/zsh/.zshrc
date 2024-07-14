@@ -33,6 +33,7 @@ zinit cdreplay -q
 
 # Add Plugins
 zinit light zsh-users/zsh-syntax-highlighting
+zinit load atuinsh/atuin
 
 # ------- Local ------
 
