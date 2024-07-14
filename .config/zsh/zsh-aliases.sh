@@ -6,8 +6,6 @@ alias rm="rm -i"
 # Better readable format
 alias free="free -m" # show sizes in MB
 
-# ------- Local -------
-
 # Basic tools
 alias n=nvim
 alias neofetch=fastfetch
