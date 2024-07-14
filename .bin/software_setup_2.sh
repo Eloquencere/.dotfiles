@@ -28,10 +28,10 @@ pip install ruff # linter
 pip install mypy # static typing
 pip install pyglet # best game engine
 
+# virt-manager with qemu/KVM
 echo "do you want to install a VM software?(y/n)"
 read usr_input
 if [[ "$usr_input" == "y" ]]; then
-   # installing virt-manager with qemu
    yes | sudo pacman -Syu
    yes | sudo pacman -S --needed archlinux-keyring
    yes | sudo pacman -S qemu-desktop virt-manager virt-viewer dnsmasq vde2 bridge-utils
@@ -47,8 +47,6 @@ flatpak install bottles --assumeyes
 
 flatpak install yacreader --assumeyes
 yes | sudo pacman -S obsidian zathura
-# Download overleaf
-# Download docker
 
 cd ~/Documents
 rm -rf install_script_temp_folder
