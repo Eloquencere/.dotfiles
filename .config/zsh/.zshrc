@@ -17,9 +17,9 @@ zinit light zsh-users/zsh-syntax-highlighting
 zinit light Aloxaf/fzf-tab
 zinit load atuinsh/atuin
 
+autoload -Uz colors && colors
 autoload -Uz compinit && compinit
 zinit cdreplay -q
-autoload -Uz colors && colors
 
 # setopts
 setopt nobeep
