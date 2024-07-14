@@ -51,11 +51,14 @@ yes | sudo pacman -S libreoffice-fresh vlc
 yes | sudo pacman -S fastfetch btop # benchmarkers
 yes | sudo pacman -S stow speedtest-cli openbsd-netcat
 yes | sudo pacman -S --needed less
+yes | sudo pacman -S ufw # firewall
+sudo systemctl enable ufw --now
 # Others
 paru -S preload # to open up software faster
 sudo systemctl enable preload --now
-paru -S tio
-paru -S pipes.sh
+# paru -S auto-cpufreq
+# sudo systemctl enable auto-cpufreq --now
+paru -S tio pipes.sh
 
 # Install fonts and extensions
 yes | sudo pacman -S ttf-jetbrains-mono-nerd
