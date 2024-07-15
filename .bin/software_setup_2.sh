@@ -6,16 +6,36 @@ if [[ "$usr_input" == "n" ]]; then
    exit
 fi
 
+# system update
+source system_updater.sh
+echo "Please enter tmux prefix + I to install all plugins"
+echo "press enter to continue"
+read usr_input
+
+echo "would you like to move the minimal tmux status bar to the top? (y/n)"
+read usr_input
+if [[ "$usr_input" == "y" ]]; then
+   sed -i "s/bottom/top/g" $XDG_CONFIG_HOME/tmux/plugins/minimal-tmux-status/minimal.tmux
+fi
+
 # Gnome config
 echo "Please follow the instructions below"
 cat --line-range=1:4 ../ref/gui_instructions.txt
-echo "Done? (y/n)"
+echo "press enter to continue"
 read usr_input
 
 # Gnome extensions
 cat --line-range=6:17 ../ref/gui_instructions.txt
-echo "Done? (y/n)"
+echo "press enter to continue"
 read usr_input
+
+echo "Would you like to configure the server IP address of USBIP? (y/n)"
+read usr_input
+if [[ "$usr_input" == "y" ]]; then
+   echo "Please enter the server's IP address"
+   read server_ip
+   sed -i "s/\(SERVER_IP=\).*/\1$server_ip/g" $ZDOTDIR/zsh-functions.sh
+fi
 
 mkdir ~/Documents/install_script_temp_folder
 cd ~/Documents/install_script_temp_folder
