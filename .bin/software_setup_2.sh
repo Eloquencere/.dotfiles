@@ -17,9 +17,11 @@ read usr_input
 if [[ "$usr_input" == "y" ]]; then
    sed -i "s/bottom/top/g" $XDG_CONFIG_HOME/tmux/plugins/minimal-tmux-status/minimal.tmux
 fi
+echo "Press tmux prefix + r to reload the config file"
+read usr_input
 
 # Gnome config
-echo "Please follow the instructions below"
+echo "Please follow the instructions below to configure gnome"
 cat --line-range=1:4 ../ref/gui_instructions.txt
 echo "press enter to continue"
 read usr_input
