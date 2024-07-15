@@ -1,3 +1,22 @@
+echo "Welcome to part 2 of the installer"
+echo "Ensure that you are running this on Alacritty only (y/n)"
+read usr_input
+if [[ "$usr_input" == "n" ]]; then
+   echo "Run this again with alacritty only"
+   exit
+fi
+
+# Gnome config
+echo "Please follow the instructions below"
+cat --line-range=1:4 ../ref/gui_instructions.txt
+echo "Done? (y/n)"
+read usr_input
+
+# Gnome extensions
+cat --line-range=6:17 ../ref/gui_instructions.txt
+echo "Done? (y/n)"
+read usr_input
+
 mkdir ~/Documents/install_script_temp_folder
 cd ~/Documents/install_script_temp_folder
 
