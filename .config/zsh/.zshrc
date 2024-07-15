@@ -51,5 +51,4 @@ function zvm_after_init() {
 	zvm_bindkey viins '^r' atuin-search
 	zvm_bindkey vicmd '^r' atuin-search
 	zvm_bindkey viins '^p' atuin-up-search
-	zvm_bindkey vicmd '^p' atuin-up-search
 }
