@@ -86,7 +86,8 @@ yes | sudo pacman -S python-pip pyenv tk
 echo "Do you want to install haskell?(Y/n)"
 read usr_input
 if [[ "$usr_input" == 'y' ]]; then
-  curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh # Haskell
+  sudo pacman -S ghc
+  # curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh # Haskell
 fi
 # yes | sudo pacman -S zig
 
