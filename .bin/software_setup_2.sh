@@ -37,6 +37,7 @@ if [[ "$usr_input" == "y" ]]; then
    echo "Please enter the server's IP address"
    read server_ip
    sed -i "s/\(SERVER_IP=\).*/\1$server_ip/g" $ZDOTDIR/zsh-functions.sh
+   source $ZDOTDIR/.zshrc
 fi
 
 mkdir ~/Documents/install_script_temp_folder
