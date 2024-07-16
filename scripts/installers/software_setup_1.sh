@@ -65,6 +65,9 @@ paru -S --noconfirm tio pipes.sh
 sudo pacman -S --noconfirm ttf-jetbrains-mono-nerd
 flatpak install --assumeyes ExtensionManager
 
+# Brave
+paru -S --noconfirm brave-bin
+
 # Command line tools
 sudo pacman -S --noconfirm hub github-cli
 sudo pacman -S --noconfirm fzf zoxide eza bat fd ripgrep jq less
@@ -74,9 +77,6 @@ paru -S --noconfirm tlrc-bin
 
 # Terminal Emulator tools
 sudo pacman -S --noconfirm alacritty starship tmux
-
-# Brave
-paru -S --noconfirm brave-bin
 
 echo "Do you want to install haskell?(Y/n)"
 read usr_input
@@ -101,9 +101,7 @@ sudo sh -c "printf '%s\n%s\n' 'usbip-core' 'vhci-hcd' >> /etc/modules-load.d/usb
 echo "Do you want to install nomachine and rustdesk?(Y/n)"
 read usr_input
 if [[ "$usr_input" == 'y' ]]; then
-  paru -S --noconfirm nomachine
-  paru -S --noconfirm rustdesk-bin
-  paru -S --noconfirm parsec-bin
+  paru -S --noconfirm nomachine rustdesk-bin parsec-bin
 fi
 
 # Initialising all dot files
