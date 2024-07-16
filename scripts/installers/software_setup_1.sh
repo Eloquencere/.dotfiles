@@ -32,7 +32,7 @@ sudo sed -i "s/^#\(ParallelDownloads .*\)/\1/g" /etc/pacman.conf
 sudo pacman -S --needed --noconfirm perl go python
 sudo pacman -S gdb valgrind strace ghidra # intentionaly not added --noconfirm
 sudo pacman -S --needed --noconfirm clang lldb
-sudo pacman -S --noconfirm rustup
+# sudo pacman -S --noconfirm rustup
 sudo pacman -S --noconfirm nodejs-lts-iron
 # paru -S --noconfirm tailwindcss
 sudo pacman -S --noconfirm python-pip pyenv tk
