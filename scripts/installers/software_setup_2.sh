@@ -48,7 +48,7 @@ sudo pacman -Rs --noconfirm gnome-console
 # Necessary Python libraries
 pyenv install 3.12
 pyenv global 3.12
-pyenv shell 3.12
+# pyenv shell 3.12
 source ~/.zprofile
 source ~/.config/zsh/.zshrc
 pip install --upgrade pip
