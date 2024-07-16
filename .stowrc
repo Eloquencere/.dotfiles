@@ -1,5 +1,6 @@
 --ignore=scripts
 --ignore=\.git
 --ignore=\.gitignore
+--ignore=.stowrc
 --ignore=^/README*
 --ignore=^/LICENSE*
