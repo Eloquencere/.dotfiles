@@ -1,0 +1,5 @@
+--ignore=scripts
+--ignore=\.git
+--ignore=\.gitignore
+--ignore=^/README*
+--ignore=^/LICENSE*
