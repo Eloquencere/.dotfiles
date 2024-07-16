@@ -43,7 +43,7 @@ fi
 mkdir ~/Documents/install_script_temp_folder
 cd ~/Documents/install_script_temp_folder
 
-yes | sudo pacman -Rs gnome-console
+sudo pacman -Rs --noconfirm gnome-console
 # Necessary Python libraries
 pyenv install 3.12
 pyenv global 3.12
@@ -74,9 +74,9 @@ pip install pyglet # best game engine
 echo "do you want to install a VM software?(y/n)"
 read usr_input
 if [[ "$usr_input" == "y" ]]; then
-   yes | sudo pacman -Syu
-   yes | sudo pacman -S --needed archlinux-keyring
-   yes | sudo pacman -S qemu-desktop virt-manager virt-viewer dnsmasq vde2 bridge-utils
+   sudo pacman -Syu --noconfirm
+   sudo pacman -S --needed --noconfirm archlinux-keyring
+   sudo pacman -S --noconfirm qemu-desktop virt-manager virt-viewer dnsmasq vde2 bridge-utils
    echo "n" | sudo pacman -S --needed ebtables iptables
    echo "n" | sudo pacman -S --needed libguestfs
    sudo systemctl enable libvirtd.service --now
@@ -85,10 +85,10 @@ if [[ "$usr_input" == "y" ]]; then
 fi
 
 # Bottles(Wine) Emulator
-flatpak install bottles --assumeyes
+flatpak install --assumeyes bottles
 
-flatpak install yacreader --assumeyes
-yes | sudo pacman -S obsidian zathura
+flatpak install --assumeyes yacreader
+sudo pacman -S --noconfirm obsidian zathura
 
 cd ~/Documents
 rm -rf install_script_temp_folder
