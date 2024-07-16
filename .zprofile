@@ -6,6 +6,7 @@ export VISUAL="nvim"
 export TERMINAL="alacritty"
 export BROWSER="brave"
 export READER="zathura"
+export TERM="xterm-256color"
 
 # Clean-up
 export ZDOTDIR="$HOME/.config/zsh"
