@@ -48,9 +48,9 @@ sudo pacman -Rs --noconfirm gnome-console
 # Necessary Python libraries
 pyenv install 3.12
 pyenv global 3.12
-# pyenv shell 3.12
 source ~/.zprofile
 source ~/.config/zsh/.zshrc
+pyenv shell 3.12
 pip install --upgrade pip
 # debugging
 pip install icecream
