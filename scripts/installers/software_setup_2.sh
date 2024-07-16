@@ -17,7 +17,8 @@ read usr_input
 if [[ "$usr_input" == "y" ]]; then
    sed -i "s/bottom/top/g" $XDG_CONFIG_HOME/tmux/plugins/minimal-tmux-status/minimal.tmux
 fi
-echo "Press tmux prefix + r to reload the config file & press enter to continue"
+echo "Press tmux prefix + r to reload the config file"
+echo "press enter to continue"
 read usr_input
 
 # Gnome config
