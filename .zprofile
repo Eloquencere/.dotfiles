@@ -9,12 +9,15 @@ export READER="zathura"
 export TERM="xterm-256color"
 
 # Clean-up
-export ZDOTDIR="$HOME/.config/zsh"
-export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
 export TOOLS_HOME="$HOME/Tools"
 export DOTFILES_HOME="$HOME/.dotfiles"
+
+# zsh initialisations
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+export ZSH_COMPDUMP=$XDG_CACHE_HOME/.zcompdump-$HOST
 
 # ------ Local ------
 
