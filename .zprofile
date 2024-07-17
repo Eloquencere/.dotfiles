@@ -17,12 +17,13 @@ export DOTFILES_HOME="$HOME/.dotfiles"
 
 # zsh initialisations
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
-export ZSH_COMPDUMP=$XDG_CACHE_HOME/.zcompdump-$HOST
+export ZSH_COMPDUMP="$XDG_CACHE_HOME/.zcompdump-$HOST"
+export ZINIT_HOME="$XDG_DATA_HOME/zsh/zinit.git"
 
 # ------ Local ------
 
 # Starship
-export STARSHIP_CONFIG=${XDG_CONFIG_HOME}/starship/starship.toml
+export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
 
 # Pyenv
 export PYENV_ROOT="$XDG_DATA_HOME/pyenv"
