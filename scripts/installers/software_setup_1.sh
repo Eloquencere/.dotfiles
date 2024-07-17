@@ -49,6 +49,7 @@ rm -rf paru/
 sudo pacman -S flatpak --noconfirm
 
 # Basic software
+paru -S --noconfirm scriptisto # script in any compiled language
 sudo pacman -S --noconfirm arch-wiki-docs arch-wiki-lite
 sudo pacman -S --noconfirm p7zip unrar tar exfat-utils ntfs-3g
 sudo pacman -S --noconfirm libreoffice-fresh vlc
