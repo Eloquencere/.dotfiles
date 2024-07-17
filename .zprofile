@@ -19,6 +19,11 @@ export DOTFILES_HOME="$HOME/.dotfiles"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export ZSH_COMPDUMP="$XDG_CACHE_HOME/.zcompdump-$HOST"
 export ZINIT_HOME="$XDG_DATA_HOME/zsh/zinit.git"
+# Download Zinit, if it's not there
+if [ ! -d "$ZINIT_HOME" ]; then
+	mkdir -p "$(dirname $ZINIT_HOME)"
+	git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+fi
 
 # ------ Local ------
 
