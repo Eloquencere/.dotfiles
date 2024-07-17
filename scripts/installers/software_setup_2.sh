@@ -86,10 +86,10 @@ if [[ "$usr_input" == "y" ]]; then
 fi
 
 # Bottles(Wine) Emulator
-flatpak install --assumeyes bottles
+# flatpak install --assumeyes bottles
 
-flatpak install --assumeyes yacreader
-sudo pacman -S --noconfirm obsidian zathura
+# flatpak install --assumeyes yacreader
+# sudo pacman -S --noconfirm obsidian zathura
 
 cd ~/Documents
 rm -rf install_script_temp_folder
