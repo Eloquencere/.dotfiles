@@ -7,7 +7,7 @@ if [[ "$usr_input" == "n" ]]; then
 fi
 
 # system update
-source system_updater.sh
+source ../continual-reference/system_updater.sh
 echo "Please enter tmux prefix + I to install all plugins"
 echo "press enter to continue"
 read usr_input
