@@ -1,24 +1,64 @@
-# Extracting archives
-exct() {
-	if [ -f "$1" ]; then
+archive() {
+	if [[ "$1" == "list" ]]; then
+		shift
+		if [ -f "$1" ];then 
+			case $1 in
+				*.tar.bz2) tar tjvf $1 ;;
+				*.tbz2)    tar tjvf $1 ;;
+				*.tar.gz)  tar tzvf $1 ;;
+				*.tgz)     tar tzvf $1 ;;
+				*.tar.xz)  tar tvf $1 ;;
+				*.tar)     tar tvf $1 ;;
+				*.tar.zst) zstd -l $1 ;;
+				*.7z)      7z l $1 ;;
+				*.zip)     unzip -l $1 ;;
+				# *.bz2)     tar tjvf $1 ;;
+				# *.gz)      gunzip $1 ;;
+				# *.Z)       uncompress $1 ;;
+				# *.rar)     rar a -r $1 ;;
+				*)         echo "'$1' cannot be listed via archive" ;;
+			esac
+		fi
+	elif [[ "$1" == "create" ]]; then
+		shift
 		case $1 in
-			*.tbz2)    tar xjf $1 ;;
-			*.tgz)     tar xzf $1 ;;
-			*.tar)     tar xf $1 ;;
-			*.tar.bz2) tar xjf $1 ;;
-			*.tar.gz)  tar xzf $1 ;;
-			*.tar.xz)  tar xf $1 ;;
-			*.tar.zst) unzstd $1 ;;
-			*.7z)      7z x $1 ;;
-			*.zip)     unzip $1 ;;
-			*.bz2)     bzip2 $1 ;;
-			*.gz)      gunzip $1 ;;
-			*.Z)       uncompress $1 ;;
-			*.rar)     unrar x $1 ;;
-			*.deb)     ar x $1 ;;
-			*)         echo "'$1' cannot be extracted via ex()" ;;
+			*.tar.bz2) tar cjvf $1  ${@:2} ;;
+			*.tbz2)    tar cjvf $1 ${@:2} ;;
+			*.tar.gz)  tar czvf $1 ${@:2} ;;
+			*.tgz)     tar czvf $1 ${@:2} ;;
+			*.tar.xz)  tar cvf $1 ${@:2} ;;
+			*.tar)     tar cvf $1 ${@:2} ;;
+			# *.tar.zst) zstd $1 ${@:2} ;;
+			*.7z)      7z a $1 ;;
+			*.zip)     7z a -tzip $1 ${@:2} ;;
+			*.bz2)     tar cjvf $1 ${@:2} ;;
+			# *.gz)      gunzip $1 ;;
+			# *.Z)       uncompress $1 ;;
+			# *.rar)     rar a -r $1 ${@:2} ;;
+			*)         echo "'$1' cannot be created via archive" ;;
 		esac
- 	fi
+	elif [[ "$1" == "extract" ]];then
+		shift
+		if [ -f "$1" ]; then
+			case $1 in
+				*.tar.bz2) tar        xjvf $1 ;;
+				*.tbz2)    tar        xjvf $1 ;;
+				*.tar.gz)  tar        xzvf $1 ;;
+				*.tgz)     tar        xzvf $1 ;;
+				*.tar.xz)  tar        xvf  $1 ;;
+				*.tar)     tar        xvf  $1 ;;
+				*.tar.zst) unzstd          $1 ;;
+				*.7z)      7z         x    $1 ;;
+				*.zip)     unzip           $1 ;;
+				*.bz2)     tar        xjvf $1 ;;
+				*.gz)      gunzip          $1 ;;
+				*.Z)       uncompress      $1 ;;
+				*.rar)     unrar      x    $1 ;;
+				*.deb)     ar         x    $1 ;;
+				*)         echo "'$1' cannot be extracted via archive" ;;
+			esac
+		fi
+	fi
 }
 
 # usbip
