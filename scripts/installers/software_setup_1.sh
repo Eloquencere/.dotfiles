@@ -6,17 +6,13 @@ mkdir ~/Documents/install_script_temp_folder
 cd ~/Documents/install_script_temp_folder
 
 # Temporary setup for zsh shell
-BASIC_PKGS=(
+BASIC_PKGS_PACMAN=(
   "base-devel" 
   "zsh" "neovim"
 )
-ARCH_BLOAT_PKGS=(
-  "vim" "htop" "nano"
-)
-sudo pacman -S --needed --noconfirm "${BASIC_PKGS[@]}"
+sudo pacman -S --needed --noconfirm "${BASIC_PKGS_PACMAN[@]}"
 chsh -s $(which zsh)
 rm -f ~/.bash*
-sudo pacman -Rs --noconfirm "${ARCH_BLOAT_PKGS[@]}"
 echo "Do you have an amd or intel CPU?"
 echo "a -> amd & i -> intel: "
 read cpu_name
@@ -35,7 +31,7 @@ sudo sed -i "s/^#\(Color\)/\1\nILoveCandy/g" /etc/pacman.conf
 sudo sed -i "s/^#\(ParallelDownloads .*\)/\1/g" /etc/pacman.conf
 
 # Language compilers and related packages
-LANG_COMPILERS_PKGS=(
+LANG_COMPILER_PKGS_PACMAN=(
   "perl" "go" "python"
   "clang" "lldb"
   "rustup"
@@ -48,7 +44,7 @@ LANG_COMPILERS_PKGS_PARU=(
   "scriptisto" # script in any compiled language
 )
 sudo pacman -S gdb valgrind strace ghidra
-sudo pacman -S --needed --noconfirm "${LANG_COMPILERS_PKGS[@]}"
+sudo pacman -S --needed --noconfirm "${LANG_COMPILER_PKGS_PACMAN[@]}"
 rustup toolchain install stable
 rustup default stable
 
@@ -71,7 +67,7 @@ sudo pacman -S --noconfirm flatpak
 paru -S --noconfirm "${LANG_COMPILERS_PKGS_PARU[@]}"
 
 # Basic software
-UTIL_PKGS=(
+UTIL_PKGS_PACMAN=(
   "ttf-jetbrains-mono-nerd"
   "arch-wiki-docs" "arch-wiki-lite"
   "p7zip" "unrar" "tar" "exfat-utils" "ntfs-3g"
@@ -80,7 +76,7 @@ UTIL_PKGS=(
   "stow" "speedtest-cli" "openbsd-netcat"
   "ufw" # firewall
 )
-sudo pacman -S --noconfirm "${UTIL_PKGS[@]}"
+sudo pacman -S --noconfirm "${UTIL_PKGS_PACMAN[@]}"
 sudo systemctl enable ufw --now
 
 # Others
@@ -99,7 +95,7 @@ flatpak install --assumeyes ExtensionManager
 paru -S --noconfirm brave-bin
 
 # Command line tools
-CLI_PKGS=(
+CLI_PKGS_PACMAN=(
   "hub" "github-cli"
   "fzf" "zoxide" "eza" "bat" "fd" "ripgrep" "jq" "less"
   "yazi" "atuin" "gdu" "duf"
@@ -110,14 +106,14 @@ CLI_PKGS_PARU=(
   "tio"
   "pipes.sh"
 )
-sudo pacman -S --noconfirm "${CLI_PKGS[@]}"
+sudo pacman -S --noconfirm "${CLI_PKGS_PACMAN[@]}"
 paru -S --noconfirm "${CLI_PKGS_PARU[@]}"
 
 # Terminal Emulator tools
-TERMINAL_EMULATOR_RELATED_PKGS=(
+TERMINAL_EMULATOR_PKGS_PACMAN=(
   "alacritty" "starship" "tmux"
 )
-sudo pacman -S --noconfirm "${TERMINAL_EMULATOR_RELATED_PKGS[@]}"
+sudo pacman -S --noconfirm "${TERMINAL_EMULATOR_PKGS_PACMAN[@]}"
 
 # Onedriver
 echo "Do you want to install onedriver?(Y/n)"
@@ -129,13 +125,13 @@ if [[ "$usr_input" == 'y' ]]; then
 fi
 
 # Remote machine tools
-REMOTE_MACHINE_PKGS=(
+REMOTE_MACHINE_PKGS_PACMAN=(
   "usbip"
 )
 REMOTE_MACHINE_PKGS_PARU=(
   "nomachine" "rustdesk-bin" "parsec-bin"
 )
-sudo pacman -S --noconfirm "${REMOTE_MACHINE_PKGS[@]}"
+sudo pacman -S --noconfirm "${REMOTE_MACHINE_PKGS_PACMAN[@]}"
 sudo sh -c "printf '%s\n%s\n' 'usbip-core' 'vhci-hcd' >> /etc/modules-load.d/usbip.conf"
 echo "Do you want to install nomachine and rustdesk?(Y/n)"
 read usr_input
@@ -143,24 +139,24 @@ if [[ "$usr_input" == 'y' ]]; then
   paru -S --noconfirm "${REMOTE_MACHINE_PKGS_PARU[@]}"
 fi
 
-# Initialising all dot files
-cd ~/.dotfiles
-stow .
-cd -
-
-# Gnome Config
 # Uninstall bloat
-GNOME_BLOAT=(
+BLOAT_PKGS_PACMAN=(
+  "vim" "htop" "nano"
   "epiphany" "gnome-music" "gnome-calendar"
   "gnome-contacts" "sushi" "gnome-weather"
   "totem" "gnome-maps" "gnome-logs" "evince"
 )
-sudo pacman -Rs --noconfirm "${GNOME_BLOAT[@]}"
-
+sudo pacman -Rs --noconfirm "${BLOAT_PKGS_PACMAN[@]}"
+# Gnome Config
 # Bring minimise, maximise and close buttons to their positions
 gsettings set org.gnome.mutter center-new-windows true
 gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
 gsettings set org.gnome.desktop.interface monospace-font-name 'JetBrainsMono Nerd Font'
+
+# Initialising all dot files
+cd ~/.dotfiles
+stow .
+cd -
 
 cd ~/Documents
 rm -rf install_script_temp_folder
