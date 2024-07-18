@@ -115,7 +115,7 @@ paru -S --noconfirm "${CLI_PKGS_PARU[@]}"
 
 # Terminal Emulator tools
 TERMINAL_EMULATOR_RELATED_PKGS=(
-  "alacrity" "starship" "tmux"
+  "alacritty" "starship" "tmux"
 )
 sudo pacman -S --noconfirm "${TERMINAL_EMULATOR_RELATED_PKGS[@]}"
 
@@ -131,6 +131,7 @@ fi
 # Remote machine tools
 REMOTE_MACHINE_PKGS=(
   "usbip"
+)
 REMOTE_MACHINE_PKGS_PARU=(
   "nomachine" "rustdesk-bin" "parsec-bin"
 )
