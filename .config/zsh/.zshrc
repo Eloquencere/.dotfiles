@@ -1,3 +1,8 @@
+# setopts
+setopt nobeep
+setopt correct
+setopt autocd
+
 # Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
@@ -9,13 +14,8 @@ zinit load atuinsh/atuin
 
 autoload -Uz colors && colors
 autoload -Uz compinit && compinit
-zinit cdreplay -q
-
-# setopts
-setopt nobeep
-setopt correct
-setopt extendedglob # enables regex
 _comp_options+=(globdots) # Show hidden files
+zinit cdreplay -q
 
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
