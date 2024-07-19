@@ -27,8 +27,12 @@ fi
 
 # ------ Local ------
 
+# Github
+source <(hub alias -s)
+
 # Starship
 export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
+source <(starship init zsh)
 
 # Rust
 export CARGO_HOME="$XDG_DATA_HOME/rust"
