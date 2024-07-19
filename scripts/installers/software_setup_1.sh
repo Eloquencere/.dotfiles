@@ -30,12 +30,6 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
 sudo sed -i "s/^#\(Color.*\)/\1\nILoveCandy/g" /etc/pacman.conf
 sudo sed -i "s/^#\(ParallelDownloads .*\)/\1/g" /etc/pacman.conf
 
-# Initialising all dot files
-cd ~/.dotfiles
-stow .
-cd -
-source ~/.zprofile
-
 # Language compilers and related packages
 LANG_COMPILER_PKGS_PACMAN=(
   "perl" "go" "python"
@@ -50,6 +44,8 @@ LANG_COMPILERS_PKGS_PARU=(
   "scriptisto" # script in any compiled language
 )
 sudo pacman -S gdb valgrind strace ghidra
+export CARGO_HOME="$HOME/.local/share/rust"
+export RUSTUP_HOME="$HOME/.local/share/rust"
 sudo pacman -S --needed --noconfirm "${LANG_COMPILER_PKGS_PACMAN[@]}"
 rustup toolchain install stable
 rustup default stable
@@ -158,6 +154,11 @@ sudo pacman -Rs --noconfirm "${BLOAT_PKGS_PACMAN[@]}"
 gsettings set org.gnome.mutter center-new-windows true
 gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
 gsettings set org.gnome.desktop.interface monospace-font-name 'JetBrainsMono Nerd Font'
+
+# Initialising all dot files
+cd ~/.dotfiles
+stow .
+cd -
 
 cd ~/Documents
 rm -rf install_script_temp_folder
