@@ -1,4 +1,4 @@
-# setopts
+# options
 setopt nobeep
 setopt correct
 setopt autocd
