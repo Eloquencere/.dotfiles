@@ -1,0 +1,8 @@
+default_layout "compact"
+default_shell "zsh"
+copy_command "xclip -selection clipboard"
+
+// for further config
+// https://shoukoo.github.io/blog/zellij-love-neovim/
+// https://github.com/zellij-org/awesome-zellij
+// https://github.com/hiasr/vim-zellij-navigator
