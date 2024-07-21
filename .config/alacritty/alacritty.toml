@@ -72,4 +72,4 @@ live_config_reload = true
         foreground = "0xa9b1d6"
 
 [env]
-TERM = "xterm-256color"
+    TERM = "xterm-256color"
