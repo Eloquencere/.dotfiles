@@ -26,9 +26,11 @@ zstyle ':fzf-tab:complete:(cd|ls|jq|touch):*' fzf-preview '[[ -d $realpath ]] &&
 zstyle ':fzf-tab:complete:((cp|mv|rm|source|cat|nvim):argument-rest|kate:*)' fzf-preview 'bat --color=always -- $realpath 2>/dev/null || eza --oneline --color=always --icons=always --all -- $realpath'
 
 # Shell integrations
+source <(starship init zsh)
 source <(atuin init zsh)
 source <(fzf --zsh)
 source <(zoxide init --cmd cd zsh)
+source <(hub alias -s)
 
 # Source aliases & functions
 [[ ! -f "$ZDOTDIR/zsh-aliases.sh" ]] || source "$ZDOTDIR/zsh-aliases.sh"
