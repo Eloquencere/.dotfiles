@@ -1,42 +1,75 @@
 live_config_reload = true
 
-[env]
-TERM = "xterm-256color"
-
 # [shell]
 # program = "tmux"
 # args = ["-l", "welcome"]
 
 [window]
-startup_mode = "Maximized"
-opacity = 0.8
-blur = true
-# decorations = "None"
+    startup_mode = "Maximized"
+    opacity = 0.8
+    blur = true
 
 [selection]
-save_to_clipboard = true
+    save_to_clipboard = true
+    semantic_escape_chars = ",│`|:\"' ()[]{}<>"
 
-[colors]
-draw_bold_text_with_bright_colors = true
+[scrolling]
+    history    = 10000
+    multiplier = 4
 
 [font]
-size = 14
+    size = 14
+    
+    [font.bold]
+        family = "JetBrainsMono Nerd Font"
+        style = "Bold"
+        
+    [font.bold_italic]
+        family = "JetBrainsMono Nerd Font"
+        style  = "Bold Italic"
+        
+    [font.italic]
+        family = "JetBrainsMono Nerd Font"
+        style = "Italic"
+    
+    [font.normal]
+        family = "JetBrainsMono Nerd Font"
+        style = "Regular"
+        
+    [font.glyph_offset]
+        x = 0
+        y = 0
+    
+    [font.offset]
+        x = 0
+        y = 0
 
-[font.bold]
-family = "JetBrainsMono Nerd Font"
-style = "Bold"
+[colors]
+    draw_bold_text_with_bright_colors = true
 
-[font.glyph_offset]
-x = 0
-y = 0
+    [colors.bright]
+        black   = "#625e4c"
+        blue    = "#9d65ff"
+        cyan    = "#58d1eb"
+        green   = "#98e024"
+        magenta = "#f4005f"
+        red     = "#f4005f"
+        white   = "#f6f6ef"
+        yellow  = "#e0d561"
 
-[font.italic]
-family = "JetBrainsMono Nerd Font"
+    [colors.normal]
+        black   = "#1a1a1a"
+        blue    = "#9d65ff"
+        cyan    = "#58d1eb"
+        green   = "#98e024"
+        magenta = "#f4005f"
+        red     = "#f4005f"
+        white   = "#c4c5b5"
+        yellow  = "#fa8419"
 
-[font.normal]
-family = "JetBrainsMono Nerd Font"
-style = "Regular"
+    [colors.primary]
+        background = "0x1a1b26"
+        foreground = "0xa9b1d6"
 
-[font.offset]
-x = 0
-y = 0
+[env]
+TERM = "xterm-256color"
