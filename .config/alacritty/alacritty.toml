@@ -4,8 +4,8 @@ import = [
 
 live_config_reload = true
 
-[shell]
-program = "tmux"
+# [shell]
+# program = "tmux"
 
 [window]
     startup_mode = "Maximized"
