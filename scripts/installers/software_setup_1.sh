@@ -104,6 +104,7 @@ CLI_PKGS_PACMAN=(
   "man-db" 
 )
 CLI_PKGS_PARU=(
+  "jqp-bin"
   "tlrc-bin"
   "tio"
   "pipes.sh"
