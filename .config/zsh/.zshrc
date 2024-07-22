@@ -33,8 +33,8 @@ source <(zoxide init --cmd cd zsh)
 source <(hub alias -s)
 
 # Source aliases & functions
-[[ ! -f "$ZDOTDIR/zsh-aliases.sh" ]] || source "$ZDOTDIR/zsh-aliases.sh"
-[[ ! -f "$ZDOTDIR/zsh-functions.sh" ]] || source "$ZDOTDIR/zsh-functions.sh"
+[[ ! -f "$ZDOTDIR/zsh-aliases.zsh" ]] || source "$ZDOTDIR/zsh-aliases.sh"
+[[ ! -f "$ZDOTDIR/zsh-functions.zsh" ]] || source "$ZDOTDIR/zsh-functions.sh"
 
 function zvm_after_init() {
 	# Zsh-Vi-Mode
