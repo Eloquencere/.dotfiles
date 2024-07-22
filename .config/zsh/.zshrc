@@ -43,3 +43,13 @@ function zvm_after_init() {
 	zvm_bindkey vicmd '^r' atuin-search
 	zvm_bindkey viins '^p' atuin-up-search
 }
+
+function _tmux()
+{
+    if [[ $# == 0 ]] && command tmux ls >& /dev/null; then
+        command tmux attach \; choose-tree -s
+    else
+        command tmux "$@"
+    fi
+}
+alias tmux=_tmux
