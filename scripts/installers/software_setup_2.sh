@@ -60,7 +60,7 @@ PIP_PKGS=(
    "drawio"
    "colorama" "pyfiglet"
    # data representation and calculation
-   "dash plotly" "seaborn" # seaborn - (replace matplotlib)
+   "dash" "plotly" "seaborn" # seaborn - (replace matplotlib)
    "mysql-connector-python"
    "polars" "xarray" # xarray - (multi-dimentional arrays)
    "Cython" "numba" "taichi"
