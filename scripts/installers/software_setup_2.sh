@@ -7,7 +7,7 @@ if [[ "$usr_input" == "n" ]]; then
 fi
 
 # system update
-source ../continual-reference/system_updater.sh
+source ../continual-reference/system_updater.zsh
 echo "Please enter tmux prefix + I to install all plugins"
 echo "press enter to continue"
 read usr_input
@@ -37,7 +37,7 @@ read usr_input
 if [[ "$usr_input" == "y" ]]; then
    echo "Please enter the server's IP address"
    read server_ip
-   sed -i "s/^\(SERVER_IP=\).*/\1$server_ip/g" $ZDOTDIR/zsh-functions.sh
+   sed -i "s/^\(SERVER_IP=\).*/\1$server_ip/g" $ZDOTDIR/zsh-functions.zsh
    source $ZDOTDIR/.zshrc
 fi
 
