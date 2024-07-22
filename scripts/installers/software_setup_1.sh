@@ -113,7 +113,9 @@ paru -S --noconfirm "${CLI_PKGS_PARU[@]}"
 
 # Terminal Emulator tools
 TERMINAL_EMULATOR_PKGS_PACMAN=(
-  "alacritty" "starship" "tmux"
+  "alacritty" "starship" 
+  "tmux" "tmuxp"
+  "xclip"
 )
 sudo pacman -S --noconfirm "${TERMINAL_EMULATOR_PKGS_PACMAN[@]}"
 
