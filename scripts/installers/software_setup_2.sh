@@ -92,10 +92,12 @@ fi
 # Bottles(Wine) Emulator
 # flatpak install --assumeyes bottles
 
-# flatpak install flathub org.gnome.World.PikaBackup
-# flatpak install flathub app.drey.Warp
-# flatpak install info.febvre.Komikku
-# flatpak install flathub se.sjoerd.Graphs
+# flatpak install --assumeyes flathub org.gnome.World.PikaBackup
+# flatpak install --assumeyes flathub app.drey.Warp
+# flatpak install --assumeyes info.febvre.Komikku
+# flatpak install --assumeyes flathub se.sjoerd.Graphs
+
+sudo pacman -S --noconfirm glow
 
 # flatpak install --assumeyes yacreader
 # sudo pacman -S --noconfirm obsidian zathura
