@@ -36,16 +36,15 @@ source <(hub alias -s)
 [[ ! -f "$ZDOTDIR/zsh-aliases.zsh" ]] || source "$ZDOTDIR/zsh-aliases.zsh"
 [[ ! -f "$ZDOTDIR/zsh-functions.zsh" ]] || source "$ZDOTDIR/zsh-functions.zsh"
 
+# Zsh-Vi-Mode
 function zvm_after_init() {
-	# Zsh-Vi-Mode
 	ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
 	zvm_bindkey viins '^r' atuin-search
 	zvm_bindkey vicmd '^r' atuin-search
 	zvm_bindkey viins '^p' atuin-up-search
 }
-
-function _tmux()
-{
+# better Tmux session experience
+function _tmux() {
     if [[ $# == 0 ]] && command tmux ls >& /dev/null; then
         command tmux attach \; choose-tree -s
     else
