@@ -10,6 +10,7 @@ alias free="free -m" # show sizes in MB
 alias n=nvim
 alias neofetch=fastfetch
 alias py=python
+alias mux=tmuxp
 
 # Better command line utils
 alias ls="eza --color=always --icons=always --git"
