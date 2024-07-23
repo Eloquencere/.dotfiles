@@ -77,6 +77,7 @@ UTIL_PKGS_PACMAN=(
   "fastfetch" "btop" # benchmarkers
   "stow" "speedtest-cli" "openbsd-netcat"
   "ufw" # firewall
+  "dos2unix"
 )
 sudo pacman -S --noconfirm "${UTIL_PKGS_PACMAN[@]}"
 sudo systemctl enable ufw --now
