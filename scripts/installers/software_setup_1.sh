@@ -112,6 +112,8 @@ CLI_PKGS_PARU=(
 )
 sudo pacman -S --noconfirm "${CLI_PKGS_PACMAN[@]}"
 paru -S --noconfirm "${CLI_PKGS_PARU[@]}"
+espanso service register
+espanso start
 
 # Terminal Emulator tools
 TERMINAL_EMULATOR_PKGS_PACMAN=(
