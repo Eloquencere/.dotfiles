@@ -98,7 +98,7 @@ paru -S --noconfirm brave-bin
 
 # Command line tools
 CLI_PKGS_PACMAN=(
-  "hub" "github-cli"
+  "github-cli"
   "fzf" "zoxide" "eza" "bat" "fd" "ripgrep" "jq" "less"
   "yazi" "atuin" "gdu" "duf"
   "man-db" 
