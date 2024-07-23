@@ -21,16 +21,16 @@ Virt-manager
 
 Komikku
     1. Advanced
-    - Clear Chapters Cache and Database on Exit
-    - Use up-to-date servers modules
+        - Clear Chapters Cache and Database on Exit
+        - Use up-to-date servers modules
     2. Reader
-    - Scaling - Adapt to Width
-    - Background Colour - Black
+        - Scaling - Adapt to Width
+        - Background Colour - Black
     3. Library
-    - Display Mode - Grid
-    - Badges - Enable Number of Recent and Unread Chapters
-    - Update at Startup 
-    - Server Languages restricted to English
-    - Long strip detection
+        - Display Mode - Grid
+        - Badges - Enable Number of Recent and Unread Chapters
+        - Update at Startup 
+        - Server Languages restricted to English
+        - Long strip detection
     4. General
-    - Disable desktop notifications
+        - Disable desktop notifications
