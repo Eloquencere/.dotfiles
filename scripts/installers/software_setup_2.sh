@@ -99,6 +99,7 @@ fi
 # flatpak install --assumeyes flathub se.sjoerd.Graphs
 
 sudo pacman -S --noconfirm glow
+sudo pacman -S --noconfirm croc # alternative to warp
 
 # flatpak install --assumeyes yacreader
 # sudo pacman -S --noconfirm obsidian zathura
