@@ -105,5 +105,33 @@ sudo pacman -S --noconfirm croc # alternative to warp
 # flatpak install --assumeyes yacreader
 # sudo pacman -S --noconfirm obsidian zathura
 
+# Kanata
+paru -S kanata-bin
+sudo groupadd uinput
+sudo usermod -aG input $USER
+sudo usermod -aG uinput $USER
+sudo sh -c "echo KERNEL==\"uinput\", MODE=\"0660\", GROUP=\"uinput\", OPTIONS+=\"static_node=uinput\" > /etc/udev/rules.d/99-input.rules"
+sudo udevadm control --reload-rules && sudo udevadm trigger
+sudo modprobe uinput
+sudo sh -c "printf '%s\n' 'uinput' >> /etc/modules-load.d/kanata.conf"
+
+mkdir -p ~/.config/systemd/user
+echo "[Unit]
+Description=Kanata keyboard remapper
+Documentation=https://github.com/jtroo/kanata
+
+[Service]
+Environment=PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin
+Environment=DISPLAY=:0
+Type=simple
+ExecStart=/usr/bin/sh -c 'exec $$(which kanata) --cfg $${HOME}/.config/kanata/config.kbd'
+Restart=no
+
+[Install]
+WantedBy=default.target" > ~/.config/systemd/user/kanata.service
+
+systemctl --user daemon-reload
+systemctl --user enable kanata.service --now
+
 cd ~/Documents
 rm -rf install_script_temp_folder
