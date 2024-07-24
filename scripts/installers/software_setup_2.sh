@@ -72,7 +72,7 @@ PIP_PKGS=(
    "ruff" # linter
    "mypy" # static typing
    "pyglet" # best game engine
-   "keras" "tensorflow" "scikit-learn" "torch"
+   # "keras" "tensorflow" "scikit-learn" "torch"
 )
 pip install "${PIP_PKGS[@]}"
 
@@ -112,8 +112,8 @@ sudo usermod -aG input $USER
 sudo usermod -aG uinput $USER
 sudo sh -c "echo KERNEL==\"uinput\", MODE=\"0660\", GROUP=\"uinput\", OPTIONS+=\"static_node=uinput\" > /etc/udev/rules.d/99-input.rules"
 sudo udevadm control --reload-rules && sudo udevadm trigger
-sudo modprobe uinput
-sudo sh -c "printf '%s\n' 'uinput' >> /etc/modules-load.d/kanata.conf"
+sudo modprobe input
+sudo sh -c "echo uinput > /etc/modules-load.d/kanata.conf"
 
 mkdir -p ~/.config/systemd/user
 echo "[Unit]
