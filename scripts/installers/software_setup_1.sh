@@ -44,8 +44,8 @@ LANG_COMPILERS_PKGS_PARU=(
   "scriptisto" # script in any compiled language
 )
 sudo pacman -S gdb valgrind strace ghidra
-export CARGO_HOME="$HOME/.local/share/rust"
-export RUSTUP_HOME="$HOME/.local/share/rust"
+export CARGO_HOME="$HOME/.local/share/rust/.cargo"
+export RUSTUP_HOME="$HOME/.local/share/rust/.rustup"
 sudo pacman -S --needed --noconfirm "${LANG_COMPILER_PKGS_PACMAN[@]}"
 rustup toolchain install stable
 rustup default stable
