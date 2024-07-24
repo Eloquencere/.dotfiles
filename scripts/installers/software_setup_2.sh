@@ -72,6 +72,7 @@ PIP_PKGS=(
    "ruff" # linter
    "mypy" # static typing
    "pyglet" # best game engine
+   "keras" "tensorflow" "scikit-learn" "torch"
 )
 pip install "${PIP_PKGS[@]}"
 
