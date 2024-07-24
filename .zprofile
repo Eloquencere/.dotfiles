@@ -31,8 +31,8 @@ fi
 export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
 
 # Rust
-export CARGO_HOME="$XDG_DATA_HOME/rust"
-export RUSTUP_HOME="$XDG_DATA_HOME/rust"
+export CARGO_HOME="$XDG_DATA_HOME/rust/.cargo"
+export RUSTUP_HOME="$XDG_DATA_HOME/rust/.rustup"
 
 # Pyenv
 export PYENV_ROOT="$XDG_DATA_HOME/pyenv"
