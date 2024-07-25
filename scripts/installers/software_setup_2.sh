@@ -116,14 +116,14 @@ sudo modprobe input
 sudo sh -c "echo uinput > /etc/modules-load.d/kanata.conf"
 
 mkdir -p ~/.config/systemd/user
-echo "[Unit]
+sudo sh -c "echo [Unit]
 Description=Kanata keyboard remapper
 Documentation=https://github.com/jtroo/kanata
 
 [Service]
 ExecStartPre=/sbin/modprobe uinput
 Type=simple
-ExecStart=/usr/bin/sh -c 'exec $$(which kanata) --cfg $${HOME}/.config/kanata/config.kbd'
+ExecStart=/usr/bin/sh -c 'exec \$\$(which kanata) --cfg \$\${HOME}/.config/kanata/config.kbd'
 Restart=no
 
 [Install]
