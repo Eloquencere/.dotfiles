@@ -121,14 +121,14 @@ Description=Kanata keyboard remapper
 Documentation=https://github.com/jtroo/kanata
 
 [Service]
-Environment=PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin
-Environment=DISPLAY=:0
+ExecStartPre=/sbin/modprobe uinput
 Type=simple
 ExecStart=/usr/bin/sh -c 'exec $$(which kanata) --cfg $${HOME}/.config/kanata/config.kbd'
 Restart=no
 
 [Install]
-WantedBy=default.target" > ~/.config/systemd/user/kanata.service
+WantedBy=default.target" > /etc/systemd/services/system/kanata.service
+~/.config/systemd/user/kanata.service
 
 systemctl --user daemon-reload
 systemctl --user enable kanata.service --now
