@@ -127,8 +127,7 @@ ExecStart=/usr/bin/sh -c 'exec \$\$(which kanata) --cfg \$\${HOME}/.config/kanat
 Restart=no
 
 [Install]
-WantedBy=default.target" > /etc/systemd/services/system/kanata.service
-~/.config/systemd/user/kanata.service
+WantedBy=default.target" > /lib/systemd/system/kanata.service
 
 systemctl --user daemon-reload
 systemctl --user enable kanata.service --now
