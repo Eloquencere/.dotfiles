@@ -114,6 +114,7 @@ sudo sh -c "echo KERNEL==\"uinput\", MODE=\"0660\", GROUP=\"uinput\", OPTIONS+=\
 sudo udevadm control --reload-rules && sudo udevadm trigger
 sudo modprobe input
 sudo sh -c "echo uinput > /etc/modules-load.d/kanata.conf"
+# sim link kanata conf to /etc/kanata/kanata.conf
 
 mkdir -p ~/.config/systemd/user
 sudo sh -c "echo [Unit]
