@@ -110,28 +110,23 @@ paru -S kanata-bin
 sudo groupadd uinput
 sudo usermod -aG input $USER
 sudo usermod -aG uinput $USER
-sudo sh -c "echo KERNEL==\"uinput\", MODE=\"0660\", GROUP=\"uinput\", OPTIONS+=\"static_node=uinput\" > /etc/udev/rules.d/99-input.rules"
-sudo udevadm control --reload-rules && sudo udevadm trigger
-sudo modprobe input
-sudo sh -c "echo uinput > /etc/modules-load.d/kanata.conf"
-# sim link kanata conf to /etc/kanata/kanata.conf
+sudo sh -c 'echo KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput" > /etc/udev/rules.d/99-input.rules'
+sudo udevadm control --reload && udevadm trigger --verbose --sysname-match=uniput
 
-mkdir -p ~/.config/systemd/user
 sudo sh -c "echo [Unit]
 Description=Kanata keyboard remapper
 Documentation=https://github.com/jtroo/kanata
 
 [Service]
-ExecStartPre=/sbin/modprobe uinput
 Type=simple
-ExecStart=/usr/bin/sh -c 'exec \$\$(which kanata) --cfg \$\${HOME}/.config/kanata/config.kbd'
+ExecStartPre=/sbin/modprobe uinput
+ExecStart=/usr/bin/zsh -c 'exec \$(which kanata) --cfg /home/*/.config/kanata/config.kbd'
 Restart=no
 
 [Install]
-WantedBy=default.target" > /lib/systemd/system/kanata.service
+WantedBy=default.target > /lib/systemd/system/kanata.service"
 
-systemctl --user daemon-reload
-systemctl --user enable kanata.service --now
+sudo systemctl enable kanata --now
 
 cd ~/Documents
 rm -rf install_script_temp_folder
