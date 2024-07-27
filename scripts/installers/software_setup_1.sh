@@ -102,7 +102,9 @@ CLI_PKGS_PACMAN=(
   "github-cli"
   "fzf" "zoxide" "eza" "bat" "fd" "ripgrep" "jq" "less"
   "yazi" "atuin" "gdu" "duf"
-  "man-db" 
+  "man-db"
+  "glow"
+  "croc" # alternative to warp
 )
 CLI_PKGS_PARU=(
   "jqp-bin"
