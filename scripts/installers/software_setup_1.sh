@@ -109,7 +109,7 @@ CLI_PKGS_PARU=(
   "tlrc-bin"
   "tio"
   "pipes.sh"
-  "espanso-x11-bin"
+  "espanso-wayland-git"
 )
 sudo pacman -S --noconfirm "${CLI_PKGS_PACMAN[@]}"
 paru -S --noconfirm "${CLI_PKGS_PARU[@]}"
