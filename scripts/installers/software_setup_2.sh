@@ -128,5 +128,11 @@ WantedBy=default.target' > /lib/systemd/system/kanata.service"
 
 sudo systemctl enable kanata --now
 
+# # Doom Emacs
+# sudo pacman -S emacs-wayland
+# git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
+# ~/.config/emacs/bin/doom install
+# echo "export PATH=~/.config/emacs/bin:\$PATH" >> ~/.zprofile
+
 cd ~/Documents
 rm -rf install_script_temp_folder
