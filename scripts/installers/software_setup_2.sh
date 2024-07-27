@@ -91,18 +91,13 @@ if [[ "$usr_input" == "y" ]]; then
    sudo systemctl restart libvirtd.service
 fi
 
-# Bottles(Wine) Emulator
+# # Windows Emulator
 # flatpak install --assumeyes bottles
 
-# flatpak install --assumeyes flathub org.gnome.World.PikaBackup
-# flatpak install --assumeyes flathub app.drey.Warp
+# # Cool tools
 # flatpak install --assumeyes info.febvre.Komikku
+# flatpak install --assumeyes flathub org.gnome.World.PikaBackup
 # flatpak install --assumeyes flathub se.sjoerd.Graphs
-
-sudo pacman -S --noconfirm glow
-sudo pacman -S --noconfirm croc # alternative to warp
-
-# flatpak install --assumeyes yacreader
 # sudo pacman -S --noconfirm obsidian zathura
 
 # Kanata
