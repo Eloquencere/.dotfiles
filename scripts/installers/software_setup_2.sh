@@ -106,7 +106,7 @@ sudo pacman -S --noconfirm croc # alternative to warp
 # sudo pacman -S --noconfirm obsidian zathura
 
 # Kanata
-paru -S kanata-bin
+paru -S --noconfirm kanata-bin
 sudo groupadd uinput
 sudo usermod -aG input $USER
 sudo usermod -aG uinput $USER
