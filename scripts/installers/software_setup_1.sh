@@ -150,20 +150,6 @@ if [[ "$usr_input" == 'y' ]]; then
   paru -S --noconfirm "${REMOTE_MACHINE_PKGS_PARU[@]}"
 fi
 
-# Uninstall bloat
-BLOAT_PKGS_PACMAN=(
-  "vim" "htop" "nano"
-  "epiphany" "gnome-music" "gnome-calendar"
-  "gnome-contacts" "sushi" "gnome-weather"
-  "totem" "gnome-maps" "gnome-logs" "evince"
-)
-sudo pacman -Rs --noconfirm "${BLOAT_PKGS_PACMAN[@]}"
-# Gnome Config
-# Bring minimise, maximise and close buttons to their positions
-gsettings set org.gnome.mutter center-new-windows true
-gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
-gsettings set org.gnome.desktop.interface monospace-font-name 'JetBrainsMono Nerd Font'
-
 # Initialising all dot files
 cd ~/.dotfiles
 stow .
@@ -171,6 +157,11 @@ cd -
 
 espanso service register
 espanso start
+
+# Gnome Config
+gsettings set org.gnome.mutter center-new-windows true
+gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
+gsettings set org.gnome.desktop.interface monospace-font-name 'JetBrainsMono Nerd Font'
 
 cd ~/Documents
 rm -rf install_script_temp_folder
