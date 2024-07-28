@@ -99,14 +99,14 @@ paru -S --noconfirm brave-bin
 # Command line tools
 CLI_PKGS_PACMAN=(
   "github-cli"
-  "fzf" "zoxide" "eza" "bat" "fd" "ripgrep" "jq" "less"
+  "fzf" "zoxide" "eza" "bat" "fd" "ripgrep" "jq" "yq" "less"
   "yazi" "gdu" "duf"
   "man-db"
   "glow"
   "croc" # alternative to warp
 )
 CLI_PKGS_PARU=(
-  "jqp-bin"
+  # "jqp-bin"
   "tlrc-bin"
   "tio"
   "pipes.sh"
