@@ -1,7 +1,6 @@
 # options
 setopt nobeep
 setopt correct
-setopt autocd
 
 # Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
