@@ -12,7 +12,6 @@ BASIC_PKGS_PACMAN=(
 )
 sudo pacman -S --needed --noconfirm "${BASIC_PKGS_PACMAN[@]}"
 chsh -s $(which zsh)
-rm -f ~/.bash*
 echo "Do you have an amd or intel CPU?"
 echo "a -> amd & i -> intel: "
 read cpu_name
