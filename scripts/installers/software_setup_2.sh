@@ -135,7 +135,8 @@ sudo systemctl enable kanata --now
 # sudo pacman -S emacs-wayland
 # git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
 # ~/.config/emacs/bin/doom install
-# echo "export PATH=~/.config/emacs/bin:\$PATH" >> ~/.zprofile
+# echo "# Doom Emacs
+export PATH=~/.config/emacs/bin:\$PATH" >> ~/.zprofile
 
 cd ~/Documents
 rm -rf install_script_temp_folder
