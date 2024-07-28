@@ -8,6 +8,7 @@ fi
 
 # system update
 source ../continual-reference/system_updater.zsh
+tmux
 echo "Please enter tmux prefix + I to install all plugins"
 echo "press enter to continue"
 read usr_input
@@ -59,7 +60,6 @@ pyenv install 3.12
 pyenv global 3.12
 source ~/.zprofile
 source ~/.config/zsh/.zshrc
-# pyenv shell 3.12
 pip install --upgrade pip
 PIP_PKGS=(
    # debugging
@@ -99,37 +99,18 @@ if [[ "$usr_input" == "y" ]]; then
    sudo systemctl restart libvirtd.service
 fi
 
-# # Windows Emulator
-# flatpak install --assumeyes bottles
-
-# # Cool tools
-# flatpak install --assumeyes info.febvre.Komikku
-# flatpak install --assumeyes flathub org.gnome.World.PikaBackup
-# flatpak install --assumeyes flathub se.sjoerd.Graphs
-# sudo pacman -S --noconfirm obsidian zathura
-
-# Kanata
-paru -S --noconfirm kanata-bin
-sudo groupadd uinput
-sudo usermod -aG input $USER
-sudo usermod -aG uinput $USER
-sudo sh -c 'echo KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput" > /etc/udev/rules.d/99-input.rules'
-sudo udevadm control --reload && udevadm trigger --verbose --sysname-match=uniput
-sudo ln -s $HOME/.config/kanata /etc/
-sudo sh -c "echo '[Unit]
-Description=Kanata keyboard remapper
-Documentation=https://github.com/jtroo/kanata
-
-[Service]
-Type=simple
-ExecStartPre=/sbin/modprobe uinput
-ExecStart=$(which kanata) --cfg /etc/kanata/config.kbd
-Restart=no
-
-[Install]
-WantedBy=default.target' > /lib/systemd/system/kanata.service"
-
-sudo systemctl enable kanata --now
+# Cool tools
+ADDITIONAL_TOOLS_FLATPAK=(
+   "bottles"
+   "info.febvre.Komikku"
+   "org.gnome.World.PikaBackup"
+   "se.sjoerd.Graphs"
+)
+ADDITIONAL_TOOLS_PACMAN=(
+   "obsidian" "zathura"
+)
+# flatpak install --assumeyes flathub "${ADDITIONAL_TOOLS_FLATPAK[@]}"
+# sudo pacman -S --noconfirm "${ADDITIONAL_TOOLS_PACMAN[@]}"
 
 # # Doom Emacs
 # sudo pacman -S emacs-wayland
