@@ -104,10 +104,33 @@ CLI_PKGS_PARU=(
   "tio"
   "pipes.sh"
   "espanso-wayland-git"
+  "kanata-bin"
 )
 sudo pacman -S --noconfirm "${CLI_PKGS_PACMAN[@]}"
 paru -S --noconfirm "${CLI_PKGS_PARU[@]}"
 rm -rf ~/.config/espanso
+
+#Kanata
+sudo groupadd uinput
+sudo usermod -aG input $USER
+sudo usermod -aG uinput $USER
+sudo sh -c 'echo KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput" > /etc/udev/rules.d/99-input.rules'
+sudo udevadm control --reload && udevadm trigger --verbose --sysname-match=uniput
+sudo ln -s $HOME/.config/kanata /etc/
+sudo sh -c "echo '[Unit]
+Description=Kanata keyboard remapper
+Documentation=https://github.com/jtroo/kanata
+
+[Service]
+Type=simple
+ExecStartPre=/sbin/modprobe uinput
+ExecStart=$(which kanata) --cfg /etc/kanata/config.kbd
+Restart=no
+
+[Install]
+WantedBy=default.target' > /lib/systemd/system/kanata.service"
+
+sudo systemctl enable kanata --now
 
 # Terminal Emulator tools
 TERMINAL_EMULATOR_PKGS_PACMAN=(
@@ -116,7 +139,6 @@ TERMINAL_EMULATOR_PKGS_PACMAN=(
   "xclip"
 )
 sudo pacman -S --noconfirm "${TERMINAL_EMULATOR_PKGS_PACMAN[@]}"
-rm -rf ~/.config/atuin
 
 # Remote machine tools
 REMOTE_MACHINE_PKGS_PACMAN=(
@@ -145,6 +167,9 @@ cd -
 
 espanso service register
 espanso start
+
+echo "Press Enter to continue"
+read usr_input
 
 # Gnome Config
 gsettings set org.gnome.mutter center-new-windows true
