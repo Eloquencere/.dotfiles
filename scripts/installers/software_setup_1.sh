@@ -118,15 +118,6 @@ TERMINAL_EMULATOR_PKGS_PACMAN=(
 sudo pacman -S --noconfirm "${TERMINAL_EMULATOR_PKGS_PACMAN[@]}"
 rm -rf ~/.config/atuin
 
-# Onedriver
-echo "Do you want to install onedriver?(Y/n)"
-read usr_input
-if [[ "$usr_input" == 'y' ]]; then
-  mkdir $HOME/OneDrive
-  paru -S --noconfirm onedriver
-  rm -rf ~/Music ~/Pictures ~/Templates ~/Public
-fi
-
 # Remote machine tools
 REMOTE_MACHINE_PKGS_PACMAN=(
   "usbip"
@@ -137,6 +128,15 @@ REMOTE_MACHINE_PKGS_PARU=(
 sudo pacman -S --noconfirm "${REMOTE_MACHINE_PKGS_PACMAN[@]}"
 sudo sh -c "printf '%s\n%s\n' 'usbip-core' 'vhci-hcd' >> /etc/modules-load.d/usbip.conf"
 paru -S --noconfirm "${REMOTE_MACHINE_PKGS_PARU[@]}"
+
+# Onedriver
+echo "Do you want to install onedriver?(Y/n)"
+read usr_input
+if [[ "$usr_input" == 'y' ]]; then
+  mkdir $HOME/OneDrive
+  paru -S --noconfirm onedriver
+  rm -rf ~/Music ~/Pictures ~/Templates ~/Public
+fi
 
 # Initialising all dot files
 cd ~/.dotfiles
