@@ -136,7 +136,7 @@ sudo systemctl enable kanata --now
 # git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
 # ~/.config/emacs/bin/doom install
 # echo "# Doom Emacs
-export PATH=~/.config/emacs/bin:\$PATH" >> ~/.zprofile
+# export "PATH=~/.config/emacs/bin:\$PATH" >> ~/.zprofile
 
 cd ~/Documents
 rm -rf install_script_temp_folder
