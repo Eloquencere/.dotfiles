@@ -36,7 +36,7 @@ LANG_COMPILER_PKGS_PACMAN=(
   "rustup"
   "nodejs-lts-iron" 
   "pyenv" "python-pip" "tk"
-  # "zig"
+  "ghc" "zig"
 )
 LANG_COMPILERS_PKGS_PARU=(
   # "tailwindcss"
@@ -48,13 +48,6 @@ export RUSTUP_HOME="$HOME/.local/share/rust/.rustup"
 sudo pacman -S --needed --noconfirm "${LANG_COMPILER_PKGS_PACMAN[@]}"
 rustup toolchain install stable
 rustup default stable
-
-echo "Do you want to install haskell?(Y/n)"
-read usr_input
-if [[ "$usr_input" == 'y' ]]; then
-  sudo pacman -S ghc
-  # curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh # Haskell
-fi
 
 # Installing external package managers paru(AUR), flatpak(flathub)
 sudo pacman -Syu --noconfirm
@@ -139,15 +132,11 @@ REMOTE_MACHINE_PKGS_PACMAN=(
   "usbip"
 )
 REMOTE_MACHINE_PKGS_PARU=(
-  "nomachine" "rustdesk-bin" "parsec-bin"
+  # "nomachine" "rustdesk-bin" "parsec-bin"
 )
 sudo pacman -S --noconfirm "${REMOTE_MACHINE_PKGS_PACMAN[@]}"
 sudo sh -c "printf '%s\n%s\n' 'usbip-core' 'vhci-hcd' >> /etc/modules-load.d/usbip.conf"
-echo "Do you want to install nomachine and rustdesk?(Y/n)"
-read usr_input
-if [[ "$usr_input" == 'y' ]]; then
-  paru -S --noconfirm "${REMOTE_MACHINE_PKGS_PARU[@]}"
-fi
+paru -S --noconfirm "${REMOTE_MACHINE_PKGS_PARU[@]}"
 
 # Initialising all dot files
 cd ~/.dotfiles
