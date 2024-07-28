@@ -101,7 +101,7 @@ paru -S --noconfirm brave-bin
 CLI_PKGS_PACMAN=(
   "github-cli"
   "fzf" "zoxide" "eza" "bat" "fd" "ripgrep" "jq" "less"
-  "yazi" "atuin" "gdu" "duf"
+  "yazi" "gdu" "duf"
   "man-db"
   "glow"
   "croc" # alternative to warp
@@ -115,16 +115,16 @@ CLI_PKGS_PARU=(
 )
 sudo pacman -S --noconfirm "${CLI_PKGS_PACMAN[@]}"
 paru -S --noconfirm "${CLI_PKGS_PARU[@]}"
-espanso service register
-espanso start
+rm -rf ~/.config/espanso
 
 # Terminal Emulator tools
 TERMINAL_EMULATOR_PKGS_PACMAN=(
-  "alacritty" "starship" 
+  "alacritty" "starship" "atuin"
   "tmux" "tmuxp"
   "xclip"
 )
 sudo pacman -S --noconfirm "${TERMINAL_EMULATOR_PKGS_PACMAN[@]}"
+rm -rf ~/.config/atuin
 
 # Onedriver
 echo "Do you want to install onedriver?(Y/n)"
@@ -168,6 +168,9 @@ gsettings set org.gnome.desktop.interface monospace-font-name 'JetBrainsMono Ner
 cd ~/.dotfiles
 stow .
 cd -
+
+espanso service register
+espanso start
 
 cd ~/Documents
 rm -rf install_script_temp_folder
