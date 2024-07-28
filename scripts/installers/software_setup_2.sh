@@ -44,8 +44,16 @@ fi
 mkdir ~/Documents/install_script_temp_folder
 cd ~/Documents/install_script_temp_folder
 
-sudo pacman -Rs --noconfirm gnome-console
+# Uninstall bloat
+BLOAT_PKGS_PACMAN=(
+  "vim" "htop" "nano"
+  "epiphany" "gnome-music" "gnome-calendar" "gnome-console"
+  "gnome-contacts" "sushi" "gnome-weather"
+  "totem" "gnome-maps" "gnome-logs" "evince"
+)
+sudo pacman -Rs --noconfirm "${BLOAT_PKGS_PACMAN[@]}"
 rm -rf ~/.bash*
+
 # Necessary Python libraries
 pyenv install 3.12
 pyenv global 3.12
