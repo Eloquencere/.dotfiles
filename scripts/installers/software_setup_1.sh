@@ -156,7 +156,7 @@ read usr_input
 if [[ "$usr_input" == 'y' ]]; then
   mkdir $HOME/OneDrive
   paru -S --noconfirm onedriver
-  rm -rf ~/Music ~/Pictures ~/Templates ~/Public
+  rm -rf ~/Music ~/Pictures ~/Templates ~/Public ~/go
 fi
 
 # Initialising all dot files
