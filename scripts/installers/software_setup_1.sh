@@ -136,7 +136,6 @@ sudo systemctl enable kanata --now
 TERMINAL_EMULATOR_PKGS_PACMAN=(
   "alacritty" "starship" "atuin"
   "tmux" "tmuxp"
-  "xclip"
 )
 sudo pacman -S --noconfirm "${TERMINAL_EMULATOR_PKGS_PACMAN[@]}"
 
