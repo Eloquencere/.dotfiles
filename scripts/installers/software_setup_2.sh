@@ -1,5 +1,5 @@
 echo "Welcome to part 2 of the installer"
-echo "Ensure that you are running this on Alacritty only (y/n)"
+echo "Ensure that you are running this on Alacritty only & TMUX on (y/n)"
 read usr_input
 if [[ "$usr_input" == "n" ]]; then
    echo "Run this again with alacritty only"
@@ -8,7 +8,6 @@ fi
 
 # system update
 source ../continual-reference/system_updater.zsh
-tmux
 echo "Please enter tmux prefix + I to install all plugins"
 echo "press enter to continue"
 read usr_input
