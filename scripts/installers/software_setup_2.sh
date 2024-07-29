@@ -60,28 +60,15 @@ pyenv global 3.12
 source ~/.zprofile
 source ~/.config/zsh/.zshrc
 pip install --upgrade pip
-PIP_PKGS=(
-   # debugging
-   "icecream"
-   # presentation
-   "drawio"
-   "colorama" "pyfiglet"
-   # data representation and calculation
-   "dash" "plotly" "seaborn" # seaborn - (replace matplotlib)
-   "mysql-connector-python"
-   "polars" "xarray" # xarray - (multi-dimentional arrays)
-   "Cython" "numba" "taichi"
-   "numpy" "scipy" "pillow"
-   # quality of life
-   "parse"
-   "pendulum" # replaces datetime
-   "pydantic"
-   "ruff" # linter
-   "mypy" # static typing
-   "pyglet" # best game engine
-   # "keras" "tensorflow" "scikit-learn" "torch"
-)
-pip install "${PIP_PKGS[@]}"
+
+pip install icecream # debugging
+pip install drawio colorama pyfiglet # presentation
+pip install dash plotly seaborn mysql-connector-python # data representation and calculation
+pip install polars xarray
+pip install numpy scipy pillow
+pip install Cython numba taichi
+pip install parse pendulum pydantic ruff mypy pyglet
+# pip install keras tensorflow scikit-learn torch
 
 # virt-manager with qemu/KVM
 VM_PKGS=(
