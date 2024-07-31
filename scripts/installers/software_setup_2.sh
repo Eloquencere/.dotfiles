@@ -48,8 +48,8 @@ cd ~/Documents/install_script_temp_folder
 BLOAT_PKGS_PACMAN=(
   "vim" "htop" "nano"
   "epiphany" "gnome-music" "gnome-calendar" "gnome-console"
-  "gnome-contacts" "sushi" "gnome-weather"
-  "totem" "gnome-maps" "gnome-logs" "evince"
+  "gnome-contacts" "sushi" "gnome-weather" "gnome-tour"
+  "totem" "gnome-maps" "gnome-logs" "evince" "orca"
 )
 sudo pacman -Rs --noconfirm "${BLOAT_PKGS_PACMAN[@]}"
 rm -rf ~/.bash*
