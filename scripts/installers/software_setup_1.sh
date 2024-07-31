@@ -39,7 +39,6 @@ LANG_COMPILER_PKGS_PACMAN=(
 )
 LANG_COMPILERS_PKGS_PARU=(
   "bun-bin"
-  # "tailwindcss"
   "scriptisto" # script in any compiled language
 )
 sudo pacman -S gdb valgrind strace ghidra
