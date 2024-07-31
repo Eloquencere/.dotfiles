@@ -34,11 +34,11 @@ LANG_COMPILER_PKGS_PACMAN=(
   "perl" "go" "python"
   "clang" "lldb"
   "rustup"
-  "nodejs-lts-iron" 
   "pyenv" "python-pip" "tk"
   "ghc" "zig"
 )
 LANG_COMPILERS_PKGS_PARU=(
+  "bun-bin"
   # "tailwindcss"
   "scriptisto" # script in any compiled language
 )
