@@ -48,7 +48,7 @@ sudo pacman -S --needed --noconfirm "${LANG_COMPILER_PKGS_PACMAN[@]}"
 rustup toolchain install stable
 rustup default stable
 cargo install cargo-binstall sccache
-export RUSTC_WRAPPER=$CARGO_HOME/bin/sccache cargo binstall {package}
+export RUSTC_WRAPPER=$CARGO_HOME/bin/sccache
 
 QUALITY_OF_LIFE_CRATES=(
   "rtx-cli" # version control
