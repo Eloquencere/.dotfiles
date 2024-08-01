@@ -66,12 +66,16 @@ UTIL_PKGS_PACMAN=(
   "p7zip" "unrar" "tar" "exfat-utils" "ntfs-3g"
   "libreoffice-fresh" "vlc"
   "fastfetch" "btop" # benchmarkers
-  "stow" "speedtest-cli" "openbsd-netcat"
+  "stow" "openbsd-netcat"
   "ufw" # firewall
   "dos2unix"
 )
+UTIL_PKGS_PARU=(
+  "speedtest-rs-bin"
+)
 sudo pacman -S --noconfirm "${UTIL_PKGS_PACMAN[@]}"
 sudo systemctl enable ufw --now
+sudo paru -S --noconfirm "${UTIL_PKGS_PARU[@]}"
 
 # Others
 QOF_PKGS_PARU=(
