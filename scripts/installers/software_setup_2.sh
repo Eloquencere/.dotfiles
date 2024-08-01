@@ -52,7 +52,7 @@ BLOAT_PKGS_PACMAN=(
   "totem" "gnome-maps" "gnome-logs" "evince" "orca"
 )
 sudo pacman -Rs --noconfirm "${BLOAT_PKGS_PACMAN[@]}"
-rm -rf ~/.bash*
+rm -rf ~/.bash* ~/.fontconfig
 
 # Necessary Python libraries
 rtx install python@3.12
