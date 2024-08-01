@@ -109,7 +109,7 @@ paru -S --noconfirm brave-bin
 CLI_PKGS_PACMAN=(
   "github-cli"
   "fzf" "zoxide" "eza" "bat" "fd" "ripgrep" "jq" "yq" "less"
-  "yazi" "gdu" "duf"
+  "yazi" "gdu" "duf" "git-delta"
   "man-db"
   "glow"
   "croc" # alternative to warp
