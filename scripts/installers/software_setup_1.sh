@@ -34,7 +34,7 @@ LANG_COMPILER_PKGS_PACMAN=(
   "perl" "go" "python"
   "clang" "lldb"
   "rustup"
-  "pyenv" "python-pip" "tk"
+  "python-pip" "tk"
   "ghc" "zig"
 )
 LANG_COMPILERS_PKGS_PARU=(
@@ -47,6 +47,8 @@ export RUSTUP_HOME="$HOME/.local/share/rust/.rustup"
 sudo pacman -S --needed --noconfirm "${LANG_COMPILER_PKGS_PACMAN[@]}"
 rustup toolchain install stable
 rustup default stable
+cargo install cargo-binstall
+cargo binstall rtx-cli # version control
 
 # Installing external package managers paru(AUR), flatpak(flathub)
 sudo pacman -Syu --noconfirm
