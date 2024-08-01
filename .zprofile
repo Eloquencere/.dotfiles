@@ -31,6 +31,7 @@ export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
 # Rust
 export CARGO_HOME="$XDG_DATA_HOME/rust/.cargo"
 export RUSTUP_HOME="$XDG_DATA_HOME/rust/.rustup"
+export RUSTC_WRAPPER=$CARGO_HOME/bin/sccache cargo binstall {package}
 
 # rtx-cli
 source <($CARGO_HOME/bin/rtx activate zsh)
