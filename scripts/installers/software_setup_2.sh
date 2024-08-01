@@ -57,8 +57,8 @@ rm -rf ~/.bash*
 # Necessary Python libraries
 rtx install python@3.12
 rtx global python@3.12
-source ~/.zprofile
-source ~/.config/zsh/.zshrc
+# source ~/.zprofile
+# source ~/.config/zsh/.zshrc
 pip install --upgrade pip
 
 pip install icecream # debugging
