@@ -47,12 +47,12 @@ export RUSTUP_HOME="$HOME/.local/share/rust/.rustup"
 sudo pacman -S --needed --noconfirm "${LANG_COMPILER_PKGS_PACMAN[@]}"
 rustup toolchain install stable
 rustup default stable
-cargo install cargo-binstall
-cargo binstall rtx-cli # version control
+cargo install cargo-binstall sccache
+export RUSTC_WRAPPER=$CARGO_HOME/bin/sccache cargo binstall {package}
 
 QUALITY_OF_LIFE_CRATES=(
+  "rtx-cli" # version control
   "cargo-info" "irust" "bacon"
-  "sccache"
   # tokio rayon
 )
 cargo install "${QUALITY_OF_LIFE_CRATES[@]}"
