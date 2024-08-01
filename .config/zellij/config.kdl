@@ -1,6 +1,6 @@
 default_layout "compact"
 default_shell "zsh"
-copy_command "xclip -selection clipboard"
+copy_command "wl-copy"
 
 // for further config
 // https://shoukoo.github.io/blog/zellij-love-neovim/
