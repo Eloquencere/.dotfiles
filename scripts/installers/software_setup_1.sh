@@ -52,6 +52,7 @@ cargo binstall rtx-cli # version control
 
 QUALITY_OF_LIFE_CRATES=(
   "cargo-info" "irust" "bacon"
+  "sccache"
   # tokio rayon
 )
 cargo install "${QUALITY_OF_LIFE_CRATES[@]}"
