@@ -32,7 +32,5 @@ export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
 export CARGO_HOME="$XDG_DATA_HOME/rust/.cargo"
 export RUSTUP_HOME="$XDG_DATA_HOME/rust/.rustup"
 
-# Pyenv
-export PYENV_ROOT="$XDG_DATA_HOME/pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin":$PATH
-source <(pyenv init -)
+# rtx-cli
+source <($CARGO_HOME/bin/rtx activate zsh)
