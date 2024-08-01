@@ -50,6 +50,12 @@ rustup default stable
 cargo install cargo-binstall
 cargo binstall rtx-cli # version control
 
+QUALITY_OF_LIFE_CRATES=(
+  "cargo-info" "irust" "bacon"
+  # tokio rayon
+)
+cargo install "${QUALITY_OF_LIFE_CRATES[@]}"
+
 # Installing external package managers paru(AUR), flatpak(flathub)
 sudo pacman -Syu --noconfirm
 git clone https://aur.archlinux.org/paru.git
