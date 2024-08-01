@@ -116,7 +116,7 @@ CLI_PKGS_PACMAN=(
 )
 CLI_PKGS_PARU=(
   # "jqp-bin"
-  "tlrc-bin" "rm-improved-git"
+  "tlrc-bin" "rm-improved-git" # consider aliasing with rm
   "tio"
   "pipes.sh"
   "espanso-wayland-git"
