@@ -19,3 +19,4 @@ alias find=fd
 alias cat=bat
 alias grep=rg
 alias df=duf
+alias speedtest=speedtest-rs
