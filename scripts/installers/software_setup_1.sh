@@ -143,11 +143,11 @@ REMOTE_MACHINE_PKGS_PACMAN=(
   "usbip"
 )
 REMOTE_MACHINE_PKGS_PARU=(
-  # "nomachine" "rustdesk-bin" "parsec-bin"
+  "nomachine" "rustdesk-bin" "parsec-bin"
 )
 sudo pacman -S --noconfirm "${REMOTE_MACHINE_PKGS_PACMAN[@]}"
 sudo sh -c "printf '%s\n%s\n' 'usbip-core' 'vhci-hcd' >> /etc/modules-load.d/usbip.conf"
-paru -S --noconfirm "${REMOTE_MACHINE_PKGS_PARU[@]}"
+# paru -S --noconfirm "${REMOTE_MACHINE_PKGS_PARU[@]}"
 
 # Onedriver
 echo "Do you want to install onedriver?(Y/n)"
