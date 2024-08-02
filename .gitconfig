@@ -1,6 +1,3 @@
-[user]
-        email = sample@gom.com
-        name = sample
 [core]
     editor = nvim
     pager = delta
