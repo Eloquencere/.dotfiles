@@ -40,10 +40,10 @@ read usr_input
 if  [[ "$usr_input" == ^[Yy]$ ]]; then
     echo "Enter your username:"
     read username
-    sed -i "s|^\s+\(name = \).*|\1$username|g" $HOME/.gitconfig
+    git config --global user.name "$username"
     echo "Enter your email:"
     read email
-    sed -i "s|^\s+\(email = \).*|\1$email|g" $HOME/.gitconfig
+    git config --global user.email "$email"
     echo "you need to login to Github as well"
     gh auth login
 fi
