@@ -183,11 +183,11 @@ cd -
 espanso service register
 espanso start
 
-# zsh plugin manager & fzf for git
+# zinit
 git clone https://github.com/zdharma-continuum/zinit.git "$HOME/.local/share/zsh/zinit"
-git clone https://github.com/junegunn/fzf-git.sh.git "$HOME/.local/share/zsh/fzf-git"
-# alacritty & tmux
+# alacritty themes
 git clone https://github.com/alacritty/alacritty-theme.git "$HOME/.config/alacritty/themes"
+# tpm
 git clone https://github.com/tmux-plugins/tpm.git "$HOME/.config/tmux/plugins/tpm"
 
 echo "Press Enter to continue"
