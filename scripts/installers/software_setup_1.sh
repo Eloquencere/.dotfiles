@@ -184,8 +184,7 @@ espanso service register
 espanso start
 
 # zsh plugin manager & fzf for git
-mkdir -p "$(dirname $HOME/.local/share/zsh)" # might not be needed
-git clone https://github.com/zdharma-continuum/zinit.git "$HOME/.local/share/zsh"
+git clone https://github.com/zdharma-continuum/zinit.git "$HOME/.local/share/zsh/zinit"
 git clone https://github.com/junegunn/fzf-git.sh.git "$HOME/.local/share/zsh/fzf-git"
 # alacritty & tmux
 git clone https://github.com/alacritty/alacritty-theme.git "$HOME/.config/alacritty/themes"
