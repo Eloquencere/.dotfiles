@@ -28,7 +28,7 @@ read usr_input
 
 echo "Would you like to configure the server IP address of USBIP? (y/n)"
 read usr_input
-if [[ "$usr_input" == "y" ]]; then
+if [[ "$usr_input" == ^[Yy]$ ]]; then
    echo "Please enter the server's IP address"
    read server_ip
    sed -i "s/^\(SERVER_IP=\).*/\1$server_ip/g" $ZDOTDIR/zsh-functions.zsh
@@ -37,7 +37,7 @@ fi
 
 echo "Would you like to log into your git account? (y/n)"
 read usr_input
-if  [[ "$usr_input" == "y" ]]; then
+if  [[ "$usr_input" == ^[Yy]$ ]]; then
     echo "Enter your username:"
     read username
     sed -i "s|^\s+\(name = \).*|\1$username|g" $HOME/.gitconfig
@@ -83,7 +83,7 @@ VM_PKGS=(
 )
 echo "do you want to install a VM software?(y/n)"
 read usr_input
-if [[ "$usr_input" == "y" ]]; then
+if [[ "$usr_input" == ^[Yy]$ ]]; then
    sudo pacman -Syu --noconfirm
    sudo pacman -S --needed --noconfirm "${VM_PKGS[@]}"
    sudo systemctl enable libvirtd.service --now
