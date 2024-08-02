@@ -4,8 +4,14 @@ import = [
 
 live_config_reload = true
 
-# [shell]
-# program = "tmux"
+[keyboard]
+	bindings = [
+	   { key = "N", mods = "Control|Shift", action = "SpawnNewInstance" }
+	]
+[[hints.enabled]]
+	regex = "[^ ]+\\.rs:\\d+:\\d+"
+	command = { program = "gnome-text-editor", args = [ "--goto" ] }
+	mouse = { enabled = true }
 
 [window]
     startup_mode = "Maximized"
@@ -52,12 +58,3 @@ live_config_reload = true
 
 [env]
     	TERM = "xterm-256color"
-
-[keyboard]
-	bindings = [
-	   { key = "N", mods = "Control|Shift", action = "SpawnNewInstance" }
-	]
-[[hints.enabled]]
-	regex = "[^ ]+\\.rs:\\d+:\\d+"
-	command = { program = "gnome-text-editor", args = [ "--goto" ] }
-	mouse = { enabled = true }
