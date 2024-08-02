@@ -1,5 +1,5 @@
 [user]
-        email = sample
+        email = sample@gom.com
         name = sample
 [core]
     editor = nvim
