@@ -47,18 +47,15 @@ _fzf_compgen_dir() {
 function zvm_after_init() {
 	ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
 	zvm_bindkey viins '^r' atuin-search
-	zvm_bindkey vicmd '^r' atuin-search
 	zvm_bindkey viins '^p' atuin-up-search
 	for o in files branches tags remotes hashes stashes each_ref; do
         	eval "zvm_bindkey viins '^g^${o[1]}' fzf-git-$o-widget"
     	done
 }
 function zvm_after_lazy_keybindings() {
+    zvm_bindkey vicmd '^r' atuin-search
     for o in files branches tags remotes hashes stashes each_ref; do
         eval "zvm_bindkey vicmd '^g^${o[1]}' fzf-git-$o-widget"
-        eval "zvm_bindkey vicmd '^g${o[1]}' fzf-git-$o-widget"
-        eval "zvm_bindkey visual '^g^${o[1]}' fzf-git-$o-widget"
-        eval "zvm_bindkey visual '^g${o[1]}' fzf-git-$o-widget"
     done
 }
 
