@@ -3,7 +3,7 @@ setopt nobeep
 setopt correct
 
 # Load zinit
-source "${ZSH_DATA_DIR}/zinit/zinit.zsh"
+source "$ZDOTDIR/zinit/zinit.zsh"
 
 # Add zinit plugins
 zinit ice depth=1; zinit light jeffreytse/zsh-vi-mode
@@ -32,8 +32,8 @@ source <(fzf --zsh)
 source <(zoxide init --cmd cd zsh)
 
 # Source aliases & functions
-[[ ! -f "$ZDOTDIR/zsh-aliases.zsh" ]] || source "$ZDOTDIR/zsh-aliases.zsh"
-[[ ! -f "$ZDOTDIR/zsh-functions.zsh" ]] || source "$ZDOTDIR/zsh-functions.zsh"
+source "$ZDOTDIR/zsh-aliases.zsh"
+source "$ZDOTDIR/zsh-functions.zsh"
 
 # FZF modifications
 _fzf_compgen_path() {
