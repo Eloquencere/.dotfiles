@@ -7,6 +7,7 @@ source "${ZSH_DATA_DIR}/zinit/zinit.zsh"
 
 # Add zinit plugins
 zinit ice depth=1; zinit light jeffreytse/zsh-vi-mode
+zinit light junegunn/fzf-git.sh
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light Aloxaf/fzf-tab
 zinit load atuinsh/atuin
