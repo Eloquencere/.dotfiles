@@ -34,6 +34,16 @@ source <(zoxide init --cmd cd zsh)
 [[ ! -f "$ZDOTDIR/zsh-aliases.zsh" ]] || source "$ZDOTDIR/zsh-aliases.zsh"
 [[ ! -f "$ZDOTDIR/zsh-functions.zsh" ]] || source "$ZDOTDIR/zsh-functions.zsh"
 
+export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
+_fzf_compgen_path() {
+  fd --hidden --follow --exclude .git . "$1"
+}
+_fzf_compgen_dir() {
+  fd --type=d --hidden --exclude .git . "$1"
+}
+
 # Zsh-Vi-Mode
 function zvm_after_init() {
 	ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
