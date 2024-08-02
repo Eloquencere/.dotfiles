@@ -58,5 +58,4 @@ import = [
 [[hints.enabled]]
 	hyperlinks = true
  	post_processing = true
-  	persist = false
-	mouse = { enabled = true, mods = "Control" }
+	mouse = { enabled = true}
