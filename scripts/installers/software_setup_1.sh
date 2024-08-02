@@ -56,8 +56,7 @@ QUALITY_OF_LIFE_CRATES=(
 )
 cargo install "${QUALITY_OF_LIFE_CRATES[@]}"
 QUALITY_OF_LIFE_CRATES_BIN=(
-  "rtx-cli" # version control
-  "cargo-info"
+  "rtx-cli" # language version control
 )
 cargo binstall "${QUALITY_OF_LIFE_CRATES_BIN[@]}"
 
