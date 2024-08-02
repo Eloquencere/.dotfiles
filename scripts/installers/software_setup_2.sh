@@ -1,5 +1,5 @@
 echo "Welcome to part 2 of the installer"
-echo "Ensure that you are running this on Alacritty only & TMUX(green line at the bottom) on (y/n)"
+echo "Ensure that you are running this on Alacritty & TMUX(green line at the bottom) only (y/n)"
 read usr_input
 if [[ "$usr_input" == "n" ]]; then
    exit
