@@ -21,11 +21,6 @@ elif [[ "$cpu_name" == "i" ]]; then
   sudo pacman -S --needed --noconfirm intel-ucode
 fi
 
-# zsh plugin manager & fzf for git
-mkdir -p "$(dirname $HOME/.local/share/zsh)"
-git clone https://github.com/zdharma-continuum/zinit.git "$HOME/.local/share/zsh"
-git clone https://github.com/junegunn/fzf-git.sh.git "$HOME/.local/share/zsh"
-
 # System config
 sudo sed -i "s/^\(GRUB_DEFAULT=\).*/\10/g" /etc/default/grub
 sudo sed -i "s/^\(GRUB_TIMEOUT=\).*/\10/g" /etc/default/grub
@@ -187,6 +182,15 @@ cd -
 
 espanso service register
 espanso start
+
+# zsh plugin manager & fzf for git
+mkdir -p "$(dirname $HOME/.local/share/zsh)" # might not be needed
+git clone https://github.com/zdharma-continuum/zinit.git "$HOME/.local/share/zsh"
+git clone https://github.com/junegunn/fzf-git.sh.git "$HOME/.local/share/zsh/fzf-git"
+
+# alacritty & tmux
+git clone https://github.com/alacritty/alacritty-theme.git "$HOME/.config/alacritty/themes"
+git clone https://github.com/tmux-plugins/tpm.git "$HOME/.config/tmux/plugins/tpm"
 
 echo "Press Enter to continue"
 read usr_input
