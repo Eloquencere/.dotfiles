@@ -184,7 +184,7 @@ espanso service register
 espanso start
 
 # zinit
-git clone https://github.com/zdharma-continuum/zinit.git "$HOME/.local/share/zsh/zinit"
+git clone https://github.com/zdharma-continuum/zinit.git "$HOME/.config/zsh/zinit"
 # alacritty themes
 git clone https://github.com/alacritty/alacritty-theme.git "$HOME/.config/alacritty/themes"
 # tpm
