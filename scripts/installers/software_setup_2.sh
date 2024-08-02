@@ -26,7 +26,7 @@ cat --line-range=6:17 .gui_instructions.txt
 echo "press enter to continue"
 read usr_input
 
-echo "Would you like to configure the server IP address of USBIP? (y/n)"
+echo -n "Would you like to configure the server IP address of USBIP? (y/n)"
 read usr_input
 if [[ "$usr_input" =~ "^[Yy]$" ]]; then
    echo "Please enter the server's IP address"
@@ -35,7 +35,7 @@ if [[ "$usr_input" =~ "^[Yy]$" ]]; then
    source $ZDOTDIR/.zshrc
 fi
 
-echo "Would you like to log into your git account? (y/n)"
+echo -n "Would you like to log into your git account? (y/n)"
 read usr_input
 if  [[ "$usr_input" =~ "^[Yy]$" ]]; then
     echo "Enter your username:"
@@ -81,7 +81,7 @@ VM_PKGS=(
    "archlinux-keyring"
    "qemu-desktop" "virt-manager" "virt-viewer" "dnsmasq" "vde2" "bridge-utils"
 )
-echo "do you want to install a VM software?(y/n)"
+echo -n "Would you like to install a VM software?(y/n)"
 read usr_input
 if [[ "$usr_input" =~ "^[Yy]$" ]]; then
    sudo pacman -Syu --noconfirm
