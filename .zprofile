@@ -15,9 +15,8 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export TOOLS_HOME="$HOME/Tools"
 export DOTFILES_HOME="$HOME/.dotfiles"
 
-# zsh initialisations
+# zsh initialisation
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
-export ZSH_DATA_DIR="$XDG_DATA_HOME/zsh"
 
 # fzf modifications
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
