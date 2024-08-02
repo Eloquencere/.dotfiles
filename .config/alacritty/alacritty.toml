@@ -1,19 +1,20 @@
+live_config_reload = true
+
 import = [
 	"~/.config/alacritty/themes/themes/tokyo-night.toml"
 ]
 
-live_config_reload = true
-
-[keyboard]
-	bindings = [
-	   { key = "N", mods = "Control|Shift", action = "SpawnNewInstance" }
-	]
 [[hints.enabled]]
 	hyperlinks = true
  	post_processing = true
   	persist = false
 	mouse = { enabled = true, mods = "Control" }
 
+[keyboard]
+	bindings = [
+	   { key = "N", mods = "Control|Shift", action = "SpawnNewInstance" }
+	]
+ 
 [window]
     startup_mode = "Maximized"
     opacity = 0.8
