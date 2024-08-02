@@ -167,7 +167,7 @@ sudo sh -c "printf '%s\n%s\n' 'usbip-core' 'vhci-hcd' >> /etc/modules-load.d/usb
 # paru -S --noconfirm "${REMOTE_MACHINE_PKGS_PARU[@]}"
 
 # Onedriver
-echo "Do you want to install onedriver?(Y/n)"
+echo -n "Would you like to install onedriver?(Y/n)"
 read usr_input
 if [[ "$usr_input" =~ "^[Yy]$" ]]; then
   mkdir $HOME/OneDrive
