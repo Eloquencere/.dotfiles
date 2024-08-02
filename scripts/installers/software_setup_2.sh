@@ -35,6 +35,20 @@ if [[ "$usr_input" == "y" ]]; then
    source $ZDOTDIR/.zshrc
 fi
 
+echo "Would you like to log into your git account? (y/n)"
+read usr_input
+if  [[ "$usr_input" == "y" ]]; then
+    echo "what is your username?"
+    read username
+    sed -i "s|^\s+\(name = \).*|\1$username|g" $HOME/.gitconfig
+    echo "what is your email?"
+    read email
+    sed -i "s|^\s+\(email = \).*|\1$email|g" $HOME/.gitconfig
+    echo "you need to login to Github as well"
+    echo "Here is your email id - $email"
+    gh auth login
+fi
+
 mkdir ~/Documents/install_script_temp_folder
 cd ~/Documents/install_script_temp_folder
 
