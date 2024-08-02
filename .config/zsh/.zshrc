@@ -30,7 +30,6 @@ source <(starship init zsh)
 source <(atuin init zsh)
 source <(fzf --zsh)
 source <(zoxide init --cmd cd zsh)
-source "${ZSH_DATA_DIR}/fzf-git/fzf-git.sh"
 
 # Source aliases & functions
 [[ ! -f "$ZDOTDIR/zsh-aliases.zsh" ]] || source "$ZDOTDIR/zsh-aliases.zsh"
