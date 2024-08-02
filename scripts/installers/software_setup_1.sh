@@ -169,7 +169,7 @@ sudo sh -c "printf '%s\n%s\n' 'usbip-core' 'vhci-hcd' >> /etc/modules-load.d/usb
 # Onedriver
 echo "Do you want to install onedriver?(Y/n)"
 read usr_input
-if [[ "$usr_input" == 'y' ]]; then
+if [[ "$usr_input" =~ "^[Yy]$" ]]; then
   mkdir $HOME/OneDrive
   paru -S --noconfirm onedriver
   rm -rf ~/Music ~/Pictures ~/Templates ~/Public ~/go
