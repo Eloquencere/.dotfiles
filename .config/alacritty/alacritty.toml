@@ -9,9 +9,10 @@ live_config_reload = true
 	   { key = "N", mods = "Control|Shift", action = "SpawnNewInstance" }
 	]
 [[hints.enabled]]
-	regex = "[^ ]+\\.rs:\\d+:\\d+"
-	command = { program = "gnome-text-editor", args = [ "--goto" ] }
-	mouse = { enabled = true }
+	hyperlinks = true
+ 	post_processing = true
+  	persist = false
+	mouse = { enabled = true, mods = "Control" }
 
 [window]
     startup_mode = "Maximized"
