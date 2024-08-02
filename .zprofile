@@ -19,12 +19,6 @@ export DOTFILES_HOME="$HOME/.dotfiles"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export ZSH_COMPDUMP="$XDG_CACHE_HOME/.zcompdump-$HOST"
 export ZSH_DATA_DIR="$XDG_DATA_HOME/zsh"
-# Download Zinit & fzf-zsh, if it's not there
-if [ ! -d "$ZSH_DATA_DIR" ]; then
-	mkdir -p "$(dirname $ZSH_DATA_DIR)"
-	git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-	git clone https://github.com/junegunn/fzf-git.sh.git "$ZINIT_HOME"
-fi
 
 # fzf modifications
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
