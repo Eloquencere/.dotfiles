@@ -21,6 +21,11 @@ elif [[ "$cpu_name" == "i" ]]; then
   sudo pacman -S --needed --noconfirm intel-ucode
 fi
 
+# zsh plugin manager & fzf for git
+mkdir -p "$(dirname $HOME/.local/share/zsh)"
+git clone https://github.com/zdharma-continuum/zinit.git "$HOME/.local/share/zsh"
+git clone https://github.com/junegunn/fzf-git.sh.git "$HOME/.local/share/zsh"
+
 # System config
 sudo sed -i "s/^\(GRUB_DEFAULT=\).*/\10/g" /etc/default/grub
 sudo sed -i "s/^\(GRUB_TIMEOUT=\).*/\10/g" /etc/default/grub
