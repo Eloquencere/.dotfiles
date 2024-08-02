@@ -34,9 +34,7 @@ source <(zoxide init --cmd cd zsh)
 [[ ! -f "$ZDOTDIR/zsh-aliases.zsh" ]] || source "$ZDOTDIR/zsh-aliases.zsh"
 [[ ! -f "$ZDOTDIR/zsh-functions.zsh" ]] || source "$ZDOTDIR/zsh-functions.zsh"
 
-export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
+# FZF modifications
 _fzf_compgen_path() {
   fd --hidden --follow --exclude .git . "$1"
 }
@@ -51,6 +49,7 @@ function zvm_after_init() {
 	zvm_bindkey vicmd '^r' atuin-search
 	zvm_bindkey viins '^p' atuin-up-search
 }
+
 # better Tmux session experience
 function _tmux() {
     if [[ $# == 0 ]] && command tmux ls >& /dev/null; then
