@@ -17,7 +17,6 @@ export DOTFILES_HOME="$HOME/.dotfiles"
 
 # zsh initialisations
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
-export ZSH_COMPDUMP="$XDG_CACHE_HOME/.zcompdump-$HOST"
 export ZSH_DATA_DIR="$XDG_DATA_HOME/zsh"
 
 # fzf modifications
