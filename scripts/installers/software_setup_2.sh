@@ -1,23 +1,17 @@
 echo "Welcome to part 2 of the installer"
-echo "Ensure that you are running this on Alacritty only & TMUX on (y/n)"
+echo "Ensure that you are running this on Alacritty only & TMUX(green line at the bottom) on (y/n)"
 read usr_input
 if [[ "$usr_input" == "n" ]]; then
-   echo "Run this again with alacritty only"
    exit
 fi
 
 # system update
 source ../continual-reference/system_updater.zsh
-echo "Please enter tmux prefix + I to install all plugins"
+echo "Please enter tmux prefix + Shift + I to install all plugins"
 echo "press enter to continue"
 read usr_input
-
-echo "would you like to move the minimal tmux status bar to the top? (y/n)"
-read usr_input
-if [[ "$usr_input" == "y" ]]; then
-   sed -i "s/bottom/top/g" $XDG_CONFIG_HOME/tmux/plugins/minimal-tmux-status/minimal.tmux
-fi
-echo "Press tmux prefix + r to reload the config file"
+sed -i "s/bottom/top/g" $XDG_CONFIG_HOME/tmux/plugins/minimal-tmux-status/minimal.tmux
+echo "Press tmux prefix + R to reload the config file"
 echo "press enter to continue"
 read usr_input
 
