@@ -53,9 +53,10 @@ sudo pacman -S --needed --noconfirm "${LANG_COMPILER_PKGS_PACMAN[@]}"
 rustup toolchain install stable
 rustup default stable
 
-cargo install cargo-binstall sccache
+cargo install sccache
 export RUSTC_WRAPPER="$CARGO_HOME/bin/sccache"
 QUALITY_OF_LIFE_CRATES=(
+  "cargo-binstall"
   "irust" "bacon"
   # tokio rayon
 )
