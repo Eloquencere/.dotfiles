@@ -51,7 +51,6 @@ function zvm_after_init() {
 	zvm_bindkey viins '^p' atuin-up-search
 	for o in files branches tags remotes hashes stashes each_ref; do
         	eval "zvm_bindkey viins '^g^${o[1]}' fzf-git-$o-widget"
-        	eval "zvm_bindkey viins '^g${o[1]}' fzf-git-$o-widget"
     	done
 }
 function zvm_after_lazy_keybindings() {
