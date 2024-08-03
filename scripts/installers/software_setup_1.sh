@@ -88,7 +88,7 @@ UTIL_PKGS_PARU=(
 )
 sudo pacman -S --noconfirm "${UTIL_PKGS_PACMAN[@]}"
 sudo systemctl enable ufw --now
-sudo paru -S --noconfirm "${UTIL_PKGS_PARU[@]}"
+paru -S --noconfirm "${UTIL_PKGS_PARU[@]}"
 
 # Others
 QOF_PKGS_PARU=(
