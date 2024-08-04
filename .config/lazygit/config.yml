@@ -216,10 +216,8 @@ git:
   # See https://github.com/jesseduffield/lazygit/blob/master/docs/Custom_Pagers.md
   paging:
     colorArg: always
-    pager: "delta --dark --side-by-side"
-
     # If true, Lazygit will use whatever pager is specified in `$GIT_PAGER`, `$PAGER`, or your *git config*. If the pager ends with something like ` | less` we will strip that part out, because less doesn't play nice with our rendering approach. If the custom pager uses less under the hood, that will also break rendering (hence the `--paging=never` flag for the `delta` pager).
-    useConfig: false
+    useConfig: true
 
     # e.g. 'difft --color=always'
     externalDiffCommand: ""
@@ -290,7 +288,7 @@ git:
 
   # If true, parse emoji strings in commit messages e.g. render :rocket: as 🚀
   # (This should really be under 'gui', not 'git')
-  parseEmoji: false
+  parseEmoji: true
 
   # Config for showing the log in the commits view
   log:
