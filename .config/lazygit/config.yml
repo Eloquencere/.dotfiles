@@ -178,7 +178,7 @@ gui:
 
   # Default size for focused window. Window size can be changed from within Lazygit with '+' and '_' (but this won't change the default).
   # One of: 'normal' (default) | 'half' | 'full'
-  windowSize: full
+  windowSize: normal
 
   # Window border style.
   # One of 'rounded' (default) | 'single' | 'double' | 'hidden'
