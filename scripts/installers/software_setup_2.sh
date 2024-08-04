@@ -62,9 +62,7 @@ sudo pacman -Rs --noconfirm "${BLOAT_PKGS_PACMAN[@]}"
 rm -rf ~/.bash* ~/.fontconfig
 
 # Necessary Python libraries
-rtx install python@3.12
-rtx global python@3.12
-source ~/.zprofile
+rtx install python@latest
 pip install --upgrade pip
 
 # pip install icecream # debugging
