@@ -1,8 +1,7 @@
 # confirm before overwriting something
 alias cp="cp -i"
 alias mv="mv -i"
-alias rm="rm -i"
-# alias rm=rip
+alias rm="rip -i"
 
 # Better readable format
 alias free="free -m" # show sizes in MB
@@ -21,4 +20,4 @@ alias cat=bat
 alias grep=rg
 alias df=duf
 alias speedtest=speedtest-rs
-alias delta="delta --side-by-side"
+alias delta="delta --dark --side-by-side"
