@@ -2,6 +2,8 @@
 setopt nobeep
 setopt correct
 
+fpath=($ZDOTDIR/completion $fpath)
+
 # Load zinit
 source "$ZDOTDIR/zinit/zinit.zsh"
 
