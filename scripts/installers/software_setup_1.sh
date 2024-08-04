@@ -124,7 +124,6 @@ CLI_PKGS_PACMAN=(
 CLI_PKGS_PARU=(
   # "jqp-bin"
   "tlrc-bin" "cheat"
-  "rm-improved-git"
   "espanso-wayland-git" "kanata-bin"
   "tio"
   "pipes.sh"
