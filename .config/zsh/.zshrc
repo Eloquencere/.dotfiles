@@ -38,10 +38,10 @@ source "$ZDOTDIR/zsh-functions.zsh"
 
 # FZF modifications
 _fzf_compgen_path() {
-  fd --color=always --hidden --follow --exclude .git . "$1"
+  	fd --color=always --hidden --follow --exclude .git . "$1"
 }
 _fzf_compgen_dir() {
-  fd --color=always --type=d --hidden --exclude .git . "$1"
+  	fd --color=always --type=d --hidden --exclude .git . "$1"
 }
 
 # Zsh-Vi-Mode
@@ -49,23 +49,17 @@ function zvm_after_init() {
 	ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
 	zvm_bindkey viins '^r' atuin-search
 	zvm_bindkey viins '^p' atuin-up-search
-	for o in files branches tags remotes hashes stashes each_ref; do
-        	eval "zvm_bindkey viins '^g^${o[1]}' fzf-git-$o-widget"
-    	done
 }
 function zvm_after_lazy_keybindings() {
-    zvm_bindkey vicmd '^r' atuin-search
-    for o in files branches tags remotes hashes stashes each_ref; do
-        eval "zvm_bindkey vicmd '^g^${o[1]}' fzf-git-$o-widget"
-    done
+    	zvm_bindkey vicmd '^r' atuin-search
 }
 
 # better Tmux session experience
 function _tmux() {
     if [[ $# == 0 ]] && command tmux ls >& /dev/null; then
-        command tmux attach \; choose-tree -s
+	command tmux attach \; choose-tree -s
     else
-        command tmux "$@"
+	command tmux "$@"
     fi
 }
 alias tmux=_tmux
