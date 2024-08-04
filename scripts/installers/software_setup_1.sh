@@ -13,7 +13,7 @@ BASIC_PKGS_PACMAN=(
 sudo pacman -S --needed --noconfirm "${BASIC_PKGS_PACMAN[@]}"
 chsh -s $(which zsh)
 echo "Do you have an amd or intel CPU?"
-echo "a -> amd & i -> intel: "
+echo -n "a -> amd & i -> intel: "
 read cpu_name
 if [[ "$cpu_name" == "a" ]]; then
   sudo pacman -S --needed --noconfirm amd-ucode
@@ -102,8 +102,15 @@ sudo systemctl enable preload --now
 # Install extension manager
 flatpak install --assumeyes ExtensionManager
 
-# Brave
-paru -S --noconfirm brave-bin
+# Browser
+echo "Would you like to install brave or google chrome?"
+echo -n "b -> brave & gc -> google chrome: "
+read browser_choice
+if [[ "$browser_choice" =~ "^b$" ]]; then
+    paru -S --noconfirm brave-bin
+elif [[ "$browser_choice" =~ "^gc$" ]]; then
+    paru -S --noconfirm google-chrome
+fi
 
 # Command line tools
 CLI_PKGS_PACMAN=(
