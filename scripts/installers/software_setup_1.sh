@@ -183,12 +183,12 @@ cd -
 espanso service register
 espanso start
 
-# zinit
-git clone https://github.com/zdharma-continuum/zinit.git "$HOME/.config/zsh/zinit"
 # alacritty themes
 git clone https://github.com/alacritty/alacritty-theme.git "$HOME/.config/alacritty/themes"
 # tpm
 git clone https://github.com/tmux-plugins/tpm.git "$HOME/.config/tmux/plugins/tpm"
+# zinit
+git clone https://github.com/zdharma-continuum/zinit.git "$HOME/.config/zsh/zinit"
 
 echo "Press Enter to continue"
 read usr_input
