@@ -116,11 +116,11 @@ CLI_PKGS_PACMAN=(
 )
 CLI_PKGS_PARU=(
   # "jqp-bin"
-  "tlrc-bin" "rm-improved-git" # consider aliasing with rm
+  "tlrc-bin" "cheat"
+  "rm-improved-git"
+  "espanso-wayland-git" "kanata-bin"
   "tio"
   "pipes.sh"
-  "espanso-wayland-git"
-  "kanata-bin"
 )
 sudo pacman -S --noconfirm "${CLI_PKGS_PACMAN[@]}"
 paru -S --noconfirm "${CLI_PKGS_PARU[@]}"
