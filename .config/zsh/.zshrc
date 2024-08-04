@@ -7,7 +7,6 @@ source "$ZDOTDIR/zinit/zinit.zsh"
 
 # Add zinit plugins
 zinit ice depth=1; zinit light jeffreytse/zsh-vi-mode
-zinit light junegunn/fzf-git.sh
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light Aloxaf/fzf-tab
@@ -31,6 +30,7 @@ source <(starship init zsh)
 source <(atuin init zsh)
 source <(fzf --zsh)
 source <(zoxide init --cmd cd zsh)
+source <($CARGO_HOME/bin/rtx activate zsh)
 
 # Source aliases & functions
 source "$ZDOTDIR/zsh-aliases.zsh"
@@ -38,10 +38,10 @@ source "$ZDOTDIR/zsh-functions.zsh"
 
 # FZF modifications
 _fzf_compgen_path() {
-  fd --hidden --follow --exclude .git . "$1"
+  fd --color=always --hidden --follow --exclude .git . "$1"
 }
 _fzf_compgen_dir() {
-  fd --type=d --hidden --exclude .git . "$1"
+  fd --color=always --type=d --hidden --exclude .git . "$1"
 }
 
 # Zsh-Vi-Mode
