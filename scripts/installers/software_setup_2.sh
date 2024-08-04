@@ -67,13 +67,13 @@ rtx global python@3.12
 source ~/.zprofile
 pip install --upgrade pip
 
-pip install icecream # debugging
-pip install drawio colorama pyfiglet # presentation
-pip install dash plotly seaborn mysql-connector-python # data representation and calculation
-pip install polars xarray
-pip install numpy scipy pillow
-pip install Cython numba taichi
-pip install parse pendulum pydantic ruff mypy pyglet
+# pip install icecream # debugging
+# pip install drawio colorama pyfiglet # presentation
+# pip install dash plotly seaborn mysql-connector-python # data representation and calculation
+# pip install polars xarray
+# pip install numpy scipy pillow
+# pip install Cython numba taichi
+# pip install parse pendulum pydantic ruff mypy pyglet
 # pip install keras tensorflow scikit-learn torch
 
 # virt-manager with qemu/KVM
