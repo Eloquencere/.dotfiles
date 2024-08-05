@@ -38,6 +38,21 @@ fi
 echo -n "Would you like to log into your git account? (y/n)"
 read usr_input
 if  [[ $usr_input =~ ^[Yy]$ ]]; then
+	echo"[core]
+	    editor = nvim
+	    pager = delta
+	[init]
+	    defaultBranch = main  
+	[interactive]
+	    diffFilter = delta --color-only
+	[delta]
+	    navigate = true    # use n and N to move between diff sections
+	    dark = true
+	    side-by-side = true
+	[merge]
+	    conflictstyle = diff3
+	[diff]
+	    colorMoved = default" > $HOME/.gitconfig
     echo -n "username: "
     read username
     git config --global user.name "$username"

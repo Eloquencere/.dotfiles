@@ -31,3 +31,6 @@ export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
 export CARGO_HOME="$XDG_DATA_HOME/rust/.cargo"
 export RUSTUP_HOME="$XDG_DATA_HOME/rust/.rustup"
 export RUSTC_WRAPPER=$CARGO_HOME/bin/sccache
+
+# Conan(C/C++)
+export CONAN_HOME="$XDG_DATA_HOME/conan2"
