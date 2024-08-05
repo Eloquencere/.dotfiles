@@ -38,6 +38,7 @@ LANG_COMPILER_PKGS_PACMAN=(
   "ghc" "zig"
 )
 LANG_COMPILERS_PKGS_PARU=(
+  "conan"
   "bun-bin"
   "scriptisto" # script in any compiled language
 )
