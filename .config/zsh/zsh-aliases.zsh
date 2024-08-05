@@ -20,6 +20,6 @@ alias cat=bat
 alias grep=rg
 alias df=duf
 alias speedtest=speedtest-rs
-alias delta="delta --dark --side-by-side"
+alias diff="delta --dark --side-by-side"
 alias ps="procs --tree"
 alias cheat="cheat --colorize"
