@@ -33,4 +33,4 @@ export RUSTUP_HOME="$XDG_DATA_HOME/rust/.rustup"
 export RUSTC_WRAPPER=$CARGO_HOME/bin/sccache
 
 # Conan(C/C++)
-export CONAN_HOME="$XDG_DATA_HOME/conan2"
+export CONAN_HOME="$XDG_DATA_HOME/conan"
