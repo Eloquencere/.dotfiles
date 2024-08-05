@@ -190,6 +190,7 @@ cd -
 
 espanso service register
 espanso start
+espanso install brand-names
 
 # alacritty themes
 git clone https://github.com/alacritty/alacritty-theme.git "$HOME/.config/alacritty/themes"
