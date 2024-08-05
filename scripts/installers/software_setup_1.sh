@@ -15,9 +15,9 @@ chsh -s $(which zsh)
 echo "Do you have an amd or intel CPU?"
 echo -n "a -> amd & i -> intel: "
 read cpu_name
-if [[ "$cpu_name" == "a" ]]; then
+if [[ $cpu_name == ^a$ ]]; then
   sudo pacman -S --needed --noconfirm amd-ucode
-elif [[ "$cpu_name" == "i" ]]; then
+elif [[ $cpu_name == ^i$ ]]; then
   sudo pacman -S --needed --noconfirm intel-ucode
 fi
 
@@ -107,9 +107,9 @@ flatpak install --assumeyes ExtensionManager
 echo "Would you like to install brave or google chrome?"
 echo -n "b -> brave & gc -> google chrome: "
 read browser_choice
-if [[ "$browser_choice" =~ "^b$" ]]; then
+if [[ $browser_choice =~ ^b$ ]]; then
     paru -S --noconfirm brave-bin
-elif [[ "$browser_choice" =~ "^gc$" ]]; then
+elif [[ $browser_choice =~ ^gc$ ]]; then
     paru -S --noconfirm google-chrome
 fi
 
@@ -176,7 +176,7 @@ sudo sh -c "printf '%s\n%s\n' 'usbip-core' 'vhci-hcd' >> /etc/modules-load.d/usb
 # Onedriver
 echo -n "Would you like to install onedriver?(Y/n)"
 read usr_input
-if [[ "$usr_input" =~ "^[Yy]$" ]]; then
+if [[ $usr_input =~ ^[Yy]$ ]]; then
   mkdir $HOME/OneDrive
   paru -S --noconfirm onedriver
   rm -rf ~/Music ~/Pictures ~/Templates ~/Public ~/go

@@ -1,5 +1,5 @@
+.gitconfig
 .config/alacritty/themes
 .config/tmux/plugins
 .config/zsh/zinit
 .config/zsh/.zcompdump
-.gitconfig

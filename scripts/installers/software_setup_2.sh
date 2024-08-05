@@ -1,7 +1,7 @@
 echo "Welcome to part 2 of the installer"
-echo "Ensure that you are running this on Alacritty & TMUX(green line at the bottom) only (y/n)"
+echo -n "Ensure that you are running this on Alacritty & TMUX(green line at the bottom) only (y/n)"
 read usr_input
-if [[ "$usr_input" == "n" ]]; then
+if [[ $usr_input == n ]]; then
    exit
 fi
 
@@ -28,7 +28,7 @@ read usr_input
 
 echo -n "Would you like to configure the server IP address of USBIP? (y/n)"
 read usr_input
-if [[ "$usr_input" =~ "^[Yy]$" ]]; then
+if [[ $usr_input =~ ^[Yy]$ ]]; then
    echo "Please enter the server's IP address"
    read server_ip
    sed -i "s/^\(SERVER_IP=\).*/\1$server_ip/g" $ZDOTDIR/zsh-functions.zsh
@@ -37,11 +37,11 @@ fi
 
 echo -n "Would you like to log into your git account? (y/n)"
 read usr_input
-if  [[ "$usr_input" =~ "^[Yy]$" ]]; then
-    echo "Enter your username:"
+if  [[ $usr_input =~ ^[Yy]$ ]]; then
+    echo -n "username: "
     read username
     git config --global user.name "$username"
-    echo "Enter your email:"
+    echo -n "email: "
     read email
     git config --global user.email "$email"
     echo "you need to login to Github as well"
@@ -63,7 +63,7 @@ rm -rf ~/.bash* ~/.fontconfig
 
 # Necessary Python libraries
 rtx install python@latest
-pip install --upgrade pip
+# pip install --upgrade pip
 
 # pip install icecream # debugging
 # pip install drawio colorama pyfiglet # presentation
@@ -81,7 +81,7 @@ VM_PKGS=(
 )
 echo -n "Would you like to install a VM software?(y/n)"
 read usr_input
-if [[ "$usr_input" =~ "^[Yy]$" ]]; then
+if [[ $usr_input =~ ^[Yy]$ ]]; then
    sudo pacman -Syu --noconfirm
    sudo pacman -S --needed --noconfirm "${VM_PKGS[@]}"
    sudo systemctl enable libvirtd.service --now
