@@ -45,7 +45,7 @@ LANG_COMPILERS_PKGS_PARU=(
 sudo pacman -S gdb valgrind strace ghidra
 export CARGO_HOME="$HOME/.local/share/rust/.cargo"
 export RUSTUP_HOME="$HOME/.local/share/rust/.rustup"
-export CONAN_HOME="$HOME/.local/share/conan2"
+export CONAN_HOME="$HOME/.local/share/conan"
 sudo pacman -S --needed --noconfirm "${LANG_COMPILER_PKGS_PACMAN[@]}"
 rustup toolchain install stable
 rustup default stable
