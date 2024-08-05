@@ -34,7 +34,7 @@ LANG_COMPILER_PKGS_PACMAN=(
   "perl" "go" "python"
   "clang" "lldb"
   "rustup"
-  "python-uv" #"tk"
+  "python-poetry" "tk"
   "ghc" "zig"
 )
 LANG_COMPILERS_PKGS_PARU=(
