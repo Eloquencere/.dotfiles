@@ -15,7 +15,7 @@ archive() {
 				*.zip)     unzip       -l	 $1 ;;
 				*.gz)      gunzip     --list 	 $1 ;;
 				*.Z)       zcat			 $1 | bat --style=plain ;;
-				*.rar)     unrar -r     l	 $1 ;;
+				*.rar)     unrar        l    -r	 $1 ;;
 				*.deb)     ar           t        $1 ;;
 				*)         echo "'$1' cannot be listed via archive" ;;
 			esac
