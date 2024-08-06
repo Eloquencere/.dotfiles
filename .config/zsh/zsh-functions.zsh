@@ -5,6 +5,7 @@ archive() {
 			case $1 in
 				*.tar.bz2) tar	        tjf	 $1 | \tree -C --fromfile . | bat --style=plain ;;
 				*.tbz2)    tar	        tjf	 $1 | \tree -C --fromfile . | bat --style=plain ;;
+				*.bz2)     tar          tjf	 $1 | \tree -C --fromfile . | bat --style=plain ;;
 				*.tar.gz)  tar	        tzf	 $1 | \tree -C --fromfile . | bat --style=plain ;;
 				*.tgz)     tar	        tzf	 $1 | \tree -C --fromfile . | bat --style=plain ;;
 				*.tar.xz)  tar          tf	 $1 | \tree -C --fromfile . | bat --style=plain ;;
@@ -12,10 +13,10 @@ archive() {
 				*.tar.zst) tar --zstd  -tf	 $1 | \tree -C --fromfile . | bat --style=plain ;;
 				*.7z)      7za	        l    -ba $1 ;;
 				*.zip)     unzip       -l	 $1 ;;
-				*.bz2)     tar          tjf	 $1 | \tree -C --fromfile . | bat --style=plain ;;
 				*.gz)      gunzip     --list 	 $1 ;;
 				*.Z)       zcat			 $1 | bat --style=plain ;;
 				*.rar)     unrar -r     l	 $1 ;;
+				*.deb)     ar           t        $1 ;;
 				*)         echo "'$1' cannot be listed via archive" ;;
 			esac
 		fi
@@ -24,6 +25,7 @@ archive() {
 		case $1 in
 			*.tar.bz2) tar         cjvf $1 ${@:2} ;;
 			*.tbz2)    tar         cjvf $1 ${@:2} ;;
+			*.bz2)     tar         cjvf $1 ${@:2} ;;
 			*.tar.gz)  tar         czvf $1 ${@:2} ;;
 			*.tgz)     tar         czvf $1 ${@:2} ;;
 			*.tar.xz)  tar	       cvf  $1 ${@:2} ;;
@@ -31,7 +33,6 @@ archive() {
 			*.tar.zst) tar --zstd -cf   $1 ${@:2} ;;
 			*.7z)      7za	       a    $1 ${@:2} ;;
 			*.zip)     7za -tzip   a    $1 ${@:2} ;;
-			*.bz2)     tar         cjvf $1 ${@:2} ;;
 			*)         echo "'$1' cannot be created via archive" ;;
 		esac
 	elif [[ "$1" == "extract" ]];then
@@ -43,6 +44,7 @@ archive() {
 			case $1 in
 				*.tar.bz2) tar        xjvf $1 ;;
 				*.tbz2)    tar        xjvf $1 ;;
+				*.bz2)     tar        xjvf $1 ;;
 				*.tar.gz)  tar        xzvf $1 ;;
 				*.tgz)     tar        xzvf $1 ;;
 				*.tar.xz)  tar        xvf  $1 ;;
@@ -50,7 +52,6 @@ archive() {
 				*.tar.zst) tar --zstd -xf  $1 ;;
 				*.7z)      7za        x    $1 ;;
 				*.zip)     unzip           $1 ;;
-				*.bz2)     tar        xjvf $1 ;;
 				*.gz)      gunzip          $1 ;;
 				*.Z)       uncompress      $1 ;;
 				*.rar)     unrar      x    $1 ;;
