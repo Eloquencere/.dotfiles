@@ -22,10 +22,10 @@ export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 source "$ZDOTDIR/.confidential/zprofile.zsh"
 
 # fzf modifications
-export FZF_DEFAULT_COMMAND="fd --color=always --hidden --strip-cwd-prefix --exclude .git"
+export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git --color=always"
 export FZF_DEFAULT_OPTS="--ansi"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND="fd --color=always --type=d --hidden --strip-cwd-prefix --exclude .git"
+export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git --color=always"
 
 # Starship
 export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
