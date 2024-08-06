@@ -14,7 +14,6 @@ archive() {
 				*.7z)      7za	        l    -ba $1 ;;
 				*.zip)     unzip       -l	 $1 ;;
 				*.gz)      gunzip     --list 	 $1 ;;
-				*.Z)       zcat			 $1 | bat --style=plain ;;
 				*.rar)     unrar        l    -r	 $1 ;;
 				*.deb)     ar           t        $1 ;;
 				*)         echo "'$1' cannot be listed via archive" ;;
@@ -32,7 +31,7 @@ archive() {
 			*.tar)     tar	       cvf  $1 ${@:2} ;;
 			*.tar.zst) tar --zstd -cf   $1 ${@:2} ;;
 			*.7z)      7za	       a    $1 ${@:2} ;;
-			*.zip)     7za -tzip   a    $1 ${@:2} ;;
+			*.zip)     7za  -tzip  a    $1 ${@:2} ;;
 			*)         echo "'$1' cannot be created via archive" ;;
 		esac
 	elif [[ "$1" == "extract" ]];then
@@ -42,20 +41,20 @@ archive() {
 				tar_custom_destination = "-C $"
 			fi
 			case $1 in
-				*.tar.bz2) tar        xjvf $1 ;;
-				*.tbz2)    tar        xjvf $1 ;;
-				*.bz2)     tar        xjvf $1 ;;
-				*.tar.gz)  tar        xzvf $1 ;;
-				*.tgz)     tar        xzvf $1 ;;
-				*.tar.xz)  tar        xvf  $1 ;;
-				*.tar)     tar        xvf  $1 ;;
-				*.tar.zst) tar --zstd -xf  $1 ;;
-				*.7z)      7za        x    $1 ;;
-				*.zip)     unzip           $1 ;;
-				*.gz)      gunzip          $1 ;;
-				*.Z)       uncompress      $1 ;;
-				*.rar)     unrar      x    $1 ;;
-				*.deb)     ar         x    $1 ;;
+				*.tar.bz2) tar         xjvf $1 ;;
+				*.tbz2)    tar         xjvf $1 ;;
+				*.bz2)     tar         xjvf $1 ;;
+				*.tar.gz)  tar         xzvf $1 ;;
+				*.tgz)     tar         xzvf $1 ;;
+				*.tar.xz)  tar         xvf  $1 ;;
+				*.tar)     tar         xvf  $1 ;;
+				*.tar.zst) tar --zstd -xf   $1 ;;
+				*.7z)      7za         x    $1 ;;
+				*.zip)     unzip            $1 ;;
+				*.gz)      gunzip           $1 ;;
+				*.Z)       uncompress       $1 ;;
+				*.rar)     unrar       x    $1 ;;
+				*.deb)     ar          x    $1 ;;
 				*)         echo "'$1' cannot be extracted via archive" ;;
 			esac
 		fi
