@@ -61,6 +61,7 @@ if  [[ $usr_input =~ ^[Yy]$ ]]; then
     git config --global user.email "$email"
     echo "you need to login to Github as well"
     gh auth login
+    sed -i '/.* = $/d' $HOME/.gitconfig
 fi
 
 mkdir ~/Documents/install_script_temp_folder
