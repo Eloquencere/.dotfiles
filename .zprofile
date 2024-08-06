@@ -8,7 +8,7 @@ export BROWSER="brave"
 export READER="zathura"
 export TERM="xterm-256color"
 
-# Clean-up
+# Base definitions
 export TOOLS_HOME="$HOME/Tools"
 export DOTFILES_HOME="$HOME/.dotfiles"
 
