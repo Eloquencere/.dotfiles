@@ -116,7 +116,7 @@ fi
 
 # Command line tools
 CLI_PKGS_PACMAN=(
-  "github-cli"
+  "github-cli" "tree"
   "fzf" "zoxide" "eza" "bat" "fd" "ripgrep" "jq" "yq" "less"
   "yazi" "gdu" "duf" "git-delta" "lazygit" "procs"
   "man-db"
