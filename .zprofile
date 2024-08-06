@@ -9,6 +9,9 @@ export READER="zathura"
 export TERM="xterm-256color"
 
 # Base definitions
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
 export TOOLS_HOME="$HOME/Tools"
 export DOTFILES_HOME="$HOME/.dotfiles"
 
