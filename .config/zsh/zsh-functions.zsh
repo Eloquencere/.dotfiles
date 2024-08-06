@@ -3,40 +3,43 @@ archive() {
 		shift
 		if [ -f "$1" ];then 
 			case $1 in
-				*.tar.bz2) tar		 tjf  $1 | \tree -C --fromfile . | bat --style=plain ;;
-				*.tbz2)    tar		 tjf  $1 | \tree -C --fromfile . | bat --style=plain ;;
-				*.tar.gz)  tar		 tzf  $1 | \tree -C --fromfile . | bat --style=plain ;;
-				*.tgz)     tar		 tzf  $1 | \tree -C --fromfile . | bat --style=plain ;;
-				*.tar.xz)  tar           tf   $1 | \tree -C --fromfile . | bat --style=plain ;;
-				*.tar)     tar	         tf   $1 | \tree -C --fromfile . | bat --style=plain ;;
-				*.tar.zst) tar    --zstd -tf  $1 | \tree -C --fromfile . | bat --style=plain ;;
-				*.7z)      7za	  l -ba       $1 ;;
-				*.zip)     unzip  -l          $1 ;;
-				*.bz2)     tar           tjf  $1 | \tree -C --fromfile . | bat --style=plain ;;
-				*.gz)      gunzip --list      $1 ;;
-				*.Z)       zcat               $1 | bat --style=plain ;;
-				*.rar)     rar    l -r        $1 ;;
+				*.tar.bz2) tar	        tjf	 $1 | \tree -C --fromfile . | bat --style=plain ;;
+				*.tbz2)    tar	        tjf	 $1 | \tree -C --fromfile . | bat --style=plain ;;
+				*.tar.gz)  tar	        tzf	 $1 | \tree -C --fromfile . | bat --style=plain ;;
+				*.tgz)     tar	        tzf	 $1 | \tree -C --fromfile . | bat --style=plain ;;
+				*.tar.xz)  tar          tf	 $1 | \tree -C --fromfile . | bat --style=plain ;;
+				*.tar)     tar	        tf	 $1 | \tree -C --fromfile . | bat --style=plain ;;
+				*.tar.zst) tar --zstd  -tf	 $1 | \tree -C --fromfile . | bat --style=plain ;;
+				*.7z)      7za	        l    -ba $1 ;;
+				*.zip)     unzip       -l	 $1 ;;
+				*.bz2)     tar          tjf	 $1 | \tree -C --fromfile . | bat --style=plain ;;
+				*.gz)      gunzip     --list 	 $1 ;;
+				*.Z)       zcat			 $1 | bat --style=plain ;;
+				*.rar)     unrar -r     l	 $1 ;;
 				*)         echo "'$1' cannot be listed via archive" ;;
 			esac
 		fi
 	elif [[ "$1" == "create" ]]; then
 		shift
 		case $1 in
-			*.tar.bz2) tar          cjvf $1 ${@:2} ;;
-			*.tbz2)    tar          cjvf $1 ${@:2} ;;
-			*.tar.gz)  tar          czvf $1 ${@:2} ;;
-			*.tgz)     tar          czvf $1 ${@:2} ;;
-			*.tar.xz)  tar          cvf  $1 ${@:2} ;;
-			*.tar)     tar	        cvf  $1 ${@:2} ;;
-			*.tar.zst) tar   --zstd -cf  $1 ${@:2} ;;
-			*.7z)      7za a	     $1 ${@:2} ;;
-			*.zip)     7za a -tzip	     $1 ${@:2} ;;
-			*.bz2)     tar          cjvf $1 ${@:2} ;;
+			*.tar.bz2) tar         cjvf $1 ${@:2} ;;
+			*.tbz2)    tar         cjvf $1 ${@:2} ;;
+			*.tar.gz)  tar         czvf $1 ${@:2} ;;
+			*.tgz)     tar         czvf $1 ${@:2} ;;
+			*.tar.xz)  tar	       cvf  $1 ${@:2} ;;
+			*.tar)     tar	       cvf  $1 ${@:2} ;;
+			*.tar.zst) tar --zstd -cf   $1 ${@:2} ;;
+			*.7z)      7za	       a    $1 ${@:2} ;;
+			*.zip)     7za -tzip   a    $1 ${@:2} ;;
+			*.bz2)     tar         cjvf $1 ${@:2} ;;
 			*)         echo "'$1' cannot be created via archive" ;;
 		esac
 	elif [[ "$1" == "extract" ]];then
 		shift
 		if [ -f "$1" ]; then
+			if [ "$2" == "--to" ];then
+				tar_custom_destination = "-C $"
+			fi
 			case $1 in
 				*.tar.bz2) tar        xjvf $1 ;;
 				*.tbz2)    tar        xjvf $1 ;;
