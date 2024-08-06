@@ -62,7 +62,6 @@ archive() {
 }
 
 # usbip
-SERVER_IP=192.168.179.1
 usbip() {
 	if [[ $1 == "attach" ]]; then
 		shift

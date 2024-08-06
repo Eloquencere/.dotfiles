@@ -31,8 +31,8 @@ read usr_input
 if [[ $usr_input =~ ^[Yy]$ ]]; then
    echo "Please enter the server's IP address"
    read server_ip
-   sed -i "s/^\(SERVER_IP=\).*/\1$server_ip/g" $ZDOTDIR/zsh-functions.zsh
-   source $ZDOTDIR/.zshrc
+   echo "SERVER_IP=$server_ip" >> $ZDOTDIR/.confidential/zprofile.zsh
+   source $HOME/.zprofile
 fi
 
 echo -n "Would you like to log into your git account? (y/n)"
