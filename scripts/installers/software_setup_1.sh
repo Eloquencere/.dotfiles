@@ -15,11 +15,11 @@ chsh -s $(which zsh)
 echo "Do you have an amd or intel CPU?"
 echo -n "a -> amd & i -> intel: "
 read cpu_name
-if [[ $cpu_name == ^a$ ]]; then
-  sudo pacman -S --needed --noconfirm amd-ucode
-elif [[ $cpu_name == ^i$ ]]; then
-  sudo pacman -S --needed --noconfirm intel-ucode
-fi
+declare -A UCODE_PACMAN=(
+	[a]="amd-ucode"
+	[i]="intel-ucode"
+)
+sudo pacman -S --needed --noconfirm "${UCODE_PACMAN[${cpu_name}]}"
 
 # System config
 sudo sed -i "s/^\(GRUB_DEFAULT=\).*/\10/g" /etc/default/grub
@@ -108,11 +108,11 @@ flatpak install --assumeyes ExtensionManager
 echo "Would you like to install brave or google chrome?"
 echo -n "b -> brave & gc -> google chrome: "
 read browser_choice
-if [[ $browser_choice =~ ^b$ ]]; then
-    paru -S --noconfirm brave-bin
-elif [[ $browser_choice =~ ^gc$ ]]; then
-    paru -S --noconfirm google-chrome
-fi
+declare -A BROWSER_PARU=(
+	[b]="brave-bin"
+	[gc]="google-chrome"
+)
+paru -S --noconfirm "${BROWSER_PARU[${browser_choice}]}"
 
 # Command line tools
 CLI_PKGS_PACMAN=(
