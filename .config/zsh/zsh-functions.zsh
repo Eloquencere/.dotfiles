@@ -13,8 +13,8 @@ archive() {
 				*.tar.zst) tar --zstd  -tf	 $1 | \tree -C --fromfile . | bat --style=plain ;;
 				*.7z)      7za	        l    -ba $1 ;;
 				*.zip)     unzip       -l	 $1 ;;
+				*.rar)     7za		l    -ba $1 ;;
 				*.gz)      gunzip     --list 	 $1 ;;
-				*.rar)     unrar        l    -r	 $1 ;;
 				*.deb)     ar           t        $1 ;;
 				*)         echo "'$1' cannot be listed via archive" ;;
 			esac
@@ -32,6 +32,7 @@ archive() {
 			*.tar.zst) tar --zstd -cf   $1 ${@:2} ;;
 			*.7z)      7za	       a    $1 ${@:2} ;;
 			*.zip)     7za  -tzip  a    $1 ${@:2} ;;
+			*.rar)	   7za         a    $1 ${@:2} ;;
 			*)         echo "'$1' cannot be created via archive" ;;
 		esac
 	elif [[ "$1" == "extract" ]];then
@@ -48,9 +49,9 @@ archive() {
 				*.tar.zst) tar --zstd -xf   $1 ;;
 				*.7z)      7za         x    $1 ;;
 				*.zip)     unzip            $1 ;;
+				*.rar)     unrar       x    $1 ;;
 				*.gz)      gunzip           $1 ;;
 				*.Z)       uncompress       $1 ;;
-				*.rar)     unrar       x    $1 ;;
 				*.deb)     ar          x    $1 ;;
 				*)         echo "'$1' cannot be extracted via archive" ;;
 			esac
