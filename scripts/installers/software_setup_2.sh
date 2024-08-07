@@ -31,6 +31,7 @@ read usr_input
 if [[ $usr_input =~ ^[Yy]$ ]]; then
    echo "Please enter the server's IP address"
    read server_ip
+   mkdir $ZDOTDIR/.confidential
    echo "SERVER_IP=$server_ip" >> $ZDOTDIR/.confidential/zprofile.zsh
    source $HOME/.zprofile
 fi
