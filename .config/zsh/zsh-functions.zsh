@@ -49,7 +49,7 @@ archive() {
 				*.tar.zst) tar --zstd -xf   $1 ;;
 				*.7z)      7za         x    $1 ;;
 				*.zip)     unzip            $1 ;;
-				*.rar)     unrar       x    $1 ;;
+				*.rar)     7za	       x    $1 ;;
 				*.gz)      gunzip           $1 ;;
 				*.Z)       uncompress       $1 ;;
 				*.deb)     ar          x    $1 ;;
