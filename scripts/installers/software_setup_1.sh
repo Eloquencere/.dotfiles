@@ -118,7 +118,7 @@ fi
 CLI_PKGS_PACMAN=(
   "github-cli" "tree"
   "fzf" "zoxide" "eza" "bat" "fd" "ripgrep" "jq" "yq" "less"
-  "yazi" "gdu" "duf" "git-delta" "lazygit" "procs"
+  "yazi" "gdu" "duf" "dust" "git-delta" "lazygit" "procs"
   "man-db"
   "glow"
   "croc" # alternative to warp

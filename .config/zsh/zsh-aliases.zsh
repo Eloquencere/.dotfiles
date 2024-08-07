@@ -14,7 +14,7 @@ alias py=python
 # Better command line utils
 alias ls="eza --color=always --icons=always --git"
 alias tree="ls --tree --smart-group --git-ignore"
-alias find="fd --color=always"
+alias fd="fd --color=always"
 alias cat=bat
 alias grep=rg
 alias df=duf
@@ -22,3 +22,7 @@ alias speedtest=speedtest-rs
 alias diff="delta --dark --side-by-side"
 alias ps="procs --tree"
 alias cheat="cheat --colorize"
+
+du() {
+	command dust --reverse --force-colors --no-percent-bars $@ | bat --style=plain
+}

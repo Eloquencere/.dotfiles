@@ -37,9 +37,6 @@ archive() {
 	elif [[ "$1" == "extract" ]];then
 		shift
 		if [ -f "$1" ]; then
-			if [ "$2" == "--to" ];then
-				tar_custom_destination = "-C $"
-			fi
 			case $1 in
 				*.tar.bz2) tar         xjvf $1 ;;
 				*.tbz2)    tar         xjvf $1 ;;
