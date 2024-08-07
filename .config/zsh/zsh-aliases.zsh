@@ -22,7 +22,5 @@ alias speedtest=speedtest-rs
 alias diff="delta --dark --side-by-side"
 alias ps="procs --tree"
 alias cheat="cheat --colorize"
+alias du="dust --reverse --force-colors --no-percent-bars"
 
-du() {
-	command dust --reverse --force-colors --no-percent-bars $@ | bat --style=plain
-}
