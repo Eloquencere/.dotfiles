@@ -53,7 +53,7 @@ rustup default stable
 cargo install sccache
 export RUSTC_WRAPPER="$CARGO_HOME/bin/sccache"
 QUALITY_OF_LIFE_CRATES=(
-  "cargo-binstall"
+  "cargo-binstall" "cargo-expand"
   "irust" "bacon"
   # tokio rayon
 )
