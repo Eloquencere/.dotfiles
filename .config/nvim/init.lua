@@ -1,6 +1,9 @@
+-- Initialising lazy.nvim plugin manager
+require("config.lazy")
+
 -- Basic Settings
 vim.opt.number = true
-vim.opt.relativenumber = true
+vim.opt.relativenumber = false
 vim.opt.clipboard:append("unnamedplus")
 -- Alternative of swapfile as undo file and git integration
 
