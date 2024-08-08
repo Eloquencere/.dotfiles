@@ -2,4 +2,3 @@
 .config/tmux/plugins
 .config/zsh/zinit
 .config/zsh/.zcompdump
-.config/zsh/.confidential
