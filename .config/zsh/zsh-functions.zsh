@@ -56,6 +56,25 @@ archive() {
 				*)         echo "'$1' cannot be extracted via archive" ;;
 			esac
 		fi
+	elif [[ $1 == "help" ]]; then
+		echo
+		echo "This command is used to compress, decompress and list the contents of compressed files.
+		Options:
+		- list: List all the contents of the compressed file/folder
+		- create: Compress a file/folder
+		- extract: Extract a compressed file/folder
+		- help: Documentation and examples
+
+		Examples:
+		To compress a file/folder,
+		archive create <Compressed File Name> <File/Folder Name>
+
+		To decompress a compressed file.
+		archive extract <Compressed File Name>
+
+		To list the contents of a compressed file,
+		archive list <Compressed File Name>
+		"
 	fi
 }
 
