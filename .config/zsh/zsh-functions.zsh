@@ -1,3 +1,15 @@
+croc() {
+	if [[ $1 == "send" ]]; then
+		shift
+		croc send --code ${CROC_TRANSFER_CODES[self]} "$@"
+	elif [[ $1 == "recv" ]]; then
+		shift
+		export CROC_SECRET=${CROC_TRANSFER_CODES[$1]} 
+		croc --out "$HOME/croc-inbox"
+	else
+		command croc "$@"
+	fi
+}
 archive() {
 	if [[ "$1" == "list" ]]; then
 		shift
@@ -39,14 +51,14 @@ archive() {
 		shift
 		if [ -f "$1" ]; then
 			case $1 in
-				*.tar.bz2) tar         xjvf $1 ;;
-				*.tbz2)    tar         xjvf $1 ;;
-				*.bz2)     tar         xjvf $1 ;;
-				*.tar.gz)  tar         xzvf $1 ;;
-				*.tgz)     tar         xzvf $1 ;;
-				*.tar.xz)  tar         xvf  $1 ;;
-				*.tar)     tar         xvf  $1 ;;
-				*.tar.zst) tar --zstd -xf   $1 ;;
+				*.tar.bz2) tar         xjvf $1 --one-top-level ;;
+				*.tbz2)    tar         xjvf $1 --one-top-level ;;
+				*.bz2)     tar         xjvf $1 --one-top-level ;;
+				*.tar.gz)  tar         xzvf $1 --one-top-level ;;
+				*.tgz)     tar         xzvf $1 --one-top-level ;;
+				*.tar.xz)  tar         xvf  $1 --one-top-level ;;
+				*.tar)     tar         xvf  $1 --one-top-level ;;
+				*.tar.zst) tar --zstd -xf   $1 --one-top-level ;;
 				*.7z)      7za         x    $1 ;;
 				*.zip)     unzip            $1 ;;
 				*.rar)     7za	       x    $1 ;;
@@ -92,7 +104,7 @@ usbip() {
 }
 lsusbip() {
 	local server_devices usbip_port_output
-  local busid device_name vid_pid port_number
+	local busid device_name vid_pid port_number
   
 	IFS=$'\n' read -r -d '' -A server_devices < <(usbip list --remote=$SERVER_IP | grep --regexp "^\s+[-0-9]+:") # might need to add local IFS=
 	usbip_port_output=$(usbip port 2>/dev/null)

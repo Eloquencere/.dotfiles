@@ -19,7 +19,7 @@ export DOTFILES_HOME="$HOME/.dotfiles"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
 # Confidential env_vars
-source "$ZDOTDIR/.confidential/zprofile.zsh"
+[[ -f "$ZDOTDIR/.confidential/zprofile.zsh" ]] && source "$ZDOTDIR/.confidential/zprofile.zsh"
 
 # fzf modifications
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git --color=always"

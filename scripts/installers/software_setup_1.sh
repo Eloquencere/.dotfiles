@@ -133,6 +133,7 @@ CLI_PKGS_PARU=(
 sudo pacman -S --noconfirm "${CLI_PKGS_PACMAN[@]}"
 paru -S --noconfirm "${CLI_PKGS_PARU[@]}"
 rm -rf ~/.config/espanso
+mkdir ~/croc-inbox
 
 #Kanata
 sudo groupadd uinput

@@ -35,6 +35,7 @@ source <(zoxide init --cmd cd zsh)
 source <($CARGO_HOME/bin/rtx activate zsh)
 
 # Source aliases & functions
+[[ -f "$ZDOTDIR/.confidential/zshrc.zsh" ]] && source "$ZDOTDIR/.confidential/zshrc.zsh"
 source "$ZDOTDIR/zsh-aliases.zsh"
 source "$ZDOTDIR/zsh-functions.zsh"
 
