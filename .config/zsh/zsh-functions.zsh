@@ -1,15 +1,17 @@
 croc() {
 	if [[ $1 == "send" ]]; then
 		shift
-		croc send --code ${CROC_TRANSFER_CODES[self]} "$@"
+		export CROC_SECRET=${CROC_TRANSFER_CODES[self]}
+		command croc send "$@"
 	elif [[ $1 == "recv" ]]; then
 		shift
 		export CROC_SECRET=${CROC_TRANSFER_CODES[$1]} 
-		croc --out "$HOME/croc-inbox"
+		command croc --out "$HOME/croc-inbox"
 	else
 		command croc "$@"
 	fi
 }
+
 archive() {
 	if [[ "$1" == "list" ]]; then
 		shift
