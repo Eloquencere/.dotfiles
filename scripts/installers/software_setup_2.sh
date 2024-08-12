@@ -109,9 +109,12 @@ fi
 # Cool tools
 ADDITIONAL_TOOLS_FLATPAK=(
    "bottles"
-   "info.febvre.Komikku"
-   "org.gnome.World.PikaBackup"
    "se.sjoerd.Graphs"
+   "info.febvre.Komikku"
+   "org.gnome.Crosswords"
+   "org.gnome.Sudoku"
+   "org.gonme.Chess"
+   "org.gnome.World.PikaBackup"
 )
 ADDITIONAL_TOOLS_PACMAN=(
    "obsidian" "zathura"
