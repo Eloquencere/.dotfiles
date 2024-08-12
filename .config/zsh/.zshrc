@@ -2,6 +2,8 @@
 setopt nobeep
 setopt correct
 
+[[ -f "$ZDOTDIR/.confidential/zshrc.zsh" ]] && source "$ZDOTDIR/.confidential/zshrc.zsh"
+
 fpath=($ZDOTDIR/completion $fpath)
 
 # Load zinit
@@ -35,7 +37,6 @@ source <(zoxide init --cmd cd zsh)
 source <($CARGO_HOME/bin/rtx activate zsh)
 
 # Source aliases & functions
-[[ -f "$ZDOTDIR/.confidential/zsh-croc.zsh" ]] && source "$ZDOTDIR/.confidential/zsh-croc.zsh"
 source "$ZDOTDIR/zsh-aliases.zsh"
 source "$ZDOTDIR/zsh-functions.zsh"
 
