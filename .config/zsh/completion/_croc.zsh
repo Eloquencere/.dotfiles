@@ -1,5 +1,4 @@
-# compdef _croc
-
+#compdef croc
 _croc() {
 	local line state
 
@@ -45,3 +44,4 @@ _croc_send_cmd() {
 	# add --zip & --text & --git
 }
 
+compdef _croc croc
