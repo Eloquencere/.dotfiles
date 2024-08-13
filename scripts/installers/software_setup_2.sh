@@ -115,9 +115,12 @@ ADDITIONAL_TOOLS_FLATPAK=(
    "org.gnome.Sudoku"
    "org.gonme.Chess"
    "org.gnome.World.PikaBackup"
+   "io.github.finefindus.Hieroglyphic"
+   "org.gnome.gitlab.somas.Apostrophe"
 )
 ADDITIONAL_TOOLS_PACMAN=(
    "obsidian" "zathura"
+   "signal-desktop"
 )
 # flatpak install --assumeyes flathub "${ADDITIONAL_TOOLS_FLATPAK[@]}"
 # sudo pacman -S --noconfirm "${ADDITIONAL_TOOLS_PACMAN[@]}"
