@@ -126,13 +126,12 @@ CLI_PKGS_PACMAN=(
 CLI_PKGS_PARU=(
   # "jqp-bin"
   "tlrc-bin" "cheat"
-  "espanso-wayland-git" "kanata-bin" "mprocs-bin"
+  "kanata-bin" "mprocs-bin"
   "tio"
   "pipes.sh"
 )
 sudo pacman -S --noconfirm "${CLI_PKGS_PACMAN[@]}"
 paru -S --noconfirm "${CLI_PKGS_PARU[@]}"
-rm -rf ~/.config/espanso
 mkdir ~/croc-inbox
 
 #Kanata
@@ -188,10 +187,6 @@ fi
 cd ~/.dotfiles
 stow .
 cd -
-
-espanso service register
-espanso start
-espanso install brand-names
 
 # alacritty themes
 git clone https://github.com/alacritty/alacritty-theme.git "$HOME/.config/alacritty/themes"
