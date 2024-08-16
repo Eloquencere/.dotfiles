@@ -117,7 +117,7 @@ ADDITIONAL_TOOLS_FLATPAK=(
    "org.gnome.World.PikaBackup"
    "io.github.finefindus.Hieroglyphic"
    "org.gnome.gitlab.somas.Apostrophe"
-   "com.github.neithern.g4music"
+   # "com.github.neithern.g4music"
 )
 ADDITIONAL_TOOLS_PACMAN=(
    "obsidian" "zathura"
