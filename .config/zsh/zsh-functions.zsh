@@ -6,7 +6,7 @@ croc() {
 	elif [[ $1 == "recv" ]]; then
 		shift
 		export CROC_SECRET=${CROC_TRANSFER_CODES[$1]} 
-		command croc --out "$HOME/croc-inbox"
+		command croc
 	else
 		command croc "$@"
 	fi
