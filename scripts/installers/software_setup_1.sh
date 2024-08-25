@@ -195,9 +195,6 @@ git clone https://github.com/tmux-plugins/tpm.git "$HOME/.config/tmux/plugins/tp
 # zinit
 git clone https://github.com/zdharma-continuum/zinit.git "$HOME/.config/zsh/zinit"
 
-echo "Press Enter to continue"
-read usr_input
-
 # Gnome Config
 gsettings set org.gnome.mutter center-new-windows true
 gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"

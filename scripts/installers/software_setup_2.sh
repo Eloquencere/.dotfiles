@@ -54,12 +54,12 @@ if  [[ $usr_input =~ ^[Yy]$ ]]; then
 	conflictstyle = diff3
 [diff]
 	colorMoved = default" > $HOME/.gitconfig
+    echo -n "email ID: "
+    read email
+    git config --global user.email "$email"
     echo -n "username: "
     read username
     git config --global user.name "$username"
-    echo -n "email: "
-    read email
-    git config --global user.email "$email"
     echo "you need to login to Github as well"
     gh auth login
     sed -i '/.* = $/d' $HOME/.gitconfig
