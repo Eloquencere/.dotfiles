@@ -87,6 +87,7 @@ UTIL_PKGS_PACMAN=(
 )
 UTIL_PKGS_PARU=(
   "speedtest-rs-bin"
+  "nautilus-open-any-terminal"
 )
 sudo pacman -S --noconfirm "${UTIL_PKGS_PACMAN[@]}"
 sudo systemctl enable ufw --now
@@ -199,6 +200,10 @@ git clone https://github.com/zdharma-continuum/zinit.git "$HOME/.config/zsh/zini
 gsettings set org.gnome.mutter center-new-windows true
 gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
 gsettings set org.gnome.desktop.interface monospace-font-name 'JetBrainsMono Nerd Font'
+gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal alacritty
+gsettings set com.github.stunkymonkey.nautilus-open-any-terminal keybindings '<Ctrl><Alt>t'
+gsettings set com.github.stunkymonkey.nautilus-open-any-terminal new-tab true
+gsettings set com.github.stunkymonkey.nautilus-open-any-terminal flatpak system
 
 cd ~/Documents
 rm -rf install_script_temp_folder
