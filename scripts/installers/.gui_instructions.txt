@@ -8,7 +8,6 @@ Gnome Extensions
     dash to dock
     CHC-E
     Appindicator and kstatusNotifierItem support
-    AATWS
     Tilling assistant
     Just Perfection
         Under visibility disable:
