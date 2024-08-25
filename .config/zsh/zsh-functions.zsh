@@ -5,8 +5,14 @@ croc() {
 		command croc send "$@"
 	elif [[ $1 == "recv" ]]; then
 		shift
-		export CROC_SECRET=${CROC_TRANSFER_CODES[$1]} 
-		command croc
+		if [[ $1 == "--inbox" ]]; then
+			shift
+			export CROC_SECRET=${CROC_TRANSFER_CODES[$1]}
+			command croc --out "$HOME/croc-inbox"
+		else
+			export CROC_SECRET=${CROC_TRANSFER_CODES[$1]}
+			command croc
+		fi
 	else
 		command croc "$@"
 	fi
@@ -53,14 +59,14 @@ archive() {
 		shift
 		if [ -f "$1" ]; then
 			case $1 in
-				*.tar.bz2) tar         xjvf $1 --one-top-level ;;
-				*.tbz2)    tar         xjvf $1 --one-top-level ;;
-				*.bz2)     tar         xjvf $1 --one-top-level ;;
-				*.tar.gz)  tar         xzvf $1 --one-top-level ;;
-				*.tgz)     tar         xzvf $1 --one-top-level ;;
-				*.tar.xz)  tar         xvf  $1 --one-top-level ;;
-				*.tar)     tar         xvf  $1 --one-top-level ;;
-				*.tar.zst) tar --zstd -xf   $1 --one-top-level ;;
+				*.tar.bz2) tar         xjvf $1 ;;
+				*.tbz2)    tar         xjvf $1 ;;
+				*.bz2)     tar         xjvf $1 ;;
+				*.tar.gz)  tar         xzvf $1 ;;
+				*.tgz)     tar         xzvf $1 ;;
+				*.tar.xz)  tar         xvf  $1 ;;
+				*.tar)     tar         xvf  $1 ;;
+				*.tar.zst) tar --zstd -xf   $1 ;;
 				*.7z)      7za         x    $1 ;;
 				*.zip)     unzip            $1 ;;
 				*.rar)     7za	       x    $1 ;;

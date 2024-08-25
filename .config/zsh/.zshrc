@@ -30,6 +30,7 @@ zstyle ':fzf-tab:complete:((cp|mv|rm|source|cat|nvim):argument-rest|kate:*)' fzf
 # Shell integrations
 source <(starship init zsh)
 source <(fzf --zsh)
+source <(atuin init zsh)
 source <(zoxide init --cmd cd zsh)
 source <($CARGO_HOME/bin/rtx activate zsh)
 
