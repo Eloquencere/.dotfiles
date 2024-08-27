@@ -67,7 +67,7 @@ fi
 
 echo -n "Would you like to setup your cloud file storage client?(Y/n)"
 if [[ $usr_input =~ ^[Yy]$ ]]; then
-	rm -rf ~/Pictures ~/Templates ~/Public ~/Music
+	rm -rf ~/Pictures ~/Templates ~/Public ~/Videos
 	echo "Open the settings and log into your provider"
 	echo "Don't forget to symlink the folder to your Home Directory"
 	echo "press enter to continue"
