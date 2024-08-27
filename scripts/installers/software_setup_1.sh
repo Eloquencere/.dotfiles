@@ -175,15 +175,6 @@ sudo pacman -S --noconfirm "${REMOTE_MACHINE_PKGS_PACMAN[@]}"
 sudo sh -c "printf '%s\n%s\n' 'usbip-core' 'vhci-hcd' >> /etc/modules-load.d/usbip.conf"
 # paru -S --noconfirm "${REMOTE_MACHINE_PKGS_PARU[@]}"
 
-# Onedriver
-echo -n "Would you like to install onedriver?(Y/n)"
-read usr_input
-if [[ $usr_input =~ ^[Yy]$ ]]; then
-  mkdir $HOME/OneDrive
-  paru -S --noconfirm onedriver
-  rm -rf ~/Music ~/Pictures ~/Templates ~/Public ~/go
-fi
-
 # Initialising all dot files
 cd ~/.dotfiles
 stow .

@@ -1,7 +1,7 @@
 echo "Welcome to part 2 of the installer"
-echo -n "Ensure that you are running this on Alacritty & TMUX(green line at the bottom) only (y/n)"
+echo -n "Ensure that you are running this on Alacritty & TMUX(green line at the bottom) only (Y/n)"
 read usr_input
-if [[ $usr_input == n ]]; then
+if [[ $usr_input =~ ^[Nn]$ ]]; then
    exit
 fi
 
@@ -26,7 +26,7 @@ cat --line-range=6:17 .gui_instructions.txt
 echo "press enter to continue"
 read usr_input
 
-echo -n "Would you like to configure the server IP address of USBIP? (y/n)"
+echo -n "Would you like to configure the server IP address of USBIP? (Y/n)"
 read usr_input
 if [[ $usr_input =~ ^[Yy]$ ]]; then
    echo "Please enter the server's IP address"
@@ -36,9 +36,9 @@ if [[ $usr_input =~ ^[Yy]$ ]]; then
    source $HOME/.zprofile
 fi
 
-echo -n "Would you like to log into your git account? (y/n)"
+echo -n "Would you like to log into your git account? (Y/n)"
 read usr_input
-if  [[ $usr_input =~ ^[Yy]$ ]]; then
+if [[ $usr_input =~ ^[Yy]$ ]]; then
 	echo "[core]
 	editor = nvim
 	pager = delta
@@ -63,6 +63,15 @@ if  [[ $usr_input =~ ^[Yy]$ ]]; then
     echo "you need to login to Github as well"
     gh auth login
     sed -i '/.* = $/d' $HOME/.gitconfig
+fi
+
+echo -n "Would you like to setup your cloud file storage client?(Y/n)"
+if [[ $usr_input =~ ^[Yy]$ ]]; then
+	rm -rf ~/Pictures ~/Templates ~/Public ~/Music
+	echo "Open the settings and log into your provider"
+	echo "Don't forget to symlink the folder to your Home Directory"
+	echo "press enter to continue"
+	read usr_input
 fi
 
 mkdir ~/Documents/install_script_temp_folder
