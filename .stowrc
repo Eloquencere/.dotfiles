@@ -1,6 +1,7 @@
 --ignore=scripts
 --ignore=\.git
 --ignore=\.gitignore
+--ignore=.tmuxp.yaml
 --ignore=.stowrc
 --ignore=^/README*
 --ignore=^/LICENSE*
