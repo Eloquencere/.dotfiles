@@ -1,4 +1,5 @@
 #compdef croc
+
 _croc() {
 	local line state
 
@@ -28,6 +29,11 @@ _croc() {
 _croc_recv_cmd() {
 	local line state
 
+	declare -a local_list
+	while IFS='|' read -r ID Designation; do
+		local_list+=("${ID}[${Designation}]")
+	done <<< $(sqlite3 $ZDOTDIR/.confidential/croc_collaborators_registry.db "SELECT ID,Designation FROM collaborator_catalogue WHERE Self=0;")
+
 	_arguments -C \
 		"1: :->cmds" \
 		"*::arg:->args"
@@ -35,7 +41,7 @@ _croc_recv_cmd() {
 	case "$state" in
 		cmds)
 			_values "croc project contacts" \
-				${(@k)CROC_TRANSFER_CODES[@]/"self"}
+				${local_list[@]}
 			;;
 	esac
 }
