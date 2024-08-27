@@ -114,7 +114,7 @@ lsusbip() {
 	local server_devices usbip_port_output
 	local busid device_name vid_pid port_number
   
-	IFS=$'\n' read -r -d '' -A server_devices < <(usbip list --remote=$SERVER_IP | grep --regexp "^\s+[-0-9]+:") # might need to add local IFS=
+	IFS=$'\n' read -r -d '' -A server_devices < <(usbip list --remote=$SERVER_IP | grep --regexp "^\s+[-0-9]+:")
 	usbip_port_output=$(usbip port 2>/dev/null)
  	if [ ${#server_devices[@]} -eq 1 ]; then
   		return
