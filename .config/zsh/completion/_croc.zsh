@@ -30,9 +30,9 @@ _croc_recv_cmd() {
 	local line state
 
 	declare -a local_list
-	while IFS='|' read -r ID Designation; do
-		local_list+=("${ID}[${Designation}]")
-	done <<< $(sqlite3 $ZDOTDIR/.confidential/croc_collaborators_registry.db "SELECT ID,Designation FROM collaborator_catalogue WHERE Self=0;")
+	while IFS='|' read -r Name ID Designation; do
+		local_list+=("${ID}[${Designation} > ($Name)]")
+	done <<< $(sqlite3 $ZDOTDIR/.confidential/croc_collaborators_registry.db "SELECT Name,ID,Designation FROM collaborator_catalogue WHERE Self=0;")
 
 	_arguments -C \
 		"1: :->cmds" \
