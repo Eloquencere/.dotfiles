@@ -1,18 +1,16 @@
 croc() {
-	if [[ $1 == "send" ]]; then
-		shift
-		export CROC_SECRET=$(sqlite3 $ZDOTDIR/.confidential/croc_collaborators_registry.db "SELECT Transfer_Code FROM collaborator_catalogue WHERE Self=1;")
-		command croc send "$@"
-	elif [[ $1 == "recv" ]]; then
+	if [[ $1 == "recv" ]]; then
 		shift
 		if [[ $1 == "--inbox" ]]; then
 			shift
 			export CROC_SECRET=$(sqlite3 $ZDOTDIR/.confidential/croc_collaborators_registry.db "SELECT Transfer_Code FROM collaborator_catalogue WHERE ID='$1';")
 			command croc --out "$HOME/croc-inbox"
 		else
-			export CROC_SECRET=$(sqlite3 $ZDOTDIR/.confidential/croc_collaborators_registry.db "SELECT Transfer_Code FROM collaborator_catalogue WHERE ID='$1';")
 			command croc
 		fi
+	elif [[ $1 == "send" ]]; then
+		export CROC_SECRET=$(sqlite3 $ZDOTDIR/.confidential/croc_collaborators_registry.db "SELECT Transfer_Code FROM collaborator_catalogue WHERE Self=1;")
+		command croc "$@"
 	else
 		command croc "$@"
 	fi
