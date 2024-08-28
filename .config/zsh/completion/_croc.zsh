@@ -47,6 +47,7 @@ _croc_recv_cmd() {
 }
 
 _croc_send_cmd() {
+	_path_files
 	# add --zip & --text & --git
 }
 
