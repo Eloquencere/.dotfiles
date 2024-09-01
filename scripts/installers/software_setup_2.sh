@@ -32,7 +32,7 @@ if [[ $usr_input =~ ^[Yy]$ ]]; then
    echo "Please enter the server's IP address"
    read server_ip
    mkdir $ZDOTDIR/.confidential
-   echo "SERVER_IP=$server_ip" >> $ZDOTDIR/.confidential/zprofile.zsh
+   echo "export SERVER_IP=$server_ip" >> $ZDOTDIR/.confidential/zprofile.zsh
    source $HOME/.zprofile
 fi
 
@@ -87,10 +87,11 @@ BLOAT_PKGS_PACMAN=(
 sudo pacman -Rs --noconfirm "${BLOAT_PKGS_PACMAN[@]}"
 rm -rf ~/.bash* ~/.fontconfig
 
-# Necessary Python libraries
-rtx install python@latest
-# pip install --upgrade pip
+rtx install bun@latest
+rtx install python@2.7
 
+# Necessary Python libraries
+# pip install --upgrade pip
 # pip install icecream # debugging
 # pip install drawio colorama pyfiglet # presentation
 # pip install dash plotly seaborn mysql-connector-python # data representation and calculation

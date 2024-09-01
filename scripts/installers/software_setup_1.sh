@@ -28,6 +28,7 @@ sudo sed -i "s/^\(GRUB_TIMEOUT_STYLE=\).*/\1hidden/g" /etc/default/grub
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 sudo sed -i "s/^#\(Color.*\)/\1\nILoveCandy/g" /etc/pacman.conf
 sudo sed -i "s/^#\(ParallelDownloads .*\)/\1/g" /etc/pacman.conf
+sudo sed -i "/^#\[multilib\]/{s/^#\(\[multilib\]\)/\1/g; n; s/^#\(.*\)/\1/g;}" /etc/pacman.conf
 
 # Language compilers and related packages
 LANG_COMPILER_PKGS_PACMAN=(
@@ -39,7 +40,6 @@ LANG_COMPILER_PKGS_PACMAN=(
 )
 LANG_COMPILERS_PKGS_PARU=(
   "conan"
-  "bun-bin"
   "scriptisto" # script in any compiled language
 )
 sudo pacman -S gdb valgrind strace ghidra
