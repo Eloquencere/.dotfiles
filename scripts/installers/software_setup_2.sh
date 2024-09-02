@@ -87,7 +87,7 @@ BLOAT_PKGS_PACMAN=(
   "vim" "htop" "nano"
   "epiphany" "gnome-music" "gnome-calendar" "gnome-console"
   "gnome-contacts" "sushi" "gnome-weather" "gnome-tour"
-  "totem" "gnome-maps" "gnome-logs" "evince" "orca"
+  "totem" "gnome-maps" "gnome-logs" "orca"
 )
 sudo pacman -Rs --noconfirm "${BLOAT_PKGS_PACMAN[@]}"
 rm -rf ~/.bash* ~/.fontconfig
