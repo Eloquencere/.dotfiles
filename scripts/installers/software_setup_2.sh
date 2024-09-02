@@ -87,7 +87,7 @@ BLOAT_PKGS_PACMAN=(
   "vim" "htop" "nano"
   "epiphany" "gnome-music" "gnome-calendar" "gnome-console"
   "gnome-contacts" "sushi" "gnome-weather" "gnome-tour"
-  "totem" "gnome-maps" "gnome-logs" "orca"
+  "totem" "gnome-maps" "gnome-logs" "gnome-calculator" "orca"
 )
 sudo pacman -Rs --noconfirm "${BLOAT_PKGS_PACMAN[@]}"
 rm -rf ~/.bash* ~/.fontconfig
@@ -132,6 +132,7 @@ ADDITIONAL_TOOLS_FLATPAK=(
    "org.gnome.World.PikaBackup"
    "io.github.finefindus.Hieroglyphic"
    "org.gnome.gitlab.somas.Apostrophe"
+   "io.github.Qalculate"
    # "com.github.neithern.g4music"
 )
 ADDITIONAL_TOOLS_PACMAN=(

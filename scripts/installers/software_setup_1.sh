@@ -173,7 +173,9 @@ REMOTE_MACHINE_PKGS_PARU=(
   "nomachine" "rustdesk-bin" "parsec-bin"
 )
 sudo pacman -S --noconfirm "${REMOTE_MACHINE_PKGS_PACMAN[@]}"
-sudo sh -c "printf '%s\n%s\n' 'usbip-core' 'vhci-hcd' >> /etc/modules-load.d/usbip.conf"
+sudo sh -c " echo '# USBIP
+usbip-core
+vhci-hcd' > /etc/modules-load.d/usbip.conf"
 # paru -S --noconfirm "${REMOTE_MACHINE_PKGS_PARU[@]}"
 
 # Initialising all dot files
