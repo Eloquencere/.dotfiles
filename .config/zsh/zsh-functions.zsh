@@ -1,13 +1,13 @@
 croc() {
 	if [[ $1 == "recv" ]]; then
 		shift
-		if [[ $1 == "--inbox" ]]; then
+		if [[ $1 == "--here" ]]; then
 			shift
 			export CROC_SECRET=$(sqlite3 $ZDOTDIR/.confidential/croc_collaborators_registry.db "SELECT Transfer_Code FROM collaborator_catalogue WHERE ID='$1';")
-			command croc --out $HOME/croc-inbox
+			command croc
 		else
 			export CROC_SECRET=$(sqlite3 $ZDOTDIR/.confidential/croc_collaborators_registry.db "SELECT Transfer_Code FROM collaborator_catalogue WHERE ID='$1';")
-			command croc
+			command croc --out $HOME/croc-inbox
 		fi
 	elif [[ $1 == "send" ]]; then
 		export CROC_SECRET=$(sqlite3 $ZDOTDIR/.confidential/croc_collaborators_registry.db "SELECT Transfer_Code FROM collaborator_catalogue WHERE Self=1;")
@@ -118,9 +118,9 @@ lsusbip() {
   
 	IFS=$'\n' read -r -d '' -A server_devices < <(usbip list --remote=$SERVER_IP | grep --regexp "^\s+[-0-9]+:")
 	usbip_port_output=$(usbip port 2>/dev/null)
-    if [ ${#server_devices[@]} -eq 1 ]; then
-        return
-    fi
+	if [ ${#server_devices[@]} -eq 1 ]; then
+		return
+	fi
 	printf "Devices from %s\n" "$SERVER_IP"
 	printf "%-10s %-50s %-10s\n" "BUSID" "DEVICE" "PORT"
 	local regex="^\s+([-0-9]+):\s+(.*)\s+(\(.*\))$"
