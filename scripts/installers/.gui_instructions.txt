@@ -11,12 +11,13 @@ Gnome Extensions
     Tilling assistant
     Just Perfection
         Under visibility disable:
-          Accessibility menu
-          app drawer on the dock
+            Accessibility menu
+            app drawer on the dock
 
 Virt-manager
   - Setup USB & clipboard & GPU pass through
 
+# Add these configs as cli commands in the install script
 Komikku
     1. Advanced
         - Clear Chapters Cache and Database on Exit
