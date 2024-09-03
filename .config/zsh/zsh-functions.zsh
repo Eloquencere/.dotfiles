@@ -99,7 +99,10 @@ archive() {
 
 # usbip
 usbip() {
-	if [[ $1 == "attach" ]]; then
+    if [[ $1 == "show" ]]; then
+        shift
+        lsusbip
+	elif [[ $1 == "attach" ]]; then
 		shift
 		sudo usbip attach --remote=$SERVER_IP "$@"
 	elif [[ $1 == "detach" ]]; then
@@ -115,9 +118,9 @@ lsusbip() {
   
 	IFS=$'\n' read -r -d '' -A server_devices < <(usbip list --remote=$SERVER_IP | grep --regexp "^\s+[-0-9]+:")
 	usbip_port_output=$(usbip port 2>/dev/null)
- 	if [ ${#server_devices[@]} -eq 1 ]; then
-  		return
-   	fi
+    if [ ${#server_devices[@]} -eq 1 ]; then
+        return
+    fi
 	printf "Devices from %s\n" "$SERVER_IP"
 	printf "%-10s %-50s %-10s\n" "BUSID" "DEVICE" "PORT"
 	local regex="^\s+([-0-9]+):\s+(.*)\s+(\(.*\))$"

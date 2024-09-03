@@ -32,7 +32,7 @@ if [[ $usr_input =~ ^[Yy]$ ]]; then
    echo "Please enter the server's IP address"
    read server_ip
    mkdir $ZDOTDIR/.confidential
-   echo "export SERVER_IP=$server_ip" >> $ZDOTDIR/.confidential/zprofile.zsh
+   echo 'export SERVER_IP=${server_ip}' >> $ZDOTDIR/.confidential/zprofile.zsh
    source $HOME/.zprofile
 fi
 
@@ -146,8 +146,8 @@ ADDITIONAL_TOOLS_PACMAN=(
 # sudo pacman -S emacs-wayland
 # git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
 # ~/.config/emacs/bin/doom install
-# echo "# Doom Emacs
-# export "PATH=~/.config/emacs/bin:\$PATH" >> ~/.zprofile
+# echo '# Doom Emacs
+# export "PATH=~/.config/emacs/bin:\$PATH' >> ~/.zprofile
 
 cd ~/Documents
 rm -rf install_script_temp_folder

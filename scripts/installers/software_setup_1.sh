@@ -79,7 +79,7 @@ paru -S --noconfirm "${LANG_COMPILERS_PKGS_PARU[@]}"
 UTIL_PKGS_PACMAN=(
   "ttf-jetbrains-mono-nerd"
   "arch-wiki-docs" "arch-wiki-lite"
-  "p7zip" "exfat-utils" "ntfs-3g"
+  "p7zip" "unrar" "exfat-utils" "ntfs-3g"
   "libreoffice-fresh" "vlc"
   "fastfetch" "btop" # benchmarkers
   "stow" "openbsd-netcat"
@@ -140,7 +140,8 @@ mkdir ~/croc-inbox
 sudo groupadd uinput
 sudo usermod -aG input $USER
 sudo usermod -aG uinput $USER
-sudo sh -c 'echo KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput" > /etc/udev/rules.d/99-input.rules'
+sudo sh -c "echo '# Kanata
+KERNEL==uinput, MODE=0660, GROUP=uinput, OPTIONS+=static_node=uinput' >> /etc/udev/rules.d/99-input.rules"
 sudo udevadm control --reload && udevadm trigger --verbose --sysname-match=uniput
 sudo ln -s $HOME/.config/kanata /etc/
 sudo sh -c "echo '[Unit]
@@ -183,13 +184,18 @@ cd ~/.dotfiles
 stow .
 cd -
 
-# Gnome Config
+# Gnome window config
 gsettings set org.gnome.mutter center-new-windows true
 gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
-gsettings set org.gnome.desktop.interface monospace-font-name 'JetBrainsMono Nerd Font'
+# GNOME nautilus-open-any-terminal config
 gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal alacritty
 gsettings set com.github.stunkymonkey.nautilus-open-any-terminal keybindings '<Ctrl><Alt>t'
 gsettings set com.github.stunkymonkey.nautilus-open-any-terminal flatpak system
+# GNOME TextEditor config
+gsettings set org.gnome.TextEditor restore-session false
+gsettings set org.gnome.TextEditor style-scheme 'classic-dark'
+# GNOME interface config
+gsettings set org.gnome.desktop.interface monospace-font-name 'JetBrainsMono Nerd Font'
 
 cd ~/Documents
 rm -rf install_script_temp_folder

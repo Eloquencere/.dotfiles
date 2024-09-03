@@ -26,13 +26,13 @@ keymap.set(
 keymap.set(
     "n",
     "j",
-    "gj",
+    "gjzz",
     { noremap = true, silent = true, desc = "Aligns the screen when scrolling down" }
 )
 keymap.set(
     "n",
     "k",
-    "gk",
+    "gkzz",
     { noremap = true, silent = true, desc = "Aligns the screen when scrolling up" }
 )
 
