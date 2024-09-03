@@ -34,14 +34,15 @@ source <(atuin init zsh)
 source <(zoxide init --cmd cd zsh)
 source <($CARGO_HOME/bin/rtx activate zsh)
 
-# Source aliases & functions
+# Confidential variables
 [[ -f "$ZDOTDIR/.confidential/zshrc.zsh" ]] && source "$ZDOTDIR/.confidential/zshrc.zsh"
+# Source aliases & functions
 source "$ZDOTDIR/zsh-aliases.zsh"
 source "$ZDOTDIR/zsh-functions.zsh"
 
 # FZF modifications
 _fzf_compgen_path() {
-  	fd --hidden --follow --exclude .git . "$1" --color=always
+  	fd --follow --hidden --exclude .git . "$1" --color=always
 }
 _fzf_compgen_dir() {
   	fd --type=d --hidden --exclude .git . "$1" --color=always

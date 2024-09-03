@@ -14,12 +14,7 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 export TOOLS_HOME="$HOME/Tools"
 export DOTFILES_HOME="$HOME/.dotfiles"
-
-# zsh initialisation
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
-
-# Confidential env_vars
-[[ -f "$ZDOTDIR/.confidential/zprofile.zsh" ]] && source "$ZDOTDIR/.confidential/zprofile.zsh"
 
 # fzf modifications
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git --color=always"
@@ -37,3 +32,12 @@ export RUSTC_WRAPPER=$CARGO_HOME/bin/sccache
 
 # Conan(C/C++)
 export CONAN_HOME="$XDG_DATA_HOME/conan"
+
+# Confidential environment variables
+[[ -f "$ZDOTDIR/.confidential/zprofile.zsh" ]] && source "$ZDOTDIR/.confidential/zprofile.zsh"
+
+# Themes for alacritty
+[[ ! -d "$XDG_CONFIG_HOME/alacritty/themes" ]] && git clone https://github.com/alacritty/alacritty-theme.git "$HOME/.config/alacritty/themes"
+# Package managers for tmux and zsh
+[[ ! -d "$XDG_CONFIG_HOME/tmux/plugins" ]] && git clone https://github.com/tmux-plugins/tpm.git "$HOME/.config/tmux/plugins/tpm"
+[[ ! -d "$ZDOTDIR/zinit" ]] && git clone https://github.com/zdharma-continuum/zinit.git "$HOME/.config/zsh/zinit"

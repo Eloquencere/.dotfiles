@@ -183,13 +183,6 @@ cd ~/.dotfiles
 stow .
 cd -
 
-# alacritty themes
-git clone https://github.com/alacritty/alacritty-theme.git "$HOME/.config/alacritty/themes"
-# tpm
-git clone https://github.com/tmux-plugins/tpm.git "$HOME/.config/tmux/plugins/tpm"
-# zinit
-git clone https://github.com/zdharma-continuum/zinit.git "$HOME/.config/zsh/zinit"
-
 # Gnome Config
 gsettings set org.gnome.mutter center-new-windows true
 gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
