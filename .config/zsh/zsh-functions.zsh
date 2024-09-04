@@ -11,9 +11,9 @@ croc() {
 		fi
 	elif [[ $1 == "send" ]]; then
 		export CROC_SECRET=$(sqlite3 $ZDOTDIR/.confidential/croc_collaborators_registry.db "SELECT Transfer_Code FROM collaborator_catalogue WHERE Self=1;")
-		command croc "$@"
-	else
-		command croc "$@"
+        command croc "$@"
+    else
+        command croc "$@"
 	fi
 }
 
@@ -22,17 +22,17 @@ archive() {
 		shift
 		if [ -f "$1" ];then 
 			case $1 in
-				*.tar.bz2) tar	        tjf	 $1 | \tree -C --fromfile . | bat --style=plain ;;
-				*.tbz2)    tar	        tjf	 $1 | \tree -C --fromfile . | bat --style=plain ;;
-				*.bz2)     tar          tjf	 $1 | \tree -C --fromfile . | bat --style=plain ;;
-				*.tar.gz)  tar	        tzf	 $1 | \tree -C --fromfile . | bat --style=plain ;;
-				*.tgz)     tar	        tzf	 $1 | \tree -C --fromfile . | bat --style=plain ;;
-				*.tar.xz)  tar          tf	 $1 | \tree -C --fromfile . | bat --style=plain ;;
-				*.tar)     tar	        tf	 $1 | \tree -C --fromfile . | bat --style=plain ;;
-				*.tar.zst) tar --zstd  -tf	 $1 | \tree -C --fromfile . | bat --style=plain ;;
+				*.tar.bz2) tar	        tjf	     $1 | \tree -C --fromfile . | bat --style=plain ;;
+				*.tbz2)    tar	        tjf	     $1 | \tree -C --fromfile . | bat --style=plain ;;
+				*.bz2)     tar          tjf	     $1 | \tree -C --fromfile . | bat --style=plain ;;
+				*.tar.gz)  tar	        tzf	     $1 | \tree -C --fromfile . | bat --style=plain ;;
+				*.tgz)     tar	        tzf	     $1 | \tree -C --fromfile . | bat --style=plain ;;
+				*.tar.xz)  tar          tf	     $1 | \tree -C --fromfile . | bat --style=plain ;;
+				*.tar)     tar	        tf	     $1 | \tree -C --fromfile . | bat --style=plain ;;
+				*.tar.zst) tar --zstd  -tf	     $1 | \tree -C --fromfile . | bat --style=plain ;;
 				*.7z)      7za	        l    -ba $1 ;;
-				*.zip)     unzip       -l	 $1 ;;
-				*.rar)     7za		l    -ba $1 ;;
+				*.zip)     unzip       -l	     $1 ;;
+				*.rar)     7za	        l    -ba $1 ;;
 				*.gz)      gunzip     --list 	 $1 ;;
 				*.deb)     ar           t        $1 ;;
 				*)         echo "'$1' cannot be listed via archive" ;;

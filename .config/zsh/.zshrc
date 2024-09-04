@@ -2,8 +2,6 @@
 setopt nobeep
 setopt correct
 
-fpath=($ZDOTDIR/completion $fpath)
-
 # Load zinit
 source "$ZDOTDIR/zinit/zinit.zsh"
 
@@ -34,18 +32,18 @@ source <(atuin init zsh)
 source <(zoxide init --cmd cd zsh)
 source <($CARGO_HOME/bin/rtx activate zsh)
 
-# Confidential variables
+# confidential variables
 [[ -f "$ZDOTDIR/.confidential/zshrc.zsh" ]] && source "$ZDOTDIR/.confidential/zshrc.zsh"
-# Source aliases & functions
+# aliases & functions
 source "$ZDOTDIR/zsh-aliases.zsh"
 source "$ZDOTDIR/zsh-functions.zsh"
 
 # FZF modifications
 _fzf_compgen_path() {
-  	fd --follow --hidden --exclude .git . "$1" --color=always
+    fd --follow --hidden --exclude .git . "$1" --color=always
 }
 _fzf_compgen_dir() {
-  	fd --type=d --hidden --exclude .git . "$1" --color=always
+    fd --type=d --hidden --exclude .git . "$1" --color=always
 }
 
 # Zsh-Vi-Mode
@@ -55,15 +53,15 @@ function zvm_after_init() {
 	zvm_bindkey viins '^p' atuin-up-search
 }
 function zvm_after_lazy_keybindings() {
-    	zvm_bindkey vicmd '^r' atuin-search
+    zvm_bindkey vicmd '^r' atuin-search
 }
 
 # better Tmux session experience
 function _tmux() {
     if [[ $# == 0 ]] && command tmux ls >& /dev/null; then
-	command tmux attach \; choose-tree -s
+        command tmux attach \; choose-tree -s
     else
-	command tmux "$@"
+        command tmux "$@"
     fi
 }
 alias tmux=_tmux

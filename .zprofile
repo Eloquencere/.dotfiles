@@ -33,11 +33,15 @@ export RUSTC_WRAPPER=$CARGO_HOME/bin/sccache
 # Conan(C/C++)
 export CONAN_HOME="$XDG_DATA_HOME/conan"
 
+# Initialising completions directory
+fpath=($ZDOTDIR/completion $fpath)
+
 # Confidential environment variables
 [[ -f "$ZDOTDIR/.confidential/zprofile.zsh" ]] && source "$ZDOTDIR/.confidential/zprofile.zsh"
 
+# Plugin manager for zsh
+[[ ! -d "$ZDOTDIR/zinit" ]] && git clone https://github.com/zdharma-continuum/zinit.git "$HOME/.config/zsh/zinit"
+# Package manager for tmux
+[[ ! -d "$XDG_CONFIG_HOME/tmux/plugins" ]] && git clone https://github.com/tmux-plugins/tpm.git "$HOME/.config/tmux/plugins/tpm"
 # Themes for alacritty
 [[ ! -d "$XDG_CONFIG_HOME/alacritty/themes" ]] && git clone https://github.com/alacritty/alacritty-theme.git "$HOME/.config/alacritty/themes"
-# Package managers for tmux and zsh
-[[ ! -d "$XDG_CONFIG_HOME/tmux/plugins" ]] && git clone https://github.com/tmux-plugins/tpm.git "$HOME/.config/tmux/plugins/tpm"
-[[ ! -d "$ZDOTDIR/zinit" ]] && git clone https://github.com/zdharma-continuum/zinit.git "$HOME/.config/zsh/zinit"
