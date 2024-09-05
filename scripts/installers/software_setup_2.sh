@@ -92,11 +92,10 @@ BLOAT_PKGS_PACMAN=(
 sudo pacman -Rs --noconfirm "${BLOAT_PKGS_PACMAN[@]}"
 rm -rf ~/.bash* ~/.fontconfig
 
-rtx install bun@latest
-rtx install python@2.7
+mise use --global bun@latest go@latest python@latest python@2.7
+pip install --upgrade pip
 
 # Necessary Python libraries
-# pip install --upgrade pip
 # pip install icecream # debugging
 # pip install drawio colorama pyfiglet # presentation
 # pip install dash plotly seaborn mysql-connector-python # data representation and calculation

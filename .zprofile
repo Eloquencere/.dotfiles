@@ -33,9 +33,6 @@ export RUSTC_WRAPPER=$CARGO_HOME/bin/sccache
 # Conan(C/C++)
 export CONAN_HOME="$XDG_DATA_HOME/conan"
 
-# Initialising completions directory
-fpath=($ZDOTDIR/completion $fpath)
-
 # Confidential environment variables
 [[ -f "$ZDOTDIR/.confidential/zprofile.zsh" ]] && source "$ZDOTDIR/.confidential/zprofile.zsh"
 

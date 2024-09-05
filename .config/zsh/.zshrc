@@ -2,6 +2,9 @@
 setopt nobeep
 setopt correct
 
+# Initialising completions directory
+fpath=($ZDOTDIR/completion $fpath)
+
 # Load zinit
 source "$ZDOTDIR/zinit/zinit.zsh"
 
@@ -30,7 +33,7 @@ source <(starship init zsh)
 source <(fzf --zsh)
 source <(atuin init zsh)
 source <(zoxide init --cmd cd zsh)
-source <($CARGO_HOME/bin/rtx activate zsh)
+source <($CARGO_HOME/bin/mise activate zsh)
 
 # confidential variables
 [[ -f "$ZDOTDIR/.confidential/zshrc.zsh" ]] && source "$ZDOTDIR/.confidential/zshrc.zsh"
