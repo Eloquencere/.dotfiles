@@ -65,19 +65,7 @@ if [[ $usr_input =~ ^[Yy]$ ]]; then
     sed -i '/.* = $/d' $HOME/.gitconfig
 fi
 
-echo -n "Would you like to setup your cloud file storage client?(Y/n)"
-read usr_input
-if [[ $usr_input =~ ^[Yy]$ ]]; then
-	rm -rf ~/Pictures ~/Templates ~/Public ~/Videos
-	echo "Open settings/Online Accounts and log into your provider"
-	echo -n "Would you like to sym-link the cloud directory to your home directory?(Y/n)"
-	read usr_input
-	if [[ $usr_input =~ ^[Yy]$ ]]; then
-		echo -n "Enter the absolute path to the cloud directory: "
-		read path
-		ln -s $path $HOME
-	fi
-fi
+# rm -rf ~/Pictures ~/Templates ~/Public ~/Videos
 
 mkdir ~/Documents/install_script_temp_folder
 cd ~/Documents/install_script_temp_folder

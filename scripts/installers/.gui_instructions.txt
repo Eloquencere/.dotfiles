@@ -33,3 +33,14 @@ Komikku
         - Long strip detection
     4. General
         - Disable desktop notifications
+
+Setting up Online Accounts (Assuming OneDrive)
+    - Open up the file manager & click on your service provider
+    - Find the exact name of the mount, run: (ex: onedrive://xxxxxxxxxx/)
+        gio mount -l
+    - To auto mount the drive on reboot, run:
+        echo "# Onedrive\ngio mount onedrive://xxxxxxxxxxx/" >> $ZDOTDIR/.confidential/zprofile.zsh
+    - run 
+        mkdir -p $HOME/OneDrive/Home $HOME/OneDrive/Shared
+        ln -s "/run/user/1000/gvfs/onedrive:host=xxxxxxxxxx/My Files" $HOME/OneDrive/Home
+        ln -s "/run/user/1000/gvfs/onedrive:host=xxxxxxxxxx/Shared with me" $HOME/OneDrive/Shared
