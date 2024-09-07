@@ -123,7 +123,7 @@ CLI_PKGS_PACMAN=(
   "yazi" "gdu" "duf" "dust" "git-delta" "lazygit" "procs"
   "man-db"
   "glow"
-  "croc" # alternative to warp
+  "croc" # project management tools
 )
 CLI_PKGS_PARU=(
   # "jqp-bin"
@@ -135,6 +135,7 @@ CLI_PKGS_PARU=(
 sudo pacman -S --noconfirm "${CLI_PKGS_PACMAN[@]}"
 paru -S --noconfirm "${CLI_PKGS_PARU[@]}"
 mkdir ~/croc-inbox
+sed -i "1i\file://$HOME/croc-inbox" ~/.config/gtk-3.0/bookmarks
 
 #Kanata
 sudo groupadd uinput

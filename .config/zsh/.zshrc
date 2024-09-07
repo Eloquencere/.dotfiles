@@ -57,6 +57,7 @@ function zvm_after_init() {
 }
 function zvm_after_lazy_keybindings() {
     zvm_bindkey vicmd '^r' atuin-search
+	zvm_bindkey vicmd '^p' atuin-up-search
 }
 
 # better Tmux session experience

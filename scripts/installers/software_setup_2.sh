@@ -123,11 +123,12 @@ ADDITIONAL_TOOLS_FLATPAK=(
    # "com.github.neithern.g4music"
 )
 ADDITIONAL_TOOLS_PACMAN=(
-   "obsidian" "zathura"
-   "signal-desktop"
+   "obsidian" "zathura" # project management tools
+   "signal-desktop" # project management tools
 )
 # flatpak install --assumeyes flathub "${ADDITIONAL_TOOLS_FLATPAK[@]}"
 # sudo pacman -S --noconfirm "${ADDITIONAL_TOOLS_PACMAN[@]}"
+# paru -S --noconfirm jitsi-meet-desktop-bin # project management tools
 
 # # Doom Emacs
 # sudo pacman -S emacs-wayland

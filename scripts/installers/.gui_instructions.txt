@@ -44,3 +44,4 @@ Setting up Online Accounts (Assuming OneDrive)
         mkdir -p $HOME/OneDrive/Home $HOME/OneDrive/Shared
         ln -s "/run/user/1000/gvfs/onedrive:host=xxxxxxxxxx/My Files" $HOME/OneDrive/Home
         ln -s "/run/user/1000/gvfs/onedrive:host=xxxxxxxxxx/Shared with me" $HOME/OneDrive/Shared
+        sed -i "1i\file://$HOME/croc-inbox" ~/.config/gtk-3.0/bookmarks # use the same for Tools
