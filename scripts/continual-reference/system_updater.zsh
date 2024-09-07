@@ -1,4 +1,4 @@
-sudo pacman --noconfirm -Syu
-paru --noconfirm -Sua
-flatpak update --assumeyes
+sudo pacman -Syu
+paru -Sua
+flatpak update
 zinit update --all

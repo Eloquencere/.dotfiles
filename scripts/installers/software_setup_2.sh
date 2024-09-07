@@ -80,6 +80,7 @@ BLOAT_PKGS_PACMAN=(
 sudo pacman -Rs --noconfirm "${BLOAT_PKGS_PACMAN[@]}"
 rm -rf ~/.bash* ~/.fontconfig
 
+mise settings set python_compile 1
 mise use --global bun@latest go@latest python@latest python@2.7
 pip install --upgrade pip
 
