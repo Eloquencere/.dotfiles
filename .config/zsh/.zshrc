@@ -9,7 +9,8 @@ fpath=($ZDOTDIR/completion $fpath)
 source "$ZDOTDIR/zinit/zinit.zsh"
 
 # Add zinit plugins
-zinit ice depth=1; zinit light jeffreytse/zsh-vi-mode
+zinit ice depth=1
+zinit light jeffreytse/zsh-vi-mode
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light Aloxaf/fzf-tab
