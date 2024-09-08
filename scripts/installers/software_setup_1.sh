@@ -184,9 +184,6 @@ cd ~/.dotfiles
 stow .
 cd -
 
-# Gnome window config
-gsettings set org.gnome.mutter center-new-windows true
-gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
 # GNOME nautilus-open-any-terminal config
 gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal alacritty
 gsettings set com.github.stunkymonkey.nautilus-open-any-terminal keybindings '<Ctrl><Alt>t'
@@ -194,7 +191,11 @@ gsettings set com.github.stunkymonkey.nautilus-open-any-terminal flatpak system
 # GNOME TextEditor config
 gsettings set org.gnome.TextEditor restore-session false
 gsettings set org.gnome.TextEditor style-scheme 'classic-dark'
+# Gnome window config
+gsettings set org.gnome.mutter center-new-windows true
+gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
 # GNOME interface config
+gsettings set org.gnome.desktop.interface clock-format '24h'
 gsettings set org.gnome.desktop.interface monospace-font-name 'JetBrainsMono Nerd Font'
 
 cd ~/Documents
