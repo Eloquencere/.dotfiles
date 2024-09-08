@@ -36,8 +36,7 @@ LANG_COMPILER_PKGS_PACMAN=(
   "perl" "go" "python"
   "clang" "lldb"
   "rustup"
-  "python-pip" "tk"
-  "ghc" "zig"
+  "julia" "ghc" "zig"
 )
 LANG_COMPILERS_PKGS_PARU=(
   "conan"
