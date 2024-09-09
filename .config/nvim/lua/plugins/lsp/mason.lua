@@ -35,14 +35,17 @@ return {
         })
 
         mason_tool_installer.setup({
+            -- list of formatters to install
             ensure_installed = {
-                -- "prettier", -- prettier formatter
-                "stylua", -- lua formatter
-                "clang-format", -- C, C++ formatter
-                -- "isort", -- python formatter
-                -- "black", -- python formatter
+                -- "prettier",
+                "stylua",
+                "clang-format",
+                -- "isort",
+                -- "black",
                 -- "pylint",
             },
         })
+
     end,
 }
+
