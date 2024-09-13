@@ -65,7 +65,12 @@ if [[ $usr_input =~ ^[Yy]$ ]]; then
     sed -i '/.* = $/d' $HOME/.gitconfig
 fi
 
-# rm -rf ~/Pictures ~/Templates ~/Public ~/Videos
+echo -n "Would you like to initialise your remote storage account? (Y/n)"
+read usr_input
+if [[ $usr_input =~ ^[Yy]$ ]]; then
+    rm -rf ~/Pictures ~/Templates ~/Public ~/Videos
+    sudo pacman -S rclone
+fi
 
 mkdir ~/Documents/install_script_temp_folder
 cd ~/Documents/install_script_temp_folder
