@@ -31,7 +31,7 @@ read usr_input
 if [[ $usr_input =~ ^[Yy]$ ]]; then
    echo "Please enter the server's IP address"
    read server_ip
-   mkdir $ZDOTDIR/.confidential
+   mkdir -p $ZDOTDIR/.confidential
    echo 'export SERVER_IP=${server_ip}' >> $ZDOTDIR/.confidential/zprofile.zsh
    source $HOME/.zprofile
 fi
@@ -99,14 +99,14 @@ pip install --upgrade pip
 # pip install parse pendulum pydantic ruff mypy pyglet
 # pip install keras tensorflow scikit-learn torch
 
-# virt-manager with qemu/KVM
-VM_PKGS=(
-   "archlinux-keyring"
-   "qemu-desktop" "virt-manager" "virt-viewer" "dnsmasq" "vde2" "bridge-utils"
-)
 echo -n "Would you like to install a VM software?(y/n)"
 read usr_input
 if [[ $usr_input =~ ^[Yy]$ ]]; then
+    # virt-manager with qemu/KVM
+    VM_PKGS=(
+       "archlinux-keyring"
+       "qemu-desktop" "virt-manager" "virt-viewer" "dnsmasq" "vde2" "bridge-utils"
+    )
    sudo pacman -Syu --noconfirm
    sudo pacman -S --needed --noconfirm "${VM_PKGS[@]}"
    sudo systemctl enable libvirtd.service --now

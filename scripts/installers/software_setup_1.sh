@@ -121,11 +121,10 @@ CLI_PKGS_PACMAN=(
   "fzf" "zoxide" "eza" "bat" "fd" "ripgrep" "jq" "yq" "less"
   "yazi" "gdu" "duf" "dust" "git-delta" "lazygit" "procs"
   "man-db"
-  "glow"
   "croc" # project management tools
 )
 CLI_PKGS_PARU=(
-  # "jqp-bin"
+  "jqp-bin"
   "tlrc-bin" "cheat"
   "kanata-bin" "mprocs-bin"
   "tio"
