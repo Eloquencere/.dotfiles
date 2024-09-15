@@ -68,7 +68,9 @@ fi
 echo -n "Would you like to initialise your remote storage account? (Y/n)"
 read usr_input
 if [[ $usr_input =~ ^[Yy]$ ]]; then
-    rm -rf ~/Pictures ~/Templates ~/Public ~/Videos
+    rm -rf ~/Templates ~/Public ~/Pictures ~/Videos
+    sed -i "/Pictures/d" ~/.config/gtk-3.0/bookmarks
+    sed -i "/Videos/d" ~/.config/gtk-3.0/bookmarks
     sudo pacman -S rclone
 fi
 
