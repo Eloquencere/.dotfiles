@@ -65,7 +65,7 @@ if [[ $usr_input =~ ^[Yy]$ ]]; then
     sed -i '/.* = $/d' $HOME/.gitconfig
 fi
 
-echo -n "Would you like to initialise your remote storage account? (Y/n)"
+echo -n "Would you like to initialise rclone and rustic for backup to your cloud storage account? (Y/n)"
 read usr_input
 if [[ $usr_input =~ ^[Yy]$ ]]; then
     rm -rf ~/Templates ~/Public ~/Pictures ~/Videos
