@@ -34,7 +34,9 @@ export RUSTC_WRAPPER=$CARGO_HOME/bin/sccache
 export CONAN_HOME="$XDG_DATA_HOME/conan"
 
 # Confidential environment variables
-[[ -f "$ZDOTDIR/.confidential/zprofile.zsh" ]] && source "$ZDOTDIR/.confidential/zprofile.zsh"
+if [[ -f "$ZDOTDIR/.confidential/zprofile.zsh" ]]; then
+    source "$ZDOTDIR/.confidential/zprofile.zsh"
+fi
 
 # Plugin manager for zsh
 [[ ! -d "$ZDOTDIR/zinit" ]] && git clone https://github.com/zdharma-continuum/zinit.git "$HOME/.config/zsh/zinit"

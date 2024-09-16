@@ -37,7 +37,9 @@ source <(zoxide init --cmd cd zsh)
 source <($CARGO_HOME/bin/mise activate zsh)
 
 # confidential variables
-[[ -f "$ZDOTDIR/.confidential/zshrc.zsh" ]] && source "$ZDOTDIR/.confidential/zshrc.zsh"
+if [[ -f "$ZDOTDIR/.confidential/zshrc.zsh" ]]; then
+    source "$ZDOTDIR/.confidential/zshrc.zsh"
+fi
 # aliases & functions
 source "$ZDOTDIR/zsh-aliases.zsh"
 source "$ZDOTDIR/zsh-functions.zsh"
