@@ -71,7 +71,7 @@ if [[ $usr_input =~ ^[Yy]$ ]]; then
     rm -rf ~/Templates ~/Public ~/Pictures ~/Videos
     sed -i "/Pictures/d" ~/.config/gtk-3.0/bookmarks
     sed -i "/Videos/d" ~/.config/gtk-3.0/bookmarks
-    sudo pacman -S rclone
+    sudo pacman -S rclone rustic
 fi
 
 mkdir ~/Documents/install_script_temp_folder
@@ -119,15 +119,15 @@ fi
 # Cool tools
 ADDITIONAL_TOOLS_FLATPAK=(
    "bottles"
+   "io.github.Qalculate"
+   # "org.gnome.World.PikaBackup"
    "se.sjoerd.Graphs"
+   "io.github.finefindus.Hieroglyphic"
+   "org.gnome.gitlab.somas.Apostrophe"
    "info.febvre.Komikku"
    "org.gnome.Crosswords"
    "org.gnome.Sudoku"
    "org.gonme.Chess"
-   "org.gnome.World.PikaBackup"
-   "io.github.finefindus.Hieroglyphic"
-   "org.gnome.gitlab.somas.Apostrophe"
-   "io.github.Qalculate"
    # "com.github.neithern.g4music"
 )
 ADDITIONAL_TOOLS_PACMAN=(
