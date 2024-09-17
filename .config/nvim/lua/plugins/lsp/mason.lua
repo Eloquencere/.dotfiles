@@ -30,6 +30,7 @@ return {
                 "lua_ls",
                 "clangd",
                 "verible",
+                "pyright"
             },
             automatic_installation = true,
         })

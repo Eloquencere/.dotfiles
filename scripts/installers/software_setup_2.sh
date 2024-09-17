@@ -88,7 +88,7 @@ sudo pacman -Rs --noconfirm "${BLOAT_PKGS_PACMAN[@]}"
 rm -rf ~/.bash* ~/.fontconfig
 
 mise settings set python_compile 1
-mise use --global bun@latest go@latest python@latest python@2.7
+mise use --global node@latest bun@latest go@latest python@latest python@2.7
 pip install --upgrade pip
 
 # Necessary Python libraries
@@ -120,7 +120,6 @@ fi
 ADDITIONAL_TOOLS_FLATPAK=(
    "bottles"
    "io.github.Qalculate"
-   # "org.gnome.World.PikaBackup"
    "se.sjoerd.Graphs"
    "io.github.finefindus.Hieroglyphic"
    "org.gnome.gitlab.somas.Apostrophe"
@@ -128,7 +127,9 @@ ADDITIONAL_TOOLS_FLATPAK=(
    "org.gnome.Crosswords"
    "org.gnome.Sudoku"
    "org.gonme.Chess"
-   # "com.github.neithern.g4music"
+   "io.github.nokse22.ultimate-tic-tac-toe"
+   "io.github.diegoivanme.flowtime"
+   "com.github.neithern.g4music"
 )
 ADDITIONAL_TOOLS_PACMAN=(
    "obsidian" "zathura" # project management tools

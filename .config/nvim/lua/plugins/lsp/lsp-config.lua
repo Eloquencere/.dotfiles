@@ -112,6 +112,14 @@ return {
                     },
                 })
             end,
+            ["pyright"] = function()
+                lspconfig["pyright"].setup({
+                    capabilities = capabilities,
+                    filetypes = {
+                        "python"
+                    }
+                })
+            end,
             ["verible"] = function()
                 lspconfig["verible"].setup({
                     capabilities = capabilities,

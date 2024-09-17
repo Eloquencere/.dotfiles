@@ -78,7 +78,7 @@ paru -S --noconfirm "${LANG_COMPILERS_PKGS_PARU[@]}"
 UTIL_PKGS_PACMAN=(
   "ttf-jetbrains-mono-nerd"
   "arch-wiki-docs" "arch-wiki-lite"
-  "p7zip" "unrar" "exfat-utils" "ntfs-3g"
+  "p7zip" "unrar" "exfat-utils" "ntfs-3g" "ffmpeg"
   "libreoffice-fresh" "vlc"
   "fastfetch" "btop" # benchmarkers
   "stow" "openbsd-netcat"
