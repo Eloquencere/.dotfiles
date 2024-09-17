@@ -26,13 +26,19 @@ cat --line-range=6:17 .gui_instructions.txt
 echo "press enter to continue"
 read usr_input
 
+echo -n "Enter the ID given by your admin to register with croc: "
+read croc_id
+mkdir -p $ZDOTDIR/.confidential
+echo "# Croc
+export CROC_SELF_TRANSFER_ID=$croc_id" >> $ZDOTDIR/.confidential/zprofile.zsh
+
 echo -n "Would you like to configure the server IP address of USBIP? (Y/n)"
 read usr_input
 if [[ $usr_input =~ ^[Yy]$ ]]; then
    echo "Please enter the server's IP address"
    read server_ip
-   mkdir -p $ZDOTDIR/.confidential
-   echo 'export SERVER_IP=${server_ip}' >> $ZDOTDIR/.confidential/zprofile.zsh
+   echo "# USBIP
+export SERVER_IP=$server_ip" >> $ZDOTDIR/.confidential/zprofile.zsh
    source $HOME/.zprofile
 fi
 

@@ -18,7 +18,7 @@ croc() {
             shift
             local ask_user_to_delete=1
         fi
-		export CROC_SECRET=$(sqlite3 $ZDOTDIR/.confidential/croc_collaborators_registry.db "SELECT Transfer_Code FROM collaborator_catalogue WHERE Self=1;")
+		export CROC_SECRET=$(sqlite3 $ZDOTDIR/.confidential/croc_collaborators_registry.db "SELECT Transfer_Code FROM collaborator_catalogue WHERE ID='$CROC_SELF_TRANSFER_ID';")
         command croc send "$@"
         if [[ $? -eq 1 || $ask_user_to_delete -ne 1 ]]; then
             return
