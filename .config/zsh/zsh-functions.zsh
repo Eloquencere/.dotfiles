@@ -4,12 +4,10 @@ croc() {
 		if [[ $1 == "--here" ]]; then
 			shift
 			export CROC_SECRET=$(sqlite3 $ZDOTDIR/.confidential/croc_collaborators_registry.db "SELECT Transfer_Code FROM collaborator_catalogue WHERE ID='$1';")
-			command croc
-            echo "\033[33mTransfer received\033[0m in current working directory"
+			command croc && echo "\033[33mTransfer received\033[0m in current working directory"
 		else
 			export CROC_SECRET=$(sqlite3 $ZDOTDIR/.confidential/croc_collaborators_registry.db "SELECT Transfer_Code FROM collaborator_catalogue WHERE ID='$1';")
-			command croc --out $HOME/croc-inbox 
-            echo "\033[32mTransfer received\033[0m in ~/croc-inbox"
+			command croc --out $HOME/croc-inbox && echo "\033[32mTransfer received\033[0m in ~/croc-inbox"
 		fi
 	elif [[ $1 == "send" ]]; then
         shift
@@ -25,7 +23,7 @@ croc() {
         if [[ $? -eq 1 || $ask_user_to_delete -ne 1 ]]; then
             return
         fi
-        echo -n "\033[31mDelete the following\033[0m transfered data?\n $@ \n(y/N)"
+        echo -n "\n\033[31mDelete ALL\033[0m the above transfered data?(y/N)"
         read delete_confirmation
         if [[ $delete_confirmation =~ ^[Yy]$ ]]; then
             rm -rf "$@"
