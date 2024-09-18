@@ -78,7 +78,7 @@ export SERVER_IP=$server_ip" >> $ZDOTDIR/.confidential/zprofile.zsh
 fi
 
 mise settings set python_compile 1
-mise use --global node@latest bun@latest go@latest python@latest python@2.7
+mise use --global node@latest go@latest python@latest python@2.7
 pip install --upgrade pip
 
 # Necessary Python libraries
