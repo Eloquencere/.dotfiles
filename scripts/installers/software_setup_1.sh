@@ -165,9 +165,11 @@ sudo pacman -S --noconfirm "${TERMINAL_EMULATOR_PKGS_PACMAN[@]}"
 
 PROJECT_MANAGEMENT_TOOLS_PACMAN=(
    "signal-desktop" "croc"
+   "doxygen"
 )
 PROJECT_MANAGEMENT_TOOLS_PARU=(
     "jitsi-meet-desktop-bin" # project management tools
+    "naturaldocs2"
 )
 sudo pacman -S --noconfirm "${PROJECT_MANAGEMENT_TOOLS_PACMAN[@]}"
 paru -S --noconfirm "${PROJECT_MANAGEMENT_TOOLS_PARU[@]}"
