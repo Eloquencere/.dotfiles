@@ -1,3 +1,5 @@
+#! /bin/bash
+
 echo "Welcome to the installer, this will be part 1 of installing all necessary tools for development
 This script will automatically reboot the system after it is done"
 sleep 10
@@ -12,6 +14,16 @@ BASIC_PKGS_PACMAN=(
 )
 sudo pacman -S --needed --noconfirm "${BASIC_PKGS_PACMAN[@]}"
 chsh -s $(which zsh)
+
+# Uninstall bloat
+BLOAT_PKGS_PACMAN=(
+  "vim" "htop" "nano"
+  "epiphany" "gnome-music" "gnome-calendar"
+  "gnome-contacts" "sushi" "gnome-weather" "gnome-tour"
+  "totem" "gnome-maps" "gnome-logs" "gnome-calculator" "orca"
+)
+sudo pacman -Rns --noconfirm "${BLOAT_PKGS_PACMAN[@]}"
+
 echo "Do you have an amd or intel CPU?"
 echo -n "a -> amd & i -> intel: "
 read cpu_name
@@ -33,14 +45,10 @@ sudo pacman -Sy
 
 # Language compilers and related packages
 LANG_COMPILER_PKGS_PACMAN=(
-  "perl" "go" "python"
   "clang" "lldb"
-  "rustup"
-  "julia" "ghc" "zig"
-)
-LANG_COMPILERS_PKGS_PARU=(
-  "conan"
-  "scriptisto" # script in any compiled language
+  "perl" "go" "python"
+  "rustup" "zig"
+  "julia" "ghc"
 )
 sudo pacman -S gdb valgrind strace ghidra
 export CARGO_HOME="$HOME/.local/share/rust/.cargo"
@@ -50,17 +58,18 @@ sudo pacman -S --needed --noconfirm "${LANG_COMPILER_PKGS_PACMAN[@]}"
 rustup toolchain install stable
 rustup default stable
 
-cargo install sccache
+# rust initialisations
 export RUSTC_WRAPPER="$CARGO_HOME/bin/sccache"
 QUALITY_OF_LIFE_CRATES=(
-  "cargo-binstall" "cargo-expand"
+  "sccache" "cargo-binstall" 
+  "cargo-expand"
   "irust" "bacon"
   # tokio rayon
 )
-cargo install "${QUALITY_OF_LIFE_CRATES[@]}"
 QUALITY_OF_LIFE_CRATES_BIN=(
   "mise" # language version control
 )
+cargo install "${QUALITY_OF_LIFE_CRATES[@]}"
 cargo binstall "${QUALITY_OF_LIFE_CRATES_BIN[@]}"
 
 # Installing external package managers paru(AUR), flatpak(flathub)
@@ -72,29 +81,27 @@ cd ..
 rm -rf paru/
 sudo pacman -S --noconfirm flatpak
 
+LANG_COMPILERS_PKGS_PARU=(
+  "conan"
+  # "scriptisto"
+)
 paru -S --noconfirm "${LANG_COMPILERS_PKGS_PARU[@]}"
 
 # Basic software
 UTIL_PKGS_PACMAN=(
   "ttf-jetbrains-mono-nerd"
   "arch-wiki-docs" "arch-wiki-lite"
-  "p7zip" "unrar" "exfat-utils" "ntfs-3g" "ffmpeg"
-  "libreoffice-fresh" "vlc"
+  "p7zip" "unrar" "exfat-utils" "ntfs-3g"
+  "libreoffice-fresh" "vlc" "ffmpeg"
   "fastfetch" "btop" # benchmarkers
-  "stow" "openbsd-netcat"
   "ufw" # firewall
-  "dos2unix"
-)
-UTIL_PKGS_PARU=(
-  "speedtest-rs-bin"
-  "nautilus-open-any-terminal"
 )
 sudo pacman -S --noconfirm "${UTIL_PKGS_PACMAN[@]}"
 sudo systemctl enable ufw --now
-paru -S --noconfirm "${UTIL_PKGS_PARU[@]}"
 
-# Others
+# Quality of life pkgs
 QOF_PKGS_PARU=(
+  "nautilus-open-any-terminal"
   "preload" # to open up software faster
   # "auto-cpufreq"
 )
@@ -102,28 +109,16 @@ paru -S --noconfirm "${QOF_PKGS_PARU[@]}"
 sudo systemctl enable preload --now
 # sudo systemctl enable auto-cpufreq --now
 
-# Install extension manager
-flatpak install --assumeyes ExtensionManager
-
-# Browser
-echo "Would you like to install brave or google chrome?"
-echo -n "b -> brave & gc -> google chrome: "
-read browser_choice
-declare -A BROWSER_PARU=(
-	[b]="brave-bin"
-	[gc]="google-chrome"
-)
-paru -S --noconfirm "${BROWSER_PARU[${browser_choice}]}"
-
 # Command line tools
 CLI_PKGS_PACMAN=(
+  "man-db"
   "github-cli" "tree"
   "fzf" "zoxide" "eza" "bat" "fd" "ripgrep" "jq" "yq" "less"
   "yazi" "gdu" "duf" "dust" "git-delta" "lazygit" "procs"
-  "man-db"
-  "croc" # project management tools
+  "stow" "openbsd-netcat" "dos2unix"
 )
 CLI_PKGS_PARU=(
+  "speedtest-rs-bin"
   "jqp-bin"
   "tlrc-bin" "cheat"
   "kanata-bin" "mprocs-bin"
@@ -132,10 +127,8 @@ CLI_PKGS_PARU=(
 )
 sudo pacman -S --noconfirm "${CLI_PKGS_PACMAN[@]}"
 paru -S --noconfirm "${CLI_PKGS_PARU[@]}"
-mkdir ~/croc-inbox
-sed -i "1i\file://$HOME/croc-inbox" ~/.config/gtk-3.0/bookmarks
 
-#Kanata
+# Kanata config
 sudo groupadd uinput
 sudo usermod -aG input $USER
 sudo usermod -aG uinput $USER
@@ -155,33 +148,60 @@ Restart=no
 
 [Install]
 WantedBy=default.target' > /lib/systemd/system/kanata.service"
-
 sudo systemctl enable kanata --now
+
+# usbip
+sudo pacman -S --noconfirm usbip
+sudo sh -c " echo '# usbip
+usbip-core
+vhci-hcd' > /etc/modules-load.d/usbip.conf"
 
 # Terminal Emulator tools
 TERMINAL_EMULATOR_PKGS_PACMAN=(
-  "alacritty" "starship" "atuin"
+  "alacritty" "starship"
   "tmux" "tmuxp"
 )
 sudo pacman -S --noconfirm "${TERMINAL_EMULATOR_PKGS_PACMAN[@]}"
 
-# Remote machine tools
-REMOTE_MACHINE_PKGS_PACMAN=(
-  "usbip"
+PROJECT_MANAGEMENT_TOOLS_PACMAN=(
+   "signal-desktop" "croc"
 )
-REMOTE_MACHINE_PKGS_PARU=(
-  "nomachine" "rustdesk-bin" "parsec-bin"
+PROJECT_MANAGEMENT_TOOLS_PARU=(
+    "jitsi-meet-desktop-bin" # project management tools
 )
-sudo pacman -S --noconfirm "${REMOTE_MACHINE_PKGS_PACMAN[@]}"
-sudo sh -c " echo '# USBIP
-usbip-core
-vhci-hcd' > /etc/modules-load.d/usbip.conf"
-# paru -S --noconfirm "${REMOTE_MACHINE_PKGS_PARU[@]}"
+sudo pacman -S --noconfirm "${PROJECT_MANAGEMENT_TOOLS_PACMAN[@]}"
+paru -S --noconfirm "${PROJECT_MANAGEMENT_TOOLS_PARU[@]}"
+mkdir ~/croc-inbox
+sed -i "1i\file://$HOME/croc-inbox" ~/.config/gtk-3.0/bookmarks
+sed -i "1i\file://$HOME/Tools" ~/.config/gtk-3.0/bookmarks
 
-# Initialising all dot files
-cd ~/.dotfiles
-stow .
-cd -
+# Cool tools
+ADDITIONAL_TOOLS_FLATPAK=(
+   "ExtensionManager"
+   "bottles"
+   "io.github.Qalculate"
+   "se.sjoerd.Graphs"
+   "io.github.diegoivanme.flowtime"
+   "io.github.finefindus.Hieroglyphic"
+   "org.gnome.gitlab.somas.Apostrophe"
+   "info.febvre.Komikku"
+   "org.gnome.Crosswords"
+   "org.gnome.Sudoku"
+   "org.gonme.Chess"
+   "io.github.nokse22.ultimate-tic-tac-toe"
+   # "com.github.neithern.g4music"
+)
+flatpak install --assumeyes flathub "${ADDITIONAL_TOOLS_FLATPAK[@]}"
+
+# Browser
+echo "Would you like to install brave or google chrome?"
+echo -n "b -> brave & gc -> google chrome: "
+read browser_choice
+declare -A BROWSER_PARU=(
+	[b]="brave-bin"
+	[gc]="google-chrome"
+)
+paru -S --noconfirm "${BROWSER_PARU[${browser_choice}]}"
 
 # GNOME nautilus-open-any-terminal config
 gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal alacritty
@@ -199,6 +219,11 @@ gsettings set org.gnome.desktop.interface monospace-font-name 'JetBrainsMono Ner
 
 cd ~/Documents
 rm -rf install_script_temp_folder
+
+# Initialising all dotfiles
+cd ~/.dotfiles
+stow .
+cd -
 
 echo "The system will reboot now"
 

@@ -1,9 +1,14 @@
+#! /bin/bash
+
 echo "Welcome to part 2 of the installer"
-echo -n "Ensure that you are running this on Alacritty & TMUX(green line at the bottom) only (Y/n)"
+echo -n "Ensure that you are running this on Alacritty & Tmux(GREEN line at the bottom) (Y/n)"
 read usr_input
 if [[ $usr_input =~ ^[Nn]$ ]]; then
    exit
 fi
+# Removing apps and data that couldn't be in the first script
+sudo pacman -Rns gnome-console
+rm -rf ~/.bash* ~/.fontconfig
 
 # system update
 source ../continual-reference/system_updater.zsh
@@ -26,21 +31,12 @@ cat --line-range=6:17 .gui_instructions.txt
 echo "press enter to continue"
 read usr_input
 
-echo -n "Enter the ID given by your admin to register with croc: "
+echo -n "Enter the ID granted by your admin to register with your team via croc: "
+# echo -n "Enter the croc transfer sequence granted by your admin to register with your team: "
 read croc_id
 mkdir -p $ZDOTDIR/.confidential
 echo "# Croc
 export CROC_SELF_TRANSFER_ID=$croc_id" >> $ZDOTDIR/.confidential/zprofile.zsh
-
-echo -n "Would you like to configure the server IP address of USBIP? (Y/n)"
-read usr_input
-if [[ $usr_input =~ ^[Yy]$ ]]; then
-   echo "Please enter the server's IP address"
-   read server_ip
-   echo "# USBIP
-export SERVER_IP=$server_ip" >> $ZDOTDIR/.confidential/zprofile.zsh
-   source $HOME/.zprofile
-fi
 
 echo -n "Would you like to log into your git account? (Y/n)"
 read usr_input
@@ -71,27 +67,15 @@ if [[ $usr_input =~ ^[Yy]$ ]]; then
     sed -i '/.* = $/d' $HOME/.gitconfig
 fi
 
-echo -n "Would you like to initialise rclone and rustic for backup to your cloud storage account? (Y/n)"
+echo -n "Would you like to configure the server IP address of USBIP? (Y/n)"
 read usr_input
 if [[ $usr_input =~ ^[Yy]$ ]]; then
-    rm -rf ~/Templates ~/Public ~/Pictures ~/Videos
-    sed -i "/Pictures/d" ~/.config/gtk-3.0/bookmarks
-    sed -i "/Videos/d" ~/.config/gtk-3.0/bookmarks
-    sudo pacman -S rclone rustic
+   echo "Please enter the server's IP address"
+   read server_ip
+   echo "# USBIP
+export SERVER_IP=$server_ip" >> $ZDOTDIR/.confidential/zprofile.zsh
+   source $HOME/.zprofile
 fi
-
-mkdir ~/Documents/install_script_temp_folder
-cd ~/Documents/install_script_temp_folder
-
-# Uninstall bloat
-BLOAT_PKGS_PACMAN=(
-  "vim" "htop" "nano"
-  "epiphany" "gnome-music" "gnome-calendar" "gnome-console"
-  "gnome-contacts" "sushi" "gnome-weather" "gnome-tour"
-  "totem" "gnome-maps" "gnome-logs" "gnome-calculator" "orca"
-)
-sudo pacman -Rs --noconfirm "${BLOAT_PKGS_PACMAN[@]}"
-rm -rf ~/.bash* ~/.fontconfig
 
 mise settings set python_compile 1
 mise use --global node@latest bun@latest go@latest python@latest python@2.7
@@ -107,7 +91,10 @@ pip install --upgrade pip
 # pip install parse pendulum pydantic ruff mypy pyglet
 # pip install keras tensorflow scikit-learn torch
 
-echo -n "Would you like to install a VM software?(y/n)"
+mkdir ~/Documents/install_script_temp_folder
+cd ~/Documents/install_script_temp_folder
+
+echo -n "Would you like to install a VM software (virt-manager) ?(y/n)"
 read usr_input
 if [[ $usr_input =~ ^[Yy]$ ]]; then
     # virt-manager with qemu/KVM
@@ -115,35 +102,29 @@ if [[ $usr_input =~ ^[Yy]$ ]]; then
        "archlinux-keyring"
        "qemu-desktop" "virt-manager" "virt-viewer" "dnsmasq" "vde2" "bridge-utils"
     )
-   sudo pacman -Syu --noconfirm
    sudo pacman -S --needed --noconfirm "${VM_PKGS[@]}"
    sudo systemctl enable libvirtd.service --now
    sudo usermod -a -G libvirt $(whoami)
    sudo systemctl restart libvirtd.service
 fi
 
-# Cool tools
-ADDITIONAL_TOOLS_FLATPAK=(
-   "bottles"
-   "io.github.Qalculate"
-   "se.sjoerd.Graphs"
-   "io.github.finefindus.Hieroglyphic"
-   "org.gnome.gitlab.somas.Apostrophe"
-   "info.febvre.Komikku"
-   "org.gnome.Crosswords"
-   "org.gnome.Sudoku"
-   "org.gonme.Chess"
-   "io.github.nokse22.ultimate-tic-tac-toe"
-   "io.github.diegoivanme.flowtime"
-   "com.github.neithern.g4music"
-)
-ADDITIONAL_TOOLS_PACMAN=(
-   "obsidian" "zathura" # project management tools
-   "signal-desktop" # project management tools
-)
-# flatpak install --assumeyes flathub "${ADDITIONAL_TOOLS_FLATPAK[@]}"
-# sudo pacman -S --noconfirm "${ADDITIONAL_TOOLS_PACMAN[@]}"
-# paru -S --noconfirm jitsi-meet-desktop-bin # project management tools
+echo -n "Would you like to initialise rclone and rustic for backup to your cloud storage account? (Y/n)"
+read usr_input
+if [[ $usr_input =~ ^[Yy]$ ]]; then
+    rm -rf ~/Templates ~/Public ~/Pictures ~/Videos
+    sed -i "/Pictures/d" ~/.config/gtk-3.0/bookmarks
+    sed -i "/Videos/d" ~/.config/gtk-3.0/bookmarks
+    sudo pacman -S rclone rustic
+fi
+
+echo -n "Would you like to install remote machine software (nomachine, rustdesk, parsec) ?(y/n)"
+read usr_input
+if [[ $usr_input =~ ^[Yy]$ ]]; then
+    REMOTE_MACHINE_PKGS_PARU=(
+      "nomachine" "rustdesk-bin" "parsec-bin"
+    )
+fi
+paru -S --noconfirm "${REMOTE_MACHINE_PKGS_PARU[@]}"
 
 # # Doom Emacs
 # sudo pacman -S emacs-wayland
@@ -154,3 +135,7 @@ ADDITIONAL_TOOLS_PACMAN=(
 
 cd ~/Documents
 rm -rf install_script_temp_folder
+
+echo "It's a good idea to reboot now"
+sleep 2
+
