@@ -94,6 +94,28 @@ pip install --upgrade pip
 mkdir ~/Documents/install_script_temp_folder
 cd ~/Documents/install_script_temp_folder
 
+echo -n "Would you like to initialise rclone and rustic for backup to your cloud storage account? (Y/n)"
+read usr_input
+if [[ $usr_input =~ ^[Yy]$ ]]; then
+    sudo pacman -S rclone rustic
+    rm -rf ~/Templates ~/Public ~/Pictures ~/Videos
+    sed -i "/Pictures/d" ~/.config/gtk-3.0/bookmarks
+    sed -i "/Videos/d" ~/.config/gtk-3.0/bookmarks
+    cd $DOTFILES_HOME
+    sed -i "/rustic/d" .gitignore
+    stow .
+    cd -
+fi
+
+echo -n "Would you like to install remote machine software (nomachine, rustdesk, parsec)?(y/n)"
+read usr_input
+if [[ $usr_input =~ ^[Yy]$ ]]; then
+    REMOTE_MACHINE_PKGS_PARU=(
+      "nomachine" "rustdesk-bin" "parsec-bin"
+    )
+    paru -S --noconfirm "${REMOTE_MACHINE_PKGS_PARU[@]}"
+fi
+
 echo -n "Would you like to install a VM software (virt-manager) ?(y/n)"
 read usr_input
 if [[ $usr_input =~ ^[Yy]$ ]]; then
@@ -107,24 +129,6 @@ if [[ $usr_input =~ ^[Yy]$ ]]; then
    sudo usermod -a -G libvirt $(whoami)
    sudo systemctl restart libvirtd.service
 fi
-
-echo -n "Would you like to initialise rclone and rustic for backup to your cloud storage account? (Y/n)"
-read usr_input
-if [[ $usr_input =~ ^[Yy]$ ]]; then
-    rm -rf ~/Templates ~/Public ~/Pictures ~/Videos
-    sed -i "/Pictures/d" ~/.config/gtk-3.0/bookmarks
-    sed -i "/Videos/d" ~/.config/gtk-3.0/bookmarks
-    sudo pacman -S rclone rustic
-fi
-
-echo -n "Would you like to install remote machine software (nomachine, rustdesk, parsec) ?(y/n)"
-read usr_input
-if [[ $usr_input =~ ^[Yy]$ ]]; then
-    REMOTE_MACHINE_PKGS_PARU=(
-      "nomachine" "rustdesk-bin" "parsec-bin"
-    )
-fi
-paru -S --noconfirm "${REMOTE_MACHINE_PKGS_PARU[@]}"
 
 # # Doom Emacs
 # sudo pacman -S emacs-wayland
