@@ -184,11 +184,11 @@ ADDITIONAL_TOOLS_FLATPAK=(
    "io.github.diegoivanme.flowtime"
    "io.github.finefindus.Hieroglyphic"
    "org.gnome.gitlab.somas.Apostrophe"
-   "info.febvre.Komikku"
    "org.gnome.Crosswords"
    "org.gnome.Sudoku"
    "org.gonme.Chess"
    "io.github.nokse22.ultimate-tic-tac-toe"
+   "info.febvre.Komikku"
    # "com.github.neithern.g4music"
 )
 flatpak install --assumeyes flathub "${ADDITIONAL_TOOLS_FLATPAK[@]}"
