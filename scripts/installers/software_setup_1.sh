@@ -79,7 +79,7 @@ cd paru
 makepkg -si
 cd ..
 rm -rf paru/
-sudo pacman -S --noconfirm flatpak
+sudo pacman -S --needed --noconfirm flatpak
 
 LANG_COMPILERS_PKGS_PARU=(
   "conan"
