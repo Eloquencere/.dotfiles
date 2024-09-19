@@ -17,26 +17,26 @@ BLOAT_PKGS_PACMAN=(
 sudo pacman -Rns --noconfirm "${BLOAT_PKGS_PACMAN[@]}"
 
 # Primary initialisations
-export CARGO_HOME="$HOME/.local/share/rust/.cargo"
-export RUSTUP_HOME="$HOME/.local/share/rust/.rustup"
 BASIC_PKGS_PACMAN=(
   "base-devel" 
   "zsh" "neovim"
   "rustup"
 )
+export CARGO_HOME="$HOME/.local/share/rust/.cargo"
+export RUSTUP_HOME="$HOME/.local/share/rust/.rustup"
 sudo pacman -S --needed --noconfirm "${BASIC_PKGS_PACMAN[@]}"
 chsh -s $(which zsh)
 
 # rust initialisations
 rustup toolchain install stable
 rustup default stable
-export RUSTC_WRAPPER="$CARGO_HOME/bin/sccache"
 QUALITY_OF_LIFE_CRATES=(
   "sccache"
   "cargo-expand"
   "irust" "bacon" # tokio rayon
 )
 cargo install "${QUALITY_OF_LIFE_CRATES[@]}"
+export RUSTC_WRAPPER="$CARGO_HOME/bin/sccache"
 
 echo "Do you have an amd or intel CPU?"
 echo -n "a -> amd & i -> intel: "
