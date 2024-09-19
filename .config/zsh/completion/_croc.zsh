@@ -28,7 +28,7 @@ _croc() {
         '(-h --help)'{-h,--help}'[show help]' \
         '(-v --version)'{-v,--version}'[print the version]' \
         '1: :->cmds' \
-        "*::arg:->args"
+        "*::arg:->args" \
 
 	case "$state" in
 		cmds)
@@ -92,8 +92,8 @@ _croc_relay_cmd() {
         '(--port)--port[base port for the relay]' \
         '(--transfers)--transfers[number of ports to use for relay]' \
         '(-h --help)'{-h,--help}'[show help]' \
-        '1: :->cmds'
-        "*::arg:->args"
+        '1: :->cmds' \
+        "*::arg:->args" \
 
     case "$state" in
         cmds)
@@ -122,7 +122,7 @@ _croc_help_cmd() {
     local line state
 
     _arguments -s -S \
-        '(-h --help)'{-h,--help}'[show help]'
+        '(-h --help)'{-h,--help}'[show help]' \
 }
 
 _croc_recv_cmd() {
