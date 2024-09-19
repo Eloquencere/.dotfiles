@@ -1,5 +1,8 @@
 #! /bin/bash
 
+mkdir ~/Documents/install_script_temp_folder
+cd ~/Documents/install_script_temp_folder
+
 echo "Welcome to part 2 of the installer"
 echo -n "Ensure that you are running this on Alacritty & Tmux(GREEN line at the bottom) (Y/n)"
 read usr_input
@@ -10,8 +13,6 @@ fi
 sudo pacman -Rns gnome-console
 rm -rf ~/.bash* ~/.fontconfig
 
-# system update
-source ../continual-reference/system_updater.zsh
 echo "Please enter tmux prefix + Shift + I to install all plugins"
 echo "press enter to continue"
 read usr_input
@@ -30,6 +31,26 @@ read usr_input
 cat --line-range=6:17 .gui_instructions.txt
 echo "press enter to continue"
 read usr_input
+
+# system update
+source ../continual-reference/system_updater.zsh
+
+mise settings set python_compile 1
+mise use --global node@latest go@latest python@latest python@2.7
+pip install --upgrade pip
+
+# Browser
+echo "Would you like to install brave or google chrome?"
+echo -n "b -> brave & gc -> google chrome: "
+read browser_choice
+if [[ $browser_choice == "b" ]]; then
+    paru -S brave-bin
+else
+    paru -S google-chrome
+    mkdir -p $ZDOTDIR/.confidential
+    echo "# Browser
+export BROWSER=\"chrome\"" >> $ZDOTDIR/.confidential/zprofile.zsh
+fi
 
 echo -n "Enter the ID granted by your admin to register with your team via croc: "
 # echo -n "Enter the croc transfer sequence granted by your admin to register with your team: "
@@ -77,23 +98,6 @@ export SERVER_IP=$server_ip" >> $ZDOTDIR/.confidential/zprofile.zsh
    source $HOME/.zprofile
 fi
 
-mise settings set python_compile 1
-mise use --global node@latest go@latest python@latest python@2.7
-pip install --upgrade pip
-
-# Necessary Python libraries
-# pip install icecream # debugging
-# pip install drawio colorama pyfiglet # presentation
-# pip install dash plotly seaborn mysql-connector-python # data representation and calculation
-# pip install polars xarray
-# pip install numpy scipy pillow
-# pip install Cython numba taichi
-# pip install parse pendulum pydantic ruff mypy pyglet
-# pip install keras tensorflow scikit-learn torch
-
-mkdir ~/Documents/install_script_temp_folder
-cd ~/Documents/install_script_temp_folder
-
 echo -n "Would you like to initialise rclone and rustic for backup to your cloud storage account? (Y/n)"
 read usr_input
 if [[ $usr_input =~ ^[Yy]$ ]]; then
@@ -130,6 +134,12 @@ if [[ $usr_input =~ ^[Yy]$ ]]; then
    sudo systemctl restart libvirtd.service
 fi
 
+cd ~/Documents
+rm -rf install_script_temp_folder
+
+echo "It's a good idea to reboot now"
+sleep 2
+
 # # Doom Emacs
 # sudo pacman -S emacs-wayland
 # git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
@@ -137,9 +147,13 @@ fi
 # echo '# Doom Emacs
 # export "PATH=~/.config/emacs/bin:\$PATH' >> ~/.zprofile
 
-cd ~/Documents
-rm -rf install_script_temp_folder
-
-echo "It's a good idea to reboot now"
-sleep 2
+# Necessary Python libraries
+# pip install icecream # debugging
+# pip install drawio colorama pyfiglet # presentation
+# pip install dash plotly seaborn mysql-connector-python # data representation and calculation
+# pip install polars xarray
+# pip install numpy scipy pillow
+# pip install Cython numba taichi
+# pip install parse pendulum pydantic ruff mypy pyglet
+# pip install keras tensorflow scikit-learn torch
 

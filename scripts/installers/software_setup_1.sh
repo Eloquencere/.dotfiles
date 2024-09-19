@@ -2,18 +2,10 @@
 
 echo "Welcome to the installer, this will be part 1 of installing all necessary tools for development
 This script will automatically reboot the system after it is done"
-sleep 10
+sleep 7
 
 mkdir ~/Documents/install_script_temp_folder
 cd ~/Documents/install_script_temp_folder
-
-# Temporary setup for zsh shell
-BASIC_PKGS_PACMAN=(
-  "base-devel" 
-  "zsh" "neovim"
-)
-sudo pacman -S --needed --noconfirm "${BASIC_PKGS_PACMAN[@]}"
-chsh -s $(which zsh)
 
 # Uninstall bloat
 BLOAT_PKGS_PACMAN=(
@@ -23,6 +15,28 @@ BLOAT_PKGS_PACMAN=(
   "totem" "gnome-maps" "gnome-logs" "gnome-calculator" "orca"
 )
 sudo pacman -Rns --noconfirm "${BLOAT_PKGS_PACMAN[@]}"
+
+# Primary initialisations
+export CARGO_HOME="$HOME/.local/share/rust/.cargo"
+export RUSTUP_HOME="$HOME/.local/share/rust/.rustup"
+BASIC_PKGS_PACMAN=(
+  "base-devel" 
+  "zsh" "neovim"
+  "rustup"
+)
+sudo pacman -S --needed --noconfirm "${BASIC_PKGS_PACMAN[@]}"
+chsh -s $(which zsh)
+
+# rust initialisations
+rustup toolchain install stable
+rustup default stable
+export RUSTC_WRAPPER="$CARGO_HOME/bin/sccache"
+QUALITY_OF_LIFE_CRATES=(
+  "sccache"
+  "cargo-expand"
+  "irust" "bacon" # tokio rayon
+)
+cargo install "${QUALITY_OF_LIFE_CRATES[@]}"
 
 echo "Do you have an amd or intel CPU?"
 echo -n "a -> amd & i -> intel: "
@@ -43,35 +57,6 @@ sudo sed -i "s/^#\(ParallelDownloads .*\)/\1/g" /etc/pacman.conf
 sudo sed -i "/^#\[multilib\]/{s/^#\(.*\)/\1/g; n; s/^#\(.*\)/\1/g;}" /etc/pacman.conf
 sudo pacman -Sy
 
-# Language compilers and related packages
-LANG_COMPILER_PKGS_PACMAN=(
-  "clang" "lldb"
-  "perl" "go" "python"
-  "rustup" "zig"
-  "julia" "ghc"
-)
-sudo pacman -S gdb valgrind strace ghidra
-export CARGO_HOME="$HOME/.local/share/rust/.cargo"
-export RUSTUP_HOME="$HOME/.local/share/rust/.rustup"
-export CONAN_HOME="$HOME/.local/share/conan"
-sudo pacman -S --needed --noconfirm "${LANG_COMPILER_PKGS_PACMAN[@]}"
-rustup toolchain install stable
-rustup default stable
-
-# rust initialisations
-export RUSTC_WRAPPER="$CARGO_HOME/bin/sccache"
-QUALITY_OF_LIFE_CRATES=(
-  "sccache" "cargo-binstall" 
-  "cargo-expand"
-  "irust" "bacon"
-  # tokio rayon
-)
-QUALITY_OF_LIFE_CRATES_BIN=(
-  "mise" # language version control
-)
-cargo install "${QUALITY_OF_LIFE_CRATES[@]}"
-cargo binstall "${QUALITY_OF_LIFE_CRATES_BIN[@]}"
-
 # Installing external package managers paru(AUR), flatpak(flathub)
 sudo pacman -Syu --noconfirm
 git clone https://aur.archlinux.org/paru.git
@@ -81,10 +66,20 @@ cd ..
 rm -rf paru/
 sudo pacman -S --needed --noconfirm flatpak
 
+# Language compilers and related packages
+LANG_COMPILER_PKGS_PACMAN=(
+  "jdk21-openjdk" "gdb" "valgrind" "strace" "ghidra"
+  "clang" "lldb"
+  "perl" "go" "python"
+  "zig" "julia" "ghc"
+)
+sudo pacman -S --needed --noconfirm "${LANG_COMPILER_PKGS_PACMAN[@]}"
 LANG_COMPILERS_PKGS_PARU=(
+  "mise-bin"
   "conan"
   # "scriptisto"
 )
+export CONAN_HOME="$HOME/.local/share/conan"
 paru -S --noconfirm "${LANG_COMPILERS_PKGS_PARU[@]}"
 
 # Basic software
@@ -98,14 +93,12 @@ UTIL_PKGS_PACMAN=(
 )
 sudo pacman -S --noconfirm "${UTIL_PKGS_PACMAN[@]}"
 sudo systemctl enable ufw --now
-
-# Quality of life pkgs
-QOF_PKGS_PARU=(
+UTIL_PKGS_PARU=(
   "nautilus-open-any-terminal"
   "preload" # to open up software faster
   # "auto-cpufreq"
 )
-paru -S --noconfirm "${QOF_PKGS_PARU[@]}"
+paru -S --noconfirm "${UTIL_PKGS_PARU[@]}"
 sudo systemctl enable preload --now
 # sudo systemctl enable auto-cpufreq --now
 
@@ -117,6 +110,7 @@ CLI_PKGS_PACMAN=(
   "yazi" "gdu" "duf" "dust" "git-delta" "lazygit" "procs"
   "stow" "openbsd-netcat" "dos2unix"
 )
+sudo pacman -S --noconfirm "${CLI_PKGS_PACMAN[@]}"
 CLI_PKGS_PARU=(
   "speedtest-rs-bin"
   "jqp-bin"
@@ -125,7 +119,6 @@ CLI_PKGS_PARU=(
   "tio"
   "pipes.sh"
 )
-sudo pacman -S --noconfirm "${CLI_PKGS_PACMAN[@]}"
 paru -S --noconfirm "${CLI_PKGS_PARU[@]}"
 
 # Kanata config
@@ -163,15 +156,16 @@ TERMINAL_EMULATOR_PKGS_PACMAN=(
 )
 sudo pacman -S --noconfirm "${TERMINAL_EMULATOR_PKGS_PACMAN[@]}"
 
+# Project Management Tools
 PROJECT_MANAGEMENT_TOOLS_PACMAN=(
    "signal-desktop" "croc"
    "doxygen"
 )
+sudo pacman -S --noconfirm "${PROJECT_MANAGEMENT_TOOLS_PACMAN[@]}"
 PROJECT_MANAGEMENT_TOOLS_PARU=(
     "jitsi-meet-desktop-bin" # project management tools
     "naturaldocs2"
 )
-sudo pacman -S --noconfirm "${PROJECT_MANAGEMENT_TOOLS_PACMAN[@]}"
 paru -S --noconfirm "${PROJECT_MANAGEMENT_TOOLS_PARU[@]}"
 mkdir ~/croc-inbox
 sed -i "1i\file://$HOME/croc-inbox" ~/.config/gtk-3.0/bookmarks
@@ -194,16 +188,6 @@ ADDITIONAL_TOOLS_FLATPAK=(
    # "com.github.neithern.g4music"
 )
 flatpak install --assumeyes flathub "${ADDITIONAL_TOOLS_FLATPAK[@]}"
-
-# Browser
-echo "Would you like to install brave or google chrome?"
-echo -n "b -> brave & gc -> google chrome: "
-read browser_choice
-declare -A BROWSER_PARU=(
-	[b]="brave-bin"
-	[gc]="google-chrome"
-)
-paru -S --noconfirm "${BROWSER_PARU[${browser_choice}]}"
 
 # GNOME nautilus-open-any-terminal config
 gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal alacritty
