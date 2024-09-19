@@ -98,13 +98,16 @@ export SERVER_IP=$server_ip" >> $ZDOTDIR/.confidential/zprofile.zsh
    source $HOME/.zprofile
 fi
 
-echo -n "Would you like to initialise rclone and rustic for backup to your cloud storage account? (Y/n)"
+echo -n "Would you like to initialise Pika for backup to your OneDrive storage account? (Y/n)"
 read usr_input
 if [[ $usr_input =~ ^[Yy]$ ]]; then
-    sudo pacman -S rclone rustic
+    flatpak install --assumeyes flathub org.gnome.World.PikaBackup
     rm -rf ~/Templates ~/Public ~/Pictures ~/Videos
     sed -i "/Pictures/d" ~/.config/gtk-3.0/bookmarks
     sed -i "/Videos/d" ~/.config/gtk-3.0/bookmarks
+    echo " # OneDrive Mount
+rclone mount remote: ~/OneDrive --vfs-cache-mode writes &" >> $ZDOTDIR/.confidential/zprofile.zsh
+    echo "Setup backup schedules as well"
 fi
 
 echo -n "Would you like to install remote machine software (nomachine, rustdesk, parsec)?(y/n)"

@@ -34,21 +34,17 @@ Komikku
     4. General
         - Disable desktop notifications
 
-Setting up Online Accounts (Assuming OneDrive)
+Setting up Online Accounts
     Using rclone
         - references
             https://www.youtube.com/watch?v=u_W0-HEVOyg
             https://rclone.org/onedrive/
-        - run
-            rclone config
-            mkdir ~/OneDrive
-            echo "# Onedrive\nrclone mount <remote_name>:<optional: folder under root dir> ~/OneDrive --vfs-cache-mode full &" >> $ZDOTDIR/.confidential/zprofile.zsh
     Using GNOME online accounts
         - Open up the file manager & click on your service provider
         - Find the exact name of the mount, run: (ex: onedrive://xxxxxxxxxx/)
             gio mount -l
         - To auto mount the drive on reboot, run:
-            echo "# Onedrive\ngio mount onedrive://xxxxxxxxxxx/" >> $ZDOTDIR/.confidential/zprofile.zsh
+            echo "# Onedrive\ngio mount OneDrive://xxxxxxxxxxx/" >> $ZDOTDIR/.confidential/zprofile.zsh
         - run 
             mkdir -p $HOME/OneDrive/Home $HOME/OneDrive/Shared
             ln -s "/run/user/1000/gvfs/onedrive:host=xxxxxxxxxx/My Files" $HOME/OneDrive/Home
