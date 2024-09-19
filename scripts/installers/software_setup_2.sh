@@ -105,10 +105,6 @@ if [[ $usr_input =~ ^[Yy]$ ]]; then
     rm -rf ~/Templates ~/Public ~/Pictures ~/Videos
     sed -i "/Pictures/d" ~/.config/gtk-3.0/bookmarks
     sed -i "/Videos/d" ~/.config/gtk-3.0/bookmarks
-    cd $DOTFILES_HOME
-    sed -i "/rustic/d" .gitignore
-    stow .
-    cd -
 fi
 
 echo -n "Would you like to install remote machine software (nomachine, rustdesk, parsec)?(y/n)"
