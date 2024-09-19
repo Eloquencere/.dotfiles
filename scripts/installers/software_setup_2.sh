@@ -105,6 +105,7 @@ if [[ $usr_input =~ ^[Yy]$ ]]; then
     rm -rf ~/Templates ~/Public ~/Pictures ~/Videos
     sed -i "/Pictures/d" ~/.config/gtk-3.0/bookmarks
     sed -i "/Videos/d" ~/.config/gtk-3.0/bookmarks
+    mkdir ~/OneDrive
     echo " # OneDrive Mount
 rclone mount remote: ~/OneDrive --vfs-cache-mode writes &" >> $ZDOTDIR/.confidential/zprofile.zsh
     echo "Setup backup schedules as well"
