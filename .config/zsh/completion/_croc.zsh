@@ -58,7 +58,7 @@ _croc() {
 }
 
 _croc_send_cmd() {
-    local state line curcontext=$curcontext ret=1
+    local state line curcontext=$curcontext
 
 	_arguments -s -S \
         '(--zip)--zip[zip folder before sending]' \
@@ -78,7 +78,7 @@ _croc_send_cmd() {
           (file)
                 (( CURRENT > 0 )) && line[CURRENT]=()
                 line=( ${line//(#m)[\[\]()\\*?#<>~\^\|]/\\$MATCH} )
-                _files -F line && ret=0
+                _files -F line
           ;;
 	esac
 }
