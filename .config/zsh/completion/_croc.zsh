@@ -119,8 +119,10 @@ _croc_relay_cmd() {
 }
 
 _croc_help_cmd() {
-    _arguments -C \
-        '(-h --help)'{-h,--help}'[show help]' \
+    local line state
+
+    _arguments -s -S \
+        '(-h --help)'{-h,--help}'[show help]'
 }
 
 _croc_recv_cmd() {
@@ -131,7 +133,7 @@ _croc_recv_cmd() {
 
 	local line state
 
-	_arguments -C \
+	_arguments -s -S \
         '(--here)--here[receive the files here]' \
 		"1: :->cmds"
 	
