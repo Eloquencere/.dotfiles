@@ -1,9 +1,11 @@
 #! /bin/bash
 
+echo "Welcome to part 2 of the installer"
+sleep 2
+
 mkdir ~/Documents/install_script_temp_folder
 cd ~/Documents/install_script_temp_folder
 
-echo "Welcome to part 2 of the installer"
 echo -n "Ensure that you are running this on Alacritty & Tmux(GREEN line at the bottom) (Y/n)"
 read usr_input
 if [[ $usr_input =~ ^[Nn]$ ]]; then

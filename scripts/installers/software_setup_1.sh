@@ -16,6 +16,25 @@ BLOAT_PKGS_PACMAN=(
 )
 sudo pacman -Rns --noconfirm "${BLOAT_PKGS_PACMAN[@]}"
 
+echo "Do you have an amd or intel CPU?"
+echo -n "a -> amd & i -> intel: "
+read cpu_name
+declare -A UCODE_PACMAN=(
+	[a]="amd-ucode"
+	[i]="intel-ucode"
+)
+sudo pacman -S --needed --noconfirm "${UCODE_PACMAN[${cpu_name}]}"
+
+# System config
+sudo sed -i "s/^\(GRUB_DEFAULT=\).*/\10/g" /etc/default/grub
+sudo sed -i "s/^\(GRUB_TIMEOUT=\).*/\10/g" /etc/default/grub
+sudo sed -i "s/^\(GRUB_TIMEOUT_STYLE=\).*/\1hidden/g" /etc/default/grub
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+sudo sed -i "s/^#\(Color.*\)/\1\nILoveCandy/g" /etc/pacman.conf
+sudo sed -i "s/^#\(ParallelDownloads .*\)/\1/g" /etc/pacman.conf
+sudo sed -i "/^#\[multilib\]/{s/^#\(.*\)/\1/g; n; s/^#\(.*\)/\1/g;}" /etc/pacman.conf
+sudo pacman -Sy
+
 # Primary initialisations
 BASIC_PKGS_PACMAN=(
   "base-devel" 
@@ -37,25 +56,6 @@ QUALITY_OF_LIFE_CRATES=(
 )
 cargo install "${QUALITY_OF_LIFE_CRATES[@]}"
 export RUSTC_WRAPPER="$CARGO_HOME/bin/sccache"
-
-echo "Do you have an amd or intel CPU?"
-echo -n "a -> amd & i -> intel: "
-read cpu_name
-declare -A UCODE_PACMAN=(
-	[a]="amd-ucode"
-	[i]="intel-ucode"
-)
-sudo pacman -S --needed --noconfirm "${UCODE_PACMAN[${cpu_name}]}"
-
-# System config
-sudo sed -i "s/^\(GRUB_DEFAULT=\).*/\10/g" /etc/default/grub
-sudo sed -i "s/^\(GRUB_TIMEOUT=\).*/\10/g" /etc/default/grub
-sudo sed -i "s/^\(GRUB_TIMEOUT_STYLE=\).*/\1hidden/g" /etc/default/grub
-sudo grub-mkconfig -o /boot/grub/grub.cfg
-sudo sed -i "s/^#\(Color.*\)/\1\nILoveCandy/g" /etc/pacman.conf
-sudo sed -i "s/^#\(ParallelDownloads .*\)/\1/g" /etc/pacman.conf
-sudo sed -i "/^#\[multilib\]/{s/^#\(.*\)/\1/g; n; s/^#\(.*\)/\1/g;}" /etc/pacman.conf
-sudo pacman -Sy
 
 # Installing external package managers paru(AUR), flatpak(flathub)
 sudo pacman -Syu --noconfirm
@@ -114,7 +114,7 @@ sudo pacman -S --noconfirm "${CLI_PKGS_PACMAN[@]}"
 CLI_PKGS_PARU=(
   "speedtest-rs-bin"
   "jqp-bin"
-  "tlrc-bin" "cheat"
+  "tlrc-bin" # "cheat"
   "kanata-bin" "mprocs-bin"
   "tio"
   "pipes.sh"
@@ -212,6 +212,6 @@ stow .
 cd -
 
 echo "The system will reboot now"
-
 sleep 10
 reboot
+
