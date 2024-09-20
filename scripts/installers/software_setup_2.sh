@@ -46,12 +46,13 @@ echo "Would you like to install brave or google chrome?"
 echo -n "b -> brave & gc -> google chrome: "
 read browser_choice
 if [[ $browser_choice == "b" ]]; then
-    paru -S brave-bin
+    paru -S --noconfirm brave-bin
 else
-    paru -S google-chrome
+    paru -S --noconfirm google-chrome
     mkdir -p $ZDOTDIR/.confidential
     echo "# Browser
 export BROWSER=\"chrome\"" >> $ZDOTDIR/.confidential/zprofile.zsh
+    source ~/.zprofile
 fi
 
 echo -n "Enter the ID granted by your admin to register with your team via croc: "
