@@ -14,7 +14,6 @@ zinit light jeffreytse/zsh-vi-mode
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light Aloxaf/fzf-tab
-# zinit load atuinsh/atuin
 
 autoload -Uz colors && colors
 autoload -Uz compinit && compinit
