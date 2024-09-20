@@ -70,6 +70,7 @@ LANG_COMPILER_PKGS_PACMAN=(
   "clang" "lldb"
   "perl" "go" "python"
   "zig" "julia" "ghc"
+  "python-pip" "tk"
 )
 sudo pacman -S --needed --noconfirm "${LANG_COMPILER_PKGS_PACMAN[@]}"
 LANG_COMPILERS_PKGS_PARU=(
