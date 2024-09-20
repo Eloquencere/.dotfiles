@@ -1,11 +1,15 @@
 #! /bin/bash
 
+gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
+
 echo "Welcome to the installer, this will be part 1 of installing all necessary tools for development
 This script will automatically reboot the system after it is done"
 sleep 7
 
 mkdir ~/Documents/install_script_temp_folder
 cd ~/Documents/install_script_temp_folder
+
+sudo pacman -Syu
 
 # Uninstall bloat
 BLOAT_PKGS_PACMAN=(
