@@ -3,8 +3,8 @@
 echo "Welcome to part 2 of the installer"
 sleep 2
 
-mkdir ~/Documents/install_script_temp_folder
-cd ~/Documents/install_script_temp_folder
+# system update
+source ../continual-reference/system_updater.zsh
 
 echo -n "Ensure that you are running this on Alacritty & Tmux(GREEN line at the bottom) (Y/n)"
 read usr_input
@@ -12,7 +12,7 @@ if [[ $usr_input =~ ^[Nn]$ ]]; then
    exit
 fi
 # Removing apps and data that couldn't be in the first script
-sudo pacman -Rns gnome-console
+sudo pacman -Rns --noconfirm gnome-console
 rm -rf ~/.bash* ~/.fontconfig
 
 echo "Please enter tmux prefix + Shift + I to install all plugins"
@@ -34,8 +34,8 @@ cat --line-range=6:17 .gui_instructions.txt
 echo "press enter to continue"
 read usr_input
 
-# system update
-source ../continual-reference/system_updater.zsh
+mkdir ~/Documents/install_script_temp_folder
+cd ~/Documents/install_script_temp_folder
 
 mise settings set python_compile 1
 mise use --global node@latest go@latest python@latest python@2.7
