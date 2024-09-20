@@ -159,3 +159,7 @@ sleep 2
 # pip install parse pendulum pydantic ruff mypy pyglet
 # pip install keras tensorflow scikit-learn torch
 
+# Useful rust libs
+# cargo-expand
+# irust" bacon # tokio rayon
+

@@ -4,7 +4,7 @@ gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
 
 echo "Welcome to the installer, this will be part 1 of installing all necessary tools for development
 This script will automatically reboot the system after it is done"
-sleep 7
+sleep 5
 
 mkdir ~/Documents/install_script_temp_folder
 cd ~/Documents/install_script_temp_folder
@@ -55,11 +55,6 @@ rustup toolchain install stable
 rustup default stable
 cargo install sccache
 export RUSTC_WRAPPER="$CARGO_HOME/bin/sccache"
-QUALITY_OF_LIFE_CRATES=(
-  "cargo-expand"
-  "irust" "bacon" # tokio rayon
-)
-cargo install "${QUALITY_OF_LIFE_CRATES[@]}"
 
 # Installing external package managers paru(AUR), flatpak(flathub)
 git clone https://aur.archlinux.org/paru.git
@@ -162,11 +157,11 @@ sudo pacman -S --noconfirm "${TERMINAL_EMULATOR_PKGS_PACMAN[@]}"
 PROCESS_MANAGEMENT_TOOLS_PACMAN=(
     "docker"
 )
-sudo pacman -S --noconfirm "${PROCESS_MANAGEMENT_TOOLS_PACMAN[@]}"
+# sudo pacman -S --noconfirm "${PROCESS_MANAGEMENT_TOOLS_PACMAN[@]}"
 PROCESS_MANAGEMENT_TOOLS_PARU=(
     "mprocs-bin"
 )
-paru -S --noconfirm "${PROCESS_MANAGEMENT_TOOLS_PARU[@]}"
+# paru -S --noconfirm "${PROCESS_MANAGEMENT_TOOLS_PARU[@]}"
 
 # Project Management Tools
 PROJECT_MANAGEMENT_TOOLS_PACMAN=(
