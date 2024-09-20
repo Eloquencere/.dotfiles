@@ -2,3 +2,41 @@ default_layout "compact"
 default_shell "zsh"
 copy_command "wl-copy"
 
+// fix the clipboard to nvim
+// 
+
+keybinds {
+    normal clear-defaults=true {
+        bind "Ctrl s" { SwitchToMode "Tmux"; }
+        unbind "Ctrl b"
+        bind "Ctrl h" { MoveFocus "Left"; }
+        bind "Ctrl j" { MoveFocus "Down"; }
+        bind "Ctrl k" { MoveFocus "Up"; }
+        bind "Ctrl l" { MoveFocus "Right"; }
+        // alt h & l to move between tabs
+    }
+    tmux clear-defaults=true {
+        bind "Ctrl s" { Write 2; SwitchToMode "Normal"; }
+        bind "Esc" { SwitchToMode "Normal"; }
+        // bind "g" { SwitchToMode "Locked"; } // keep commented
+        // bind "h" { SwitchToMode "Move"; } // keep commented
+        bind "p" { SwitchToMode "Pane"; }
+        bind "t" { SwitchToMode "Tab"; }
+        bind "r" { SwitchToMode "Resize"; }
+        bind "s" { SwitchToMode "Scroll"; }
+        bind "o" { SwitchToMode "Session"; }
+        bind "q" { Quit; }
+        // bind "1" to move to tab 1 etc
+    }
+    pane {
+        unbind "Alt n"
+        unbind "n"
+        bind "n" { NewPane "Down"; SwitchToMode "Normal"; }
+        bind "N" { NewPane "Right"; SwitchToMode "Normal"; }
+        unbind "Ctrl g"
+    }
+    tab {
+        unbind "Ctrl g"
+    }
+}
+
