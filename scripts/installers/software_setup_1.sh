@@ -9,7 +9,7 @@ sleep 7
 mkdir ~/Documents/install_script_temp_folder
 cd ~/Documents/install_script_temp_folder
 
-sudo pacman -Syu
+sudo pacman -Syu --noconfirm
 
 # Uninstall bloat
 BLOAT_PKGS_PACMAN=(
@@ -53,16 +53,15 @@ chsh -s $(which zsh)
 # rust initialisations
 rustup toolchain install stable
 rustup default stable
+cargo install sccache
+export RUSTC_WRAPPER="$CARGO_HOME/bin/sccache"
 QUALITY_OF_LIFE_CRATES=(
-  "sccache"
   "cargo-expand"
   "irust" "bacon" # tokio rayon
 )
 cargo install "${QUALITY_OF_LIFE_CRATES[@]}"
-export RUSTC_WRAPPER="$CARGO_HOME/bin/sccache"
 
 # Installing external package managers paru(AUR), flatpak(flathub)
-sudo pacman -Syu --noconfirm
 git clone https://aur.archlinux.org/paru.git
 cd paru
 makepkg -si
@@ -91,7 +90,7 @@ UTIL_PKGS_PACMAN=(
   "ttf-jetbrains-mono-nerd"
   "arch-wiki-docs" "arch-wiki-lite"
   "p7zip" "unrar" "exfat-utils" "ntfs-3g"
-  "libreoffice-fresh" "vlc" "ffmpeg"
+  "libreoffice-fresh" "vlc"
   "fastfetch" "btop" # benchmarkers
   "ufw" # firewall
 )
@@ -119,7 +118,7 @@ CLI_PKGS_PARU=(
   "speedtest-rs-bin"
   "jqp-bin"
   "tlrc-bin" # "cheat"
-  "kanata-bin" "mprocs-bin"
+  "kanata-bin"
   "tio"
   "pipes.sh"
 )
@@ -155,10 +154,19 @@ vhci-hcd' > /etc/modules-load.d/usbip.conf"
 
 # Terminal Emulator tools
 TERMINAL_EMULATOR_PKGS_PACMAN=(
-  "alacritty" "starship"
+  "alacritty" "starship" "atuin"
   "tmux" "tmuxp"
 )
 sudo pacman -S --noconfirm "${TERMINAL_EMULATOR_PKGS_PACMAN[@]}"
+
+PROCESS_MANAGEMENT_TOOLS_PACMAN=(
+    "docker"
+)
+sudo pacman -S --noconfirm "${PROCESS_MANAGEMENT_TOOLS_PACMAN[@]}"
+PROCESS_MANAGEMENT_TOOLS_PARU=(
+    "mprocs-bin"
+)
+paru -S --noconfirm "${PROCESS_MANAGEMENT_TOOLS_PARU[@]}"
 
 # Project Management Tools
 PROJECT_MANAGEMENT_TOOLS_PACMAN=(
@@ -171,7 +179,7 @@ PROJECT_MANAGEMENT_TOOLS_PARU=(
     "naturaldocs2"
 )
 paru -S --noconfirm "${PROJECT_MANAGEMENT_TOOLS_PARU[@]}"
-mkdir ~/croc-inbox
+mkdir ~/croc-inbox ~/Tools
 sed -i "1i\file://$HOME/croc-inbox" ~/.config/gtk-3.0/bookmarks
 sed -i "1i\file://$HOME/Tools" ~/.config/gtk-3.0/bookmarks
 
@@ -186,7 +194,7 @@ ADDITIONAL_TOOLS_FLATPAK=(
    "org.gnome.gitlab.somas.Apostrophe"
    "org.gnome.Crosswords"
    "org.gnome.Sudoku"
-   "org.gonme.Chess"
+   "org.gnome.Chess"
    "io.github.nokse22.ultimate-tic-tac-toe"
    "info.febvre.Komikku"
    # "com.github.neithern.g4music"

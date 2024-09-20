@@ -14,7 +14,7 @@ zinit light jeffreytse/zsh-vi-mode
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light Aloxaf/fzf-tab
-zinit load atuinsh/atuin
+# zinit load atuinsh/atuin
 
 autoload -Uz colors && colors
 autoload -Uz compinit && compinit
@@ -34,7 +34,6 @@ source <(starship init zsh)
 source <(fzf --zsh)
 source <(atuin init zsh)
 source <(zoxide init --cmd cd zsh)
-source <($CARGO_HOME/bin/mise activate zsh)
 
 # confidential variables
 if [[ -f "$ZDOTDIR/.confidential/zshrc.zsh" ]]; then
