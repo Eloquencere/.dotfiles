@@ -33,10 +33,10 @@ keybinds clear-defaults=true {
         bind "n" { NewPane "Right"; SwitchToMode "Normal"; }
         bind "N" { NewPane "Down"; SwitchToMode "Normal"; }
         bind "p" { SwitchFocus; SwitchToMode "Normal"; }
-        bind "h" { MoveFocus "Left"; SwitchToMode "Normal"; }
-        bind "j" { MoveFocus "Down"; SwitchToMode "Normal"; }
-        bind "k" { MoveFocus "Up"; SwitchToMode "Normal"; }
-        bind "l" { MoveFocus "Right"; SwitchToMode "Normal"; }
+        bind "h" { MoveFocus "Left"; }
+        bind "j" { MoveFocus "Down"; }
+        bind "k" { MoveFocus "Up"; }
+        bind "l" { MoveFocus "Right"; }
         bind "x" { CloseFocus; SwitchToMode "Normal"; }
         bind "z" { ToggleFocusFullscreen; SwitchToMode "Normal"; }
         bind "f" { TogglePaneFrames; SwitchToMode "Normal"; }
@@ -56,8 +56,8 @@ keybinds clear-defaults=true {
         bind "7" { GoToTab 7; }
         bind "8" { GoToTab 8; }
         bind "9" { GoToTab 9; }
-        bind "h" "k" { GoToPreviousTab; SwitchToMode "Normal"; }
-        bind "l" "j" { GoToNextTab; SwitchToMode "Normal"; }
+        bind "h" "k" { GoToPreviousTab; }
+        bind "l" "j" { GoToNextTab; }
         bind "r" { SwitchToMode "RenameTab"; TabNameInput 0; }
         bind "n" { NewTab; SwitchToMode "Normal"; }
         bind "x" { CloseTab; SwitchToMode "Normal"; }
