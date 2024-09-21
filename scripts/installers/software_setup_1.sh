@@ -148,7 +148,8 @@ vhci-hcd' > /etc/modules-load.d/usbip.conf"
 
 # Terminal Emulator tools
 TERMINAL_EMULATOR_PKGS_PACMAN=(
-  "alacritty" "starship" "atuin" "zellij"
+  "alacritty" "starship" "atuin" 
+  "zellij" "wl-clipboard"
 )
 sudo pacman -S --noconfirm "${TERMINAL_EMULATOR_PKGS_PACMAN[@]}"
 
