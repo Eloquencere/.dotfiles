@@ -32,13 +32,21 @@ keybinds clear-defaults=true {
         bind "Esc" { SwitchToMode "Normal"; }
         bind "n" { NewPane "Right"; SwitchToMode "Normal"; }
         bind "N" { NewPane "Down"; SwitchToMode "Normal"; }
-        bind "p" { SwitchFocus; SwitchToMode "Normal"; }
+        // bind "p" { SwitchFocus; SwitchToMode "Normal"; }
         bind "x" { CloseFocus; SwitchToMode "Normal"; }
         bind "z" { ToggleFocusFullscreen; SwitchToMode "Normal"; }
         bind "f" { TogglePaneFrames; SwitchToMode "Normal"; }
         bind "w" { ToggleFloatingPanes; SwitchToMode "Normal"; }
         bind "e" { TogglePaneEmbedOrFloating; SwitchToMode "Normal"; }
         bind "r" { SwitchToMode "RenamePane"; PaneNameInput 0; }
+        bind "Left"  { MoveFocus "Left"; }
+        bind "Down"  { MoveFocus "Down"; }
+        bind "Up"    { MoveFocus "Up"; }
+        bind "Right" { MoveFocus "Right"; }
+        bind "h" { MovePane "Left"; }
+        bind "j" { MovePane "Down"; }
+        bind "k" { MovePane "Up"; }
+        bind "l" { MovePane "Right"; }
     }
     tab clear-defaults=true {
         bind "Ctrl s" { SwitchToMode "Tmux"; }
@@ -52,8 +60,10 @@ keybinds clear-defaults=true {
         bind "7" { GoToTab 7; }
         bind "8" { GoToTab 8; }
         bind "9" { GoToTab 9; }
-        bind "h" "k" { GoToPreviousTab; }
-        bind "l" "j" { GoToNextTab; }
+        bind "h" { MoveTab "Left"; }
+        bind "l" { MoveTab "Right"; }
+        bind "Left" { GoToPreviousTab; }
+        bind "Right" { GoToNextTab; }
         bind "r" { SwitchToMode "RenameTab"; TabNameInput 0; }
         bind "n" { NewTab; SwitchToMode "Normal"; }
         bind "x" { CloseTab; SwitchToMode "Normal"; }
