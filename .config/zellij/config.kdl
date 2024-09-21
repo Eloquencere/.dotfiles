@@ -3,7 +3,7 @@ copy_command "wl-copy"
 on_force_close "detach"
 
 // zellij plugin locks when opening nvim
-// Add Plugins
+// Add Plugins & themes
 
 keybinds clear-defaults=true {
     normal clear-defaults=true {
