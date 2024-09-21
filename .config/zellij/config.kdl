@@ -3,7 +3,7 @@ default_shell "zsh"
 copy_command "wl-copy"
 
 // fix the clipboard to nvim
-// 
+// alias zj=zellij -l welcome for the time being to get used to stuff
 
 keybinds {
     normal clear-defaults=true {
