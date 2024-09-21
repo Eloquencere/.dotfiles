@@ -5,6 +5,8 @@ copy_command "wl-copy"
 // fix the clipboard to nvim
 // alias zj=zellij -l welcome for the time being to get used to stuff
 // in rezize mode hjkl to increase size in their respective directions and HJKL for the opposite
+// pressing prefix in any mode must take it to tmux mode
+// switching from tab to pane mode shouldn't be just ctrl + p it should be via prefix + p etc in any mode
 
 keybinds {
     normal clear-defaults=true {
@@ -40,4 +42,6 @@ keybinds {
         unbind "Ctrl g"
     }
 }
+
+// add plugins
 

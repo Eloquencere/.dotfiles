@@ -6,7 +6,7 @@ sleep 2
 # system update
 source ../continual-reference/system_updater.zsh
 
-echo -n "Ensure that you are running this on Alacritty & Tmux(GREEN line at the bottom) (Y/n)"
+echo -n "Ensure that you are running this on Alacritty (Y/n)"
 read usr_input
 if [[ $usr_input =~ ^[Nn]$ ]]; then
    exit
@@ -14,14 +14,6 @@ fi
 # Removing apps and data that couldn't be in the first script
 sudo pacman -Rns --noconfirm gnome-console
 rm -rf ~/.bash* ~/.fontconfig
-
-echo "Please enter tmux prefix + Shift + I to install all plugins"
-echo "press enter to continue"
-read usr_input
-sed -i "s/bottom/top/g" $XDG_CONFIG_HOME/tmux/plugins/minimal-tmux-status/minimal.tmux
-echo "Press tmux prefix + R to reload the config file"
-echo "press enter to continue"
-read usr_input
 
 # Gnome config
 echo "Please follow the instructions below to configure gnome"

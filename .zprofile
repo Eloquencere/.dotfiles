@@ -40,7 +40,5 @@ fi
 
 # Plugin manager for zsh
 [[ ! -d "$ZDOTDIR/zinit" ]] && git clone https://github.com/zdharma-continuum/zinit.git "$HOME/.config/zsh/zinit"
-# Package manager for tmux
-[[ ! -d "$XDG_CONFIG_HOME/tmux/plugins" ]] && git clone https://github.com/tmux-plugins/tpm.git "$HOME/.config/tmux/plugins/tpm"
 # Themes for alacritty
 [[ ! -d "$XDG_CONFIG_HOME/alacritty/themes" ]] && git clone https://github.com/alacritty/alacritty-theme.git "$HOME/.config/alacritty/themes"
