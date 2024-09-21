@@ -21,9 +21,9 @@ keybinds clear-defaults=true {
         bind "p" { SwitchToMode "Pane"; }
         bind "t" { SwitchToMode "Tab"; }
         bind "r" { SwitchToMode "Resize"; }
-        bind "s" { SwitchToMode "Search"; }
+        // bind "s" { SwitchToMode "Search"; }
         bind "/" { SwitchToMode "Scroll"; }
-        bind "o" { SwitchToMode "Session"; }
+        bind "s" { SwitchToMode "Session"; }
         bind "q" { Quit; }
         bind "Space" { NextSwapLayout; }
     }
