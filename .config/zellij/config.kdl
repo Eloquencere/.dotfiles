@@ -4,6 +4,7 @@ copy_command "wl-copy"
 
 // fix the clipboard to nvim
 // alias zj=zellij -l welcome for the time being to get used to stuff
+// in rezize mode hjkl to increase size in their respective directions and HJKL for the opposite
 
 keybinds {
     normal clear-defaults=true {
