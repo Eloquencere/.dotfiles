@@ -61,12 +61,3 @@ function zvm_after_lazy_keybindings() {
 	zvm_bindkey vicmd '^p' atuin-up-search
 }
 
-# better Tmux session experience
-function _tmux() {
-    if [[ $# == 0 ]] && command tmux ls >& /dev/null; then
-        command tmux attach \; choose-tree -s
-    else
-        command tmux "$@"
-    fi
-}
-alias tmux=_tmux

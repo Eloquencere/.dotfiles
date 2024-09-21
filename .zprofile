@@ -1,8 +1,8 @@
 # Profile file. Runs on login. Environment variables are here
 
 # Default path
+export SHELL="zsh"
 export EDITOR="nvim"
-export VISUAL="nvim"
 export TERMINAL="alacritty"
 export BROWSER="brave"
 export READER="zathura"

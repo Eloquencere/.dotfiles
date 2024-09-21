@@ -23,4 +23,5 @@ alias diff="delta --dark --side-by-side"
 alias ps="procs --tree"
 alias cheat="cheat --colorize"
 alias du="dust --reverse --force-colors --no-percent-bars"
+alias zellij="zellij -l welcome"
 
