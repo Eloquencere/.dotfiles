@@ -12,7 +12,7 @@ alias neofetch=fastfetch
 alias py=python
 
 # Better command line utils
-alias ls="eza --color=always --icons=always --git"
+alias ls="eza --color=always --icons=always --git --group-directories-first"
 alias tree="ls --tree --smart-group --git-ignore"
 alias fd="fd --color=always"
 alias cat=bat
