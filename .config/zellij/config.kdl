@@ -111,7 +111,7 @@ keybinds clear-defaults=true {
     }
 
     scroll clear-defaults=true {
-    	bind "Ctrl s" { SwitchToMode "Tmux"; }
+        bind "Ctrl s" { SwitchToMode "Tmux"; }
         bind "Esc" { SwitchToMode "Normal"; }
 	    bind "e" { EditScrollback; SwitchToMode "Normal"; }
 	    bind "s" { SwitchToMode "EnterSearch"; SearchInput 0; }
@@ -156,21 +156,10 @@ keybinds clear-defaults=true {
             };
             SwitchToMode "Normal";
         }
-        bind "c" {
-            LaunchOrFocusPlugin "configuration" {
-                floating true
-                move_to_focused_tab true
-            };
-            SwitchToMode "Normal";
-        }
     }
 
     locked clear-defaults=true {
         bind "Ctrl g" { SwitchToMode "Normal"; }
-    }
-    
-    shared_except "normal" "locked" {
-        bind "Enter" "Esc" { SwitchToMode "Normal"; }
     }
 }
 

@@ -148,7 +148,7 @@ enter_accept = true
 ## Cursor style in each keymap mode.  If specified, the cursor style is changed
 ## in entering the cursor shape.  Available values are "default" and
 ## "{blink,steady}-{block,underline,bar}".
-keymap_cursor = { emacs = "steady-bar", vim_insert = "steady-bar", vim_normal = "steady-bar" }
+keymap_cursor = { emacs = "steady-bar", vim_insert = "steady-bar", vim_normal = "steady-block" }
 
 # network_connect_timeout = 5
 # network_timeout = 5
