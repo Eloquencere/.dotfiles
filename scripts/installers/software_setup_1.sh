@@ -174,7 +174,7 @@ PROJECT_MANAGEMENT_TOOLS_PARU=(
     "naturaldocs2"
 )
 paru -S --noconfirm "${PROJECT_MANAGEMENT_TOOLS_PARU[@]}"
-mkdir ~/croc-inbox ~/Tools
+mkdir ~/{croc-inbox,Tools}
 sed -i "1i\file://$HOME/croc-inbox" ~/.config/gtk-3.0/bookmarks
 sed -i "1i\file://$HOME/Tools" ~/.config/gtk-3.0/bookmarks
 

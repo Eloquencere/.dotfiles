@@ -9,13 +9,13 @@ vim.cmd("nnoremap <silent> j :<C-U>execute \'normal!\' (v:count > 1 ? \"m\'\" . 
 
 -- Moving between tabs
 keymap.set(
-    {"n", "i", "v"},
+    {"n"},
     "<Tab>",
     "<Cmd>BufferNext<CR>",
     { desc = "Go to the next tab"}
 )
 keymap.set(
-    {"n", "i", "v"},
+    {"n"},
     "<C-Tab>",
     "<Cmd>BufferPrevious<CR>",
     { desc = "Go to the next tab"}

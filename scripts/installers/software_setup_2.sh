@@ -33,6 +33,8 @@ mise settings set python_compile 1
 mise use --global node@latest go@latest python@latest python@2.7
 pip install --upgrade pip
 
+mkdir -p $ZDOTDIR/.confidential
+
 # Browser
 echo "Would you like to install brave or google chrome?"
 echo -n "b -> brave & gc -> google chrome: "
@@ -41,7 +43,6 @@ if [[ $browser_choice == "b" ]]; then
     paru -S --noconfirm brave-bin
 else
     paru -S --noconfirm google-chrome
-    mkdir -p $ZDOTDIR/.confidential
     echo "# Browser
 export BROWSER=\"chrome\"" >> $ZDOTDIR/.confidential/zprofile.zsh
     source ~/.zprofile
@@ -50,7 +51,6 @@ fi
 echo -n "Enter the ID granted by your admin to register with your team via croc: "
 # echo -n "Enter the croc transfer sequence granted by your admin to register with your team: "
 read croc_id
-mkdir -p $ZDOTDIR/.confidential
 echo "# Croc
 export CROC_SELF_TRANSFER_ID=$croc_id" >> $ZDOTDIR/.confidential/zprofile.zsh
 
