@@ -152,6 +152,7 @@ TERMINAL_EMULATOR_PKGS_PACMAN=(
   "zellij" "wl-clipboard"
 )
 sudo pacman -S --noconfirm "${TERMINAL_EMULATOR_PKGS_PACMAN[@]}"
+mkdir -p ~/.local/share/zellij/plugins
 
 PROCESS_MANAGEMENT_TOOLS_PACMAN=(
     "docker"

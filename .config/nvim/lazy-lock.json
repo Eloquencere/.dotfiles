@@ -57,6 +57,6 @@
   "twilight.nvim": { "branch": "main", "commit": "1584c0b0a979b71fd86b18d302ba84e9aba85b1b" },
   "undotree": { "branch": "master", "commit": "78b5241191852ffa9bb5da5ff2ee033160798c3b" },
   "which-key.nvim": { "branch": "main", "commit": "fb070344402cfc662299d9914f5546d840a22126" },
-  "zellij.vim": { "branch": "main", "commit": "8f9f484b2893d64d43f1c8beaa2bd99b89072e19" },
+  "zellij.vim": { "branch": "main", "commit": "09c21b8ae429bbab575b003e9c750019f2c6d1f7" },
   "zen-mode.nvim": { "branch": "main", "commit": "29b292bdc58b76a6c8f294c961a8bf92c5a6ebd6" }
 }
