@@ -4,7 +4,7 @@ copy_command "wl-copy"
 on_force_close "detach"
 
 keybinds clear-defaults=true {
-    normal clear-defaults=true {
+    normal {
         bind "Ctrl s" { SwitchToMode "Tmux"; }
         bind "Ctrl h" { MoveFocus "Left"; }
         bind "Ctrl j" { MoveFocus "Down"; }
@@ -14,7 +14,7 @@ keybinds clear-defaults=true {
         bind "Alt l" { GoToNextTab; }
     }
 
-    tmux clear-defaults=true {
+    tmux {
         bind "Ctrl s" { Write 2; SwitchToMode "Normal"; }
         bind "Esc" { SwitchToMode "Normal"; }
         bind "p" { SwitchToMode "Pane"; }
@@ -25,7 +25,7 @@ keybinds clear-defaults=true {
         bind "o" { SwitchToMode "Session"; }
     }
 
-    pane clear-defaults=true {
+    pane {
         bind "Ctrl s" { SwitchToMode "Tmux"; }
         bind "Esc" { SwitchToMode "Normal"; }
         bind "n" { NewPane; SwitchToMode "Normal"; }
@@ -47,7 +47,7 @@ keybinds clear-defaults=true {
         bind "Esc" { UndoRenamePane; SwitchToMode "Pane"; }
     }
 
-    tab clear-defaults=true {
+    tab {
         bind "Ctrl s" { SwitchToMode "Tmux"; }
         bind "Esc" { SwitchToMode "Normal"; }
         bind "r" { SwitchToMode "RenameTab"; TabNameInput 0; }
@@ -74,7 +74,7 @@ keybinds clear-defaults=true {
         bind "Esc" { UndoRenameTab; SwitchToMode "Tab"; }
     }
 
-    resize clear-defaults=true {
+    resize {
         bind "Ctrl s" { SwitchToMode "Tmux"; }
         bind "Esc" { SwitchToMode "Normal"; }
         bind "h" { Resize "Increase Left"; }
@@ -93,7 +93,7 @@ keybinds clear-defaults=true {
         bind "-" {Resize "Decrease"; }
     }
 
-    move clear-defaults=true {
+    move {
         bind "Ctrl s" { SwitchToMode "Tmux"; }
         bind "Esc" { SwitchToMode "Normal"; }
         bind "h" { MovePane "Left"; }
@@ -110,12 +110,12 @@ keybinds clear-defaults=true {
         bind "]" { NextSwapLayout; }
     }
 
-    scroll clear-defaults=true {
+    scroll {
         bind "Ctrl s" { SwitchToMode "Tmux"; }
         bind "Esc" { SwitchToMode "Normal"; }
-	    bind "e" { EditScrollback; SwitchToMode "Normal"; }
-	    bind "s" { SwitchToMode "EnterSearch"; SearchInput 0; }
-	    bind "G" { ScrollToBottom; SwitchToMode "Normal"; }
+        bind "e" { EditScrollback; SwitchToMode "Normal"; }
+        bind "s" { SwitchToMode "EnterSearch"; SearchInput 0; }
+        bind "G" { ScrollToBottom; SwitchToMode "Normal"; }
         bind "j" "Down" { ScrollDown; }
         bind "k" "Up" { ScrollUp; }
         bind "Ctrl f" { PageScrollDown; }
@@ -124,7 +124,7 @@ keybinds clear-defaults=true {
         bind "Ctrl u" { HalfPageScrollUp; }
     }
 
-    search clear-defaults=true {
+    search {
         bind "Ctrl s" { SwitchToMode "Tmux"; }
         bind "Esc" { SwitchToMode "Normal"; }
         bind "j" "Down" { ScrollDown; }
@@ -144,7 +144,7 @@ keybinds clear-defaults=true {
         bind "Enter" { SwitchToMode "Search"; }
     }
 
-    session clear-defaults=true {
+    session {
         bind "Ctrl s" { SwitchToMode "Tmux"; }
         bind "Esc" { SwitchToMode "Normal"; }
         bind "q" { Quit; }
@@ -158,7 +158,7 @@ keybinds clear-defaults=true {
         }
     }
 
-    locked clear-defaults=true {
+    locked {
         bind "Ctrl g" { SwitchToMode "Normal"; }
     }
 }
