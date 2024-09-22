@@ -28,7 +28,7 @@ keybinds clear-defaults=true {
     pane clear-defaults=true {
         bind "Ctrl s" { SwitchToMode "Tmux"; }
         bind "Esc" { SwitchToMode "Normal"; }
-        bind "n" { NewPane "Right"; SwitchToMode "Normal"; }
+        bind "n" { NewPane; SwitchToMode "Normal"; }
         bind "N" { NewPane "Down"; SwitchToMode "Normal"; }
         bind "p" { SwitchFocus; }
         bind "x" { CloseFocus; SwitchToMode "Normal"; }
