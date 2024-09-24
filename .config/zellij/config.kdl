@@ -1,7 +1,5 @@
 // default_layout "compact"
-
 copy_command "wl-copy"
-on_force_close "detach"
 
 keybinds clear-defaults=true {
     normal {

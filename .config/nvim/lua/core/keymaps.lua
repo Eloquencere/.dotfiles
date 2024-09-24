@@ -16,7 +16,7 @@ keymap.set(
 )
 keymap.set(
     {"n"},
-    "<C-Tab>",
+    "<S-Tab>",
     "<Cmd>BufferPrevious<CR>",
     { desc = "Go to the next tab"}
 )
