@@ -201,8 +201,11 @@ gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal alacri
 gsettings set com.github.stunkymonkey.nautilus-open-any-terminal keybindings '<Ctrl><Alt>t'
 gsettings set com.github.stunkymonkey.nautilus-open-any-terminal flatpak system
 # GNOME TextEditor config
-gsettings set org.gnome.TextEditor restore-session false
 gsettings set org.gnome.TextEditor style-scheme 'classic-dark'
+gsettings set org.gnome.TextEditor restore-session false
+gsettings set org.gnome.TextEditor highlight-current-line true
+gsettings set org.gnome.TextEditor highlight-matching-brackets true
+gsettings set org.gnome.TextEditor show-line-numbers true
 # Gnome window config
 gsettings set org.gnome.mutter center-new-windows true
 gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
