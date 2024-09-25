@@ -133,7 +133,6 @@ cd ~/Documents
 rm -rf install_script_temp_folder
 
 echo "It's a good idea to reboot now"
-sleep 2
 
 # # Doom Emacs
 # sudo pacman -S emacs-wayland
