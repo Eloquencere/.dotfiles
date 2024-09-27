@@ -134,6 +134,9 @@ rm -rf install_script_temp_folder
 
 echo "It's a good idea to reboot now"
 
+# # Zed editor
+# sudo pacman -S zed
+
 # # Doom Emacs
 # sudo pacman -S emacs-wayland
 # git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
