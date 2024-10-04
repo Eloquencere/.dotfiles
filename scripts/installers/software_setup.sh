@@ -15,7 +15,7 @@ ESSENTIALS=(
 sudo apt-get install -y "${ESSENTIALS[@]}" 
 sudo nala fetch
 
-rm -rf ~/Templates ~/Public
+rm -rf ~/Templates ~/Public ~/Pictures ~/Videos
 
 # Fonts
 declare -a fonts=(
