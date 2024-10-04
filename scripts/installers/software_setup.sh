@@ -9,7 +9,7 @@ sudo apt update -y && sudo apt upgrade -y
 ESSENTIALS=(
 	"curl" "ntfs-3g" "stow" "exfat-fuse"
 	"linux-headers-$(uname -r)" "linux-headers-generic"
-	"openjdk-21-jdk" "mint-meta-codecs"
+	"openjdk-21-jdk"
 )
 sudo apt-get install -y "${ESSENTIALS[@]}"
 
