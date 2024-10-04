@@ -9,9 +9,13 @@ sudo apt update -y && sudo apt upgrade -y
 ESSENTIALS=(
 	"curl" "ntfs-3g" "stow" "exfat-fuse"
 	"linux-headers-$(uname -r)" "linux-headers-generic"
-	"openjdk-21-jdk"
+	"openjdk-21-jdk" "ubuntu-restricted-extras" "pkg-config"
+	"nala"
 )
-sudo apt-get install -y "${ESSENTIALS[@]}"
+sudo apt-get install -y "${ESSENTIALS[@]}" 
+sudo nala fetch
+
+rm -rf ~/Templates ~/Public
 
 # Fonts
 declare -a fonts=(
@@ -35,28 +39,83 @@ done
 find "$fonts_dir" -name '*Windows Compatible*' -delete
 fc-cache -fv
 
-# Package managers
-sudo apt install -y nala
-sudo nala fetch
-sh <(curl -L https://nixos.org/nix/install) --daemon
-mkdir $HOME/.config/nixpkgs
-echo "{ allowUnfree = true; }" >> ~/.config/nixpkgs/config.nix
-
-cd ~/.dotfiles
-stow .
-cd -
-
-sudo nala install -y zsh
-chsh -s $(which zsh)
-
-# Nix packages
-nix-env --install --file cli_pkgs.nix
-
+sudo add-apt-repository ppa:linrunner/tlp
+sudo apt update
 SCENES=(
 	"preload" "tlp"
 )
 sudo nala install -y "${SCENES[@]}"
 sudo systemctl enable "${SCENES[@]}" --now
+
+export CARGO_HOME="$HOME/.local/share/rust/.cargo"
+export RUSTUP_HOME="$HOME/.local/share/rust/.rustup"
+LANGUAGE_COMPILERS=(
+	"rustup"
+	"gdb" "valgrind" "strace" # "ghidra" # unavailable - try flatpak
+	"clang" "lldb"
+	"perl" "python3-pip" "tk"
+)
+sudo nala install -y "${LANGUAGE_COMPILERS[@]}"
+rustup toolchain install stable
+rustup default stable
+# cargo install sccache -> needs some packages from openssl, idk what
+
+APPLICATIONS=(
+	"vlc" "gnome-shell-extension-manager"
+	"gparted" "bleachbit"
+	"alacritty" # "kitty"
+)
+sudo nala install -y "${APPLICATIONS[@]}"
+wget -P ~/.local/share/zellij/plugins https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm
+
+# Brave
+sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+sudo apt update -y
+sudo apt install -y brave-browser
+
+## Chrome
+# wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+# sudo apt install -y ./google-chrome-stable_current_amd64.deb
+# sudo apt -f install -y
+# rm -rf google-chrome-stable_current_amd64.deb
+
+# jitsi meet -> not working very well
+# curl https://download.jitsi.org/jitsi-key.gpg.key | sudo sh -c 'gpg --dearmor > /usr/share/keyrings/jitsi-keyring.gpg'
+# echo 'deb [signed-by=/usr/share/keyrings/jitsi-keyring.gpg] https://download.jitsi.org stable/' | sudo tee /etc/apt/sources.list.d/jitsi-stable.list > /dev/null
+# sudo apt update -y
+# sudo apt install -y jitsi-meet
+
+# signal
+wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg
+cat signal-desktop-keyring.gpg | sudo tee /usr/share/keyrings/signal-desktop-keyring.gpg > /dev/null
+echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main' |\
+ sudo tee /etc/apt/sources.list.d/signal-xenial.list
+sudo apt update -y
+sudo apt install -y signal-desktop
+rm -f signal-desktop-keyring.gpg
+
+sudo nala install -y zsh
+chsh -s $(which zsh)
+
+cd ~/.dotfiles
+stow .
+cd -
+
+systemctl daemon-reload
+
+# After restart
+# package managers
+sudo apt install flatpak
+sudo apt install gnome-software-plugin-flatpak
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+sh <(curl -L https://nixos.org/nix/install) --daemon
+mkdir $HOME/.config/nixpkgs
+echo "{ allowUnfree = true; }" >> ~/.config/nixpkgs/config.nix
+# restart shell here
+
+# Nix packages
+nix-env --install --file cli_pkgs.nix
 
 # Kanata config
 nix-env -iA nixpkgs.kanata
@@ -81,60 +140,8 @@ Restart=no
 WantedBy=default.target' > /lib/systemd/system/kanata.service"
 sudo systemctl enable kanata --now
 
-
-LANGUAGE_COMPILERS=(
-	"rustup"
-	"gdb" "valgrind" "strace" # "ghidra" # unavailable - try flatpak
-	"clang" "lldb"
-	"perl" "python3-pip" "tk"
-	# mise - ghc julia zig
-)
-sudo nala install -y "${LANGUAGE_COMPILERS[@]}"
-rustup toolchain install stable
-rustup default stable
-cargo install sccache
-mise settings set python_compile 1
-mise use --global node@latest go@latest python@latest python@2.7
-pip install --upgrade pip
-
-APPLICATIONS=(
-	"vlc" ""
-	"gparted" "bleachbit"
-	"alacritty" # "kitty"
-)
-sudo nala install -y "${APPLICATIONS[@]}"
-wget -P ~/.local/share/zellij/plugins https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm
-
-# Brave
-sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
-echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
-sudo apt update
-sudo apt install brave-browser
-
-# Chrome
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-sudo apt install ./google-chrome-stable_current_amd64.deb
-sudo apt -f install
-rm -rf google-chrome-stable_current_amd64.deb
-
-# jitsi meet
-curl https://download.jitsi.org/jitsi-key.gpg.key | sudo sh -c 'gpg --dearmor > /usr/share/keyrings/jitsi-keyring.gpg'
-echo 'deb [signed-by=/usr/share/keyrings/jitsi-keyring.gpg] https://download.jitsi.org stable/' | sudo tee /etc/apt/sources.list.d/jitsi-stable.list > /dev/null
-sudo apt update -y
-sudo apt install -y jitsi-meet
-
-# signal
-wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg
-cat signal-desktop-keyring.gpg | sudo tee /usr/share/keyrings/signal-desktop-keyring.gpg > /dev/null
-echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main' |\
-  sudo tee /etc/apt/sources.list.d/signal-xenial.list
-sudo apt update
-sudo apt install -y signal-desktop
-rm -f signal-desktop-keyring.gpg
-
-ADDITIONAL_APPS_FLATPAK=(
-   "ExtensionManager"
-   # "bottles"
+ADDITIONAL_APPS_FLATPAK=( 
+   "org.ghidra_sre.Ghidra"
    "net.nokyan.Resources"
    "se.sjoerd.Graphs"
    "io.github.diegoivanme.flowtime"
@@ -146,13 +153,17 @@ ADDITIONAL_APPS_FLATPAK=(
    "io.github.nokse22.ultimate-tic-tac-toe"
    "info.febvre.Komikku"
    "org.gnome.World.PikaBackup"
+   # "bottles"
    # "com.github.neithern.g4music"
 )
 flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
-rm -rf ~/Templates ~/Public
+
+# mise - ghc julia zig
+# mise settings set python_compile 1 -> not working very well
+mise use --global node@latest go@latest python@latest python@2.7
+pip install --upgrade pip
 
 echo -n "Enter the ID granted by your admin to register with your team via croc: "
-# echo -n "Enter the croc transfer sequence granted by your admin to register with your team: "
 read croc_id
 mkdir -p $ZDOTDIR/.confidential
 echo "# Croc
@@ -188,17 +199,18 @@ if [[ $usr_input =~ ^[Yy]$ ]]; then
 fi
 
 echo -n "Would you like to configure USBIP? (Y/n)"
-sudo sh -c " echo '# usbip client
-usbip-core
-vhci-hcd' > /etc/modules-load.d/usbip.conf"
-echo -n "Enter the server address: "
 read usr_input
 if [[ $usr_input =~ ^[Yy]$ ]]; then
-   echo "Please enter the server's IP address"
-   read server_ip
-   echo "# USBIP
+	sudo sh -c " echo '# usbip client
+	usbip-core
+	vhci-hcd' > /etc/modules-load.d/usbip.conf"
+	echo -n "Enter the server address: "
+	read usr_input
+	echo "Please enter the server's IP address"
+	read server_ip
+	echo "# USBIP
 export SERVER_IP=$server_ip" >> $ZDOTDIR/.confidential/zprofile.zsh
-   source $HOME/.zprofile
+	source $HOME/.zprofile
 fi
 
 rm -rf ~/.bash* ~/.fontconfig
@@ -208,3 +220,9 @@ BLOAT=(
 )
 sudo apt-get remove -y "${BLOAT[@]}"
 
+# open new apps on the top left
+# correct grouping of apps in the app drawer
+# Adding only necessary apps to the dock
+# dash to dock config to enable click on icon to minimise
+# blur my shell extension(& disable the dash-to-dock effect) etc 
+# gui instruction, on how to configgure fonts

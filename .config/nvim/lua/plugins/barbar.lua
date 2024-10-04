@@ -4,7 +4,18 @@ return {
         'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
         'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
     },
-    init = function() vim.g.barbar_auto_setup = false end,
+    init = function()
+        vim.g.barbar_auto_setup = false
+        vim.api.nvim_create_autocmd('WinClosed', {
+          callback = function(tbl)
+            local name = vim.api.nvim_buf_get_name(tbl.buf)
+            if name ~= '' then
+              vim.api.nvim_command('BufferClose ' .. name)
+            end
+          end,
+          group = vim.api.nvim_create_augroup('barbar_close_buf', {})
+        })
+    end,
     opts = {
         -- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
         -- animation = true,

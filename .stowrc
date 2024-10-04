@@ -1,4 +1,5 @@
 --ignore=scripts
+--ignore=archives
 --ignore=\.git
 --ignore=\.gitignore
 --ignore=.tmuxp.yaml
