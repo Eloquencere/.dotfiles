@@ -1,1 +1,0 @@
-installers/software_setup.sh

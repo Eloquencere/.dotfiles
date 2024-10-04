@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bsh
 
 echo "Welcome to the *Linux Mint* installer :)
 This script will automatically reboot the system after it is done"
@@ -39,7 +39,7 @@ fc-cache -fv
 sudo apt install -y nala
 sudo nala fetch
 sh <(curl -L https://nixos.org/nix/install) --daemon
-mkdir $HOME/nixpkgs
+mkdir $HOME/.config/nixpkgs
 echo "{ allowUnfree = true; }" >> ~/.config/nixpkgs/config.nix
 
 cd ~/.dotfiles
@@ -99,14 +99,13 @@ pip install --upgrade pip
 
 APPLICATIONS=(
 	"vlc" ""
-	"gparted" "bloachbit"
+	"gparted" "bleachbit"
 	"alacritty" # "kitty"
 )
 sudo nala install -y "${APPLICATIONS[@]}"
 wget -P ~/.local/share/zellij/plugins https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm
 
 # Brave
-sudo apt install curl
 sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
 echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
 sudo apt update
@@ -155,6 +154,7 @@ rm -rf ~/Templates ~/Public
 echo -n "Enter the ID granted by your admin to register with your team via croc: "
 # echo -n "Enter the croc transfer sequence granted by your admin to register with your team: "
 read croc_id
+mkdir -p $ZDOTDIR/.confidential
 echo "# Croc
 export CROC_SELF_TRANSFER_ID=$croc_id" >> $ZDOTDIR/.confidential/zprofile.zsh
 
@@ -191,6 +191,7 @@ echo -n "Would you like to configure USBIP? (Y/n)"
 sudo sh -c " echo '# usbip client
 usbip-core
 vhci-hcd' > /etc/modules-load.d/usbip.conf"
+echo -n "Enter the server address: "
 read usr_input
 if [[ $usr_input =~ ^[Yy]$ ]]; then
    echo "Please enter the server's IP address"
@@ -202,7 +203,7 @@ fi
 
 rm -rf ~/.bash* ~/.fontconfig
 BLOAT=(
-	"curl" "irqbalance"
+	"curl"
 	# disks
 )
 sudo apt-get remove -y "${BLOAT[@]}"

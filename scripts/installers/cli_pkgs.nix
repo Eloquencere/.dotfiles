@@ -20,7 +20,7 @@ with pkgs;
 	croc
 	natural-docs doxygen
 	p7zip
-	rar
 	docker
 	curlie
+	rar
 ]
