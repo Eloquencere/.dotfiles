@@ -12,7 +12,28 @@ ESSENTIALS=(
 	"openjdk-21-jdk" "mint-meta-codecs"
 )
 sudo apt-get install -y "${ESSENTIALS[@]}"
-# install fonts here
+
+# Fonts
+declare -a fonts=(
+	JetBrainsMono
+)
+version=latest
+if [[ $version =~ "latest" ]]; then
+	version="latest/download"
+else
+	version="download/${version}"
+fi
+fonts_dir="${HOME}/.local/share/fonts"
+if [[ ! -d "$fonts_dir" ]]; then
+    mkdir -p "$fonts_dir"
+fi
+for font in "${fonts[@]}"; do
+	wget https://github.com/ryanoasis/nerd-fonts/releases/${version}/${font}.zip
+	unzip ${font} -d ${fonts_dir}
+	rm -f ${font}.zip
+done
+find "$fonts_dir" -name '*Windows Compatible*' -delete
+fc-cache -fv
 
 # Package managers
 sudo apt install -y nala
@@ -84,7 +105,18 @@ APPLICATIONS=(
 sudo nala install -y "${APPLICATIONS[@]}"
 wget -P ~/.local/share/zellij/plugins https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm
 
-# brave & chrome here
+# Brave
+sudo apt install curl
+sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+sudo apt update
+sudo apt install brave-browser
+
+# Chrome
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo apt install ./google-chrome-stable_current_amd64.deb
+sudo apt -f install
+rm -rf google-chrome-stable_current_amd64.deb
 
 # jitsi meet
 curl https://download.jitsi.org/jitsi-key.gpg.key | sudo sh -c 'gpg --dearmor > /usr/share/keyrings/jitsi-keyring.gpg'
