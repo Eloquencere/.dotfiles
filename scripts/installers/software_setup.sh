@@ -58,7 +58,6 @@ LANGUAGE_COMPILERS=(
 sudo nala install -y "${LANGUAGE_COMPILERS[@]}"
 rustup toolchain install stable
 rustup default stable
-# cargo install sccache -> needs some packages from openssl, idk what
 
 APPLICATIONS=(
 	"vlc" "gnome-shell-extension-manager"
@@ -108,9 +107,17 @@ cd ~/.dotfiles
 stow .
 cd -
 
+gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize-or-previews'
 systemctl daemon-reload
 
 # After restart
+rm -rf ~/.bash* ~/.fontconfig
+BLOAT=(
+	"curl"
+	# disks
+)
+sudo apt-get remove -y "${BLOAT[@]}"
+
 # package managers
 sudo apt install flatpak
 sudo apt install gnome-software-plugin-flatpak
@@ -118,7 +125,7 @@ flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.f
 sh <(curl -L https://nixos.org/nix/install) --daemon
 mkdir $HOME/.config/nixpkgs
 echo "{ allowUnfree = true; }" >> ~/.config/nixpkgs/config.nix
-# restart shell here
+# restart shell here - maybe sourcing zshrc might suffice
 
 # Nix packages
 nix-env --install --file cli_pkgs.nix
@@ -219,16 +226,16 @@ export SERVER_IP=$server_ip" >> $ZDOTDIR/.confidential/zprofile.zsh
 	source $HOME/.zprofile
 fi
 
-rm -rf ~/.bash* ~/.fontconfig
-BLOAT=(
-	"curl"
-	# disks
-)
-sudo apt-get remove -y "${BLOAT[@]}"
+# cargo install sccache -> needs some packages from openssl, idk what
 
 # open new apps on the top left
 # correct grouping of apps in the app drawer
 # Adding only necessary apps to the dock
 # dash to dock config to enable click on icon to minimise
+# astra monitor, user themes, blur my shell - GNOME shell extensions
 # blur my shell extension(& disable the dash-to-dock effect) etc 
 # gui instruction, on how to configgure fonts
+# other edits from the original install scripts
+
+# Reference
+## https://kskroyal.com/remove-snap-packages-from-ubuntu/
