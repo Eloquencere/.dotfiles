@@ -7,7 +7,7 @@ sleep 3
 sudo apt update -y && sudo apt upgrade -y
 
 ESSENTIALS=(
-	"curl" "ntfs-3g" "stow" "exfat-fuse" "sqlite3"
+	"curl" "ntfs-3g" "stow" "exfat-fuse" "sqlite3" "rclone"
 	"linux-headers-$(uname -r)" "linux-headers-generic"
 	"openjdk-21-jdk" "ubuntu-restricted-extras" "pkg-config"
 	"nala"

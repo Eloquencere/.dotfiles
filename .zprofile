@@ -1,5 +1,7 @@
 # Profile file. Runs on login. Environment variables are here
 
+export LIBRARY_PATH=/usr/lib32:$LIBRARY_PATH
+
 # Default path
 export SHELL="zsh"
 export EDITOR="nvim"
