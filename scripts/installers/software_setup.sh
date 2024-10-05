@@ -7,7 +7,7 @@ sleep 3
 sudo apt update -y && sudo apt upgrade -y
 
 ESSENTIALS=(
-	"curl" "ntfs-3g" "stow" "exfat-fuse"
+	"curl" "ntfs-3g" "stow" "exfat-fuse" "sqlite3"
 	"linux-headers-$(uname -r)" "linux-headers-generic"
 	"openjdk-21-jdk" "ubuntu-restricted-extras" "pkg-config"
 	"nala"
@@ -236,6 +236,7 @@ fi
 # blur my shell extension(& disable the dash-to-dock effect) etc 
 # gui instruction, on how to configgure fonts
 # other edits from the original install scripts
+# fix croc
 
 # Reference
 ## https://kskroyal.com/remove-snap-packages-from-ubuntu/
