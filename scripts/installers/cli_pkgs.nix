@@ -8,7 +8,7 @@ with pkgs;
 	scriptisto
 	gh
 	fzf zoxide eza bat fd ripgrep
-	yazi gdu duf dust delta lazygit procs
+	yazi duf dust delta lazygit procs
 	speedtest-rs jq yq jqp
 	tlrc
 	tio
@@ -19,8 +19,7 @@ with pkgs;
 	mprocs
 	croc
 	natural-docs doxygen
-	p7zip
-	docker
 	curlie
 	rar
+	distrobox
 ]

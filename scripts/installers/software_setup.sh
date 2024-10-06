@@ -1,6 +1,6 @@
 #!/bin/bsh
 
-echo "Welcome to the *Linux Mint* installer :)
+echo "Welcome to the *Ubuntu 24.04* installer :)
 This script will automatically reboot the system after it is done"
 sleep 3
 
@@ -9,8 +9,8 @@ sudo apt update -y && sudo apt upgrade -y
 ESSENTIALS=(
 	"curl" "ntfs-3g" "stow" "exfat-fuse" "sqlite3" "rclone"
 	"linux-headers-$(uname -r)" "linux-headers-generic"
-	"openjdk-21-jdk" "ubuntu-restricted-extras" "pkg-config"
-	"nala"
+	"ubuntu-restricted-extras" "pkg-config"
+	"nala" "p7zip"
 )
 sudo apt-get install -y "${ESSENTIALS[@]}" 
 sudo nala fetch
@@ -61,9 +61,14 @@ rustup default stable
 
 APPLICATIONS=(
 	"vlc" "gnome-shell-extension-manager"
-	"gparted" "bleachbit" "timeshift"
+	"gparted" "bleachbit" "timeshift" "distrobox"
 )
 sudo nala install -y "${APPLICATIONS[@]}"
+
+wget https://winegui.melroy.org/downloads/WineGUI-v2.6.0.deb
+sudo apt install -y ./WineGUI-v2.6.0.deb
+sudo apt -f install -y
+rm -f WineGUI-v2.6.0.deb
 
 wget -P ~/.local/share/zellij/plugins https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm
 
@@ -108,13 +113,31 @@ stow .
 cd -
 
 gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize-or-previews'
+
+gsettings set org.gnome.TextEditor style-scheme 'classic-dark'
+gsettings set org.gnome.TextEditor restore-session false
+gsettings set org.gnome.TextEditor highlight-current-line true
+gsettings set org.gnome.TextEditor highlight-matching-brackets true
+gsettings set org.gnome.TextEditor show-line-numbers true
+
+gsettings set org.gnome.mutter center-new-windows true
+gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
+gsettings set org.gnome.desktop.interface clock-format '24h'
+
+echo "Set wezterm as the default terminal"
+sudo update-alternatives --config x-terminal-emulator
+
+echo "Set brave/chrome as the default browser"
+sudo update-alternatives --config x-www-browser
+
 systemctl daemon-reload
+
 
 # After restart
 rm -rf ~/.bash* ~/.fontconfig
 BLOAT=(
 	"curl"
-	# disks
+	# disks gnome-terminal
 )
 sudo apt-get remove -y "${BLOAT[@]}"
 
@@ -166,8 +189,8 @@ ADDITIONAL_APPS_FLATPAK=(
    "io.github.nokse22.ultimate-tic-tac-toe"
    "info.febvre.Komikku"
    "org.gnome.World.PikaBackup"
+   "com.github.neithern.g4music"
    # "bottles"
-   # "com.github.neithern.g4music"
 )
 flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
 
@@ -180,7 +203,7 @@ echo -n "Enter the ID granted by your admin to register with your team via croc:
 read croc_id
 mkdir -p $ZDOTDIR/.confidential
 echo "# Croc
-export CROC_SELF_TRANSFER_ID=$croc_id" >> $ZDOTDIR/.confidential/zprofile.zsh
+export CROC_SELF_TRANSFER_ID=$croc_id" >> $HOME/.config/zsh/.confidential/zprofile.zsh
 
 echo -n "Would you like to log into your git account? (Y/n)"
 read usr_input
@@ -228,15 +251,19 @@ fi
 
 # cargo install sccache -> needs some packages from openssl, idk what
 
-# open new apps on the top left
 # correct grouping of apps in the app drawer
 # Adding only necessary apps to the dock
-# dash to dock config to enable click on icon to minimise
-# astra monitor, user themes, blur my shell - GNOME shell extensions
-# blur my shell extension(& disable the dash-to-dock effect) etc 
-# gui instruction, on how to configgure fonts
 # other edits from the original install scripts
-# fix croc
+
+# gui instructions
+# set the dock at the correct position
+# configure the correct DNS servers
+# set the position of new icons to the top left
+# blur my shell extension(& disable the dash-to-dock effect) etc
+# how to configure system fonts
 
 # Reference
 ## https://kskroyal.com/remove-snap-packages-from-ubuntu/
+
+## distrobox-create --name smth --image quay.io/toolbx-images/centos-toolbox
+## distrobox-create -n rhel --image quay.io/toolbx-images/rhel-toolbox

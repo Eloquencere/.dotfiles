@@ -5,10 +5,9 @@ export LIBRARY_PATH=/usr/lib32:$LIBRARY_PATH
 # Default path
 export SHELL="zsh"
 export EDITOR="nvim"
-export TERMINAL="alacritty"
-export BROWSER="brave"
-export READER="zathura"
 export TERM="xterm-256color"
+# export TERMINAL="wezterm"
+# export BROWSER="brave"
 
 # Base definitions
 export XDG_CONFIG_HOME="$HOME/.config"
