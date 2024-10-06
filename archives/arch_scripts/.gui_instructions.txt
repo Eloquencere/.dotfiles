@@ -4,9 +4,9 @@ Gnome Settings
 
 Gnome Extensions
     blur my shell
+    dash to dock
     CHC-E
     Appindicator and kstatusNotifierItem support
-    clipboard indicator
     Tilling assistant
     Just Perfection
         Under visibility disable:

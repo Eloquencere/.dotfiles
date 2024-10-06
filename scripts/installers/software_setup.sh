@@ -51,7 +51,7 @@ export CARGO_HOME="$HOME/.local/share/rust/.cargo"
 export RUSTUP_HOME="$HOME/.local/share/rust/.rustup"
 LANGUAGE_COMPILERS=(
 	"rustup"
-	"gdb" "valgrind" "strace" # "ghidra" # unavailable - try flatpak
+	"gdb" "valgrind" "strace"
 	"clang" "lldb"
 	"perl" "python3-pip" "tk"
 )
@@ -61,10 +61,31 @@ rustup default stable
 
 APPLICATIONS=(
 	"vlc" "gnome-shell-extension-manager"
-	"gparted" "bleachbit" "timeshift" "distrobox"
+	"gparted" "bleachbit" "timeshift"
 )
 sudo nala install -y "${APPLICATIONS[@]}"
 
+# ulauncher
+sudo add-apt-repository ppa:agornostal/ulauncher
+sudo apt update
+sudo apt install ulauncher
+sudo sh -c "echo '[Unit]
+Description=Linux Application Launcher
+Documentation=https://ulauncher.io/
+After=display-manager.service
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+ExecStart=/usr/bin/ulauncher --hide-window
+
+[Install]
+WantedBy=graphical.target' > /lib/systemd/system/ulauncher.service"
+sudo systemctl enable ulauncher --now
+# register the shortcut with ubuntu
+
+# wineGUI
 wget https://winegui.melroy.org/downloads/WineGUI-v2.6.0.deb
 sudo apt install -y ./WineGUI-v2.6.0.deb
 sudo apt -f install -y
@@ -121,7 +142,6 @@ gsettings set org.gnome.TextEditor highlight-matching-brackets true
 gsettings set org.gnome.TextEditor show-line-numbers true
 
 gsettings set org.gnome.mutter center-new-windows true
-gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
 gsettings set org.gnome.desktop.interface clock-format '24h'
 
 echo "Set wezterm as the default terminal"
@@ -254,6 +274,7 @@ fi
 # correct grouping of apps in the app drawer
 # Adding only necessary apps to the dock
 # other edits from the original install scripts
+# look into compositors
 
 # gui instructions
 # set the dock at the correct position
