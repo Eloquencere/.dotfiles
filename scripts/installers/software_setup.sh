@@ -52,18 +52,24 @@ export RUSTUP_HOME="$HOME/.local/share/rust/.rustup"
 LANGUAGE_COMPILERS=(
 	"rustup"
 	"gdb" "valgrind" "strace"
-	"clang" "lldb"
+	"clang" "lldb" "ghc"
 	"perl" "python3-pip" "tk"
 )
 sudo nala install -y "${LANGUAGE_COMPILERS[@]}"
 rustup toolchain install stable
 rustup default stable
 
+sudo snap install julia --classic
+sudo snap install zig --classic --beta
+
 APPLICATIONS=(
 	"vlc" "gnome-shell-extension-manager"
-	"gparted" "bleachbit" "timeshift"
+	"gparted" "bleachbit" "timeshift" 
+	"xmonad" "distrobox"
 )
 sudo nala install -y "${APPLICATIONS[@]}"
+
+## https://www.omgubuntu.co.uk/2022/08/pano-clipboard-manager-for-gnome-shell
 
 # ulauncher
 sudo add-apt-repository ppa:agornostal/ulauncher
@@ -161,6 +167,10 @@ BLOAT=(
 )
 sudo apt-get remove -y "${BLOAT[@]}"
 
+sudo apt-get purge firefox thunderbird
+sudo snap remove firefox thunderbird
+rm -rf ~/.mozilla
+
 # package managers
 sudo apt install flatpak
 sudo apt install gnome-software-plugin-flatpak
@@ -214,7 +224,6 @@ ADDITIONAL_APPS_FLATPAK=(
 )
 flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
 
-# mise - ghc julia zig
 # mise settings set python_compile 1 -> not working very well
 mise use --global node@latest go@latest python@latest python@2.7
 pip install --upgrade pip
@@ -269,12 +278,14 @@ export SERVER_IP=$server_ip" >> $ZDOTDIR/.confidential/zprofile.zsh
 	source $HOME/.zprofile
 fi
 
+sudo sh -c "apt-get update;apt-get dist-upgrade;apt-get autoremove;apt-get autoclean"
+sudo apt --fix-broken install
+
 # cargo install sccache -> needs some packages from openssl, idk what
 
 # correct grouping of apps in the app drawer
 # Adding only necessary apps to the dock
 # other edits from the original install scripts
-# look into compositors
 
 # gui instructions
 # set the dock at the correct position

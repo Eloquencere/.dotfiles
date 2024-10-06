@@ -15,11 +15,10 @@ with pkgs;
 	pipes
 	atuin
 	zellij
-	docker
+	docker lazydocker
 	mprocs
 	croc
 	natural-docs doxygen
 	curlie
 	rar
-	distrobox
 ]
