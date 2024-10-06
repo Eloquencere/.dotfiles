@@ -297,5 +297,5 @@ sudo apt --fix-broken install
 # Reference
 ## https://kskroyal.com/remove-snap-packages-from-ubuntu/
 
-## distrobox-create --name smth --image quay.io/toolbx-images/centos-toolbox
+## distrobox-create --name centos --image quay.io/toolbx-images/centos-toolbox
 ## distrobox-create -n rhel --image quay.io/toolbx-images/rhel-toolbox
