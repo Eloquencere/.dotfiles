@@ -7,7 +7,7 @@ sleep 3
 sudo apt update -y && sudo apt upgrade -y
 
 ESSENTIALS=(
-	"curl" "ntfs-3g" "stow" "exfat-fuse" "sqlite3" "rclone"
+	"curl" "ntfs-3g" "stow" "exfat-fuse" "sqlite3"
 	"linux-headers-$(uname -r)" "linux-headers-generic"
 	"ubuntu-restricted-extras" "pkg-config"
 	"nala" "p7zip"
@@ -15,7 +15,8 @@ ESSENTIALS=(
 sudo apt-get install -y "${ESSENTIALS[@]}" 
 sudo nala fetch
 
-rm -rf ~/Templates ~/Public ~/Pictures ~/Videos
+rm -rf ~/{Templates,Public,Pictures,Videos}
+# remove pictures and videos from favourates & add projects etc
 
 # Fonts
 declare -a fonts=(
@@ -74,7 +75,7 @@ sudo nala install -y "${APPLICATIONS[@]}"
 # ulauncher
 sudo add-apt-repository ppa:agornostal/ulauncher
 sudo apt update
-sudo apt install ulauncher
+sudo apt install -y ulauncher
 sudo sh -c "echo '[Unit]
 Description=Linux Application Launcher
 Documentation=https://ulauncher.io/
@@ -91,7 +92,7 @@ WantedBy=graphical.target' > /lib/systemd/system/ulauncher.service"
 sudo systemctl enable ulauncher --now
 # register the shortcut with ubuntu
 
-# wineGUI
+# wineGUI - edit the following link to download the latest
 wget https://winegui.melroy.org/downloads/WineGUI-v2.6.0.deb
 sudo apt install -y ./WineGUI-v2.6.0.deb
 sudo apt -f install -y
@@ -103,12 +104,12 @@ wget -P ~/.local/share/zellij/plugins https://github.com/dj95/zjstatus/releases/
 curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
 echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
 sudo apt update
-sudo apt install wezterm
+sudo apt install -y wezterm
 
 # Brave
 sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
 echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
-sudo apt update -y
+sudo apt update
 sudo apt install -y brave-browser
 
 ## Chrome
@@ -128,9 +129,14 @@ wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signa
 cat signal-desktop-keyring.gpg | sudo tee /usr/share/keyrings/signal-desktop-keyring.gpg > /dev/null
 echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main' |\
  sudo tee /etc/apt/sources.list.d/signal-xenial.list
-sudo apt update -y
+sudo apt update
 sudo apt install -y signal-desktop
 rm -f signal-desktop-keyring.gpg
+
+# Onedriver
+sudo add-apt-repository --remove ppa:jstaf/onedriver
+sudo apt update
+sudo apt install -y onedriver
 
 sudo nala install -y zsh
 chsh -s $(which zsh)
@@ -160,25 +166,19 @@ systemctl daemon-reload
 
 
 # After restart
-rm -rf ~/.bash* ~/.fontconfig
-BLOAT=(
-	"curl"
-	# disks gnome-terminal
-)
-sudo apt-get remove -y "${BLOAT[@]}"
-
-sudo apt-get purge firefox thunderbird
-sudo snap remove firefox thunderbird
-rm -rf ~/.mozilla
-
+cd ~/.dotfiles/scripts/installers
 # package managers
-sudo apt install flatpak
-sudo apt install gnome-software-plugin-flatpak
+sudo apt install -y flatpak gnome-software-plugin-flatpak
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 sh <(curl -L https://nixos.org/nix/install) --daemon
 mkdir $HOME/.config/nixpkgs
 echo "{ allowUnfree = true; }" >> ~/.config/nixpkgs/config.nix
 # restart shell here - maybe sourcing zshrc might suffice
+
+sudo apt-get purge -y firefox thunderbird
+sudo snap remove firefox thunderbird
+rm -rf ~/.mozilla
+rm -rf ~/{.bash*,.fontconfig,.profile,.sudo_as_admin_successful}
 
 # Nix packages
 nix-env --install --file cli_pkgs.nix
@@ -225,8 +225,8 @@ ADDITIONAL_APPS_FLATPAK=(
 flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
 
 # mise settings set python_compile 1 -> not working very well
-mise use --global node@latest go@latest python@latest python@2.7
-pip install --upgrade pip
+# mise use --global node@latest go@latest python@latest python@2.7
+# pip install --upgrade pip
 
 echo -n "Enter the ID granted by your admin to register with your team via croc: "
 read croc_id
@@ -270,16 +270,21 @@ if [[ $usr_input =~ ^[Yy]$ ]]; then
 	usbip-core
 	vhci-hcd' > /etc/modules-load.d/usbip.conf"
 	echo -n "Enter the server address: "
-	read usr_input
-	echo "Please enter the server's IP address"
 	read server_ip
 	echo "# USBIP
 export SERVER_IP=$server_ip" >> $ZDOTDIR/.confidential/zprofile.zsh
-	source $HOME/.zprofile
 fi
 
 sudo sh -c "apt-get update;apt-get dist-upgrade;apt-get autoremove;apt-get autoclean"
 sudo apt --fix-broken install
+
+BLOAT=(
+	# "curl"
+	# disks gnome-terminal
+)
+sudo apt-get remove -y "${BLOAT[@]}"
+
+echo "The installer has concluded, it's a good idea to restart"
 
 # cargo install sccache -> needs some packages from openssl, idk what
 
