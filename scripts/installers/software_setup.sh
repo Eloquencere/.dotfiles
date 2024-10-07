@@ -10,7 +10,7 @@ ESSENTIALS=(
 	"curl" "ntfs-3g" "stow" "exfat-fuse" "sqlite3"
 	"linux-headers-$(uname -r)" "linux-headers-generic"
 	"ubuntu-restricted-extras" "pkg-config"
-	"nala" "p7zip"
+	"nala" "p7zip" "wl-clipboard"
 )
 sudo apt-get install -y "${ESSENTIALS[@]}" 
 sudo nala fetch
@@ -42,11 +42,9 @@ fc-cache -fv
 
 sudo add-apt-repository ppa:linrunner/tlp
 sudo apt update
-SCENES=(
-	"preload" "tlp"
-)
-sudo nala install -y "${SCENES[@]}"
-sudo systemctl enable "${SCENES[@]}" --now
+sudo nala install -y tlp
+sudo nala install -y preload
+sudo systemctl enable tlp preload --now
 
 export CARGO_HOME="$HOME/.local/share/rust/.cargo"
 export RUSTUP_HOME="$HOME/.local/share/rust/.rustup"
