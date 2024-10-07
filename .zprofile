@@ -41,5 +41,3 @@ fi
 
 # Plugin manager for zsh
 [[ ! -d "$ZDOTDIR/zinit" ]] && git clone https://github.com/zdharma-continuum/zinit.git "$HOME/.config/zsh/zinit"
-# Themes for alacritty
-[[ ! -d "$XDG_CONFIG_HOME/alacritty/themes" ]] && git clone https://github.com/alacritty/alacritty-theme.git "$HOME/.config/alacritty/themes"

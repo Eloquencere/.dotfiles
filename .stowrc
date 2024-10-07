@@ -2,7 +2,6 @@
 --ignore=archives
 --ignore=\.git
 --ignore=\.gitignore
---ignore=.tmuxp.yaml
 --ignore=.stowrc
 --ignore=^/README*
 --ignore=^/LICENSE*
