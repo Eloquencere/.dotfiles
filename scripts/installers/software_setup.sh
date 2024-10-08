@@ -10,7 +10,7 @@ ESSENTIALS=(
 	"curl" "ntfs-3g" "stow" "exfat-fuse" "sqlite3"
 	"linux-headers-$(uname -r)" "linux-headers-generic"
 	"ubuntu-restricted-extras" "pkg-config"
-	"nala" "p7zip" "wl-clipboard"
+	"nala" "p7zip" "wl-clipboard" "dos2unix"
 )
 sudo apt-get install -y "${ESSENTIALS[@]}" 
 sudo nala fetch
@@ -289,6 +289,9 @@ echo "The installer has concluded, it's a good idea to restart"
 # correct grouping of apps in the app drawer
 # Adding only necessary apps to the dock
 # other edits from the original install scripts
+# download curlie via nix and alias it with curl
+# try the approach of first changing the shell and then, after restart, install *all* the necessary tools
+# assign caps lock for left control in kanata & comment the code
 
 # gui instructions
 # set the dock at the correct position
@@ -300,5 +303,6 @@ echo "The installer has concluded, it's a good idea to restart"
 # Reference
 ## https://kskroyal.com/remove-snap-packages-from-ubuntu/
 
-## distrobox-create --name centos --image quay.io/toolbx-images/centos-toolbox
-## distrobox-create -n rhel --image quay.io/toolbx-images/rhel-toolbox
+## distrobox create --name centos --image quay.io/toolbx-images/centos-toolbox
+## distrobox create --name rhel --image quay.io/toolbx-images/rhel-toolbox
+## distrobox create --name Mint --image docker.io/linuxmintd/mint22-amd64
