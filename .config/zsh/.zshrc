@@ -14,6 +14,7 @@ zinit light jeffreytse/zsh-vi-mode
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light Aloxaf/fzf-tab
+zinit snippet OMZ::plugins/sudo/sudo.plugin.zsh
 
 autoload -Uz colors && colors
 autoload -Uz compinit && compinit
