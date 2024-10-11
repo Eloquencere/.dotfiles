@@ -7,16 +7,14 @@ sleep 3
 sudo apt update -y && sudo apt upgrade -y
 
 ESSENTIALS=(
-	"curl" "ntfs-3g" "stow" "exfat-fuse" "sqlite3"
+	"curl" "sqlite3"
+    "ntfs-3g" "exfat-fuse"
 	"linux-headers-$(uname -r)" "linux-headers-generic"
-	"ubuntu-restricted-extras" "pkg-config"
-	"nala" "p7zip" "wl-clipboard" "dos2unix"
+	"ubuntu-restricted-extras" "pkg-config" "wl-clipboard"
+	"nala"
 )
 sudo apt-get install -y "${ESSENTIALS[@]}" 
 sudo nala fetch
-
-rm -rf ~/{Templates,Public,Pictures,Videos}
-# remove pictures and videos from favourates & add projects etc
 
 # Fonts
 declare -a fonts=(
@@ -46,13 +44,14 @@ sudo nala install -y tlp
 sudo nala install -y preload
 sudo systemctl enable tlp preload --now
 
-export CARGO_HOME="$HOME/.local/share/rust/.cargo"
-export RUSTUP_HOME="$HOME/.local/share/rust/.rustup"
+export CARGO_HOME="$HOME/.local/share/rust/cargo"
+export RUSTUP_HOME="$HOME/.local/share/rust/rustup"
 LANGUAGE_COMPILERS=(
 	"rustup"
+	"perl" "ghc"
 	"gdb" "valgrind" "strace"
-	"clang" "lldb" "ghc"
-	"perl" "python3-pip" "tk"
+	"clang" "lldb"
+    "python3-pip" "tk"
 )
 sudo nala install -y "${LANGUAGE_COMPILERS[@]}"
 rustup toolchain install stable
@@ -64,9 +63,11 @@ sudo snap install zig --classic --beta
 APPLICATIONS=(
 	"vlc" "gnome-shell-extension-manager"
 	"gparted" "bleachbit" "timeshift" 
-	"xmonad" "distrobox"
+	"xmonad"
 )
 sudo nala install -y "${APPLICATIONS[@]}"
+
+sudo nala install distrobox
 
 ## https://www.omgubuntu.co.uk/2022/08/pano-clipboard-manager-for-gnome-shell
 
@@ -88,7 +89,7 @@ ExecStart=/usr/bin/ulauncher --hide-window
 [Install]
 WantedBy=graphical.target' > /lib/systemd/system/ulauncher.service"
 sudo systemctl enable ulauncher --now
-# register the shortcut with ubuntu
+# register the keyboard shortcut with ubuntu
 
 # wineGUI - edit the following link to download the latest
 wget https://winegui.melroy.org/downloads/WineGUI-v2.6.0.deb
@@ -96,13 +97,14 @@ sudo apt install -y ./WineGUI-v2.6.0.deb
 sudo apt -f install -y
 rm -f WineGUI-v2.6.0.deb
 
-wget -P ~/.local/share/zellij/plugins https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm
-
 # Wezterm
 curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
 echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
 sudo apt update
 sudo apt install -y wezterm
+
+# zellij - zjstatus plugin
+wget -P ~/.local/share/zellij/plugins https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm
 
 # Brave
 sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
@@ -126,7 +128,7 @@ sudo apt install -y brave-browser
 wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg
 cat signal-desktop-keyring.gpg | sudo tee /usr/share/keyrings/signal-desktop-keyring.gpg > /dev/null
 echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main' |\
- sudo tee /etc/apt/sources.list.d/signal-xenial.list
+sudo tee /etc/apt/sources.list.d/signal-xenial.list
 sudo apt update
 sudo apt install -y signal-desktop
 rm -f signal-desktop-keyring.gpg
@@ -135,13 +137,6 @@ rm -f signal-desktop-keyring.gpg
 sudo add-apt-repository --remove ppa:jstaf/onedriver
 sudo apt update
 sudo apt install -y onedriver
-
-sudo nala install -y zsh
-chsh -s $(which zsh)
-
-cd ~/.dotfiles
-stow .
-cd -
 
 gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize-or-previews'
 
@@ -162,6 +157,8 @@ sudo update-alternatives --config x-www-browser
 
 systemctl daemon-reload
 
+sudo nala install -y zsh
+chsh -s $(which zsh)
 
 # After restart
 cd ~/.dotfiles/scripts/installers
@@ -173,10 +170,9 @@ mkdir $HOME/.config/nixpkgs
 echo "{ allowUnfree = true; }" >> ~/.config/nixpkgs/config.nix
 # restart shell here - maybe sourcing zshrc might suffice
 
-sudo apt-get purge -y firefox thunderbird
-sudo snap remove firefox thunderbird
-rm -rf ~/.mozilla
-rm -rf ~/{.bash*,.fontconfig,.profile,.sudo_as_admin_successful}
+cd ~/.dotfiles
+stow .
+cd -
 
 # Nix packages
 nix-env --install --file cli_pkgs.nix
@@ -273,14 +269,24 @@ if [[ $usr_input =~ ^[Yy]$ ]]; then
 export SERVER_IP=$server_ip" >> $ZDOTDIR/.confidential/zprofile.zsh
 fi
 
-sudo sh -c "apt-get update;apt-get dist-upgrade;apt-get autoremove;apt-get autoclean"
-sudo apt --fix-broken install
+sudo apt-get purge -y firefox thunderbird
+sudo snap remove firefox thunderbird
+rm -rf ~/.mozilla
+rm -rf ~/{.bash*,.fontconfig,.profile,.sudo_as_admin_successful}
+
+# remove these from Gnome favourates
+rm -rf ~/{Templates,Public,Pictures,Videos}
+# add this to favourates
+mkdir ~/Projects
 
 BLOAT=(
-	# "curl"
+	"curl"
 	# disks gnome-terminal
 )
 sudo apt-get remove -y "${BLOAT[@]}"
+
+sudo sh -c "apt-get update;apt-get dist-upgrade;apt-get autoremove;apt-get autoclean"
+sudo apt --fix-broken install
 
 echo "The installer has concluded, it's a good idea to restart"
 

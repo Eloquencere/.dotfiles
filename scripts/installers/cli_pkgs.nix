@@ -1,6 +1,9 @@
 { pkgs ? import <nixpkgs> {} }:
 with pkgs;
 [
+    stow
+    p7zip
+    dos2unix
 	neovim
 	fastfetch
 	btop

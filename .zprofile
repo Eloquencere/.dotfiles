@@ -27,8 +27,8 @@ export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git
 export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
 
 # Rust
-export CARGO_HOME="$XDG_DATA_HOME/rust/.cargo"
-export RUSTUP_HOME="$XDG_DATA_HOME/rust/.rustup"
+export CARGO_HOME="$XDG_DATA_HOME/rust/cargo"
+export RUSTUP_HOME="$XDG_DATA_HOME/rust/rustup"
 export RUSTC_WRAPPER=$CARGO_HOME/bin/sccache
 
 # Conan(C/C++)
