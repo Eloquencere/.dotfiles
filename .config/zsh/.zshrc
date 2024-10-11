@@ -1,6 +1,7 @@
 # options
 setopt nobeep
 setopt correct
+setopt interactive_comments
 
 # Initialising completions directory
 fpath=($ZDOTDIR/completion $fpath)
