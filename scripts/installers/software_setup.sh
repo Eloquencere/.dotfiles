@@ -91,11 +91,14 @@ WantedBy=graphical.target' > /lib/systemd/system/ulauncher.service"
 sudo systemctl enable ulauncher --now
 # register the keyboard shortcut with ubuntu
 
-# wineGUI - edit the following link to download the latest
-wget https://winegui.melroy.org/downloads/WineGUI-v2.6.0.deb
-sudo apt install -y ./WineGUI-v2.6.0.deb
+# wine
+# run sudo dpgk --i386 # enable 32bit
+# sudo apt install wine64
+# wineGUI
+wget https://winegui.melroy.org/downloads/WineGUI-v2.6.1.deb
+sudo apt install -y ./WineGUI-v2.6.1.deb
 sudo apt -f install -y
-rm -f WineGUI-v2.6.0.deb
+rm -f WineGUI-v2.6.1.deb
 
 # Wezterm
 curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg

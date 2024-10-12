@@ -14,7 +14,7 @@ config = {
   check_for_updates = false,
   use_fancy_tab_bar = false,
   tab_bar_at_bottom = false,
-  font_size = 12.5,
+  font_size = 13,
   font = wezterm.font("JetBrains Mono", { weight = "Bold" }),
   enable_tab_bar = false,
   window_padding = {
