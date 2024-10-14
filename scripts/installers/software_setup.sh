@@ -40,8 +40,7 @@ fc-cache -fv
 
 sudo add-apt-repository ppa:linrunner/tlp
 sudo apt update
-sudo nala install -y tlp
-sudo nala install -y preload
+sudo nala install -y tlp preload
 sudo systemctl enable tlp preload --now
 
 export CARGO_HOME="$HOME/.local/share/rust/cargo"
@@ -63,11 +62,9 @@ sudo snap install zig --classic --beta
 APPLICATIONS=(
 	"vlc" "gnome-shell-extension-manager"
 	"gparted" "bleachbit" "timeshift" 
-	"xmonad"
+	"xmonad" "distrobox"
 )
 sudo nala install -y "${APPLICATIONS[@]}"
-
-sudo nala install distrobox
 
 ## https://www.omgubuntu.co.uk/2022/08/pano-clipboard-manager-for-gnome-shell
 
