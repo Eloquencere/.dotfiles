@@ -16,8 +16,9 @@ layout {
                 notification_format_no_notifications "#[bg=#000000,fg=blue,dim]   "
                 notification_show_interval "10"
 
-                swap_layout_format        "#[bg=#AFFF00,fg=#000000] #[bg=#AFFF00,fg=#000000,bold]{name} #[fg=#AFFF00]"
+                swap_layout_format        "#[bg=#000000,fg=#AFFF00]  #[bg=#000000,fg=#AFFF00]{name} "
                 swap_layout_hide_if_empty "true"
+                // fix the swap issue
 
                 mode_normal  "#[bg=#000000,fg=#AFFF00] Normal  #[bg=#000000,fg=#AFFF00]󱏿 "
                 mode_tmux    "#[bg=#000000,fg=#D75F00] Super   #[bg=#000000,fg=#D75F00]󰿖 "
