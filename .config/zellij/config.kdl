@@ -1,4 +1,4 @@
-default_layout "default"
+default_layout "compact-zj"
 copy_command "wl-copy"
 
 keybinds clear-defaults=true {
@@ -42,6 +42,8 @@ keybinds clear-defaults=true {
         bind "J" { Resize "Decrease Down"; }
         bind "K" { Resize "Decrease Up"; }
         bind "L" { Resize "Decrease Right"; }
+        bind "+" "=" { Resize "Increase"; }
+        bind "-" { Resize "Decrease"; }
         bind "Left"  { MoveFocus "Left"; }
         bind "Down"  { MoveFocus "Down"; }
         bind "Up"    { MoveFocus "Up"; }

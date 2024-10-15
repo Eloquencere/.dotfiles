@@ -1,0 +1,41 @@
+layout {
+    default_tab_template {
+        pane size=1 borderless=true {
+            plugin location="file:zjstatus.wasm" {
+                format_left  "{mode}#[bg=#000000,fg=#000000]{tabs}"
+                format_right "{swap_layout}"
+                format_space "#[bg=#000000]"
+                format_precedence "crl"
+
+                notification_format_unread "#[fg=$blue,bg=$bg,blink]  #[fg=$blue,bg=$bg] {message} "
+                notification_format_no_notifications "#[fg=$blue,bg=$bg,dim]   "
+                notification_show_interval "10"
+
+                swap_layout_format        "#[bg=#AFFF00,fg=#000000] #[bg=#AFFF00,fg=#000000,bold]{name} #[bg=#000000,fg=#AFFF00]"
+                swap_layout_hide_if_empty "true"
+
+                mode_normal  "#[bg=#000000,fg=#AFFF00] Normal  #[bg=#000000,fg=#AFFF00]󱏿 "
+                mode_tmux    "#[bg=#000000,fg=#D75F00] Super   #[bg=#000000,fg=#D75F00]󰿖 "
+                mode_pane    "#[bg=#000000,fg=#D75F00]  Pane   #[bg=#000000,fg=#D75F00]󰝘 "
+                mode_tab     "#[bg=#000000,fg=#D75F00]  Tab    #[bg=#000000,fg=#D75F00] "
+                mode_move    "#[bg=#000000,fg=#D75F00]  Move   #[bg=#000000,fg=#D75F00] "
+                mode_scroll  "#[bg=#000000,fg=#D75F00] Search  #[bg=#000000,fg=#D75F00] "
+                mode_session "#[bg=#000000,fg=#D75F00] Session #[bg=#000000,fg=#D75F00] "
+
+                tab_normal "#[bg=#8A8A8A,fg=#000000] #[bg=#8A8A8A,fg=#000000,bold]{index} {name} {sync_indicator}{fullscreen_indicator}{floating_indicator} #[bg=#000000,fg=#8A8A8A]"
+                tab_active "#[bg=#AFFF00,fg=#000000] #[bg=#AFFF00,fg=#000000,bold]{index} {name} {sync_indicator}{fullscreen_indicator}{floating_indicator} #[bg=#000000,fg=#AFFF00]"
+                // use a plugin that sets the appropriate name for a tab
+
+                // limit tab display count
+                tab_display_count "8"
+                // tab_truncate_start_format "#[bg=#D75F00,fg=white,bold] <- +{count} "
+                // tab_truncate_end_format   "#[bg=#000000,fg=#D75F00] +{count} -> "
+
+                tab_sync_indicator       " "
+                tab_fullscreen_indicator "󰊓 "
+                tab_floating_indicator   "󰉈 "
+            }
+        }
+        children
+    }
+}
