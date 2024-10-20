@@ -1,13 +1,9 @@
 # Profile file. Runs on login. Environment variables are here
 
-export LIBRARY_PATH=/usr/lib32:$LIBRARY_PATH
-
 # Default path
 export SHELL="zsh"
 export EDITOR="nvim"
 export TERM="xterm-256color"
-# export TERMINAL="wezterm"
-# export BROWSER="brave"
 
 # Base definitions
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -33,6 +29,9 @@ export RUSTC_WRAPPER=$CARGO_HOME/bin/sccache
 
 # Conan(C/C++)
 export CONAN_HOME="$XDG_DATA_HOME/conan"
+
+# 32-bit library path
+export LIBRARY_PATH=/usr/lib32:$LIBRARY_PATH
 
 # Confidential environment variables
 if [[ -f "$ZDOTDIR/.confidential/zprofile.zsh" ]]; then

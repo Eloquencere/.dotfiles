@@ -16,7 +16,7 @@ ESSENTIALS=(
 sudo apt-get install -y "${ESSENTIALS[@]}" 
 sudo nala fetch
 
-# Fonts
+# Fonts - move this into a separate file
 declare -a fonts=(
 	JetBrainsMono
 )
@@ -57,7 +57,7 @@ rustup toolchain install stable
 rustup default stable
 
 sudo snap install julia --classic
-sudo snap install zig --classic --beta
+sudo snap install zig   --classic --beta
 
 APPLICATIONS=(
 	"vlc" "gnome-shell-extension-manager"
@@ -69,8 +69,7 @@ sudo nala install -y "${APPLICATIONS[@]}"
 ## https://www.omgubuntu.co.uk/2022/08/pano-clipboard-manager-for-gnome-shell
 
 # ulauncher
-sudo add-apt-repository ppa:agornostal/ulauncher
-sudo apt update
+sudo sh -c "add-apt-repository ppa:agornostal/ulauncher; apt update"
 sudo apt install -y ulauncher
 sudo sh -c "echo '[Unit]
 Description=Linux Application Launcher
@@ -92,10 +91,10 @@ sudo systemctl enable ulauncher --now
 # run sudo dpgk --i386 # enable 32bit
 # sudo apt install wine64
 # wineGUI
-wget https://winegui.melroy.org/downloads/WineGUI-v2.6.1.deb
-sudo apt install -y ./WineGUI-v2.6.1.deb
-sudo apt -f install -y
-rm -f WineGUI-v2.6.1.deb
+# wget https://winegui.melroy.org/downloads/WineGUI-v2.6.1.deb
+# sudo apt install -y ./WineGUI-v2.6.1.deb
+# sudo apt -f install -y
+# rm -f WineGUI-v2.6.1.deb
 
 # Wezterm
 curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
@@ -111,6 +110,7 @@ sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://b
 echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
 sudo apt update
 sudo apt install -y brave-browser
+# rename .confidential to personal(not hidden)
 
 ## Chrome
 # wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
@@ -134,8 +134,7 @@ sudo apt install -y signal-desktop
 rm -f signal-desktop-keyring.gpg
 
 # Onedriver
-sudo add-apt-repository --remove ppa:jstaf/onedriver
-sudo apt update
+sudo sh -c "add-apt-repository --remove ppa:jstaf/onedriver; apt update"
 sudo apt install -y onedriver
 
 gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize-or-previews'
@@ -158,7 +157,7 @@ sudo update-alternatives --config x-www-browser
 systemctl daemon-reload
 
 sudo nala install -y zsh
-chsh -s $(which zsh)
+chsh --shell $(which zsh)
 
 # After restart
 cd ~/.dotfiles/scripts/installers
@@ -204,17 +203,22 @@ ADDITIONAL_APPS_FLATPAK=(
    "org.ghidra_sre.Ghidra"
    "net.nokyan.Resources"
    "se.sjoerd.Graphs"
+   "bottles"
    "io.github.diegoivanme.flowtime"
    "io.github.finefindus.Hieroglyphic"
-   "org.gnome.gitlab.somas.Apostrophe"
-   "org.gnome.Crosswords"
-   "org.gnome.Sudoku"
-   "org.gnome.Chess"
-   "io.github.nokse22.ultimate-tic-tac-toe"
+   # "org.gnome.gitlab.somas.Apostrophe"
+   # consumption
    "info.febvre.Komikku"
    "org.gnome.World.PikaBackup"
    "com.github.neithern.g4music"
-   # "bottles"
+   # Games
+   "io.github.nokse22.ultimate-tic-tac-toe"
+   "org.gnome.Crosswords"
+   "org.gnome.Chess"
+   "org.gnome.Sudoku"
+   "org.gnome.Mahjongg" 
+   "org.gnome.Mines"
+   "app.drey.MultiplicationPuzzle"
 )
 flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
 
@@ -288,6 +292,9 @@ sudo apt-get remove -y "${BLOAT[@]}"
 sudo sh -c "apt-get update;apt-get dist-upgrade;apt-get autoremove;apt-get autoclean"
 sudo apt --fix-broken install
 
+# Clear cache
+flatpak uninstall --unused --delete-data
+
 echo "The installer has concluded, it's a good idea to restart"
 
 # cargo install sccache -> needs some packages from openssl, idk what
@@ -304,7 +311,7 @@ echo "The installer has concluded, it's a good idea to restart"
 # configure the correct DNS servers
 # set the position of new icons to the top left
 # blur my shell extension(& disable the dash-to-dock effect) etc
-# how to configure system fonts
+# steps to configure system fonts
 
 # Reference
 ## https://kskroyal.com/remove-snap-packages-from-ubuntu/
