@@ -35,6 +35,7 @@ source <(starship init zsh)
 source <(fzf --zsh)
 source <(atuin init zsh)
 source <(zoxide init --cmd cd zsh)
+source <(mise activate zsh)
 
 # confidential variables
 if [[ -f "$ZDOTDIR/.confidential/zshrc.zsh" ]]; then

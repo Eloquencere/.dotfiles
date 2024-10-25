@@ -19,6 +19,7 @@ with pkgs;
 	atuin
 	zellij
 	docker lazydocker
+    podman distrobox
 	mprocs
 	croc
 	natural-docs doxygen

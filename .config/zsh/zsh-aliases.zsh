@@ -15,6 +15,7 @@ alias py=python3
 alias ls="eza --color=always --icons=always --git --group-directories-first"
 alias tree="ls --tree --smart-group --git-ignore"
 alias fd="fd --color=always"
+alias find=fd
 alias cat=bat
 alias grep=rg
 alias df=duf

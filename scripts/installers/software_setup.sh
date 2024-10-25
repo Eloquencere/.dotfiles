@@ -4,40 +4,24 @@ echo "Welcome to the *Ubuntu 24.04* installer :)
 This script will automatically reboot the system after it is done"
 sleep 3
 
-sudo apt update -y && sudo apt upgrade -y
+sudo sh -c "apt update; apt upgrade -y"
+
+source fonts_download.sh
 
 ESSENTIALS=(
 	"curl" "sqlite3"
     "ntfs-3g" "exfat-fuse"
 	"linux-headers-$(uname -r)" "linux-headers-generic"
 	"ubuntu-restricted-extras" "pkg-config" "wl-clipboard"
-	"nala"
+	"nala" "xmonad"
 )
 sudo apt-get install -y "${ESSENTIALS[@]}" 
 sudo nala fetch
 
-# Fonts - move this into a separate file
-declare -a fonts=(
-	JetBrainsMono
-)
-version=latest
-if [[ $version =~ "latest" ]]; then
-	version="latest/download"
-else
-	version="download/${version}"
-fi
-fonts_dir="${HOME}/.local/share/fonts"
-if [[ ! -d "$fonts_dir" ]]; then
-    mkdir -p "$fonts_dir"
-fi
-for font in "${fonts[@]}"; do
-	wget https://github.com/ryanoasis/nerd-fonts/releases/${version}/${font}.zip
-	unzip ${font} -d ${fonts_dir}
-	rm -f ${font}.zip
-done
-find "$fonts_dir" -name '*Windows Compatible*' -delete
-fc-cache -fv
+# Open in terminal option nautilus extension
+wget https://github.com/Stunkymonkey/nautilus-open-any-terminal/releases/latest/download/nautilus-extension-any-terminal_0.6.0-1_all.deb
 
+# performance improvement software
 sudo add-apt-repository ppa:linrunner/tlp
 sudo apt update
 sudo nala install -y tlp preload
@@ -60,13 +44,29 @@ sudo snap install julia --classic
 sudo snap install zig   --classic --beta
 
 APPLICATIONS=(
-	"vlc" "gnome-shell-extension-manager"
+	"gnome-shell-extension-manager"
 	"gparted" "bleachbit" "timeshift" 
-	"xmonad" "distrobox"
 )
 sudo nala install -y "${APPLICATIONS[@]}"
 
-## https://www.omgubuntu.co.uk/2022/08/pano-clipboard-manager-for-gnome-shell
+# signal
+wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg
+cat signal-desktop-keyring.gpg | sudo tee /usr/share/keyrings/signal-desktop-keyring.gpg > /dev/null
+echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main' |\
+sudo tee /etc/apt/sources.list.d/signal-xenial.list
+sudo apt update
+sudo apt install -y signal-desktop
+rm -f signal-desktop-keyring.gpg
+
+# Wezterm
+curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
+echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
+sudo apt update
+sudo apt install -y wezterm
+
+# zellij plugins
+## zjstatus
+wget -P ~/.local/share/zellij/plugins https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm
 
 # ulauncher
 sudo sh -c "add-apt-repository ppa:agornostal/ulauncher; apt update"
@@ -85,68 +85,31 @@ ExecStart=/usr/bin/ulauncher --hide-window
 [Install]
 WantedBy=graphical.target' > /lib/systemd/system/ulauncher.service"
 sudo systemctl enable ulauncher --now
-# register the keyboard shortcut with ubuntu
 
-# wine
-# run sudo dpgk --i386 # enable 32bit
-# sudo apt install wine64
-# wineGUI
-# wget https://winegui.melroy.org/downloads/WineGUI-v2.6.1.deb
-# sudo apt install -y ./WineGUI-v2.6.1.deb
-# sudo apt -f install -y
-# rm -f WineGUI-v2.6.1.deb
+echo "Would you like to install Brave or Google Chrome?"
+echo -n "b -> brave & gc -> google chrome: "
+read browser_choice
+if [[ $browser_choice == "b" ]]; then
+    # Brave
+    sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+    echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+    sudo apt update
+    sudo apt install -y brave-browser
+else
+    # Chrome
+    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    sudo apt install -y ./google-chrome-stable_current_amd64.deb
+    sudo apt -f install -y
+    rm -rf google-chrome-stable_current_amd64.deb
+fi
 
-# Wezterm
-curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
-echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
-sudo apt update
-sudo apt install -y wezterm
-
-# zellij - zjstatus plugin
-wget -P ~/.local/share/zellij/plugins https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm
-
-# Brave
-sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
-echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
-sudo apt update
-sudo apt install -y brave-browser
-# rename .confidential to personal(not hidden)
-
-## Chrome
-# wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-# sudo apt install -y ./google-chrome-stable_current_amd64.deb
-# sudo apt -f install -y
-# rm -rf google-chrome-stable_current_amd64.deb
-
-# jitsi meet -> not working very well
-# curl https://download.jitsi.org/jitsi-key.gpg.key | sudo sh -c 'gpg --dearmor > /usr/share/keyrings/jitsi-keyring.gpg'
-# echo 'deb [signed-by=/usr/share/keyrings/jitsi-keyring.gpg] https://download.jitsi.org stable/' | sudo tee /etc/apt/sources.list.d/jitsi-stable.list > /dev/null
-# sudo apt update -y
-# sudo apt install -y jitsi-meet
-
-# signal
-wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg
-cat signal-desktop-keyring.gpg | sudo tee /usr/share/keyrings/signal-desktop-keyring.gpg > /dev/null
-echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main' |\
-sudo tee /etc/apt/sources.list.d/signal-xenial.list
-sudo apt update
-sudo apt install -y signal-desktop
-rm -f signal-desktop-keyring.gpg
-
-# Onedriver
-sudo sh -c "add-apt-repository --remove ppa:jstaf/onedriver; apt update"
-sudo apt install -y onedriver
-
-gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize-or-previews'
-
-gsettings set org.gnome.TextEditor style-scheme 'classic-dark'
-gsettings set org.gnome.TextEditor restore-session false
-gsettings set org.gnome.TextEditor highlight-current-line true
-gsettings set org.gnome.TextEditor highlight-matching-brackets true
-gsettings set org.gnome.TextEditor show-line-numbers true
-
-gsettings set org.gnome.mutter center-new-windows true
-gsettings set org.gnome.desktop.interface clock-format '24h'
+echo -n "Would you like to install OneDriver? (Y/n) "
+read user_input
+if [[ $user_input =~ ^[Yy]$ ]]; then
+    # Onedriver
+    sudo sh -c "add-apt-repository --remove ppa:jstaf/onedriver; apt update"
+    sudo apt install -y onedriver
+fi
 
 echo "Set wezterm as the default terminal"
 sudo update-alternatives --config x-terminal-emulator
@@ -154,12 +117,29 @@ sudo update-alternatives --config x-terminal-emulator
 echo "Set brave/chrome as the default browser"
 sudo update-alternatives --config x-www-browser
 
+# GNOME nautilus-open-any-terminal config
+gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal wezterm
+gsettings set com.github.stunkymonkey.nautilus-open-any-terminal keybindings '<Ctrl><Alt>t'
+gsettings set com.github.stunkymonkey.nautilus-open-any-terminal flatpak system
+# GNOME dash-to-dock config
+gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize-or-previews'
+# GNOME TextEditor config
+gsettings set org.gnome.TextEditor style-scheme 'classic-dark'
+gsettings set org.gnome.TextEditor restore-session false
+gsettings set org.gnome.TextEditor highlight-current-line true
+gsettings set org.gnome.TextEditor highlight-matching-brackets true
+gsettings set org.gnome.TextEditor show-line-numbers true
+# GNOME window & interface config
+gsettings set org.gnome.mutter center-new-windows true
+gsettings set org.gnome.desktop.interface clock-format '24h'
+
 systemctl daemon-reload
 
 sudo nala install -y zsh
 chsh --shell $(which zsh)
 
 # After restart
+rm -rf ~/{.bash*,.fontconfig,.profile,.sudo_as_admin_successful}
 cd ~/.dotfiles/scripts/installers
 # package managers
 sudo apt install -y flatpak gnome-software-plugin-flatpak
@@ -167,11 +147,12 @@ flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.f
 sh <(curl -L https://nixos.org/nix/install) --daemon
 mkdir $HOME/.config/nixpkgs
 echo "{ allowUnfree = true; }" >> ~/.config/nixpkgs/config.nix
-# restart shell here - maybe sourcing zshrc might suffice
 
 cd ~/.dotfiles
 stow .
 cd -
+
+# restart shell here - maybe sourcing zshrc might suffice
 
 # Nix packages
 nix-env --install --file cli_pkgs.nix
@@ -222,8 +203,8 @@ ADDITIONAL_APPS_FLATPAK=(
 )
 flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
 
-# mise settings set python_compile 1 -> not working very well
-# mise use --global node@latest go@latest python@latest python@2.7
+# mise settings set python_compile 1
+# mise use --global dino@latest go@latest python@latest python@2.7
 # pip install --upgrade pip
 
 echo -n "Enter the ID granted by your admin to register with your team via croc: "
@@ -273,38 +254,34 @@ if [[ $usr_input =~ ^[Yy]$ ]]; then
 export SERVER_IP=$server_ip" >> $ZDOTDIR/.confidential/zprofile.zsh
 fi
 
+rm -rf ~/{Templates,Public,Pictures,Videos}
+sed -i "/Pictures/d" ~/.config/gtk-3.0/bookmarks
+sed -i "/Videos/d" ~/.config/gtk-3.0/bookmarks
+mkdir ~/{Projects,croc-inbox,Tools}
+sed -i "1i\file://$HOME/Tools" ~/.config/gtk-3.0/bookmarks
+sed -i "1i\file://$HOME/croc-inbox" ~/.config/gtk-3.0/bookmarks
+sed -i "1i\file://$HOME/Projects" ~/.config/gtk-3.0/bookmarks
+
 sudo apt-get purge -y firefox thunderbird
 sudo snap remove firefox thunderbird
 rm -rf ~/.mozilla
-rm -rf ~/{.bash*,.fontconfig,.profile,.sudo_as_admin_successful}
-
-# remove these from Gnome favourates
-rm -rf ~/{Templates,Public,Pictures,Videos}
-# add this to favourates
-mkdir ~/Projects
-
 BLOAT=(
 	"curl"
 	# disks gnome-terminal
 )
 sudo apt-get remove -y "${BLOAT[@]}"
 
+# Clean up
 sudo sh -c "apt-get update;apt-get dist-upgrade;apt-get autoremove;apt-get autoclean"
 sudo apt --fix-broken install
-
-# Clear cache
 flatpak uninstall --unused --delete-data
 
 echo "The installer has concluded, it's a good idea to restart"
 
-# cargo install sccache -> needs some packages from openssl, idk what
 
+# rename .confidential to personal(not hidden) & access the croc database from XDG_DATA_HOME/croc
 # correct grouping of apps in the app drawer
 # Adding only necessary apps to the dock
-# other edits from the original install scripts
-# download curlie via nix and alias it with curl
-# try the approach of first changing the shell and then, after restart, install *all* the necessary tools
-# assign caps lock for left control in kanata & comment the code
 
 # gui instructions
 # set the dock at the correct position
@@ -312,10 +289,31 @@ echo "The installer has concluded, it's a good idea to restart"
 # set the position of new icons to the top left
 # blur my shell extension(& disable the dash-to-dock effect) etc
 # steps to configure system fonts
-
-# Reference
-## https://kskroyal.com/remove-snap-packages-from-ubuntu/
+# register the keyboard shortcut of ulauncher with ubuntu
+## Reference
+# https://kskroyal.com/remove-snap-packages-from-ubuntu/
 
 ## distrobox create --name centos --image quay.io/toolbx-images/centos-toolbox
 ## distrobox create --name rhel --image quay.io/toolbx-images/rhel-toolbox
 ## distrobox create --name Mint --image docker.io/linuxmintd/mint22-amd64
+
+#### Don't touch unless you know what you are doing ###
+# cargo install sccache -> needs some packages from openssl, idk what
+#
+## jitsi meet -> not working very well
+# curl https://download.jitsi.org/jitsi-key.gpg.key | sudo sh -c 'gpg --dearmor > /usr/share/keyrings/jitsi-keyring.gpg'
+# echo 'deb [signed-by=/usr/share/keyrings/jitsi-keyring.gpg] https://download.jitsi.org stable/' | sudo tee /etc/apt/sources.list.d/jitsi-stable.list > /dev/null
+# sudo apt update -y
+# sudo apt install -y jitsi-meet
+#
+## wine
+# run sudo dpgk --i386 # enable 32bit
+# sudo apt install wine64
+# wineGUI
+# wget https://winegui.melroy.org/downloads/WineGUI-v2.6.1.deb
+# sudo apt install -y ./WineGUI-v2.6.1.deb
+# sudo apt -f install -y
+# rm -f WineGUI-v2.6.1.deb
+#
+# https://www.omgubuntu.co.uk/2022/08/pano-clipboard-manager-for-gnome-shell
+#
