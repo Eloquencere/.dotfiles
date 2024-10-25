@@ -37,9 +37,9 @@ source <(atuin init zsh)
 source <(zoxide init --cmd cd zsh)
 source <(mise activate zsh)
 
-# confidential variables
-if [[ -f "$ZDOTDIR/.confidential/zshrc.zsh" ]]; then
-    source "$ZDOTDIR/.confidential/zshrc.zsh"
+# Personal confidential variables
+if [[ -f "$ZDOTDIR/personal/zshrc.zsh" ]]; then
+    source "$ZDOTDIR/personal/zshrc.zsh"
 fi
 # aliases & functions
 source "$ZDOTDIR/zsh-aliases.zsh"

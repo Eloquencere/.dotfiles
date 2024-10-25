@@ -209,9 +209,9 @@ flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
 
 echo -n "Enter the ID granted by your admin to register with your team via croc: "
 read croc_id
-mkdir -p $ZDOTDIR/.confidential
+mkdir -p $ZDOTDIR/personal
 echo "# Croc
-export CROC_SELF_TRANSFER_ID=$croc_id" >> $HOME/.config/zsh/.confidential/zprofile.zsh
+export CROC_SELF_TRANSFER_ID=$croc_id" >> $HOME/.config/zsh/personal/zprofile.zsh
 
 echo -n "Would you like to log into your git account? (Y/n)"
 read usr_input
@@ -251,7 +251,7 @@ if [[ $usr_input =~ ^[Yy]$ ]]; then
 	echo -n "Enter the server address: "
 	read server_ip
 	echo "# USBIP
-export SERVER_IP=$server_ip" >> $ZDOTDIR/.confidential/zprofile.zsh
+export SERVER_IP=$server_ip" >> $ZDOTDIR/personal/zprofile.zsh
 fi
 
 rm -rf ~/{Templates,Public,Pictures,Videos}
@@ -278,10 +278,6 @@ flatpak uninstall --unused --delete-data
 
 echo "The installer has concluded, it's a good idea to restart"
 
-
-# rename .confidential to personal(not hidden) & access the croc database from XDG_DATA_HOME/croc
-# correct grouping of apps in the app drawer
-# Adding only necessary apps to the dock
 
 # gui instructions
 # set the dock at the correct position

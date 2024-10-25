@@ -3,10 +3,10 @@ croc() {
 		shift
 		if [[ $1 == "--here" ]]; then
 			shift
-			export CROC_SECRET=$(sqlite3 $ZDOTDIR/.confidential/croc_collaborators_registry.db "SELECT Transfer_Code FROM collaborator_catalogue WHERE ID='$1';")
+			export CROC_SECRET=$(sqlite3 $XDG_DATA_HOME/croc/croc_collaborators_registry.db "SELECT Transfer_Code FROM collaborator_catalogue WHERE ID='$1';")
 			command croc && echo "\033[33mTransfer received\033[0m in current working directory"
 		else
-			export CROC_SECRET=$(sqlite3 $ZDOTDIR/.confidential/croc_collaborators_registry.db "SELECT Transfer_Code FROM collaborator_catalogue WHERE ID='$1';")
+			export CROC_SECRET=$(sqlite3 $XDG_DATA_HOME/croc/croc_collaborators_registry.db "SELECT Transfer_Code FROM collaborator_catalogue WHERE ID='$1';")
 			command croc --out $HOME/croc-inbox && echo "\033[32mTransfer received\033[0m in ~/croc-inbox"
 		fi
 	elif [[ $1 == "send" ]]; then
@@ -18,7 +18,7 @@ croc() {
             shift
             local ask_user_to_delete=1
         fi
-		export CROC_SECRET=$(sqlite3 $ZDOTDIR/.confidential/croc_collaborators_registry.db "SELECT Transfer_Code FROM collaborator_catalogue WHERE ID='$CROC_SELF_TRANSFER_ID';")
+		export CROC_SECRET=$(sqlite3 $XDG_DATA_HOME/croc/croc_collaborators_registry.db "SELECT Transfer_Code FROM collaborator_catalogue WHERE ID='$CROC_SELF_TRANSFER_ID';")
         command croc send "$@"
         if [[ $? -eq 1 || $ask_user_to_delete -ne 1 ]]; then
             return

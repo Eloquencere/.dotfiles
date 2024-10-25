@@ -33,9 +33,9 @@ export CONAN_HOME="$XDG_DATA_HOME/conan"
 # 32-bit library path
 export LIBRARY_PATH=/usr/lib32:$LIBRARY_PATH
 
-# Confidential environment variables
-if [[ -f "$ZDOTDIR/.confidential/zprofile.zsh" ]]; then
-    source "$ZDOTDIR/.confidential/zprofile.zsh"
+# Personal confidential environment variables
+if [[ -f "$ZDOTDIR/personal/zprofile.zsh" ]]; then
+    source "$ZDOTDIR/personal/zprofile.zsh"
 fi
 
 # Plugin manager for zsh
