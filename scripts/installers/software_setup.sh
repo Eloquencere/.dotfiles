@@ -1,4 +1,4 @@
-#!/bin/bsh
+#!/bin/bash
 
 echo "Welcome to the *Ubuntu 24.04* installer :)
 This script will automatically reboot the system after it is done"
@@ -6,10 +6,12 @@ sleep 3
 
 sudo sh -c "apt update; apt upgrade -y"
 
-source fonts_download.sh
+# install nerd fonts
+source nerdfonts_download.sh
 
 ESSENTIALS=(
 	"curl" "sqlite3"
+    "stow" "build-essential"
     "ntfs-3g" "exfat-fuse"
 	"linux-headers-$(uname -r)" "linux-headers-generic"
 	"ubuntu-restricted-extras" "pkg-config" "wl-clipboard"
@@ -90,13 +92,11 @@ echo "Would you like to install Brave or Google Chrome?"
 echo -n "b -> brave & gc -> google chrome: "
 read browser_choice
 if [[ $browser_choice == "b" ]]; then
-    # Brave
     sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
     echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
     sudo apt update
     sudo apt install -y brave-browser
 else
-    # Chrome
     wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
     sudo apt install -y ./google-chrome-stable_current_amd64.deb
     sudo apt -f install -y
@@ -106,7 +106,6 @@ fi
 echo -n "Would you like to install OneDriver? (Y/n) "
 read user_input
 if [[ $user_input =~ ^[Yy]$ ]]; then
-    # Onedriver
     sudo sh -c "add-apt-repository --remove ppa:jstaf/onedriver; apt update"
     sudo apt install -y onedriver
 fi
@@ -155,6 +154,7 @@ cd -
 # restart shell here - maybe sourcing zshrc might suffice
 
 # Nix packages
+nix-env --install --file base_pkgs.nix
 nix-env --install --file cli_pkgs.nix
 
 # Kanata config

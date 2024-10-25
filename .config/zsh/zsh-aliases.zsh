@@ -17,12 +17,12 @@ alias tree="ls --tree --smart-group --git-ignore"
 alias fd="fd --color=always"
 alias find=fd
 alias cat=bat
-alias grep=rg
-alias df=duf
-alias curl=curlie
 alias diff="delta --dark --side-by-side"
+alias grep=rg
+alias curl=curlie
 alias ps="procs --tree"
-alias cheat="cheat --colorize"
+alias df=duf
 alias du="dust --reverse --force-colors --no-percent-bars"
 alias zellij="zellij -l welcome"
+alias cheat="cheat --colorize"
 

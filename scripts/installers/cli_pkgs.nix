@@ -1,28 +1,22 @@
 { pkgs ? import <nixpkgs> {} }:
 with pkgs;
 [
-    stow
-    p7zip
+    p7zip rar
     dos2unix
-	neovim
-	fastfetch
 	btop
-	mise conan
-	scriptisto
+	conan
 	gh
-	fzf zoxide eza bat fd ripgrep
-	yazi duf dust delta lazygit procs
+	yazi
 	speedtest-rs jq yq jqp
-	tlrc
+	tlrc cheat
 	tio
 	pipes
-	atuin
 	zellij
+	mprocs
+	neovim
+	scriptisto
+    lazygit
 	docker lazydocker
     podman distrobox
-	mprocs
-	croc
 	natural-docs doxygen
-	curlie
-	rar
 ]
