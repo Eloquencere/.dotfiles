@@ -1,7 +1,7 @@
 if [[ ! -f "./.temp_file" ]]; then
     echo "Welcome to part 2 of the installer
 Please make sure to run this file again after it concludes"
-    sleep 6
+    sleep 5
     rm -rf ~/{.bash*,.fontconfig,.profile,.sudo_as_admin_successful,.wget-hsts}
     cd ~/.dotfiles/scripts/installers
     # package managers
@@ -50,6 +50,17 @@ Restart=no
 WantedBy=default.target' > /lib/systemd/system/kanata.service"
 sudo systemctl enable kanata --now
 
+echo "While your software take time to install, finish up some GUI setup"
+sleep 3
+# gnome-text-editor .gui_instructions.txt &
+# gui instructions
+# set the dock at the correct position
+# configure the correct DNS servers
+# set the position of new icons to the top left
+# blur my shell extension(& disable the dash-to-dock effect) etc
+# steps to configure system fonts
+# register the keyboard shortcut of ulauncher with ubuntu
+
 ADDITIONAL_APPS_FLATPAK=( 
    "org.ghidra_sre.Ghidra"
    "net.nokyan.Resources"
@@ -73,16 +84,6 @@ ADDITIONAL_APPS_FLATPAK=(
 )
 flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
 
-echo "While your languages take time to install, finish up on some GUI setup"
-sleep 3
-# gnome-text-editor .gui_instructions.txt &
-# gui instructions
-# set the dock at the correct position
-# configure the correct DNS servers
-# set the position of new icons to the top left
-# blur my shell extension(& disable the dash-to-dock effect) etc
-# steps to configure system fonts
-# register the keyboard shortcut of ulauncher with ubuntu
 
 mise settings set python_compile 1
 mise use --global dino@latest go@latest python@latest python@2.7
