@@ -17,7 +17,7 @@ alias tree="ls --tree --smart-group --git-ignore"
 alias fd="fd --color=always"
 alias find=fd
 alias cat=bat
-alias diff="delta --dark --side-by-side"
+alias diff="delta --dark --side-by-side "
 alias grep=rg
 alias curl=curlie
 alias ps="procs --tree"

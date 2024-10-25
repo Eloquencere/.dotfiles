@@ -1,6 +1,6 @@
 Gnome Settings
     - Change DNS servers to primary - 1.1.1.1(cloudflare) & secondary - 8.8.8.8(google) & 8.8.4.4(google)
-    - Under 'Multi-tasking' section disable 'active screen edges'
+    - Under the 'Multi-tasking' section disable 'active screen edges'
 
 Gnome Extensions
     blur my shell
@@ -33,19 +33,6 @@ Komikku
     4. General
         - Disable desktop notifications
 
-Setting up Online Accounts
-    Using rclone
-        - references
-            https://www.youtube.com/watch?v=u_W0-HEVOyg
-            https://rclone.org/onedrive/
-    Using GNOME online accounts
-        - Open up the file manager & click on your service provider
-        - Find the exact name of the mount, run: (ex: onedrive://xxxxxxxxxx/)
-            gio mount -l
-        - To auto mount the drive on reboot, run:
-            echo "# Onedrive\ngio mount OneDrive://xxxxxxxxxxx/" >> $ZDOTDIR/.confidential/zprofile.zsh
-        - run 
-            mkdir -p $HOME/OneDrive/Home $HOME/OneDrive/Shared
-            ln -s "/run/user/1000/gvfs/onedrive:host=xxxxxxxxxx/My Files" $HOME/OneDrive/Home
-            ln -s "/run/user/1000/gvfs/onedrive:host=xxxxxxxxxx/Shared with me" $HOME/OneDrive/Shared
-            sed -i "1i\file://$HOME/OneDrive" ~/.config/gtk-3.0/bookmarks
+To remove snap from ubuntu
+    - https://kskroyal.com/remove-snap-packages-from-ubuntu/
+
