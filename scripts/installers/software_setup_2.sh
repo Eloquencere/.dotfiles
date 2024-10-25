@@ -25,7 +25,7 @@ fi
 
 # Nix packages
 nix-env --install --file base_pkgs.nix
-nix-env --install --file cli_pkgs.nix
+nix-env --install --file additional_pkgs.nix
 
 # Kanata config
 nix-env -iA nixpkgs.kanata
