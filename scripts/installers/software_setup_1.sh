@@ -21,11 +21,6 @@ ESSENTIALS=(
 sudo apt-get install -y "${ESSENTIALS[@]}" 
 sudo nala fetch
 
-# Open in terminal option nautilus extension
-wget https://github.com/Stunkymonkey/nautilus-open-any-terminal/releases/latest/download/nautilus-extension-any-terminal_0.6.0-1_all.deb
-sudo apt install -y ./nautilus-extension-any-terminal_0.6.0-1_all.deb
-rm -f nautilus-extension-any-terminal_0.6.0-1_all.deb
-
 # performance improvement software
 sudo add-apt-repository ppa:linrunner/tlp
 sudo apt update
@@ -123,10 +118,6 @@ sudo update-alternatives --config x-terminal-emulator
 echo "Set brave/chrome as the default browser"
 sudo update-alternatives --config x-www-browser
 
-# GNOME nautilus-open-any-terminal config
-gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal wezterm
-gsettings set com.github.stunkymonkey.nautilus-open-any-terminal keybindings '<Ctrl><Alt>t'
-gsettings set com.github.stunkymonkey.nautilus-open-any-terminal flatpak system
 # GNOME dash-to-dock config
 gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize-or-previews'
 # GNOME TextEditor config
