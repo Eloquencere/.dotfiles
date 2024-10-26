@@ -62,6 +62,7 @@ sudo systemctl enable kanata --now
 # register the keyboard shortcut of ulauncher with ubuntu
 
 ADDITIONAL_APPS_FLATPAK=( 
+   "org.jitsi.jitsi-meet"
    "org.ghidra_sre.Ghidra"
    "net.nokyan.Resources"
    "se.sjoerd.Graphs"
@@ -86,8 +87,9 @@ flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
 
 
 mise settings set python_compile 1
-mise use --global dino@latest go@latest python@latest python@2.7
+mise use --global deno@latest go@latest python@latest python@2.7
 # pip install --upgrade pip
+# Issue: python2.7 gnu readline lib, sqlite3 lib, tk toolkit not found, 
 
 mkdir -p $HOME/.config/zsh/personal
 
