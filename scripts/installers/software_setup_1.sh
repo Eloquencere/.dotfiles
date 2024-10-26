@@ -49,9 +49,10 @@ cargo install sccache
 
 sudo snap install julia --classic
 sudo snap install zig   --classic --beta
+# remove julia from app drawer
 
 APPLICATIONS=(
-	"gnome-shell-extension-manager"
+	"vlc" "gnome-shell-extension-manager"
 	"gparted" "bleachbit" "timeshift" 
 )
 sudo nala install -y "${APPLICATIONS[@]}"

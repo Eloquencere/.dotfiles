@@ -1,6 +1,6 @@
-# update
-sudo -c "nala update; nala upgrade -y"
-# snap
+sudo sh -c "nala update; nala upgrade -y"
+sudo snap refresh
 nix-env --upgrade
-# flatpak
+flatpak update
+zinit update --all
 

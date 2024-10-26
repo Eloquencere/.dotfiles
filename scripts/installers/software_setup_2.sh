@@ -50,10 +50,10 @@ Restart=no
 WantedBy=default.target' > /lib/systemd/system/kanata.service"
 sudo systemctl enable kanata --now
 
-echo "While your software take time to install, finish up some GUI setup"
-sleep 3
+# echo "While your software take time to install, finish up some GUI setup"
+# sleep 3
 # gnome-text-editor .gui_instructions.txt &
-# gui instructions
+## gui instructions
 # set the dock at the correct position
 # configure the correct DNS servers
 # set the position of new icons to the top left
@@ -149,9 +149,11 @@ sudo snap remove firefox thunderbird
 rm -rf ~/.mozilla
 BLOAT=(
 	"curl"
-	# disks gnome-terminal
+    "transmission-common" "transmission-gtk"
+    "gnome-terminal" "gnome-disk-utility" "gnome-system-monitor" "gnome-power-manager"
+    "deja-dup" "totem"
 )
-sudo apt-get remove -y "${BLOAT[@]}"
+sudo apt-get purge -y "${BLOAT[@]}"
 
 # Group apps in app drawer
 
