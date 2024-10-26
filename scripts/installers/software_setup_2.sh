@@ -2,7 +2,6 @@ if [[ ! -f "./.temp_file" ]]; then
     echo "Welcome to part 2 of the installer
 Please make sure to run this file again after it concludes"
     sleep 5
-    rm -rf ~/{.bash*,.fontconfig,.profile,.sudo_as_admin_successful,.wget-hsts}
     cd ~/.dotfiles/scripts/installers
     # package managers
     sudo apt install -y flatpak gnome-software-plugin-flatpak
@@ -139,6 +138,7 @@ if [[ $usr_input =~ ^[Yy]$ ]]; then
 export SERVER_IP=$server_ip" >> $HOME/.config/zsh/personal/zprofile.zsh
 fi
 
+rm -rf ~/{.bash*,.fontconfig,.profile,.sudo_as_admin_successful,.wget-hsts,.zcompdump}
 rm -rf ~/{Templates,Public,Pictures,Videos}
 sed -i "/Pictures/d" ~/.config/gtk-3.0/bookmarks
 sed -i "/Videos/d" ~/.config/gtk-3.0/bookmarks
@@ -155,7 +155,7 @@ BLOAT=(
     "gnome-terminal" "gnome-disk-utility" "gnome-system-monitor" "gnome-power-manager"
     "deja-dup" "totem" "info" "yelp" "seahorse"
 )
-sudo apt-get purge -y "${BLOAT[@]}"
+sudo nala purge -y "${BLOAT[@]}"
 
 # Group apps in app drawer
 

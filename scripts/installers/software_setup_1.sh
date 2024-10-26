@@ -49,9 +49,7 @@ cargo install sccache
 
 sudo snap install julia --classic
 sudo snap install zig   --classic --beta
-# removing julia desktop icons
-sudo sh -c "echo 'NoDisplay=true' >> /var/lib/snapd/desktop/applications/julia_julia.desktop"
-sudo sh -c "echo 'NoDisplay=true' >> /var/lib/snapd/desktop/applications/julia_julia-docs.desktop"
+# remove julia app grid icons
 
 APPLICATIONS=(
 	"vlc" "gnome-shell-extension-manager"
