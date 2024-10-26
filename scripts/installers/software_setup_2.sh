@@ -153,7 +153,7 @@ BLOAT=(
 	"curl" "transmission-common" "transmission-gtk"
     "rhythmbox" "gnome-logs" "orca"
     "gnome-terminal" "gnome-disk-utility" "gnome-system-monitor" "gnome-power-manager"
-    "deja-dup" "totem"
+    "deja-dup" "totem" "info" "yelp" "seahorse"
 )
 sudo apt-get purge -y "${BLOAT[@]}"
 

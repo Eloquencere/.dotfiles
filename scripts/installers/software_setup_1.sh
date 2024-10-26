@@ -49,11 +49,13 @@ cargo install sccache
 
 sudo snap install julia --classic
 sudo snap install zig   --classic --beta
-# remove julia from app drawer
+# removing julia desktop icons
+sudo sh -c "echo 'NoDisplay=true' >> /var/lib/snapd/desktop/applications/julia_julia.desktop"
+sudo sh -c "echo 'NoDisplay=true' >> /var/lib/snapd/desktop/applications/julia_julia-docs.desktop"
 
 APPLICATIONS=(
 	"vlc" "gnome-shell-extension-manager"
-	"gparted" "bleachbit" "timeshift" 
+	"gparted" "bleachbit" 
 )
 sudo nala install -y "${APPLICATIONS[@]}"
 
