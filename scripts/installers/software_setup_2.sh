@@ -61,7 +61,7 @@ sudo systemctl enable kanata --now
 # register the keyboard shortcut of ulauncher with ubuntu
 
 ADDITIONAL_APPS_FLATPAK=( 
-   "org.jitsi.jitsi-meet"
+   # "org.jitsi.jitsi-meet"
    "org.ghidra_sre.Ghidra"
    "net.nokyan.Resources"
    "se.sjoerd.Graphs"
@@ -88,7 +88,7 @@ flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
 mise settings set python_compile 1
 mise use --global deno@latest go@latest python@latest python@2.7
 # pip install --upgrade pip
-# Issue: python2.7 gnu readline lib, sqlite3 lib, tk toolkit not found, 
+# Issue: python2.7 gnu readline lib, sqlite3 lib, tk toolkit not found
 
 mkdir -p $HOME/.config/zsh/personal
 
@@ -97,7 +97,7 @@ read croc_id
 echo "# Croc
 export CROC_SELF_TRANSFER_ID=$croc_id" >> $HOME/.config/zsh/personal/zprofile.zsh
 
-echo -n "Would you like to log into your git account? (Y/n)"
+echo -n "Would you like to log into your git account?(y/N) "
 read usr_input
 if [[ $usr_input =~ ^[Yy]$ ]]; then
 	echo "[core]
@@ -126,7 +126,7 @@ if [[ $usr_input =~ ^[Yy]$ ]]; then
     sed -i '/.* = $/d' $HOME/.gitconfig
 fi
 
-echo -n "Would you like to configure USBIP? (Y/n)"
+echo -n "Would you like to configure USBIP?(y/N) "
 read usr_input
 if [[ $usr_input =~ ^[Yy]$ ]]; then
 	sudo sh -c " echo '# usbip client
@@ -167,10 +167,27 @@ flatpak uninstall --unused --delete-data
 rm -f ./.temp_file
 echo "The installer has concluded, it's a good idea to restart"
 
+# Necessary Python libraries
+# pip install icecream # debugging
+# pip install drawio colorama pyfiglet # presentation
+# pip install dash plotly seaborn mysql-connector-python # data representation and calculation
+# pip install polars xarray
+# pip install numpy scipy pillow
+# pip install Cython numba taichi
+# pip install parse pendulum pydantic ruff mypy pyglet
+# pip install keras tensorflow scikit-learn torch
 
-## distrobox create --name centos --image quay.io/toolbx-images/centos-toolbox
-## distrobox create --name rhel --image quay.io/toolbx-images/rhel-toolbox
-## distrobox create --name Mint --image docker.io/linuxmintd/mint22-amd64
+# Useful rust libs
+# cargo-expand
+# irust" bacon # tokio rayon
+
+# # Doom Emacs
+# sudo nala install -y emacs-gtk
+# git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
+# ~/.config/emacs/bin/doom install
+# echo '# Doom Emacs
+# export PATH=$XDG_CONFIG_HOME/emacs/bin:\$PATH' >> ~/.zprofile
+
 
 #### Don't touch unless you know what you are doing ###
 ## jitsi meet -> not working very well
@@ -190,3 +207,7 @@ echo "The installer has concluded, it's a good idea to restart"
 #
 # https://www.omgubuntu.co.uk/2022/08/pano-clipboard-manager-for-gnome-shell
 #
+# echo -n "Would you like to install remote machine software (thinlic, rustdesk, parsec)?(y/N) "
+# read usr_input
+# if [[ $usr_input =~ ^[Yy]$ ]]; then
+# fi

@@ -22,6 +22,11 @@ ESSENTIALS=(
 sudo apt-get install -y "${ESSENTIALS[@]}" 
 sudo nala fetch
 
+# Open in terminal option nautilus extension
+wget https://github.com/Stunkymonkey/nautilus-open-any-terminal/releases/latest/download/nautilus-extension-any-terminal_0.6.0-1_all.deb
+sudo apt install -y ./nautilus-extension-any-terminal_0.6.0-1_all.deb
+rm -f nautilus-extension-any-terminal_0.6.0-1_all.deb
+
 # performance improvement software
 sudo add-apt-repository ppa:linrunner/tlp
 sudo apt update
