@@ -9,6 +9,7 @@ sudo sh -c "apt update; apt upgrade -y"
 # install nerd fonts
 source nerdfonts_download.sh
 
+sudo dpkg --add-architecture i386
 ESSENTIALS=(
 	"curl" "sqlite3"
     "stow" "build-essential"
@@ -71,25 +72,6 @@ sudo apt install -y wezterm
 ## zjstatus
 wget -P ~/.local/share/zellij/plugins https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm
 
-# ulauncher
-sudo sh -c "add-apt-repository ppa:agornostal/ulauncher; apt update"
-sudo apt install -y ulauncher
-sudo sh -c "echo '[Unit]
-Description=Linux Application Launcher
-Documentation=https://ulauncher.io/
-After=display-manager.service
-
-[Service]
-Type=simple
-Restart=always
-RestartSec=1
-ExecStart=/usr/bin/ulauncher --hide-window
-
-[Install]
-WantedBy=graphical.target' > /lib/systemd/system/ulauncher.service"
-sudo systemctl enable ulauncher --now
-sudo rm -f /usr/share/applications/ulauncher.desktop
-
 echo "Would you like to install Brave or Google Chrome?"
 echo -n "b -> brave & gc -> google chrome: "
 read browser_choice
@@ -139,3 +121,22 @@ echo "The system will reboot now"
 sleep 3
 reboot
 
+# # Commenting out intentionally due to high RAM usage
+# # ulauncher
+# sudo sh -c "add-apt-repository ppa:agornostal/ulauncher; apt update"
+# sudo apt install -y ulauncher
+# sudo sh -c "echo '[Unit]
+# Description=Linux Application Launcher
+# Documentation=https://ulauncher.io/
+# After=display-manager.service
+# 
+# [Service]
+# Type=simple
+# Restart=always
+# RestartSec=1
+# ExecStart=/usr/bin/ulauncher --hide-window
+# 
+# [Install]
+# WantedBy=graphical.target' > /lib/systemd/system/ulauncher.service"
+# sudo systemctl enable ulauncher --now
+# sudo rm -f /usr/share/applications/ulauncher.desktop
