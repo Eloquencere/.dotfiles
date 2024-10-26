@@ -150,8 +150,8 @@ sudo apt-get purge -y firefox thunderbird
 sudo snap remove firefox thunderbird
 rm -rf ~/.mozilla
 BLOAT=(
-	"curl"
-    "transmission-common" "transmission-gtk"
+	"curl" "transmission-common" "transmission-gtk"
+    "rhythmbox" "gnome-logs" "orca"
     "gnome-terminal" "gnome-disk-utility" "gnome-system-monitor" "gnome-power-manager"
     "deja-dup" "totem"
 )
