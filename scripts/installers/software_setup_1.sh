@@ -93,6 +93,7 @@ ExecStart=/usr/bin/ulauncher --hide-window
 [Install]
 WantedBy=graphical.target' > /lib/systemd/system/ulauncher.service"
 sudo systemctl enable ulauncher --now
+sudo rm -f /usr/share/applications/ulauncher.desktop
 
 echo "Would you like to install Brave or Google Chrome?"
 echo -n "b -> brave & gc -> google chrome: "

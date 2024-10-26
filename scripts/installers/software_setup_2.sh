@@ -153,7 +153,7 @@ BLOAT=(
 	"curl" "transmission-common" "transmission-gtk"
     "rhythmbox" "gnome-logs" "orca"
     "gnome-terminal" "gnome-disk-utility" "gnome-system-monitor" "gnome-power-manager"
-    "deja-dup" "totem" "info" "yelp" "seahorse"
+    "deja-dup" "totem" "info" "yelp" "seahorse" "remmina" "shotwell"
 )
 sudo nala purge -y "${BLOAT[@]}"
 
