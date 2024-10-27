@@ -157,7 +157,8 @@ BLOAT=(
 )
 sudo nala purge -y "${BLOAT[@]}"
 
-# Group apps in app drawer
+gsettings set org.gnome.shell favorite-apps "['brave-browser.desktop', 'org.wezfurlong.wezterm.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.TextEditor.desktop']"
+# Group apps in the app grid
 
 # Clean up
 sudo sh -c "apt-get update;apt-get dist-upgrade;apt-get autoremove;apt-get autoclean"
