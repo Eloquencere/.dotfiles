@@ -11,12 +11,12 @@ sudo sh -c "apt update; apt upgrade -y"
 source nerdfonts_download.sh
 
 ESSENTIALS=(
-	"curl" "sqlite3"
-    "stow" "build-essential"
-    "ntfs-3g" "exfat-fuse"
     "libssl-dev" "liblzma-dev"
+	"curl" "sqlite3"
+    "stow"
+    "ntfs-3g" "exfat-fuse" "wl-clipboard" 
 	"linux-headers-$(uname -r)" "linux-headers-generic"
-	"ubuntu-restricted-extras" "pkg-config" "wl-clipboard"
+	"ubuntu-restricted-extras" "build-essential" "pkg-config" 
 	"nala" "xmonad"
 )
 sudo apt-get install -y "${ESSENTIALS[@]}" 
@@ -54,7 +54,7 @@ sudo snap install zig   --classic --beta
 
 APPLICATIONS=(
 	"vlc" "gnome-shell-extension-manager"
-	"gparted" "bleachbit" 
+	"gparted" "bleachbit" # "timeshift"
 )
 sudo apt install -y "${APPLICATIONS[@]}"
 
