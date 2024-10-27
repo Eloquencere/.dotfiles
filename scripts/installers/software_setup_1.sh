@@ -56,7 +56,7 @@ APPLICATIONS=(
 	"vlc" "gnome-shell-extension-manager"
 	"gparted" "bleachbit" 
 )
-sudo nala install -y "${APPLICATIONS[@]}"
+sudo apt install -y "${APPLICATIONS[@]}"
 
 # signal
 wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg
