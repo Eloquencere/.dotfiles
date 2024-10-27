@@ -4,12 +4,12 @@ echo "Welcome to the *Ubuntu 24.04* installer :)
 This script will automatically reboot the system after it is done"
 sleep 3
 
+sudo dpkg --add-architecture i386
 sudo sh -c "apt update; apt upgrade -y"
 
 # install nerd fonts
 source nerdfonts_download.sh
 
-sudo dpkg --add-architecture i386
 ESSENTIALS=(
 	"curl" "sqlite3"
     "stow" "build-essential"
@@ -123,8 +123,6 @@ gsettings set org.gnome.desktop.interface clock-format '24h'
 
 sudo nala install -y zsh
 chsh --shell $(which zsh)
-
-systemctl daemon-reload
 
 echo "The system will reboot now"
 sleep 3

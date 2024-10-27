@@ -15,8 +15,7 @@ Please make sure to run this file again after it concludes"
     cd -
 
     touch ./.temp_file
-    echo "The shell needs to be restarted for all changes to take effect"
-    echo "Please ensure you are running the defaul editor since all bloat will be removed"
+    echo "WARNING: ALL BLOAT *WILL* BE REMOVED AFTER THIS"
     echo "Press Enter to close the terminal"
     read user_input
     exit
@@ -152,7 +151,7 @@ rm -rf ~/.mozilla
 BLOAT=(
 	"curl" "transmission-common" "transmission-gtk"
     "rhythmbox" "gnome-logs" "orca"
-    "gnome-terminal" "gnome-disk-utility" "gnome-system-monitor" "gnome-power-manager"
+    "gnome-terminal" "gnome-system-monitor" "gnome-power-manager"
     "deja-dup" "totem" "info" "yelp" "seahorse" "remmina" "shotwell"
 )
 sudo nala purge -y "${BLOAT[@]}"
@@ -164,6 +163,8 @@ gsettings set org.gnome.shell favorite-apps "['brave-browser.desktop', 'org.wezf
 sudo sh -c "apt-get update;apt-get dist-upgrade;apt-get autoremove;apt-get autoclean"
 sudo apt --fix-broken install
 flatpak uninstall --unused --delete-data
+
+systemctl daemon-reload
 
 rm -f ./.temp_file
 echo "The installer has concluded, it's a good idea to restart"
