@@ -7,7 +7,7 @@ Gnome Extensions
     CHC-E
     Appindicator and kstatusNotifierItem support
     clipboard indicator
-    Tilling assistant
+    Tilling assistant - probably not needed
     Just Perfection
         Under visibility disable:
             Accessibility menu

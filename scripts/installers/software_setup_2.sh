@@ -137,6 +137,7 @@ if [[ $usr_input =~ ^[Yy]$ ]]; then
 export SERVER_IP=$server_ip" >> $HOME/.config/zsh/personal/zprofile.zsh
 fi
 
+rm -rf ~/.cache/thumbnails/*
 rm -rf ~/{.bash*,.fontconfig,.profile,.sudo_as_admin_successful,.wget-hsts,.zcompdump}
 rm -rf ~/{Templates,Public,Pictures,Videos}
 sed -i "/Pictures/d" ~/.config/gtk-3.0/bookmarks
@@ -198,6 +199,7 @@ echo "The installer has concluded, it's a good idea to restart"
 # echo 'deb [signed-by=/usr/share/keyrings/jitsi-keyring.gpg] https://download.jitsi.org stable/' | sudo tee /etc/apt/sources.list.d/jitsi-stable.list > /dev/null
 # sudo apt update -y
 # sudo apt install -y jitsi-meet
+# https://jitsi.github.io/handbook/docs/devops-guide/devops-guide-quickstart/
 #
 ## wine + GUI
 # run sudo dpgk --i386 # enable 32bit
