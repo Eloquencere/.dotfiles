@@ -85,7 +85,7 @@ flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
 
 
 mise settings set python_compile 1
-mise use --global deno@latest go@latest python@latest python@2.7
+mise use --global deno@latest go@latest python@latest # python@2.7
 # pip install --upgrade pip
 # Issue: python2.7 gnu readline lib, sqlite3 lib, tk toolkit not found
 
@@ -155,6 +155,7 @@ BLOAT=(
     "deja-dup" "totem" "info" "yelp" "seahorse" "remmina" "shotwell"
 )
 sudo nala purge -y "${BLOAT[@]}"
+# after finding why gparted doesn't open up, if possible remove gnome-disk-utility
 
 gsettings set org.gnome.shell favorite-apps "['$(xdg-settings get default-web-browser)', 'org.wezfurlong.wezterm.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.TextEditor.desktop']"
 # Group apps in the app grid
