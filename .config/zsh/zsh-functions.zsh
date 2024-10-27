@@ -40,10 +40,10 @@ usbip() {
         lsusbip
 	elif [[ $1 == "attach" ]]; then
 		shift
-		sudo usbip attach --remote=$SERVER_IP "$@"
+		sudo usbip attach --remote=$SERVER_IP --busid "$@"
 	elif [[ $1 == "detach" ]]; then
 		shift
-		sudo usbip detach "$@"
+		sudo usbip detach --port "$@"
 	else
 		command usbip "$@"
 	fi
