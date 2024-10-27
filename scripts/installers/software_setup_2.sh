@@ -186,7 +186,7 @@ echo "The installer has concluded, it's a good idea to restart"
 # git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
 # ~/.config/emacs/bin/doom install
 # echo '# Doom Emacs
-# export PATH=$XDG_CONFIG_HOME/emacs/bin:\$PATH' >> ~/.zprofile
+# export PATH=$XDG_CONFIG_HOME/emacs/bin:$PATH' >> ~/.zprofile
 
 
 #### Don't touch unless you know what you are doing ###

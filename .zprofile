@@ -40,5 +40,6 @@ fi
 
 # Plugin manager for zsh
 [[ ! -d "$ZDOTDIR/zinit" ]] && git clone https://github.com/zdharma-continuum/zinit.git "$HOME/.config/zsh/zinit"
+
 # Doom Emacs
-export "PATH=$XDG_CONFIG_HOME/emacs/bin:\$PATH"
+export PATH=$XDG_CONFIG_HOME/emacs/bin:$PATH

@@ -6,10 +6,10 @@ setopt interactive_comments
 # Initialising completions directory
 fpath=($ZDOTDIR/completion $fpath)
 
-# Load zinit
+# Loading zinit
 source "$ZDOTDIR/zinit/zinit.zsh"
 
-# Add zinit plugins
+# zinit plugins
 zinit ice depth=1
 zinit light jeffreytse/zsh-vi-mode
 zinit light zsh-users/zsh-completions
@@ -31,9 +31,10 @@ zstyle ':fzf-tab:complete:(cd|ls|jq|touch):*' fzf-preview '[[ -d $realpath ]] &&
 zstyle ':fzf-tab:complete:((cp|mv|rm|source|cat|nvim):argument-rest|kate:*)' fzf-preview 'bat --color=always -- $realpath 2>/dev/null || eza --oneline --color=always --icons=always --all -- $realpath'
 
 # Shell integrations
-source <(starship init zsh)
+# source <(starship init zsh)
+source <(oh-my-posh init zsh --config $HOME/.config/ohmyposh/config.toml)
 source <(fzf --zsh)
-source <(atuin init zsh)
+source <(atuin init zsh --disable-up-arrow)
 source <(zoxide init --cmd cd zsh)
 source <(mise activate zsh)
 
@@ -45,14 +46,6 @@ fi
 source "$ZDOTDIR/zsh-aliases.zsh"
 source "$ZDOTDIR/zsh-functions.zsh"
 
-# FZF modifications
-_fzf_compgen_path() {
-    fd --follow --hidden --exclude .git . "$1" --color=always
-}
-_fzf_compgen_dir() {
-    fd --type=d --hidden --exclude .git . "$1" --color=always
-}
-
 # Zsh-Vi-Mode
 function zvm_after_init() {
 	ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
@@ -63,6 +56,15 @@ function zvm_after_lazy_keybindings() {
     zvm_bindkey vicmd '^r' atuin-search
 	zvm_bindkey vicmd '^p' atuin-up-search
 }
+
+# FZF modifications
+_fzf_compgen_path() {
+    fd --follow --hidden --exclude .git . "$1" --color=always
+}
+_fzf_compgen_dir() {
+    fd --type=d --hidden --exclude .git . "$1" --color=always
+}
+
 
 zellij_tab_name_update() {
     if [[ -n $ZELLIJ ]]; then
