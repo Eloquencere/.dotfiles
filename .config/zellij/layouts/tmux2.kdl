@@ -2,10 +2,13 @@ layout {
   default_tab_template {
       pane size=1 borderless=true {
         plugin location="file:zjstatus.wasm" {
-          format_left  "#[bg=green,fg=black] {command_host_os_icon} {session} #[bg=green,fg=black]│"
+          format_left  "#[bg=green,fg=black] {command_host_os_icon} {session} #[bg=green,fg=black]│ {swap_layout}"
           format_center "{tabs}"
-          format_right "#[bg=green,fg=black] {swap_layout} {mode}"
+          format_right "#[bg=green,fg=black] {mode}"
           format_space  "#[bg=green]"
+          
+          swap_layout_format        "#[bg=green,fg=black] {name} #[bg=green,fg=black]│ "
+          swap_layout_hide_if_empty "true"
 
           mode_normal        "#[bg=green,fg=black]│#[bg=green,fg=black] NORMAL  "
           mode_resize        "#[bg=green,fg=green]│#[bg=magenta,fg=black] RESIZE  "
@@ -17,8 +20,8 @@ layout {
           mode_move          "#[bg=green,fg=green]│#[bg=magenta,fg=black] MOVE    "
           mode_tmux          "#[bg=green,fg=green]│#[bg=magenta,fg=black] TMUX    "
 
-          tab_normal "#[bg=green,fg=black] #[bg=green,fg=black]{name} {sync_indicator}{fullscreen_indicator}{floating_indicator}#[bg=green,fg=black]"
-          tab_active "#[bg=black,fg=green] #[bg=black,fg=green]{name} {sync_indicator}{fullscreen_indicator}{floating_indicator}#[bg=black,fg=green]"
+          tab_normal "#[bg=green,fg=black] #[bg=green,fg=black]{index}:{name} {sync_indicator}{fullscreen_indicator}{floating_indicator}#[bg=green,fg=black]"
+          tab_active "#[bg=black,fg=green] #[bg=black,fg=green]{index}:{name} {sync_indicator}{fullscreen_indicator}{floating_indicator}#[bg=black,fg=green]"
 
           tab_sync_indicator       "󰓦 "
           tab_fullscreen_indicator "󱟱  "
@@ -28,10 +31,6 @@ layout {
           command_host_os_icon_format "{stdout}"
           command_host_os_icon_interval "0"
           command_host_os_icon_rendermode "static"
-
-          datetime          "{format}"
-          datetime_format   "%d-%m-%Y %H:%M"
-          datetime_timezone "Europe/Berlin"
         }
       }
     children

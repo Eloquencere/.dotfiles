@@ -18,7 +18,6 @@ layout {
 
                 swap_layout_format        "#[bg=#000000,fg=#AFFF00]  #[bg=#000000,fg=#AFFF00]{name} "
                 swap_layout_hide_if_empty "true"
-                // fix the swap issue
 
                 mode_normal  "#[bg=#000000,fg=#AFFF00,bold]  󱏿   "
                 mode_tmux    "#[bg=#000000,fg=#D75F00,bold]  󰿖   "
