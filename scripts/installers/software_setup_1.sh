@@ -28,7 +28,7 @@ sudo apt install -y ./nautilus-extension-any-terminal_0.6.0-1_all.deb
 rm -f nautilus-extension-any-terminal_0.6.0-1_all.deb
 
 # performance improvement software
-sudo add-apt-repository ppa:linrunner/tlp
+sudo add-apt-repository -y ppa:linrunner/tlp
 sudo apt update
 sudo nala install -y tlp 
 sudo nala install -y preload
@@ -98,7 +98,7 @@ fi
 echo -n "Would you like to install OneDriver? (Y/n) "
 read user_input
 if [[ $user_input =~ ^[Yy]$ ]]; then
-    sudo sh -c "add-apt-repository --remove ppa:jstaf/onedriver; apt update"
+    sudo sh -c "add-apt-repository -y --remove ppa:jstaf/onedriver; apt update"
     sudo apt install -y onedriver
 fi
 
@@ -128,7 +128,7 @@ sleep 3
 reboot
 
 # # ulauncher - Commented out due to high RAM usage
-# sudo sh -c "add-apt-repository ppa:agornostal/ulauncher; apt update"
+# sudo sh -c "add-apt-repository -y ppa:agornostal/ulauncher; apt update"
 # sudo apt install -y ulauncher
 # sudo sh -c "echo '[Unit]
 # Description=Linux Application Launcher
