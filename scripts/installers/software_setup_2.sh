@@ -90,6 +90,7 @@ mise use --global deno@latest go@latest python@latest # python@2.7
 # Issue: python2.7 gnu readline lib, sqlite3 lib, tk toolkit not found
 
 mkdir -p $HOME/.config/zsh/personal
+mkdir -p $HOME/.local/share/croc
 
 echo -n "Enter the ID granted by your admin to register with your team via croc: "
 read croc_id
