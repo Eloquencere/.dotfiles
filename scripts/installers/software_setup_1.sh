@@ -11,9 +11,9 @@ sudo sh -c "apt update; apt upgrade -y"
 source nerdfonts_download.sh
 
 ESSENTIALS=(
-    "libssl-dev" "liblzma-dev"
-	"curl" "sqlite3"
-    "stow"
+    "libssl-dev" "liblzma-dev" "libreadline-dev"
+	"sqlite3" "libsqlite3-dev"
+    "stow" "curl"
     "ntfs-3g" "exfat-fuse" "wl-clipboard" 
 	"linux-headers-$(uname -r)" "linux-headers-generic"
 	"ubuntu-restricted-extras" "build-essential" "pkg-config" 
@@ -41,7 +41,7 @@ LANGUAGE_COMPILERS=(
 	"perl" "ghc"
 	"gdb" "valgrind" "strace"
 	"clang" "lldb"
-    "python3-pip" "tk"
+    "python3-pip" "tk-dev"
 )
 sudo nala install -y "${LANGUAGE_COMPILERS[@]}"
 rustup toolchain install stable
@@ -50,7 +50,6 @@ cargo install sccache
 
 sudo snap install julia --classic
 sudo snap install zig   --classic --beta
-# remove julia app grid icons
 
 APPLICATIONS=(
 	"vlc" "gnome-shell-extension-manager"
@@ -128,8 +127,7 @@ echo "The system will reboot now"
 sleep 3
 reboot
 
-# # Commenting out intentionally due to high RAM usage
-# # ulauncher
+# # ulauncher - Commented out due to high RAM usage
 # sudo sh -c "add-apt-repository ppa:agornostal/ulauncher; apt update"
 # sudo apt install -y ulauncher
 # sudo sh -c "echo '[Unit]

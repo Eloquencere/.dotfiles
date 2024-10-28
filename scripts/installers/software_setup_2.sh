@@ -85,9 +85,8 @@ flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
 
 
 mise settings set python_compile 1
-mise use --global deno@latest go@latest python@latest # python@2.7
-# pip install --upgrade pip
-# Issue: python2.7 gnu readline lib, sqlite3 lib, tk toolkit not found
+mise use --global deno@latest go@latest python@latest python@2.7
+pip install --upgrade pip
 
 mkdir -p $HOME/.config/zsh/personal
 mkdir -p $HOME/.local/share/croc
@@ -155,12 +154,12 @@ BLOAT=(
     "rhythmbox" "gnome-logs" "orca"
     "gnome-terminal" "gnome-system-monitor" "gnome-power-manager"
     "deja-dup" "totem" "info" "yelp" "seahorse" "remmina" "shotwell"
+    # "stow"
 )
 sudo nala purge -y "${BLOAT[@]}"
-# after finding why gparted doesn't open up, if possible remove gnome-disk-utility
+# why doesn't gparted work after removing bloat?
 
 gsettings set org.gnome.shell favorite-apps "['$(xdg-settings get default-web-browser)', 'org.wezfurlong.wezterm.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.TextEditor.desktop']"
-# Group apps in the app grid
 
 # Clean up
 sudo sh -c "apt-get update;apt-get dist-upgrade;apt-get autoremove;apt-get autoclean"
@@ -195,14 +194,14 @@ echo "The installer has concluded, it's a good idea to restart"
 
 
 #### Don't touch unless you know what you are doing ###
-## jitsi meet -> not working very well
+# # jitsi meet -> not working very well
 # curl https://download.jitsi.org/jitsi-key.gpg.key | sudo sh -c 'gpg --dearmor > /usr/share/keyrings/jitsi-keyring.gpg'
 # echo 'deb [signed-by=/usr/share/keyrings/jitsi-keyring.gpg] https://download.jitsi.org stable/' | sudo tee /etc/apt/sources.list.d/jitsi-stable.list > /dev/null
 # sudo apt update -y
 # sudo apt install -y jitsi-meet
 # https://jitsi.github.io/handbook/docs/devops-guide/devops-guide-quickstart/
 #
-## wine + GUI
+# # wine + GUI
 # run sudo dpgk --i386 # enable 32bit
 # sudo apt install wine64
 # wineGUI
