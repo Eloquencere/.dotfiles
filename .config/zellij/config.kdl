@@ -1,4 +1,4 @@
-default_layout "compact-zj"
+default_layout "tmux2"
 copy_command "wl-copy"
 
 keybinds clear-defaults=true {
