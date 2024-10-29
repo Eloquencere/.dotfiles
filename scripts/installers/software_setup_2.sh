@@ -17,7 +17,7 @@ Please make sure to run this file again after it concludes"
     touch ./.temp_file
     echo "WARNING: ALL BLOAT *WILL* BE REMOVED AFTER THIS"
     echo "Press Enter to close the terminal"
-    read user_input
+    read user_choice
     exit
 fi
 
@@ -70,8 +70,7 @@ ADDITIONAL_APPS_FLATPAK=(
    # "org.gnome.gitlab.somas.Apostrophe"
    # consumption
    "info.febvre.Komikku"
-   "org.gnome.World.PikaBackup"
-   "com.github.neithern.g4music"
+   # "com.github.neithern.g4music"
    # Games
    "io.github.nokse22.ultimate-tic-tac-toe"
    "org.gnome.Crosswords"
@@ -89,16 +88,16 @@ mise use --global deno@latest go@latest python@latest python@2.7
 pip install --upgrade pip
 
 mkdir -p $HOME/.config/zsh/personal
-mkdir -p $HOME/.local/share/croc
 
 echo -n "Enter the ID granted by your admin to register with your team via croc: "
 read croc_id
 echo "# Croc
 export CROC_SELF_TRANSFER_ID=$croc_id" >> $HOME/.config/zsh/personal/zprofile.zsh
+mkdir -p $HOME/.local/share/croc
 
 echo -n "Would you like to log into your git account?(y/N) "
-read usr_input
-if [[ $usr_input =~ ^[Yy]$ ]]; then
+read user_choice
+if [[ $user_choice =~ ^[Yy]$ ]]; then
 	echo "[core]
 	editor = nvim
 	pager = delta
@@ -125,9 +124,24 @@ if [[ $usr_input =~ ^[Yy]$ ]]; then
     sed -i '/.* = $/d' $HOME/.gitconfig
 fi
 
+echo -n "Would you like to install version control software(PikaBackup,timeshift)?(y/N) "
+read usr_choice
+if [[ $user_choice =~ ^[Yy]$ ]]; then
+    flatpak install --assumeyes flathub "org.gnome.World.PikaBackup"
+    sudo apt install timeshift
+    echo -n "Install 'OneDriver' also?(y/N) "
+    read usr_choice
+    if [[ $user_choice =~ ^[Yy]$ ]]; then
+        sudo sh -c "add-apt-repository -y --remove ppa:jstaf/onedriver; apt update"
+        sudo apt install -y onedriver
+        mkdir $HOME/OneDrive
+        sed -i "1i\file://$HOME/OneDrive" ~/.config/gtk-3.0/bookmarks
+    fi
+fi
+
 echo -n "Would you like to configure USBIP?(y/N) "
-read usr_input
-if [[ $usr_input =~ ^[Yy]$ ]]; then
+read user_choice
+if [[ $user_choice =~ ^[Yy]$ ]]; then
 	sudo sh -c " echo '# usbip client
 	usbip-core
 	vhci-hcd' > /etc/modules-load.d/usbip.conf"
@@ -137,11 +151,36 @@ if [[ $usr_input =~ ^[Yy]$ ]]; then
 export SERVER_IP=$server_ip" >> $HOME/.config/zsh/personal/zprofile.zsh
 fi
 
+echo -n "Would you like to install ULauncher?
+WARNING: This software uses an extremely high amount of RAM (y/N) "
+read user_choice
+if [[ $user_choice =~ ^[Yy]$ ]]; then
+    sudo sh -c "add-apt-repository -y ppa:agornostal/ulauncher; apt update"
+    sudo apt install -y ulauncher
+    sudo sh -c "echo '[Unit]
+Description=Linux Application Launcher
+Documentation=https://ulauncher.io/
+After=display-manager.service
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+ExecStart=/usr/bin/ulauncher --hide-window
+
+[Install]
+WantedBy=graphical.target' > /lib/systemd/system/ulauncher.service"
+    sudo systemctl enable ulauncher --now
+    sudo rm -f /usr/share/applications/ulauncher.desktop
+fi
+
+
 rm -rf ~/.cache/thumbnails/*
 rm -rf ~/{.bash*,.fontconfig,.profile,.sudo_as_admin_successful,.wget-hsts,.zcompdump}
-rm -rf ~/{Templates,Public,Pictures,Videos}
+rm -rf ~/{Templates,Public,Pictures,Videos,Music}
 sed -i "/Pictures/d" ~/.config/gtk-3.0/bookmarks
 sed -i "/Videos/d" ~/.config/gtk-3.0/bookmarks
+xdg-user-dirs-update --set MUSIC ~
 mkdir ~/{Projects,croc-inbox}
 sed -i "1i\file://$HOME/croc-inbox" ~/.config/gtk-3.0/bookmarks
 sed -i "1i\file://$HOME/Projects" ~/.config/gtk-3.0/bookmarks
@@ -154,9 +193,8 @@ BLOAT=(
     "rhythmbox" "gnome-logs" "orca"
     "gnome-terminal" "gnome-system-monitor" "gnome-power-manager"
     "deja-dup" "totem" "info" "yelp" "seahorse" "remmina" "shotwell"
-    # "stow"
 )
-sudo nala purge -y "${BLOAT[@]}"
+# sudo nala purge -y "${BLOAT[@]}"
 # why doesn't gparted work after removing bloat?
 
 gsettings set org.gnome.shell favorite-apps "['$(xdg-settings get default-web-browser)', 'org.wezfurlong.wezterm.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.TextEditor.desktop']"
@@ -194,12 +232,11 @@ echo "The installer has concluded, it's a good idea to restart"
 
 
 #### Don't touch unless you know what you are doing ###
-# # jitsi meet -> not working very well
-# curl https://download.jitsi.org/jitsi-key.gpg.key | sudo sh -c 'gpg --dearmor > /usr/share/keyrings/jitsi-keyring.gpg'
-# echo 'deb [signed-by=/usr/share/keyrings/jitsi-keyring.gpg] https://download.jitsi.org stable/' | sudo tee /etc/apt/sources.list.d/jitsi-stable.list > /dev/null
-# sudo apt update -y
-# sudo apt install -y jitsi-meet
-# https://jitsi.github.io/handbook/docs/devops-guide/devops-guide-quickstart/
+#
+# echo -n "Would you like to install remote machine software (thinlic, rustdesk, parsec)?(y/N) "
+# read user_choice
+# if [[ $user_choice =~ ^[Yy]$ ]]; then
+# fi
 #
 # # wine + GUI
 # run sudo dpgk --i386 # enable 32bit
@@ -211,8 +248,4 @@ echo "The installer has concluded, it's a good idea to restart"
 # rm -f WineGUI-v2.6.1.deb
 #
 # https://www.omgubuntu.co.uk/2022/08/pano-clipboard-manager-for-gnome-shell
-#
-# echo -n "Would you like to install remote machine software (thinlic, rustdesk, parsec)?(y/N) "
-# read usr_input
-# if [[ $usr_input =~ ^[Yy]$ ]]; then
-# fi
+

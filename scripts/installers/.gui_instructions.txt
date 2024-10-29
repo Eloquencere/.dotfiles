@@ -1,10 +1,8 @@
-Gnome Settings
-    - Change DNS servers to primary - 1.1.1.1(cloudflare) & secondary - 8.8.8.8(google) & 8.8.4.4(google)
-    - Under the 'Multi-tasking' section disable 'active screen edges'
-
 Gnome Extensions
     blur my shell
     CHC-E
+    	- Under the 'Multi-tasking' section disable 'active screen edges'
+
     Appindicator and kstatusNotifierItem support
     clipboard indicator
     Tilling assistant - probably not needed

@@ -53,7 +53,7 @@ sudo snap install zig   --classic --beta
 
 APPLICATIONS=(
 	"vlc" "gnome-shell-extension-manager"
-	"gparted" "bleachbit" # "timeshift"
+	"gparted" "bleachbit"
 )
 sudo apt install -y "${APPLICATIONS[@]}"
 
@@ -95,13 +95,6 @@ else
     rm -rf google-chrome-stable_current_amd64.deb
 fi
 
-echo -n "Would you like to install OneDriver? (Y/n) "
-read user_input
-if [[ $user_input =~ ^[Yy]$ ]]; then
-    sudo sh -c "add-apt-repository -y --remove ppa:jstaf/onedriver; apt update"
-    sudo apt install -y onedriver
-fi
-
 echo "Set wezterm as the default terminal"
 sudo update-alternatives --config x-terminal-emulator
 
@@ -127,21 +120,3 @@ echo "The system will reboot now"
 sleep 3
 reboot
 
-# # ulauncher - Commented out due to high RAM usage
-# sudo sh -c "add-apt-repository -y ppa:agornostal/ulauncher; apt update"
-# sudo apt install -y ulauncher
-# sudo sh -c "echo '[Unit]
-# Description=Linux Application Launcher
-# Documentation=https://ulauncher.io/
-# After=display-manager.service
-# 
-# [Service]
-# Type=simple
-# Restart=always
-# RestartSec=1
-# ExecStart=/usr/bin/ulauncher --hide-window
-# 
-# [Install]
-# WantedBy=graphical.target' > /lib/systemd/system/ulauncher.service"
-# sudo systemctl enable ulauncher --now
-# sudo rm -f /usr/share/applications/ulauncher.desktop
