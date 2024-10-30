@@ -6,7 +6,7 @@ Please make sure to run this file again after it concludes"
     sudo apt install -y flatpak gnome-software-plugin-flatpak
     flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
     sh <(curl -L https://nixos.org/nix/install) --daemon
-    mkdir $HOME/.config/nixpkgs
+    mkdir -p $HOME/.config/nixpkgs
     echo "{ allowUnfree = true; }" >> ~/.config/nixpkgs/config.nix
 
     cd ~/.dotfiles
