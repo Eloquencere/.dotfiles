@@ -58,7 +58,8 @@ sudo systemctl enable kanata --now
 # set the position of new icons to the top left
 # blur my shell extension(& disable the dash-to-dock effect) etc
 # steps to configure system fonts
-# register the keyboard shortcut of ulauncher with ubuntu
+# Optional - register the keyboard shortcut of ulauncher with ubuntu
+# Optional - set when or if your screen should go to sleep
 
 ADDITIONAL_APPS_FLATPAK=( 
    # "org.jitsi.jitsi-meet"
@@ -127,16 +128,16 @@ fi
 echo -n "Would you like to install version control software(PikaBackup,timeshift)?(y/N) "
 read usr_choice
 if [[ $user_choice =~ ^[Yy]$ ]]; then
-    flatpak install --assumeyes flathub "org.gnome.World.PikaBackup"
-    sudo apt install timeshift
     echo -n "Install 'OneDriver' also?(y/N) "
     read usr_choice
     if [[ $user_choice =~ ^[Yy]$ ]]; then
         sudo sh -c "add-apt-repository -y --remove ppa:jstaf/onedriver; apt update"
-        sudo apt install -y onedriver
+        onedriver="onedriver"
         mkdir $HOME/OneDrive
         sed -i "1i\file://$HOME/OneDrive" ~/.config/gtk-3.0/bookmarks
     fi
+    flatpak install --assumeyes flathub "org.gnome.World.PikaBackup"
+    sudo apt install timeshift ${onedriver}
 fi
 
 echo -n "Would you like to configure USBIP?(y/N) "
@@ -201,6 +202,7 @@ gsettings set org.gnome.shell favorite-apps "['$(xdg-settings get default-web-br
 
 # Clean up
 sudo sh -c "apt-get update;apt-get dist-upgrade;apt-get autoremove;apt-get autoclean"
+sudo sh -c "nala update; nala upgrade"
 sudo apt --fix-broken install
 flatpak uninstall --unused --delete-data
 
