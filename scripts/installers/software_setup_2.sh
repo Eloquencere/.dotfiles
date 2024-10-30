@@ -15,7 +15,8 @@ Please make sure to run this file again after it concludes"
     cd -
 
     touch ./.temp_file
-    echo "WARNING: ALL BLOAT *WILL* BE REMOVED AFTER THIS"
+    echo "WARNING: ALL BLOAT *WILL* BE REMOVED AFTER THIS
+So, PLEASE ensure you are running this on WezTerm from here on"
     echo "Press Enter to close the terminal"
     read user_choice
     exit
@@ -50,7 +51,7 @@ sudo systemctl enable kanata --now
 
 # echo "While your software take time to install, finish up some GUI setup"
 # sleep 3
-# gnome-text-editor .gui_instructions.txt &
+# gnome-text-editor ../continual-reference/DNS.txt .gui_instructions.txt &
 ## gui instructions
 # set the dock at the correct position
 # configure the correct DNS servers
@@ -81,7 +82,6 @@ ADDITIONAL_APPS_FLATPAK=(
    "app.drey.MultiplicationPuzzle"
 )
 flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
-
 
 mise settings set python_compile 1
 mise use --global deno@latest go@latest python@latest python@2.7
@@ -176,7 +176,7 @@ fi
 
 
 rm -rf ~/.cache/thumbnails/*
-rm -rf ~/{.bash*,.fontconfig,.profile,.sudo_as_admin_successful,.wget-hsts,.zcompdump}
+rm -rf ~/{.bash*,.profile,.zcompdump*,.fontconfig}
 rm -rf ~/{Templates,Public,Pictures,Videos,Music}
 sed -i "/Pictures/d" ~/.config/gtk-3.0/bookmarks
 sed -i "/Videos/d" ~/.config/gtk-3.0/bookmarks
