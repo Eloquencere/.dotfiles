@@ -86,7 +86,7 @@ flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
 
 mise settings set python_compile 1
 mise use --global deno@latest go@latest python@latest python@2.7
-pip install --upgrade pip
+# pip install --upgrade pip
 
 mkdir -p $HOME/.config/zsh/personal
 
