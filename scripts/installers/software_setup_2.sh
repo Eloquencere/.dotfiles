@@ -137,7 +137,7 @@ if [[ $user_choice =~ ^[Yy]$ ]]; then
         sed -i "1i\file://$HOME/OneDrive" ~/.config/gtk-3.0/bookmarks
     fi
     flatpak install --assumeyes flathub "org.gnome.World.PikaBackup"
-    sudo apt install timeshift ${onedriver}
+    sudo apt install -y timeshift ${onedriver}
 fi
 
 echo -n "Would you like to configure USBIP?(y/N) "
@@ -242,7 +242,7 @@ echo "The installer has concluded, it's a good idea to restart"
 #
 # # wine + GUI
 # run sudo dpgk --i386 # enable 32bit
-# sudo apt install wine64
+# sudo apt install -y wine64
 # wineGUI
 # wget https://winegui.melroy.org/downloads/WineGUI-v2.6.1.deb
 # sudo apt install -y ./WineGUI-v2.6.1.deb
