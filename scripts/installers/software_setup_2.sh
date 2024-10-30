@@ -126,10 +126,10 @@ if [[ $user_choice =~ ^[Yy]$ ]]; then
 fi
 
 echo -n "Would you like to install version control software(PikaBackup,timeshift)?(y/N) "
-read usr_choice
+read user_choice
 if [[ $user_choice =~ ^[Yy]$ ]]; then
     echo -n "Install 'OneDriver' also?(y/N) "
-    read usr_choice
+    read user_choice
     if [[ $user_choice =~ ^[Yy]$ ]]; then
         sudo sh -c "add-apt-repository -y --remove ppa:jstaf/onedriver; apt update"
         onedriver="onedriver"
