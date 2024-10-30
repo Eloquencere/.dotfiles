@@ -2,7 +2,6 @@ if [[ ! -f "./.temp_file" ]]; then
     echo "Welcome to part 2 of the installer
 Please make sure to run this file again after it concludes"
     sleep 5
-    cd ~/.dotfiles/scripts/installers
     # package managers
     sudo apt install -y flatpak gnome-software-plugin-flatpak
     flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
