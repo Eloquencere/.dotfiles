@@ -27,10 +27,9 @@ return {
         mason_lspconfig.setup({
             -- list of servers for mason to install
             ensure_installed = {
-                "lua_ls",
-                "clangd",
-                "verible",
-                "pyright"
+                -- "lua_ls",
+                -- "clangd",
+                -- "verible",
             },
             automatic_installation = true,
         })
@@ -39,8 +38,8 @@ return {
             -- list of formatters to install
             ensure_installed = {
                 -- "prettier",
-                "stylua",
-                "clang-format",
+                -- "stylua",
+                -- "clang-format",
                 -- "isort",
                 -- "black",
                 -- "pylint",
