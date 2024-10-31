@@ -3,10 +3,22 @@ croc() {
 		shift
 		if [[ $1 == "--here" ]]; then
 			shift
-			export CROC_SECRET=$(sqlite3 $XDG_DATA_HOME/croc/croc_collaborators_registry.db "SELECT Transfer_Code FROM collaborator_catalogue WHERE ID='$1';")
-			command croc && echo "\033[33mTransfer received\033[0m in current working directory"
+            if [[ $1 == "windows" ]]; then
+                export CROC_SECRET=$(sqlite3 $XDG_DATA_HOME/croc/croc_collaborators_registry.db "SELECT Transfer_Code FROM internal_comm WHERE ID='$1';")
+            elif [[ $1 == "linux" ]]; then
+                export CROC_SECRET=$(sqlite3 $XDG_DATA_HOME/croc/croc_collaborators_registry.db "SELECT Transfer_Code FROM internal_comm WHERE ID='$1';")
+            else
+                export CROC_SECRET=$(sqlite3 $XDG_DATA_HOME/croc/croc_collaborators_registry.db "SELECT Transfer_Code FROM collaborator_catalogue WHERE ID='$1';")
+            fi
+            command croc && echo "\033[33mTransfer received\033[0m in current working directory"
 		else
-			export CROC_SECRET=$(sqlite3 $XDG_DATA_HOME/croc/croc_collaborators_registry.db "SELECT Transfer_Code FROM collaborator_catalogue WHERE ID='$1';")
+            if [[ $1 == "windows" ]]; then
+                export CROC_SECRET=$(sqlite3 $XDG_DATA_HOME/croc/croc_collaborators_registry.db "SELECT Transfer_Code FROM internal_comm WHERE ID='$1';")
+            elif [[ $1 == "linux" ]]; then
+                export CROC_SECRET=$(sqlite3 $XDG_DATA_HOME/croc/croc_collaborators_registry.db "SELECT Transfer_Code FROM internal_comm WHERE ID='$1';")
+            else
+                export CROC_SECRET=$(sqlite3 $XDG_DATA_HOME/croc/croc_collaborators_registry.db "SELECT Transfer_Code FROM collaborator_catalogue WHERE ID='$1';")
+            fi
 			command croc --out $HOME/croc-inbox && echo "\033[32mTransfer received\033[0m in ~/croc-inbox"
 		fi
 	elif [[ $1 == "send" ]]; then
@@ -14,11 +26,20 @@ croc() {
         if [[ $1 == "--help" || $1 == "-h" ]]; then
             command croc send --help
             return
-        elif [[ $1 =~ "--delete" ]]; then
+        fi
+        if [[ $1 =~ "--delete" ]]; then
             shift
             local ask_user_to_delete=1
         fi
-		export CROC_SECRET=$(sqlite3 $XDG_DATA_HOME/croc/croc_collaborators_registry.db "SELECT Transfer_Code FROM collaborator_catalogue WHERE ID='$CROC_SELF_TRANSFER_ID';")
+        if [[ $1 == "--win" ]]; then
+            shift
+            export CROC_SECRET=$(sqlite3 $XDG_DATA_HOME/croc/croc_collaborators_registry.db "SELECT Transfer_Code FROM internal_comm WHERE ID='windows';")
+        elif [[ $1 == "--lin" ]]; then
+            shift
+            export CROC_SECRET=$(sqlite3 $XDG_DATA_HOME/croc/croc_collaborators_registry.db "SELECT Transfer_Code FROM internal_comm WHERE ID='linux';")
+        else
+            export CROC_SECRET=$(sqlite3 $XDG_DATA_HOME/croc/croc_collaborators_registry.db "SELECT Transfer_Code FROM collaborator_catalogue WHERE ID='$CROC_SELF_TRANSFER_ID';")
+        fi
         command croc send "$@"
         if [[ $? -eq 1 || $ask_user_to_delete -ne 1 ]]; then
             return

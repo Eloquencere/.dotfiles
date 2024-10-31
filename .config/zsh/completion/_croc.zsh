@@ -129,7 +129,7 @@ _croc_recv_cmd() {
 	declare -a local_list
 	while IFS='|' read -r Name ID Designation; do
 		local_list+=("${ID}[${Designation} > ($Name)]")
-    done <<< $(sqlite3 $XDG_DATA_HOME/croc/croc_collaborators_registry.db "SELECT Name,ID,Designation FROM collaborator_catalogue WHERE ID!='$CROC_SELF_TRANSFER_ID' AND (Dormant!=1 OR Dormant IS NULL)")
+    done <<< $(sqlite3 $XDG_DATA_HOME/croc/croc_collaborators_registry.db "SELECT Name,ID,Designation FROM collaborator_catalogue WHERE ID!='$CROC_SELF_TRANSFER_ID'")
 
 	local line state
 
