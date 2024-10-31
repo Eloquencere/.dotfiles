@@ -33,10 +33,10 @@ croc() {
         fi
         if [[ $1 == "--win" ]]; then
             shift
-            export CROC_SECRET=$(sqlite3 $XDG_DATA_HOME/croc/croc_collaborators_registry.db "SELECT Transfer_Code FROM internal_comm WHERE ID='windows';")
+            export CROC_SECRET=$(sqlite3 $XDG_DATA_HOME/croc/croc_collaborators_registry.db "SELECT Transfer_Code FROM internal_comm WHERE ID='linux';")
         elif [[ $1 == "--lin" ]]; then
             shift
-            export CROC_SECRET=$(sqlite3 $XDG_DATA_HOME/croc/croc_collaborators_registry.db "SELECT Transfer_Code FROM internal_comm WHERE ID='linux';")
+            export CROC_SECRET=$(sqlite3 $XDG_DATA_HOME/croc/croc_collaborators_registry.db "SELECT Transfer_Code FROM internal_comm WHERE ID='windows';")
         else
             export CROC_SECRET=$(sqlite3 $XDG_DATA_HOME/croc/croc_collaborators_registry.db "SELECT Transfer_Code FROM collaborator_catalogue WHERE ID='$CROC_SELF_TRANSFER_ID';")
         fi
