@@ -61,7 +61,7 @@ sudo systemctl enable kanata --now
 # Optional - set when or if your screen should go to sleep
 
 ADDITIONAL_APPS_FLATPAK=( 
-   # "org.jitsi.jitsi-meet"
+   "org.jitsi.jitsi-meet"
    "org.ghidra_sre.Ghidra"
    "net.nokyan.Resources"
    "se.sjoerd.Graphs"
@@ -151,7 +151,7 @@ if [[ $user_choice =~ ^[Yy]$ ]]; then
 export SERVER_IP=$server_ip" >> $HOME/.config/zsh/personal/zprofile.zsh
 fi
 
-echo -n "Would you like to install ULauncher?
+echo -n "\nWould you like to install ULauncher?
 WARNING: This software uses an extremely high amount of RAM (y/N) "
 read user_choice
 if [[ $user_choice =~ ^[Yy]$ ]]; then
@@ -180,28 +180,21 @@ rm -rf ~/{.bash*,.profile,.zcompdump*,.fontconfig}
 rm -rf ~/{Templates,Public,Pictures,Videos,Music}
 sed -i "/Pictures/d" ~/.config/gtk-3.0/bookmarks
 sed -i "/Videos/d" ~/.config/gtk-3.0/bookmarks
-xdg-user-dirs-update --set MUSIC ~
+xdg-user-dirs-update --set Music ~
 mkdir ~/{Projects,croc-inbox}
 sed -i "1i\file://$HOME/croc-inbox" ~/.config/gtk-3.0/bookmarks
 sed -i "1i\file://$HOME/Projects" ~/.config/gtk-3.0/bookmarks
 
-sudo apt-get purge -y firefox thunderbird
-sudo snap remove firefox thunderbird
-rm -rf ~/.mozilla
 BLOAT=(
 	"curl" "transmission-common" "transmission-gtk"
     "rhythmbox" "gnome-logs" "orca"
     "gnome-terminal" "gnome-system-monitor" "gnome-power-manager"
     "deja-dup" "totem" "info" "yelp" "seahorse" "remmina" "shotwell"
 )
-# sudo nala purge -y "${BLOAT[@]}"
-# why doesn't gparted work after removing bloat?
-
-gsettings set org.gnome.shell favorite-apps "['$(xdg-settings get default-web-browser)', 'org.wezfurlong.wezterm.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.TextEditor.desktop']"
+sudo nala purge -y "${BLOAT[@]}"
 
 # Clean up
 sudo sh -c "apt-get update;apt-get dist-upgrade;apt-get autoremove;apt-get autoclean"
-sudo sh -c "nala update; nala upgrade"
 sudo apt --fix-broken install
 flatpak uninstall --unused --delete-data
 

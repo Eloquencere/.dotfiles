@@ -91,6 +91,11 @@ else
     rm -rf google-chrome-stable_current_amd64.deb
 fi
 
+# removing browser bloat
+sudo apt-get purge -y firefox thunderbird
+sudo snap remove firefox thunderbird
+rm -rf ~/.mozilla
+
 echo "Set wezterm as the default terminal"
 sudo update-alternatives --config x-terminal-emulator
 
@@ -98,6 +103,7 @@ echo "Set brave/chrome as the default browser"
 sudo update-alternatives --config x-www-browser
 
 # GNOME dash-to-dock config
+gsettings set org.gnome.shell favorite-apps "['$(xdg-settings get default-web-browser)', 'org.wezfurlong.wezterm.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.TextEditor.desktop']"
 gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize-or-previews'
 # GNOME TextEditor config
 gsettings set org.gnome.TextEditor style-scheme 'classic-dark'
