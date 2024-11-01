@@ -187,6 +187,7 @@ rm -rf ~/{.bash*,.profile,.zcompdump*,.fontconfig}
 rm -rf ~/{Templates,Public,Pictures,Videos,Music}
 sed -i "/Pictures/d" ~/.config/gtk-3.0/bookmarks
 sed -i "/Videos/d" ~/.config/gtk-3.0/bookmarks
+sed -i "/Music/d" ~/.config/gtk-3.0/bookmarks
 mkdir ~/{Projects,croc-inbox}
 sed -i "1i\file://$HOME/croc-inbox" ~/.config/gtk-3.0/bookmarks
 sed -i "1i\file://$HOME/Projects" ~/.config/gtk-3.0/bookmarks
