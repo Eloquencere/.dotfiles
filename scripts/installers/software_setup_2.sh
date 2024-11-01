@@ -176,9 +176,9 @@ fi
 # Clean up
 BLOAT=(
 	"curl" "transmission-common" "transmission-gtk"
-    	"rhythmbox" "gnome-logs" "orca"
-    	"gnome-terminal" "gnome-system-monitor" "gnome-power-manager"
-    	"deja-dup" "totem" "info" "yelp" "seahorse" "remmina" "shotwell"
+    "rhythmbox" "gnome-logs" "orca"
+    "gnome-terminal" "gnome-system-monitor" "gnome-power-manager"
+    "deja-dup" "totem" "info" "yelp" "seahorse" "remmina" "shotwell"
 )
 sudo nala purge -y "${BLOAT[@]}"
 
@@ -225,11 +225,6 @@ echo "The installer has concluded, it's a good idea to restart"
 
 
 #### Don't touch unless you know what you are doing ###
-#
-# echo -n "Would you like to install remote machine software (thinlic, rustdesk, parsec)?(y/N) "
-# read user_choice
-# if [[ $user_choice =~ ^[Yy]$ ]]; then
-# fi
 #
 # # wine + GUI
 # run sudo dpgk --i386 # enable 32bit
