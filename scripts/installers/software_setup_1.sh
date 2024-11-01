@@ -76,6 +76,11 @@ sudo apt install -y wezterm
 ## zjstatus
 wget -P ~/.local/share/zellij/plugins https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm
 
+# removing browser bloat
+sudo apt-get purge -y firefox thunderbird
+sudo snap remove firefox thunderbird
+rm -rf ~/.mozilla
+
 echo "Would you like to install Brave or Google Chrome?"
 echo -n "b -> brave & gc -> google chrome: "
 read browser_choice
@@ -90,11 +95,6 @@ else
     sudo apt -f install -y
     rm -rf google-chrome-stable_current_amd64.deb
 fi
-
-# removing browser bloat
-sudo apt-get purge -y firefox thunderbird
-sudo snap remove firefox thunderbird
-rm -rf ~/.mozilla
 
 echo "Set wezterm as the default terminal"
 sudo update-alternatives --config x-terminal-emulator
