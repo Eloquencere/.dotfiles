@@ -11,10 +11,10 @@ sudo sh -c "apt update; apt upgrade -y"
 source nerdfonts_download.sh
 
 ESSENTIALS=(
-    "libssl-dev" "liblzma-dev" "libreadline-dev" "libncurses5-dev"
+    	"libssl-dev" "liblzma-dev" "libreadline-dev" "libncurses5-dev"
 	"sqlite3" "libsqlite3-dev"
-    "stow" "curl"
-    "ntfs-3g" "exfat-fuse" "wl-clipboard" 
+    	"stow" "curl"
+    	"ntfs-3g" "exfat-fuse" "wl-clipboard" 
 	"linux-headers-$(uname -r)" "linux-headers-generic"
 	"ubuntu-restricted-extras" "build-essential" "pkg-config" 
 	"nala" "xmonad"
