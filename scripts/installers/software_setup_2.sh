@@ -60,8 +60,7 @@ sudo systemctl enable kanata --now
 # Optional - register the keyboard shortcut of ulauncher with ubuntu
 # Optional - set when or if your screen should go to sleep
 
-ADDITIONAL_APPS_FLATPAK=( 
-   "org.jitsi.jitsi-meet"
+ADDITIONAL_APPS_FLATPAK=(
    "org.ghidra_sre.Ghidra"
    "net.nokyan.Resources"
    "se.sjoerd.Graphs"
@@ -85,7 +84,44 @@ flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
 
 mise settings set python_compile 1
 mise use --global deno@latest go@latest python@latest python@2.7
-# pip install --upgrade pip
+
+echo -n "Would you like to install version control software(PikaBackup,timeshift)?(y/N) "
+read user_choice
+if [[ $user_choice =~ ^[Yy]$ ]]; then
+    echo -n "Install 'OneDriver' also?(y/N) "
+    read user_choice
+    if [[ $user_choice =~ ^[Yy]$ ]]; then
+        sudo sh -c "add-apt-repository -y --remove ppa:jstaf/onedriver; apt update"
+        onedriver="onedriver"
+        mkdir $HOME/OneDrive
+        sed -i "1i\file://$HOME/OneDrive" ~/.config/gtk-3.0/bookmarks
+    fi
+    flatpak install --assumeyes flathub "org.gnome.World.PikaBackup"
+    sudo apt install -y timeshift ${onedriver}
+fi
+
+echo -n "\nWould you like to install ULauncher?
+WARNING: This software uses an extremely high amount of RAM (y/N) "
+read user_choice
+if [[ $user_choice =~ ^[Yy]$ ]]; then
+    sudo sh -c "add-apt-repository -y ppa:agornostal/ulauncher; apt update"
+    sudo apt install -y ulauncher
+    sudo sh -c "echo '[Unit]
+Description=Linux Application Launcher
+Documentation=https://ulauncher.io/
+After=display-manager.service
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+ExecStart=/usr/bin/ulauncher --hide-window
+
+[Install]
+WantedBy=graphical.target' > /lib/systemd/system/ulauncher.service"
+    sudo systemctl enable ulauncher --now
+    sudo rm -f /usr/share/applications/ulauncher.desktop
+fi
 
 mkdir -p $HOME/.config/zsh/personal
 
@@ -94,6 +130,18 @@ read croc_id
 echo "# Croc
 export CROC_SELF_TRANSFER_ID=$croc_id" >> $HOME/.config/zsh/personal/zprofile.zsh
 mkdir -p $HOME/.local/share/croc
+
+echo -n "Would you like to configure USBIP?(y/N) "
+read user_choice
+if [[ $user_choice =~ ^[Yy]$ ]]; then
+	sudo sh -c " echo '# usbip client
+	usbip-core
+	vhci-hcd' > /etc/modules-load.d/usbip.conf"
+	echo -n "Enter the server address: "
+	read server_ip
+	echo "# USBIP
+export SERVER_IP=$server_ip" >> $HOME/.config/zsh/personal/zprofile.zsh
+fi
 
 echo -n "Would you like to log into your git account?(y/N) "
 read user_choice
@@ -124,76 +172,25 @@ if [[ $user_choice =~ ^[Yy]$ ]]; then
     sed -i '/.* = $/d' $HOME/.gitconfig
 fi
 
-echo -n "Would you like to install version control software(PikaBackup,timeshift)?(y/N) "
-read user_choice
-if [[ $user_choice =~ ^[Yy]$ ]]; then
-    echo -n "Install 'OneDriver' also?(y/N) "
-    read user_choice
-    if [[ $user_choice =~ ^[Yy]$ ]]; then
-        sudo sh -c "add-apt-repository -y --remove ppa:jstaf/onedriver; apt update"
-        onedriver="onedriver"
-        mkdir $HOME/OneDrive
-        sed -i "1i\file://$HOME/OneDrive" ~/.config/gtk-3.0/bookmarks
-    fi
-    flatpak install --assumeyes flathub "org.gnome.World.PikaBackup"
-    sudo apt install -y timeshift ${onedriver}
-fi
 
-echo -n "Would you like to configure USBIP?(y/N) "
-read user_choice
-if [[ $user_choice =~ ^[Yy]$ ]]; then
-	sudo sh -c " echo '# usbip client
-	usbip-core
-	vhci-hcd' > /etc/modules-load.d/usbip.conf"
-	echo -n "Enter the server address: "
-	read server_ip
-	echo "# USBIP
-export SERVER_IP=$server_ip" >> $HOME/.config/zsh/personal/zprofile.zsh
-fi
-
-echo -n "\nWould you like to install ULauncher?
-WARNING: This software uses an extremely high amount of RAM (y/N) "
-read user_choice
-if [[ $user_choice =~ ^[Yy]$ ]]; then
-    sudo sh -c "add-apt-repository -y ppa:agornostal/ulauncher; apt update"
-    sudo apt install -y ulauncher
-    sudo sh -c "echo '[Unit]
-Description=Linux Application Launcher
-Documentation=https://ulauncher.io/
-After=display-manager.service
-
-[Service]
-Type=simple
-Restart=always
-RestartSec=1
-ExecStart=/usr/bin/ulauncher --hide-window
-
-[Install]
-WantedBy=graphical.target' > /lib/systemd/system/ulauncher.service"
-    sudo systemctl enable ulauncher --now
-    sudo rm -f /usr/share/applications/ulauncher.desktop
-fi
-
+# Clean up
+BLOAT=(
+	"curl" "transmission-common" "transmission-gtk"
+    	"rhythmbox" "gnome-logs" "orca"
+    	"gnome-terminal" "gnome-system-monitor" "gnome-power-manager"
+    	"deja-dup" "totem" "info" "yelp" "seahorse" "remmina" "shotwell"
+)
+sudo nala purge -y "${BLOAT[@]}"
 
 rm -rf ~/.cache/thumbnails/*
 rm -rf ~/{.bash*,.profile,.zcompdump*,.fontconfig}
 rm -rf ~/{Templates,Public,Pictures,Videos,Music}
 sed -i "/Pictures/d" ~/.config/gtk-3.0/bookmarks
 sed -i "/Videos/d" ~/.config/gtk-3.0/bookmarks
-xdg-user-dirs-update --set Music ~
 mkdir ~/{Projects,croc-inbox}
 sed -i "1i\file://$HOME/croc-inbox" ~/.config/gtk-3.0/bookmarks
 sed -i "1i\file://$HOME/Projects" ~/.config/gtk-3.0/bookmarks
 
-BLOAT=(
-	"curl" "transmission-common" "transmission-gtk"
-    "rhythmbox" "gnome-logs" "orca"
-    "gnome-terminal" "gnome-system-monitor" "gnome-power-manager"
-    "deja-dup" "totem" "info" "yelp" "seahorse" "remmina" "shotwell"
-)
-sudo nala purge -y "${BLOAT[@]}"
-
-# Clean up
 sudo sh -c "apt-get update;apt-get dist-upgrade;apt-get autoremove;apt-get autoclean"
 sudo apt --fix-broken install
 flatpak uninstall --unused --delete-data
@@ -204,6 +201,8 @@ rm -f ./.temp_file
 echo "The installer has concluded, it's a good idea to restart"
 
 # Necessary Python libraries
+# pip2 install --upgrade pip
+# pip install --upgrade pip
 # pip install icecream # debugging
 # pip install drawio colorama pyfiglet # presentation
 # pip install dash plotly seaborn mysql-connector-python # data representation and calculation
