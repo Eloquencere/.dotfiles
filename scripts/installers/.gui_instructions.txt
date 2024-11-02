@@ -10,7 +10,6 @@ Gnome Extensions
             - Accessibility menu
             - app drawer on the dock
 
-# Add these configs as cli commands in the install script
 Komikku
     1. Advanced
         - Clear Chapters Cache and Database on Exit (or not)
