@@ -52,8 +52,8 @@ sudo snap install julia --classic
 sudo snap install zig   --classic --beta
 
 APPLICATIONS=(
-	"vlc" "gnome-shell-extension-manager"
-	"gparted" "bleachbit"
+	"gnome-shell-extension-manager" "vlc"
+	"bleachbit" # "gparted"
 )
 sudo apt install -y "${APPLICATIONS[@]}"
 
@@ -81,8 +81,10 @@ sudo apt-get purge -y firefox thunderbird
 sudo snap remove firefox thunderbird
 rm -rf ~/.mozilla
 
-echo "Would you like to install Brave or Google Chrome?"
-echo -n "b -> brave & gc -> google chrome: "
+echo "Set wezterm as the default terminal"
+sudo update-alternatives --config x-terminal-emulator
+
+echo -n "Would you like to install- b -> brave or gc -> google chrome: "
 read browser_choice
 if [[ $browser_choice == "b" ]]; then
     sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
@@ -95,12 +97,6 @@ else
     sudo apt -f install -y
     rm -rf google-chrome-stable_current_amd64.deb
 fi
-
-echo "Set wezterm as the default terminal"
-sudo update-alternatives --config x-terminal-emulator
-
-echo "Set brave/chrome as the default browser"
-sudo update-alternatives --config x-www-browser
 
 # GNOME dash-to-dock config
 gsettings set org.gnome.shell favorite-apps "['$(xdg-settings get default-web-browser)', 'org.wezfurlong.wezterm.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.TextEditor.desktop']"
@@ -121,4 +117,3 @@ chsh --shell $(which zsh)
 echo "The system will reboot now"
 sleep 3
 reboot
-
