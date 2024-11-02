@@ -72,11 +72,6 @@ echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/w
 sudo apt update
 sudo apt install -y wezterm
 
-# removing browser bloat
-sudo apt-get purge -y firefox thunderbird
-sudo snap remove firefox thunderbird
-rm -rf ~/.mozilla
-
 echo "Set wezterm as the default terminal"
 sudo update-alternatives --config x-terminal-emulator
 
@@ -93,6 +88,11 @@ else
     sudo apt -f install -y
     rm -rf google-chrome-stable_current_amd64.deb
 fi
+
+# removing browser bloat
+sudo apt-get purge -y firefox thunderbird
+sudo snap remove firefox thunderbird
+rm -rf ~/.mozilla
 
 # GNOME dash-to-dock config
 gsettings set org.gnome.shell favorite-apps "['$(xdg-settings get default-web-browser)', 'org.wezfurlong.wezterm.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.TextEditor.desktop']"
