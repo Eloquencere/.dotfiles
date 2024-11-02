@@ -72,10 +72,6 @@ echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/w
 sudo apt update
 sudo apt install -y wezterm
 
-# zellij plugins
-## zjstatus
-wget -P ~/.local/share/zellij/plugins https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm
-
 # removing browser bloat
 sudo apt-get purge -y firefox thunderbird
 sudo snap remove firefox thunderbird
