@@ -48,6 +48,10 @@ Restart=no
 WantedBy=default.target' > /lib/systemd/system/kanata.service"
 sudo systemctl enable kanata --now
 
+# zellij plugins
+## zjstatus
+wget -P ~/.local/share/zellij/plugins https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm
+
 # echo "While your software take time to install, finish up some GUI setup"
 # sleep 3
 # gnome-text-editor ../continual-reference/DNS.txt .gui_instructions.txt &
