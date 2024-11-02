@@ -75,6 +75,11 @@ sudo apt install -y wezterm
 echo "Set wezterm as the default terminal"
 sudo update-alternatives --config x-terminal-emulator
 
+# removing browser bloat
+sudo apt-get purge -y firefox thunderbird
+sudo snap remove firefox thunderbird
+rm -rf ~/.mozilla
+
 echo -n "Would you like to install- b -> brave or gc -> google chrome: "
 read browser_choice
 if [[ $browser_choice == "b" ]]; then
@@ -88,11 +93,6 @@ else
     sudo apt -f install -y
     rm -rf google-chrome-stable_current_amd64.deb
 fi
-
-# removing browser bloat
-sudo apt-get purge -y firefox thunderbird
-sudo snap remove firefox thunderbird
-rm -rf ~/.mozilla
 
 # GNOME dash-to-dock config
 gsettings set org.gnome.shell favorite-apps "['$(xdg-settings get default-web-browser)', 'org.wezfurlong.wezterm.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.TextEditor.desktop']"
