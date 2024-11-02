@@ -180,9 +180,10 @@ fi
 # Clean up
 BLOAT=(
 	"curl" "transmission-common" "transmission-gtk"
-    "rhythmbox" "gnome-logs" "orca"
-    "gnome-terminal" "gnome-system-monitor" "gnome-power-manager"
-    "deja-dup" "totem" "info" "yelp" "seahorse" "remmina" "shotwell"
+    "rhythmbox" "orca" "info" "yelp"
+    "gnome-terminal" "nautilus-extension-gnome-terminal"
+    "gnome-logs" "gnome-system-monitor" "gnome-power-manager"
+    "deja-dup" "totem" "seahorse" "remmina" "shotwell"
 )
 sudo nala purge -y "${BLOAT[@]}"
 
