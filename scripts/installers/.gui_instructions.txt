@@ -1,18 +1,14 @@
 Gnome Extensions
-    blur my shell
-    CHC-E
+    - blur my shell
+    - CHC-E
     	- Under the 'Multi-tasking' section disable 'active screen edges'
-
-    Appindicator and kstatusNotifierItem support
-    clipboard indicator
-    Tilling assistant - probably not needed
-    Just Perfection
-        Under visibility disable:
-            Accessibility menu
-            app drawer on the dock
-
-Virt-manager
-  - Setup USB & clipboard & GPU pass through
+    - Appindicator and kstatusNotifierItem support
+    - clipboard indicator
+    - Tilling assistant - probably not needed
+    - Just Perfection
+        - Under visibility disable:
+            - Accessibility menu
+            - app drawer on the dock
 
 # Add these configs as cli commands in the install script
 Komikku
@@ -30,6 +26,9 @@ Komikku
         - Long strip detection
     4. General
         - Disable desktop notifications
+
+Virt-manager
+    - Setup USB & clipboard & GPU pass through
 
 To remove snap from ubuntu
     - https://kskroyal.com/remove-snap-packages-from-ubuntu/
