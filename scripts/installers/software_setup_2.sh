@@ -227,9 +227,6 @@ echo "The installer has concluded, it's a good idea to restart"
 # echo '# Doom Emacs
 # export PATH=$XDG_CONFIG_HOME/emacs/bin:$PATH' >> ~/.zprofile
 
-
-#### Don't touch unless you know what you are doing ###
-#
 # # wine + GUI
 # run sudo dpgk --i386 # enable 32bit
 # sudo apt install -y wine64
@@ -238,6 +235,6 @@ echo "The installer has concluded, it's a good idea to restart"
 # sudo apt install -y ./WineGUI-v2.6.1.deb
 # sudo apt -f install -y
 # rm -f WineGUI-v2.6.1.deb
-#
+
 # https://www.omgubuntu.co.uk/2022/08/pano-clipboard-manager-for-gnome-shell
 
