@@ -235,6 +235,3 @@ echo "The installer has concluded, it's a good idea to restart"
 # sudo apt install -y ./WineGUI-v2.6.1.deb
 # sudo apt -f install -y
 # rm -f WineGUI-v2.6.1.deb
-
-# https://www.omgubuntu.co.uk/2022/08/pano-clipboard-manager-for-gnome-shell
-
