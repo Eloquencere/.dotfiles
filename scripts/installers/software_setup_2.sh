@@ -89,6 +89,14 @@ flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
 mise settings set python_compile 1
 mise use --global deno@latest go@latest python@latest python@2.7
 
+echo -n "Are you running this on VMWare?(y/N) "
+read user_choice
+if [[ $user_choice =~ ^[Yy]$ ]]; then
+    sudo nala install -y open-vm-tools-desktop
+    sudo sh -c "echo '.host:/ /mnt/hgfs fuse.vmhgfs-fuse    auto,allow_other    0   0' >> /etc/fstab"
+    sudo mkdir /mnt/hgfs
+fi
+
 echo -n "Would you like to install version control software(PikaBackup,timeshift)?(y/N) "
 read user_choice
 if [[ $user_choice =~ ^[Yy]$ ]]; then

@@ -26,6 +26,13 @@ Komikku
     4. General
         - Disable desktop notifications
 
+VMware Workstation/Fusion
+    - disable all external C & floppy drives
+    - disable drag and drop & enable shared clipboard
+    - enable shared folders
+        - ln -s /mnt/hgfs/<your_folder> $HOME
+
+
 Virt-manager
     - Setup USB & clipboard & GPU pass through
 
