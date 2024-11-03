@@ -152,7 +152,8 @@ if [[ $user_choice =~ ^[Yy]$ ]]; then
 	vhci-hcd' > /etc/modules-load.d/usbip.conf"
 	echo -n "Enter the server address: "
 	read server_ip
-	echo "# USBIP
+	echo "
+# USBIP
 export SERVER_IP=$server_ip" >> $HOME/.config/zsh/personal/zprofile.zsh
 fi
 
@@ -200,9 +201,8 @@ rm -rf ~/.cache/thumbnails/*
 rm -rf ~/{.bash*,.profile,.zcompdump*,.fontconfig}
 rm -rf ~/{Templates,Public,Pictures,Videos,Music}
 sed -i "/Pictures\|Videos\|Music/d" ~/.config/gtk-3.0/bookmarks
-mkdir ~/{Projects,croc-inbox}
+mkdir ~/croc-inbox
 sed -i "1i\file://$HOME/croc-inbox" ~/.config/gtk-3.0/bookmarks
-sed -i "1i\file://$HOME/Projects" ~/.config/gtk-3.0/bookmarks
 
 sudo sh -c "apt-get update;apt-get dist-upgrade;apt-get autoremove;apt-get autoclean"
 sudo apt --fix-broken install

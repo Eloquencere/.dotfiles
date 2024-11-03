@@ -32,6 +32,8 @@ VMware Workstation/Fusion
     - enable shared folders
         - ln -s /mnt/hgfs/<your_folder> $HOME
 
+- Setup PROJECTS_HOME environment variable in $ZDOTDIR/personal/zprofile.zsh
+
 
 Virt-manager
     - Setup USB & clipboard & GPU pass through
