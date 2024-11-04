@@ -72,6 +72,14 @@ echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/w
 sudo apt update
 sudo apt install -y wezterm
 
+# zellij plugins
+## zjstatus
+wget -P ~/.local/share/zellij/plugins https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm
+# zj-quit
+wget -P ~/.local/share/zellij/plugins https://github.com/cristiand391/zj-quit/releases/latest/download/zj-quit.wasm
+# monocle
+wget -P ~/.local/share/zellij/plugins https://github.com/imsnif/monocle/releases/download/v0.100.0/monocle.wasm
+
 echo "Set wezterm as the default terminal"
 sudo update-alternatives --config x-terminal-emulator
 

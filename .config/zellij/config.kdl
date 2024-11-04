@@ -1,6 +1,10 @@
 default_layout "tmux2"
 copy_command "wl-copy"
 
+plugins {
+    zj-quit location="file:zj-quit.wasm"
+}
+
 keybinds clear-defaults=true {
     normal {
         bind "Ctrl s" { SwitchToMode "Tmux"; }
@@ -135,7 +139,13 @@ keybinds clear-defaults=true {
     session {
         bind "Ctrl s" { SwitchToMode "Tmux"; }
         bind "Esc" { SwitchToMode "Normal"; }
-        bind "q" { Quit; }
+        bind "q" {
+            LaunchOrFocusPlugin "zj-quit" {
+                floating true
+                move_to_focused_tab true
+            };
+            SwitchToMode "Normal";
+        }
         bind "d" { Detach; }
         bind "w" {
             LaunchOrFocusPlugin "session-manager" {
