@@ -89,30 +89,6 @@ flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
 mise settings set python_compile 1
 mise use --global deno@latest go@latest python@latest python@2.7
 
-echo -n "Would you like to install version control software(PikaBackup,timeshift)?(y/N) "
-read user_choice
-if [[ $user_choice =~ ^[Yy]$ ]]; then
-    echo -n "Install 'OneDriver' also?(y/N) "
-    read user_choice
-    if [[ $user_choice =~ ^[Yy]$ ]]; then
-        sudo sh -c "add-apt-repository -y --remove ppa:jstaf/onedriver; apt update"
-        onedriver="onedriver"
-        mkdir $HOME/OneDrive
-        sed -i "1i\file://$HOME/OneDrive" ~/.config/gtk-3.0/bookmarks
-    fi
-    flatpak install --assumeyes flathub "org.gnome.World.PikaBackup"
-    sudo apt install -y timeshift ${onedriver}
-fi
-
-echo -n "Are you running this on VMWare?(y/N) "
-read user_choice
-if [[ $user_choice =~ ^[Yy]$ ]]; then
-    sudo nala install -y open-vm-tools-desktop
-    sudo nala remove -y timeshift
-    sudo sh -c "echo '.host:/ /mnt/hgfs fuse.vmhgfs-fuse    auto,allow_other    0   0' >> /etc/fstab"
-    sudo mkdir /mnt/hgfs
-fi
-
 echo -n "\nWould you like to install ULauncher?
 WARNING: This software uses an extremely high amount of RAM (y/N) "
 read user_choice
@@ -134,6 +110,34 @@ ExecStart=/usr/bin/ulauncher --hide-window
 WantedBy=graphical.target' > /lib/systemd/system/ulauncher.service"
     sudo systemctl enable ulauncher --now
     sudo rm -f /usr/share/applications/ulauncher.desktop
+fi
+
+echo -n "Would you like to install version control software(PikaBackup,timeshift)?(y/N) "
+read user_choice
+if [[ $user_choice =~ ^[Yy]$ ]]; then
+    echo -n "Install 'OneDriver' also?(y/N) "
+    read user_choice
+    if [[ $user_choice =~ ^[Yy]$ ]]; then
+        sudo sh -c "add-apt-repository -y --remove ppa:jstaf/onedriver; apt update"
+        onedriver="onedriver"
+        mkdir $HOME/OneDrive
+        sed -i "1i\file://$HOME/OneDrive" ~/.config/gtk-3.0/bookmarks
+    fi
+    flatpak install --assumeyes flathub "org.gnome.World.PikaBackup"
+    sudo apt install -y timeshift ${onedriver}
+fi
+
+mkdir ~/croc-inbox
+sed -i "1i\file://$HOME/croc-inbox" ~/.config/gtk-3.0/bookmarks
+
+echo -n "Are you running this on VMWare?(y/N) "
+read user_choice
+if [[ $user_choice =~ ^[Yy]$ ]]; then
+    sudo nala install -y open-vm-tools-desktop
+    # sudo nala remove -y timeshift
+    sudo sh -c "echo '.host:/ /mnt/hgfs fuse.vmhgfs-fuse    auto,allow_other    0   0' >> /etc/fstab"
+    sudo mkdir /mnt/hgfs
+    sed -i "1i\file://$HOME/Projects" ~/.config/gtk-3.0/bookmarks
 fi
 
 mkdir -p $HOME/.config/zsh/personal
@@ -201,11 +205,8 @@ rm -rf ~/.cache/thumbnails/*
 rm -rf ~/{.bash*,.profile,.zcompdump*,.fontconfig}
 rm -rf ~/{Templates,Public,Pictures,Videos,Music}
 sed -i "/Pictures\|Videos\|Music/d" ~/.config/gtk-3.0/bookmarks
-mkdir ~/croc-inbox
-sed -i "1i\file://$HOME/croc-inbox" ~/.config/gtk-3.0/bookmarks
 
-sudo sh -c "apt-get update;apt-get dist-upgrade;apt-get autoremove;apt-get autoclean"
-sudo apt --fix-broken install
+sudo sh -c "apt-get update;apt-get dist-upgrade;apt-get autoremove;apt-get autoclean; apt --fix-broken install"
 flatpak uninstall --unused --delete-data
 
 systemctl daemon-reload
@@ -244,3 +245,4 @@ echo "The installer has concluded, it's a good idea to restart"
 # sudo apt install -y ./WineGUI-v2.6.1.deb
 # sudo apt -f install -y
 # rm -f WineGUI-v2.6.1.deb
+

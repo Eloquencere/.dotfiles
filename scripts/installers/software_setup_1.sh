@@ -113,3 +113,4 @@ chsh --shell $(which zsh)
 echo "The system will reboot now"
 sleep 3
 reboot
+

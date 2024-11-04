@@ -26,14 +26,6 @@ Komikku
     4. General
         - Disable desktop notifications
 
-VMware Workstation/Fusion
-    - disable all external C & floppy drives
-    - disable drag and drop & enable shared clipboard
-    - enable shared folders
-        - ln -s /mnt/hgfs/<your_folder> $HOME
-
-- Setup PROJECTS_HOME environment variable in $ZDOTDIR/personal/zprofile.zsh
-
 
 Virt-manager
     - Setup USB & clipboard & GPU pass through
