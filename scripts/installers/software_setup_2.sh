@@ -112,6 +112,9 @@ WantedBy=graphical.target' > /lib/systemd/system/ulauncher.service"
     sudo rm -f /usr/share/applications/ulauncher.desktop
 fi
 
+mkdir ~/croc-inbox
+sed -i "1i\file://$HOME/croc-inbox" ~/.config/gtk-3.0/bookmarks
+
 echo -n "Would you like to install version control software(PikaBackup,timeshift)?(y/N) "
 read user_choice
 if [[ $user_choice =~ ^[Yy]$ ]]; then
@@ -126,9 +129,6 @@ if [[ $user_choice =~ ^[Yy]$ ]]; then
     flatpak install --assumeyes flathub "org.gnome.World.PikaBackup"
     sudo apt install -y timeshift ${onedriver}
 fi
-
-mkdir ~/croc-inbox
-sed -i "1i\file://$HOME/croc-inbox" ~/.config/gtk-3.0/bookmarks
 
 echo -n "Are you running this on VMWare?(y/N) "
 read user_choice
