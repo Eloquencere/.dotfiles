@@ -2,7 +2,11 @@ default_layout "tmux2"
 copy_command "wl-copy"
 
 plugins {
+    ghost location="file:ghost.wasm"
     zj-quit location="file:zj-quit.wasm"
+    monocle location="file:monocle.wasm"
+    zellij-forgot location="file:zellij_forgot.wasm"
+    multitask location="file:multitask.wasm"
 }
 
 keybinds clear-defaults=true {
@@ -24,6 +28,19 @@ keybinds clear-defaults=true {
         bind "m" { SwitchToMode "Move"; }
         bind "s" { SwitchToMode "Scroll"; }
         bind "o" { SwitchToMode "Session"; }
+        bind "Alt n" { // find a better key for this
+            LaunchOrFocusPlugin "monocle" {
+                floating true
+            };
+            SwitchToMode "Normal"
+        }
+        bind "Alt m" {
+            LaunchPlugin "monocle" {
+                in_place true
+                kiosk true
+            };
+            SwitchToMode "Normal"
+        }
     }
 
     pane {
@@ -158,6 +175,14 @@ keybinds clear-defaults=true {
 
     locked {
         bind "Ctrl g" { SwitchToMode "Normal"; }
+    }
+
+    shared_except "locked" {
+        bind "Ctrl y" {
+            LaunchOrFocusPlugin "zellij-forgot" {
+                floating true
+            }
+        }
     }
 }
 
