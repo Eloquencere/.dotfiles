@@ -112,8 +112,7 @@ else
 fi
 
 # GNOME dash-to-dock config
-gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'org.gnome.TextEditor.desktop', 'signal-desktop.desktop','org.wezfurlong.wezterm.desktop']"
-# $(xdg-settings get default-web-browser)
+gsettings set org.gnome.shell favorite-apps "['$(xdg-settings get default-web-browser)', 'org.gnome.Nautilus.desktop', 'org.gnome.TextEditor.desktop', 'signal-desktop.desktop','org.wezfurlong.wezterm.desktop']"
 gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize-or-previews'
 # GNOME interface config
 gsettings set org.gnome.desktop.interface clock-format '24h'
