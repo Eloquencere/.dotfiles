@@ -75,7 +75,7 @@ sudo apt install -y wezterm
 echo "Set wezterm as the default terminal"
 sudo update-alternatives --config x-terminal-emulator
 
-# zellij plugins
+# zellij plugins - need to add this to .config/zellij/plugins
 ## zjstatus
 wget -P ~/.local/share/zellij/plugins https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm
 # zj-quit
@@ -94,7 +94,10 @@ sudo apt-get purge -y firefox thunderbird
 sudo snap remove firefox thunderbird
 rm -rf ~/.mozilla
 
-echo -n "Would you like to install- b -> brave or gc -> google chrome: "
+echo -n "Which browser would you like to install?
+b -> brave
+gc -> google chrome
+"
 read browser_choice
 if [[ $browser_choice == "b" ]]; then
     sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
@@ -109,17 +112,17 @@ else
 fi
 
 # GNOME dash-to-dock config
-gsettings set org.gnome.shell favorite-apps "['$(xdg-settings get default-web-browser)', 'org.wezfurlong.wezterm.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.TextEditor.desktop']"
+gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'org.gnome.TextEditor.desktop', 'signal-desktop.desktop','org.wezfurlong.wezterm.desktop']"
+# $(xdg-settings get default-web-browser)
 gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize-or-previews'
+# GNOME interface config
+gsettings set org.gnome.desktop.interface clock-format '24h'
 # GNOME TextEditor config
 gsettings set org.gnome.TextEditor style-scheme 'classic-dark'
 gsettings set org.gnome.TextEditor restore-session false
 gsettings set org.gnome.TextEditor highlight-current-line true
 gsettings set org.gnome.TextEditor highlight-matching-brackets true
 gsettings set org.gnome.TextEditor show-line-numbers true
-# GNOME window & interface config
-gsettings set org.gnome.mutter center-new-windows true
-gsettings set org.gnome.desktop.interface clock-format '24h'
 
 sudo nala install -y zsh
 chsh --shell $(which zsh)
