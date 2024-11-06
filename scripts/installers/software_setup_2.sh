@@ -67,6 +67,12 @@ ADDITIONAL_APPS_FLATPAK=(
    "bottles"
    "se.sjoerd.Graphs"
    "io.github.finefindus.Hieroglyphic"
+   "org.gnome.Crosswords"
+   "org.gnome.Chess"
+   "org.gnome.Mahjongg"
+   "org.gnome.Mines"
+   "org.gnome.Sudoku"
+   "app.drey.MultiplicationPuzzle"
    # "org.gnome.gitlab.somas.Apostrophe"
    # "com.github.neithern.g4music"
 )
