@@ -13,11 +13,12 @@ Please make sure to run this file again after it concludes"
     stow .
     cd -
 
-    touch ./.temp_file
     echo "WARNING: ALL BLOAT *WILL* BE REMOVED AFTER THIS
 So, PLEASE ensure you are running this on WezTerm from here on"
     echo "Press Enter to close the terminal"
     read user_choice
+
+    touch ./.temp_file
     exit
 fi
 
@@ -63,50 +64,16 @@ sudo systemctl enable kanata --now
 ADDITIONAL_APPS_FLATPAK=(
    "org.ghidra_sre.Ghidra"
    "net.nokyan.Resources"
-   "se.sjoerd.Graphs"
    "bottles"
-   "io.github.diegoivanme.flowtime"
+   "se.sjoerd.Graphs"
    "io.github.finefindus.Hieroglyphic"
    # "org.gnome.gitlab.somas.Apostrophe"
-   # consumption
-   "info.febvre.Komikku"
    # "com.github.neithern.g4music"
-   # Games
-   "io.github.nokse22.ultimate-tic-tac-toe"
-   "org.gnome.Crosswords"
-   "org.gnome.Chess"
-   "org.gnome.Sudoku"
-   "org.gnome.Mahjongg" 
-   "org.gnome.Mines"
-   "app.drey.MultiplicationPuzzle"
 )
 flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
 
 mise settings set python_compile 1
 mise use --global deno@latest go@latest python@latest python@2.7
-
-echo -n "\nWould you like to install ULauncher?
-WARNING: This software uses an extremely high amount of RAM (y/N) "
-read user_choice
-if [[ $user_choice =~ ^[Yy]$ ]]; then
-    sudo sh -c "add-apt-repository -y ppa:agornostal/ulauncher; apt update"
-    sudo apt install -y ulauncher
-    sudo sh -c "echo '[Unit]
-Description=Linux Application Launcher
-Documentation=https://ulauncher.io/
-After=display-manager.service
-
-[Service]
-Type=simple
-Restart=always
-RestartSec=1
-ExecStart=/usr/bin/ulauncher --hide-window
-
-[Install]
-WantedBy=graphical.target' > /lib/systemd/system/ulauncher.service"
-    sudo systemctl enable ulauncher --now
-    sudo rm -f /usr/share/applications/ulauncher.desktop
-fi
 
 mkdir ~/croc-inbox
 sed -i "1i\file://$HOME/croc-inbox" ~/.config/gtk-3.0/bookmarks
