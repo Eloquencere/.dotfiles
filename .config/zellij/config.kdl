@@ -2,11 +2,11 @@ default_layout "tmux2"
 copy_command "wl-copy"
 
 plugins {
-    ghost location="file:ghost.wasm"
-    zj-quit location="file:zj-quit.wasm"
-    monocle location="file:monocle.wasm"
-    zellij-forgot location="file:zellij_forgot.wasm"
-    multitask location="file:multitask.wasm"
+    ghost location="file:~/.config/zellij/plugins/ghost.wasm"
+    zj-quit location="file:~/.config/zellij/plugins/zj-quit.wasm"
+    monocle location="file:~/.config/zellij/plugins/monocle.wasm"
+    zellij-forgot location="file:~/.config/zellij/plugins/zellij_forgot.wasm"
+    multitask location="file:~/.config/zellij/plugins/multitask.wasm"
 }
 
 keybinds clear-defaults=true {

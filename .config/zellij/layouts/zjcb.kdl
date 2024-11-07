@@ -5,7 +5,7 @@ layout {
         }
         children
         pane size=2 borderless=true {
-            plugin location="file:zjstatus.wasm" {
+            plugin location="file:~/.config/zellij/plugins/zjstatus.wasm" {
                 notification_format_unread "#[bg=#000000,fg=blue,blink]  #[bg=#000000,fg=blue] {message} "
                 notification_format_no_notifications "#[bg=#000000,fg=blue,dim]   "
                 notification_show_interval "10"

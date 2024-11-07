@@ -75,20 +75,6 @@ sudo apt install -y wezterm
 echo "Set wezterm as the default terminal"
 sudo update-alternatives --config x-terminal-emulator
 
-# zellij plugins - need to add this to .config/zellij/plugins
-## zjstatus
-wget -P ~/.local/share/zellij/plugins https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm
-# zj-quit
-wget -P ~/.local/share/zellij/plugins https://github.com/cristiand391/zj-quit/releases/latest/download/zj-quit.wasm
-# monocle
-wget -P ~/.local/share/zellij/plugins https://github.com/imsnif/monocle/releases/latest/download/monocle.wasm
-# zellij-forgot
-wget -P ~/.local/share/zellij/plugins https://github.com/karimould/zellij-forgot/releases/latest/download/zellij_forgot.wasm
-# multitask
-wget -P ~/.local/share/zellij/plugins https://github.com/imsnif/multitask/releases/latest/download/multitask.wasm
-# ghost
-wget -P ~/.local/share/zellij/plugins https://github.com/vdbulcke/ghost/releases/latest/download/ghost.wasm
-
 # removing browser bloat
 sudo apt-get purge -y firefox thunderbird
 sudo snap remove firefox thunderbird
