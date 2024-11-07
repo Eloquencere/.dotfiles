@@ -14,7 +14,7 @@ ESSENTIALS=(
     "libssl-dev" "liblzma-dev" "libreadline-dev" "libncurses5-dev"
     "sqlite3" "libsqlite3-dev"
     "stow" "curl"
-    "ntfs-3g" "exfat-fuse" "wl-clipboard" 
+    "ntfs-3g" "exfat-fuse" "wl-clipboard"
 	"linux-headers-$(uname -r)" "linux-headers-generic"
 	"ubuntu-restricted-extras" "build-essential" "pkg-config" 
 	"nala" "xmonad"
@@ -52,7 +52,7 @@ sudo snap install julia --classic
 sudo snap install zig   --classic --beta
 
 APPLICATIONS=(
-	"gnome-shell-extension-manager" "vlc"
+	"gnome-shell-extension-manager" # "vlc"
 	"bleachbit" # "gparted"
 )
 sudo apt install -y "${APPLICATIONS[@]}"
@@ -80,10 +80,10 @@ sudo apt-get purge -y firefox thunderbird
 sudo snap remove firefox thunderbird
 rm -rf ~/.mozilla
 
-echo -n "Which browser would you like to install?
+echo -n "Installing browser
 b -> brave
 gc -> google chrome
-"
+Which one would you like to install? "
 read browser_choice
 if [[ $browser_choice == "b" ]]; then
     sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
@@ -100,14 +100,12 @@ fi
 # GNOME dash-to-dock config
 gsettings set org.gnome.shell favorite-apps "['$(xdg-settings get default-web-browser)', 'org.gnome.TextEditor.desktop', 'org.gnome.Nautilus.desktop', 'signal-desktop.desktop','org.wezfurlong.wezterm.desktop']"
 gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize-or-previews'
-# GNOME interface config
-gsettings set org.gnome.desktop.interface clock-format '24h'
 # GNOME TextEditor config
 gsettings set org.gnome.TextEditor style-scheme 'classic-dark'
 gsettings set org.gnome.TextEditor restore-session false
+gsettings set org.gnome.TextEditor show-line-numbers true
 gsettings set org.gnome.TextEditor highlight-current-line true
 gsettings set org.gnome.TextEditor highlight-matching-brackets true
-gsettings set org.gnome.TextEditor show-line-numbers true
 
 sudo nala install -y zsh
 chsh --shell $(which zsh)

@@ -73,8 +73,6 @@ ADDITIONAL_APPS_FLATPAK=(
    "org.gnome.Mines"
    "org.gnome.Sudoku"
    "app.drey.MultiplicationPuzzle"
-   # "org.gnome.gitlab.somas.Apostrophe"
-   # "com.github.neithern.g4music"
 )
 flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
 
@@ -205,7 +203,7 @@ echo "The installer has concluded, it's a good idea to restart"
 # export PATH=$XDG_CONFIG_HOME/emacs/bin:$PATH' >> ~/.zprofile
 
 # # wine + GUI
-# run sudo dpgk --i386 # enable 32bit
+# run sudo dpkg --i386 # enable 32bit
 # sudo apt install -y wine64
 # wineGUI
 # wget https://winegui.melroy.org/downloads/WineGUI-v2.6.1.deb

@@ -135,30 +135,6 @@ keymap.set(
 -- Pair Completion
 keymap.set(
     "i",
-    "\"",
-    "\"\"" .. "<left>",
-    { noremap = true, desc = "insert" }
-)
-keymap.set(
-    "i",
-    "\'",
-    "\'\'" .. "<left>",
-    { noremap = true, desc = "insert" }
-)
-keymap.set(
-    "i",
-    "[",
-    "[]" .. "<left>",
-    { noremap = true, desc = "insert" }
-)
-keymap.set(
-    "i",
-    "(",
-    "()" .. "<left>",
-    { noremap = true, desc = "insert" }
-)
-keymap.set(
-    "i",
     "(<CR>",
     "(<CR>)" .. "<ESC>O",
     { noremap = true, desc = "insert" }
@@ -168,12 +144,6 @@ keymap.set(
     "(;<CR>",
     "(<CR>);" .. "<ESC>O",
     { noremap = true, desc = "Useful for port definitions in Verilog and SystemVerilog" }
-)
-keymap.set(
-    "i",
-    "{",
-    "{}" .. "<left>",
-    { noremap = true, desc = "insert" }
 )
 keymap.set(
     "i",
