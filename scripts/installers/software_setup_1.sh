@@ -17,7 +17,7 @@ ESSENTIALS=(
     "ntfs-3g" "exfat-fuse" "wl-clipboard"
 	"linux-headers-$(uname -r)" "linux-headers-generic"
 	"ubuntu-restricted-extras" "build-essential" "pkg-config" 
-	"nala" "xmonad"
+	"nala"
 )
 sudo apt-get install -y "${ESSENTIALS[@]}" 
 sudo nala fetch

@@ -79,9 +79,6 @@ flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
 mise settings set python_compile 1
 mise use --global deno@latest go@latest python@latest python@2.7
 
-mkdir ~/croc-inbox
-sed -i "1i\file://$HOME/croc-inbox" ~/.config/gtk-3.0/bookmarks
-
 echo -n "Would you like to install version control software - PikaBackup?(y/N) "
 read user_choice
 if [[ $user_choice =~ ^[Yy]$ ]]; then
@@ -112,6 +109,8 @@ read croc_id
 echo "# Croc
 export CROC_SELF_TRANSFER_ID=$croc_id" >> $HOME/.config/zsh/personal/zprofile.zsh
 mkdir -p $HOME/.local/share/croc
+mkdir ~/croc-inbox
+echo "1i\file://$HOME/croc-inbox" >> ~/.config/gtk-3.0/bookmarks
 
 echo -n "Would you like to configure USBIP?(y/N) "
 read user_choice
@@ -191,7 +190,7 @@ echo "The installer has concluded, it's a good idea to restart"
 # pip install parse pendulum pydantic ruff mypy pyglet
 # pip install keras tensorflow scikit-learn torch
 
-# Useful rust libs
+# Useful rust crates
 # cargo-expand
 # irust" bacon # tokio rayon
 
