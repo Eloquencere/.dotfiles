@@ -1,5 +1,5 @@
 if [[ ! -f "./.temp_file" ]]; then
-    echo "Welcome to part 2 of the installer
+    echo "Welcome to part 2 of the *Ubuntu 24.04 LTS* installer
 Please make sure to run this file again after it concludes"
     sleep 5
     # package managers
@@ -49,23 +49,14 @@ Restart=no
 WantedBy=default.target' > /lib/systemd/system/kanata.service"
 sudo systemctl enable kanata --now
 
-# echo "While your software take time to install, finish up some GUI setup"
-# sleep 3
-# gnome-text-editor ../continual-reference/DNS.txt .gui_instructions.txt &
-## gui instructions
-# set the position of the dock
-# configure the correct DNS servers
-# set the position of new icons to the top left
-# blur my shell extension(& disable the dash-to-dock effect) etc
-# Optional - add background image
-# Optional - register the keyboard shortcut of ulauncher with ubuntu
-# Optional - set when or if your screen should go to sleep
-# Group all app icons
+echo "While your software take time to install, finish up some GUI setup"
+sleep 4
+gnome-text-editor .gui_instructions.txt &
 
 ADDITIONAL_APPS_FLATPAK=(
    "org.ghidra_sre.Ghidra"
    "net.nokyan.Resources"
-   "bottles"
+   "com.usebottles.bottles"
    "se.sjoerd.Graphs"
    "io.github.finefindus.Hieroglyphic"
    "org.gnome.Crosswords"
@@ -92,6 +83,7 @@ if [[ $user_choice =~ ^[Yy]$ ]]; then
         sed -i "1i\file://$HOME/OneDrive" ~/.config/gtk-3.0/bookmarks
     fi
     flatpak install --assumeyes flathub "org.gnome.World.PikaBackup"
+    gsettings set org.gnome.shell favorite-apps '['$(xdg-settings get default-web-browser)', 'org.gnome.TextEditor.desktop', 'org.gnome.World.PikaBackup.desktop', 'org.gnome.Nautilus.desktop', 'signal-desktop.desktop','org.wezfurlong.wezterm.desktop']'
 fi
 
 echo -n "Are you running this on VMWare?(y/N) "

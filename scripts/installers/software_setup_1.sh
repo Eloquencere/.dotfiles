@@ -1,6 +1,10 @@
 #!/bin/bash
 
-echo "Welcome to the *Ubuntu 24.04* installer :)
+# GNOME appearance
+gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+gsettings set org.gnome.desktop.interface gtk-theme 'Yaru-blue-dark'
+
+echo "Welcome to the *Ubuntu 24.04 LTS* installer :)
 This script will automatically reboot the system after it is done"
 sleep 3
 
@@ -11,16 +15,16 @@ sudo sh -c "apt update; apt upgrade -y"
 source nerdfonts_download.sh
 
 ESSENTIALS=(
-    "libssl-dev" "liblzma-dev" "libreadline-dev" "libncurses5-dev"
+    "libssl-dev" "liblzma-dev" "libreadline-dev" "libncurses5-dev" "libfuse2t64"
     "sqlite3" "libsqlite3-dev"
     "stow" "curl"
     "ntfs-3g" "exfat-fuse" "wl-clipboard"
 	"linux-headers-$(uname -r)" "linux-headers-generic"
 	"ubuntu-restricted-extras" "build-essential" "pkg-config" 
+    "openjdk-21-jdk" "openjdk-21-jre"
 	"nala"
 )
 sudo apt-get install -y "${ESSENTIALS[@]}" 
-sudo nala fetch
 
 # Open in terminal option nautilus extension
 wget https://github.com/Stunkymonkey/nautilus-open-any-terminal/releases/latest/download/nautilus-extension-any-terminal_0.6.0-1_all.deb
@@ -97,18 +101,28 @@ sudo apt-get purge -y firefox thunderbird
 sudo snap remove firefox thunderbird
 rm -rf ~/.mozilla
 
-# GNOME dash-to-dock config
-gsettings set org.gnome.shell favorite-apps "['$(xdg-settings get default-web-browser)', 'org.gnome.TextEditor.desktop', 'org.gnome.Nautilus.desktop', 'signal-desktop.desktop','org.wezfurlong.wezterm.desktop']"
-gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize-or-previews'
 # GNOME TextEditor config
 gsettings set org.gnome.TextEditor style-scheme 'classic-dark'
 gsettings set org.gnome.TextEditor restore-session false
 gsettings set org.gnome.TextEditor show-line-numbers true
 gsettings set org.gnome.TextEditor highlight-current-line true
 gsettings set org.gnome.TextEditor highlight-matching-brackets true
+# GNOME desktop config
+gsettings set org.gnome.shell.extensions.ding show-home false
+gsettings set org.gnome.shell.extensions.ding start-corner 'top-left'
+# GNOME dash-to-dock config
+gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed false # might need autohide
+gsettings set org.gnome.shell.extensions.dash-to-dock extend-height false
+gsettings set org.gnome.shell.extensions.dash-to-dock show-mounts-only-mounted true
+gsettings set org.gnome.shell.extensions.dash-to-dock dock-position 'BOTTOM'
+gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize-or-previews'
+gsettings set org.gnome.shell favorite-apps '['$(xdg-settings get default-web-browser)', 'org.gnome.TextEditor.desktop', 'org.gnome.Nautilus.desktop', 'signal-desktop.desktop','org.wezfurlong.wezterm.desktop']'
+# GNOME screen lock behaviour
+gsettings set org.gnome.desktop.session idle-delay 0
+gsettings set org.gnome.desktop.screensaver lock-enabled false
 
 sudo nala install -y zsh
-chsh --shell $(which zsh)
+sudo chsh --shell $(which zsh)
 
 echo "The system will reboot now"
 sleep 3
