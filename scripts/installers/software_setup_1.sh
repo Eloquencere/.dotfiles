@@ -112,14 +112,23 @@ gsettings set org.gnome.shell.extensions.ding show-home false
 gsettings set org.gnome.shell.extensions.ding start-corner 'top-left'
 # GNOME dash-to-dock config
 gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed false # might need autohide
+gsettings set org.gnome.shell.extensions.dash-to-dock autohide-in-fullscreen true
 gsettings set org.gnome.shell.extensions.dash-to-dock extend-height false
 gsettings set org.gnome.shell.extensions.dash-to-dock show-mounts-only-mounted true
+gsettings set org.gnome.shell.extensions.dash-to-dock always-center-icons true
 gsettings set org.gnome.shell.extensions.dash-to-dock dock-position 'BOTTOM'
 gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize-or-previews'
 gsettings set org.gnome.shell favorite-apps '['$(xdg-settings get default-web-browser)', 'org.gnome.TextEditor.desktop', 'org.gnome.Nautilus.desktop', 'signal-desktop.desktop','org.wezfurlong.wezterm.desktop']'
 # GNOME screen lock behaviour
 gsettings set org.gnome.desktop.session idle-delay 0
 gsettings set org.gnome.desktop.screensaver lock-enabled false
+gsettings set org.gnome.desktop.interface clock-show-weekday true
+gsettings set org.gnome.desktop.privacy remove-old-temp-files true
+gsettings set org.gnome.desktop.privacy remove-old-trash-files true
+# setting background
+wget -P ~/Downloads https://ubuntucommunity.s3.us-east-2.amazonaws.com/original/3X/1/9/1988fec7c860a4af2d5f9a9bdc016879a2a75b4e.jpeg
+gsettings set org.gnome.desktop.background picture-uri-dark "file://$HOME/Downloads/1988fec7c860a4af2d5f9a9bdc016879a2a75b4e.jpeg"
+rm -f ~/Downloads/1988fec7c860a4af2d5f9a9bdc016879a2a75b4e.jpeg
 
 sudo nala install -y zsh
 sudo chsh --shell $(which zsh)
