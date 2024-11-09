@@ -30,7 +30,7 @@ rm -f nautilus-extension-any-terminal_0.6.0-1_all.deb
 # performance improvement software
 sudo add-apt-repository -y ppa:linrunner/tlp
 sudo apt update
-sudo nala install -y tlp 
+sudo nala install -y tlp
 sudo nala install -y preload
 sudo systemctl enable tlp preload --now
 
@@ -75,11 +75,6 @@ sudo apt install -y wezterm
 echo "Set wezterm as the default terminal"
 sudo update-alternatives --config x-terminal-emulator
 
-# removing browser bloat
-sudo apt-get purge -y firefox thunderbird
-sudo snap remove firefox thunderbird
-rm -rf ~/.mozilla
-
 echo -n "Installing browser
 b -> brave
 gc -> google chrome
@@ -93,9 +88,14 @@ if [[ $browser_choice == "b" ]]; then
 else
     wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
     sudo apt install -y ./google-chrome-stable_current_amd64.deb
-    sudo apt -f install -y
     rm -rf google-chrome-stable_current_amd64.deb
+    sudo apt -f install -y
 fi
+
+# removing browser bloat
+sudo apt-get purge -y firefox thunderbird
+sudo snap remove firefox thunderbird
+rm -rf ~/.mozilla
 
 # GNOME dash-to-dock config
 gsettings set org.gnome.shell favorite-apps "['$(xdg-settings get default-web-browser)', 'org.gnome.TextEditor.desktop', 'org.gnome.Nautilus.desktop', 'signal-desktop.desktop','org.wezfurlong.wezterm.desktop']"

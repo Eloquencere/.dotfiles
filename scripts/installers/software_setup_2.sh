@@ -53,13 +53,14 @@ sudo systemctl enable kanata --now
 # sleep 3
 # gnome-text-editor ../continual-reference/DNS.txt .gui_instructions.txt &
 ## gui instructions
-# set the dock at the correct position
+# set the position of the dock
 # configure the correct DNS servers
 # set the position of new icons to the top left
 # blur my shell extension(& disable the dash-to-dock effect) etc
-# steps to configure system fonts
+# Optional - add background image
 # Optional - register the keyboard shortcut of ulauncher with ubuntu
 # Optional - set when or if your screen should go to sleep
+# Group all app icons
 
 ADDITIONAL_APPS_FLATPAK=(
    "org.ghidra_sre.Ghidra"
