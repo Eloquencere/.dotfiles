@@ -4,6 +4,8 @@ echo "Welcome to the *Ubuntu 24.04 LTS* installer :)
 This script will automatically reboot the system after it is done"
 sleep 3
 
+cd ~/.dotfiles/scripts/installers
+
 sudo dpkg --add-architecture i386
 sudo sh -c "apt update; apt upgrade -y"
 
@@ -26,6 +28,7 @@ sudo apt-get install -y "${ESSENTIALS[@]}"
 wget https://github.com/Stunkymonkey/nautilus-open-any-terminal/releases/latest/download/nautilus-extension-any-terminal_0.6.0-1_all.deb
 sudo apt install -y ./nautilus-extension-any-terminal_0.6.0-1_all.deb
 rm -f nautilus-extension-any-terminal_0.6.0-1_all.deb
+gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal wezterm
 
 # performance improvement software
 sudo add-apt-repository -y ppa:linrunner/tlp
@@ -72,8 +75,12 @@ echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/w
 sudo apt update
 sudo apt install -y wezterm
 
-echo "Set wezterm as the default terminal"
-sudo update-alternatives --config x-terminal-emulator
+# Zsh shell
+sudo nala install -y zsh
+chsh --shell $(which zsh)
+
+# echo "Set wezterm as the default terminal"
+# sudo update-alternatives --config x-terminal-emulator
 
 echo -n "Installing browser
 b -> brave
@@ -103,6 +110,10 @@ wget -P ~/Downloads https://ubuntucommunity.s3.us-east-2.amazonaws.com/original/
 # GNOME appearance
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 gsettings set org.gnome.desktop.interface gtk-theme 'Yaru-blue-dark'
+sudo wget -P /usr/share/backgrounds https://ubuntucommunity.s3.us-east-2.amazonaws.com/original/3X/3/2/320af712c96e48da2d5a61f9b1d0ab2c792530ed.jpeg
+gsettings set org.gnome.desktop.background picture-uri-dark "file:///usr/share/backgrounds/320af712c96e48da2d5a61f9b1d0ab2c792530ed.jpeg"
+gsettings set org.gnome.desktop.background picture-options 'stretched'
+
 # GNOME TextEditor config
 gsettings set org.gnome.TextEditor style-scheme 'classic-dark'
 gsettings set org.gnome.TextEditor restore-session false
@@ -121,7 +132,7 @@ gsettings set org.gnome.shell.extensions.dash-to-dock show-mounts-only-mounted t
 gsettings set org.gnome.shell.extensions.dash-to-dock always-center-icons true
 gsettings set org.gnome.shell.extensions.dash-to-dock dock-position 'BOTTOM'
 gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize-or-previews'
-gsettings set org.gnome.shell favorite-apps '['$(xdg-settings get default-web-browser)', 'org.gnome.TextEditor.desktop', 'org.gnome.Nautilus.desktop', 'signal-desktop.desktop','org.wezfurlong.wezterm.desktop']'
+gsettings set org.gnome.shell favorite-apps "['$(xdg-settings get default-web-browser)', 'org.gnome.TextEditor.desktop', 'org.gnome.Nautilus.desktop', 'signal-desktop.desktop','org.wezfurlong.wezterm.desktop']"
 # GNOME interface config
 gsettings set org.gnome.desktop.interface clock-show-weekday true
 gsettings set org.gnome.desktop.interface clock-format '24h'
@@ -130,9 +141,6 @@ gsettings set org.gnome.desktop.session idle-delay 0
 gsettings set org.gnome.desktop.screensaver lock-enabled false
 gsettings set org.gnome.desktop.privacy remove-old-temp-files true
 gsettings set org.gnome.desktop.privacy remove-old-trash-files true
-
-sudo nala install -y zsh
-sudo chsh --shell $(which zsh)
 
 echo "The system will reboot now"
 sleep 3

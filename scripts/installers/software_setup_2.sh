@@ -1,3 +1,5 @@
+cd ~/.dotfiles/scripts/installers
+
 if [[ ! -f "./.temp_file" ]]; then
     echo "Welcome to part 2 of the *Ubuntu 24.04 LTS* installer
 Please make sure to run this file again after it concludes"
@@ -83,7 +85,7 @@ if [[ $user_choice =~ ^[Yy]$ ]]; then
         sed -i "1i\file://$HOME/OneDrive" ~/.config/gtk-3.0/bookmarks
     fi
     flatpak install --assumeyes flathub "org.gnome.World.PikaBackup"
-    gsettings set org.gnome.shell favorite-apps '['$(xdg-settings get default-web-browser)', 'org.gnome.TextEditor.desktop', 'org.gnome.World.PikaBackup.desktop', 'org.gnome.Nautilus.desktop', 'signal-desktop.desktop','org.wezfurlong.wezterm.desktop']'
+    gsettings set org.gnome.shell favorite-apps "['$(xdg-settings get default-web-browser)', 'org.gnome.TextEditor.desktop', 'org.gnome.World.PikaBackup.desktop', 'org.gnome.Nautilus.desktop', 'signal-desktop.desktop','org.wezfurlong.wezterm.desktop']"
 fi
 
 echo -n "Are you running this on VMWare?(y/N) "
@@ -103,7 +105,7 @@ echo "# Croc
 export CROC_SELF_TRANSFER_ID=$croc_id" >> $HOME/.config/zsh/personal/zprofile.zsh
 mkdir -p $HOME/.local/share/croc
 mkdir ~/croc-inbox
-echo "1i\file://$HOME/croc-inbox" >> ~/.config/gtk-3.0/bookmarks
+echo "file://$HOME/croc-inbox" >> ~/.config/gtk-3.0/bookmarks
 
 echo -n "Would you like to configure USBIP?(y/N) "
 read user_choice
@@ -152,7 +154,7 @@ fi
 BLOAT=(
 	"curl" "transmission-common" "transmission-gtk"
     "rhythmbox" "orca" "info" "yelp"
-    "gnome-terminal" "nautilus-extension-gnome-terminal"
+    "gnome-terminal"
     "gnome-logs" "gnome-system-monitor" "gnome-power-manager"
     "deja-dup" "totem" "seahorse" "remmina" "shotwell"
 )
