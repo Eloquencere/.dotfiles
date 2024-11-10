@@ -51,8 +51,6 @@ Restart=no
 WantedBy=default.target' > /lib/systemd/system/kanata.service"
 sudo systemctl enable kanata --now
 
-echo "While your software take time to install, finish up some GUI setup"
-sleep 4
 gnome-text-editor .gui_instructions.txt &
 
 ADDITIONAL_APPS_FLATPAK=(
@@ -154,7 +152,7 @@ fi
 BLOAT=(
 	"curl" "transmission-common" "transmission-gtk"
     "rhythmbox" "orca" "info" "yelp"
-    "gnome-terminal"
+    "gnome-terminal" # "nautilus-extension-gnome-terminal" -> doesn't exist
     "gnome-logs" "gnome-system-monitor" "gnome-power-manager"
     "deja-dup" "totem" "seahorse" "remmina" "shotwell"
 )

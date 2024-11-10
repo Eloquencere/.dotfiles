@@ -1,10 +1,9 @@
+*finish up some GUI configuration while your software get installed*
+
 Gnome Extensions
     - clipboard indicator
-    - Appindicator and kstatusNotifierItem support
     - blur my shell
     	- Disable "Panel" and "Dash" Blur
-    - CHC-E
-    	- Under the 'Multi-tasking' section disable 'active screen edges' in Settings
 
 Set a background image of your choice
 Group app icons in the app drawer
@@ -25,6 +24,4 @@ Komikku -- need to install
         - Long strip detection
     4. General
         - Disable desktop notifications
-    
-To remove snap from ubuntu
-    - https://kskroyal.com/remove-snap-packages-from-ubuntu/
+

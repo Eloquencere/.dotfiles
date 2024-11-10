@@ -17,10 +17,10 @@ ESSENTIALS=(
     "sqlite3" "libsqlite3-dev"
     "stow" "curl"
     "ntfs-3g" "exfat-fuse" "wl-clipboard"
-	"linux-headers-$(uname -r)" "linux-headers-generic"
-	"ubuntu-restricted-extras" "build-essential" "pkg-config" 
+    "linux-headers-$(uname -r)" "linux-headers-generic"
+    "ubuntu-restricted-extras" "build-essential" "pkg-config" 
     "openjdk-21-jdk" "openjdk-21-jre"
-	"nala"
+    "nala"
 )
 sudo apt-get install -y "${ESSENTIALS[@]}" 
 
@@ -40,10 +40,10 @@ sudo systemctl enable tlp preload --now
 export CARGO_HOME="$HOME/.local/share/rust/cargo"
 export RUSTUP_HOME="$HOME/.local/share/rust/rustup"
 LANGUAGE_COMPILERS=(
-	"rustup"
-	"perl" "ghc"
-	"gdb" "valgrind" "strace"
-	"clang" "lldb"
+    "rustup"
+    "perl" "ghc"
+    "gdb" "valgrind" "strace"
+    "clang" "lldb"
     "python3-pip" "tk-dev"
 )
 sudo nala install -y "${LANGUAGE_COMPILERS[@]}"
@@ -55,8 +55,8 @@ sudo snap install julia --classic
 sudo snap install zig   --classic --beta
 
 APPLICATIONS=(
-	"gnome-shell-extension-manager" # "vlc"
-	"bleachbit" # "gparted"
+    "gnome-shell-extension-manager" # "vlc"
+    "bleachbit" # "gparted"
 )
 sudo apt install -y "${APPLICATIONS[@]}"
 
@@ -74,10 +74,6 @@ curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/sh
 echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
 sudo apt update
 sudo apt install -y wezterm
-
-# Zsh shell
-sudo nala install -y zsh
-chsh --shell $(which zsh)
 
 # echo "Set wezterm as the default terminal"
 # sudo update-alternatives --config x-terminal-emulator
@@ -104,8 +100,9 @@ sudo apt-get purge -y firefox thunderbird
 sudo snap remove firefox thunderbird
 rm -rf ~/.mozilla
 
-# download background
-wget -P ~/Downloads https://ubuntucommunity.s3.us-east-2.amazonaws.com/original/3X/1/9/1988fec7c860a4af2d5f9a9bdc016879a2a75b4e.jpeg
+# Zsh shell
+sudo nala install -y zsh
+chsh --shell $(which zsh)
 
 # GNOME appearance
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
