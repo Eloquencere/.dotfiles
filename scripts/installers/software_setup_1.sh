@@ -113,7 +113,6 @@ gsettings set org.gnome.desktop.interface gtk-theme 'Yaru-blue-dark'
 sudo wget -P /usr/share/backgrounds https://ubuntucommunity.s3.us-east-2.amazonaws.com/original/3X/3/2/320af712c96e48da2d5a61f9b1d0ab2c792530ed.jpeg
 gsettings set org.gnome.desktop.background picture-uri-dark "file:///usr/share/backgrounds/320af712c96e48da2d5a61f9b1d0ab2c792530ed.jpeg"
 gsettings set org.gnome.desktop.background picture-options 'stretched'
-
 # GNOME TextEditor config
 gsettings set org.gnome.TextEditor style-scheme 'classic-dark'
 gsettings set org.gnome.TextEditor restore-session false
@@ -139,6 +138,7 @@ gsettings set org.gnome.desktop.interface clock-format '24h'
 # GNOME screen lock behaviour
 gsettings set org.gnome.desktop.session idle-delay 0
 gsettings set org.gnome.desktop.screensaver lock-enabled false
+# Trash config
 gsettings set org.gnome.desktop.privacy remove-old-temp-files true
 gsettings set org.gnome.desktop.privacy remove-old-trash-files true
 
