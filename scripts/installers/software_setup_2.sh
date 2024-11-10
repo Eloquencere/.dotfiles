@@ -4,9 +4,7 @@ if [[ ! -f "./.temp_file" ]]; then
     echo "Welcome to part 2 of the *Ubuntu 24.04 LTS* installer
 Please make sure to run this file again after it concludes"
     sleep 5
-    # package managers
-    sudo apt install -y flatpak gnome-software-plugin-flatpak
-    flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+    # nix
     sh <(curl -L https://nixos.org/nix/install) --daemon
     mkdir -p $HOME/.config/nixpkgs
     echo "{ allowUnfree = true; }" >> ~/.config/nixpkgs/config.nix
@@ -52,21 +50,6 @@ WantedBy=default.target' > /lib/systemd/system/kanata.service"
 sudo systemctl enable kanata --now
 
 gnome-text-editor .gui_instructions.txt &
-
-ADDITIONAL_APPS_FLATPAK=(
-   "org.ghidra_sre.Ghidra"
-   "net.nokyan.Resources"
-   "com.usebottles.bottles"
-   "se.sjoerd.Graphs"
-   "io.github.finefindus.Hieroglyphic"
-   "org.gnome.Crosswords"
-   "org.gnome.Chess"
-   "org.gnome.Mahjongg"
-   "org.gnome.Mines"
-   "org.gnome.Sudoku"
-   "app.drey.MultiplicationPuzzle"
-)
-flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
 
 mise settings set python_compile 1
 mise use --global deno@latest go@latest python@latest python@2.7
@@ -152,7 +135,7 @@ fi
 BLOAT=(
 	"curl" "transmission-common" "transmission-gtk"
     "rhythmbox" "orca" "info" "yelp"
-    "gnome-terminal" # "nautilus-extension-gnome-terminal" -> doesn't exist
+    "gnome-terminal"
     "gnome-logs" "gnome-system-monitor" "gnome-power-manager"
     "deja-dup" "totem" "seahorse" "remmina" "shotwell"
 )
@@ -169,7 +152,10 @@ flatpak uninstall --unused --delete-data
 systemctl daemon-reload
 
 rm -f ./.temp_file
-echo "The installer has concluded, it's a good idea to restart"
+echo "The installer has concluded
+You can use your system as normal after this restart"
+sleep 4
+reboot
 
 # Necessary Python libraries
 # pip2 install --upgrade pip

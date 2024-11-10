@@ -24,12 +24,6 @@ ESSENTIALS=(
 )
 sudo apt-get install -y "${ESSENTIALS[@]}" 
 
-# Open in terminal option nautilus extension
-wget https://github.com/Stunkymonkey/nautilus-open-any-terminal/releases/latest/download/nautilus-extension-any-terminal_0.6.0-1_all.deb
-sudo apt install -y ./nautilus-extension-any-terminal_0.6.0-1_all.deb
-rm -f nautilus-extension-any-terminal_0.6.0-1_all.deb
-gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal wezterm
-
 # performance improvement software
 sudo add-apt-repository -y ppa:linrunner/tlp
 sudo apt update
@@ -75,34 +69,11 @@ echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/w
 sudo apt update
 sudo apt install -y wezterm
 
-# echo "Set wezterm as the default terminal"
-# sudo update-alternatives --config x-terminal-emulator
-
-echo -n "Installing browser
-b -> brave
-gc -> google chrome
-Which one would you like to install? "
-read browser_choice
-if [[ $browser_choice == "b" ]]; then
-    sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
-    echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
-    sudo apt update
-    sudo apt install -y brave-browser
-else
-    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-    sudo apt install -y ./google-chrome-stable_current_amd64.deb
-    rm -rf google-chrome-stable_current_amd64.deb
-    sudo apt -f install -y
-fi
-
-# removing browser bloat
-sudo apt-get purge -y firefox thunderbird
-sudo snap remove firefox thunderbird
-rm -rf ~/.mozilla
-
-# Zsh shell
-sudo nala install -y zsh
-chsh --shell $(which zsh)
+# Open in terminal option nautilus extension
+wget https://github.com/Stunkymonkey/nautilus-open-any-terminal/releases/latest/download/nautilus-extension-any-terminal_0.6.0-1_all.deb
+sudo apt install -y ./nautilus-extension-any-terminal_0.6.0-1_all.deb
+rm -f nautilus-extension-any-terminal_0.6.0-1_all.deb
+gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal wezterm
 
 # GNOME appearance
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
@@ -138,6 +109,50 @@ gsettings set org.gnome.desktop.screensaver lock-enabled false
 # Trash config
 gsettings set org.gnome.desktop.privacy remove-old-temp-files true
 gsettings set org.gnome.desktop.privacy remove-old-trash-files true
+
+# installing flatpaks
+sudo apt install -y flatpak gnome-software-plugin-flatpak
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+ADDITIONAL_APPS_FLATPAK=(
+   "org.ghidra_sre.Ghidra"
+   "net.nokyan.Resources"
+   "com.usebottles.bottles"
+   "se.sjoerd.Graphs"
+   "io.github.finefindus.Hieroglyphic"
+   "org.gnome.Crosswords"
+   "org.gnome.Chess"
+   "org.gnome.Mahjongg"
+   "org.gnome.Mines"
+   "org.gnome.Sudoku"
+   "app.drey.MultiplicationPuzzle"
+)
+flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
+
+echo -n "Installing browser
+b -> brave
+gc -> google chrome
+Which one would you like to install? "
+read browser_choice
+if [[ $browser_choice == "b" ]]; then
+    sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+    echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+    sudo apt update
+    sudo apt install -y brave-browser
+else
+    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    sudo apt install -y ./google-chrome-stable_current_amd64.deb
+    rm -rf google-chrome-stable_current_amd64.deb
+    sudo apt -f install -y
+fi
+
+# removing browser bloat
+sudo apt-get purge -y firefox thunderbird
+sudo snap remove firefox thunderbird
+rm -rf ~/.mozilla
+
+# Zsh shell
+sudo nala install -y zsh
+chsh --shell $(which zsh)
 
 echo "The system will reboot now"
 sleep 3
