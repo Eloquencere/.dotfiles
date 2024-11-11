@@ -2,8 +2,7 @@
 with pkgs;
 [
 	neovim
-    p7zip rar
-    dos2unix
+    p7zip rar dos2unix
 	btop yazi
 	conan scriptisto
 	speedtest-rs jq yq jqp

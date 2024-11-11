@@ -13,8 +13,7 @@ Please make sure to run this file again after it concludes"
     stow .
     cd -
 
-    echo "WARNING: ALL BLOAT *WILL* BE REMOVED AFTER THIS
-So, PLEASE ensure you are running this on WezTerm from here on"
+    echo "WARNING: ALL BLOAT *WILL* BE REMOVED AFTER THIS"
     echo "Press Enter to close the terminal"
     read user_choice
 
@@ -135,7 +134,7 @@ fi
 BLOAT=(
 	"curl" "transmission-common" "transmission-gtk"
     "rhythmbox" "orca" "info" "yelp"
-    "gnome-terminal"
+    "gnome-terminal" "gnome-snapshot"
     "gnome-logs" "gnome-system-monitor" "gnome-power-manager"
     "deja-dup" "totem" "seahorse" "remmina" "shotwell"
 )

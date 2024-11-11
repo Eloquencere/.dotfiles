@@ -1,10 +1,14 @@
 #!/bin/bash
 
+cd ~/.dotfiles/scripts/installers
+
 echo "Welcome to the *Ubuntu 24.04 LTS* installer :)
 This script will automatically reboot the system after it is done"
 sleep 3
 
-cd ~/.dotfiles/scripts/installers
+# GNOME screen lock behaviour
+gsettings set org.gnome.desktop.session idle-delay 0
+gsettings set org.gnome.desktop.screensaver lock-enabled false
 
 sudo dpkg --add-architecture i386
 sudo sh -c "apt update; apt upgrade -y"
@@ -49,12 +53,12 @@ sudo snap install julia --classic
 sudo snap install zig   --classic --beta
 
 APPLICATIONS=(
-    "gnome-shell-extension-manager" # "vlc"
-    "bleachbit" # "gparted"
+    "gnome-shell-extension-manager"
+    "bleachbit"
 )
 sudo apt install -y "${APPLICATIONS[@]}"
 
-# signal
+# Signal
 wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg
 cat signal-desktop-keyring.gpg | sudo tee /usr/share/keyrings/signal-desktop-keyring.gpg > /dev/null
 echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main' |\
@@ -75,12 +79,6 @@ sudo apt install -y ./nautilus-extension-any-terminal_0.6.0-1_all.deb
 rm -f nautilus-extension-any-terminal_0.6.0-1_all.deb
 gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal wezterm
 
-# GNOME appearance
-gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
-gsettings set org.gnome.desktop.interface gtk-theme 'Yaru-blue-dark'
-sudo wget -P /usr/share/backgrounds https://ubuntucommunity.s3.us-east-2.amazonaws.com/original/3X/3/2/320af712c96e48da2d5a61f9b1d0ab2c792530ed.jpeg
-gsettings set org.gnome.desktop.background picture-uri-dark "file:///usr/share/backgrounds/320af712c96e48da2d5a61f9b1d0ab2c792530ed.jpeg"
-gsettings set org.gnome.desktop.background picture-options 'stretched'
 # GNOME TextEditor config
 gsettings set org.gnome.TextEditor style-scheme 'classic-dark'
 gsettings set org.gnome.TextEditor restore-session false
@@ -103,14 +101,17 @@ gsettings set org.gnome.shell favorite-apps "['$(xdg-settings get default-web-br
 # GNOME interface config
 gsettings set org.gnome.desktop.interface clock-show-weekday true
 gsettings set org.gnome.desktop.interface clock-format '24h'
-# GNOME screen lock behaviour
-gsettings set org.gnome.desktop.session idle-delay 0
-gsettings set org.gnome.desktop.screensaver lock-enabled false
 # Trash config
 gsettings set org.gnome.desktop.privacy remove-old-temp-files true
 gsettings set org.gnome.desktop.privacy remove-old-trash-files true
+# GNOME appearance
+sudo wget -P /usr/share/backgrounds https://ubuntucommunity.s3.us-east-2.amazonaws.com/original/3X/3/2/320af712c96e48da2d5a61f9b1d0ab2c792530ed.jpeg
+gsettings set org.gnome.desktop.background picture-uri-dark "file:///usr/share/backgrounds/320af712c96e48da2d5a61f9b1d0ab2c792530ed.jpeg"
+gsettings set org.gnome.desktop.background picture-options 'stretched'
+gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+gsettings set org.gnome.desktop.interface gtk-theme 'Yaru-blue-dark'
 
-# installing flatpaks
+# Flatpaks
 sudo apt install -y flatpak gnome-software-plugin-flatpak
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 ADDITIONAL_APPS_FLATPAK=(
@@ -145,14 +146,14 @@ else
     sudo apt -f install -y
 fi
 
+# Zsh shell
+sudo nala install -y zsh
+chsh --shell $(which zsh)
+
 # removing browser bloat
 sudo apt-get purge -y firefox thunderbird
 sudo snap remove firefox thunderbird
 rm -rf ~/.mozilla
-
-# Zsh shell
-sudo nala install -y zsh
-chsh --shell $(which zsh)
 
 echo "The system will reboot now"
 sleep 3
