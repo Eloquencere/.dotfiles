@@ -35,6 +35,9 @@ sudo nala install -y tlp
 sudo nala install -y preload
 sudo systemctl enable tlp preload --now
 
+sudo snap install julia --classic
+sudo snap install zig   --classic --beta
+
 export CARGO_HOME="$HOME/.local/share/rust/cargo"
 export RUSTUP_HOME="$HOME/.local/share/rust/rustup"
 LANGUAGE_COMPILERS=(
@@ -48,9 +51,6 @@ sudo nala install -y "${LANGUAGE_COMPILERS[@]}"
 rustup toolchain install stable
 rustup default stable
 cargo install sccache
-
-sudo snap install julia --classic
-sudo snap install zig   --classic --beta
 
 APPLICATIONS=(
     "gnome-shell-extension-manager"
@@ -101,6 +101,7 @@ gsettings set org.gnome.shell favorite-apps "['$(xdg-settings get default-web-br
 # GNOME interface config
 gsettings set org.gnome.desktop.interface clock-show-weekday true
 gsettings set org.gnome.desktop.interface clock-format '24h'
+gsettings set org.gnome.shell.app-switcher current-workspace-only true
 # Trash config
 gsettings set org.gnome.desktop.privacy remove-old-temp-files true
 gsettings set org.gnome.desktop.privacy remove-old-trash-files true
@@ -150,10 +151,21 @@ fi
 sudo nala install -y zsh
 chsh --shell $(which zsh)
 
-# removing browser bloat
-sudo apt-get purge -y firefox thunderbird
-sudo snap remove firefox thunderbird
+SNAP_BLOAT=(
+    firefox thunderbird
+)
+sudo apt-get purge -y "${SNAP_BLOAT[@]}"
+sudo snap remove "${SNAP_BLOAT[@]}"
 rm -rf ~/.mozilla
+
+SOFTWARE_BLOAT=(
+    "transmission-common" "transmission-gtk"
+    "rhythmbox" "orca" "info" "yelp"
+    "gnome-snapshot" "gnome-logs" 
+    "gnome-system-monitor" "gnome-power-manager"
+    "deja-dup" "totem" "seahorse" "remmina" "shotwell"
+)
+sudo nala purge -y "${SOFTWARE_BLOAT[@]}"
 
 echo "The system will reboot now"
 sleep 3

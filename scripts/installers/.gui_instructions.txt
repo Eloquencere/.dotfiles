@@ -1,10 +1,5 @@
 *finish up some GUI configuration while your software get installed*
 
-Multitasksing
-    disable active screen edges
-    Include apps from current workspace only
-    Include apps from each monitor only
-
 Gnome Extensions
     - clipboard indicator
     - blur my shell
