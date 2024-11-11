@@ -9,14 +9,14 @@ cd
 git clone https://github.com/Eloquencere/.dotfiles.git
 ```
 
-Run the script in .bin/
+Run the script 1
 ```
-cd ~/.dotfiles/.bin/
-source software_install_1.sh
+cd ~/.dotfiles/scripts/installers/
+source ./software_install_1.sh
 ```
 
-After Restart run
+After Restart run script 2
 ```
-cd ~/.dotfiles/.bin/
-source software_install_2.sh
+cd ~/.dotfiles/scripts/installers/
+source ./software_install_2.sh
 ```

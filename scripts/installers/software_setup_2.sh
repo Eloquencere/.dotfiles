@@ -53,21 +53,6 @@ sudo systemctl enable kanata --now
 mise settings set python_compile 1
 mise use --global deno@latest go@latest python@latest python@2.7
 
-echo -n "Would you like to install version control software - PikaBackup?(y/N) "
-read user_choice
-if [[ $user_choice =~ ^[Yy]$ ]]; then
-    echo -n "Install 'OneDriver' also?(y/N) "
-    read user_choice
-    if [[ $user_choice =~ ^[Yy]$ ]]; then
-        sudo sh -c "add-apt-repository -y --remove ppa:jstaf/onedriver; apt update"
-        sudo apt install -y onedriver
-        mkdir $HOME/OneDrive
-        sed -i "1i\file://$HOME/OneDrive" ~/.config/gtk-3.0/bookmarks
-    fi
-    flatpak install --assumeyes flathub "org.gnome.World.PikaBackup"
-    gsettings set org.gnome.shell favorite-apps "['$(xdg-settings get default-web-browser)', 'org.gnome.TextEditor.desktop', 'org.gnome.World.PikaBackup.desktop', 'org.gnome.Nautilus.desktop', 'signal-desktop.desktop','org.wezfurlong.wezterm.desktop']"
-fi
-
 echo -n "Are you running this on VMWare?(y/N) "
 read user_choice
 if [[ $user_choice =~ ^[Yy]$ ]]; then

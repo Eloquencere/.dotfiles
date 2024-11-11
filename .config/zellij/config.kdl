@@ -1,4 +1,4 @@
-default_layout "tmux2"
+default_layout "compact"
 copy_command "wl-copy"
 
 plugins {
