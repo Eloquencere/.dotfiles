@@ -1,27 +1,15 @@
 *finish up some GUI configuration while your software get installed*
 
+Multitasksing
+    disable active screen edges
+    Include apps from current workspace only
+    Include apps from each monitor only
+
 Gnome Extensions
     - clipboard indicator
     - blur my shell
     	- Disable "Panel" and "Dash" Blur
+    - CHC-E
 
 Set a background image of your choice
 Group app icons in the app drawer
-
---- OPTIONAL ---
-Komikku -- need to install
-    1. Advanced
-        - Clear Chapters Cache and Database on Exit (or not)
-        - Use up-to-date servers modules
-    2. Reader
-        - Scaling - Adapt to Width
-        - Background Colour - Black
-    3. Library
-        - Display Mode - Grid
-        - Badges - Enable Number of Recent and Unread Chapters
-        - Update at Startup 
-        - Server Languages restricted to English
-        - Long strip detection
-    4. General
-        - Disable desktop notifications
-

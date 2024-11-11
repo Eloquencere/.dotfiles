@@ -115,16 +115,16 @@ sudo apt install -y flatpak gnome-software-plugin-flatpak
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 ADDITIONAL_APPS_FLATPAK=(
    "org.ghidra_sre.Ghidra"
-   "net.nokyan.Resources"
+   # "net.nokyan.Resources"
    "com.usebottles.bottles"
    "se.sjoerd.Graphs"
    "io.github.finefindus.Hieroglyphic"
-   "org.gnome.Crosswords"
    "org.gnome.Chess"
-   "org.gnome.Mahjongg"
-   "org.gnome.Mines"
    "org.gnome.Sudoku"
    "app.drey.MultiplicationPuzzle"
+   "org.gnome.Mahjongg"
+   "org.gnome.Crosswords"
+   "org.gnome.Mines"
 )
 flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
 

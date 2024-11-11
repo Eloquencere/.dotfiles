@@ -22,6 +22,8 @@ So, PLEASE ensure you are running this on WezTerm from here on"
     exit
 fi
 
+gnome-text-editor .gui_instructions.txt &
+
 # Nix packages
 nix-env --install --file base_pkgs.nix
 nix-env --install --file additional_pkgs.nix
@@ -48,8 +50,6 @@ Restart=no
 [Install]
 WantedBy=default.target' > /lib/systemd/system/kanata.service"
 sudo systemctl enable kanata --now
-
-gnome-text-editor .gui_instructions.txt &
 
 mise settings set python_compile 1
 mise use --global deno@latest go@latest python@latest python@2.7
