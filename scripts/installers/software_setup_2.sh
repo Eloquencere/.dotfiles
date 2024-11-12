@@ -29,15 +29,6 @@ sudo systemctl enable kanata --now
 pip2 install --upgrade pip
 pip install --upgrade pip
 
-echo -n "Are you running this on VMWare?(y/N) "
-read user_choice
-if [[ $user_choice =~ ^[Yy]$ ]]; then
-    sudo nala install -y open-vm-tools-desktop
-    sudo sh -c "echo '.host:/ /mnt/hgfs fuse.vmhgfs-fuse    auto,allow_other    0   0' >> /etc/fstab"
-    sudo mkdir /mnt/hgfs
-    sed -i "1i\file://$HOME/Projects" ~/.config/gtk-3.0/bookmarks
-fi
-
 mkdir -p $HOME/.config/zsh/personal
 
 echo -n "Enter the ID granted by your admin to register with your team via croc: "
@@ -59,6 +50,15 @@ if [[ $user_choice =~ ^[Yy]$ ]]; then
 	echo "
 # USBIP
 export SERVER_IP=$server_ip" >> $HOME/.config/zsh/personal/zprofile.zsh
+fi
+
+echo -n "Are you running this on VMWare?(y/N) "
+read user_choice
+if [[ $user_choice =~ ^[Yy]$ ]]; then
+    sudo nala install -y open-vm-tools-desktop
+    sudo sh -c "echo '.host:/ /mnt/hgfs fuse.vmhgfs-fuse    auto,allow_other    0   0' >> /etc/fstab"
+    sudo mkdir /mnt/hgfs
+    sed -i "1i\file://$HOME/Projects" ~/.config/gtk-3.0/bookmarks
 fi
 
 echo -n "Would you like to log into your git account?(y/N) "
