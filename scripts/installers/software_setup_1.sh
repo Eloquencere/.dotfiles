@@ -4,7 +4,6 @@ cd ~/.dotfiles/scripts/installers
 
 echo "Welcome to the *Ubuntu 24.04 LTS* installer :)
 This script will automatically reboot the system after it is done"
-sleep 3
 
 # GNOME screen lock behaviour
 gsettings set org.gnome.desktop.session idle-delay 0
@@ -75,7 +74,7 @@ sudo apt update
 sudo apt install -y wezterm
 
 # Open in terminal option nautilus extension
-wget https://github.com/Stunkymonkey/nautilus-open-any-terminal/releases/latest/download/nautilus-extension-any-terminal_0.6.0-1_all.deb
+wget https://github.com/Stunkymonkey/nautilus-open-any-terminal/releases/download/0.6.0/nautilus-extension-any-terminal_0.6.0-1_all.deb
 sudo apt install -y ./nautilus-extension-any-terminal_0.6.0-1_all.deb
 rm -f nautilus-extension-any-terminal_0.6.0-1_all.deb
 gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal wezterm
@@ -102,6 +101,10 @@ fi
 sudo nala install -y zsh
 chsh --shell $(which zsh)
 
+# flatpak package manager
+sudo apt install -y flatpak gnome-software-plugin-flatpak
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
 cd ~/.dotfiles
 stow .
 cd -
@@ -116,8 +119,6 @@ zsh -li -c "mise settings set python_compile 1"
 zsh -li -c "mise use --global deno@latest go@latest python@latest python@2.7"
 
 # Flatpaks
-sudo apt install -y flatpak gnome-software-plugin-flatpak
-flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 ADDITIONAL_APPS_FLATPAK=(
    "org.ghidra_sre.Ghidra"
    # "net.nokyan.Resources"
