@@ -97,13 +97,13 @@ else
     sudo apt -f install -y
 fi
 
-# Zsh shell
-sudo nala install -y zsh
-chsh --shell $(which zsh)
-
 # flatpak package manager
 sudo apt install -y flatpak gnome-software-plugin-flatpak
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
+# Zsh shell
+sudo nala install -y zsh
+chsh --shell $(which zsh)
 
 cd ~/.dotfiles
 stow .
@@ -112,9 +112,7 @@ cd -
 mkdir -p $HOME/.config/nixpkgs
 echo "{ allowUnfree = true; }" >> ~/.config/nixpkgs/config.nix
 zsh -li -c "sh <(\curl -L https://nixos.org/nix/install) --daemon"
-
 zsh -li -c "nix-env --install --file cli_pkgs.nix"
-
 zsh -li -c "mise settings set python_compile 1; \ 
 mise use --global deno@latest go@latest python@latest python@2.7"
 
@@ -134,6 +132,22 @@ ADDITIONAL_APPS_FLATPAK=(
 )
 flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
 
+SNAP_BLOAT=(
+    "firefox" "thunderbird"
+)
+sudo apt-get purge -y "${SNAP_BLOAT[@]}"
+sudo snap remove "${SNAP_BLOAT[@]}"
+rm -rf ~/.mozilla
+
+SOFTWARE_BLOAT=(
+    "transmission-common" "transmission-gtk"
+    "rhythmbox" "orca" "info" "yelp"
+    "gnome-snapshot" "gnome-logs" 
+    "gnome-system-monitor" "gnome-power-manager"
+    "deja-dup" "totem" "seahorse" "remmina" "shotwell"
+)
+sudo nala purge -y "${SOFTWARE_BLOAT[@]}"
+
 # GNOME TextEditor config
 gsettings set org.gnome.TextEditor style-scheme 'classic-dark'
 gsettings set org.gnome.TextEditor restore-session false
@@ -144,6 +158,12 @@ gsettings set org.gnome.TextEditor highlight-matching-brackets true
 gsettings set org.gnome.shell.extensions.ding show-home false
 gsettings set org.gnome.shell.extensions.ding start-corner 'top-left'
 gsettings set org.gnome.mutter center-new-windows true
+# GNOME appearance
+gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+gsettings set org.gnome.desktop.interface gtk-theme 'Yaru-blue-dark'
+sudo wget -P /usr/share/backgrounds https://ubuntucommunity.s3.us-east-2.amazonaws.com/original/3X/3/2/320af712c96e48da2d5a61f9b1d0ab2c792530ed.jpeg
+gsettings set org.gnome.desktop.background picture-uri-dark "file:///usr/share/backgrounds/320af712c96e48da2d5a61f9b1d0ab2c792530ed.jpeg"
+gsettings set org.gnome.desktop.background picture-options 'stretched'
 # GNOME dash-to-dock config
 gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed false
 gsettings set org.gnome.shell.extensions.dash-to-dock autohide-in-fullscreen true
@@ -160,28 +180,6 @@ gsettings set org.gnome.shell.app-switcher current-workspace-only true
 # Trash config
 gsettings set org.gnome.desktop.privacy remove-old-temp-files true
 gsettings set org.gnome.desktop.privacy remove-old-trash-files true
-# GNOME appearance
-sudo wget -P /usr/share/backgrounds https://ubuntucommunity.s3.us-east-2.amazonaws.com/original/3X/3/2/320af712c96e48da2d5a61f9b1d0ab2c792530ed.jpeg
-gsettings set org.gnome.desktop.background picture-uri-dark "file:///usr/share/backgrounds/320af712c96e48da2d5a61f9b1d0ab2c792530ed.jpeg"
-gsettings set org.gnome.desktop.background picture-options 'stretched'
-gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
-gsettings set org.gnome.desktop.interface gtk-theme 'Yaru-blue-dark'
-
-SNAP_BLOAT=(
-    "firefox" "thunderbird"
-)
-sudo apt-get purge -y "${SNAP_BLOAT[@]}"
-sudo snap remove "${SNAP_BLOAT[@]}"
-rm -rf ~/.mozilla
-
-SOFTWARE_BLOAT=(
-    "transmission-common" "transmission-gtk"
-    "rhythmbox" "orca" "info" "yelp"
-    "gnome-snapshot" "gnome-logs" 
-    "gnome-system-monitor" "gnome-power-manager"
-    "deja-dup" "totem" "seahorse" "remmina" "shotwell"
-)
-sudo nala purge -y "${SOFTWARE_BLOAT[@]}"
 
 echo "The system will reboot now"
 sleep 3

@@ -26,6 +26,9 @@ Restart=no
 WantedBy=default.target' > /lib/systemd/system/kanata.service"
 sudo systemctl enable kanata --now
 
+pip2 install --upgrade pip
+pip install --upgrade pip
+
 echo -n "Are you running this on VMWare?(y/N) "
 read user_choice
 if [[ $user_choice =~ ^[Yy]$ ]]; then
@@ -95,23 +98,22 @@ BLOAT=(
 sudo nala purge -y "${BLOAT[@]}"
 
 rm -rf ~/.cache/thumbnails/*
-rm -rf ~/{.bash*,.profile,.zcompdump*,.fontconfig}
+rm -rf ~/{.sudo_as_admin_successful,.wget-hsts}
+rm -rf ~/{.bash*,.profile,.fontconfig}
 rm -rf ~/{Templates,Public,Pictures,Videos,Music}
 sed -i "/Pictures\|Videos\|Music/d" ~/.config/gtk-3.0/bookmarks
 
 sudo sh -c "apt-get update;apt-get dist-upgrade;apt-get autoremove;apt-get autoclean; apt --fix-broken install"
 flatpak uninstall --unused --delete-data --assumeyes
 
-systemctl daemon-reload
-
 echo "The installer has concluded
 Press Enter after closing all windows to restart your system one final time."
 read user_choice
 reboot
 
+# if faced with any issues during boot run - fsck -AR -y
+
 # Necessary Python libraries
-# pip2 install --upgrade pip
-# pip install --upgrade pip
 # pip install icecream # debugging
 # pip install drawio colorama pyfiglet # presentation
 # pip install dash plotly seaborn mysql-connector-python # data representation and calculation
