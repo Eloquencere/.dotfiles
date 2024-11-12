@@ -3,7 +3,7 @@ cd ~/.dotfiles/scripts/installers
 # GUI setup
 gnome-text-editor .gui_instructions.txt &
 
-# Kanata config
+# Kanata install & config
 nix-env -iA nixpkgs.kanata
 sudo groupadd uinput
 sudo usermod -aG input $USER
@@ -100,19 +100,16 @@ rm -rf ~/{Templates,Public,Pictures,Videos,Music}
 sed -i "/Pictures\|Videos\|Music/d" ~/.config/gtk-3.0/bookmarks
 
 sudo sh -c "apt-get update;apt-get dist-upgrade;apt-get autoremove;apt-get autoclean; apt --fix-broken install"
-flatpak uninstall --unused --delete-data
+flatpak uninstall --unused --delete-data --assumeyes
 
 systemctl daemon-reload
 
-rm -f ./.temp_file
 echo "The installer has concluded
 You can use your system as normal after this restart"
 sleep 4
 reboot
 
 # Necessary Python libraries
-# pip2 install --upgrade pip
-# pip install --upgrade pip
 # pip install icecream # debugging
 # pip install drawio colorama pyfiglet # presentation
 # pip install dash plotly seaborn mysql-connector-python # data representation and calculation
