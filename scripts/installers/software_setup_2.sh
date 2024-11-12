@@ -105,8 +105,8 @@ flatpak uninstall --unused --delete-data --assumeyes
 systemctl daemon-reload
 
 echo "The installer has concluded
-You can use your system as normal after this restart"
-sleep 4
+Press Enter after closing all windows to restart your system one final time."
+read user_choice
 reboot
 
 # Necessary Python libraries

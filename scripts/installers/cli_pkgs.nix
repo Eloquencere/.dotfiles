@@ -6,17 +6,15 @@ with pkgs;
    duf dust delta procs
    croc fastfetch
 
-   neovim
-   p7zip rar dos2unix
-   btop yazi
-   conan scriptisto
+   p7zip rar 
+   dos2unix btop yazi
    speedtest-cli jq yq jqp
-   tlrc cheat
-   tio
-   zellij mprocs
+   neovim zellij mprocs
+   conan scriptisto tio
    lazygit gh
    docker lazydocker
    podman distrobox
+   tlrc cheat
    natural-docs doxygen
    pipes
 ]

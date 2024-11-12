@@ -152,7 +152,7 @@ gsettings set org.gnome.shell.extensions.dash-to-dock show-mounts-only-mounted t
 gsettings set org.gnome.shell.extensions.dash-to-dock always-center-icons true
 gsettings set org.gnome.shell.extensions.dash-to-dock dock-position 'BOTTOM'
 gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize-or-previews'
-gsettings set org.gnome.shell favorite-apps "['$(xdg-settings get default-web-browser)', 'org.gnome.TextEditor.desktop', 'org.gnome.Nautilus.desktop', 'signal-desktop.desktop','org.wezfurlong.wezterm.desktop']"
+gsettings set org.gnome.shell favorite-apps "[ 'org.gnome.TextEditor.desktop', 'signal-desktop.desktop', '$(xdg-settings get default-web-browser)', 'org.wezfurlong.wezterm.desktop', 'org.gnome.Nautilus.desktop']"
 # GNOME interface config
 gsettings set org.gnome.desktop.interface clock-show-weekday true
 gsettings set org.gnome.desktop.interface clock-format '24h'
