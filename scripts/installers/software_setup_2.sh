@@ -1,5 +1,8 @@
 cd ~/.dotfiles/scripts/installers
 
+# GUI setup
+gnome-text-editor .gui_instructions.txt &
+
 # Kanata config
 nix-env -iA nixpkgs.kanata
 sudo groupadd uinput

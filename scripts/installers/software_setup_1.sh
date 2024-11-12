@@ -80,27 +80,7 @@ sudo apt install -y ./nautilus-extension-any-terminal_0.6.0-1_all.deb
 rm -f nautilus-extension-any-terminal_0.6.0-1_all.deb
 gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal wezterm
 
-# GUI setup
-gnome-text-editor .gui_instructions.txt &
-
-# Flatpaks
-sudo apt install -y flatpak gnome-software-plugin-flatpak
-flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-ADDITIONAL_APPS_FLATPAK=(
-   "org.ghidra_sre.Ghidra"
-   # "net.nokyan.Resources"
-   "com.usebottles.bottles"
-   "se.sjoerd.Graphs"
-   "io.github.finefindus.Hieroglyphic"
-   "org.gnome.Chess"
-   "org.gnome.Sudoku"
-   "app.drey.MultiplicationPuzzle"
-   "org.gnome.Mahjongg"
-   "org.gnome.Crosswords"
-   "org.gnome.Mines"
-)
-flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
-
+# browser
 echo -n "Installing browser
 b -> brave
 gc -> google chrome
@@ -121,6 +101,37 @@ fi
 # Zsh shell
 sudo nala install -y zsh
 chsh --shell $(which zsh)
+
+cd ~/.dotfiles
+stow .
+cd -
+
+mkdir -p $HOME/.config/nixpkgs
+echo "{ allowUnfree = true; }" >> ~/.config/nixpkgs/config.nix
+zsh -li -c "sh <(curl -L https://nixos.org/nix/install) --daemon"
+
+zsh -li -c "nix-env --install --file cli_pkgs.nix"
+
+zsh -li -c "mise settings set python_compile 1"
+zsh -li -c "mise use --global deno@latest go@latest python@latest python@2.7"
+
+# Flatpaks
+sudo apt install -y flatpak gnome-software-plugin-flatpak
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+ADDITIONAL_APPS_FLATPAK=(
+   "org.ghidra_sre.Ghidra"
+   # "net.nokyan.Resources"
+   "com.usebottles.bottles"
+   "se.sjoerd.Graphs"
+   "io.github.finefindus.Hieroglyphic"
+   "org.gnome.Chess"
+   "org.gnome.Sudoku"
+   "app.drey.MultiplicationPuzzle"
+   "org.gnome.Mahjongg"
+   "org.gnome.Crosswords"
+   "org.gnome.Mines"
+)
+flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
 
 # GNOME TextEditor config
 gsettings set org.gnome.TextEditor style-scheme 'classic-dark'
@@ -170,19 +181,6 @@ SOFTWARE_BLOAT=(
     "deja-dup" "totem" "seahorse" "remmina" "shotwell"
 )
 sudo nala purge -y "${SOFTWARE_BLOAT[@]}"
-
-cd ~/.dotfiles
-stow .
-cd -
-
-zsh -li -c "sh <(curl -L https://nixos.org/nix/install) --daemon"
-mkdir -p $HOME/.config/nixpkgs
-echo "{ allowUnfree = true; }" >> ~/.config/nixpkgs/config.nix
-
-zsh -li -c "nix-env --install --file cli_pkgs.nix"
-
-zsh -li -c "mise settings set python_compile 1"
-zsh -li -c "mise use --global deno@latest go@latest python@latest python@2.7"
 
 echo "The system will reboot now"
 sleep 3
