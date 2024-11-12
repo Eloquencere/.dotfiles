@@ -35,9 +35,6 @@ sudo nala install -y tlp
 sudo nala install -y preload
 sudo systemctl enable tlp preload --now
 
-sudo snap install julia --classic
-sudo snap install zig   --classic --beta
-
 export CARGO_HOME="$HOME/.local/share/rust/cargo"
 export RUSTUP_HOME="$HOME/.local/share/rust/rustup"
 LANGUAGE_COMPILERS=(
@@ -48,6 +45,10 @@ LANGUAGE_COMPILERS=(
     "python3-pip" "tk-dev"
 )
 sudo nala install -y "${LANGUAGE_COMPILERS[@]}"
+
+sudo snap install julia --classic
+sudo snap install zig   --classic --beta
+
 rustup toolchain install stable
 rustup default stable
 cargo install sccache
@@ -78,6 +79,9 @@ wget https://github.com/Stunkymonkey/nautilus-open-any-terminal/releases/latest/
 sudo apt install -y ./nautilus-extension-any-terminal_0.6.0-1_all.deb
 rm -f nautilus-extension-any-terminal_0.6.0-1_all.deb
 gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal wezterm
+
+# GUI setup
+gnome-text-editor .gui_instructions.txt &
 
 # Flatpaks
 sudo apt install -y flatpak gnome-software-plugin-flatpak
@@ -166,6 +170,19 @@ SOFTWARE_BLOAT=(
     "deja-dup" "totem" "seahorse" "remmina" "shotwell"
 )
 sudo nala purge -y "${SOFTWARE_BLOAT[@]}"
+
+cd ~/.dotfiles
+stow .
+cd -
+
+zsh -li -c "sh <(curl -L https://nixos.org/nix/install) --daemon"
+mkdir -p $HOME/.config/nixpkgs
+echo "{ allowUnfree = true; }" >> ~/.config/nixpkgs/config.nix
+
+zsh -li -c "nix-env --install --file cli_pkgs.nix"
+
+zsh -li -c "mise settings set python_compile 1"
+zsh -li -c "mise use --global deno@latest go@latest python@latest python@2.7"
 
 echo "The system will reboot now"
 sleep 3

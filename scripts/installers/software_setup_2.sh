@@ -1,32 +1,5 @@
 cd ~/.dotfiles/scripts/installers
 
-if [[ ! -f "./.temp_file" ]]; then
-    echo "Welcome to part 2 of the *Ubuntu 24.04 LTS* installer
-Please make sure to run this file again after it concludes"
-    sleep 5
-    # nix
-    sh <(curl -L https://nixos.org/nix/install) --daemon
-    mkdir -p $HOME/.config/nixpkgs
-    echo "{ allowUnfree = true; }" >> ~/.config/nixpkgs/config.nix
-
-    cd ~/.dotfiles
-    stow .
-    cd -
-
-    echo "WARNING: ALL BLOAT *WILL* BE REMOVED AFTER THIS"
-    echo "Press Enter to close the terminal"
-    read user_choice
-
-    touch ./.temp_file
-    exit
-fi
-
-gnome-text-editor .gui_instructions.txt &
-
-# Nix packages
-nix-env --install --file base_pkgs.nix
-nix-env --install --file additional_pkgs.nix
-
 # Kanata config
 nix-env -iA nixpkgs.kanata
 sudo groupadd uinput
@@ -49,9 +22,6 @@ Restart=no
 [Install]
 WantedBy=default.target' > /lib/systemd/system/kanata.service"
 sudo systemctl enable kanata --now
-
-mise settings set python_compile 1
-mise use --global deno@latest go@latest python@latest python@2.7
 
 echo -n "Are you running this on VMWare?(y/N) "
 read user_choice
