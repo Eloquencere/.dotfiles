@@ -110,6 +110,8 @@ sleep 4
 reboot
 
 # Necessary Python libraries
+# pip2 install --upgrade pip
+# pip install --upgrade pip
 # pip install icecream # debugging
 # pip install drawio colorama pyfiglet # presentation
 # pip install dash plotly seaborn mysql-connector-python # data representation and calculation
