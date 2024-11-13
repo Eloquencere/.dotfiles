@@ -21,7 +21,7 @@ ESSENTIALS=(
     "stow" "curl"
     "ntfs-3g" "exfat-fuse" "wl-clipboard"
     "linux-headers-$(uname -r)" "linux-headers-generic"
-    "ubuntu-restricted-extras" "build-essential" "pkg-config" 
+    "build-essential" "pkg-config"
     "openjdk-21-jdk" "openjdk-21-jre"
     "nala"
 )
@@ -55,6 +55,7 @@ cargo install sccache
 APPLICATIONS=(
     "gnome-shell-extension-manager"
     "bleachbit"
+    # "ubuntu-restricted-extras" "vlc" 
 )
 sudo apt install -y "${APPLICATIONS[@]}"
 
@@ -165,6 +166,7 @@ sudo wget -P /usr/share/backgrounds https://ubuntucommunity.s3.us-east-2.amazona
 gsettings set org.gnome.desktop.background picture-uri-dark "file:///usr/share/backgrounds/320af712c96e48da2d5a61f9b1d0ab2c792530ed.jpeg"
 gsettings set org.gnome.desktop.background picture-options 'stretched'
 # GNOME dash-to-dock config
+gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 52
 gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed false
 gsettings set org.gnome.shell.extensions.dash-to-dock autohide-in-fullscreen true
 gsettings set org.gnome.shell.extensions.dash-to-dock extend-height false

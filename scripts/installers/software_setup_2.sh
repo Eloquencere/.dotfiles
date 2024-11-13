@@ -96,12 +96,11 @@ fi
 
 # Clean up
 BLOAT=(
-	"curl" "gnome-terminal"
+	"gnome-terminal"
 )
 sudo nala purge -y "${BLOAT[@]}"
 
 rm -rf ~/.cache/thumbnails/*
-rm -rf ~/{.sudo_as_admin_successful,.wget-hsts}
 rm -rf ~/{.bash*,.profile,.fontconfig}
 rm -rf ~/{Templates,Public,Pictures,Videos,Music}
 sed -i "/Pictures\|Videos\|Music/d" ~/.config/gtk-3.0/bookmarks
