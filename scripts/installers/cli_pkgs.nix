@@ -3,7 +3,7 @@ with pkgs;
 [
    starship fzf atuin zoxide mise 
    eza fd bat ripgrep
-   duf dust delta procs
+   duf dust delta
    croc fastfetch
 
    p7zip rar 
