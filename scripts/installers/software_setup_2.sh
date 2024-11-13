@@ -1,5 +1,8 @@
 cd ~/.dotfiles/scripts/installers
 
+echo "Welcome to part 2 of the *Ubuntu 24.04 LTS* installer"
+sleep 2
+
 # GUI setup
 gnome-text-editor .gui_instructions.txt &
 
@@ -39,28 +42,6 @@ mkdir -p $HOME/.local/share/croc
 mkdir ~/croc-inbox
 echo "file://$HOME/croc-inbox" >> ~/.config/gtk-3.0/bookmarks
 
-echo -n "Would you like to configure USBIP?(y/N) "
-read user_choice
-if [[ $user_choice =~ ^[Yy]$ ]]; then
-	sudo sh -c " echo '# usbip client
-	usbip-core
-	vhci-hcd' > /etc/modules-load.d/usbip.conf"
-	echo -n "Enter the server address: "
-	read server_ip
-	echo "
-# USBIP
-export SERVER_IP=$server_ip" >> $HOME/.config/zsh/personal/zprofile.zsh
-fi
-
-echo -n "Are you running this on VMWare?(y/N) "
-read user_choice
-if [[ $user_choice =~ ^[Yy]$ ]]; then
-    sudo nala install -y open-vm-tools-desktop
-    sudo sh -c "echo '.host:/ /mnt/hgfs fuse.vmhgfs-fuse    auto,allow_other    0   0' >> /etc/fstab"
-    sudo mkdir /mnt/hgfs
-    sed -i "1i\file://$HOME/Projects" ~/.config/gtk-3.0/bookmarks
-fi
-
 echo -n "Would you like to log into your git account?(y/N) "
 read user_choice
 if [[ $user_choice =~ ^[Yy]$ ]]; then
@@ -88,6 +69,28 @@ if [[ $user_choice =~ ^[Yy]$ ]]; then
     echo "you need to login to Github as well"
     gh auth login
     sed -i '/.* = $/d' $HOME/.gitconfig
+fi
+
+echo -n "Would you like to configure USBIP?(y/N) "
+read user_choice
+if [[ $user_choice =~ ^[Yy]$ ]]; then
+	sudo sh -c " echo '# usbip client
+	usbip-core
+	vhci-hcd' > /etc/modules-load.d/usbip.conf"
+	echo -n "Enter the server address: "
+	read server_ip
+	echo "
+# USBIP
+export SERVER_IP=$server_ip" >> $HOME/.config/zsh/personal/zprofile.zsh
+fi
+
+echo -n "Are you running this on VMWare?(y/N) "
+read user_choice
+if [[ $user_choice =~ ^[Yy]$ ]]; then
+    sudo nala install -y open-vm-tools-desktop
+    sudo sh -c "echo '.host:/ /mnt/hgfs fuse.vmhgfs-fuse    auto,allow_other    0   0' >> /etc/fstab"
+    sudo mkdir /mnt/hgfs
+    sed -i "1i\file://$HOME/Projects" ~/.config/gtk-3.0/bookmarks
 fi
 
 

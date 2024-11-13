@@ -16,25 +16,25 @@ keybinds clear-defaults=true {
         bind "Ctrl j" { MoveFocus "Down"; }
         bind "Ctrl k" { MoveFocus "Up"; }
         bind "Ctrl l" { MoveFocus "Right"; }
-        bind "Alt h" { GoToPreviousTab; }
-        bind "Alt l" { GoToNextTab; }
+        bind "Alt h"  { GoToPreviousTab; }
+        bind "Alt l"  { GoToNextTab; }
     }
 
     tmux {
         bind "Ctrl s" { Write 2; SwitchToMode "Normal"; }
-        bind "Esc" { SwitchToMode "Normal"; }
-        bind "p" { SwitchToMode "Pane"; }
-        bind "t" { SwitchToMode "Tab"; }
-        bind "m" { SwitchToMode "Move"; }
-        bind "s" { SwitchToMode "Scroll"; }
-        bind "o" { SwitchToMode "Session"; }
-        bind "Alt n" { // find a better key for this
+        bind "Esc"    { SwitchToMode "Normal"; }
+        bind "p"      { SwitchToMode "Pane"; }
+        bind "t"      { SwitchToMode "Tab"; }
+        bind "m"      { SwitchToMode "Move"; }
+        bind "s"      { SwitchToMode "Scroll"; }
+        bind "o"      { SwitchToMode "Session"; }
+        bind "Alt n"  { // find a better key for this
             LaunchOrFocusPlugin "monocle" {
                 floating true
             };
             SwitchToMode "Normal"
         }
-        bind "Alt m" {
+        bind "Alt m"  {
             LaunchPlugin "monocle" {
                 in_place true
                 kiosk true
@@ -45,119 +45,119 @@ keybinds clear-defaults=true {
 
     pane {
         bind "Ctrl s" { SwitchToMode "Tmux"; }
-        bind "Esc" { SwitchToMode "Normal"; }
-        bind "n" { NewPane; SwitchToMode "Normal"; }
-        bind "N" { NewPane "Down"; SwitchToMode "Normal"; }
-        bind "p" { SwitchFocus; }
-        bind "x" { CloseFocus; SwitchToMode "Normal"; }
-        bind "f" { ToggleFocusFullscreen; SwitchToMode "Normal"; }
-        bind "z" { TogglePaneFrames; SwitchToMode "Normal"; }
-        bind "w" { ToggleFloatingPanes; SwitchToMode "Normal"; }
-        bind "e" { TogglePaneEmbedOrFloating; SwitchToMode "Normal"; }
-        bind "r" { SwitchToMode "RenamePane"; PaneNameInput 0; }
-        bind "h" { Resize "Increase Left"; }
-        bind "j" { Resize "Increase Down"; }
-        bind "k" { Resize "Increase Up"; }
-        bind "l" { Resize "Increase Right"; }
-        bind "H" { Resize "Decrease Left"; }
-        bind "J" { Resize "Decrease Down"; }
-        bind "K" { Resize "Decrease Up"; }
-        bind "L" { Resize "Decrease Right"; }
-        bind "+" "=" { Resize "Increase"; }
-        bind "-" { Resize "Decrease"; }
-        bind "Left"  { MoveFocus "Left"; }
-        bind "Down"  { MoveFocus "Down"; }
-        bind "Up"    { MoveFocus "Up"; }
-        bind "Right" { MoveFocus "Right"; }
+        bind "Esc"    { SwitchToMode "Normal"; }
+        bind "n"      { NewPane; SwitchToMode "Normal"; }
+        bind "N"      { NewPane "Down"; SwitchToMode "Normal"; }
+        bind "p"      { SwitchFocus; }
+        bind "x"      { CloseFocus; SwitchToMode "Normal"; }
+        bind "f"      { ToggleFocusFullscreen; SwitchToMode "Normal"; }
+        bind "z"      { TogglePaneFrames; SwitchToMode "Normal"; }
+        bind "w"      { ToggleFloatingPanes; SwitchToMode "Normal"; }
+        bind "e"      { TogglePaneEmbedOrFloating; SwitchToMode "Normal"; }
+        bind "r"      { SwitchToMode "RenamePane"; PaneNameInput 0; }
+        bind "h"      { Resize "Increase Left"; }
+        bind "j"      { Resize "Increase Down"; }
+        bind "k"      { Resize "Increase Up"; }
+        bind "l"      { Resize "Increase Right"; }
+        bind "H"      { Resize "Decrease Left"; }
+        bind "J"      { Resize "Decrease Down"; }
+        bind "K"      { Resize "Decrease Up"; }
+        bind "L"      { Resize "Decrease Right"; }
+        bind "+" "="  { Resize "Increase"; }
+        bind "-"      { Resize "Decrease"; }
+        bind "Left"   { MoveFocus "Left"; }
+        bind "Down"   { MoveFocus "Down"; }
+        bind "Up"     { MoveFocus "Up"; }
+        bind "Right"  { MoveFocus "Right"; }
     }
     renamepane {
         bind "Ctrl c" { SwitchToMode "Normal"; }
-        bind "Esc" { UndoRenamePane; SwitchToMode "Pane"; }
+        bind "Esc"    { UndoRenamePane; SwitchToMode "Pane"; }
     }
 
     tab {
         bind "Ctrl s" { SwitchToMode "Tmux"; }
-        bind "Esc" { SwitchToMode "Normal"; }
-        bind "r" { SwitchToMode "RenameTab"; TabNameInput 0; }
-        bind "n" { NewTab; SwitchToMode "Normal"; }
-        bind "x" { CloseTab; SwitchToMode "Normal"; }
-        bind "s" { ToggleActiveSyncTab; SwitchToMode "Normal"; }
-        bind "b" { BreakPane; SwitchToMode "Normal"; }
-        bind "]" { BreakPaneRight; SwitchToMode "Normal"; }
-        bind "[" { BreakPaneLeft; SwitchToMode "Normal"; }
-        bind "1" { GoToTab 1; }
-        bind "2" { GoToTab 2; }
-        bind "3" { GoToTab 3; }
-        bind "4" { GoToTab 4; }
-        bind "5" { GoToTab 5; }
-        bind "6" { GoToTab 6; }
-        bind "7" { GoToTab 7; }
-        bind "8" { GoToTab 8; }
-        bind "9" { GoToTab 9; }
-        bind "Left" { GoToPreviousTab; }
-        bind "Right" { GoToNextTab; }
+        bind "Esc"    { SwitchToMode "Normal"; }
+        bind "r"      { SwitchToMode "RenameTab"; TabNameInput 0; }
+        bind "n"      { NewTab; SwitchToMode "Normal"; }
+        bind "x"      { CloseTab; SwitchToMode "Normal"; }
+        bind "s"      { ToggleActiveSyncTab; SwitchToMode "Normal"; }
+        bind "b"      { BreakPane; SwitchToMode "Normal"; }
+        bind "]"      { BreakPaneRight; SwitchToMode "Normal"; }
+        bind "["      { BreakPaneLeft; SwitchToMode "Normal"; }
+        bind "1"      { GoToTab 1; }
+        bind "2"      { GoToTab 2; }
+        bind "3"      { GoToTab 3; }
+        bind "4"      { GoToTab 4; }
+        bind "5"      { GoToTab 5; }
+        bind "6"      { GoToTab 6; }
+        bind "7"      { GoToTab 7; }
+        bind "8"      { GoToTab 8; }
+        bind "9"      { GoToTab 9; }
+        bind "Left"   { GoToPreviousTab; }
+        bind "Right"  { GoToNextTab; }
     }
     renametab {
         bind "Ctrl c" { SwitchToMode "Normal"; }
-        bind "Esc" { UndoRenameTab; SwitchToMode "Tab"; }
+        bind "Esc"    { UndoRenameTab; SwitchToMode "Tab"; }
     }
 
     move {
         bind "Ctrl s" { SwitchToMode "Tmux"; }
-        bind "Esc" { SwitchToMode "Normal"; }
-        bind "h" { MovePane "Left"; }
-        bind "j" { MovePane "Down"; }
-        bind "k" { MovePane "Up"; }
-        bind "l" { MovePane "Right"; }
-        bind "H" { MoveTab "Left"; }
-        bind "L" { MoveTab "Right"; }
-        bind "Left"  { MoveFocus "Left"; }
-        bind "Down"  { MoveFocus "Down"; }
-        bind "Up"    { MoveFocus "Up"; }
-        bind "Right" { MoveFocus "Right"; }
-        bind "[" { PreviousSwapLayout; }
-        bind "]" { NextSwapLayout; }
+        bind "Esc"    { SwitchToMode "Normal"; }
+        bind "h"      { MovePane "Left"; }
+        bind "j"      { MovePane "Down"; }
+        bind "k"      { MovePane "Up"; }
+        bind "l"      { MovePane "Right"; }
+        bind "H"      { MoveTab "Left"; }
+        bind "L"      { MoveTab "Right"; }
+        bind "Left"   { MoveFocus "Left"; }
+        bind "Down"   { MoveFocus "Down"; }
+        bind "Up"     { MoveFocus "Up"; }
+        bind "Right"  { MoveFocus "Right"; }
+        bind "["      { PreviousSwapLayout; }
+        bind "]"      { NextSwapLayout; }
     }
 
     scroll {
-        bind "Ctrl s" { SwitchToMode "Tmux"; }
-        bind "Esc" { SwitchToMode "Normal"; }
-        bind "e" { EditScrollback; SwitchToMode "Normal"; }
-        bind "s" { SwitchToMode "EnterSearch"; SearchInput 0; }
-        bind "G" { ScrollToBottom; SwitchToMode "Normal"; }
+        bind "Ctrl s"   { SwitchToMode "Tmux"; }
+        bind "Esc"      { SwitchToMode "Normal"; }
+        bind "e"        { EditScrollback; SwitchToMode "Normal"; }
+        bind "s"        { SwitchToMode "EnterSearch"; SearchInput 0; }
+        bind "G"        { ScrollToBottom; SwitchToMode "Normal"; }
         bind "j" "Down" { ScrollDown; }
-        bind "k" "Up" { ScrollUp; }
-        bind "Ctrl f" { PageScrollDown; }
-        bind "Ctrl b" { PageScrollUp; }
-        bind "Ctrl d" { HalfPageScrollDown; }
-        bind "Ctrl u" { HalfPageScrollUp; }
+        bind "k" "Up"   { ScrollUp; }
+        bind "Ctrl f"   { PageScrollDown; }
+        bind "Ctrl b"   { PageScrollUp; }
+        bind "Ctrl d"   { HalfPageScrollDown; }
+        bind "Ctrl u"   { HalfPageScrollUp; }
     }
 
     search {
-        bind "Ctrl s" { SwitchToMode "Tmux"; }
-        bind "Esc" { SwitchToMode "Normal"; }
+        bind "Ctrl s"   { SwitchToMode "Tmux"; }
+        bind "Esc"      { SwitchToMode "Normal"; }
         bind "j" "Down" { ScrollDown; }
-        bind "k" "Up" { ScrollUp; }
-        bind "Ctrl f" { PageScrollDown; }
-        bind "Ctrl b" { PageScrollUp; }
-        bind "Ctrl d" { HalfPageScrollDown; }
-        bind "Ctrl u" { HalfPageScrollUp; }
-        bind "n" { Search "down"; }
-        bind "N" { Search "up"; }
-        bind "c" { SearchToggleOption "CaseSensitivity"; }
-        bind "w" { SearchToggleOption "Wrap"; }
-        bind "o" { SearchToggleOption "WholeWord"; }
+        bind "k" "Up"   { ScrollUp; }
+        bind "Ctrl f"   { PageScrollDown; }
+        bind "Ctrl b"   { PageScrollUp; }
+        bind "Ctrl d"   { HalfPageScrollDown; }
+        bind "Ctrl u"   { HalfPageScrollUp; }
+        bind "n"        { Search "down"; }
+        bind "N"        { Search "up"; }
+        bind "c"        { SearchToggleOption "CaseSensitivity"; }
+        bind "w"        { SearchToggleOption "Wrap"; }
+        bind "o"        { SearchToggleOption "WholeWord"; }
     }
     entersearch {
         bind "Ctrl s" "Esc" { SwitchToMode "Scroll"; }
-        bind "Enter" { SwitchToMode "Search"; }
+        bind "Enter"        { SwitchToMode "Search"; }
     }
 
     session {
         bind "Ctrl s" { SwitchToMode "Tmux"; }
-        bind "Esc" { SwitchToMode "Normal"; }
-        bind "q" { Quit; }
-        bind "d" { Detach; }
+        bind "Esc"    { SwitchToMode "Normal"; }
+        bind "q"      { Quit; }
+        bind "d"      { Detach; }
         bind "w" {
             LaunchOrFocusPlugin "session-manager" {
                 floating true
