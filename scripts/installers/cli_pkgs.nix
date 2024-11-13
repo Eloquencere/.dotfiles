@@ -2,7 +2,7 @@
 with pkgs;
 [
    starship fzf atuin zoxide mise 
-   eza fd bat ripgrep curlie
+   eza fd bat ripgrep
    duf dust delta procs
    croc fastfetch
 

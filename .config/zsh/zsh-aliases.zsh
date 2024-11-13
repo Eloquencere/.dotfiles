@@ -19,7 +19,6 @@ alias find=fd
 alias cat=bat
 alias diff="delta --dark --side-by-side "
 alias grep=rg
-alias curl=curlie
 alias ps="procs --tree"
 alias df=duf
 alias du="dust --reverse --force-colors --no-percent-bars"
