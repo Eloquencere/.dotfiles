@@ -3,7 +3,7 @@ copy_command "wl-copy"
 
 plugins {
     ghost location="file:~/.config/zellij/plugins/ghost.wasm"
-    // zj-quit location="file:~/.config/zellij/plugins/zj-quit.wasm"
+    zj-quit location="file:~/.config/zellij/plugins/zj-quit.wasm"
     monocle location="file:~/.config/zellij/plugins/monocle.wasm"
     zellij-forgot location="file:~/.config/zellij/plugins/zellij_forgot.wasm"
     multitask location="file:~/.config/zellij/plugins/multitask.wasm"
@@ -156,8 +156,14 @@ keybinds clear-defaults=true {
     session {
         bind "Ctrl s" { SwitchToMode "Tmux"; }
         bind "Esc"    { SwitchToMode "Normal"; }
-        bind "q"      { Quit; }
         bind "d"      { Detach; }
+        bind "q" {
+            LaunchOrFocusPlugin "zj-quit" {
+                floating true
+                move_to_focused_tab true
+            };
+            SwitchToMode "Normal";
+        }
         bind "w" {
             LaunchOrFocusPlugin "session-manager" {
                 floating true
