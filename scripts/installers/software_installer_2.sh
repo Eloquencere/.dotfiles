@@ -14,7 +14,6 @@ sudo usermod -aG uinput $USER
 sudo sh -c "echo '# Kanata
 KERNEL==uinput, MODE=0660, GROUP=uinput, OPTIONS+=static_node=uinput' >> /etc/udev/rules.d/99-input.rules"
 sudo udevadm control --reload && udevadm trigger --verbose --sysname-match=uniput
-sudo ln -s $HOME/.config/kanata /etc/
 sudo sh -c "echo '[Unit]
 Description=Kanata keyboard remapper
 Documentation=https://github.com/jtroo/kanata
@@ -22,7 +21,7 @@ Documentation=https://github.com/jtroo/kanata
 [Service]
 Type=simple
 ExecStartPre=/sbin/modprobe uinput
-ExecStart=$(which kanata) --cfg /etc/kanata/config.kbd
+ExecStart=$(which kanata) --cfg $HOME/.config/kanata/config.kbd
 Restart=no
 
 [Install]
