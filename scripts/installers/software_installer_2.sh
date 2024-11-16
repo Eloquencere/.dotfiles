@@ -89,7 +89,7 @@ if [[ $user_choice =~ ^[Yy]$ ]]; then
     sudo nala install -y open-vm-tools-desktop
     mkdir ~/Projects
     sudo sh -c "echo '.host:/Projects /home/eloquencer/Projects fuse.vmhgfs-fuse allow_other,subtype=vmhgfs-fuse 0 0' >> /etc/fstab"
-    git config --global --add safe.directory $HOME/Projects
+    git config --global --add safe.directory '*'
     sudo mkdir -p /mnt/hgfs/WinLin-Transfer
     sudo sh -c "echo '.host:/WinLin-Transfer /mnt/hgfs/WinLin-Transfer fuse.vmhgfs-fuse    auto,allow_other    0   0' >> /etc/fstab"
     ln -s /mnt/hgfs/WinLin-Transfer $HOME/Desktop
