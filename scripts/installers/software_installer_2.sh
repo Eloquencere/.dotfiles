@@ -90,8 +90,10 @@ if [[ $user_choice =~ ^[Yy]$ ]]; then
     mkdir ~/Projects
     sudo sh -c "echo '.host:/Projects /home/eloquencer/Projects fuse.vmhgfs-fuse allow_other,subtype=vmhgfs-fuse 0 0' >> /etc/fstab"
     git config --global --add safe.directory $HOME/Projects
-    mkdir /mnt/hgfs
-    sudo sh -c "echo '.host:/ /mnt/hgfs fuse.vmhgfs-fuse    auto,allow_other    0   0' >> /etc/fstab"
+    sudo mkdir -p /mnt/hgfs/WinLin-Transfer
+    sudo sh -c "echo '.host:/WinLin-Transfer /mnt/hgfs/WinLin-Transfer fuse.vmhgfs-fuse    auto,allow_other    0   0' >> /etc/fstab"
+    ln -s /mnt/hgfs/WinLin-Transfer $HOME/Desktop
+    sed -i "1i\file://$HOME/Desktop/WinLin-Transfer" ~/.config/gtk-3.0/bookmarks
 fi
 
 
