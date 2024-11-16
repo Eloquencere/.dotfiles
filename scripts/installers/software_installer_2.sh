@@ -87,9 +87,11 @@ echo -n "Are you running this on VMWare?(y/N) "
 read user_choice
 if [[ $user_choice =~ ^[Yy]$ ]]; then
     sudo nala install -y open-vm-tools-desktop
+    mkdir ~/Projects
+    sudo sh -c "echo '.host:/Projects /home/eloquencer/Projects fuse.vmhgfs-fuse allow_other,subtype=vmhgfs-fuse 0 0' >> /etc/fstab"
+    git config --global --add safe.directory $HOME/Projects
+    mkdir /mnt/hgfs
     sudo sh -c "echo '.host:/ /mnt/hgfs fuse.vmhgfs-fuse    auto,allow_other    0   0' >> /etc/fstab"
-    sudo mkdir /mnt/hgfs
-    sed -i "1i\file://$HOME/Projects" ~/.config/gtk-3.0/bookmarks
 fi
 
 
