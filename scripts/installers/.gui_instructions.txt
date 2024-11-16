@@ -8,3 +8,4 @@ Gnome Extensions
 
 Set a background image of your choice
 Group app icons in the app drawer
+Mount folders if necessary
