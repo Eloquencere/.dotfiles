@@ -1,5 +1,7 @@
 *finish up some GUI configuration while your software get installed*
 
+Mount folders if necessary
+
 Gnome Extensions
     - clipboard indicator
     - blur my shell
@@ -8,4 +10,3 @@ Gnome Extensions
 
 Set a background image of your choice
 Group app icons in the app drawer
-Mount folders if necessary

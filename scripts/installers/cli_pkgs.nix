@@ -3,15 +3,15 @@ with pkgs;
 [
    starship fzf atuin zoxide mise 
    eza fd bat ripgrep
-   duf dust delta
+   duf delta
    croc fastfetch
 
-   p7zip rar 
+   p7zip rar
    dos2unix btop yazi
    speedtest-cli jq yq jqp
    neovim zellij mprocs
    conan scriptisto tio
-   lazygit gh
+   gh lazygit
    docker lazydocker
    podman distrobox
    tlrc cheat

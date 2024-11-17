@@ -21,7 +21,6 @@ alias cat=bat
 alias diff="delta --dark --side-by-side "
 alias grep=rg
 alias df=duf
-alias du="dust --reverse --force-colors --no-percent-bars"
 alias zellij="zellij -l welcome"
 alias cheat="cheat --colorize"
 
