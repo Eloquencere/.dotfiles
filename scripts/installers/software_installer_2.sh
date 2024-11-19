@@ -28,9 +28,6 @@ Restart=no
 WantedBy=default.target' > /lib/systemd/system/kanata.service"
 sudo systemctl enable kanata --now
 
-pip2 install --upgrade pip
-pip install --upgrade pip
-
 mkdir -p $HOME/.config/zsh/personal
 
 echo -n "Enter the ID granted by your admin to register with your team via croc: "
@@ -111,6 +108,9 @@ sed -i "/Pictures\|Videos\|Music/d" ~/.config/gtk-3.0/bookmarks
 sudo sh -c "apt-get update;apt-get dist-upgrade;apt-get autoremove;apt-get autoclean; apt --fix-broken install"
 flatpak uninstall --unused --delete-data --assumeyes
 nix-collect-garbage -d
+
+pip2 install --upgrade pip
+pip install --upgrade pip
 
 echo "The installer has concluded
 Press Enter after closing all windows to restart your system one final time."

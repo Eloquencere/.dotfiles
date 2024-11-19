@@ -59,15 +59,6 @@ APPLICATIONS=(
 )
 sudo apt install -y "${APPLICATIONS[@]}"
 
-# Signal
-wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg
-cat signal-desktop-keyring.gpg | sudo tee /usr/share/keyrings/signal-desktop-keyring.gpg > /dev/null
-echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main' |\
-sudo tee /etc/apt/sources.list.d/signal-xenial.list
-sudo apt update
-sudo apt install -y signal-desktop
-rm -f signal-desktop-keyring.gpg
-
 # Wezterm
 curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
 echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
@@ -98,10 +89,6 @@ else
     sudo apt -f install -y
 fi
 
-# flatpak package manager
-sudo apt install -y flatpak gnome-software-plugin-flatpak
-flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-
 # Zsh shell
 sudo nala install -y zsh
 chsh --shell $(which zsh)
@@ -118,12 +105,14 @@ zsh -li -c "mise settings set python_compile 1; \
 mise use --global deno@latest go@latest python@latest python@2.7"
 
 # Flatpaks
+sudo apt install -y flatpak gnome-software-plugin-flatpak
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 ADDITIONAL_APPS_FLATPAK=(
    "org.ghidra_sre.Ghidra"
-   # "net.nokyan.Resources"
    "com.usebottles.bottles"
-   "se.sjoerd.Graphs"
-   "io.github.finefindus.Hieroglyphic"
+   # "net.nokyan.Resources"
+   # "se.sjoerd.Graphs"
+   # "io.github.finefindus.Hieroglyphic"
    "org.gnome.Chess"
    "org.gnome.Sudoku"
    "app.drey.MultiplicationPuzzle"
@@ -174,7 +163,7 @@ gsettings set org.gnome.shell.extensions.dash-to-dock show-mounts-only-mounted t
 gsettings set org.gnome.shell.extensions.dash-to-dock always-center-icons true
 gsettings set org.gnome.shell.extensions.dash-to-dock dock-position 'BOTTOM'
 gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize-or-previews'
-gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'org.gnome.TextEditor.desktop', 'signal-desktop.desktop', '$(xdg-settings get default-web-browser)', 'org.wezfurlong.wezterm.desktop']"
+gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'org.gnome.TextEditor.desktop', '$(xdg-settings get default-web-browser)', 'org.wezfurlong.wezterm.desktop']"
 # GNOME interface config
 gsettings set org.gnome.desktop.interface clock-show-weekday true
 gsettings set org.gnome.desktop.interface clock-format '24h'
