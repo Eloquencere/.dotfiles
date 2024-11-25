@@ -38,35 +38,6 @@ mkdir -p $HOME/.local/share/croc
 mkdir ~/croc-inbox
 echo "file://$HOME/croc-inbox" >> ~/.config/gtk-3.0/bookmarks
 
-echo -n "Would you like to log into your git account?(y/N) "
-read user_choice
-if [[ $user_choice =~ ^[Yy]$ ]]; then
-	echo "[core]
-	editor = nvim
-	pager = delta
-[init]
-	defaultBranch = main  
-[interactive]
-	diffFilter = delta --color-only
-[delta]
-	navigate = true    # use n and N to move between diff sections
-	dark = true
-	side-by-side = true
-[merge]
-	conflictstyle = diff3
-[diff]
-	colorMoved = default" > $HOME/.gitconfig
-    echo -n "email ID: "
-    read email
-    git config --global user.email "$email"
-    echo -n "username: "
-    read username
-    git config --global user.name "$username"
-    echo "you need to login to Github as well"
-    gh auth login
-    sed -i '/.* = $/d' $HOME/.gitconfig
-fi
-
 echo -n "Would you like to configure USBIP?(y/N) "
 read user_choice
 if [[ $user_choice =~ ^[Yy]$ ]]; then
@@ -78,6 +49,29 @@ if [[ $user_choice =~ ^[Yy]$ ]]; then
 	echo "
 # USBIP
 export SERVER_IP=$server_ip" >> $HOME/.config/zsh/personal/zprofile.zsh
+fi
+
+echo -n "Would you like to log into your git account?(y/N) "
+read user_choice
+if [[ $user_choice =~ ^[Yy]$ ]]; then
+    git config --global init.defaultBranch main
+    git config --global core.editor nvim
+    git config --global core.pager delta
+    git config --global interactive.diffFilter 'delta --color-only'
+    git config --global delta.navigate true  # use n and N to move between diff sections
+    git config --global delta.dark true
+    git config --global delta.side-by-side true
+    git config --global merge.conflictstyle diff3
+    git config --global diff.colorMoved default
+    echo -n "email ID: "
+    read email
+    git config --global user.email "$email"
+    echo -n "username: "
+    read username
+    git config --global user.name "$username"
+    echo "you need to login to Github as well"
+    gh auth login
+    sed -i '/.* = $/d' $HOME/.gitconfig
 fi
 
 echo -n "Are you running this on VMWare?(y/N) "
@@ -105,7 +99,7 @@ rm -rf ~/{.bash*,.profile,.fontconfig}
 rm -rf ~/{Templates,Public,Pictures,Videos,Music}
 sed -i "/Pictures\|Videos\|Music/d" ~/.config/gtk-3.0/bookmarks
 
-sudo sh -c "apt-get update;apt-get dist-upgrade;apt-get autoremove;apt-get autoclean; apt --fix-broken install"
+sudo sh -c "apt-get update; apt-get dist-upgrade; apt-get autoremove; apt-get autoclean; apt --fix-broken install"
 flatpak uninstall --unused --delete-data --assumeyes
 nix-collect-garbage -d
 
