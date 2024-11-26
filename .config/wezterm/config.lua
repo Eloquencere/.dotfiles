@@ -12,11 +12,11 @@ config = {
   adjust_window_size_when_changing_font_size = false,
   window_decorations = "RESIZE",
   check_for_updates = false,
+  enable_tab_bar = false,
   use_fancy_tab_bar = false,
   tab_bar_at_bottom = false,
-  font_size = 16,
-  font = wezterm.font("JetBrains Mono", { weight = "Bold" }),
-  enable_tab_bar = false,
+  font = wezterm.font("UbuntuSansMono", { weight = "Medium" }),
+  font_size = 15.5,
   window_padding = {
     left = 3,
     right = 3,
@@ -24,19 +24,6 @@ config = {
     bottom = 0,
   },
   background = {
-    {
-      source = {
-        File = "/Users/" .. os.getenv("USER") .. "/.config/wezterm/dark-desert.jpg",
-      },
-      hsb = {
-        hue = 1.0,
-        saturation = 1.02,
-        brightness = 0.25,
-      },
-      -- attachment = { Parallax = 0.3 },
-      -- width = "100%",
-      -- height = "100%",
-    },
     {
       source = {
         Color = "#000000",
