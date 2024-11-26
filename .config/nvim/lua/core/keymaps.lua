@@ -9,16 +9,16 @@ vim.cmd("nnoremap <silent> j :<C-U>execute \'normal!\' (v:count > 1 ? \"m\'\" . 
 
 -- Moving between tabs
 keymap.set(
-    {"n"},
-    "<Tab>",
-    "<Cmd>BufferNext<CR>",
-    { desc = "Go to the next tab"}
+    {"n", "i", "v"},
+    '<C-Tab>',
+    '<Cmd>tabnext<CR>',
+    { noremap = true, silent = true, desc = "Move to next tab" }
 )
 keymap.set(
-    {"n"},
-    "<S-Tab>",
-    "<Cmd>BufferPrevious<CR>",
-    { desc = "Go to the next tab"}
+    {"n", "i", "v"},
+    '<C-S-Tab>',
+    '<Cmd>tabprevious<CR>',
+    { noremap = true, silent = true desc = "Move to previous tab" }
 )
 
 -- Move up and down editor lines
@@ -172,16 +172,3 @@ keymap.set(
     { silent = true, desc = "insert" }
 )
 
--- Increment / Decrement Numbers
-keymap.set(
-    "n",
-    "<leader>+",
-    "<C-a>",
-    { noremap = true, silent = true, desc = "Increment number" }
-)
-keymap.set(
-    "n",
-    "<leader>-",
-    "<C-x>",
-    { noremap = true, silent = true, desc = "Decrement number" }
-)
