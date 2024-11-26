@@ -155,7 +155,7 @@ sudo wget -P /usr/share/backgrounds https://ubuntucommunity.s3.us-east-2.amazona
 gsettings set org.gnome.desktop.background picture-uri-dark "file:///usr/share/backgrounds/320af712c96e48da2d5a61f9b1d0ab2c792530ed.jpeg"
 gsettings set org.gnome.desktop.background picture-options 'stretched'
 # GNOME dash-to-dock config
-gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 52
+gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 50
 gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed false
 gsettings set org.gnome.shell.extensions.dash-to-dock autohide-in-fullscreen true
 gsettings set org.gnome.shell.extensions.dash-to-dock extend-height false
