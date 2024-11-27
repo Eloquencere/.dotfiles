@@ -2,12 +2,19 @@
 
 (defsrc
   caps
+  rsft
 )
 
 (defalias
   escctrl (tap-hold 100 100 esc lctrl)
+  rshft (layer-while-held rshift)
 )
 
 (deflayer base
   @escctrl
+  @rshft
 )
+(deflayermap (rshift)
+  lsft caps
+)
+

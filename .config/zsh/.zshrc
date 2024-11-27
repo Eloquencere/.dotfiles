@@ -19,6 +19,7 @@ zinit snippet OMZ::plugins/sudo/sudo.plugin.zsh
 
 autoload -Uz colors && colors
 autoload -Uz compinit && compinit
+autoload -Uz edit-command-line; zle -N edit-command-line
 _comp_options+=(globdots) # Show hidden files
 zinit cdreplay -q
 
@@ -50,6 +51,7 @@ function zvm_after_init() {
 	ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
 	zvm_bindkey viins '^r' atuin-search
 	zvm_bindkey viins '^p' atuin-up-search
+	zvm_bindkey viins '^Xe' edit-command-line
 }
 function zvm_after_lazy_keybindings() {
     zvm_bindkey vicmd '^r' atuin-search

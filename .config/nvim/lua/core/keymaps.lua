@@ -18,7 +18,7 @@ keymap.set(
     {"n", "i", "v"},
     '<C-S-Tab>',
     '<Cmd>tabprevious<CR>',
-    { noremap = true, silent = true desc = "Move to previous tab" }
+    { noremap = true, silent = true, desc = "Move to previous tab" }
 )
 
 -- Move up and down editor lines
