@@ -1,19 +1,24 @@
 ;; Configuring caps-lock to double as ctrl & esc
 
 (defsrc
-  caps
+  caps bspc del
   rsft
 )
 
 (defalias
   escctrl (tap-hold 100 100 esc lctrl)
+  back (switch 
+        (lsft) (unshift del) break
+        () bspc break
+       )
   rshft (layer-while-held rshift)
 )
 
 (deflayer base
-  @escctrl
+  @escctrl @back -
   @rshft
 )
+
 (deflayermap (rshift)
   lsft caps
 )
