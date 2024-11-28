@@ -130,6 +130,7 @@ sudo snap remove "${SNAP_BLOAT[@]}"
 rm -rf ~/.mozilla
 
 SOFTWARE_BLOAT=(
+    "nano" "vim-common"
     "transmission-common" "transmission-gtk"
     "rhythmbox" "orca" "info" "yelp"
     "gnome-snapshot" "gnome-logs" 
@@ -137,6 +138,9 @@ SOFTWARE_BLOAT=(
     "deja-dup" "totem" "seahorse" "remmina" "shotwell"
 )
 sudo nala purge -y "${SOFTWARE_BLOAT[@]}"
+
+# Making nvim the default editor
+sudo update-alternatives --install /usr/bin/nvim editor $(which nvim) 100
 
 # GNOME TextEditor config
 gsettings set org.gnome.TextEditor style-scheme 'classic-dark'
