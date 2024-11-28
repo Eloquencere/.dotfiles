@@ -104,13 +104,15 @@ zsh -li -c "nix-env --install --file cli_pkgs.nix"
 zsh -li -c "mise settings set python_compile 1; \ 
 mise use --global deno@latest go@latest python@latest python@2.7"
 
+# Setting nvim as the default editor
+zsh -li -c "sudo update-alternatives --install /usr/bin/nvim editor $(which nvim) 100"
+
 # Flatpaks
 sudo apt install -y flatpak gnome-software-plugin-flatpak
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 ADDITIONAL_APPS_FLATPAK=(
    "org.ghidra_sre.Ghidra"
    "com.usebottles.bottles"
-   # "net.nokyan.Resources"
    # "se.sjoerd.Graphs"
    # "io.github.finefindus.Hieroglyphic"
    "org.gnome.Chess"
@@ -130,17 +132,14 @@ sudo snap remove "${SNAP_BLOAT[@]}"
 rm -rf ~/.mozilla
 
 SOFTWARE_BLOAT=(
-    "nano" "vim-common"
+    "ed" "vim-common" "nano"
     "transmission-common" "transmission-gtk"
     "rhythmbox" "orca" "info" "yelp"
-    "gnome-snapshot" "gnome-logs" 
+    "gnome-snapshot" "gnome-logs"
     "gnome-system-monitor" "gnome-power-manager"
     "deja-dup" "totem" "seahorse" "remmina" "shotwell"
 )
 sudo nala purge -y "${SOFTWARE_BLOAT[@]}"
-
-# Making nvim the default editor
-sudo update-alternatives --install /usr/bin/nvim editor $(which nvim) 100
 
 # GNOME TextEditor config
 gsettings set org.gnome.TextEditor style-scheme 'classic-dark'
