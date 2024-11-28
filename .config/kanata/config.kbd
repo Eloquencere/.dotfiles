@@ -1,4 +1,9 @@
-;; Configuring caps-lock to double as ctrl & esc
+#|
+Objectives:
+    caps lock                -> esc + ctrl
+    right shift + left shift -> caps lock
+    left  shift + backspace  -> del
+|#
 
 (defsrc
   caps bspc del
