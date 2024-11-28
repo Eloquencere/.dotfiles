@@ -1,12 +1,12 @@
-*finish up some GUI configuration while your software get installed*
+*finish up some GUI configuration while the installer runs*
 
-Mount folders if necessary
-
-Gnome Extensions
+- Gnome Extensions
     - clipboard indicator
     - blur my shell
     	- Disable "Panel" and "Dash" Blur
     - CHC-E
 
-Set a background image of your choice
-Group app icons in the app drawer
+- Group app icons in the app drawer
+- Set a background image of your choice
+- Mount folders if necessary
+

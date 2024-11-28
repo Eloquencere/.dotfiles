@@ -5,23 +5,23 @@ Objectives:
     left  shift + backspace  -> del
 |#
 
+
 (defsrc
   caps bspc del
-  rsft
+  lsft rsft
 )
 
 (defalias
   escctrl (tap-hold 100 100 esc lctrl)
   back (switch 
         (lsft) (unshift del) break
-        () bspc break
-       )
+        () bspc break)
   rshft (layer-while-held rshift)
 )
 
 (deflayer base
-  @escctrl @back -
-  @rshft
+  @escctrl @back _
+  _ @rshft
 )
 
 (deflayermap (rshift)

@@ -3,31 +3,6 @@ cd ~/.dotfiles/scripts/installers
 echo "Welcome to part 2 of the *Ubuntu 24.04 LTS* installer"
 sleep 2
 
-# GUI setup
-gnome-text-editor .gui_instructions.txt &
-
-# Kanata install & config
-nix-env -iA nixpkgs.kanata
-sudo groupadd uinput
-sudo usermod -aG input $USER
-sudo usermod -aG uinput $USER
-sudo sh -c "echo '# Kanata
-KERNEL==uinput, MODE=0660, GROUP=uinput, OPTIONS+=static_node=uinput' >> /etc/udev/rules.d/99-input.rules"
-sudo udevadm control --reload && udevadm trigger --verbose --sysname-match=uniput
-sudo sh -c "echo '[Unit]
-Description=Kanata keyboard remapper
-Documentation=https://github.com/jtroo/kanata
-
-[Service]
-Type=simple
-ExecStartPre=/sbin/modprobe uinput
-ExecStart=$(which kanata) --cfg $HOME/.config/kanata/config.kbd
-Restart=no
-
-[Install]
-WantedBy=default.target' > /lib/systemd/system/kanata.service"
-sudo systemctl enable kanata --now
-
 mkdir -p $HOME/.config/zsh/personal
 
 echo -n "Enter the ID granted by your admin to register with your team via croc: "
@@ -87,6 +62,37 @@ if [[ $user_choice =~ ^[Yy]$ ]]; then
     sed -i "1i\file://$HOME/Desktop/WinLin-Transfer" ~/.config/gtk-3.0/bookmarks
 fi
 
+# GUI setup
+gnome-text-editor .gui_instructions.txt &
+
+pip2 install --upgrade pip
+pip install --upgrade pip
+
+# Setting nvim as the default editor
+sudo update-alternatives --install /usr/bin/nvim editor $(which nvim) 100
+
+# Kanata install & config
+nix-env -iA nixpkgs.kanata
+sudo groupadd uinput
+sudo usermod -aG input $USER
+sudo usermod -aG uinput $USER
+sudo sh -c "echo '# Kanata
+KERNEL==uinput, MODE=0660, GROUP=uinput, OPTIONS+=static_node=uinput' >> /etc/udev/rules.d/99-input.rules"
+sudo udevadm control --reload && udevadm trigger --verbose --sysname-match=uniput
+sudo sh -c "echo '[Unit]
+Description=Kanata keyboard remapper
+Documentation=https://github.com/jtroo/kanata
+
+[Service]
+Type=simple
+ExecStartPre=/sbin/modprobe uinput
+ExecStart=$(which kanata) --cfg $HOME/.config/kanata/config.kbd
+Restart=no
+
+[Install]
+WantedBy=default.target' > /lib/systemd/system/kanata.service"
+sudo systemctl enable kanata --now
+
 
 # Clean up
 BLOAT=(
@@ -102,9 +108,6 @@ sed -i "/Pictures\|Videos\|Music/d" ~/.config/gtk-3.0/bookmarks
 sudo sh -c "apt-get update; apt-get dist-upgrade; apt-get autoremove; apt-get autoclean; apt --fix-broken install"
 flatpak uninstall --unused --delete-data --assumeyes
 nix-collect-garbage -d
-
-pip2 install --upgrade pip
-pip install --upgrade pip
 
 echo "The installer has concluded
 Press Enter after closing all windows to restart your system one final time."

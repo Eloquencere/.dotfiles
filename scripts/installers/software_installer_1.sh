@@ -55,7 +55,7 @@ cargo install sccache
 APPLICATIONS=(
     "gnome-shell-extension-manager"
     "bleachbit"
-    # "ubuntu-restricted-extras" "vlc" 
+    # "ubuntu-restricted-extras" "vlc"
 )
 sudo apt install -y "${APPLICATIONS[@]}"
 
@@ -104,17 +104,12 @@ zsh -li -c "nix-env --install --file cli_pkgs.nix"
 zsh -li -c "mise settings set python_compile 1; \ 
 mise use --global deno@latest go@latest python@latest python@2.7"
 
-# Setting nvim as the default editor
-zsh -li -c "sudo update-alternatives --install /usr/bin/nvim editor $(which nvim) 100"
-
 # Flatpaks
 sudo apt install -y flatpak gnome-software-plugin-flatpak
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 ADDITIONAL_APPS_FLATPAK=(
    "org.ghidra_sre.Ghidra"
    "com.usebottles.bottles"
-   # "se.sjoerd.Graphs"
-   # "io.github.finefindus.Hieroglyphic"
    "org.gnome.Chess"
    "org.gnome.Sudoku"
    "app.drey.MultiplicationPuzzle"
