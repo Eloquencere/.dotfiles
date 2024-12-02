@@ -68,9 +68,6 @@ gnome-text-editor .gui_instructions.txt &
 pip2 install --upgrade pip
 pip install --upgrade pip
 
-# Setting nvim as the default editor
-sudo update-alternatives --install /usr/bin/nvim editor $(which nvim) 100
-
 # Kanata install & config
 nix-env -iA nixpkgs.kanata
 sudo groupadd uinput
@@ -128,7 +125,7 @@ reboot
 
 # Useful rust crates
 # cargo-expand
-# irust" bacon # tokio rayon
+# irust bacon # tokio rayon
 
 # # Doom Emacs
 # sudo nala install -y emacs-gtk

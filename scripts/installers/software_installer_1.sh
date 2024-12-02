@@ -100,7 +100,8 @@ cd -
 mkdir -p $HOME/.config/nixpkgs
 echo "{ allowUnfree = true; }" >> ~/.config/nixpkgs/config.nix
 zsh -li -c "sh <(curl -L https://nixos.org/nix/install) --daemon"
-zsh -li -c "nix-env --install --file cli_pkgs.nix"
+zsh -li -c "nix-env --install --file cli_pkgs.nix; \
+sudo update-alternatives --install /usr/bin/nvim editor \$(which nvim) 100"
 zsh -li -c "mise settings set python_compile 1; \ 
 mise use --global deno@latest go@latest python@latest python@2.7"
 
