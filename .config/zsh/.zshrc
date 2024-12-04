@@ -51,7 +51,7 @@ function zvm_after_init() {
 	ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
 	zvm_bindkey viins '^r' atuin-search
 	zvm_bindkey viins '^p' atuin-up-search
-	zvm_bindkey viins '^Xe' edit-command-line
+	# zvm_bindkey viins '^Xe' edit-command-line
 }
 function zvm_after_lazy_keybindings() {
     zvm_bindkey vicmd '^r' atuin-search

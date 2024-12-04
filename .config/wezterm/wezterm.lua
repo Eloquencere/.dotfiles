@@ -25,11 +25,11 @@ config.keys = {
     mods = "CTRL|SHIFT",
     action = wezterm.action.SendString("\x1b[9;6u"), -- Custom escape sequence
   },
-  -- -- Map Ctrl + Enter
+  -- -- Map Shift + Enter
   {
     key = "Enter",
     mods = "SHIFT",
-    action = wezterm.action.SendString("\x1b[13;2u"),
+    action = wezterm.action.SendString("\x1b[13;2~"),
   },
 }
 

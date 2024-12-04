@@ -5,7 +5,6 @@ Objectives:
     left  shift + backspace  -> del
 |#
 
-
 (defsrc
   caps bspc del
   lsft rsft
@@ -16,15 +15,13 @@ Objectives:
   back (switch 
         (lsft) (unshift del) break
         () bspc break)
-  rshft (layer-while-held rshift)
+  rshft (switch
+        (lsft) (unshift caps) break
+        () rsft break)
 )
 
 (deflayer base
   @escctrl @back _
   _ @rshft
-)
-
-(deflayermap (rshift)
-  lsft caps
 )
 
