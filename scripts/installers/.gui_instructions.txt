@@ -8,5 +8,4 @@
 
 - Group app icons in the app drawer
 - Set a background image of your choice
-- Mount folders if necessary
 

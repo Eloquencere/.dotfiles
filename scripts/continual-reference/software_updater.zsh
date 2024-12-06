@@ -1,6 +1,6 @@
 sudo sh -c "nala update; nala upgrade -y"
 sudo snap refresh
-nix-collect-garbage -d
+nix-collect-garbage --delete-old
 flatpak update --assumeyes
 zinit update --all
 
