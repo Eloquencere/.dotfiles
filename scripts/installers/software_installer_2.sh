@@ -53,13 +53,11 @@ echo -n "Are you running this on VMWare?(y/N) "
 read user_choice
 if [[ $user_choice =~ ^[Yy]$ ]]; then
     sudo nala install -y open-vm-tools-desktop
-    mkdir ~/Projects
-    sudo sh -c "echo '.host:/Projects $HOME/Projects fuse.vmhgfs-fuse allow_other,subtype=vmhgfs-fuse 0 0' >> /etc/fstab"
-    git config --global --add safe.directory '*'
-    sudo mkdir -p /mnt/hgfs/WinLin-Transfer
-    sudo sh -c "echo '.host:/WinLin-Transfer /mnt/hgfs/WinLin-Transfer fuse.vmhgfs-fuse    auto,allow_other    0   0' >> /etc/fstab"
-    ln -s /mnt/hgfs/WinLin-Transfer $HOME/Desktop
-    sed -i "1i\file://$HOME/Desktop/WinLin-Transfer" ~/.config/gtk-3.0/bookmarks
+    sudo mkdir -p /mnt/hgfs/{WinLin-Transfer,Workspace-Backups}
+    sudo sh -c "echo '.host:/WinLin-Transfer /mnt/hgfs/WinLin-Transfer fuse.vmhgfs-fuse    auto,allow_other    0   0
+.host:/Workspace-Backups /mnt/hgfs/Workspace-Backups fuse.vmhgfs-fuse    auto,allow_other    0   0' >> /etc/fstab"
+    sed -i "1i\file:///mnt/hgfs/WinLin-Transfer" ~/.config/gtk-3.0/bookmarks
+    mkdir -p $HOME/Projects
 fi
 
 # GUI setup
