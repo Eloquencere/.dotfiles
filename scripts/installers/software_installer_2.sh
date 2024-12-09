@@ -115,7 +115,7 @@ reboot
 # pip install icecream # debugging
 # pip install drawio colorama pyfiglet # presentation
 # pip install dash plotly seaborn mysql-connector-python # data representation and calculation
-# pip install polars xarray
+# pip install fireducks xarray
 # pip install numpy scipy pillow
 # pip install Cython numba taichi
 # pip install parse pendulum pydantic ruff mypy pyglet

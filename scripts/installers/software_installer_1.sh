@@ -37,8 +37,7 @@ sudo systemctl enable tlp preload --now
 export CARGO_HOME="$HOME/.local/share/rust/cargo"
 export RUSTUP_HOME="$HOME/.local/share/rust/rustup"
 LANGUAGE_COMPILERS=(
-    "rustup"
-    "perl" "ghc"
+    "rustup" "perl"
     "gdb" "valgrind" "strace"
     "clang" "lldb"
     "python3-pip" "tk-dev"
@@ -55,7 +54,6 @@ cargo install sccache
 APPLICATIONS=(
     "gnome-shell-extension-manager"
     "bleachbit"
-    # "ubuntu-restricted-extras" "vlc"
 )
 sudo apt install -y "${APPLICATIONS[@]}"
 
