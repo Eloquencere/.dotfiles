@@ -95,7 +95,7 @@ shell = '#424242' # greydimmed
 # Customization and activation of some modules:
 # Listed in the order of their position in the module rows above
 [os]
-format = "[ \ueab5 ](fg:#E95420)[$symbol]($style)"
+format = "[\ueab5 ](fg:#E95420)[$symbol]($style)"
 style = "#E95420"
 disabled = false
 
