@@ -1,8 +1,8 @@
 #|
 Objectives:
     caps lock                -> esc + ctrl
-    right shift + left shift -> caps lock
-    left  shift + backspace  -> del
+    left shift + right shift -> caps lock
+    left shift + backspace  -> del
 |#
 
 (defsrc
