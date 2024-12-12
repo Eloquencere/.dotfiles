@@ -28,17 +28,15 @@
 # ╰╴ # \u2570\u2574
 format = """
 [\u256D\u2574](fg:cyan)\
-$shell\
 $username\
 $hostname\
 $directory\
-$git_branch$git_commit$git_state$git_metrics$git_status\
 $direnv\
-$python\
+$git_branch$git_commit$git_state$git_metrics$git_status\
 $fill\
 $status\
-$jobs\
 $cmd_duration\
+$jobs\
 $os\
 [\u2576\u256E](fg:#E95420)\
 [ ](fg:greydarker)\
@@ -47,10 +45,8 @@ $line_break\
 [\u2570\u2574](fg:cyan)\
 [$character]($style)"""
 
-# move the rest of the prompt to the right
 right_format = """
-[\u2576\u256F](fg:#E95420)\
-[$localip]($style)"""
+[\u2576\u256F](fg:#E95420)"""
 
 # Inserts a blank line between shell prompts:
 add_newline = true
@@ -148,17 +144,6 @@ Unknown = "\uf108 " # ""
 Void = "\uf32e " #  
 Windows = "\uf17a " # ""
 
-[shell]
-format = '[$indicator]($style)()'
-style = 'fg:shell'
-# empty indicator (''): e.g. if you do not want to see indicator for your standard shell
-zsh_indicator = '%_ ' # '%_ ' '󰰶 '
-bash_indicator = '\$_ ' # "\uebca " ' ' '\$_ '
-fish_indicator = '>> ' # "\uee41 " '󰈺 ' '>>_ '
-powershell_indicator = '>_ ' # "\uebc7 " ' ' '>_'
-unknown_indicator = '?_ ' # '?_ ' ' '
-disabled = true # set to false if you want to see the shell indicator
-
 [username]
 format = "[\ueab6 ](fg:user bold)[$user]($style)[ ]()" # \u276F ❯ \ueab6 
 style_user = 'fg:user bold'
@@ -172,12 +157,6 @@ ssh_only = true
 ssh_symbol = "\ue36e" # \ue36e '' # '⇒' # ' ' # 'ﬁ⇒'
 # trim_at = '.companyname.com'
 disabled = false
-
-[sudo]
-format = "[\ueab6 ](fg:sudo bold)[as $symbol]($style)" # \u276F ❯ \ueab6 
-style = 'fg:red bold'
-symbol = "\uf007! " # \uf007  # \uf21b \uedcc ' ' # ' '
-disabled = true
 
 [directory]
 format = "[$read_only]($read_only_style)[$repo_root]($repo_root_style)[$path ]($style)" # \u276F ❯ \ueab6 
@@ -203,13 +182,6 @@ denied_msg = 'x' # '✘'
 loaded_msg = '+' # "\ueabc" # \ueabc  # '->' # 'yo' # '󰗡' # \udb81\udde1 # '󱥸✓' # '󱥸✓' # 
 unloaded_msg = '-' # "\ueabc!" # \ueabc ! # '->!' # 'no' # '󰅚' # '󱥸!' \udb86\udd78
 disabled = false
-
-[python]
-format = "[\u3009${symbol}${pyenv_prefix}(${version} )(($virtualenv) )]($style)"
-style = 'fg:python'
-symbol = "\ue73c " # 
-pyenv_version_name = true
-disabled = true
 
 [git_branch]
 format = "[\u3009$symbol $branch(:$remote_branch)]($style)[ ]()" # \u3009 \uf460 ❯
@@ -265,20 +237,9 @@ symbol_threshold = 1
 number_threshold = 2
 disabled = false
 
-[memory_usage]
-format = "[ \ueab5 ](fg:memory bold)[$symbol ${ram} ${swap}]($style)" # \u3009
-style = "fg:memory"
-symbol = "\ueb50 \uebcb" # "\ueb50 \uebcb" \uf1ec '﬙ 北' '﬙ 痢' # '﬙ 󰾵' # '󰍛 󰾵' # '﬙ 󰾴' # '﬙ 󰾶' '﬙ 󰣂'
-threshold = 75
-disabled = false
-
 [cmd_duration]
 format = "[ \ueab5 \uf017 $duration]($style)" # \ueab5 \uf017   
 style = 'fg:duration'
 min_time = 500
 disabled = false
 
-[localip]
-format = '[$localipv4](fg:localip bold)'
-ssh_only = true
-disabled = false
