@@ -15,7 +15,6 @@ layout {
     tab name="working dir" focus=true {
         pane {
             command "fastfetch"
-            args ";" "clear"
             focus true
         }
     }
