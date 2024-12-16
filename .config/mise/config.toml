@@ -1,0 +1,8 @@
+[settings]
+python_compile = true
+experimental = true
+
+[tools]
+python = ["latest", "2.7"]
+deno = "latest"
+go = "latest"
