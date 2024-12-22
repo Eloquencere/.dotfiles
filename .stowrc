@@ -1,5 +1,6 @@
 --ignore=scripts
 --ignore=archives
+--ignore=layout.kdl
 --ignore=\.git
 --ignore=\.gitignore
 --ignore=.stowrc

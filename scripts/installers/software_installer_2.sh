@@ -63,8 +63,17 @@ fi
 # GUI setup
 gnome-text-editor .gui_instructions.txt &
 
+# Necessary Python libraries
 pip2 install --upgrade pip
 pip install --upgrade pip
+pip install icecream # for debugging
+pip install drawio colorama pyfiglet # presentation
+pip install dash plotly seaborn mysql-connector-python # data representation and calculation
+pip install fireducks xarray
+pip install numpy scipy pillow
+pip install Cython numba taichi
+pip install parse pendulum pydantic ruff mypy pyglet
+pip install keras scikit-learn torch # tensorflow - not supported yet
 
 # Kanata install & config
 nix-env -iA nixpkgs.kanata
@@ -109,28 +118,9 @@ Press Enter after closing all windows to restart your system one final time."
 read user_choice
 reboot
 
-# if faced with any issues during boot run - fsck -AR -y
-
-# Necessary Python libraries
-# pip install icecream # debugging
-# pip install drawio colorama pyfiglet # presentation
-# pip install dash plotly seaborn mysql-connector-python # data representation and calculation
-# pip install fireducks xarray
-# pip install numpy scipy pillow
-# pip install Cython numba taichi
-# pip install parse pendulum pydantic ruff mypy pyglet
-# pip install keras tensorflow scikit-learn torch
-
 # Useful rust crates
 # cargo-expand
 # irust bacon # tokio rayon
-
-# # Doom Emacs
-# sudo nala install -y emacs-gtk
-# git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
-# ~/.config/emacs/bin/doom install
-# echo '# Doom Emacs
-# export PATH=$XDG_CONFIG_HOME/emacs/bin:$PATH' >> ~/.zprofile
 
 # # wine + GUI
 # run sudo dpkg --i386 # enable 32bit
@@ -140,4 +130,11 @@ reboot
 # sudo apt install -y ./WineGUI-v2.6.1.deb
 # sudo apt -f install -y
 # rm -f WineGUI-v2.6.1.deb
+
+# # Doom Emacs
+# sudo nala install -y emacs-gtk
+# git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
+# ~/.config/emacs/bin/doom install
+# echo '# Doom Emacs
+# export PATH=$XDG_CONFIG_HOME/emacs/bin:$PATH' >> ~/.zprofile
 

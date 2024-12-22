@@ -6,6 +6,9 @@
     	- Disable "Panel" and "Dash" Blur
     - CHC-E
 
+- Sync the web-browser on your default machine with the current machine
 - Group app icons in the app drawer
+
+(Optional)
 - Set a background image of your choice
 
