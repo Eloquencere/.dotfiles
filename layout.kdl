@@ -13,9 +13,8 @@ layout {
         }
     }
     tab name="working dir" focus=true {
-        pane {
+        pane focus=true {
             command "fastfetch"
-            focus true
         }
     }
 }

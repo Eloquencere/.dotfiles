@@ -71,8 +71,8 @@ keybinds clear-defaults=true {
         bind "Right"  { MoveFocus "Right"; }
     }
     renamepane {
-        bind "Ctrl c" { SwitchToMode "Normal"; }
-        bind "Esc"    { UndoRenamePane; SwitchToMode "Pane"; }
+        bind "Enter" { SwitchToMode "Normal"; }
+        bind "Esc"   { UndoRenamePane; SwitchToMode "Pane"; }
     }
 
     tab {
@@ -98,8 +98,8 @@ keybinds clear-defaults=true {
         bind "Right"  { GoToNextTab; }
     }
     renametab {
-        bind "Ctrl c" { SwitchToMode "Normal"; }
-        bind "Esc"    { UndoRenameTab; SwitchToMode "Tab"; }
+        bind "Enter" { SwitchToMode "Normal"; }
+        bind "Esc"   { UndoRenameTab; SwitchToMode "Tab"; }
     }
 
     move {
@@ -149,8 +149,8 @@ keybinds clear-defaults=true {
         bind "o"        { SearchToggleOption "WholeWord"; }
     }
     entersearch {
-        bind "Ctrl s" "Esc" { SwitchToMode "Scroll"; }
-        bind "Enter"        { SwitchToMode "Search"; }
+        bind "Enter" { SwitchToMode "Search"; }
+        bind "Esc"   { SwitchToMode "Scroll"; }
     }
 
     session {

@@ -166,7 +166,7 @@ read_only = "\uf023 " # \uf023 ' '
 read_only_style = 'fg:directory'
 truncation_length = 3
 truncation_symbol = '…/'
-truncate_to_repo = true
+truncate_to_repo = false
 repo_root_format = "[$read_only]($read_only_style)[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path ]($style)" # \u276F ❯ \ueab6 
 repo_root_style = 'fg:directory bold'
 use_os_path_sep = true
@@ -195,13 +195,13 @@ style = 'fg:orangegit'
 commit_hash_length = 8
 tag_symbol = " \uf412 " # \uf412 '  ' # '  ''
 tag_disabled = false
-disabled = false
+disabled = true
 
 [git_metrics]
 format = '[\[+$added/]($added_style)[-$deleted\]]($deleted_style)[ ]()'
 added_style = 'fg:orangegit'
 deleted_style = 'fg:orangegit'
-disabled = false
+disabled = true
 
 [git_status]
 format = '([$all_status$ahead_behind]($style))'
@@ -217,7 +217,7 @@ modified = "[\uf040${count} ](fg:modified)" # \uf040 󰷉 '📝' # '! ' #  # 
 staged = "[\u26DF .${count} ](fg:staged)" # \u26DF  '+ '
 renamed = "[\u0373${count} ](fg:renamed)" # \u0373 \ueb69  ' ' # '﫦' # ᴂ #  #  #  # ﳳ
 deleted = "[\uea81${count} ](fg:deleted)" # \uea81 \uf507 ﯊ '🗑 ' '- '
-disabled = false
+disabled = true
 
 [fill]
 style = 'fg:fill'
