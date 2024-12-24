@@ -1,7 +1,4 @@
-# https://github.com/starship/starship/discussions/1107
-
-# Get editor completions based on the config schema
-"$schema" = 'https://starship.rs/config-schema.json'
+# Made with ♥︎  by Eloquencer and Divakar
 
 # ### ---------
 # ### "Power10"
@@ -13,22 +10,14 @@
 #   Link: https://github.com/romkatv/powerlevel10k?tab=readme-ov-file#manual-font-installation
 #         --> "Manual font installation", with currently 4 Font Types
 
-# - If you do not want the filling solid line in top row:
-#   set the fill symbol to ' '
-# - Shell [shell]:
-#   If you want to see the content of the shell module, search for [shell] and change 'disabled = true' to false
-# - '$line_break': everything from the next line on refers to the second line of the prompt
-# - Some modules listed further down will not show up (all the time), as their default value is 'disabled = true' or
-#   they are only displayed under certain conditions
-# - Symbols:
-#   Don't be confused if you don't see any "real" symbols here. If Nerd-fonts are installed on your system, it should work.
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
 
 # Customizing the prompt (and placing desired modules at desired position and sequence):
 # ╭╴ # \u256D\u2574
 # ╰╴ # \u2570\u2574
 format = """
 [\u256D\u2574](fg:cyan)\
-$username\
 $hostname\
 $directory\
 $direnv\
@@ -163,10 +152,10 @@ format = "[$read_only]($read_only_style)[$repo_root]($repo_root_style)[$path ]($
 style = 'fg:directory bold'
 home_symbol = "~" # \uf015 ' ~'
 read_only = "\uf023 " # \uf023 ' '
-read_only_style = 'fg:directory'
+read_only_style = 'red'
 truncation_length = 3
 truncation_symbol = '…/'
-truncate_to_repo = false
+truncate_to_repo = true
 repo_root_format = "[$read_only]($read_only_style)[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path ]($style)" # \u276F ❯ \ueab6 
 repo_root_style = 'fg:directory bold'
 use_os_path_sep = true

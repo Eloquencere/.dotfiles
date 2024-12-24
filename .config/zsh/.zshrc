@@ -17,6 +17,7 @@ zinit light   zsh-users/zsh-syntax-highlighting
 zinit light   Aloxaf/fzf-tab
 zinit light   Eloquencere/zsh-goto-cli
 zinit snippet OMZ::plugins/sudo/sudo.plugin.zsh
+zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
 
 autoload -Uz colors && colors
 autoload -Uz compinit && compinit
