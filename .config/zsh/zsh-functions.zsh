@@ -12,18 +12,14 @@ croc() {
 		shift
 		if [[ $1 == "--here" ]]; then
 			shift
-            if [[ $1 == "windows" ]]; then
-                export CROC_SECRET=$(sqlite3 $XDG_DATA_HOME/croc/croc_collaborators_registry.db "SELECT Transfer_Code FROM internal_comm WHERE ID='$1';")
-            elif [[ $1 == "linux" ]]; then
+            if [[ $1 == ('windows'|'linux') ]]; then
                 export CROC_SECRET=$(sqlite3 $XDG_DATA_HOME/croc/croc_collaborators_registry.db "SELECT Transfer_Code FROM internal_comm WHERE ID='$1';")
             else
                 export CROC_SECRET=$(sqlite3 $XDG_DATA_HOME/croc/croc_collaborators_registry.db "SELECT Transfer_Code FROM collaborator_catalogue WHERE ID='$1';")
             fi
             command croc && echo "\033[33mTransfer received\033[0m in current working directory"
 		else
-            if [[ $1 == "windows" ]]; then
-                export CROC_SECRET=$(sqlite3 $XDG_DATA_HOME/croc/croc_collaborators_registry.db "SELECT Transfer_Code FROM internal_comm WHERE ID='$1';")
-            elif [[ $1 == "linux" ]]; then
+            if [[ $1 == (windows|linux) ]]; then
                 export CROC_SECRET=$(sqlite3 $XDG_DATA_HOME/croc/croc_collaborators_registry.db "SELECT Transfer_Code FROM internal_comm WHERE ID='$1';")
             else
                 export CROC_SECRET=$(sqlite3 $XDG_DATA_HOME/croc/croc_collaborators_registry.db "SELECT Transfer_Code FROM collaborator_catalogue WHERE ID='$1';")
@@ -40,16 +36,21 @@ croc() {
             shift
             local ask_user_to_delete=1
         fi
-        if [[ $1 == "--win" ]]; then
-            shift
-            export CROC_SECRET=$(sqlite3 $XDG_DATA_HOME/croc/croc_collaborators_registry.db "SELECT Transfer_Code FROM internal_comm WHERE ID='linux';")
-        elif [[ $1 == "--lin" ]]; then
-            shift
-            export CROC_SECRET=$(sqlite3 $XDG_DATA_HOME/croc/croc_collaborators_registry.db "SELECT Transfer_Code FROM internal_comm WHERE ID='windows';")
-        else
-            export CROC_SECRET=$(sqlite3 $XDG_DATA_HOME/croc/croc_collaborators_registry.db "SELECT Transfer_Code FROM collaborator_catalogue WHERE ID='$CROC_SELF_TRANSFER_ID';")
-        fi
+        case $1 in
+            '--win')
+                shift
+                export CROC_SECRET=$(sqlite3 $XDG_DATA_HOME/croc/croc_collaborators_registry.db "SELECT Transfer_Code FROM internal_comm WHERE ID='linux';")
+                ;;
+            '--lin')
+                shift
+                export CROC_SECRET=$(sqlite3 $XDG_DATA_HOME/croc/croc_collaborators_registry.db "SELECT Transfer_Code FROM internal_comm WHERE ID='windows';")
+                ;;
+            *)
+                export CROC_SECRET=$(sqlite3 $XDG_DATA_HOME/croc/croc_collaborators_registry.db "SELECT Transfer_Code FROM collaborator_catalogue WHERE ID='$CROC_SELF_TRANSFER_ID';")
+                ;;
+        esac 
         command croc send "$@"
+
         if [[ $? -eq 1 || $ask_user_to_delete -ne 1 ]]; then
             return
         fi
@@ -98,5 +99,5 @@ lsusbip() {
 		fi
 	done
 	port_number=$(echo "$usbip_port_output" | grep --before-context=1 "$vid_pid" | sed --silent '1s/.*\([-0-9]\+\):.*/\1/p')
-	printf "%-10s %-50s %-10s\n" "$busid" "$device_name" "$port_number"
+	printf "%-10s %-50s %-10s\n" "$busid" "${device_name:0:49}" "$port_number"
 }

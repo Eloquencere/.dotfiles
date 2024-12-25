@@ -3,6 +3,67 @@ cd ~/.dotfiles/scripts/installers
 echo "Welcome to part 2 of the *Ubuntu 24.04 LTS* installer"
 sleep 2
 
+# GUI setup
+gnome-text-editor .gui_instructions.txt &
+
+# Kanata install & config
+nix-env -iA nixpkgs.kanata
+sudo groupadd uinput
+sudo usermod -aG input $USER
+sudo usermod -aG uinput $USER
+sudo sh -c "echo '# Kanata
+KERNEL==uinput, MODE=0660, GROUP=uinput, OPTIONS+=static_node=uinput' >> /etc/udev/rules.d/99-input.rules"
+sudo udevadm control --reload && udevadm trigger --verbose --sysname-match=uniput
+sudo sh -c "echo '[Unit]
+Description=Kanata keyboard remapper
+Documentation=https://github.com/jtroo/kanata
+
+[Service]
+Type=simple
+ExecStartPre=/sbin/modprobe uinput
+ExecStart=$(which kanata) --cfg $HOME/.config/kanata/config.kbd
+Restart=no
+
+[Install]
+WantedBy=default.target' > /lib/systemd/system/kanata.service"
+sudo systemctl enable kanata --now
+
+# cpanm package manager
+cpan App::cpanminus
+
+# Useful Python libraries
+pip2 install --upgrade pip
+pip install --upgrade pip
+pip install icecream # for debugging
+pip install drawio colorama pyfiglet # presentation
+pip install dash plotly seaborn mysql-connector-python # data representation and calculation
+pip install fireducks xarray
+pip install numpy scipy pillow
+pip install Cython numba taichi
+pip install parse pendulum pydantic ruff mypy pyglet
+pip install keras scikit-learn torch # tensorflow - not supported yet
+
+# Useful Rust binaries
+CARGO_PKGS=(
+    "cargo-expand" "irust" "bacon"
+)
+cargo install "${CARGO_PKGS[@]}"
+
+# Clean up
+BLOAT=(
+	"gnome-terminal"
+)
+sudo nala purge -y "${BLOAT[@]}"
+
+rm -rf ~/.cache/thumbnails/*
+rm -rf ~/{.bash*,.profile,.fontconfig}
+rm -rf ~/{Templates,Public,Pictures,Videos,Music}
+sed -i "/Pictures\|Videos\|Music/d" ~/.config/gtk-3.0/bookmarks
+
+sudo sh -c "apt-get update; apt-get dist-upgrade; apt-get autoremove; apt-get autoclean; apt --fix-broken install"
+flatpak uninstall --unused --delete-data --assumeyes
+nix-collect-garbage -d
+
 mkdir -p $HOME/.config/zsh/personal
 
 echo -n "Enter the ID granted by your admin to register with your team via croc: "
@@ -60,67 +121,10 @@ if [[ $user_choice =~ ^[Yy]$ ]]; then
     mkdir -p $HOME/Projects
 fi
 
-# GUI setup
-gnome-text-editor .gui_instructions.txt &
-
-# Necessary Python libraries
-pip2 install --upgrade pip
-pip install --upgrade pip
-pip install icecream # for debugging
-pip install drawio colorama pyfiglet # presentation
-pip install dash plotly seaborn mysql-connector-python # data representation and calculation
-pip install fireducks xarray
-pip install numpy scipy pillow
-pip install Cython numba taichi
-pip install parse pendulum pydantic ruff mypy pyglet
-pip install keras scikit-learn torch # tensorflow - not supported yet
-
-# Kanata install & config
-nix-env -iA nixpkgs.kanata
-sudo groupadd uinput
-sudo usermod -aG input $USER
-sudo usermod -aG uinput $USER
-sudo sh -c "echo '# Kanata
-KERNEL==uinput, MODE=0660, GROUP=uinput, OPTIONS+=static_node=uinput' >> /etc/udev/rules.d/99-input.rules"
-sudo udevadm control --reload && udevadm trigger --verbose --sysname-match=uniput
-sudo sh -c "echo '[Unit]
-Description=Kanata keyboard remapper
-Documentation=https://github.com/jtroo/kanata
-
-[Service]
-Type=simple
-ExecStartPre=/sbin/modprobe uinput
-ExecStart=$(which kanata) --cfg $HOME/.config/kanata/config.kbd
-Restart=no
-
-[Install]
-WantedBy=default.target' > /lib/systemd/system/kanata.service"
-sudo systemctl enable kanata --now
-
-
-# Clean up
-BLOAT=(
-	"gnome-terminal"
-)
-sudo nala purge -y "${BLOAT[@]}"
-
-rm -rf ~/.cache/thumbnails/*
-rm -rf ~/{.bash*,.profile,.fontconfig}
-rm -rf ~/{Templates,Public,Pictures,Videos,Music}
-sed -i "/Pictures\|Videos\|Music/d" ~/.config/gtk-3.0/bookmarks
-
-sudo sh -c "apt-get update; apt-get dist-upgrade; apt-get autoremove; apt-get autoclean; apt --fix-broken install"
-flatpak uninstall --unused --delete-data --assumeyes
-nix-collect-garbage -d
-
-echo "The installer has concluded
-Press Enter after closing all windows to restart your system one final time."
-read user_choice
+echo "The installer has concluded"
 reboot
 
-# Useful rust crates
-# cargo-expand
-# irust bacon # tokio rayon
+# Useful rust crates - tokio rayon
 
 # # wine + GUI
 # run sudo dpkg --i386 # enable 32bit

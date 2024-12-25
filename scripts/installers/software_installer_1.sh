@@ -23,6 +23,7 @@ ESSENTIALS=(
     "linux-headers-$(uname -r)" "linux-headers-generic"
     "build-essential" "pkg-config"
     "openjdk-21-jdk" "openjdk-21-jre"
+    "default-jre" "libreoffice-java-common"
     "nala"
 )
 sudo apt-get install -y "${ESSENTIALS[@]}" 
