@@ -4,7 +4,7 @@ echo "Welcome to part 2 of the *Ubuntu 24.04 LTS* installer"
 sleep 2
 
 # GUI setup
-gnome-text-editor .gui_instructions.txt &
+gnome-text-editor .gui_instructions.txt $HOME/.dotfiles/scripts/continual-reference/reference.txt &
 
 # Kanata install & config
 nix-env -iA nixpkgs.kanata
@@ -48,21 +48,6 @@ CARGO_PKGS=(
     "cargo-expand" "irust" "bacon"
 )
 cargo install "${CARGO_PKGS[@]}"
-
-# Clean up
-BLOAT=(
-	"gnome-terminal"
-)
-sudo nala purge -y "${BLOAT[@]}"
-
-rm -rf ~/.cache/thumbnails/*
-rm -rf ~/{.bash*,.profile,.fontconfig}
-rm -rf ~/{Templates,Public,Pictures,Videos,Music}
-sed -i "/Pictures\|Videos\|Music/d" ~/.config/gtk-3.0/bookmarks
-
-sudo sh -c "apt-get update; apt-get dist-upgrade; apt-get autoremove; apt-get autoclean; apt --fix-broken install"
-flatpak uninstall --unused --delete-data --assumeyes
-nix-collect-garbage -d
 
 mkdir -p $HOME/.config/zsh/personal
 
@@ -121,7 +106,26 @@ if [[ $user_choice =~ ^[Yy]$ ]]; then
     mkdir -p $HOME/Projects
 fi
 
+# Clean up
+BLOAT=(
+	"gnome-terminal"
+)
+sudo nala purge -y "${BLOAT[@]}"
+
+rm -rf ~/.cache/thumbnails/*
+rm -rf ~/{.bash*,.profile,.fontconfig}
+rm -rf ~/{Templates,Public,Pictures,Videos,Music}
+sed -i "/Pictures\|Videos\|Music/d" ~/.config/gtk-3.0/bookmarks
+
+sudo sh -c "apt-get update; apt-get dist-upgrade; apt-get autoremove; apt-get autoclean; apt --fix-broken install"
+flatpak uninstall --unused --delete-data --assumeyes
+nix-collect-garbage -d
+
+source $HOME/.dotfiles/scripts/continual-reference/software_updater.zsh
+
 echo "The installer has concluded"
+sleep 2
+
 reboot
 
 # Useful rust crates - tokio rayon

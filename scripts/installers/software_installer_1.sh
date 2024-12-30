@@ -167,9 +167,6 @@ gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'org
 gsettings set org.gnome.desktop.interface clock-show-weekday true
 gsettings set org.gnome.desktop.interface clock-format '24h'
 gsettings set org.gnome.shell.app-switcher current-workspace-only true
-# Trash config
-gsettings set org.gnome.desktop.privacy remove-old-temp-files true
-gsettings set org.gnome.desktop.privacy remove-old-trash-files true
 
 echo "The system will reboot now"
 sleep 3
