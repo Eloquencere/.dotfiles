@@ -3,9 +3,6 @@ cd ~/.dotfiles/scripts/installers
 echo "Welcome to part 2 of the *Ubuntu 24.04 LTS* installer"
 sleep 2
 
-# GUI setup
-gnome-text-editor .gui_instructions.txt $HOME/.dotfiles/scripts/continual-reference/reference.txt &
-
 # Kanata install & config
 nix-env -iA nixpkgs.kanata
 sudo groupadd uinput
@@ -31,6 +28,9 @@ sudo systemctl enable kanata --now
 # cpanm package manager
 cpan App::cpanminus
 
+# GUI setup
+gnome-text-editor .gui_instructions.txt $HOME/.dotfiles/scripts/continual-reference/reference.txt &
+
 # Useful Python libraries
 pip2 install --upgrade pip
 pip install --upgrade pip
@@ -41,7 +41,7 @@ pip install fireducks xarray
 pip install numpy scipy pillow
 pip install Cython numba taichi
 pip install parse pendulum pydantic ruff mypy pyglet
-pip install keras scikit-learn torch # tensorflow - not supported yet
+pip install keras scikit-learn torch # AI/ML
 
 # Useful Rust binaries
 CARGO_PKGS=(
@@ -62,15 +62,15 @@ echo "file://$HOME/croc-inbox" >> ~/.config/gtk-3.0/bookmarks
 echo -n "Would you like to configure USBIP?(y/N) "
 read user_choice
 if [[ $user_choice =~ ^[Yy]$ ]]; then
-	sudo sh -c " echo '# usbip client
-	usbip-core
-	vhci-hcd' > /etc/modules-load.d/usbip.conf"
 	echo -n "Enter the server address: "
 	read server_ip
 	echo "
 # USBIP
 export SERVER_IP=$server_ip" >> $HOME/.config/zsh/personal/zprofile.zsh
 fi
+sudo sh -c " echo '# usbip client
+usbip-core
+vhci-hcd' > /etc/modules-load.d/usbip.conf"
 
 echo -n "Would you like to log into your git account?(y/N) "
 read user_choice
@@ -123,8 +123,8 @@ nix-collect-garbage -d
 
 source $HOME/.dotfiles/scripts/continual-reference/software_updater.zsh
 
-echo "The installer has concluded"
-sleep 2
+echo "The system will reboot one last time"
+sleep 3
 
 reboot
 

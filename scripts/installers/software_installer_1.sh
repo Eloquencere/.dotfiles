@@ -169,6 +169,6 @@ gsettings set org.gnome.desktop.interface clock-format '24h'
 gsettings set org.gnome.shell.app-switcher current-workspace-only true
 
 echo "The system will reboot now"
-sleep 3
+sleep 2
 reboot
 
