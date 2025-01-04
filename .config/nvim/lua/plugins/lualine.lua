@@ -10,8 +10,8 @@ return {
             violet = "#FF61EF",
             yellow = "#FFDA7B",
             red = "#FF4A4A",
-            fg = "#c3ccdc",
-            bg = "#112638",
+            fg = "#D3D3D3",
+            bg = "#1A1A1A",
             inactive_bg = "#2c3043",
         }
         local my_lualine_theme = {
@@ -49,18 +49,6 @@ return {
         lualine.setup({
             options = {
                 theme = my_lualine_theme,
-            },
-            sections = {
-                lualine_x = {
-                    {
-                        lazy_status.updates,
-                        cond = lazy_status.has_updates,
-                        color = { fg = "#ff9e64" },
-                    },
-                    { "encoding" },
-                    { "fileformat" },
-                    { "filetype" },
-                },
             },
         })
     end,

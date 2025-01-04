@@ -30,7 +30,6 @@ opt.backspace = "indent,eol,start"
 
 -- Appearance
 opt.termguicolors = true
---opt.background = "dark"
 opt.signcolumn = "yes"
 
 -- Search
@@ -40,3 +39,15 @@ opt.smartcase = true
 -- Split Windows
 opt.splitright = true
 opt.splitbelow = true
+
+-- Setting comment strings
+vim.api.nvim_create_autocmd(
+	"FileType", 
+	{ 
+	    pattern = {"verilog", "systemverilog"}, 
+	    callback = function() 
+		vim.opt_local.commentstring = "// %s" 
+	    end, 
+        }
+)
+

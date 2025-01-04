@@ -21,19 +21,19 @@ keymap.set(
     { noremap = true, silent = true, desc = "Move to previous tab" }
 )
 
--- Move up and down editor lines
-keymap.set(
-    "n",
-    "j",
-    "gjzz",
-    { noremap = true, silent = true, desc = "Aligns the screen when scrolling down" }
-)
-keymap.set(
-    "n",
-    "k",
-    "gkzz",
-    { noremap = true, silent = true, desc = "Aligns the screen when scrolling up" }
-)
+-- -- Move up and down editor lines
+-- keymap.set(
+--     "n",
+--     "j",
+--     "gjzz",
+--     { noremap = true, silent = true, desc = "Aligns the screen when scrolling down" }
+-- )
+-- keymap.set(
+--     "n",
+--     "k",
+--     "gkzz",
+--     { noremap = true, silent = true, desc = "Aligns the screen when scrolling up" }
+-- )
 
 -- Split Navigation
 keymap.set(
@@ -76,21 +76,18 @@ keymap.set(
     "<C-w>v",
     { desc = "Split window vertically" }
 )
-
 keymap.set(
     "n",
     "<leader>sh",
     "<C-w>s",
     { desc = "Split window horizontally" }
 )
-
 keymap.set(
     "n",
     "<leader>se",
     "<C-w>=",
     { desc = "Make splits equal size" }
 )
-
 keymap.set(
     "n",
     "<leader>sx",
@@ -103,21 +100,18 @@ keymap.set(
     "n", "<leader>to",
     "<cmd>tabnew<CR>", { desc = "Open new tab" }
 )
-
 keymap.set(
     "n",
     "<leader>tx",
     "<cmd>tabclose<CR>",
     { desc = "Close current tab" }
 )
-
 keymap.set(
     "n",
     "<leader>tn",
     "<cmd>tabn<CR>",
     { desc = "Go to next tab" }
 )
-
 keymap.set(
     "n",
     "<leader>tp",
@@ -125,49 +119,16 @@ keymap.set(
     { desc = "Go to previous tab" }
 )
 
-keymap.set(
-    "n",
-    "<leader>tf",
-    "<cmd>tabnew %<CR>",
-    { desc = "Open current buffer in new tab" }
-)
-
--- Pair Completion
-keymap.set(
-    "i",
-    "(<CR>",
-    "(<CR>)" .. "<ESC>O",
-    { noremap = true, desc = "insert" }
-)
-keymap.set(
-    "i",
-    "(;<CR>",
-    "(<CR>);" .. "<ESC>O",
-    { noremap = true, desc = "Useful for port definitions in Verilog and SystemVerilog" }
-)
-keymap.set(
-    "i",
-    "{<CR>",
-    "{<CR>}" .. "<ESC>O",
-    { noremap = true, desc = "insert" }
-)
-keymap.set(
-    "i",
-    "{;<CR>",
-    "{<CR>};" .. "<ESC>O",
-    { noremap = true, desc = "insert" }
-)
-
 -- Spell Checker
 keymap.set(
     "n",
-    "<leader>s",
+    "<leader>sc",
     "<cmd>setlocal spell spelllang=en_us" .. "<CR>",
     { silent = true, desc = "insert" }
 )
 keymap.set(
     "n",
-    "<leader>S",
+    "<leader>sd",
     "<cmd>setlocal nospell" .. "<CR>",
     { silent = true, desc = "insert" }
 )

@@ -8,8 +8,8 @@ return {
             },
             -- User defined loops
             additions = {
-                {'Foo', 'Bar'},
-                {'tic', 'tac', 'toe'}
+                { '==',  '!=' },
+                { '===', '!==' },
             },
             allow_caps_additions = {
                 {'enable', 'disable'}
@@ -20,3 +20,4 @@ return {
         })
     end,
 }
+

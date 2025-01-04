@@ -11,44 +11,25 @@ return {
 
         -- Configure treesitter
         treesitter.setup({
-            highlight = {
-                enable = true,
-            },
-            -- Enable Indentation
+            highlight = { enable = true },
             indent = { enable = true },
-            -- Enable Autotagging
-            autotag = {
-                enable = true,
-            },
+            autotag = { enable = true },
             -- Ensure these Language Parsers are Installed
             ensure_installed = {
-                "json",
-                "javascript",
-                "typescript",
-                "tsx",
-                "yaml",
-                "html",
-                "css",
-                "prisma",
-                "markdown",
-                "markdown_inline",
-                "svelte",
-                "graphql",
+                "json", "yaml",
+                "javascript", "typescript", "tsx",
+                "html", "css",
+                "markdown", "markdown_inline",
                 "bash",
-                "lua",
-                "vim",
-                "dockerfile",
+                "vhdl",
+                "vim", "vimdoc",
+                "lua", "python", "perl", "go", "julia",
+                "c", "cpp", "rust",
                 "gitignore",
-                "query",
-                "vimdoc",
-                "c",
-                "cpp",
+                "dockerfile", "cmake", "diff", "just", 
+                "kdl", "make", "matlab", "regex", 
+                "sql", "tcl", "toml", "zig",
                 "doxygen",
-                "gitignore",
-                "verilog",
-                "python",
-                "rust",
-                "perl",
             },
             incremental_selection = {
                 enable = true,
