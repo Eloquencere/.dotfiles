@@ -1,5 +1,6 @@
 return {
     "nat-418/boole.nvim",
+    event = 'VeryLazy',
     config = function()
         require('boole').setup({
             mappings = {
@@ -10,6 +11,9 @@ return {
             additions = {
                 { '==',  '!=' },
                 { '===', '!==' },
+                { 'up', 'down' },
+                { 'top', 'bottom' },
+                { 'right', 'left' },
             },
             allow_caps_additions = {
                 {'enable', 'disable'}

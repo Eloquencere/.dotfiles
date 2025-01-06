@@ -101,7 +101,7 @@ echo "{ allowUnfree = true; }" >> ~/.config/nixpkgs/config.nix
 zsh -li -c "sh <(curl -L https://nixos.org/nix/install) --daemon"
 zsh -li -c "nix-env --install --file cli_pkgs.nix; \
 sudo update-alternatives --install /usr/bin/nvim editor \$(which nvim) 100"
-zsh -li -c "mise install deno@latest go@latest python@3.12 python@2.7"
+zsh -li -c "mise install node@latest deno@latest go@latest python@3.12 python@2.7"
 
 # Flatpaks
 sudo apt install -y flatpak gnome-software-plugin-flatpak

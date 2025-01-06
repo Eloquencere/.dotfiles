@@ -6,6 +6,8 @@ return {
       "MunifTanjim/nui.nvim",
     },
 
+    event = 'VeryLazy',
+
     config = function()
         -- Setting Keymaps
         local keymap = vim.keymap
@@ -18,3 +20,4 @@ return {
         )
     end
 }
+

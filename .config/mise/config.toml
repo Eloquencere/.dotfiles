@@ -6,3 +6,4 @@ experimental = true
 python = ["latest", "2.7"]
 deno = "latest"
 go = "latest"
+node = "latest"
