@@ -1,5 +1,5 @@
 -- initialising core configs
-require('core')
+require("core")
 
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -18,9 +18,7 @@ vim.opt.rtp:prepend(lazypath)
 -- Setup lazy.nvim
 require("lazy").setup(
     { 
-        { 
-            import = "plugins" 
-        }, 
+        { import = "plugins" }, 
     }, 
     {
         checker = {
