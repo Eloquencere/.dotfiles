@@ -134,15 +134,6 @@ reboot
 
 # Useful rust crates - tokio rayon
 
-# # wine + GUI
-# run sudo dpkg --i386 # enable 32bit
-# sudo apt install -y wine64
-# wineGUI
-# wget https://winegui.melroy.org/downloads/WineGUI-v2.6.1.deb
-# sudo apt install -y ./WineGUI-v2.6.1.deb
-# sudo apt -f install -y
-# rm -f WineGUI-v2.6.1.deb
-
 # # Doom Emacs
 # sudo nala install -y emacs-gtk
 # git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs

@@ -70,6 +70,15 @@ sudo apt install -y ./nautilus-extension-any-terminal_0.6.0-1_all.deb
 rm -f nautilus-extension-any-terminal_0.6.0-1_all.deb
 gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal wezterm
 
+# wine
+sudo dpkg --add-architecture i386 # enable 32bit
+sudo apt install -y wine64
+# wineGUI
+wget https://winegui.melroy.org/downloads/WineGUI-v2.7.0.deb
+sudo apt install -y ./WineGUI-v2.7.0.deb
+sudo apt -f install -y
+rm -f WineGUI-v2.7.0.deb
+
 # browser
 echo -n "Installing browser
 b -> brave
@@ -109,7 +118,6 @@ flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.f
 ADDITIONAL_APPS_FLATPAK=(
    "org.gnome.World.PikaBackup"
    "org.ghidra_sre.Ghidra"
-   "com.usebottles.bottles"
    "org.gnome.Chess"
    "org.gnome.Sudoku"
    "app.drey.MultiplicationPuzzle"

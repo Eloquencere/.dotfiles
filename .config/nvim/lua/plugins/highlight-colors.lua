@@ -5,6 +5,9 @@ return {
         virtual_symbol = "■",
         enable_named_colors = true,
         enable_tailwind = true,
+        exclude_filetypes = {
+            'systemverilog', 'verilog',
+        },
     },
     event = { "BufReadPost", "BufNewFile" },
 }
