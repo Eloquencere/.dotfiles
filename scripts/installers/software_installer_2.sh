@@ -105,9 +105,6 @@ if [[ $user_choice =~ ^[Yy]$ ]]; then
     sed -i "1i\file:///mnt/hgfs/WinLin-Transfer" ~/.config/gtk-3.0/bookmarks
     mkdir -p $HOME/Projects
     sed -i "1i\file://$HOME/Projects" ~/.config/gtk-3.0/bookmarks
-    
-    # Experimental
-    # (crontab -l ; echo "0 9 */2 * * DISPLAY=:0 notify-send 'Time to do your task!'") | crontab -
 fi
 
 # Clean up

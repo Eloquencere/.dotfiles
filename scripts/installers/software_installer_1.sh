@@ -18,7 +18,7 @@ source nerdfonts_download.sh
 ESSENTIALS=(
     "libssl-dev" "liblzma-dev" "libreadline-dev" "libncurses5-dev" "libfuse2t64"
     "sqlite3" "libsqlite3-dev"
-    "stow" "curl"
+    "stow" "curl" "p7zip"
     "ntfs-3g" "exfat-fuse" "wl-clipboard"
     "linux-headers-$(uname -r)" "linux-headers-generic"
     "build-essential" "pkg-config"

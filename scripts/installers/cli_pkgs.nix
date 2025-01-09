@@ -6,7 +6,6 @@ with pkgs;
    duf delta
    croc fastfetch
 
-   p7zip rar
    dos2unix btop yazi
    speedtest-cli jq yq jqp
    neovim zellij mprocs
