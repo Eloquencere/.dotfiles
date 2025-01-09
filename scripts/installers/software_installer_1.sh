@@ -72,11 +72,10 @@ gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal wezter
 
 # wine
 sudo dpkg --add-architecture i386 # enable 32bit
-sudo apt install -y wine64
+sudo nala install -y wine64
 # wineGUI
 wget https://winegui.melroy.org/downloads/WineGUI-v2.7.0.deb
-sudo apt install -y ./WineGUI-v2.7.0.deb
-sudo apt -f install -y
+sudo nala install -y ./WineGUI-v2.7.0.deb
 rm -f WineGUI-v2.7.0.deb
 
 # browser
@@ -154,14 +153,14 @@ gsettings set org.gnome.TextEditor highlight-matching-brackets true
 gsettings set org.gnome.shell.extensions.ding show-home false
 gsettings set org.gnome.shell.extensions.ding start-corner 'top-left'
 gsettings set org.gnome.mutter center-new-windows true
-# GNOME appearance
+# GNOME appearance config
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 gsettings set org.gnome.desktop.interface gtk-theme 'Yaru-blue-dark'
 gsettings set org.gnome.desktop.interface icon-theme 'Yaru-blue'
 sudo wget -P /usr/share/backgrounds https://ubuntucommunity.s3.us-east-2.amazonaws.com/original/3X/3/2/320af712c96e48da2d5a61f9b1d0ab2c792530ed.jpeg
 gsettings set org.gnome.desktop.background picture-uri-dark "file:///usr/share/backgrounds/320af712c96e48da2d5a61f9b1d0ab2c792530ed.jpeg"
 gsettings set org.gnome.desktop.background picture-options 'stretched'
-# GNOME dash-to-dock config
+# GNOME dock config
 gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 50
 gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed false
 gsettings set org.gnome.shell.extensions.dash-to-dock autohide-in-fullscreen true
