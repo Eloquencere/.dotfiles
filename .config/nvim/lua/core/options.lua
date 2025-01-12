@@ -51,3 +51,12 @@ vim.api.nvim_create_autocmd(
         }
 )
 
+-- Setting syntax highlighting for verilog files
+vim.api.nvim_create_autocmd(
+    { "BufNewFile", "BufRead" }, 
+    {
+        pattern = {"*.v", "*.vs"},
+        command = "setlocal syntax=verilog",
+    }
+)
+

@@ -16,16 +16,16 @@ return {
             autotag = { enable = true },
             -- Ensure these Language Parsers are Installed
             ensure_installed = {
-                "json", "yaml",
                 "javascript", "typescript", "tsx",
                 "html", "css",
                 "markdown", "markdown_inline",
                 "bash", "tcl",
                 "vhdl",
-                "lua", "perl", "julia", "matlab",
+                "lua", "perl", "julia",
                 "c", "cpp", "rust", "go", "python", "zig",
-                "gitignore", "dockerfile", "toml", "diff", "regex", "kdl",
-                "cmake", "make", "just", "sql",
+                "json", "yaml",
+                "gitignore", "dockerfile", "toml", "kdl",
+                "cmake", "make", -- "just",
                 "doxygen",
             },
             incremental_selection = {

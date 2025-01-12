@@ -4,10 +4,6 @@ vim.g.maplocalleader = " "
 
 local keymap = vim.keymap
 
--- Yank/Delete selection in visual mode to system clipboard
-keymap.set('v', 'y', '"*y', { noremap = true, silent = true })
-keymap.set('v', 'd', '"*d', { noremap = true, silent = true })
-
 vim.cmd("nnoremap <silent> k :<C-U>execute \'normal!\' (v:count > 1 ? \"m\'\" . v:count : \'\') . \'k\'<CR>")
 vim.cmd("nnoremap <silent> j :<C-U>execute \'normal!\' (v:count > 1 ? \"m\'\" . v:count : \'\') . \'j\'<CR>")
 

@@ -29,7 +29,7 @@ sudo systemctl enable kanata --now
 cpan App::cpanminus
 
 # GUI setup
-gnome-text-editor .gui_instructions.txt $HOME/.dotfiles/scripts/continual-reference/reference.txt &
+gnome-text-editor $HOME/.dotfiles/scripts/continual-reference/reference.txt .gui_instructions.txt &
 
 # Useful Python libraries
 pip2 install --upgrade pip

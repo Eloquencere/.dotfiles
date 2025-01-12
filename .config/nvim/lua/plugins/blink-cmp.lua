@@ -13,12 +13,17 @@ return {
             nerd_font_variant = 'mono'
         },
 
-        keymap = { preset = 'default' },
-
         completion = {
             menu = {
                 auto_show = false,
             },
+        },
+
+        keymap = {
+            preset = 'none',
+            ['<C-p>'] = { 'show' },
+            ['<C-p>'] = { 'select_prev' },
+            ['<C-Tab>'] = { 'select_next' },
         },
     },
     opts_extend = { "sources.default" }
