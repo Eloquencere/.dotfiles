@@ -127,7 +127,7 @@ ADDITIONAL_APPS_FLATPAK=(
 flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
 
 SNAP_BLOAT=(
-    "firefox" "thunderbird"
+    "thunderbird"
 )
 sudo apt-get purge -y "${SNAP_BLOAT[@]}"
 sudo snap remove "${SNAP_BLOAT[@]}"
@@ -137,7 +137,7 @@ SOFTWARE_BLOAT=(
     "ed" "vim-common" "nano"
     "transmission-common" "transmission-gtk"
     "rhythmbox" "orca" "info" "yelp"
-    "gnome-snapshot" "gnome-logs"
+    "gnome-snapshot" "gnome-logs" "update-manager"
     "gnome-system-monitor" "gnome-power-manager"
     "deja-dup" "totem" "seahorse" "remmina" "shotwell"
 )

@@ -115,8 +115,8 @@ sudo nala purge -y "${BLOAT[@]}"
 
 rm -rf ~/.cache/thumbnails/*
 rm -rf ~/{.bash*,.profile,.fontconfig}
-rm -rf ~/{Templates,Public,Pictures,Videos,Music}
-sed -i "/Pictures\|Videos\|Music/d" ~/.config/gtk-3.0/bookmarks
+rm -rf ~/{Templates,Public,Videos,Music}
+sed -i "/Videos\|Music/d" ~/.config/gtk-3.0/bookmarks
 
 sudo sh -c "apt-get update; apt-get dist-upgrade; apt-get autoremove; apt-get autoclean; apt --fix-broken install"
 flatpak uninstall --unused --delete-data --assumeyes

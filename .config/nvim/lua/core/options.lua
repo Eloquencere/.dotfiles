@@ -44,11 +44,11 @@ opt.splitbelow = true
 vim.api.nvim_create_autocmd(
 	"FileType", 
 	{ 
-	    pattern = {"verilog", "systemverilog"}, 
-	    callback = function() 
-		vim.opt_local.commentstring = "// %s" 
-	    end, 
-        }
+	    pattern = {"verilog", "systemverilog"},
+	    callback = function()
+		vim.opt_local.commentstring = "// %s"
+	    end,
+    }
 )
 
 -- Setting syntax highlighting for verilog files

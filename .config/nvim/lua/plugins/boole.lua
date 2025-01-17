@@ -9,8 +9,6 @@ return {
             },
             -- User defined loops
             additions = {
-                { '==',  '!=' },
-                { '===', '!==' },
                 { 'up', 'down' },
                 { 'top', 'bottom' },
                 { 'right', 'left' },
