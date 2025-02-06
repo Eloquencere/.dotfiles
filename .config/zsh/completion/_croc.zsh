@@ -126,9 +126,9 @@ _croc_help_cmd() {
 }
 
 _croc_recv_cmd() {
-	declare -a local_list
+	local -a collaborator_list
 	while IFS='|' read -r Name ID Designation; do
-		local_list+=("${ID}[${Designation} > ($Name)]")
+		collaborator_list+=("${ID}[${Designation} > ($Name)]")
     done <<< $(sqlite3 $XDG_DATA_HOME/croc/croc_collaborators_registry.db "SELECT Name,ID,Designation FROM collaborator_catalogue WHERE ID!='$CROC_SELF_TRANSFER_ID'")
 
 	local line state
@@ -140,7 +140,7 @@ _croc_recv_cmd() {
 	case "$state" in
 		cmds)
 			_values "croc project contacts" \
-				${local_list[@]}
+				${collaborator_list[@]}
 			;;
 	esac
 }

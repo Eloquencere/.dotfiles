@@ -42,21 +42,30 @@ opt.splitbelow = true
 
 -- Setting comment strings
 vim.api.nvim_create_autocmd(
-	"FileType", 
+    { "FileType" },
 	{ 
-	    pattern = {"verilog", "systemverilog"},
+	    pattern = { "verilog", "systemverilog", "fortran" },
 	    callback = function()
-		vim.opt_local.commentstring = "// %s"
+            vim.opt_local.commentstring = "// %s"
 	    end,
     }
 )
 
--- Setting syntax highlighting for verilog files
+-- Enabling syntax highlighting for verilog files
 vim.api.nvim_create_autocmd(
-    { "BufNewFile", "BufRead" }, 
+    { "FileType" }, 
     {
-        pattern = {"*.v", "*.vs"},
+        pattern = { "*.v" },
         command = "setlocal syntax=verilog",
+    }
+)
+
+-- Disabling syntax highlighting for .f files
+vim.api.nvim_create_autocmd(
+    { "FileType" },
+    {
+        pattern = { "fortran" },
+        command = "syntax off",
     }
 )
 
