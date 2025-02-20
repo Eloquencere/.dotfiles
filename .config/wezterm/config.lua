@@ -15,8 +15,8 @@ config = {
   enable_tab_bar = false,
   use_fancy_tab_bar = false,
   tab_bar_at_bottom = false,
-  font = wezterm.font("UbuntuSansMono", { weight = "Medium" }),
-  font_size = 15.5,
+  font = wezterm.font("UbuntuSansMono Nerd Font", { weight = "Medium" }), -- change to UbuntuSansMono Nerd Font on Windows
+  font_size = 17.5,
   window_padding = {
     left = 3,
     right = 3,

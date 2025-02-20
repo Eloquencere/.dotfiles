@@ -7,14 +7,12 @@ with pkgs;
    croc fastfetch
 
    dos2unix btop yazi
-   speedtest-cli jq yq jqp
+   jq jqp yq
    neovim zellij mprocs
    conan scriptisto tio
    gh lazygit
-   docker lazydocker
-   podman distrobox
+   podman # look into podman TUI
    tlrc cheat
    natural-docs doxygen
-   pipes
 ]
 

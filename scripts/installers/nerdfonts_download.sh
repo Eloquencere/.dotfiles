@@ -1,7 +1,7 @@
 # source - https://gist.github.com/matthewjberger/7dd7e079f282f8138a9dc3b045ebefa0
 
 declare -a fonts=(
-	UbuntuMono
+	UbuntuSans
 )
 version=latest
 if [[ $version =~ "latest" ]]; then
