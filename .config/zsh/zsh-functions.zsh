@@ -1,29 +1,12 @@
-function y() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	yazi "$@" --cwd-file="$tmp"
-	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-		builtin cd -- "$cwd"
-	fi
-	rm -f -- "$tmp"
-}
-
 croc() {
 	if [[ $1 == "recv" ]]; then
 		shift
 		if [[ $1 == "--here" ]]; then
 			shift
-            if [[ $1 == ('windows'|'linux') ]]; then
-                export CROC_SECRET=$(sqlite3 $XDG_DATA_HOME/croc/croc_collaborators_registry.db "SELECT Transfer_Code FROM internal_comm WHERE ID='$1';")
-            else
-                export CROC_SECRET=$(sqlite3 $XDG_DATA_HOME/croc/croc_collaborators_registry.db "SELECT Transfer_Code FROM collaborator_catalogue WHERE ID='$1';")
-            fi
+            export CROC_SECRET=$(sqlite3 $ZDOTDIR/personal/croc_collaborators_registry.db "SELECT Transfer_Code FROM collaborator_catalogue WHERE ID='$1';")
             command croc && echo "\033[33mTransfer received\033[0m in current working directory"
 		else
-            if [[ $1 == (windows|linux) ]]; then
-                export CROC_SECRET=$(sqlite3 $XDG_DATA_HOME/croc/croc_collaborators_registry.db "SELECT Transfer_Code FROM internal_comm WHERE ID='$1';")
-            else
-                export CROC_SECRET=$(sqlite3 $XDG_DATA_HOME/croc/croc_collaborators_registry.db "SELECT Transfer_Code FROM collaborator_catalogue WHERE ID='$1';")
-            fi
+            export CROC_SECRET=$(sqlite3 $ZDOTDIR/personal/croc_collaborators_registry.db "SELECT Transfer_Code FROM collaborator_catalogue WHERE ID='$1';")
 			command croc --out $HOME/croc-inbox && echo "\033[32mTransfer received\033[0m in ~/croc-inbox"
 		fi
 	elif [[ $1 == "send" ]]; then
@@ -36,19 +19,7 @@ croc() {
             shift
             local ask_user_to_delete=1
         fi
-        case $1 in
-            '--win')
-                shift
-                export CROC_SECRET=$(sqlite3 $XDG_DATA_HOME/croc/croc_collaborators_registry.db "SELECT Transfer_Code FROM internal_comm WHERE ID='linux';")
-                ;;
-            '--lin')
-                shift
-                export CROC_SECRET=$(sqlite3 $XDG_DATA_HOME/croc/croc_collaborators_registry.db "SELECT Transfer_Code FROM internal_comm WHERE ID='windows';")
-                ;;
-            *)
-                export CROC_SECRET=$(sqlite3 $XDG_DATA_HOME/croc/croc_collaborators_registry.db "SELECT Transfer_Code FROM collaborator_catalogue WHERE ID='$CROC_SELF_TRANSFER_ID';")
-                ;;
-        esac 
+        export CROC_SECRET=$(sqlite3 $ZDOTDIR/personal/croc_collaborators_registry.db "SELECT Transfer_Code FROM collaborator_catalogue WHERE ID='$CROC_SELF_TRANSFER_ID';")
         command croc send "$@"
 
         if [[ $? -eq 1 || $ask_user_to_delete -ne 1 ]]; then
@@ -100,4 +71,13 @@ lsusbip() {
 	done
 	port_number=$(echo "$usbip_port_output" | grep --before-context=1 "$vid_pid" | sed --silent '1s/.*\([-0-9]\+\):.*/\1/p')
 	printf "%-10s %-50s %-10s\n" "$busid" "${device_name:0:49}" "$port_number"
+}
+
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
 }

@@ -33,7 +33,7 @@ echo -n "Enter the ID granted by your admin to register with your team via croc:
 read croc_id
 echo "# Croc
 export CROC_SELF_TRANSFER_ID=$croc_id" >> $HOME/.config/zsh/personal/zprofile.zsh
-mkdir -p $HOME/.local/share/croc
+echo "Move a copy of the collaborators database given by your admin to the zsh home directory"
 mkdir ~/croc-inbox
 echo "file://$HOME/croc-inbox" >> ~/.config/gtk-3.0/bookmarks
 
