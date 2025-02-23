@@ -119,17 +119,10 @@ keymap.set(
     { desc = "Go to previous tab" }
 )
 
--- Spell Checker
+-- Oil Keymap
 keymap.set(
     "n",
-    "<leader>sc",
-    "<cmd>setlocal spell spelllang=en_us" .. "<CR>",
-    { silent = true, desc = "insert" }
+    "-",
+    "<CMD>Oil<CR>",
+    { desc = "Open parent directory" }
 )
-keymap.set(
-    "n",
-    "<leader>sd",
-    "<cmd>setlocal nospell" .. "<CR>",
-    { silent = true, desc = "insert" }
-)
-

@@ -46,10 +46,55 @@ return {
                 c = { bg = colors.inactive_bg, fg = colors.semilightgray },
             },
         }
+
+        -- Manually set mode strings with consistent length
+        local mode_map = {
+            n      = "NORMAL ",
+            i      = "INSERT ",
+            v      = "VISUAL ",
+            V      = "V-LINE ",
+            [""] = "V-BLOCK",
+            c      = "COMMAND",
+            R      = "REPLACE",
+        } 
+
+        -- Add the Vim icon and mode to the left section
         lualine.setup({
             options = {
                 theme = my_lualine_theme,
             },
+            sections = {
+                lualine_a = {
+                    { 
+                        'mode', 
+                        fmt = function(mode)
+                            local mode = vim.fn.mode()
+                            local padded_mode = mode_map[mode] or mode
+                            return "\u{e6ae} " .. padded_mode
+                        end 
+                    },
+                },
+                lualine_b = { 'filename' },
+                lualine_c = { '' },
+                lualine_x = {
+                    {
+                        'diff',
+                        symbols = {added = ' ', modified = ' ', removed = ' '},
+                        diff_color = {
+                            added = {fg = colors.green},
+                            modified = {fg = colors.yellow},
+                            removed = {fg = colors.red},
+                        },
+                        separator = { left = '', right = ''},
+                    },
+                    'branch',
+                    'fileformat', 
+                    'filetype'
+                },
+                lualine_y = { 'progress' },
+                lualine_z = { 'location' },
+            },
+            extensions = { 'lazy', 'oil' },
         })
     end,
 }

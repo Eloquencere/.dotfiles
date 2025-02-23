@@ -40,14 +40,12 @@ opt.smartcase = true
 opt.splitright = true
 opt.splitbelow = true
 
--- Setting comment strings
+-- Disabling syntax highlighting for .f files
 vim.api.nvim_create_autocmd(
     { "FileType" },
-	{ 
-	    pattern = { "verilog", "systemverilog", "fortran" },
-	    callback = function()
-            vim.opt_local.commentstring = "// %s"
-	    end,
+    {
+        pattern = { "*.f" },
+        command = "syntax off",
     }
 )
 
@@ -60,12 +58,14 @@ vim.api.nvim_create_autocmd(
     }
 )
 
--- Disabling syntax highlighting for .f files
+-- Setting comment strings
 vim.api.nvim_create_autocmd(
     { "FileType" },
-    {
-        pattern = { "fortran" },
-        command = "syntax off",
+	{ 
+	    pattern = { "verilog", "systemverilog", "fortran", "c", "cpp", "kdl" },
+	    callback = function()
+            vim.opt_local.commentstring = "// %s"
+	    end,
     }
 )
 
