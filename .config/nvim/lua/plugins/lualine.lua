@@ -76,22 +76,23 @@ return {
                 },
                 lualine_b = { 'filename' },
                 lualine_c = { '' },
-                lualine_x = {
+                lualine_x = { '' },
+                lualine_y = { 
                     {
                         'diff',
-                        symbols = {added = ' ', modified = ' ', removed = ' '},
+                        symbols = {added = ' ', modified = ' ', removed = ' '},
                         diff_color = {
                             added = {fg = colors.green},
                             modified = {fg = colors.yellow},
                             removed = {fg = colors.red},
                         },
-                        separator = { left = '', right = ''},
+                        separator = { left = ' ', right = ' '},
                     },
                     'branch',
                     'fileformat', 
-                    'filetype'
+                    'filetype',
+                    'progress' 
                 },
-                lualine_y = { 'progress' },
                 lualine_z = { 'location' },
             },
             extensions = { 'lazy', 'oil' },
