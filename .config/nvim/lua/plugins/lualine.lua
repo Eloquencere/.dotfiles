@@ -56,7 +56,7 @@ return {
             [""] = "V-BLOCK",
             c      = "COMMAND",
             R      = "REPLACE",
-        } 
+        }
 
         -- Add the Vim icon and mode to the left section
         lualine.setup({
@@ -76,6 +76,7 @@ return {
                 },
                 lualine_b = { 'filename' },
                 lualine_c = { '' },
+
                 lualine_x = { '' },
                 lualine_y = { 
                     {
@@ -89,9 +90,9 @@ return {
                         separator = { left = ' ', right = ' '},
                     },
                     'branch',
-                    'fileformat', 
+                    'fileformat',
                     'filetype',
-                    'progress' 
+                    'progress'
                 },
                 lualine_z = { 'location' },
             },
@@ -99,3 +100,4 @@ return {
         })
     end,
 }
+
