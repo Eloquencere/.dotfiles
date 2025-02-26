@@ -3,6 +3,28 @@ cd ~/.dotfiles/scripts/installers
 echo "Welcome to part 2 of the *Ubuntu 24.04 LTS* installer"
 sleep 2
 
+# Kanata install & config
+nix profile install nixpkgs#kanata
+sudo groupadd uinput
+sudo usermod -aG input $USER
+sudo usermod -aG uinput $USER
+sudo sh -c "echo '# Kanata
+KERNEL==uinput, MODE=0660, GROUP=uinput, OPTIONS+=static_node=uinput' >> /etc/udev/rules.d/99-input.rules"
+sudo udevadm control --reload && udevadm trigger --verbose --sysname-match=uniput
+sudo sh -c "echo '[Unit]
+Description=Kanata keyboard remapper
+Documentation=https://github.com/jtroo/kanata
+
+[Service]
+Type=simple
+ExecStartPre=/sbin/modprobe uinput
+ExecStart=$(which kanata) --cfg $HOME/.config/kanata/config.kbd
+Restart=no
+
+[Install]
+WantedBy=default.target' > /lib/systemd/system/kanata.service"
+sudo systemctl enable kanata --now
+
 # cpanm package manager
 cpan App::cpanminus
 

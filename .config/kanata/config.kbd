@@ -1,0 +1,23 @@
+#|
+Objectives:
+    caps lock                -> esc + ctrl
+    left shift + right shift -> caps lock
+|#
+
+(defsrc
+  caps
+  lsft rsft
+)
+
+(defalias
+  escctrl (tap-hold 100 100 esc lctrl)
+  rshft (switch
+        (lsft) (unshift caps) break
+        () rsft break)
+)
+
+(deflayer base
+  @escctrl
+  _ @rshft
+)
+

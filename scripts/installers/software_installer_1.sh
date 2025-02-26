@@ -54,7 +54,6 @@ cargo install sccache
 
 APPLICATIONS=(
     "gnome-shell-extension-manager"
-    "bleachbit"
 )
 sudo apt install -y "${APPLICATIONS[@]}"
 
