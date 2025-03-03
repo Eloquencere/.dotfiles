@@ -47,6 +47,7 @@ fi
 source "$ZDOTDIR/zsh-aliases.zsh"
 source "$ZDOTDIR/zsh-functions.zsh"
 
+
 # Zsh-Vi-Mode
 function zvm_after_init() {
 	ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
@@ -67,7 +68,6 @@ _fzf_compgen_dir() {
     fd --type=d --hidden --exclude .git . "$1" --color=always
 }
 
-
 zellij_tab_name_update() {
     if [[ -n $ZELLIJ ]]; then
         local current_dir=$PWD
@@ -81,3 +81,4 @@ zellij_tab_name_update() {
 }
 zellij_tab_name_update
 chpwd_functions+=(zellij_tab_name_update)
+

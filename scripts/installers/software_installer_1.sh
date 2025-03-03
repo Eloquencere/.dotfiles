@@ -18,7 +18,7 @@ source nerdfonts_download.sh
 ESSENTIALS=(
     "libssl-dev" "liblzma-dev" "libreadline-dev" "libncurses5-dev" "libfuse2t64"
     "sqlite3" "libsqlite3-dev"
-    "stow" "curl" "p7zip"
+    "stow" "curl" "p7zip" "unrar"
     "ntfs-3g" "exfat-fuse" "wl-clipboard"
     "linux-headers-$(uname -r)" "linux-headers-generic"
     "build-essential" "pkg-config"
@@ -88,11 +88,13 @@ if [[ $browser_choice == "b" ]]; then
     echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
     sudo apt update
     sudo apt install -y brave-browser
+    xdg-settings set default-web-browser brave-browser.desktop
 else
     wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
     sudo apt install -y ./google-chrome-stable_current_amd64.deb
     rm -rf google-chrome-stable_current_amd64.deb
     sudo apt -f install -y
+    xdg-settings set default-web-browser google-chrome.desktop
 fi
 
 # Zsh shell
@@ -103,8 +105,6 @@ cd ~/.dotfiles
 stow .
 cd -
 
-mkdir -p $HOME/.config/nixpkgs
-echo "{ allowUnfree = true; }" >> ~/.config/nixpkgs/config.nix
 zsh -li -c "sh <(curl -L https://nixos.org/nix/install) --daemon"
 zsh -li -c "nix profile install --file cli_pkgs.nix; \
 sudo update-alternatives --install /usr/bin/nvim editor \$(which nvim) 100"
