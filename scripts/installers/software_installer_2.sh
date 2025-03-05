@@ -124,10 +124,10 @@ nix-collect-garbage -d
 
 source $HOME/.dotfiles/scripts/continual-reference/software_updater.zsh
 
-echo "The system will reboot one last time"
+echo "The system will shutdown now"
 sleep 3
 
-reboot
+shutdown now
 
 # Useful rust crates - tokio rayon
 

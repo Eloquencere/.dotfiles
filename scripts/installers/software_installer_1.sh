@@ -72,10 +72,10 @@ gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal wezter
 # wine
 sudo dpkg --add-architecture i386 # enable 32bit
 sudo nala install -y wine64
-# wineGUI
-wget https://winegui.melroy.org/downloads/WineGUI-v2.7.0.deb
-sudo nala install -y ./WineGUI-v2.7.0.deb
-rm -f WineGUI-v2.7.0.deb
+# # wineGUI
+# wget https://winegui.melroy.org/downloads/WineGUI-v2.7.0.deb
+# sudo nala install -y ./WineGUI-v2.7.0.deb
+# rm -f WineGUI-v2.7.0.deb
 
 # browser
 echo -n "Installing browser
