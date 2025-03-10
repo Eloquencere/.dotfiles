@@ -24,9 +24,8 @@ opt.cursorline = true
 opt.modelines = 0
 opt.visualbell = true
 opt.autochdir = true
-opt.splitright = true
-opt.splitbelow = true
 opt.backspace = "indent,eol,start"
+opt.showmode = false
 
 -- Appearance
 opt.termguicolors = true
@@ -42,19 +41,23 @@ opt.splitbelow = true
 
 -- Disabling syntax highlighting for .f files
 vim.api.nvim_create_autocmd(
-    { "FileType" },
+    { "BufRead", "BufNewFile" },
     {
         pattern = { "*.f" },
-        command = "syntax off",
+        callback = function()
+            vim.cmd("syntax off")
+        end,
     }
 )
 
 -- Enabling syntax highlighting for verilog files
 vim.api.nvim_create_autocmd(
-    { "FileType" }, 
+    { "BufRead", "BufNewFile" }, 
     {
         pattern = { "*.v" },
-        command = "setlocal syntax=verilog",
+        callback = function()
+            vim.cmd("setfiletype verilog")
+        end,
     }
 )
 
@@ -62,7 +65,7 @@ vim.api.nvim_create_autocmd(
 vim.api.nvim_create_autocmd(
     { "FileType" },
 	{ 
-	    pattern = { "verilog", "systemverilog", "fortran", "c", "cpp", "kdl" },
+	    pattern = { "verilog", "systemverilog", "fortran", "kdl", "c", "cpp"},
 	    callback = function()
             vim.opt_local.commentstring = "// %s"
 	    end,

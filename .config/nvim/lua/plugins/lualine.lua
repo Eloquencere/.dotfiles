@@ -87,14 +87,16 @@ return {
                             modified = {fg = colors.yellow},
                             removed = {fg = colors.red},
                         },
-                        separator = { left = ' ', right = ' '},
+                        separator = { left = '', right = ''},
                     },
                     'branch',
                     'fileformat',
                     'filetype',
-                    'progress'
+                    'progress', 
                 },
-                lualine_z = { 'location' },
+                lualine_z = { 
+                    'location'
+                },
             },
             extensions = { 'lazy', 'oil' },
         })

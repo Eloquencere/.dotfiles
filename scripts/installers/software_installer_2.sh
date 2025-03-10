@@ -31,17 +31,17 @@ cpan App::cpanminus
 # GUI setup
 gnome-text-editor $HOME/.dotfiles/scripts/continual-reference/reference.txt .gui_instructions.txt &
 
-# Useful Python libraries
-pip2 install --upgrade pip
-pip install --upgrade pip
-pip install icecream # for debugging
-pip install drawio colorama pyfiglet # presentation
-pip install dash plotly seaborn mysql-connector-python # data representation and calculation
-pip install fireducks xarray
-pip install numpy scipy pillow
-pip install Cython numba taichi
-pip install parse pendulum pydantic ruff mypy pyglet
-pip install keras scikit-learn torch # AI/ML
+# # Useful Python libraries
+# pip2 install --upgrade pip
+# pip install --upgrade pip
+# pip install icecream # for debugging
+# pip install drawio colorama pyfiglet # presentation
+# pip install dash plotly seaborn mysql-connector-python # data representation and calculation
+# pip install fireducks xarray openpyxl
+# pip install numpy scipy pillow
+# pip install Cython numba taichi
+# pip install parse pendulum pydantic ruff mypy pyglet
+# pip install keras scikit-learn torch # AI/ML
 
 # Useful Rust binaries
 CARGO_PKGS=(
