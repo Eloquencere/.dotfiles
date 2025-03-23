@@ -1,5 +1,5 @@
 default_layout "compact"
-copy_command "wl-copy"
+// copy_command "xclip -selection clipboard"
 
 plugins {
     ghost location="file:~/.config/zellij/plugins/ghost.wasm"

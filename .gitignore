@@ -2,3 +2,10 @@
 .config/zsh/.zcompdump*
 .config/zsh/personal
 
+.config/autostart
+.config/btop
+.config/dconf
+.config/gh
+.config/go
+.config/pulse
+
