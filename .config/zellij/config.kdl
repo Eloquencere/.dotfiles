@@ -48,7 +48,6 @@ keybinds clear-defaults=true {
         bind "Esc"    { SwitchToMode "Normal"; }
         bind "n"      { NewPane; SwitchToMode "Normal"; }
         bind "N"      { NewPane "Down"; SwitchToMode "Normal"; }
-        bind "p"      { SwitchFocus; }
         bind "x"      { CloseFocus; SwitchToMode "Normal"; }
         bind "f"      { ToggleFocusFullscreen; SwitchToMode "Normal"; }
         bind "z"      { TogglePaneFrames; SwitchToMode "Normal"; }
@@ -120,37 +119,27 @@ keybinds clear-defaults=true {
     }
 
     scroll {
-        bind "Ctrl s"   { SwitchToMode "Tmux"; }
-        bind "Esc"      { SwitchToMode "Normal"; }
-        bind "e"        { EditScrollback; SwitchToMode "Normal"; }
-        bind "s"        { SwitchToMode "EnterSearch"; SearchInput 0; }
-        bind "G"        { ScrollToBottom; SwitchToMode "Normal"; }
-        bind "j" "Down" { ScrollDown; }
-        bind "k" "Up"   { ScrollUp; }
-        bind "Ctrl f"   { PageScrollDown; }
-        bind "Ctrl b"   { PageScrollUp; }
-        bind "Ctrl d"   { HalfPageScrollDown; }
-        bind "Ctrl u"   { HalfPageScrollUp; }
-    }
-
-    search {
-        bind "Ctrl s"   { SwitchToMode "Tmux"; }
-        bind "Esc"      { SwitchToMode "Normal"; }
-        bind "j" "Down" { ScrollDown; }
-        bind "k" "Up"   { ScrollUp; }
-        bind "Ctrl f"   { PageScrollDown; }
-        bind "Ctrl b"   { PageScrollUp; }
-        bind "Ctrl d"   { HalfPageScrollDown; }
-        bind "Ctrl u"   { HalfPageScrollUp; }
-        bind "n"        { Search "down"; }
-        bind "N"        { Search "up"; }
-        bind "c"        { SearchToggleOption "CaseSensitivity"; }
-        bind "w"        { SearchToggleOption "Wrap"; }
-        bind "o"        { SearchToggleOption "WholeWord"; }
+        bind "Ctrl s" { SwitchToMode "Tmux"; }
+        bind "Esc"    { SwitchToMode "Normal"; }
+        bind "e"      { EditScrollback; SwitchToMode "Normal"; }
+        bind "s"      { SwitchToMode "EnterSearch"; SearchInput 0; }
+        bind "c"      { SearchToggleOption "CaseSensitivity"; }
+        bind "w"      { SearchToggleOption "Wrap"; }
+        bind "o"      { SearchToggleOption "WholeWord"; }
+        bind "n"      { Search "down"; }
+        bind "N"      { Search "up"; }
+        bind "k"      { ScrollUp; }
+        bind "j"      { ScrollDown; }
+        bind "g"      { ScrollToTop; }
+        bind "G"      { ScrollToBottom; SwitchToMode "Normal"; }
+        bind "Ctrl b" { PageScrollUp; }
+        bind "Ctrl f" { PageScrollDown; }
+        bind "Ctrl u" { HalfPageScrollUp; }
+        bind "Ctrl d" { HalfPageScrollDown; }
     }
     entersearch {
-        bind "Enter" { SwitchToMode "Search"; }
         bind "Esc"   { SwitchToMode "Scroll"; }
+        bind "Enter" { SwitchToMode "Scroll"; }
     }
 
     session {
