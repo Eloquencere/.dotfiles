@@ -120,7 +120,7 @@ sed -i "/Videos\|Music/d" ~/.config/gtk-3.0/bookmarks
 
 sudo sh -c "apt-get update; apt-get dist-upgrade; apt-get autoremove; apt-get autoclean; apt --fix-broken install"
 flatpak uninstall --unused --delete-data --assumeyes
-nix-collect-garbage -d
+nix-collect-garbage --delete-old; nix store gc
 
 source $HOME/.dotfiles/scripts/continual-reference/software_updater.zsh
 

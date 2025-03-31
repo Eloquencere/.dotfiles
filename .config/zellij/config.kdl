@@ -2,11 +2,10 @@ default_layout "compact"
 // copy_command "xclip -selection clipboard"
 
 plugins {
-    ghost location="file:~/.config/zellij/plugins/ghost.wasm"
     zj-quit location="file:~/.config/zellij/plugins/zj-quit.wasm"
-    monocle location="file:~/.config/zellij/plugins/monocle.wasm"
     zellij-forgot location="file:~/.config/zellij/plugins/zellij_forgot.wasm"
     multitask location="file:~/.config/zellij/plugins/multitask.wasm"
+    // ghost location="file:~/.config/zellij/plugins/ghost.wasm"
 }
 
 keybinds clear-defaults=true {
@@ -16,8 +15,8 @@ keybinds clear-defaults=true {
         bind "Ctrl j" { MoveFocus "Down"; }
         bind "Ctrl k" { MoveFocus "Up"; }
         bind "Ctrl l" { MoveFocus "Right"; }
-        bind "Alt h"  { GoToPreviousTab; }
-        bind "Alt l"  { GoToNextTab; }
+        bind "Alt  h" { GoToPreviousTab; }
+        bind "Alt  l" { GoToNextTab; }
     }
 
     tmux {
@@ -28,19 +27,6 @@ keybinds clear-defaults=true {
         bind "m"      { SwitchToMode "Move"; }
         bind "s"      { SwitchToMode "Scroll"; }
         bind "o"      { SwitchToMode "Session"; }
-        bind "Alt n"  { // find a better key for this
-            LaunchOrFocusPlugin "monocle" {
-                floating true
-            };
-            SwitchToMode "Normal"
-        }
-        bind "Alt m"  {
-            LaunchPlugin "monocle" {
-                in_place true
-                kiosk true
-            };
-            SwitchToMode "Normal"
-        }
     }
 
     pane {
@@ -110,19 +96,19 @@ keybinds clear-defaults=true {
         bind "l"      { MovePane "Right"; }
         bind "H"      { MoveTab "Left"; }
         bind "L"      { MoveTab "Right"; }
+        bind "["      { PreviousSwapLayout; }
+        bind "]"      { NextSwapLayout; }
         bind "Left"   { MoveFocus "Left"; }
         bind "Down"   { MoveFocus "Down"; }
         bind "Up"     { MoveFocus "Up"; }
         bind "Right"  { MoveFocus "Right"; }
-        bind "["      { PreviousSwapLayout; }
-        bind "]"      { NextSwapLayout; }
     }
 
     scroll {
         bind "Ctrl s" { SwitchToMode "Tmux"; }
         bind "Esc"    { SwitchToMode "Normal"; }
-        bind "e"      { EditScrollback; SwitchToMode "Normal"; }
         bind "s"      { SwitchToMode "EnterSearch"; SearchInput 0; }
+        bind "e"      { EditScrollback; SwitchToMode "Normal"; }
         bind "c"      { SearchToggleOption "CaseSensitivity"; }
         bind "w"      { SearchToggleOption "Wrap"; }
         bind "o"      { SearchToggleOption "WholeWord"; }
@@ -130,12 +116,12 @@ keybinds clear-defaults=true {
         bind "N"      { Search "up"; }
         bind "k"      { ScrollUp; }
         bind "j"      { ScrollDown; }
-        bind "g"      { ScrollToTop; }
-        bind "G"      { ScrollToBottom; SwitchToMode "Normal"; }
-        bind "Ctrl b" { PageScrollUp; }
-        bind "Ctrl f" { PageScrollDown; }
         bind "Ctrl u" { HalfPageScrollUp; }
         bind "Ctrl d" { HalfPageScrollDown; }
+        bind "Ctrl b" { PageScrollUp; }
+        bind "Ctrl f" { PageScrollDown; }
+        bind "g"      { ScrollToTop; }
+        bind "G"      { ScrollToBottom; SwitchToMode "Normal"; }
     }
     entersearch {
         bind "Esc"   { SwitchToMode "Scroll"; }
@@ -166,12 +152,17 @@ keybinds clear-defaults=true {
         bind "Ctrl g" { SwitchToMode "Normal"; }
     }
 
-    shared_except "locked" {
-        bind "Ctrl y" {
+    shared_except "locked" "entersearch" "renametab" "renamepane" {
+        bind "Ctrl g" {
             LaunchOrFocusPlugin "zellij-forgot" {
                 floating true
-            }
+            };
+            SwitchToMode "Normal";
         }
+        // bind "Alt m" {
+        //     Run "zellij" "action" "start-or-reload-plugin" "multitask" "--configuration" "ccwd=`pwd`";
+        //     SwitchToMode "Normal";
+        // }
     }
 }
 
