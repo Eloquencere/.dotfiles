@@ -88,20 +88,22 @@ keybinds clear-defaults=true {
     }
 
     move {
-        bind "Ctrl s" { SwitchToMode "Tmux"; }
-        bind "Esc"    { SwitchToMode "Normal"; }
-        bind "h"      { MovePane "Left"; }
-        bind "j"      { MovePane "Down"; }
-        bind "k"      { MovePane "Up"; }
-        bind "l"      { MovePane "Right"; }
-        bind "H"      { MoveTab "Left"; }
-        bind "L"      { MoveTab "Right"; }
-        bind "["      { PreviousSwapLayout; }
-        bind "]"      { NextSwapLayout; }
-        bind "Left"   { MoveFocus "Left"; }
-        bind "Down"   { MoveFocus "Down"; }
-        bind "Up"     { MoveFocus "Up"; }
-        bind "Right"  { MoveFocus "Right"; }
+        bind "Ctrl s"    { SwitchToMode "Tmux"; }
+        bind "Esc"       { SwitchToMode "Normal"; }
+        bind "h"         { MovePane "Left"; }
+        bind "j"         { MovePane "Down"; }
+        bind "k"         { MovePane "Up"; }
+        bind "l"         { MovePane "Right"; }
+        bind "H"         { MoveTab "Left"; }
+        bind "L"         { MoveTab "Right"; }
+        bind "["         { PreviousSwapLayout; }
+        bind "]"         { NextSwapLayout; }
+        bind "Left"      { MoveFocus "Left"; }
+        bind "Down"      { MoveFocus "Down"; }
+        bind "Up"        { MoveFocus "Up"; }
+        bind "Right"     { MoveFocus "Right"; }
+        bind "Alt Left"  { GoToPreviousTab; }
+        bind "Alt Right" { GoToNextTab; }
     }
 
     scroll {
