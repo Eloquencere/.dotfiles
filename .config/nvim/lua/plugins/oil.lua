@@ -1,9 +1,10 @@
 return {
-  'stevearc/oil.nvim',
-  opts = {},
-  lazy = false,
-  dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
-  config = function()
+    'stevearc/oil.nvim',
+    event = { "VeryLazy" },
+    lazy = true,
+    opts = {},
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
         require("oil").setup({
             default_file_explorer = true,
             delete_to_trash = true,

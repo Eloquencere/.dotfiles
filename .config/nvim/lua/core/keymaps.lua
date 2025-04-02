@@ -7,33 +7,19 @@ local keymap = vim.keymap
 vim.cmd("nnoremap <silent> k :<C-U>execute \'normal!\' (v:count > 1 ? \"m\'\" . v:count : \'\') . \'k\'<CR>")
 vim.cmd("nnoremap <silent> j :<C-U>execute \'normal!\' (v:count > 1 ? \"m\'\" . v:count : \'\') . \'j\'<CR>")
 
--- Moving between tabs
+-- Moving between buffers
 keymap.set(
     {"n", "i", "v"},
     '<C-Tab>',
-    '<Cmd>BufferNext<CR>',
-    { noremap = true, silent = true, desc = "Move to next tab" }
+    '<Cmd>bnext<CR>',
+    { noremap = true, silent = true, desc = "Move to next buffer" }
 )
 keymap.set(
     {"n", "i", "v"},
     '<C-S-Tab>',
-    '<Cmd>BufferPrev<CR>',
-    { noremap = true, silent = true, desc = "Move to previous tab" }
+    '<Cmd>bNext<CR>',
+    { noremap = true, silent = true, desc = "Move to previous buffer" }
 )
-
--- -- Move up and down editor lines
--- keymap.set(
---     "n",
---     "j",
---     "gjzz",
---     { noremap = true, silent = true, desc = "Aligns the screen when scrolling down" }
--- )
--- keymap.set(
---     "n",
---     "k",
---     "gkzz",
---     { noremap = true, silent = true, desc = "Aligns the screen when scrolling up" }
--- )
 
 -- Split Navigation
 keymap.set(

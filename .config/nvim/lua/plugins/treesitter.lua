@@ -1,6 +1,7 @@
 return {
     "nvim-treesitter/nvim-treesitter",
-    event = { "BufReadPre", "BufNewFile" },
+    event = { "VeryLazy" },
+    lazy = true,
     build = ":TSUpdate",
     dependencies = {
         "windwp/nvim-ts-autotag",

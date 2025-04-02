@@ -1,5 +1,5 @@
 default_layout "compact"
-// copy_command "xclip -selection clipboard"
+theme "dracula"
 
 plugins {
     zj-quit location="file:~/.config/zellij/plugins/zj-quit.wasm"
@@ -40,6 +40,7 @@ keybinds clear-defaults=true {
         bind "w"      { ToggleFloatingPanes; SwitchToMode "Normal"; }
         bind "e"      { TogglePaneEmbedOrFloating; SwitchToMode "Normal"; }
         bind "r"      { SwitchToMode "RenamePane"; PaneNameInput 0; }
+        // bind "p"      { TogglePanePinned; SwitchToMode "Normal"; }
         bind "h"      { Resize "Increase Left"; }
         bind "j"      { Resize "Increase Down"; }
         bind "k"      { Resize "Increase Up"; }
@@ -141,12 +142,19 @@ keybinds clear-defaults=true {
             };
             SwitchToMode "Normal";
         }
-        bind "w" {
+        bind "s" {
             LaunchOrFocusPlugin "session-manager" {
                 floating true
                 move_to_focused_tab true
             };
             SwitchToMode "Normal";
+        }
+        bind "p" {
+            LaunchOrFocusPlugin "plugin-manager" {
+                floating true
+                move_to_focused_tab true
+            };
+            SwitchToMode "Normal"
         }
     }
 

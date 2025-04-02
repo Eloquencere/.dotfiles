@@ -1,6 +1,7 @@
 return {
     'windwp/nvim-autopairs',
     event = "InsertEnter",
+    lazy = true,
     config = true,
     opts = {},
     init = function()
@@ -20,10 +21,10 @@ return {
 
         -- press % => %% only while inside a comment or string
         npairs.add_rules({
-          Rule("%", "%", "lua")
-            :with_pair(ts_conds.is_ts_node({'string','comment'})),
-          Rule("$", "$", "lua")
-            :with_pair(ts_conds.is_not_ts_node({'function'}))
+            Rule("%", "%", "lua")
+                :with_pair(ts_conds.is_ts_node({'string','comment'})),
+            Rule("$", "$", "lua")
+                :with_pair(ts_conds.is_not_ts_node({'function'}))
         })
     end,
 }

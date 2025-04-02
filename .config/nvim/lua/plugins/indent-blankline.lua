@@ -1,9 +1,12 @@
 return {
     "lukas-reineke/indent-blankline.nvim",
-    event = { "BufReadPre", "BufNewFile" },
+    event = { "BufEnter" },
+    lazy = true,
     main = "ibl",
-    opts = {
-        indent = { char = "│" }, -- Solid Line
-        -- indent = { char = "┊" }, -- Dotted Line
-    },
+    config = function()
+        require("ibl").setup({
+            indent = { char = "│", highlight = highlight }, -- Solid Line
+            -- indent = { char = "┊", highlight = highlight }, -- Dotted Line
+        })
+    end,
 }

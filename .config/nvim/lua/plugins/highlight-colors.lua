@@ -1,5 +1,7 @@
 return {
     "brenoprata10/nvim-highlight-colors",
+    event = "VeryLazy",
+    lazy = true,
     opts = {
         render = "background",
         virtual_symbol = "■",
@@ -9,5 +11,4 @@ return {
             'systemverilog', 'verilog',
         },
     },
-    event = { "BufReadPost", "BufNewFile" },
 }

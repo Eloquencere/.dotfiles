@@ -1,5 +1,5 @@
 return {
-    "kevinhwang91/nvim-bqf",
+    'machakann/vim-sandwich',
     event = { "VeryLazy" },
     lazy = true
 }

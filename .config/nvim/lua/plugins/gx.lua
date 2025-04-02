@@ -1,16 +1,17 @@
 return {
     "chrishrb/gx.nvim",
+    event = { "VeryLazy" },
+    lazy = true,
     dependencies = { "nvim-lua/plenary.nvim" },
-    lazy = "BufRead",
-    keys = { 
-        { 
-            "gx", 
-            "<cmd>Browse<cr>", 
-            mode = { "n", "x" } 
-        } 
+    keys = {
+        {
+            "gx",
+            "<cmd>Browse<cr>",
+            mode = { "n", "x" }
+        }
     },
     cmd = { "Browse" },
-    init = function( )
+    init = function()
         vim.g.netrw_nogx = 1
     end,
     config = true,

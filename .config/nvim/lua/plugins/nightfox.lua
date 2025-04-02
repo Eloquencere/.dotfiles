@@ -1,5 +1,7 @@
-return { 
+return {
     "EdenEast/nightfox.nvim",
+    event = { "VeryLazy" },
+    lazy = true,
     init = function()
         require('nightfox').setup({
             options = {

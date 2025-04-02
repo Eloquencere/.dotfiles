@@ -1,5 +1,7 @@
 return {
     "nvim-lualine/lualine.nvim",
+    event = { "VeryLazy" },
+    lazy = true,
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
         local lualine = require("lualine")
@@ -12,7 +14,7 @@ return {
             red = "#FF4A4A",
             fg = "#D3D3D3",
             bg = "#1A1A1A",
-            inactive_bg = "#2c3043",
+            inactive_bg = "#2C3043",
         }
         local my_lualine_theme = {
             normal = {
