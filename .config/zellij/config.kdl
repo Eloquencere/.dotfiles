@@ -124,7 +124,7 @@ keybinds clear-defaults=true {
         bind "Ctrl b" { PageScrollUp; }
         bind "Ctrl f" { PageScrollDown; }
         bind "g"      { ScrollToTop; }
-        bind "G"      { ScrollToBottom; SwitchToMode "Normal"; }
+        bind "G"      { ScrollToBottom; }
     }
     entersearch {
         bind "Esc"   { SwitchToMode "Scroll"; }

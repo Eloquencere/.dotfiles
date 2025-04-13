@@ -2,7 +2,8 @@ Set-ExecutionPolicy AllSigned
 Set-ExecutionPolicy RemoteSigned -scope CurrentUser
 
 setx XDG_CONFIG_HOME %USERPROFILE%\Documents
-setx PATH "%PATH%;%USERPROFILE%\AppData\Local\BraveSoftware\Brave-Browser\Application"
+
+# Manually append - %USERPROFILE%\AppData\Local\BraveSoftware\Brave-Browser\Application
 
 # Installing WSL
 wsl --install -d Ubuntu-24.04

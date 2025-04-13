@@ -3,6 +3,7 @@ winget install --id 9NKSQGP7F2NH --source msstore          # whatsapp
 winget install --id XPDC2RH70K22MN --source msstore        # discord
 winget install --id XP8LGT18LSS4QS  			   # recuva
 winget install --id JackieLiu.NotepadsApp
+winget install --id wez.wezterm
 winget install schollz.croc
 winget install --id RustDesk.RustDesk
 winget install --id Notion.Notion --source winget

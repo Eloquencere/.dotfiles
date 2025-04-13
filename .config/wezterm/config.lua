@@ -10,16 +10,14 @@ config = {
   automatically_reload_config = true,
   window_close_confirmation = "NeverPrompt",
   adjust_window_size_when_changing_font_size = false,
-  window_decorations = "RESIZE",
   check_for_updates = false,
   enable_tab_bar = false,
   use_fancy_tab_bar = false,
   tab_bar_at_bottom = false,
-  font = wezterm.font("UbuntuSansMono Nerd Font", { weight = "Medium" }), -- change to UbuntuSansMono Nerd Font on Windows
-  font_size = 17.5,
+  font = wezterm.font("UbuntuSansMono Nerd Font", { weight = "Medium" }),
   window_padding = {
-    left = 3,
-    right = 3,
+    left = 0,
+    right = 0,
     top = 0,
     bottom = 0,
   },
@@ -76,4 +74,17 @@ config = {
     },
   },
 }
+
+if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
+    config.default_domain = 'WSL:Ubuntu-24.04'
+    config.font_size = 13.5
+    config.front_end = "WebGpu"
+    config.max_fps = 144
+    config.enable_kitty_graphics = true
+    config.use_ime = false
+else
+    config.window_decorations = "RESIZE"
+    config.font_size = 17.5
+end
+
 return config
