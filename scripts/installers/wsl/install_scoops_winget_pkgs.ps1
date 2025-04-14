@@ -50,3 +50,6 @@ scoop install nonportable/pdf24-creator-np
 # winget install --id Microsoft.PowerToys --source winget
 # winget install --id BlenderFoundation.Blender
 # winget install VcXsrv ## For WSL
+
+
+# reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run" /v "Kanata" /t REG_SZ /d "C:\Windows\System32\conhost.exe --headless $env:USERPROFILE\scoop\apps\kanata\current\kanata.exe --cfg $env:XDG_CONFIG_HOME\Kanata\config.kbd
