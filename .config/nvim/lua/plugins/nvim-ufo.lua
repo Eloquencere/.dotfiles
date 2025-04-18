@@ -1,5 +1,5 @@
 return {
     "kevinhwang91/nvim-ufo",
-    event = { "VeryLazy" },
+    event = "VeryLazy",
     lazy = true
 }

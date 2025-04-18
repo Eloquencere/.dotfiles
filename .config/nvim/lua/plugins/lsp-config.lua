@@ -68,6 +68,12 @@ return {
             lspconfig.taplo.setup({})
             lspconfig.neocmake.setup({})
 
+            vim.diagnostic.config(
+                {
+                    virtual_text = { current_line = true }
+                }
+            )
+
             local keymap = vim.keymap
 
             keymap.set(
@@ -81,7 +87,7 @@ return {
                 "n",
                 "K",
                 vim.lsp.buf.hover,
-                { desc = "Give details of text below cursor"}
+                { desc = "Give details of text below cursor" }
             )
 
             keymap.set(

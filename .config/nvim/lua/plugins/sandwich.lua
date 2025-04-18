@@ -1,5 +1,5 @@
 return {
     'machakann/vim-sandwich',
-    event = { "VeryLazy" },
+    event = "VeryLazy",
     lazy = true
 }

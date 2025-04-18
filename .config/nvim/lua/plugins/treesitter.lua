@@ -1,6 +1,6 @@
 return {
     "nvim-treesitter/nvim-treesitter",
-    event = { "VeryLazy" },
+    event = "VeryLazy",
     lazy = true,
     build = ":TSUpdate",
     dependencies = {
@@ -21,7 +21,7 @@ return {
                 "html", "css",
                 "markdown", "markdown_inline",
                 "bash", "tcl",
-                "vhdl",
+                "vhdl", -- "verilog",
                 "lua", "perl", "julia",
                 "c", "cpp", "rust", "go", "python", "zig",
                 "json", "yaml",

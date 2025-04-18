@@ -1,3 +1,5 @@
 return {
-    "vim-scripts/ReplaceWithRegister"
+    "vim-scripts/ReplaceWithRegister",
+    event = "VeryLazy",
+    lazy = true
 }

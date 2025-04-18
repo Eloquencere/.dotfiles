@@ -28,6 +28,7 @@ scoop install git
 scoop bucket add java
 scoop bucket add extras
 scoop bucket add nonportable
+scoop install extras/wezterm
 scoop install extras/okular
 scoop install extras/teraterm
 scoop install extras/kicad
@@ -41,15 +42,15 @@ scoop update -a
 scoop install nonportable/pdf24-creator-np
 
 # # After installing VMWare
-# winget install usbipd
+winget install usbipd
 
 # Optional
 # winget install "Microsoft Whiteboard"
-# scoop install main/duplicacy
 # scoop install extras/parsec
-# winget install --id Microsoft.PowerToys --source winget
+# scoop install main/duplicacy
 # winget install --id BlenderFoundation.Blender
 # winget install VcXsrv ## For WSL
+# winget install --id Microsoft.PowerToys --source winget
 
 
-# reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run" /v "Kanata" /t REG_SZ /d "C:\Windows\System32\conhost.exe --headless $env:USERPROFILE\scoop\apps\kanata\current\kanata.exe --cfg $env:XDG_CONFIG_HOME\Kanata\config.kbd
+# reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run" /v "Kanata" /t REG_SZ /d "C:\Windows\System32\conhost.exe --headless $env:USERPROFILE\scoop\apps\kanata\current\kanata.exe --cfg $env:XDG_CONFIG_HOME\Kanata\config.kbd"

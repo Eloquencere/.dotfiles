@@ -105,8 +105,25 @@ cd ~/.dotfiles
 stow .
 cd -
 
+CLI_TOOLS=(
+    "nixpkgs#starship" "nixpkgs#fzf" "nixpkgs#atuin" "nixpkgs#zoxide" "nixpkgs#mise"
+    "nixpkgs#eza" "nixpkgs#fd" "nixpkgs#bat" "nixpkgs#ripgrep"
+    "nixpkgs#duf" "nixpkgs#delta"
+    "nixpkgs#croc" "nixpkgs#fastfetch"
+
+    "nixpkgs#dos2unix" "nixpkgs#btop" "nixpkgs#yazi"
+    "nixpkgs#jq" # jqp yq
+    "nixpkgs#neovim" "nixpkgs#zellij" "nixpkgs#mprocs"
+    "nixpkgs#conan" "nixpkgs#scriptisto" "nixpkgs#tio"
+    "nixpkgs#gh" "nixpkgs#lazygit"
+    "nixpkgs#podman" # look into Podman TUI
+    "nixpkgs#tlrc" "nixpkgs#cheat"
+    "nixpkgs#natural-docs" "nixpkgs#doxygen"
+    "nixpkgs#restic" "nixpkgs#resticprofile"
+)
+
 zsh -li -c "sh <(curl -L https://nixos.org/nix/install) --daemon"
-zsh -li -c "nix profile install --file cli_pkgs.nix; \
+zsh -li -c "nix profile install "${CLI_TOOLS[@]}"; \
 sudo update-alternatives --install /usr/bin/nvim editor \$(which nvim) 100"
 zsh -li -c "mise install node@latest deno@latest go@latest python@3.12 python@2.7"
 

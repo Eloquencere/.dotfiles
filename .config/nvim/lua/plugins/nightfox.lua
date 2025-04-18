@@ -1,6 +1,6 @@
 return {
     "EdenEast/nightfox.nvim",
-    event = { "VeryLazy" },
+    event = "VeryLazy",
     lazy = true,
     init = function()
         require('nightfox').setup({

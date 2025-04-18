@@ -1,6 +1,7 @@
 return {
     "nat-418/boole.nvim",
     event = 'VeryLazy',
+    lazy = true,
     config = function()
         require('boole').setup({
             mappings = {
