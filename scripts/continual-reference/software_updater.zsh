@@ -4,4 +4,4 @@ zinit update --all
 nix-channel --update; nix profile upgrade --all
 
 # Optional
-flatpak update --assumeyes
+# flatpak update --assumeyes

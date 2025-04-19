@@ -78,7 +78,6 @@ config = {
 if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
     config.default_domain = 'WSL:Ubuntu-24.04'
     config.font_size = 13.5
-    config.front_end = "WebGpu"
     config.max_fps = 144
     config.enable_kitty_graphics = true
     config.use_ime = false
@@ -86,5 +85,7 @@ else
     config.window_decorations = "RESIZE"
     config.font_size = 17.5
 end
+
+-- { key = 'n', mods = mod.SUPER, action = act.SpawnCommandInNewWindow { cwd = wezterm.home_dir, domain = 'DefaultDomain' } },
 
 return config

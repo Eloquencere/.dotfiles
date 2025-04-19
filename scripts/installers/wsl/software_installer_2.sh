@@ -8,7 +8,7 @@ sleep 2
 # cpanm package manager
 cpan App::cpanminus
 
-# Useful Python libraries
+# # Useful Python libraries
 # pip2 install --upgrade pip
 # pip install --upgrade pip
 # pip install icecream # for debugging
@@ -35,7 +35,15 @@ export CROC_SELF_TRANSFER_ID=$croc_id" >> $ZDOTDIR/personal/zprofile.zsh
 echo "Move a copy of the collaborators database given by your admin to the zsh home directory"
 mkdir ~/croc-inbox
 
-export BROWSER=brave.exe >> $HOME/.config/zsh/personal/zprofile.zsh
+echo -n "What is your default browser on Windows?
+b -> brave
+gc -> google chrome"
+read browser_choice
+if [[ $browser_choice == "b" ]]; then
+    export BROWSER=brave.exe >> $HOME/.config/zsh/personal/zprofile.zsh
+else
+    export BROWSER=chrome.exe >> $HOME/.config/zsh/personal/zprofile.zsh
+fi
 
 echo -n "Would you like to configure USBIP?(y/N) "
 read user_choice
@@ -46,7 +54,7 @@ if [[ $user_choice =~ ^[Yy]$ ]]; then
 # USBIP
 export SERVER_IP=$server_ip" >> $HOME/.config/zsh/personal/zprofile.zsh
 fi
-sudo sh -c " echo '# usbip client
+sudo sh -c "echo '# usbip client
 usbip-core
 vhci-hcd' > /etc/modules-load.d/usbip.conf"
 
@@ -77,8 +85,8 @@ fi
 rm -rf ~/{.bash*,.profile}
 
 sudo sh -c "apt-get update; apt-get dist-upgrade; apt-get autoremove; apt-get autoclean; apt --fix-broken install"
-flatpak uninstall --unused --delete-data --assumeyes
 nix-collect-garbage -d
+# flatpak uninstall --unused --delete-data --assumeyes
 
 source $HOME/.dotfiles/scripts/continual-reference/software_updater.zsh
 
@@ -87,15 +95,15 @@ sleep 3
 
 #### end ####
 
-## cuda WSL support
-wget https://developer.download.nvidia.com/compute/cuda/repos/wsl-ubuntu/x86_64/cuda-wsl-ubuntu.pin
-sudo mv cuda-wsl-ubuntu.pin /etc/apt/preferences.d/cuda-repository-pin-600
-wget https://developer.download.nvidia.com/compute/cuda/12.8.1/local_installers/cuda-repo-wsl-ubuntu-12-8-local_12.8.1-1_amd64.deb
-sudo dpkg -i cuda-repo-wsl-ubuntu-12-8-local_12.8.1-1_amd64.deb
-sudo cp /var/cuda-repo-wsl-ubuntu-12-8-local/cuda-*-keyring.gpg /usr/share/keyrings/
-sudo apt-get update
-sudo apt-get -y install cuda-toolkit-12-8
-rm -f cuda-repo-wsl-ubuntu-12-8-local_12.8.1-1_amd64.deb
+# ## cuda WSL support
+# wget https://developer.download.nvidia.com/compute/cuda/repos/wsl-ubuntu/x86_64/cuda-wsl-ubuntu.pin
+# sudo mv cuda-wsl-ubuntu.pin /etc/apt/preferences.d/cuda-repository-pin-600
+# wget https://developer.download.nvidia.com/compute/cuda/12.8.1/local_installers/cuda-repo-wsl-ubuntu-12-8-local_12.8.1-1_amd64.deb
+# sudo dpkg -i cuda-repo-wsl-ubuntu-12-8-local_12.8.1-1_amd64.deb
+# sudo cp /var/cuda-repo-wsl-ubuntu-12-8-local/cuda-*-keyring.gpg /usr/share/keyrings/
+# sudo apt-get update
+# sudo apt-get -y install cuda-toolkit-12-8
+# rm -f cuda-repo-wsl-ubuntu-12-8-local_12.8.1-1_amd64.deb
 
 
 ## Optional

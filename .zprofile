@@ -37,6 +37,9 @@ export LIBRARY_PATH=/usr/lib32:$LIBRARY_PATH
 if [[ -f "$ZDOTDIR/personal/zprofile.zsh" ]]; then
     source "$ZDOTDIR/personal/zprofile.zsh"
 fi
+if [[ -f "$ZDOTDIR/personal/zshrc.zsh" ]]; then
+    source "$ZDOTDIR/personal/zshrc.zsh"
+fi
 
 # Plugin manager for zsh
 [[ ! -d "$ZDOTDIR/zinit" ]] && git clone https://github.com/zdharma-continuum/zinit.git "$HOME/.config/zsh/zinit"

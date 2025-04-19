@@ -22,7 +22,7 @@ ESSENTIALS=(
 	"python3-tk" "tk-dev"
 	"libsqlite3-dev" "sqlite3" "stow" "curl"
 	"build-essential" "xclip" "pkg-config"
-    "7zip-full" "unrar"
+    "7zip-full" "unrar" "unzip"
 	"nala"
 	"x11-apps"
 )
@@ -31,10 +31,10 @@ sudo apt-get install -y "${ESSENTIALS[@]}"
 export CARGO_HOME="$HOME/.local/share/rust/cargo"
 export RUSTUP_HOME="$HOME/.local/share/rust/rustup"
 LANGUAGE_COMPILERS=(
-    "rustup" "perl"
-    "gdb" "valgrind" "strace"
     "clang" "lldb"
+    "gdb" "valgrind" "strace"
     "python3-pip" "tk-dev"
+    "rustup" "perl"
 )
 sudo nala install -y "${LANGUAGE_COMPILERS[@]}"
 
@@ -48,12 +48,17 @@ cargo install sccache
 sudo nala install -y zsh
 chsh --shell $(which zsh)
 
-cd ./.dotfiles
+cd ~/.dotfiles
 stow .
 cd -
 
+# nix
 sudo sh -c " echo '[boot]
 command=\"service udev start\"' >> /etc/wsl.conf"
+sudo sh -c "echo '[boot]
+[boot]
+systemd=true
+' >> /etc/wsl.conf"
 
 CLI_TOOLS=(
     "nixpkgs#starship" "nixpkgs#fzf" "nixpkgs#atuin" "nixpkgs#zoxide" "nixpkgs#mise"
@@ -69,18 +74,12 @@ CLI_TOOLS=(
     "nixpkgs#podman" # look into Podman TUI
     "nixpkgs#tlrc" "nixpkgs#cheat"
     "nixpkgs#natural-docs" "nixpkgs#doxygen"
-    "nixpkgs#restic" "nixpkgs#resticprofile"
+    # "nixpkgs#restic" "nixpkgs#resticprofile"
 )
-
-# nix
-sudo sh -c "echo '[boot]
-[boot]
-systemd=true
-' >> /etc/wsl.conf"
 zsh -li -c "sh <(curl -L https://nixos.org/nix/install) --daemon"
-zsh -li -c "nix profile install "${CLI_TOOLS[@]}"; \
+zsh -li -c "nix profile install $(printf '%s ' "${CLI_TOOLS[@]}"); \"
 sudo update-alternatives --install /usr/bin/nvim editor \$(which nvim) 100"
-zsh -li -c "mise install node@latest deno@latest go@latest python@3.12 python@2.7"
+zsh -li -c "mise install go@latest node@latest deno@latest python@3.12 python@2.7"
 
 
 SOFTWARE_BLOAT=(
