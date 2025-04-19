@@ -121,11 +121,10 @@ CLI_TOOLS=(
     "nixpkgs#natural-docs" "nixpkgs#doxygen"
     "nixpkgs#restic" "nixpkgs#resticprofile"
 )
-
 zsh -li -c "sh <(curl -L https://nixos.org/nix/install) --daemon"
-zsh -li -c "nix profile install "${CLI_TOOLS[@]}"; \
+zsh -li -c "nix profile install $(printf '%s ' "${CLI_TOOLS[@]}"); \"
 sudo update-alternatives --install /usr/bin/nvim editor \$(which nvim) 100"
-zsh -li -c "mise install node@latest deno@latest go@latest python@3.12 python@2.7"
+zsh -li -c "mise install go@latest node@latest deno@latest python@3.12 python@2.7"
 
 # Flatpaks
 sudo apt install -y flatpak gnome-software-plugin-flatpak

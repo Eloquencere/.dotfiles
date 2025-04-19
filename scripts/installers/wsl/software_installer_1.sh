@@ -74,7 +74,7 @@ CLI_TOOLS=(
     "nixpkgs#podman" # look into Podman TUI
     "nixpkgs#tlrc" "nixpkgs#cheat"
     "nixpkgs#natural-docs" "nixpkgs#doxygen"
-    # "nixpkgs#restic" "nixpkgs#resticprofile"
+    "nixpkgs#restic" "nixpkgs#resticprofile"
 )
 zsh -li -c "sh <(curl -L https://nixos.org/nix/install) --daemon"
 zsh -li -c "nix profile install $(printf '%s ' "${CLI_TOOLS[@]}"); \"
