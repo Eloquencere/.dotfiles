@@ -55,7 +55,6 @@ function zvm_after_init() {
 	ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
 	zvm_bindkey viins '^r' atuin-search
 	zvm_bindkey viins '^p' atuin-up-search
-	# zvm_bindkey viins '^Xe' edit-command-line
 }
 function zvm_after_lazy_keybindings() {
     zvm_bindkey vicmd '^r' atuin-search
@@ -70,17 +69,17 @@ _fzf_compgen_dir() {
     fd --type=d --hidden --exclude .git . "$1" --color=always
 }
 
-zellij_tab_name_update() {
-    if [[ -n $ZELLIJ ]]; then
-        local current_dir=$PWD
-        if [[ $current_dir == $HOME ]]; then
-            current_dir="~"
-        else
-            current_dir=${current_dir##*/}
-        fi
-        command nohup zellij action rename-tab $current_dir >/dev/null 2>&1
-    fi
-}
-zellij_tab_name_update
-chpwd_functions+=(zellij_tab_name_update)
+# zellij_tab_name_update() {
+#     if [[ -n $ZELLIJ ]]; then
+#         local current_dir=$PWD
+#         if [[ $current_dir == $HOME ]]; then
+#             current_dir="~"
+#         else
+#             current_dir=${current_dir##*/}
+#         fi
+#         command nohup zellij action rename-tab $current_dir >/dev/null 2>&1
+#     fi
+# }
+# zellij_tab_name_update
+# chpwd_functions+=(zellij_tab_name_update)
 

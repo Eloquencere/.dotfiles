@@ -52,5 +52,5 @@ winget install usbipd
 # winget install VcXsrv ## For WSL
 # winget install --id Microsoft.PowerToys --source winget
 
+# reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run" /v "Kanata" /t REG_SZ /d "C:\Windows\System32\conhost.exe --headless %USERPROFILE%\scoop\apps\kanata\current\kanata.exe --cfg %XDG_CONFIG_HOME%\Kanata\config.kbd"
 
-# reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run" /v "Kanata" /t REG_SZ /d "C:\Windows\System32\conhost.exe --headless $env:USERPROFILE\scoop\apps\kanata\current\kanata.exe --cfg $env:XDG_CONFIG_HOME\Kanata\config.kbd"
