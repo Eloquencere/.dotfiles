@@ -5,9 +5,9 @@ return {
     dependencies = { "nvim-lua/plenary.nvim" },
     keys = {
         {
+            mode = { "n", "x" },
             "gx",
             "<cmd>Browse<cr>",
-            mode = { "n", "x" }
         }
     },
     cmd = { "Browse" },

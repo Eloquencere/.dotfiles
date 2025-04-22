@@ -12,7 +12,10 @@ return {
 
         -- Configure treesitter
         treesitter.setup({
-            highlight = { enable = true },
+            highlight = { 
+                enable = true,
+                disable = { "verilog", "systemverilog" }
+            },
             indent = { enable = true },
             autotag = { enable = true },
             -- Ensure these Language Parsers are Installed
@@ -21,7 +24,7 @@ return {
                 "html", "css",
                 "markdown", "markdown_inline",
                 "bash", "tcl",
-                "vhdl", -- "verilog",
+                "vhdl", "verilog",
                 "lua", "perl", "julia",
                 "c", "cpp", "rust", "go", "python", "zig",
                 "json", "yaml",

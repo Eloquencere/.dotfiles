@@ -3,10 +3,16 @@ return {
     event = "BufEnter",
     lazy = true,
     main = "ibl",
+
+    opts = {
+        scope = { enabled = false }
+    },
+
     config = function()
         require("ibl").setup({
-            indent = { char = "│", highlight = highlight }, -- Solid Line
-            -- indent = { char = "┊", highlight = highlight }, -- Dotted Line
+            indent = { char = "│", highlight = highlight },
+            -- indent = { char = "┊", highlight = highlight },
         })
     end,
 }
+
