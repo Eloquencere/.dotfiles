@@ -7,12 +7,11 @@ return {
         "nvim-lua/plenary.nvim",
         { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
         "nvim-tree/nvim-web-devicons",
-        "folke/todo-comments.nvim",
     },
     config = function()
         local telescope = require("telescope")
         local actions = require("telescope.actions")
-        local transform_mod = require("telescope.actions.mt").transform_mod
+        -- local transform_mod = require("telescope.actions.mt").transform_mod
 
         telescope.setup({
             defaults = {
@@ -57,13 +56,6 @@ return {
             "<leader>fc",
             "<cmd>Telescope grep_string<cr>",
             { desc = "Find string under cursor in cwd" }
-        )
-
-        keymap.set(
-            "n",
-            "<leader>ft",
-            "<cmd>TodoTelescope<cr>",
-            { desc = "Find todos" }
         )
 
         keymap.set(

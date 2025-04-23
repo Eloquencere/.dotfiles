@@ -50,5 +50,8 @@ return {
     keys = {
         { mode = { "n" }, "]t", function() todo_comments.jump_next() end, desc = "Next todo comment" },
         { mode = { "n" }, "[t", function() todo_comments.jump_prev() end, desc = "Next todo comment" },
+        -- Telescope integration
+        { mode = { "n" }, "<leader>ft", "<cmd>TodoTelescope<cr>", desc = "Find todos" },
+
     }
 }

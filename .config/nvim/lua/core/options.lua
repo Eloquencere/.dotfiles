@@ -72,3 +72,16 @@ vim.api.nvim_create_autocmd(
     }
 )
 
+-- vim.api.nvim_create_augroup('verilog_maps', { clear = true })
+-- vim.api.nvim_create_autocmd('FileType', {
+--   group = 'verilog_maps',
+--   pattern = 'verilog',
+--   callback = function()
+--     local opts = { buffer = true, silent = true }
+--     vim.keymap.set('n', '[m', '?^\\s*module\\><CR>', opts)
+--     vim.keymap.set('n', ']m', '/^\\s*module\\><CR>', opts)
+--     vim.keymap.set('n', '[M', '?^\\s*endmodule\\><CR>', opts)
+--     vim.keymap.set('n', ']M', '/^\\s*endmodule\\><CR>', opts)
+--   end,
+-- })
+

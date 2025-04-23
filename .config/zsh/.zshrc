@@ -3,20 +3,28 @@ setopt nobeep
 setopt correct
 setopt interactive_comments
 
-# Initialising completions directory
-fpath=($ZDOTDIR/completion $fpath)
-
 # Loading zinit
 source "$ZDOTDIR/zinit/zinit.zsh"
 
-# zinit plugins
-zinit ice depth=1
-zinit light   jeffreytse/zsh-vi-mode
-zinit light   zsh-users/zsh-completions
-zinit light   zsh-users/zsh-syntax-highlighting
-zinit light   Aloxaf/fzf-tab
-zinit light   Eloquencere/zsh-goto-cli
+# Enable turbo mode by default
+zinit ice wait lucid
+zinit light-mode for \
+  jeffreytse/zsh-vi-mode \
+  hlissner/zsh-autopair \
+  zsh-users/zsh-completions \
+  Aloxaf/fzf-tab \
+  Eloquencere/zsh-goto-cli
+
+# Syntax highlighting needs to load LAST
+zinit ice wait'1' lucid
+zinit light zsh-users/zsh-syntax-highlighting
+
+# OMZ sudo plugin (also turboed)
+zinit ice wait lucid
 zinit snippet OMZ::plugins/sudo/sudo.plugin.zsh
+
+# Initialising completions directory
+fpath=($ZDOTDIR/completion $fpath)
 
 autoload -Uz colors && colors
 autoload -Uz compinit && compinit
