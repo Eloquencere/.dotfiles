@@ -7,6 +7,11 @@ local keymap = vim.keymap
 vim.cmd("nnoremap <silent> k :<C-U>execute \'normal!\' (v:count > 1 ? \"m\'\" . v:count : \'\') . \'k\'<CR>")
 vim.cmd("nnoremap <silent> j :<C-U>execute \'normal!\' (v:count > 1 ? \"m\'\" . v:count : \'\') . \'j\'<CR>")
 
+vim.keymap.set(
+    { 'n', 'v' },
+    's',
+    '<Nop>'
+)
 -- Moving between buffers
 keymap.set(
     {"n", "i", "v"},
@@ -52,7 +57,7 @@ keymap.set(
     "n",
     "S",
     ":%s/\\v//g" .. ("<left>"):rep(3),
-    { noremap = true, desc = "Easier horizontal split to another file" }
+    { noremap = true, desc = "Search and replace" }
 )
 
 -- Split Windows
@@ -112,3 +117,4 @@ keymap.set(
     "<CMD>Oil<CR>",
     { desc = "Open parent directory" }
 )
+

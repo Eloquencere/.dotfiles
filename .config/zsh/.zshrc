@@ -83,3 +83,12 @@ zellij_tab_name_update() {
 zellij_tab_name_update
 chpwd_functions+=(zellij_tab_name_update)
 
+function insert-newline() {
+  LBUFFER+=$'\n'
+}
+
+zle -N insert-newline
+
+# Bind Shift+Enter
+bindkey "^[[13;2u" insert-newline
+

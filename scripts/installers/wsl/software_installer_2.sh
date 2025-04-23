@@ -85,7 +85,7 @@ fi
 rm -rf ~/{.bash*,.profile}
 
 sudo sh -c "apt-get update; apt-get dist-upgrade; apt-get autoremove; apt-get autoclean; apt --fix-broken install"
-nix-collect-garbage -d
+nix-collect-garbage --delete-old; nix store gc
 # flatpak uninstall --unused --delete-data --assumeyes
 
 source $HOME/.dotfiles/scripts/continual-reference/software_updater.zsh

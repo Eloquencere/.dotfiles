@@ -33,7 +33,7 @@ return {
                     local next_char = opts.line:sub(opts.col, opts.col)
 
                     -- Check if you are between matching brackets with nothing inside
-                    return (prev_char == '(' and next_char == ')') or (prev_char == '{' and next_char == '}')
+                    return (prev_char == '{' and next_char == '}')
                 end),
         })
     end,
