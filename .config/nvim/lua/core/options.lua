@@ -26,6 +26,7 @@ opt.visualbell = true
 opt.autochdir = true
 opt.backspace = "indent,eol,start"
 opt.showmode = false
+opt.shortmess:append("S")
 
 -- Appearance
 opt.termguicolors = true

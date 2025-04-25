@@ -3,6 +3,13 @@ return {
     event = "VeryLazy",
     lazy = true,
     config = function()
+        vim.keymap.set(
+            { 'n', 'v' },
+            's',
+            '<Nop>',
+            { desc = "Unsetting it to allow for surround to work" }
+        )
+
         require("nvim-surround").setup({
             keymaps = {
                 normal = "s",

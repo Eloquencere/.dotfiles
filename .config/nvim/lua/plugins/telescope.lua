@@ -59,7 +59,7 @@ return {
         )
 
         keymap.set(
-            {"n", "i"},
+            "n",
             "z=",
             "<cmd>Telescope spell_suggest<cr>",
             { desc = "Spell Suggestions"}

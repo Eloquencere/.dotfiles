@@ -7,11 +7,6 @@ local keymap = vim.keymap
 vim.cmd("nnoremap <silent> k :<C-U>execute \'normal!\' (v:count > 1 ? \"m\'\" . v:count : \'\') . \'k\'<CR>")
 vim.cmd("nnoremap <silent> j :<C-U>execute \'normal!\' (v:count > 1 ? \"m\'\" . v:count : \'\') . \'j\'<CR>")
 
-vim.keymap.set(
-    { 'n', 'v' },
-    's',
-    '<Nop>'
-)
 -- Moving between buffers
 keymap.set(
     {"n", "i", "v"},
@@ -26,7 +21,7 @@ keymap.set(
     { noremap = true, silent = true, desc = "Move to previous buffer" }
 )
 
--- Split Navigation
+-- Split Windows
 keymap.set(
     "n",
     "<leader>h",
@@ -39,6 +34,12 @@ keymap.set(
     ":vsplit ",
     { noremap = true, desc = "Easier vertical split of another file" }
 )
+keymap.set(
+    "n",
+    "<leader>se",
+    "<C-w>=",
+    { desc = "Make splits equal size" }
+)
 
 -- Search
 keymap.set(
@@ -49,42 +50,11 @@ keymap.set(
 )
 keymap.set(
     "n",
-    "<ESC>",
-    "<cmd>nohl<CR>",
-    { silent = true, desc = "Clear search highlights" }
-)
-keymap.set(
-    "n",
     "S",
     ":%s/\\v//g" .. ("<left>"):rep(3),
     { noremap = true, desc = "Search and replace" }
 )
 
--- Split Windows
-keymap.set(
-    "n",
-    "<leader>sv",
-    "<C-w>v",
-    { desc = "Split window vertically" }
-)
-keymap.set(
-    "n",
-    "<leader>sh",
-    "<C-w>s",
-    { desc = "Split window horizontally" }
-)
-keymap.set(
-    "n",
-    "<leader>se",
-    "<C-w>=",
-    { desc = "Make splits equal size" }
-)
-keymap.set(
-    "n",
-    "<leader>sx",
-    "<cmd>close<CR>",
-    { desc = "Close current split" }
-)
 
 -- Tabs
 keymap.set(
@@ -108,13 +78,5 @@ keymap.set(
     "<leader>tp",
     "<cmd>tabp<CR>",
     { desc = "Go to previous tab" }
-)
-
--- Oil Keymap
-keymap.set(
-    "n",
-    "-",
-    "<CMD>Oil<CR>",
-    { desc = "Open parent directory" }
 )
 
