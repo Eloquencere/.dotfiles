@@ -3,7 +3,9 @@ return {
     event = "VeryLazy",
     lazy = true,
     init = function()
-        require("hlslens").setup()
+        require("hlslens").setup({
+            nearest_only = true
+        })
     end,
     -- Probably have to configure further to integrate with nvim-ufo
     keys = {

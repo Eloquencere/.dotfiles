@@ -4,9 +4,6 @@ vim.g.maplocalleader = " "
 
 local keymap = vim.keymap
 
-vim.cmd("nnoremap <silent> k :<C-U>execute \'normal!\' (v:count > 1 ? \"m\'\" . v:count : \'\') . \'k\'<CR>")
-vim.cmd("nnoremap <silent> j :<C-U>execute \'normal!\' (v:count > 1 ? \"m\'\" . v:count : \'\') . \'j\'<CR>")
-
 -- Moving between buffers
 keymap.set(
     {"n", "i", "v"},
