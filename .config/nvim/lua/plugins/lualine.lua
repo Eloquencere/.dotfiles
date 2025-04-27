@@ -76,7 +76,20 @@ return {
                         end 
                     },
                 },
-                lualine_b = { 'filename' },
+                lualine_b = {
+                    {
+                        'buffers',
+                        separator = { left = '', right = '' },
+                        symbols = {
+                            alternate_file = '',
+                        },
+                        buffers_color = {
+                            active = { fg = '#A05FD7', bg = '#2E3440' },
+                            inactive = { fg = '#BBBBBB', bg = "#1C1C1C" },
+                        },
+                    },
+                },
+
                 lualine_c = { '' },
 
                 lualine_x = { '' },

@@ -62,6 +62,8 @@ echo -n "Would you like to log into your git account?(y/N) "
 read user_choice
 if [[ $user_choice =~ ^[Yy]$ ]]; then
     git config --global init.defaultBranch main
+    git config --global core.whitespace error
+    git config --global core.preloadindex true
     git config --global core.editor nvim
     git config --global core.pager delta
     git config --global interactive.diffFilter 'delta --color-only'
