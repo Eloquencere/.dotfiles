@@ -3,7 +3,7 @@ return {
     event = "VeryLazy",
     lazy = true,
     config = function()
-        require'marks'.setup {
+        require'marks'.setup({
             -- whether to map keybinds or not. default true
             default_mappings = true,
             -- which builtin marks to show. default {}
@@ -38,6 +38,6 @@ return {
                 annotate = false,
             },
             mappings = {}
-        }
+        })
     end,
 }

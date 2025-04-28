@@ -1,9 +1,18 @@
 local opt = vim.opt
 
--- Basic Settings
+-- Appearance
+opt.termguicolors = true
 opt.number = true
 opt.relativenumber = true
+opt.signcolumn = "yes"
+opt.cursorline = true
+
+-- Intricate settings
 opt.clipboard:append("unnamedplus")
+opt.backspace = "indent,eol,start"
+opt.modelines = 0
+opt.visualbell = true
+opt.autochdir = true
 
 -- Tabs and Indentation
 opt.tabstop = 4    -- Number of spaces a tab character takes up
@@ -13,24 +22,8 @@ opt.expandtab = true
 opt.autoindent = true
 opt.smartindent = true
 opt.breakindent = true
-opt.formatoptions = tcqrn1
 opt.wrap = false
-
--- Cursor motion
-opt.matchpairs:append('<:>')
-opt.cursorline = true
-
--- Intricate settings
-opt.modelines = 0
-opt.visualbell = true
-opt.autochdir = true
-opt.backspace = "indent,eol,start"
-opt.showmode = false
-opt.shortmess:append("S")
-
--- Appearance
-opt.termguicolors = true
-opt.signcolumn = "yes"
+opt.formatoptions = tcqrn1
 
 -- Search
 opt.ignorecase = true

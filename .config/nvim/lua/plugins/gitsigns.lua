@@ -3,7 +3,7 @@ return {
     event = "VeryLazy",
     lazy = true,
     config = function()
-        require('gitsigns').setup{
+        require('gitsigns').setup({
             on_attach = function(bufnr)
                 local gitsigns = require('gitsigns')
 
@@ -48,6 +48,6 @@ return {
                 -- Text object
                 map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
             end
-        }
+        })
     end,
 }

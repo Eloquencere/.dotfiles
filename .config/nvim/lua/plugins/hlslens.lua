@@ -3,11 +3,14 @@ return {
     event = "VeryLazy",
     lazy = true,
     init = function()
+        vim.opt.shortmess:append("S")
+
         require("hlslens").setup({
             nearest_only = true
         })
     end,
-    -- Probably have to configure further to integrate with nvim-ufo
+
+    -- Will have to configure further to integrate with nvim-ufo
     keys = {
         {
             "n",

@@ -22,7 +22,8 @@ return {
                     "cssls", -- CSS
                     "marksman", -- Markdown
                     "bashls", -- Bash, Zsh
-                    "svlangserver", -- SV
+                    "svlangserver",
+                    "verible", -- SV
                     "vhdl_ls", -- VHDL
                     "perlnavigator", -- Perl
                     "julials", -- Julia

@@ -3,18 +3,16 @@ return {
     event = "VeryLazy",
     lazy = true,
     dependencies = { "nvim-lua/plenary.nvim" },
+    config = true,
+    init = function()
+        vim.g.netrw_nogx = 1
+    end,
+    cmd = { "Browse" },
     keys = {
         {
             mode = { "n", "x" },
             "gx",
-            "<cmd>Browse<cr>",
+            "<CMD>Browse<CR>",
         }
     },
-    cmd = { "Browse" },
-    init = function()
-        vim.g.netrw_nogx = 1
-    end,
-    config = true,
-    -- default settings
-    submodules = false, -- not needed, submodules are required only for tests
 }

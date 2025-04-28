@@ -3,6 +3,10 @@ return {
     event = "VeryLazy",
     lazy = true,
     dependencies = { "nvim-tree/nvim-web-devicons" },
+    init = function()
+        -- Vim settings
+        vim.opt.showmode = false
+    end,
     config = function()
         local lualine = require("lualine")
         local lazy_status = require("lazy.status")
@@ -113,7 +117,7 @@ return {
                     'location'
                 },
             },
-            extensions = { 'lazy', 'oil' },
+            extensions = { 'lazy', 'mason', 'oil' },
         })
     end,
 }

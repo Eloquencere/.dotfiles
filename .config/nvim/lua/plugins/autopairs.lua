@@ -5,6 +5,9 @@ return {
     config = true,
     opts = {},
     init = function()
+        vim.opt.matchpairs:append('<:>')
+    end,
+    config = function()
         local npairs = require("nvim-autopairs")
         local Rule = require('nvim-autopairs.rule')
         local cond   = require('nvim-autopairs.conds')
