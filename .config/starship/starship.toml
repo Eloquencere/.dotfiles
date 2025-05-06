@@ -26,6 +26,7 @@ $fill\
 $status\
 $cmd_duration\
 $jobs\
+$shell\
 $os\
 [\u2576\u256E](fg:#E95420)\
 [ ](fg:greydarker)\
@@ -75,7 +76,7 @@ duration = 'yellow'
 fill = '#424242' # greydimmed
 status = 'red'
 localip = 'green'
-shell = '#424242' # greydimmed
+# shell = '#424242' # greydimmed
 
 [username]
 format = "[\ueab6 ](fg:user bold)[$user]($style)[ ]()" # \u276F ❯ \ueab6 
@@ -174,6 +175,13 @@ style = 'fg:jobs'
 symbol = "\ueb7b" # \ueb7b  \uef0c 省 # '廒' # '󰜎' # ''
 symbol_threshold = 1
 number_threshold = 2
+disabled = false
+
+[shell]
+format = "[\ueab5 ](fg:#D25E35)[$indicator]($style)"
+zsh_indicator = '_'
+bash_indicator = ''
+style = 'bold #D25E35'
 disabled = false
 
 # Customization and activation of some modules:

@@ -66,7 +66,7 @@ CLI_TOOLS=(
     "nixpkgs#duf" "nixpkgs#delta"
     "nixpkgs#croc" "nixpkgs#fastfetch"
 
-    "nixpkgs#dos2unix" "nixpkgs#btop" "nixpkgs#yazi"
+    "nixpkgs#dos2unix" "nixpkgs#btop" "nixpkgs#nvitop" "nixpkgs#yazi"
     "nixpkgs#jq" # jqp yq
     "nixpkgs#neovim" "nixpkgs#zellij" "nixpkgs#mprocs"
     "nixpkgs#conan" "nixpkgs#scriptisto" "nixpkgs#tio"

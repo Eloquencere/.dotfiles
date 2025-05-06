@@ -20,6 +20,7 @@ winget install --id VideoLAN.VLC --source winget
 winget install --id 7zip.7zip
 winget install --id Obsidian.Obsidian
 winget install --id BlueStack.BlueStacks
+winget install --id ElementLabs.LMStudio
 
 winget upgrade --all --include-unknown
 

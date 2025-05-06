@@ -4,18 +4,18 @@ vim.g.maplocalleader = " "
 
 local keymap = vim.keymap
 
--- Moving between buffers
+-- Search
 keymap.set(
-    {"n", "i", "v"},
-    '<C-Tab>',
-    '<Cmd>bnext<CR>',
-    { noremap = true, silent = true, desc = "Move to next buffer" }
+    { "n", "v" },
+    "/",
+    "/\\v",
+    { noremap = true, desc = "Search pattern" }
 )
 keymap.set(
-    {"n", "i", "v"},
-    '<C-S-Tab>',
-    '<Cmd>bNext<CR>',
-    { noremap = true, silent = true, desc = "Move to previous buffer" }
+    "n",
+    "S",
+    ":%s/\\v//g" .. ("<left>"):rep(3),
+    { noremap = true, desc = "Search and replace" }
 )
 
 -- Split Windows
@@ -38,20 +38,19 @@ keymap.set(
     { desc = "Make splits equal size" }
 )
 
--- Search
+-- Moving between buffers
 keymap.set(
-    { "n", "v" },
-    "/",
-    "/\\v",
-    { noremap = true, desc = "Search pattern" }
+    {"n", "i", "v"},
+    '<C-Tab>',
+    '<Cmd>bnext<CR>',
+    { noremap = true, silent = true, desc = "Move to next buffer" }
 )
 keymap.set(
-    "n",
-    "S",
-    ":%s/\\v//g" .. ("<left>"):rep(3),
-    { noremap = true, desc = "Search and replace" }
+    {"n", "i", "v"},
+    '<C-S-Tab>',
+    '<Cmd>bNext<CR>',
+    { noremap = true, silent = true, desc = "Move to previous buffer" }
 )
-
 
 -- Tabs
 keymap.set(

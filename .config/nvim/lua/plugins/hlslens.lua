@@ -3,7 +3,7 @@ return {
     event = "VeryLazy",
     lazy = true,
     init = function()
-        vim.opt.shortmess:append("S")
+        vim.opt.shortmess:append("S") -- Turning off total search match number
 
         require("hlslens").setup({
             nearest_only = true

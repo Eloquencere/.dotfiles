@@ -86,9 +86,10 @@ return {
                         separator = { left = '', right = '' },
                         symbols = {
                             alternate_file = '',
+                            directory =  '',
                         },
                         buffers_color = {
-                            active = { fg = '#A05FD7', bg = '#2E3440' },
+                            active = { fg = '#E0E0E0', bg = '#2E3440' },
                             inactive = { fg = '#BBBBBB', bg = "#1C1C1C" },
                         },
                     },
@@ -110,7 +111,7 @@ return {
                     },
                     'branch',
                     'fileformat',
-                    'filetype',
+                    -- 'filetype',
                     'progress', 
                 },
                 lualine_z = { 

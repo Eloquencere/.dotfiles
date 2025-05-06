@@ -10,6 +10,7 @@ return {
         })
 
         vim.cmd("colorscheme carbonfox")
+        vim.cmd("highlight MatchParen guifg=#ffbf00")
     end
 }
 

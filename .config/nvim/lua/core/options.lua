@@ -1,45 +1,45 @@
 local opt = vim.opt
 
 -- Appearance
-opt.termguicolors = true
-opt.number = true
+opt.termguicolors  = true
+opt.number         = true
 opt.relativenumber = true
-opt.signcolumn = "yes"
-opt.cursorline = true
+opt.signcolumn     = "yes"
+opt.cursorline     = true
 
 -- Intricate settings
 opt.clipboard:append("unnamedplus")
-opt.backspace = "indent,eol,start"
-opt.modelines = 0
+opt.backspace  = "indent,eol,start"
+opt.modelines  = 0
 opt.visualbell = true
-opt.autochdir = true
+opt.autochdir  = true
 
 -- Tabs and Indentation
-opt.tabstop = 4    -- Number of spaces a tab character takes up
-opt.softtabstop = 4
-opt.shiftwidth = 4 -- Amount of spaces ">>" & "<<" take up
-opt.expandtab = true
-opt.autoindent = true
-opt.smartindent = true
-opt.breakindent = true
-opt.wrap = false
+opt.tabstop       = 4    -- Number of spaces a tab character takes up
+opt.softtabstop   = 4
+opt.shiftwidth    = 4 -- Amount of spaces ">>" & "<<" take up
+opt.expandtab     = true
+opt.autoindent    = true
+opt.smartindent   = true
+opt.breakindent   = true
+opt.wrap          = false
 opt.formatoptions = tcqrn1
 
 -- Search
 opt.ignorecase = true
-opt.smartcase = true
+opt.smartcase  = true
 
 -- Split Windows
 opt.splitright = true
 opt.splitbelow = true
 
-vim.api.nvim_create_autocmd("BufWritePost", {
-    callback = function()
-        vim.defer_fn(function()
-            vim.cmd('echo ""')
-        end, 3000)
-    end
-})
+-- vim.api.nvim_create_autocmd("BufWritePost", {
+--     callback = function()
+--         vim.defer_fn(function()
+--             vim.cmd('echo ""')
+--         end, 3000)
+--     end
+-- })
 
 -- Disabling syntax highlighting for .f files
 vim.api.nvim_create_autocmd(
