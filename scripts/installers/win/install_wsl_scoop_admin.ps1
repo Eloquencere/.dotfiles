@@ -2,12 +2,11 @@ Set-ExecutionPolicy AllSigned
 Set-ExecutionPolicy RemoteSigned -scope CurrentUser
 
 setx XDG_CONFIG_HOME %USERPROFILE%\Documents
-
 # Manually append - %USERPROFILE%\AppData\Local\BraveSoftware\Brave-Browser\Application
 
 # Installing WSL
 wsl --install -d Ubuntu-24.04
-# Install fonts
+# Install Nerd fonts
 
 ### Tips ###
 ## To allow execution of this script

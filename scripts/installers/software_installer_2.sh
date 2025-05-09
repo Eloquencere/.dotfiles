@@ -80,12 +80,12 @@ if [[ $user_choice =~ ^[Yy]$ ]]; then
     git config --global core.preloadindex true
     git config --global core.editor nvim
     git config --global core.pager delta
-    git config --global interactive.diffFilter 'delta --color-only'
     git config --global delta.navigate true  # use n and N to move between diff sections
     git config --global delta.dark true
     git config --global delta.side-by-side true
-    git config --global merge.conflictstyle diff3
+    git config --global interactive.diffFilter 'delta --color-only'
     git config --global diff.colorMoved default
+    git config --global merge.conflictstyle diff3
     echo -n "email ID: "
     read email
     git config --global user.email "$email"

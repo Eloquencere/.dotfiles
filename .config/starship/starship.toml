@@ -182,7 +182,7 @@ format = "[\ueab5 ](fg:#D25E35)[$indicator]($style)"
 zsh_indicator = '_'
 bash_indicator = ''
 style = 'bold #D25E35'
-disabled = false
+disabled = true
 
 # Customization and activation of some modules:
 # Listed in the order of their position in the module rows above
