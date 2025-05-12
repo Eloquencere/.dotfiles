@@ -81,18 +81,18 @@ return {
                     },
                 },
                 lualine_b = {
-                    {
-                        'buffers',
-                        separator = { left = '', right = '' },
-                        symbols = {
-                            alternate_file = '',
-                            directory =  '',
-                        },
-                        buffers_color = {
-                            active = { fg = '#E0E0E0', bg = '#2E3440' },
-                            inactive = { fg = '#BBBBBB', bg = "#1C1C1C" },
-                        },
-                    },
+                    -- {
+                    --     'buffers',
+                    --     separator = { left = '', right = '' },
+                    --     symbols = {
+                    --         alternate_file = '',
+                    --         directory =  '',
+                    --     },
+                    --     buffers_color = {
+                    --         active = { fg = '#E0E0E0', bg = '#2E3440' },
+                    --         inactive = { fg = '#BBBBBB', bg = "#1C1C1C" },
+                    --     },
+                    -- },
                 },
 
                 lualine_c = { '' },

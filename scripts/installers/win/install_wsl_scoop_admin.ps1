@@ -6,7 +6,7 @@ setx XDG_CONFIG_HOME %USERPROFILE%\Documents
 
 # Installing WSL
 wsl --install -d Ubuntu-24.04
-# Install Nerd fonts
+# Install UbuntuSans Nerd fonts
 
 ### Tips ###
 ## To allow execution of this script

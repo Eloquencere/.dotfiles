@@ -40,6 +40,7 @@ scoop update --all
 # Optional
 # winget install --id SoftDeluxe.FreeDownloadManager
 # winget install "Microsoft Whiteboard"
+# winget install "Microsoft Journal"
 # winget install --id Typst.Typst
 # winget install --id BlenderFoundation.Blender
 # winget install --id Microsoft.PowerToys --source winget
