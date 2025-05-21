@@ -62,7 +62,7 @@ systemd=true
 
 CLI_TOOLS=(
     "nixpkgs#starship" "nixpkgs#fzf" "nixpkgs#atuin" "nixpkgs#zoxide" "nixpkgs#mise"
-    "nixpkgs#eza" "nixpkgs#fd" "nixpkgs#bat" "nixpkgs#ripgrep"
+    "nixpkgs#eza" "nixpkgs#fd" "nixpkgs#bat" "nixpkgs#ripgrep" "nixpkgs#repgrep"
     "nixpkgs#duf" "nixpkgs#delta"
     "nixpkgs#croc" "nixpkgs#fastfetch"
 

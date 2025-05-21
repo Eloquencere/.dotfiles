@@ -8,7 +8,6 @@ alias free="free -m" # show sizes in MB
 
 # Basic tools
 alias n=nvim
-alias neofetch=fastfetch
 alias py=python3
 alias py2=python2
 
@@ -21,5 +20,6 @@ alias cat=bat
 alias diff="delta --dark --side-by-side "
 alias grep=rg
 alias df=duf
+alias neofetch=fastfetch
 alias cheat="cheat --colorize"
 

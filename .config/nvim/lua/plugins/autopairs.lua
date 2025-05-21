@@ -2,7 +2,6 @@ return {
     'windwp/nvim-autopairs',
     event = "InsertEnter",
     lazy = true,
-    opts = {},
     init = function()
         vim.opt.matchpairs:append('<:>')
     end,
