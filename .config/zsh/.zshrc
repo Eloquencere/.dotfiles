@@ -39,8 +39,6 @@ zstyle ':fzf-tab:*' fzf-pad 5
 zstyle ':fzf-tab:*' fzf-min-height 20
 zstyle ':fzf-tab:complete:(cd|ls|touch):*' fzf-preview '[[ -d $realpath ]] && eza --oneline --group-directories-first --color=always --icons=always --all $realpath'
 zstyle ':fzf-tab:complete:((cp|mv|rm|nvim|jq|bat|delta):argument-rest|kate:*)' fzf-preview 'bat --color=always -- $realpath 2>/dev/null || eza --oneline --color=always --icons=always --all -- $realpath'
-compdef delta=rm
-compdef bat=nvim
 
 # Shell integrations
 source <(starship init zsh)
@@ -63,6 +61,7 @@ function zvm_after_init() {
 	ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
 	zvm_bindkey viins '^r' atuin-search
 	zvm_bindkey viins '^p' atuin-up-search
+    zvm_bindkey viins "^[[13;2u" insert-newline
 }
 function zvm_after_lazy_keybindings() {
     zvm_bindkey vicmd '^r' atuin-search
@@ -90,13 +89,4 @@ zellij_tab_name_update() {
 }
 zellij_tab_name_update
 chpwd_functions+=(zellij_tab_name_update)
-
-function insert-newline() {
-  LBUFFER+=$'\n'
-}
-
-zle -N insert-newline
-
-# Bind Shift+Enter
-bindkey "^[[13;2u" insert-newline
 

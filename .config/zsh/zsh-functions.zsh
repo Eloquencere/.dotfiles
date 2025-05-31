@@ -81,3 +81,10 @@ function y() {
 	fi
 	rm -f -- "$tmp"
 }
+
+# Bind Shift+Enter to enter multiple commands
+function insert-newline() {
+  LBUFFER+=$'\n'
+}
+zle -N insert-newline
+

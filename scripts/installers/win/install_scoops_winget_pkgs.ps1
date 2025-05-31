@@ -51,5 +51,6 @@ scoop update --all
 # winget install --id Valve.Steam
 # scoop install extras/parsec
 
-# reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run" /v "Kanata" /t REG_SZ /d "C:\Windows\System32\conhost.exe --headless %USERPROFILE%\scoop\apps\kanata\current\kanata.exe --cfg %XDG_CONFIG_HOME%\Kanata\config.kbd"
+## Remove "--nodelay" and run if you face any issues
+# reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run" /v "Kanata" /t REG_SZ /d "C:\Windows\System32\conhost.exe --headless %USERPROFILE%\scoop\apps\kanata\current\kanata.exe --nodelay --cfg %XDG_CONFIG_HOME%\Kanata\config.kbd"
 

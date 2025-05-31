@@ -68,3 +68,4 @@ function readjust_font_size(window, pane)
         window:set_config_overrides(config_overrides)
     end
 end
+

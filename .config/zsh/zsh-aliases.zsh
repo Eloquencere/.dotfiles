@@ -23,3 +23,7 @@ alias df=duf
 alias neofetch=fastfetch
 alias cheat="cheat --colorize"
 
+# Fixing Completions
+compdef delta=rm
+compdef bat=nvim
+
