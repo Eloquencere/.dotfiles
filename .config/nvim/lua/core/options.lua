@@ -17,7 +17,7 @@ opt.autochdir  = true
 -- Tabs and Indentation
 opt.tabstop       = 4    -- Number of spaces a tab character takes up
 opt.softtabstop   = 4
-opt.shiftwidth    = 4 -- Amount of spaces ">>" & "<<" take up
+opt.shiftwidth    = 4    -- Amount of spaces ">>" & "<<" take up
 opt.expandtab     = true
 opt.autoindent    = true
 opt.smartindent   = true
@@ -32,14 +32,6 @@ opt.smartcase  = true
 -- Split Windows
 opt.splitright = true
 opt.splitbelow = true
-
--- vim.api.nvim_create_autocmd("BufWritePost", {
---     callback = function()
---         vim.defer_fn(function()
---             vim.cmd('echo ""')
---         end, 3000)
---     end
--- })
 
 -- Disabling syntax highlighting for .f files
 vim.api.nvim_create_autocmd(

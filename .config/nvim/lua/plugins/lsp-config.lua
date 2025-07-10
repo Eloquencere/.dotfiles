@@ -6,6 +6,7 @@ return {
         config = function()
             require("mason").setup()
         end
+
     },
     {
         "williamboman/mason-lspconfig.nvim",
@@ -35,89 +36,115 @@ return {
                     "taplo", -- TOML
                     "neocmake", -- CMake
                 }
-                -- TCL - N/A
-                -- Gitignore - N/A
-                -- KDL - N/A
-                -- Make - N/A
+                -- TCL -- N/A
+                -- Gitignore -- N/A
+                -- KDL -- N/A
+                -- Make -- N/A
             })
         end
     },
     {
-        "neovim/nvim-lspconfig",
-        event = { "VeryLazy" },
+        "mfussenegger/nvim-lint",
+        event = {
+            "BufReadPre",
+            "BufNewFile",
+        },
         lazy = true,
         config = function()
-            local lspconfig = require("lspconfig")
+            local lint = require("lint")
 
-            lspconfig.lua_ls.setup({})
-            lspconfig.html.setup({})
-            lspconfig.jedi_language_server.setup({})
-            lspconfig.clangd.setup({})
-            lspconfig.biome.setup({})
-            lspconfig.cssls.setup({})
-            lspconfig.marksman.setup({})
-            lspconfig.bashls.setup({})
-            lspconfig.svlangserver.setup({})
-            lspconfig.vhdl_ls.setup({})
-            lspconfig.perlnavigator.setup({})
-            lspconfig.julials.setup({})
-            lspconfig.rust_analyzer.setup({})
-            lspconfig.gopls.setup({})
-            lspconfig.zls.setup({})
-            lspconfig.yamlls.setup({})
-            lspconfig.dockerls.setup({})
-            lspconfig.taplo.setup({})
-            lspconfig.neocmake.setup({})
+            lint.linters_by_ft = {
+                systemverilog = { "verilator" },
+                verilog       = { "verilator" },
+                -- Add support for more languages
+            }
 
-            vim.diagnostic.config(
-                {
-                    virtual_text = { current_line = true }
-                }
-            )
+            vim.api.nvim_create_augroup("lint", { clear = true })
+            vim.api.nvim_create_autocmd({ "BufEnter", "BufNewFile", "BufWritePost", "InsertLeave" }, {
+                group = "lint",
+                callback = function()
+                    lint.try_lint()
+                end
+            })
 
-            local keymap = vim.keymap
-
-            keymap.set(
-                "n",
-                "<leader>rn",
-                vim.lsp.buf.rename,
-                { desc = "Rename variables or functions" }
-            )
-
-            keymap.set(
-                "n",
-                "K",
-                vim.lsp.buf.hover,
-                { desc = "Give details of text below cursor" }
-            )
-
-            keymap.set(
-                "n",
-                "<leader>gd",
-                vim.lsp.buf.definition,
-                { desc = "Go to definition" }
-            )
-
-            keymap.set(
-                "n",
-                "<leader>gi",
-                vim.lsp.buf.implementation,
-                { desc = "Go to implementation" }
-            )
-
-            keymap.set(
-                "n",
-                "<leader>gr",
-                require("telescope.builtin").lsp_references,
-                { desc = "Go to references" }
-            )
-
-            keymap.set(
-                "n",
-                "<leader>ca",
-                vim.lsp.buf.code_action,
-                { desc = "Perform code actions [Attached to telescope]" }
-            )
-        end
-    }
+            vim.diagnostic.config({
+                signs = true,
+                underline = true,
+                virtual_text = { current_line = true },
+            })
+        end,
+    },
+    -- {
+    --     "neovim/nvim-lspconfig",
+    --     event = { "VeryLazy" },
+    --     lazy = true,
+    --     config = function()
+    --         local lspconfig = require("lspconfig")
+    --
+    --         lspconfig.lua_ls.setup({})
+    --         lspconfig.html.setup({})
+    --         lspconfig.jedi_language_server.setup({})
+    --         lspconfig.clangd.setup({})
+    --         lspconfig.biome.setup({})
+    --         lspconfig.cssls.setup({})
+    --         lspconfig.marksman.setup({})
+    --         lspconfig.bashls.setup({})
+    --         lspconfig.svlangserver.setup({})
+    --         lspconfig.vhdl_ls.setup({})
+    --         lspconfig.perlnavigator.setup({})
+    --         lspconfig.julials.setup({})
+    --         lspconfig.rust_analyzer.setup({})
+    --         lspconfig.gopls.setup({})
+    --         lspconfig.zls.setup({})
+    --         lspconfig.yamlls.setup({})
+    --         lspconfig.dockerls.setup({})
+    --         lspconfig.taplo.setup({})
+    --         lspconfig.neocmake.setup({})
+    --
+    --         local keymap = vim.keymap
+    --
+    --         keymap.set(
+    --             "n",
+    --             "<leader>rn",
+    --             vim.lsp.buf.rename,
+    --             { desc = "Rename variables or functions" }
+    --         )
+    --
+    --         keymap.set(
+    --             "n",
+    --             "K",
+    --             vim.lsp.buf.hover,
+    --             { desc = "Give details of text below cursor" }
+    --         )
+    --
+    --         keymap.set(
+    --             "n",
+    --             "<leader>gd",
+    --             vim.lsp.buf.definition,
+    --             { desc = "Go to definition" }
+    --         )
+    --
+    --         keymap.set(
+    --             "n",
+    --             "<leader>gi",
+    --             vim.lsp.buf.implementation,
+    --             { desc = "Go to implementation" }
+    --         )
+    --
+    --         keymap.set(
+    --             "n",
+    --             "<leader>gr",
+    --             require("telescope.builtin").lsp_references,
+    --             { desc = "Go to references" }
+    --         )
+    --
+    --         keymap.set(
+    --             "n",
+    --             "<leader>ca",
+    --             vim.lsp.buf.code_action,
+    --             { desc = "Perform code actions [Attached to telescope]" }
+    --         )
+    --     end
+    -- }
 }
+
