@@ -1,6 +1,7 @@
 cd ~/.dotfiles/scripts/installers
 
-echo "Welcome to part 2 of the *Ubuntu 24.04 LTS* installer"
+echo "Welcome to part 2 of the *Ubuntu 24.04 LTS* installer
+This Script configures all the tools installed by the previous installer"
 sleep 2
 
 # Kanata install & config

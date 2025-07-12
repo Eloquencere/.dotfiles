@@ -3,7 +3,8 @@
 cd ~/.dotfiles/scripts/installers
 
 echo "Welcome to the *Ubuntu 24.04 LTS* installer :)
-This script will automatically reboot the system after it is done"
+This script is designed to install as much as possible without human intervention
+It will automatically reboot the system after it is done"
 
 # GNOME screen lock behaviour
 gsettings set org.gnome.desktop.session idle-delay 0
@@ -31,8 +32,7 @@ sudo apt-get install -y "${ESSENTIALS[@]}"
 # performance improvement software
 sudo add-apt-repository -y ppa:linrunner/tlp
 sudo apt update
-sudo nala install -y tlp
-sudo nala install -y preload
+sudo nala install -y tlp preload
 sudo systemctl enable tlp preload --now
 
 export CARGO_HOME="$HOME/.local/share/rust/cargo"
@@ -70,7 +70,6 @@ rm -f nautilus-extension-any-terminal_0.6.0-1_all.deb
 gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal wezterm
 
 # wine
-sudo dpkg --add-architecture i386 # enable 32bit
 sudo nala install -y wine64
 # # wineGUI
 # wget https://winegui.melroy.org/downloads/WineGUI-v2.7.0.deb
@@ -112,14 +111,14 @@ CLI_TOOLS=(
     "nixpkgs#croc" "nixpkgs#fastfetch"
 
     "nixpkgs#dos2unix" "nixpkgs#btop" "nixpkgs#nvitop" "nixpkgs#yazi"
-    "nixpkgs#jq" # jqp yq
+    # "nixpkgs#jq" # jqp yq
     "nixpkgs#neovim" "nixpkgs#zellij" "nixpkgs#mprocs"
     "nixpkgs#conan" "nixpkgs#scriptisto" "nixpkgs#tio"
     "nixpkgs#gh" "nixpkgs#lazygit"
     "nixpkgs#podman" # look into Podman TUI
     "nixpkgs#tlrc" "nixpkgs#cheat"
     "nixpkgs#natural-docs" "nixpkgs#doxygen"
-    "nixpkgs#restic" "nixpkgs#resticprofile"
+    # "nixpkgs#restic" "nixpkgs#resticprofile"
 )
 zsh -li -c "sh <(curl -L https://nixos.org/nix/install) --daemon"
 zsh -li -c "nix profile install $(printf '%s ' "${CLI_TOOLS[@]}"); \"
@@ -141,7 +140,7 @@ ADDITIONAL_APPS_FLATPAK=(
 )
 flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
 
-# Setting a reminder at 21:30 to backup progress
+# Setting a reminder at 21:30 every alternate day to backup progress
 (crontab -l ; echo "30 21 */2 * * DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/\$(id -u)/bus notify-send 'Backup your current progress with PIKA BACKUP.'") | crontab -
 
 SNAP_BLOAT=(
