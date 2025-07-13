@@ -12,6 +12,7 @@ gsettings set org.gnome.desktop.screensaver lock-enabled false
 
 sudo dpkg --add-architecture i386
 sudo sh -c "apt update; apt upgrade -y"
+sudo ubuntu-drivers autoinstall
 
 # install nerd fonts
 source nerdfonts_download.sh
