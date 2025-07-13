@@ -70,11 +70,16 @@ rm -f nautilus-extension-any-terminal_0.6.0-1_all.deb
 gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal wezterm
 
 # wine
-sudo nala install -y wine64
-# # wineGUI
-# wget https://winegui.melroy.org/downloads/WineGUI-v2.7.0.deb
-# sudo nala install -y ./WineGUI-v2.7.0.deb
-# rm -f WineGUI-v2.7.0.deb
+ubuntu_codename=$(grep '^UBUNTU_CODENAME=' /etc/os-release | cut -d'=' -f2)
+sudo mkdir -pm755 /etc/apt/keyrings
+wget -O - https://dl.winehq.org/wine-builds/winehq.key | sudo gpg --dearmor -o /etc/apt/keyrings/winehq-archive.key -
+sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/${ubuntu_codename}/winehq-${ubuntu_codename}.sources
+sudo apt update
+sudo apt install -y --install-recommends winehq-stable
+# wineGUI_version="WineGUI-v2.8.1"
+# wget https://winegui.melroy.org/downloads/${wineGUI_version}.deb
+# sudo nala install -y ./${wineGUI_version}.deb
+# rm -f ${wineGUI_version}.deb
 
 # browser
 echo -n "Installing browser
