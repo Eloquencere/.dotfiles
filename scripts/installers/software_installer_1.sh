@@ -39,6 +39,7 @@ sudo systemctl enable tlp preload --now
 export CARGO_HOME="$HOME/.local/share/rust/cargo"
 export RUSTUP_HOME="$HOME/.local/share/rust/rustup"
 LANGUAGE_COMPILERS=(
+    "gcc" "make"
     "rustup" "perl"
     "gdb" "valgrind" "strace"
     "clang" "lldb"
