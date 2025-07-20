@@ -84,10 +84,10 @@ if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
     config.use_ime = false
 else
     config.font_size = 17.5
+    config.window_decorations = "RESIZE"
+    config.max_fps = 144
     config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
 end
-
--- { key = 'n', mods = mod.SUPER, action = act.SpawnCommandInNewWindow { cwd = wezterm.home_dir, domain = 'DefaultDomain' } },
 
 return config
 

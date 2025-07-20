@@ -98,6 +98,9 @@ if [[ $user_choice =~ ^[Yy]$ ]]; then
     sed -i '/.* = $/d' $HOME/.gitconfig
 fi
 
+mkdir ~/Projects
+echo "file://$HOME/Projects" >> ~/.config/gtk-3.0/bookmarks
+
 echo -n "Are you running this on VMWare?(y/N) "
 read user_choice
 if [[ $user_choice =~ ^[Yy]$ ]]; then
@@ -118,18 +121,17 @@ sudo nala purge -y "${BLOAT[@]}"
 
 rm -rf ~/.cache/thumbnails/*
 rm -rf ~/{.bash*,.profile,.fontconfig}
-rm -rf ~/{Templates,Public,Videos,Music}
+rm -rf ~/{Templates,Public,Videos,Music,go}
 sed -i "/Videos\|Music/d" ~/.config/gtk-3.0/bookmarks
 
 sudo sh -c "apt-get update; apt-get dist-upgrade; apt-get autoremove; apt-get autoclean; apt --fix-broken install"
 flatpak uninstall --unused --delete-data --assumeyes
-nix-collect-garbage --delete-old; nix store gc
+nix-collect-garbage --delete-old; nix store gc # uncomment the flatpak updater in the continual ref
 
 source $HOME/.dotfiles/scripts/continual-reference/software_updater.zsh
 
 echo "The system will shutdown now"
 sleep 3
-
 shutdown now
 
 # Useful rust crates - tokio rayon

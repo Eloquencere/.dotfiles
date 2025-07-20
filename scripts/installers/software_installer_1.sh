@@ -27,14 +27,18 @@ ESSENTIALS=(
     "openjdk-21-jdk" "openjdk-21-jre"
     "default-jre" "libreoffice-java-common"
     "nala"
+    "imwheel"
+    "vlc" "bleachbit"
 )
 sudo apt-get install -y "${ESSENTIALS[@]}" 
 
 # performance improvement software
 sudo add-apt-repository -y ppa:linrunner/tlp
 sudo apt update
-sudo nala install -y tlp preload
+sudo nala install -y tlp
+sudo nala install -y preload
 sudo systemctl enable tlp preload --now
+# Explore auto-cpufreq
 
 export CARGO_HOME="$HOME/.local/share/rust/cargo"
 export RUSTUP_HOME="$HOME/.local/share/rust/rustup"
@@ -66,6 +70,7 @@ sudo apt update
 sudo apt install -y wezterm
 
 # Open in terminal option nautilus extension
+# set the version here
 wget https://github.com/Stunkymonkey/nautilus-open-any-terminal/releases/download/0.6.0/nautilus-extension-any-terminal_0.6.0-1_all.deb
 sudo apt install -y ./nautilus-extension-any-terminal_0.6.0-1_all.deb
 rm -f nautilus-extension-any-terminal_0.6.0-1_all.deb
@@ -103,6 +108,52 @@ else
     xdg-settings set default-web-browser google-chrome.desktop
 fi
 
+# Office Software
+sudo snap install notion-desktop
+sudo snap install obsidian --classic
+# Rustdesk
+wget https://github.com/rustdesk/rustdesk/releases/latest/download/rustdesk-1.4.0-x86_64.deb
+sudo nala install ./rustdesk-1.4.0-x86_64.deb
+rm -f ./rustdesk-1.4.0-x86_64.deb
+# Anki
+sudo apt install libxcb-xinerama0 libxcb-cursor0 libnss3 zstd
+wget https://github.com/ankitects/anki/releases/download/25.02.7/anki-25.02.7-linux-qt6.tar.zst
+tar xaf anki-25.02.7-linux-qt6.tar.zst
+cd anki-25.02.7-linux-qt6
+sudo ./install.sh; cd ..
+rm -rf anki-25.02.7-linux-qt6 anki-25.02.7-linux-qt6.tar.zst
+# Drawio
+wget https://github.com/jgraph/drawio-desktop/releases/latest/download/drawio-amd64-28.0.4.deb
+sudo nala install ./drawio-amd64-28.0.4.deb
+rm -f ./drawio-amd64-28.0.4.deb
+# Comic reader
+sudo nala install mcomix # try Komikku
+# VSCode
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg && sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
+sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
+sudo apt install -y apt-transport-https && sudo apt update
+sudo apt install code
+rm -f packages.microsoft.gpg
+# Surfshark
+curl -f https://downloads.surfshark.com/linux/debian-install.sh --output surfshark-install.sh
+sh surfshark-install.sh #installs surfshark
+rm -f surfshark-install.sh
+# Signal
+wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg;
+cat signal-desktop-keyring.gpg | sudo tee /usr/share/keyrings/signal-desktop-keyring.gpg > /dev/null
+echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main' |\
+  sudo tee /etc/apt/sources.list.d/signal-xenial.list
+sudo apt update && sudo apt install signal-desktop
+rm -rf signal-desktop-keyring.gpg
+# FDM
+wget https://files2.freedownloadmanager.org/6/latest/freedownloadmanager.deb
+sudo nala install -y ./freedownloadmanager.deb
+rm -f ./freedownloadmanager.deb
+# Kicad
+sudo add-apt-repository --yes ppa:kicad/kicad-9.0-releases
+sudo apt update
+sudo apt install --install-recommends -y kicad
+
 # Zsh shell
 sudo nala install -y zsh
 chsh --shell $(which zsh)
@@ -128,7 +179,7 @@ CLI_TOOLS=(
     # "nixpkgs#restic" "nixpkgs#resticprofile"
 )
 zsh -li -c "sh <(curl -L https://nixos.org/nix/install) --daemon"
-zsh -li -c "nix profile install $(printf '%s ' "${CLI_TOOLS[@]}"); \"
+zsh -li -c "nix profile install $(printf '%s ' "${CLI_TOOLS[@]}"); \
 sudo update-alternatives --install /usr/bin/nvim editor \$(which nvim) 100"
 zsh -li -c "mise install go@latest node@latest deno@latest python@3.12 python@2.7"
 
@@ -144,12 +195,13 @@ ADDITIONAL_APPS_FLATPAK=(
    "org.gnome.Mahjongg"
    "org.gnome.Crosswords"
    "org.gnome.Mines"
+   # Bottles
 )
 flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
-
 # Setting a reminder at 21:30 every alternate day to backup progress
 (crontab -l ; echo "30 21 */2 * * DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/\$(id -u)/bus notify-send 'Backup your current progress with PIKA BACKUP.'") | crontab -
 
+# This might be useful for work
 SNAP_BLOAT=(
     "thunderbird"
 )
@@ -184,6 +236,12 @@ gsettings set org.gnome.desktop.interface icon-theme 'Yaru-blue'
 sudo wget -P /usr/share/backgrounds https://ubuntucommunity.s3.us-east-2.amazonaws.com/original/3X/3/2/320af712c96e48da2d5a61f9b1d0ab2c792530ed.jpeg
 gsettings set org.gnome.desktop.background picture-uri-dark "file:///usr/share/backgrounds/320af712c96e48da2d5a61f9b1d0ab2c792530ed.jpeg"
 gsettings set org.gnome.desktop.background picture-options 'stretched'
+# Night Light config
+gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
+gsettings set org.gnome.settings-daemon.plugins.color night-light-temperature 4350
+gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-automatic false
+gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-from 0.0 # Always enabled
+gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-to 0.0
 # GNOME dock config
 gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 50
 gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed false
@@ -201,5 +259,5 @@ gsettings set org.gnome.shell.app-switcher current-workspace-only true
 
 echo "The system will reboot now"
 sleep 2
-reboot
+sudo reboot now
 
