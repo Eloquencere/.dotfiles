@@ -28,7 +28,7 @@ ESSENTIALS=(
     "default-jre" "libreoffice-java-common"
     "nala"
     "imwheel"
-    "vlc" "bleachbit"
+    "vlc" "bleachbit" "timeshift"
 )
 sudo apt-get install -y "${ESSENTIALS[@]}" 
 
@@ -96,7 +96,7 @@ Which one would you like to install? "
 read browser_choice
 if [[ $browser_choice == "b" ]]; then
     sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
-    echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
     sudo apt update
     sudo apt install -y brave-browser
     xdg-settings set default-web-browser brave-browser.desktop
@@ -108,8 +108,10 @@ else
     xdg-settings set default-web-browser google-chrome.desktop
 fi
 
+# Comic reader
+sudo nala install mcomix # try Komikku
 # Office Software
-sudo snap install notion-desktop
+sudo snap install notion-desktop drawio
 sudo snap install obsidian --classic
 # Rustdesk
 wget https://github.com/rustdesk/rustdesk/releases/latest/download/rustdesk-1.4.0-x86_64.deb
@@ -122,12 +124,6 @@ tar xaf anki-25.02.7-linux-qt6.tar.zst
 cd anki-25.02.7-linux-qt6
 sudo ./install.sh; cd ..
 rm -rf anki-25.02.7-linux-qt6 anki-25.02.7-linux-qt6.tar.zst
-# Drawio
-wget https://github.com/jgraph/drawio-desktop/releases/latest/download/drawio-amd64-28.0.4.deb
-sudo nala install ./drawio-amd64-28.0.4.deb
-rm -f ./drawio-amd64-28.0.4.deb
-# Comic reader
-sudo nala install mcomix # try Komikku
 # VSCode
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg && sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
 sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
@@ -154,6 +150,17 @@ sudo add-apt-repository --yes ppa:kicad/kicad-9.0-releases
 sudo apt update
 sudo apt install --install-recommends -y kicad
 
+# Gaming
+sudo snap install steam
+# Heroic
+wget https://github.com/Heroic-Games-Launcher/HeroicGamesLauncher/releases/download/v2.17.2/Heroic-2.17.2-linux-amd64.deb
+sudo dpkg -i Heroic-2.17.2-linux-amd64.deb
+rm -f Heroic-2.17.2-linux-amd64.deb
+# Parsec
+wget https://builds.parsec.app/package/parsec-linux.deb
+sudo dpkg -i parsec-linux.deb
+rm -f parsec-linux.deb
+
 # Zsh shell
 sudo nala install -y zsh
 chsh --shell $(which zsh)
@@ -162,6 +169,7 @@ cd ~/.dotfiles
 stow .
 cd -
 
+export NIXPKGS_ALLOW_UNFREE=1
 CLI_TOOLS=(
     "nixpkgs#starship" "nixpkgs#fzf" "nixpkgs#atuin" "nixpkgs#zoxide" "nixpkgs#mise"
     "nixpkgs#eza" "nixpkgs#fd" "nixpkgs#bat" "nixpkgs#ripgrep" "nixpkgs#repgrep"
@@ -174,12 +182,13 @@ CLI_TOOLS=(
     "nixpkgs#conan" "nixpkgs#scriptisto" "nixpkgs#tio"
     "nixpkgs#gh" "nixpkgs#lazygit"
     "nixpkgs#podman" # look into Podman TUI
+    "nixpkgs#ollama"
     "nixpkgs#tlrc" "nixpkgs#cheat"
     "nixpkgs#natural-docs" "nixpkgs#doxygen"
     # "nixpkgs#restic" "nixpkgs#resticprofile"
 )
 zsh -li -c "sh <(curl -L https://nixos.org/nix/install) --daemon"
-zsh -li -c "nix profile install $(printf '%s ' "${CLI_TOOLS[@]}"); \
+zsh -li -c "nix profile install --impure $(printf '%s ' "${CLI_TOOLS[@]}"); \
 sudo update-alternatives --install /usr/bin/nvim editor \$(which nvim) 100"
 zsh -li -c "mise install go@latest node@latest deno@latest python@3.12 python@2.7"
 
@@ -195,7 +204,8 @@ ADDITIONAL_APPS_FLATPAK=(
    "org.gnome.Mahjongg"
    "org.gnome.Crosswords"
    "org.gnome.Mines"
-   # Bottles
+   "org.jitsi.jitsi-meet"
+   "net.nokyan.Resources"
 )
 flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
 # Setting a reminder at 21:30 every alternate day to backup progress

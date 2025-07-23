@@ -3,6 +3,6 @@ return {
     event = "VeryLazy",
     lazy = true,
     config = function()
-        require('log-highlight').setup()
+        require('log-highlight').setup{}
     end,
 }
