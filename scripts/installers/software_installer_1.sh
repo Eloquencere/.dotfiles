@@ -28,7 +28,6 @@ ESSENTIALS=(
     "default-jre" "libreoffice-java-common"
     "nala"
     "imwheel"
-    "vlc" "bleachbit" "timeshift"
 )
 sudo apt-get install -y "${ESSENTIALS[@]}" 
 
@@ -60,6 +59,7 @@ cargo install sccache
 
 APPLICATIONS=(
     "gnome-shell-extension-manager"
+    "vlc" "bleachbit" "timeshift"
 )
 sudo apt install -y "${APPLICATIONS[@]}"
 
@@ -113,10 +113,6 @@ sudo nala install mcomix # try Komikku
 # Office Software
 sudo snap install notion-desktop drawio
 sudo snap install obsidian --classic
-# Rustdesk
-wget https://github.com/rustdesk/rustdesk/releases/latest/download/rustdesk-1.4.0-x86_64.deb
-sudo nala install ./rustdesk-1.4.0-x86_64.deb
-rm -f ./rustdesk-1.4.0-x86_64.deb
 # Anki
 sudo apt install libxcb-xinerama0 libxcb-cursor0 libnss3 zstd
 wget https://github.com/ankitects/anki/releases/download/25.02.7/anki-25.02.7-linux-qt6.tar.zst
@@ -132,7 +128,7 @@ sudo apt install code
 rm -f packages.microsoft.gpg
 # Surfshark
 curl -f https://downloads.surfshark.com/linux/debian-install.sh --output surfshark-install.sh
-sh surfshark-install.sh #installs surfshark
+sh surfshark-install.sh
 rm -f surfshark-install.sh
 # Signal
 wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg;
@@ -151,11 +147,7 @@ sudo apt update
 sudo apt install --install-recommends -y kicad
 
 # Gaming
-sudo snap install steam
-# Heroic
-wget https://github.com/Heroic-Games-Launcher/HeroicGamesLauncher/releases/download/v2.17.2/Heroic-2.17.2-linux-amd64.deb
-sudo dpkg -i Heroic-2.17.2-linux-amd64.deb
-rm -f Heroic-2.17.2-linux-amd64.deb
+sudo snap install steam discord
 # Parsec
 wget https://builds.parsec.app/package/parsec-linux.deb
 sudo dpkg -i parsec-linux.deb
@@ -169,7 +161,6 @@ cd ~/.dotfiles
 stow .
 cd -
 
-export NIXPKGS_ALLOW_UNFREE=1
 CLI_TOOLS=(
     "nixpkgs#starship" "nixpkgs#fzf" "nixpkgs#atuin" "nixpkgs#zoxide" "nixpkgs#mise"
     "nixpkgs#eza" "nixpkgs#fd" "nixpkgs#bat" "nixpkgs#ripgrep" "nixpkgs#repgrep"
@@ -182,13 +173,14 @@ CLI_TOOLS=(
     "nixpkgs#conan" "nixpkgs#scriptisto" "nixpkgs#tio"
     "nixpkgs#gh" "nixpkgs#lazygit"
     "nixpkgs#podman" # look into Podman TUI
-    "nixpkgs#ollama"
+    # "nixpkgs#ollama"
     "nixpkgs#tlrc" "nixpkgs#cheat"
     "nixpkgs#natural-docs" "nixpkgs#doxygen"
     # "nixpkgs#restic" "nixpkgs#resticprofile"
 )
 zsh -li -c "sh <(curl -L https://nixos.org/nix/install) --daemon"
-zsh -li -c "nix profile install --impure $(printf '%s ' "${CLI_TOOLS[@]}"); \
+zsh -li -c "export NIXPKGS_ALLOW_UNFREE=1; \
+nix profile install --impure $(printf '%s ' "${CLI_TOOLS[@]}"); \
 sudo update-alternatives --install /usr/bin/nvim editor \$(which nvim) 100"
 zsh -li -c "mise install go@latest node@latest deno@latest python@3.12 python@2.7"
 
@@ -196,6 +188,7 @@ zsh -li -c "mise install go@latest node@latest deno@latest python@3.12 python@2.
 sudo apt install -y flatpak gnome-software-plugin-flatpak
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 ADDITIONAL_APPS_FLATPAK=(
+   "net.nokyan.Resources"
    "org.gnome.World.PikaBackup"
    "org.ghidra_sre.Ghidra"
    "org.gnome.Chess"
@@ -205,9 +198,11 @@ ADDITIONAL_APPS_FLATPAK=(
    "org.gnome.Crosswords"
    "org.gnome.Mines"
    "org.jitsi.jitsi-meet"
-   "net.nokyan.Resources"
+   "com.rustdesk.RustDesk"
+   "com.heroicgameslauncher.hgl"
 )
 flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
+
 # Setting a reminder at 21:30 every alternate day to backup progress
 (crontab -l ; echo "30 21 */2 * * DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/\$(id -u)/bus notify-send 'Backup your current progress with PIKA BACKUP.'") | crontab -
 
@@ -261,7 +256,7 @@ gsettings set org.gnome.shell.extensions.dash-to-dock show-mounts-only-mounted t
 gsettings set org.gnome.shell.extensions.dash-to-dock always-center-icons true
 gsettings set org.gnome.shell.extensions.dash-to-dock dock-position 'BOTTOM'
 gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize-or-previews'
-gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'org.gnome.TextEditor.desktop', '$(xdg-settings get default-web-browser)', 'org.wezfurlong.wezterm.desktop', 'org.gnome.World.PikaBackup.desktop']"
+gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'obsidian_obsidian.desktop', '$(xdg-settings get default-web-browser)', 'org.wezfurlong.wezterm.desktop']"
 # GNOME interface config
 gsettings set org.gnome.desktop.interface clock-show-weekday true
 gsettings set org.gnome.desktop.interface clock-format '24h'
