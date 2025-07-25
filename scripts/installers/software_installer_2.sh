@@ -60,19 +60,6 @@ echo "Move a copy of the collaborators database given by your admin to the zsh h
 mkdir ~/croc-inbox
 echo "file://$HOME/croc-inbox" >> ~/.config/gtk-3.0/bookmarks
 
-echo -n "Would you like to configure USBIP?(y/N) "
-read user_choice
-if [[ $user_choice =~ ^[Yy]$ ]]; then
-	echo -n "Enter the server address: "
-	read server_ip
-	echo "
-# USBIP
-export SERVER_IP=$server_ip" >> $HOME/.config/zsh/personal/zprofile.zsh
-fi
-sudo sh -c " echo '# usbip client
-usbip-core
-vhci-hcd' > /etc/modules-load.d/usbip.conf"
-
 echo -n "Would you like to log into your git account?(y/N) "
 read user_choice
 if [[ $user_choice =~ ^[Yy]$ ]]; then
@@ -101,6 +88,19 @@ fi
 mkdir ~/Projects
 echo "file://$HOME/Projects" >> ~/.config/gtk-3.0/bookmarks
 
+echo -n "Would you like to configure USBIP?(y/N) "
+read user_choice
+if [[ $user_choice =~ ^[Yy]$ ]]; then
+	echo -n "Enter the server address: "
+	read server_ip
+	echo "
+# USBIP
+export SERVER_IP=$server_ip" >> $HOME/.config/zsh/personal/zprofile.zsh
+fi
+sudo sh -c " echo '# usbip client
+usbip-core
+vhci-hcd' > /etc/modules-load.d/usbip.conf"
+
 echo -n "Are you running this on VMWare?(y/N) "
 read user_choice
 if [[ $user_choice =~ ^[Yy]$ ]]; then
@@ -126,7 +126,7 @@ sed -i "/Videos\|Music/d" ~/.config/gtk-3.0/bookmarks
 
 sudo sh -c "apt-get update; apt-get dist-upgrade; apt-get autoremove; apt-get autoclean; apt --fix-broken install"
 flatpak uninstall --unused --delete-data --assumeyes
-nix-collect-garbage --delete-old; nix store gc # uncomment the flatpak updater in the continual ref
+nix-collect-garbage --delete-old; nix store gc
 
 source $HOME/.dotfiles/scripts/continual-reference/software_updater.zsh
 

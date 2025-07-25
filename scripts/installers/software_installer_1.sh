@@ -166,7 +166,7 @@ CLI_TOOLS=(
     "nixpkgs#duf" "nixpkgs#delta"
     "nixpkgs#croc" "nixpkgs#fastfetch"
 
-    "nixpkgs#dos2unix" "nixpkgs#btop" "nixpkgs#nvitop" "nixpkgs#yazi"
+    "nixpkgs#dos2unix" "nixpkgs#btop" "nixpkgs#yazi"
     # "nixpkgs#jq" # jqp yq
     "nixpkgs#neovim" "nixpkgs#zellij" "nixpkgs#mprocs"
     "nixpkgs#conan" "nixpkgs#scriptisto" "nixpkgs#tio"
@@ -181,7 +181,7 @@ zsh -li -c "sh <(curl -L https://nixos.org/nix/install) --daemon"
 zsh -li -c "export NIXPKGS_ALLOW_UNFREE=1; \
 nix profile install --impure $(printf '%s ' "${CLI_TOOLS[@]}"); \
 sudo update-alternatives --install /usr/bin/nvim editor \$(which nvim) 100"
-zsh -li -c "mise install go@latest node@latest deno@latest python@3.12 python@2.7"
+zsh -li -c "mise install go@latest node@latest deno@latest python@latest python@2.7"
 
 # Flatpaks
 sudo apt install -y flatpak gnome-software-plugin-flatpak

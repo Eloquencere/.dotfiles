@@ -3,7 +3,7 @@ python_compile = true
 experimental = true
 
 [tools]
-python = ["3.12", "2.7"]
+python = ["latest", "2.7"]
 deno = "latest"
 go = "latest"
 node = "latest"
