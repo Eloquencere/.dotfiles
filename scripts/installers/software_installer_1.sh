@@ -235,6 +235,7 @@ gsettings set org.gnome.shell.extensions.ding show-home false
 gsettings set org.gnome.shell.extensions.ding start-corner 'top-left'
 gsettings set org.gnome.mutter center-new-windows true
 # GNOME appearance config
+gsettings set org.gnome.desktop.interface text-scaling-factor 1.25
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 gsettings set org.gnome.desktop.interface gtk-theme 'Yaru-blue-dark'
 gsettings set org.gnome.desktop.interface icon-theme 'Yaru-blue'
