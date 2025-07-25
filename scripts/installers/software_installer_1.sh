@@ -21,7 +21,7 @@ ESSENTIALS=(
     "libssl-dev" "liblzma-dev" "libreadline-dev" "libncurses5-dev" "libfuse2t64"
     "sqlite3" "libsqlite3-dev"
     "stow" "curl" "p7zip" "unrar"
-    "ntfs-3g" "exfat-fuse" "wl-clipboard"
+    "ntfs-3g" "exfat-fuse" "wl-clipboard" "gnuplot"
     "linux-headers-$(uname -r)" "linux-headers-generic"
     "build-essential" "pkg-config"
     "openjdk-21-jdk" "openjdk-21-jre"
@@ -114,7 +114,7 @@ fi
 # Comic reader
 sudo nala install mcomix # try Komikku
 # Office Software
-sudo snap install notion-desktop drawio
+sudo snap install notion-desktop drawio qalculate
 sudo snap install obsidian --classic
 # Anki
 sudo apt install libxcb-xinerama0 libxcb-cursor0 libnss3 zstd
@@ -226,9 +226,17 @@ SOFTWARE_BLOAT=(
     "rhythmbox" "orca" "info" "yelp"
     "gnome-snapshot" "gnome-logs" "update-manager"
     "gnome-system-monitor" "gnome-power-manager"
-    "deja-dup" "totem" "seahorse" "remmina" "shotwell" "evince"
+    "deja-dup" "totem" "seahorse" "remmina" "shotwell" "evince" "gnome-calculator"
 )
 sudo nala purge -y "${SOFTWARE_BLOAT[@]}"
+
+# Setting Default Calculator app
+# Create a new set of custom keybindings                                                                                                    ╶╯
+gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
+# Set the new custom keybinding (key, command, name)
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'Qalculate App'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding 'Calculator'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'qalculate'
 
 # GNOME TextEditor config
 gsettings set org.gnome.TextEditor style-scheme 'classic-dark'
