@@ -231,7 +231,7 @@ SOFTWARE_BLOAT=(
 sudo nala purge -y "${SOFTWARE_BLOAT[@]}"
 
 # Setting Default Calculator app
-# Create a new set of custom keybindings                                                                                                    ╶╯
+gsettings set org.gnome.settings-daemon.plugins.media-keys calculator ''
 gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
 # Set the new custom keybinding (key, command, name)
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'Qalculate App'
