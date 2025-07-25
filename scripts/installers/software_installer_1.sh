@@ -63,6 +63,9 @@ APPLICATIONS=(
 )
 sudo apt install -y "${APPLICATIONS[@]}"
 
+sudo snap install qalculate
+sudo nala install -y gnuplot
+
 # Wezterm
 curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
 echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
@@ -148,10 +151,6 @@ sudo apt install --install-recommends -y kicad
 
 # Gaming
 sudo snap install steam discord
-# Parsec
-wget https://builds.parsec.app/package/parsec-linux.deb
-sudo dpkg -i parsec-linux.deb
-rm -f parsec-linux.deb
 
 # Zsh shell
 sudo nala install -y zsh
@@ -188,20 +187,27 @@ zsh -li -c "mise install go@latest node@latest deno@latest python@3.12 python@2.
 sudo apt install -y flatpak gnome-software-plugin-flatpak
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 ADDITIONAL_APPS_FLATPAK=(
-   "net.nokyan.Resources"
-   "org.gnome.World.PikaBackup"
-   "org.ghidra_sre.Ghidra"
-   "org.gnome.Chess"
-   "org.gnome.Sudoku"
-   "app.drey.MultiplicationPuzzle"
-   "org.gnome.Mahjongg"
-   "org.gnome.Crosswords"
-   "org.gnome.Mines"
-   "org.jitsi.jitsi-meet"
-   "com.rustdesk.RustDesk"
-   "com.heroicgameslauncher.hgl"
+    # System
+    "net.nokyan.Resources"
+    # Backup
+    "org.gnome.World.PikaBackup"
+    #Project Management
+    "org.ghidra_sre.Ghidra"
+    "org.jitsi.jitsi-meet"
+    "com.rustdesk.RustDesk"
+    # Gaming
+    "com.heroicgameslauncher.hgl"
+    "org.gnome.Chess"
+    "org.gnome.Sudoku"
+    "app.drey.MultiplicationPuzzle"
+    "org.gnome.Mahjongg"
+    "org.gnome.Crosswords"
+    "org.gnome.Mines"
+    # "com.parsecgaming.parsec"
 )
 flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
+
+xdg-mime default okular_okular.desktop application/pdf
 
 # Setting a reminder at 21:30 every alternate day to backup progress
 (crontab -l ; echo "30 21 */2 * * DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/\$(id -u)/bus notify-send 'Backup your current progress with PIKA BACKUP.'") | crontab -
@@ -220,7 +226,7 @@ SOFTWARE_BLOAT=(
     "rhythmbox" "orca" "info" "yelp"
     "gnome-snapshot" "gnome-logs" "update-manager"
     "gnome-system-monitor" "gnome-power-manager"
-    "deja-dup" "totem" "seahorse" "remmina" "shotwell"
+    "deja-dup" "totem" "seahorse" "remmina" "shotwell" "evince"
 )
 sudo nala purge -y "${SOFTWARE_BLOAT[@]}"
 
