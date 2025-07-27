@@ -26,7 +26,7 @@ ESSENTIALS=(
     "build-essential" "pkg-config"
     "openjdk-21-jdk" "openjdk-21-jre"
     "default-jre" "libreoffice-java-common"
-    "nala"
+    "nala" "aptitude"
     "imwheel"
 )
 sudo apt-get install -y "${ESSENTIALS[@]}" 
@@ -59,12 +59,21 @@ cargo install sccache
 
 APPLICATIONS=(
     "gnome-shell-extension-manager"
-    "vlc" "bleachbit" "timeshift"
+    "bleachbit" "timeshift"
 )
 sudo apt install -y "${APPLICATIONS[@]}"
 
 sudo snap install qalculate
 sudo nala install -y gnuplot
+# I think it is just easier to set it up via the settings app
+# First, enable the default calculator launching & then create a shortcut with the calculator key, thereby replacing the previous shortcut
+# # Setting Default Calculator app - Not working WARN
+# gsettings set org.gnome.settings-daemon.plugins.media-keys calculator '['']'
+# gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
+# # Set the new custom keybinding (key, command, name)
+# gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding 'Calculator'
+# gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'qalculate'
+# gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'Qalculate'
 
 # Wezterm
 curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
@@ -73,7 +82,6 @@ sudo apt update
 sudo apt install -y wezterm
 
 # Open in terminal option nautilus extension
-# set the version here
 wget https://github.com/Stunkymonkey/nautilus-open-any-terminal/releases/download/0.6.0/nautilus-extension-any-terminal_0.6.0-1_all.deb
 sudo apt install -y ./nautilus-extension-any-terminal_0.6.0-1_all.deb
 rm -f nautilus-extension-any-terminal_0.6.0-1_all.deb
@@ -86,10 +94,15 @@ wget -O - https://dl.winehq.org/wine-builds/winehq.key | sudo gpg --dearmor -o /
 sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/${ubuntu_codename}/winehq-${ubuntu_codename}.sources
 sudo apt update
 sudo apt install -y --install-recommends winehq-stable
+# # Can't be installed without a VPN - WARN
 # wineGUI_version="WineGUI-v2.8.1"
 # wget https://winegui.melroy.org/downloads/${wineGUI_version}.deb
 # sudo nala install -y ./${wineGUI_version}.deb
 # rm -f ${wineGUI_version}.deb
+
+# VirtualBox
+wget https://download.virtualbox.org/virtualbox/7.1.12/virtualbox-7.1_7.1.12-169651~Ubuntu~noble_amd64.deb
+sudo nala install -y ./virtualbox-7.1_7.1.12-169651~Ubuntu~noble_amd64.deb
 
 # browser
 echo -n "Installing browser
@@ -112,12 +125,12 @@ else
 fi
 
 # Comic reader
-sudo nala install mcomix # try Komikku
+sudo nala install -y mcomix # try Komikku
 # Office Software
-sudo snap install notion-desktop drawio qalculate
+sudo snap install notion-desktop drawio
 sudo snap install obsidian --classic
 # Anki
-sudo apt install libxcb-xinerama0 libxcb-cursor0 libnss3 zstd
+sudo apt install -y libxcb-xinerama0 libxcb-cursor0 libnss3 zstd
 wget https://github.com/ankitects/anki/releases/download/25.02.7/anki-25.02.7-linux-qt6.tar.zst
 tar xaf anki-25.02.7-linux-qt6.tar.zst
 cd anki-25.02.7-linux-qt6
@@ -187,6 +200,7 @@ zsh -li -c "mise install go@latest node@latest deno@latest python@latest python@
 sudo apt install -y flatpak gnome-software-plugin-flatpak
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 ADDITIONAL_APPS_FLATPAK=(
+    "org.videolan.VLC"
     # System
     "net.nokyan.Resources"
     # Backup
@@ -210,7 +224,7 @@ flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
 xdg-mime default okular_okular.desktop application/pdf
 
 # Setting a reminder at 21:30 every alternate day to backup progress
-(crontab -l ; echo "30 21 */2 * * DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/\$(id -u)/bus notify-send 'Backup your current progress with PIKA BACKUP.'") | crontab -
+(crontab -l ; echo "30 21 */2 * * DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$(id -u)/bus notify-send 'Backup your current progress with PIKA BACKUP.'") | crontab -
 
 # This might be useful for work
 SNAP_BLOAT=(
@@ -230,13 +244,6 @@ SOFTWARE_BLOAT=(
 )
 sudo nala purge -y "${SOFTWARE_BLOAT[@]}"
 
-# Setting Default Calculator app
-gsettings set org.gnome.settings-daemon.plugins.media-keys calculator ''
-gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
-# Set the new custom keybinding (key, command, name)
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'Qalculate App'
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding 'Calculator'
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'qalculate'
 
 # GNOME TextEditor config
 gsettings set org.gnome.TextEditor style-scheme 'classic-dark'

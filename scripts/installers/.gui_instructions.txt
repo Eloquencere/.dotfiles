@@ -2,17 +2,27 @@
 
 - Sync the web-browser on your default machine with the current machine
 - Setup your cloud flie storage service provider
-- Configure the search button to not output everything except Calculator and settings
+- Configure the search button to not output everything except Calendar and settings
 - Group app icons in the app drawer
 - Setup PikaBKP and timeshift properly
-- Install WineGUI manually from install script 1 after reboot
+- Install WineGUI manually from install script 1
 
 (Optional)
 - Gnome Extensions
     - CHC-E
     - Just Perfection
-        - Disable x
+        Visibility
+            - Accessibility Menu - Disable
+            - Keyboard Layout - Disable
+            - Dark Mode Toggle Button - Disable
+            - Airplane Mode Toggle Button - Disable
+            - Night Light Toggle Button - Disable
+            - Workspace Popup - Disable
+        Behaviour
+            - Popup Delay - Disable
     - blur my shell
         - Disable "Panel" and "Dash" Blur
+    (Future)
+    - Pano Clipboard Manager
 - VirtualBox
 

@@ -5,16 +5,15 @@ return {
     },
     init = function()
         vim.g.barbar_auto_setup = false
-        vim.api.nvim_create_autocmd('QuitPre', {
+        vim.api.nvim_create_autocmd('WinClosed', {
             callback = function(tbl)
-                local name = vim.api.nvim_buf_get_name(tbl.buf)
-                if name ~= '' then
-                    vim.api.nvim_command('BufferClose ' .. name)
-
+                if vim.api.nvim_buf_is_valid(tbl.buf) then
+                    vim.api.nvim_buf_delete(tbl.buf, { force = true })
                 end
             end,
-            group = vim.api.nvim_create_augroup('barbar_close_buf', {})
+            group = vim.api.nvim_create_augroup('barbar_close_buf', {}),
         })
     end,
     opts = {},
 }
+
