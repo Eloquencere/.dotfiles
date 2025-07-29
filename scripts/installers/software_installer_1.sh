@@ -100,10 +100,6 @@ sudo apt install -y --install-recommends winehq-stable
 # sudo nala install -y ./${wineGUI_version}.deb
 # rm -f ${wineGUI_version}.deb
 
-# VirtualBox
-wget https://download.virtualbox.org/virtualbox/7.1.12/virtualbox-7.1_7.1.12-169651~Ubuntu~noble_amd64.deb
-sudo nala install -y ./virtualbox-7.1_7.1.12-169651~Ubuntu~noble_amd64.deb
-
 # browser
 echo -n "Installing browser
 b -> brave
@@ -201,11 +197,12 @@ sudo apt install -y flatpak gnome-software-plugin-flatpak
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 ADDITIONAL_APPS_FLATPAK=(
     "org.videolan.VLC"
+    "org.kde.okular"
     # System
     "net.nokyan.Resources"
     # Backup
     "org.gnome.World.PikaBackup"
-    #Project Management
+    # Project Management
     "org.ghidra_sre.Ghidra"
     "org.jitsi.jitsi-meet"
     "com.rustdesk.RustDesk"
@@ -256,6 +253,7 @@ gsettings set org.gnome.shell.extensions.ding show-home false
 gsettings set org.gnome.shell.extensions.ding start-corner 'top-left'
 gsettings set org.gnome.mutter center-new-windows true
 # GNOME appearance config
+gsettings set org.gnome.desktop.interface show-battery-percentage true
 gsettings set org.gnome.desktop.interface text-scaling-factor 1.15
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 gsettings set org.gnome.desktop.interface gtk-theme 'Yaru-blue-dark'

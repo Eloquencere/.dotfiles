@@ -10,8 +10,6 @@ if [[ $user_choice =~ ^[Nn]$ ]]; then
     return 1
 fi
 
-mkdir -p ~/.config/systemd/user/bluetooth
-
 echo "# Bluetooth device
 
 [Unit]
@@ -25,7 +23,7 @@ Type=oneshot
 
 [Install]
 WantedBy=default.target
-" > ~/.config/systemd/user/bluetooth/autoconnect-bt-${device_name}.service
+" > ~/.config/systemd/user/autoconnect-bt-${device_name}.service
 
 systemctl --user daemon-reexec
 systemctl --user daemon-reload
