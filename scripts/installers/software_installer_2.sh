@@ -4,6 +4,18 @@ echo "Welcome to part 2 of the *Ubuntu 24.04 LTS* installer
 This Script configures all the tools installed by the previous installer"
 sleep 2
 
+# GUI setup
+gnome-text-editor $HOME/.dotfiles/scripts/continual-reference/reference.txt .gui_instructions.txt &
+
+# performance improvement software
+sudo nala install -y preload
+sudo systemctl enable preload --now
+# Auto-cpufreq
+git clone https://github.com/AdnanHodzic/auto-cpufreq.git
+cd auto-cpufreq && sudo ./auto-cpufreq-installer
+cd .. && rm -rf auto-cpufreq
+sudo auto-cpufreq --install
+
 # Kanata install & config
 nix profile install nixpkgs#kanata
 sudo groupadd uinput
@@ -29,9 +41,6 @@ sudo systemctl enable kanata --now
 # cpanm package manager
 cpan App::cpanminus
 
-# GUI setup
-gnome-text-editor $HOME/.dotfiles/scripts/continual-reference/reference.txt .gui_instructions.txt &
-
 # # Useful Python libraries
 # pip2 install --upgrade pip
 # pip install --upgrade pip
@@ -49,6 +58,9 @@ CARGO_PKGS=(
     "cargo-expand" "irust" "bacon"
 )
 cargo install "${CARGO_PKGS[@]}"
+
+mkdir ~/Projects
+echo "file://$HOME/Projects" >> ~/.config/gtk-3.0/bookmarks
 
 mkdir -p $HOME/.config/zsh/personal
 
@@ -84,9 +96,6 @@ if [[ $user_choice =~ ^[Yy]$ ]]; then
     gh auth login
     sed -i '/.* = $/d' $HOME/.gitconfig
 fi
-
-mkdir ~/Projects
-echo "file://$HOME/Projects" >> ~/.config/gtk-3.0/bookmarks
 
 echo -n "Would you like to configure USBIP?(y/N) "
 read user_choice
@@ -130,9 +139,11 @@ nix-collect-garbage --delete-old; nix store gc
 
 source $HOME/.dotfiles/scripts/continual-reference/software_updater.zsh
 
-echo "The system will shutdown now"
-sleep 3
-shutdown now
+echo -n "Shall we shut down the computer now? (Y/n): "
+read user_choice
+if [[ $user_choice =~ ^[Yy]$ ]]; then
+    shutdown now
+fi
 
 # Useful rust crates - tokio rayon
 

@@ -31,14 +31,6 @@ ESSENTIALS=(
 )
 sudo apt-get install -y "${ESSENTIALS[@]}" 
 
-# performance improvement software
-sudo add-apt-repository -y ppa:linrunner/tlp
-sudo apt update
-sudo nala install -y tlp
-sudo nala install -y preload
-sudo systemctl enable tlp preload --now
-# Explore auto-cpufreq
-
 export CARGO_HOME="$HOME/.local/share/rust/cargo"
 export RUSTUP_HOME="$HOME/.local/share/rust/rustup"
 LANGUAGE_COMPILERS=(
@@ -277,6 +269,7 @@ gsettings set org.gnome.shell.extensions.dash-to-dock always-center-icons true
 gsettings set org.gnome.shell.extensions.dash-to-dock dock-position 'BOTTOM'
 gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize-or-previews'
 gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'obsidian_obsidian.desktop', '$(xdg-settings get default-web-browser)', 'org.wezfurlong.wezterm.desktop']"
+# gsettings set org.gnome.shell.extensions.dash-to-dock multi-monitor true
 # GNOME interface config
 gsettings set org.gnome.desktop.interface clock-show-weekday true
 gsettings set org.gnome.desktop.interface clock-format '24h'
