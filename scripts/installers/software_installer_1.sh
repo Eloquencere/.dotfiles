@@ -163,8 +163,7 @@ cd -
 
 CLI_TOOLS=(
     "nixpkgs#starship" "nixpkgs#fzf" "nixpkgs#atuin" "nixpkgs#zoxide" "nixpkgs#mise"
-    "nixpkgs#eza" "nixpkgs#fd" "nixpkgs#bat" "nixpkgs#ripgrep" "nixpkgs#repgrep"
-    "nixpkgs#duf" "nixpkgs#delta"
+    "nixpkgs#eza" "nixpkgs#fd" "nixpkgs#bat" "nixpkgs#ripgrep" "nixpkgs#repgrep" "nixpkgs#duf" "nixpkgs#delta"
     "nixpkgs#croc" "nixpkgs#fastfetch"
 
     "nixpkgs#dos2unix" "nixpkgs#btop" "nixpkgs#yazi"
@@ -176,7 +175,6 @@ CLI_TOOLS=(
     # "nixpkgs#ollama"
     "nixpkgs#tlrc" "nixpkgs#cheat"
     "nixpkgs#natural-docs" "nixpkgs#doxygen"
-    # "nixpkgs#restic" "nixpkgs#resticprofile"
 )
 zsh -li -c "sh <(curl -L https://nixos.org/nix/install) --daemon"
 zsh -li -c "export NIXPKGS_ALLOW_UNFREE=1; \
@@ -240,13 +238,15 @@ gsettings set org.gnome.TextEditor restore-session false
 gsettings set org.gnome.TextEditor show-line-numbers true
 gsettings set org.gnome.TextEditor highlight-current-line true
 gsettings set org.gnome.TextEditor highlight-matching-brackets true
+# Nautilus config
+gsettings set org.gnome.nautilus.icon-view default-zoom-level 'small-plus'
 # GNOME desktop config
 gsettings set org.gnome.shell.extensions.ding show-home false
 gsettings set org.gnome.shell.extensions.ding start-corner 'top-left'
 gsettings set org.gnome.mutter center-new-windows true
 # GNOME appearance config
 gsettings set org.gnome.desktop.interface show-battery-percentage true
-gsettings set org.gnome.desktop.interface text-scaling-factor 1.15
+gsettings set org.gnome.desktop.interface text-scaling-factor 1.20
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 gsettings set org.gnome.desktop.interface gtk-theme 'Yaru-blue-dark'
 gsettings set org.gnome.desktop.interface icon-theme 'Yaru-blue'
@@ -255,7 +255,7 @@ gsettings set org.gnome.desktop.background picture-uri-dark "file:///usr/share/b
 gsettings set org.gnome.desktop.background picture-options 'stretched'
 # Night Light config
 gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
-gsettings set org.gnome.settings-daemon.plugins.color night-light-temperature 4350
+gsettings set org.gnome.settings-daemon.plugins.color night-light-temperature 4039
 gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-automatic false
 gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-from 0.0 # Always enabled
 gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-to 0.0

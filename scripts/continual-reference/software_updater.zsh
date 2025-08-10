@@ -1,4 +1,4 @@
-sudo sh -c "nala full-upgrade -y"
+sudo sh -c "apt full-upgrade -y"
 sudo snap refresh
 zinit update --all
 flatpak update --assumeyes
