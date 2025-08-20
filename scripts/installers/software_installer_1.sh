@@ -12,7 +12,6 @@ gsettings set org.gnome.desktop.screensaver lock-enabled false
 
 sudo dpkg --add-architecture i386
 sudo sh -c "apt update; apt upgrade -y"
-sudo ubuntu-drivers autoinstall
 
 # install nerd fonts
 source nerdfonts_download.sh
@@ -27,7 +26,7 @@ ESSENTIALS=(
     "openjdk-21-jdk" "openjdk-21-jre"
     "default-jre" "libreoffice-java-common"
     "nala" "aptitude"
-    "imwheel"
+    # "imwheel"
 )
 sudo apt-get install -y "${ESSENTIALS[@]}" 
 
@@ -53,10 +52,11 @@ APPLICATIONS=(
     "gnome-shell-extension-manager"
     "bleachbit" "timeshift"
 )
-sudo apt install -y "${APPLICATIONS[@]}"
+sudo nala install -y "${APPLICATIONS[@]}"
 
-sudo snap install qalculate
+# Qalculate app
 sudo nala install -y gnuplot
+sudo snap install qalculate
 # I think it is just easier to set it up via the settings app
 # First, enable the default calculator launching & then create a shortcut with the calculator key, thereby replacing the previous shortcut
 # # Setting Default Calculator app - Not working WARN
@@ -112,8 +112,6 @@ else
     xdg-settings set default-web-browser google-chrome.desktop
 fi
 
-# Comic reader
-sudo nala install -y mcomix # try Komikku
 # Office Software
 sudo snap install notion-desktop drawio
 sudo snap install obsidian --classic
@@ -149,9 +147,6 @@ rm -f ./freedownloadmanager.deb
 sudo add-apt-repository --yes ppa:kicad/kicad-9.0-releases
 sudo apt update
 sudo apt install --install-recommends -y kicad
-
-# Gaming
-sudo snap install steam discord
 
 # Zsh shell
 sudo nala install -y zsh
@@ -196,15 +191,13 @@ ADDITIONAL_APPS_FLATPAK=(
     "org.ghidra_sre.Ghidra"
     "org.jitsi.jitsi-meet"
     "com.rustdesk.RustDesk"
-    # Gaming
-    "com.heroicgameslauncher.hgl"
+    # Games
     "org.gnome.Chess"
     "org.gnome.Sudoku"
     "app.drey.MultiplicationPuzzle"
     "org.gnome.Mahjongg"
     "org.gnome.Crosswords"
     "org.gnome.Mines"
-    # "com.parsecgaming.parsec"
 )
 flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
 
@@ -213,7 +206,6 @@ xdg-mime default okular_okular.desktop application/pdf
 # Setting a reminder at 21:30 every alternate day to backup progress
 (crontab -l ; echo "30 21 */2 * * DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$(id -u)/bus notify-send 'Backup your current progress with PIKA BACKUP.'") | crontab -
 
-# This might be useful for work
 SNAP_BLOAT=(
     "thunderbird"
 )
