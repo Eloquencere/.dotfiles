@@ -154,3 +154,7 @@ fi
 # echo '# Doom Emacs
 # export PATH=$XDG_CONFIG_HOME/emacs/bin:$PATH' >> ~/.zprofile
 
+# # Gaming
+# sudo snap install steam discord
+# "com.heroicgameslauncher.hgl"
+# "com.parsecgaming.parsec"
