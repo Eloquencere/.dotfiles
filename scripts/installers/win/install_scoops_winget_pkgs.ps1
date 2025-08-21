@@ -11,7 +11,7 @@ winget install --id Surfshark.Surfshark
 winget install "Cover - Comic reader" --source msstore
 winget install --id JackieLiu.NotepadsApp
 winget install --id Microsoft.Office
-winget install Balena.Etcher
+winget install Rufus.Rufus
 
 # Duplicates
 winget install --id VideoLAN.VLC
@@ -59,6 +59,7 @@ scoop update --all
 
 ## Kanata ##
 # reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run" /v "Kanata" /t REG_SZ /d "C:\Windows\System32\conhost.exe --headless %USERPROFILE%\scoop\apps\kanata\current\kanata.exe --nodelay --cfg %XDG_CONFIG_HOME%\Kanata\config.kbd"
+
 
 
 
