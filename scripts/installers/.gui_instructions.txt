@@ -1,22 +1,24 @@
 *finish up some GUI configuration while the installer runs*
 
+- Configure the search button to not output everything except Calendar and settings
 - Sync the web-browser on your default machine with the current machine
 - Setup your cloud flie storage service provider
-- Configure the search button to not output everything except Calendar and settings
 - Group app icons in the app drawer
-- Setup PikaBKP and timeshift properly
-- Install WineGUI manually from install script 1
+- Setup PikaBKP and timeshift
+- Set Qalculate to trigger when the calc key is pressed
 
 (Optional)
 - Gnome Extensions
     - CHC-E
+        - Set the top left corner to trigger - Toggle overview App Grid
     - Just Perfection
         Visibility
             - Accessibility Menu - Disable
             - Keyboard Layout - Disable
             - Dark Mode Toggle Button - Disable
-            - Airplane Mode Toggle Button - Disable
             - Night Light Toggle Button - Disable
+            - Airplane Mode Toggle Button - Disable
+            - Show Applications Button - Disable
             - Workspace Popup - Disable
         Behaviour
             - Popup Delay - Disable
@@ -26,3 +28,4 @@
     - Pano Clipboard Manager
 - VirtualBox
 
+- If facing mouse scroll wheel issues, install "imwheel" via apt

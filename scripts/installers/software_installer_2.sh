@@ -10,11 +10,6 @@ gnome-text-editor $HOME/.dotfiles/scripts/continual-reference/reference.txt .gui
 # performance improvement software
 sudo nala install -y preload
 sudo systemctl enable preload --now
-# Auto-cpufreq
-git clone https://github.com/AdnanHodzic/auto-cpufreq.git
-cd auto-cpufreq && sudo ./auto-cpufreq-installer
-cd .. && rm -rf auto-cpufreq
-sudo auto-cpufreq --install
 
 # Kanata install & config
 nix profile install nixpkgs#kanata
@@ -130,8 +125,8 @@ sudo nala purge -y "${BLOAT[@]}"
 
 rm -rf ~/.cache/thumbnails/*
 rm -rf ~/{.bash*,.profile,.fontconfig}
-sudo rm -rf ~/{Templates,Public,Videos,Music,go}
-sed -i "/Videos\|Music/d" ~/.config/gtk-3.0/bookmarks
+# sudo rm -rf ~/{Templates,Public,go}
+# sed -i "/Videos\|Music/d" ~/.config/gtk-3.0/bookmarks
 
 sudo sh -c "apt-get update; apt-get dist-upgrade; apt-get autoremove; apt-get autoclean; apt --fix-broken install"
 flatpak uninstall --unused --delete-data --assumeyes
@@ -145,7 +140,32 @@ if [[ $user_choice =~ ^[Yy]$ ]]; then
     shutdown now
 fi
 
-# Useful rust crates - tokio rayon
+# # Gaming
+# mkdir ~/Games
+# sudo snap install steam discord
+# GAMES_FLATPAK=(
+#     "com.heroicgameslauncher.hgl"
+#     # "com.parsecgaming.parsec"
+# )
+
+# # Auto-cpufreq
+# git clone https://github.com/AdnanHodzic/auto-cpufreq.git
+# cd auto-cpufreq && sudo ./auto-cpufreq-installer
+# cd .. && rm -rf auto-cpufreq
+# sudo auto-cpufreq --install
+
+# wine
+# ubuntu_codename=$(grep '^UBUNTU_CODENAME=' /etc/os-release | cut -d'=' -f2)
+# sudo mkdir -pm755 /etc/apt/keyrings
+# wget -O - https://dl.winehq.org/wine-builds/winehq.key | sudo gpg --dearmor -o /etc/apt/keyrings/winehq-archive.key -
+# sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/${ubuntu_codename}/winehq-${ubuntu_codename}.sources
+# sudo apt update
+# sudo apt install -y --install-recommends winehq-stable
+# # Can't be installed without a VPN
+# wineGUI_version="WineGUI-v2.8.1"
+# wget https://winegui.melroy.org/downloads/${wineGUI_version}.deb
+# sudo nala install -y ./${wineGUI_version}.deb
+# rm -f ${wineGUI_version}.deb
 
 # # Doom Emacs
 # sudo nala install -y emacs-gtk
@@ -154,7 +174,3 @@ fi
 # echo '# Doom Emacs
 # export PATH=$XDG_CONFIG_HOME/emacs/bin:$PATH' >> ~/.zprofile
 
-# # Gaming
-# sudo snap install steam discord
-# "com.heroicgameslauncher.hgl"
-# "com.parsecgaming.parsec"

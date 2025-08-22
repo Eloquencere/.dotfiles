@@ -1,6 +1,7 @@
 [settings]
 python_compile = true
 experimental = true
+idiomatic_version_file_enable_tools = ["python"]
 
 [tools]
 python = ["latest", "2.7"]

@@ -19,53 +19,37 @@ source nerdfonts_download.sh
 ESSENTIALS=(
     "libssl-dev" "liblzma-dev" "libreadline-dev" "libncurses5-dev" "libfuse2t64"
     "sqlite3" "libsqlite3-dev"
-    "stow" "curl" "p7zip" "unrar"
+    "stow" "curl" "p7zip" "unrar" "zstd"
     "ntfs-3g" "exfat-fuse" "wl-clipboard" "gnuplot"
-    "linux-headers-$(uname -r)" "linux-headers-generic"
-    "build-essential" "pkg-config"
-    "openjdk-21-jdk" "openjdk-21-jre"
-    "default-jre" "libreoffice-java-common"
+    "linux-headers-$(uname -r)" "linux-headers-generic" "build-essential" "pkg-config"
+    "openjdk-21-jdk" "openjdk-21-jre" "default-jre" "libreoffice-java-common"
     "nala" "aptitude"
-    # "imwheel"
 )
-sudo apt-get install -y "${ESSENTIALS[@]}" 
+sudo apt-get install -y "${ESSENTIALS[@]}"
 
 export CARGO_HOME="$HOME/.local/share/rust/cargo"
 export RUSTUP_HOME="$HOME/.local/share/rust/rustup"
 LANGUAGE_COMPILERS=(
     "gcc" "make"
-    "rustup" "perl"
     "gdb" "valgrind" "strace"
     "clang" "lldb"
+    "rustup" "perl"
     "python3-pip" "tk-dev"
 )
 sudo nala install -y "${LANGUAGE_COMPILERS[@]}"
 
-sudo snap install julia --classic
-sudo snap install zig   --classic --beta
-
 rustup toolchain install stable
 rustup default stable
 cargo install sccache
+
+sudo snap install julia --classic
+sudo snap install zig   --classic --beta
 
 APPLICATIONS=(
     "gnome-shell-extension-manager"
     "bleachbit" "timeshift"
 )
 sudo nala install -y "${APPLICATIONS[@]}"
-
-# Qalculate app
-sudo nala install -y gnuplot
-sudo snap install qalculate
-# I think it is just easier to set it up via the settings app
-# First, enable the default calculator launching & then create a shortcut with the calculator key, thereby replacing the previous shortcut
-# # Setting Default Calculator app - Not working WARN
-# gsettings set org.gnome.settings-daemon.plugins.media-keys calculator '['']'
-# gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
-# # Set the new custom keybinding (key, command, name)
-# gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding 'Calculator'
-# gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'qalculate'
-# gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'Qalculate'
 
 # Wezterm
 curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
@@ -78,19 +62,6 @@ wget https://github.com/Stunkymonkey/nautilus-open-any-terminal/releases/downloa
 sudo apt install -y ./nautilus-extension-any-terminal_0.6.0-1_all.deb
 rm -f nautilus-extension-any-terminal_0.6.0-1_all.deb
 gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal wezterm
-
-# wine
-ubuntu_codename=$(grep '^UBUNTU_CODENAME=' /etc/os-release | cut -d'=' -f2)
-sudo mkdir -pm755 /etc/apt/keyrings
-wget -O - https://dl.winehq.org/wine-builds/winehq.key | sudo gpg --dearmor -o /etc/apt/keyrings/winehq-archive.key -
-sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/${ubuntu_codename}/winehq-${ubuntu_codename}.sources
-sudo apt update
-sudo apt install -y --install-recommends winehq-stable
-# # Can't be installed without a VPN - WARN
-# wineGUI_version="WineGUI-v2.8.1"
-# wget https://winegui.melroy.org/downloads/${wineGUI_version}.deb
-# sudo nala install -y ./${wineGUI_version}.deb
-# rm -f ${wineGUI_version}.deb
 
 # browser
 echo -n "Installing browser
@@ -113,25 +84,25 @@ else
 fi
 
 # Office Software
-sudo snap install notion-desktop drawio
+sudo snap install notion-desktop drawio qalculate surfshark
 sudo snap install obsidian --classic
-# Anki
-sudo apt install -y libxcb-xinerama0 libxcb-cursor0 libnss3 zstd
-wget https://github.com/ankitects/anki/releases/download/25.02.7/anki-25.02.7-linux-qt6.tar.zst
-tar xaf anki-25.02.7-linux-qt6.tar.zst
-cd anki-25.02.7-linux-qt6
-sudo ./install.sh; cd ..
-rm -rf anki-25.02.7-linux-qt6 anki-25.02.7-linux-qt6.tar.zst
+# mcomix or kommiku
+
 # VSCode
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg && sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
 sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
 sudo apt install -y apt-transport-https && sudo apt update
 sudo apt install code
 rm -f packages.microsoft.gpg
-# Surfshark
-curl -f https://downloads.surfshark.com/linux/debian-install.sh --output surfshark-install.sh
-sh surfshark-install.sh
-rm -f surfshark-install.sh
+
+# Anki
+sudo apt install -y libxcb-xinerama0 libxcb-cursor0 libnss3
+wget https://github.com/ankitects/anki/releases/download/25.07.5/anki-launcher-25.07.5-linux.tar.zst
+tar xaf anki-launcher-25.07.5-linux.tar.zst
+cd anki-launcher-25.07.5-linux
+sudo ./install.sh; cd ..
+rm -rf anki-launcher-25.07.5-linux anki-launcher-25.07.5-linux.tar.zst
+
 # Signal
 wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg;
 cat signal-desktop-keyring.gpg | sudo tee /usr/share/keyrings/signal-desktop-keyring.gpg > /dev/null
@@ -139,10 +110,7 @@ echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] 
   sudo tee /etc/apt/sources.list.d/signal-xenial.list
 sudo apt update && sudo apt install signal-desktop
 rm -rf signal-desktop-keyring.gpg
-# FDM
-wget https://files2.freedownloadmanager.org/6/latest/freedownloadmanager.deb
-sudo nala install -y ./freedownloadmanager.deb
-rm -f ./freedownloadmanager.deb
+
 # Kicad
 sudo add-apt-repository --yes ppa:kicad/kicad-9.0-releases
 sudo apt update
@@ -156,6 +124,7 @@ cd ~/.dotfiles
 stow .
 cd -
 
+zsh -li -c "sh <(curl -L https://nixos.org/nix/install) --daemon"
 CLI_TOOLS=(
     "nixpkgs#starship" "nixpkgs#fzf" "nixpkgs#atuin" "nixpkgs#zoxide" "nixpkgs#mise"
     "nixpkgs#eza" "nixpkgs#fd" "nixpkgs#bat" "nixpkgs#ripgrep" "nixpkgs#repgrep" "nixpkgs#duf" "nixpkgs#delta"
@@ -171,7 +140,6 @@ CLI_TOOLS=(
     "nixpkgs#tlrc" "nixpkgs#cheat"
     "nixpkgs#natural-docs" "nixpkgs#doxygen"
 )
-zsh -li -c "sh <(curl -L https://nixos.org/nix/install) --daemon"
 zsh -li -c "export NIXPKGS_ALLOW_UNFREE=1; \
 nix profile install --impure $(printf '%s ' "${CLI_TOOLS[@]}"); \
 sudo update-alternatives --install /usr/bin/nvim editor \$(which nvim) 100"
@@ -183,11 +151,14 @@ flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.f
 ADDITIONAL_APPS_FLATPAK=(
     "org.videolan.VLC"
     "org.kde.okular"
+    # Electronics
+    "com.github.reds.LogisimEvolution"
     # System
     "net.nokyan.Resources"
     # Backup
     "org.gnome.World.PikaBackup"
     # Project Management
+    "io.github.giantpinkrobots.varia"
     "org.ghidra_sre.Ghidra"
     "org.jitsi.jitsi-meet"
     "com.rustdesk.RustDesk"
@@ -211,7 +182,6 @@ SNAP_BLOAT=(
 )
 sudo apt-get purge -y "${SNAP_BLOAT[@]}"
 sudo snap remove "${SNAP_BLOAT[@]}"
-rm -rf ~/.mozilla
 
 SOFTWARE_BLOAT=(
     "ed" "vim-common" "nano"
@@ -230,6 +200,7 @@ gsettings set org.gnome.TextEditor restore-session false
 gsettings set org.gnome.TextEditor show-line-numbers true
 gsettings set org.gnome.TextEditor highlight-current-line true
 gsettings set org.gnome.TextEditor highlight-matching-brackets true
+gsettings set org.gnome.TextEditor tab-width 4
 # Nautilus config
 gsettings set org.gnome.nautilus.icon-view default-zoom-level 'small-plus'
 # GNOME desktop config
@@ -252,6 +223,7 @@ gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-autom
 gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-from 0.0 # Always enabled
 gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-to 0.0
 # GNOME dock config
+gsettings set org.gnome.shell.extensions.dash-to-dock multi-monitor true
 gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 50
 gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed false
 gsettings set org.gnome.shell.extensions.dash-to-dock autohide-in-fullscreen true
@@ -261,7 +233,6 @@ gsettings set org.gnome.shell.extensions.dash-to-dock always-center-icons true
 gsettings set org.gnome.shell.extensions.dash-to-dock dock-position 'BOTTOM'
 gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize-or-previews'
 gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'obsidian_obsidian.desktop', '$(xdg-settings get default-web-browser)', 'org.wezfurlong.wezterm.desktop']"
-# gsettings set org.gnome.shell.extensions.dash-to-dock multi-monitor true
 # GNOME interface config
 gsettings set org.gnome.desktop.interface clock-show-weekday true
 gsettings set org.gnome.desktop.interface clock-format '24h'
