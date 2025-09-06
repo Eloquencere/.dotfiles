@@ -125,7 +125,7 @@ sudo nala purge -y "${BLOAT[@]}"
 
 rm -rf ~/.cache/thumbnails/*
 rm -rf ~/{.bash*,.profile,.fontconfig}
-# sudo rm -rf ~/{Templates,Public,go}
+sudo rm -rf ~/{Public,go}
 # sed -i "/Videos\|Music/d" ~/.config/gtk-3.0/bookmarks
 
 sudo sh -c "apt-get update; apt-get dist-upgrade; apt-get autoremove; apt-get autoclean; apt --fix-broken install"

@@ -48,6 +48,7 @@ sudo snap install zig   --classic --beta
 APPLICATIONS=(
     "gnome-shell-extension-manager"
     "bleachbit" "timeshift"
+    "kdeconnect"
 )
 sudo nala install -y "${APPLICATIONS[@]}"
 
@@ -84,9 +85,11 @@ else
 fi
 
 # Office Software
-sudo snap install notion-desktop drawio qalculate surfshark
+sudo snap install notion-desktop drawio qalculate
 sudo snap install obsidian --classic
 # mcomix or kommiku
+
+sudo snap install varia surfshark
 
 # VSCode
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg && sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
@@ -158,7 +161,6 @@ ADDITIONAL_APPS_FLATPAK=(
     # Backup
     "org.gnome.World.PikaBackup"
     # Project Management
-    "io.github.giantpinkrobots.varia"
     "org.ghidra_sre.Ghidra"
     "org.jitsi.jitsi-meet"
     "com.rustdesk.RustDesk"

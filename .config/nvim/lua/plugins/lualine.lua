@@ -71,21 +71,20 @@ return {
             },
             sections = {
                 lualine_a = {
-                    { 
-                        'mode', 
+                    {
+                        'mode',
                         fmt = function(mode)
                             local mode = vim.fn.mode()
                             local padded_mode = mode_map[mode] or mode
                             return "\u{e6ae} " .. padded_mode
-                        end 
+                        end
                     },
                 },
                 lualine_b = { 'filename' },
-
                 lualine_c = { '' },
 
                 lualine_x = { '' },
-                lualine_y = { 
+                lualine_y = {
                     {
                         'diff',
                         symbols = {added = ' ', modified = ' ', removed = ' '},
@@ -98,9 +97,9 @@ return {
                     },
                     'branch',
                     'fileformat',
-                    'progress', 
+                    'progress',
                 },
-                lualine_z = { 
+                lualine_z = {
                     'location'
                 },
             },

@@ -33,10 +33,12 @@ $os\
 $line_break\
 \
 [\u2570\u2574](fg:cyan)\
-[$character]($style)"""
+[$character]($style)\
+"""
 
 right_format = """
-[\u2576\u256F](fg:#E95420)"""
+[\u2576\u256F](fg:#E95420)\
+"""
 
 # Inserts a blank line between shell prompts:
 add_newline = true
