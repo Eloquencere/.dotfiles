@@ -47,6 +47,8 @@ cpan App::cpanminus
 # pip install Cython numba taichi
 # pip install parse pendulum pydantic ruff mypy pyglet
 # pip install keras scikit-learn torch # AI/ML
+# Electronic Design
+# pip install wavedrom pydot python-statemachine
 
 # Useful Rust binaries
 CARGO_PKGS=(
