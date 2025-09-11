@@ -56,7 +56,6 @@ CARGO_PKGS=(
 )
 cargo install "${CARGO_PKGS[@]}"
 
-mkdir ~/Projects
 echo "file://$HOME/Projects" >> ~/.config/gtk-3.0/bookmarks
 
 mkdir -p $HOME/.config/zsh/personal
@@ -106,6 +105,12 @@ if [[ $user_choice =~ ^[Yy]$ ]]; then
     flatpak install --assumeyes flathub "${GAMES_FLATPAK[@]}"
 fi
 
+echo -n "Will you be using SAMBA shares on this machine?(y/N) "
+read user_choice
+if [[ $user_choice =~ ^[Yy]$ ]]; then
+    sudo nala install -y samba smbconnect
+fi
+
 echo -n "Would you like to configure USBIP?(y/N) "
 read user_choice
 if [[ $user_choice =~ ^[Yy]$ ]]; then
@@ -139,7 +144,8 @@ sudo nala purge -y "${BLOAT[@]}"
 
 rm -rf ~/.cache/thumbnails/*
 rm -rf ~/{.bash*,.profile,.fontconfig}
-sudo rm -rf ~/{Public,go}
+sudo rm -rf ~/{Public,go,Music}
+sed -i "/Music/d" ~/.config/gtk-3.0/bookmarks
 # sed -i "/Videos\|Music/d" ~/.config/gtk-3.0/bookmarks
 
 sudo sh -c "apt-get update; apt-get dist-upgrade; apt-get autoremove; apt-get autoclean; apt --fix-broken install"
