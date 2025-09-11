@@ -94,6 +94,18 @@ if [[ $user_choice =~ ^[Yy]$ ]]; then
     sed -i '/.* = $/d' $HOME/.gitconfig
 fi
 
+echo -n "Will you be Gaming on this machine?(y/N) "
+read user_choice
+if [[ $user_choice =~ ^[Yy]$ ]]; then
+    mkdir ~/Games
+    sudo snap install steam discord
+    GAMES_FLATPAK=(
+        "com.heroicgameslauncher.hgl"
+        # "com.parsecgaming.parsec"
+    )
+    flatpak install --assumeyes flathub "${GAMES_FLATPAK[@]}"
+fi
+
 echo -n "Would you like to configure USBIP?(y/N) "
 read user_choice
 if [[ $user_choice =~ ^[Yy]$ ]]; then
@@ -141,14 +153,6 @@ read user_choice
 if [[ $user_choice =~ ^[Yy]$ ]]; then
     shutdown now
 fi
-
-# # Gaming
-# mkdir ~/Games
-# sudo snap install steam discord
-# GAMES_FLATPAK=(
-#     "com.heroicgameslauncher.hgl"
-#     # "com.parsecgaming.parsec"
-# )
 
 # # Auto-cpufreq
 # git clone https://github.com/AdnanHodzic/auto-cpufreq.git
