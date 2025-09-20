@@ -99,13 +99,14 @@ sudo apt install -y apt-transport-https && sudo apt update
 sudo apt install code
 rm -f packages.microsoft.gpg
 
-# Anki
+# Anki - WARN - Need to manually update when new version released
 sudo apt install -y libxcb-xinerama0 libxcb-cursor0 libnss3
-wget https://github.com/ankitects/anki/releases/download/25.07.5/anki-launcher-25.07.5-linux.tar.zst
-tar xaf anki-launcher-25.07.5-linux.tar.zst
-cd anki-launcher-25.07.5-linux
-sudo ./install.sh; cd ..
-rm -rf anki-launcher-25.07.5-linux anki-launcher-25.07.5-linux.tar.zst
+wget https://github.com/ankitects/anki/releases/download/25.09/anki-launcher-25.09-linux.tar.zst
+tar xaf anki-launcher-25.09-linux.tar.zst
+cd anki-launcher-25.09-linux
+sudo ./install.sh
+anki
+cd ..; rm -rf anki-launcher-25.09-linux anki-launcher-25.09-linux.tar.zst
 
 # Signal
 wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg;
