@@ -144,7 +144,7 @@ sudo nala purge -y "${BLOAT[@]}"
 
 rm -rf ~/.cache/thumbnails/*
 rm -rf ~/{.bash*,.profile,.fontconfig}
-sudo rm -rf ~/{Public,go,Music}
+sudo rm -rf ~/{Templates,Public,go,Music}
 sed -i "/Music/d" ~/.config/gtk-3.0/bookmarks
 # sed -i "/Videos\|Music/d" ~/.config/gtk-3.0/bookmarks
 
