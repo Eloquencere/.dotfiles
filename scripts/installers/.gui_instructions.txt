@@ -2,7 +2,7 @@
 
 - Configure the search button to not output everything except Calendar and settings
 - Sync the web-browser on your default machine with the current machine
-- Setup your cloud flie storage service provider
+- Setup your cloud file storage service provider
 - Group app icons in the app drawer
 - Setup PikaBKP and timeshift
 - Set Qalculate to trigger when the calc key is pressed
@@ -13,8 +13,8 @@
         - Set the top left corner to trigger - Toggle overview App Grid
     - Just Perfection
         Visibility
+        	- Keyboard Layout - Disable
             - Accessibility Menu - Disable
-            - Keyboard Layout - Disable
             - Dark Mode Toggle Button - Disable
             - Night Light Toggle Button - Disable
             - Airplane Mode Toggle Button - Disable
@@ -26,6 +26,5 @@
         - Disable "Panel" and "Dash" Blur
     (Future)
     - Pano Clipboard Manager
-- VirtualBox
 
 - If facing mouse scroll wheel issues, install "imwheel" via apt
