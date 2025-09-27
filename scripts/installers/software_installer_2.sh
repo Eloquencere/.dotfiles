@@ -105,6 +105,19 @@ if [[ $user_choice =~ ^[Yy]$ ]]; then
     flatpak install --assumeyes flathub "${GAMES_FLATPAK[@]}"
 fi
 
+echo -n "Do you want to run a VM (Windows) on this machine?(y/N) "
+read user_choice
+if [[ $user_choice =~ ^[Yy]$ ]]; then
+    # ref - https://www.youtube.com/watch?v=Zei8i9CpAn0
+    
+    cd ~/Downloads
+    wget https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/archive-virtio/virtio-win-0.1.271-1/virtio-win.iso
+    wget https://www.spice-space.org/download/windows/spice-guest-tools/spice-guest-tools-latest.exe
+    sudo apt upgrade
+    sudo nala install -y qemu-kvm bridge-utils virt-manager libosinfo-bin
+    cd -
+fi
+
 echo -n "Will you be using SAMBA shares on this machine?(y/N) "
 read user_choice
 if [[ $user_choice =~ ^[Yy]$ ]]; then
@@ -134,17 +147,6 @@ if [[ $user_choice =~ ^[Yy]$ ]]; then
     sed -i "1i\file:///mnt/hgfs/WinLin-Transfer" ~/.config/gtk-3.0/bookmarks
     mkdir -p $HOME/Projects
     sed -i "1i\file://$HOME/Projects" ~/.config/gtk-3.0/bookmarks
-fi
-
-echo -n "Do you want to run a (Windows) VM on this machine?(y/N) "
-read user_choice
-if [[ $user_choice =~ ^[Yy]$ ]]; then
-    # ref - https://www.youtube.com/watch?v=Zei8i9CpAn0
-
-    wget https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/archive-virtio/virtio-win-0.1.271-1/virtio-win.iso
-    wget https://www.spice-space.org/download/windows/spice-guest-tools/spice-guest-tools-latest.exe
-    sudo apt upgrade
-    sudo nala install -y qemu-kvm bridge-utils virt-manager libosinfo-bin
 fi
 
 # Clean up

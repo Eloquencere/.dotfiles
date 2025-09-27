@@ -13,7 +13,8 @@ gsettings set org.gnome.desktop.screensaver lock-enabled false
 sudo dpkg --add-architecture i386
 sudo sh -c "apt update; apt upgrade -y"
 
-# install nerd fonts
+# Installing fonts
+sudo apt install -y ttf-mscorefonts-installer fonts-crosextra-carlito fonts-crosextra-caladea # MS fonts for LibreOffice
 source nerdfonts_download.sh
 
 ESSENTIALS=(
@@ -59,7 +60,7 @@ echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/w
 sudo apt update
 sudo apt install -y wezterm
 
-# Open in terminal option nautilus extension
+# Open in terminal option nautilus extension - WARN - Need to update when new version releases
 wget https://github.com/Stunkymonkey/nautilus-open-any-terminal/releases/download/0.6.0/nautilus-extension-any-terminal_0.6.0-1_all.deb
 sudo apt install -y ./nautilus-extension-any-terminal_0.6.0-1_all.deb
 rm -f nautilus-extension-any-terminal_0.6.0-1_all.deb
@@ -99,7 +100,7 @@ sudo apt install -y apt-transport-https && sudo apt update
 sudo apt install code
 rm -f packages.microsoft.gpg
 
-# Anki - WARN - Need to manually update when new version released
+# Anki - WARN - Need to manually update when new version releases
 sudo apt install -y libxcb-xinerama0 libxcb-cursor0 libnss3
 wget https://github.com/ankitects/anki/releases/download/25.09/anki-launcher-25.09-linux.tar.zst
 tar xaf anki-launcher-25.09-linux.tar.zst
@@ -116,7 +117,7 @@ echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] 
 sudo apt update && sudo apt install signal-desktop
 rm -rf signal-desktop-keyring.gpg
 
-# Kicad
+# Kicad - WARN - need to update when new version releases
 sudo add-apt-repository --yes ppa:kicad/kicad-9.0-releases
 sudo apt update
 sudo apt install --install-recommends -y kicad
@@ -179,7 +180,9 @@ flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
 xdg-mime default okular_okular.desktop application/pdf
 
 # Setting a reminder at 21:30 every alternate day to backup progress
-(crontab -l ; echo "30 21 */2 * * DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$(id -u)/bus notify-send 'Backup your current progress with PIKA BACKUP.'") | crontab -
+(crontab -l ; echo "30 21 */2 * * DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$(id -u)/bus notify-send 'Backup your current progress with PIKA BACKUP'") | crontab -
+# Setting a reminder at 21:30 every alternate day to software updater
+(crontab -l ; echo "00 21 */8 * * DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$(id -u)/bus notify-send 'Run the software updater'") | crontab -
 
 SNAP_BLOAT=(
     "thunderbird"
@@ -237,7 +240,7 @@ gsettings set org.gnome.shell.extensions.dash-to-dock show-mounts-only-mounted t
 gsettings set org.gnome.shell.extensions.dash-to-dock always-center-icons true
 gsettings set org.gnome.shell.extensions.dash-to-dock dock-position 'BOTTOM'
 gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize-or-previews'
-gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'org.gnome.TextEditor.desktop', 'notion-desktop_notion-desktop.desktop', 'obsidian_obsidian.desktop', 'brave-browser.desktop', 'org.wezfurlong.wezterm.desktop']"
+gsettings set org.gnome.shell favorite-apps "['org.gnome.TextEditor.desktop', 'notion-desktop_notion-desktop.desktop', 'obsidian_obsidian.desktop', 'brave-browser.desktop', 'org.wezfurlong.wezterm.desktop', 'org.gnome.Nautilus.desktop']"
 # GNOME interface config
 gsettings set org.gnome.desktop.interface clock-show-weekday true
 gsettings set org.gnome.desktop.interface clock-format '24h'
