@@ -21,64 +21,6 @@ return {
                 visual = "s",
                 visual_line = "s",
             }
-            -- surrounds = {
-            --     ["("] = {
-            --         add = { "(", ")" },
-            --         find = function()
-            --             return M.get_selection({ motion = "a(" })
-            --         end,
-            --         delete = "^(. ?)().-( ?.)()$",
-            --     },
-            --     [")"] = {
-            --         add = { "( ", " )" },
-            --         find = function()
-            --             return M.get_selection({ motion = "a)" })
-            --         end,
-            --         delete = "^(.)().-(.)()$",
-            --     },
-            --     ["{"] = {
-            --         add = { "{", "}" },
-            --         find = function()
-            --             return M.get_selection({ motion = "a{" })
-            --         end,
-            --         delete = "^(. ?)().-( ?.)()$",
-            --     },
-            --     ["}"] = {
-            --         add = { "{ ", " }" },
-            --         find = function()
-            --             return M.get_selection({ motion = "a}" })
-            --         end,
-            --         delete = "^(.)().-(.)()$",
-            --     },
-            --     ["<"] = {
-            --         add = { "<", ">" },
-            --         find = function()
-            --             return M.get_selection({ motion = "a<" })
-            --         end,
-            --         delete = "^(. ?)().-( ?.)()$",
-            --     },
-            --     [">"] = {
-            --         add = { "< ", " >" },
-            --         find = function()
-            --             return M.get_selection({ motion = "a>" })
-            --         end,
-            --         delete = "^(.)().-(.)()$",
-            --     },
-            --     ["["] = {
-            --         add = { "[", "]" },
-            --         find = function()
-            --             return M.get_selection({ motion = "a[" })
-            --         end,
-            --         delete = "^(. ?)().-( ?.)()$",
-            --     },
-            --     ["]"] = {
-            --         add = { "[ ", " ]" },
-            --         find = function()
-            --             return M.get_selection({ motion = "a]" })
-            --         end,
-            --         delete = "^(.)().-(.)()$",
-            --     },
-            -- },
         })
     end
 }
