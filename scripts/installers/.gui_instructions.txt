@@ -6,11 +6,13 @@
 - Group app icons in the app drawer
 - Setup PikaBKP and timeshift
 - Set Qalculate to trigger when the calc key is pressed
+- Set Wezterm to open when "Alt+Shift+W" sequence is entered
 
-(Optional)
+(Essentials)
 - Gnome Extensions
     - CHC-E
         - Set the top left corner to trigger - Toggle overview App Grid
+        - Options -> Global Options -> Show Panel Menu - Disable
     - Just Perfection
         Visibility
         	- Keyboard Layout - Disable
@@ -22,9 +24,23 @@
             - Workspace Popup - Disable
         Behaviour
             - Popup Delay - Disable
-    - blur my shell
-        - Disable "Panel" and "Dash" Blur
+    - Grand Theft Focus
+    - Quick Settings Tweaks
+    - Clipboard Indicator
+    - Bluetooth Battery Meter
+        - Quick Menu -> Quick Menu Settings -> Enable popupsubmenu widget mode (Off)
+        - Show battery icon (Off) & Show battery percentage (On)
+        - Indicator -> Battery Indicator Settings -> Choose Indicator Mode (Off)
     (Future)
     - Pano Clipboard Manager
 
+(Optional)
+- Gnome Extensions
+    - blur my shell
+        - Disable "Panel" and "Dash" Blur
+    - Removable Drive Menu
+    - Forge (Tiling Manager)
+    - Hide Top Bar
+        - Show panel when mouse approaches edge of the screen - Enable
 - If facing mouse scroll wheel issues, install "imwheel" via apt
+

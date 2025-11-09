@@ -48,8 +48,8 @@ keybinds clear-defaults=true {
     pane {
         bind "Esc"    { SwitchToMode "Normal"; }
         bind "Ctrl s" { SwitchToMode "Tmux"; }
-        bind "n"      { NewPane; SwitchToMode "Normal"; }
-        bind "N"      { NewPane "Down"; SwitchToMode "Normal"; }
+        bind "n"      { NewPane; }        // No exit, to allow for pane re-sizing
+        bind "N"      { NewPane "Down"; } // No exit, to allow for pane re-sizing
         bind "x"      { CloseFocus; SwitchToMode "Normal"; }
         bind "f"      { ToggleFocusFullscreen; SwitchToMode "Normal"; }
         bind "z"      { TogglePaneFrames; SwitchToMode "Normal"; }

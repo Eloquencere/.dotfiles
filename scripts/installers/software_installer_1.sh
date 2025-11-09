@@ -197,7 +197,6 @@ SOFTWARE_BLOAT=(
     "gnome-snapshot" "gnome-logs"
     "gnome-system-monitor" "gnome-power-manager"
     "deja-dup" "totem" "seahorse" "shotwell" "evince" "gnome-calculator"
-    # "remmina" "update-manager"
 )
 sudo nala purge -y "${SOFTWARE_BLOAT[@]}"
 
