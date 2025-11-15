@@ -24,13 +24,13 @@
             - Workspace Popup - Disable
         Behaviour
             - Popup Delay - Disable
-    - Grand Theft Focus
-    - Quick Settings Tweaks
-    - Clipboard Indicator
     - Bluetooth Battery Meter
         - Quick Menu -> Quick Menu Settings -> Enable popupsubmenu widget mode (Off)
         - Show battery icon (Off) & Show battery percentage (On)
         - Indicator -> Battery Indicator Settings -> Choose Indicator Mode (Off)
+    - Grand Theft Focus
+    - Quick Settings Tweaks
+    - Clipboard Indicator
     (Future)
     - Pano Clipboard Manager
 

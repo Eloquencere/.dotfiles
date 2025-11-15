@@ -1,4 +1,3 @@
--- initialising core configs
 require("config.options")
 require("config.keymaps")
 require("config.custom_macros")
