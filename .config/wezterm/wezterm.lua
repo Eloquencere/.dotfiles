@@ -11,11 +11,10 @@ config = {
     check_for_updates = false,
     max_fps = 144,
     animation_fps = 30,
-    color_scheme = "Aco",
 
     -- Window config
-    window_decorations = "RESIZE",
     enable_tab_bar = false,
+    window_decorations = "RESIZE",
     adjust_window_size_when_changing_font_size = false,
     window_padding = {
         left = 0,
@@ -23,6 +22,8 @@ config = {
         top = 0,
         bottom = 0,
     },
+
+    -- Appearance
     background = {
         {
             source = {
@@ -30,7 +31,7 @@ config = {
             },
             width = "100%",
             height = "100%",
-            opacity = 0.82,
+            opacity = 0.81,
         },
     },
 
@@ -38,7 +39,7 @@ config = {
     font = wezterm.font("UbuntuSansMono Nerd Font", { weight = "Medium" }),
     harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }, -- disable ligatures
     font_size = 17.5,
-    use_ime = false, -- Experimental
+    use_ime = false,
     default_cursor_style = "SteadyBar",
 
     -- Key mappings for tab movement in neovim, thanks to - reddit.com/r/neovim/comments/uc6q8h/ability_to_map_ctrl_tab_and_more/
@@ -63,7 +64,7 @@ config = {
     table.insert(wezterm.default_hyperlink_rules(), {
         regex = [[["]?([\w\d]{1}[-\w\d]+)(/){1}([-\w\d\.]+)["]?]],
         format = 'https://www.github.com/$1/$3',
-    })
+    }),
 }
 
 if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
