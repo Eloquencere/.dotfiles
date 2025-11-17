@@ -79,7 +79,6 @@ return {
                 "cssls",
                 "marksman", -- Markdown
                 "bashls", -- Bash, Zsh
-                "svlangserver",
                 "verible",
                 "vhdl_ls",
                 "perlnavigator",

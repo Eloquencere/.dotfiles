@@ -43,7 +43,7 @@ zstyle ':fzf-tab:complete:((cp|mv|rm|nvim|jq|bat|delta):argument-rest|kate:*)' f
 # Shell integrations
 source <(starship init zsh)
 source <(fzf --zsh)
-source <(atuin init zsh --disable-up-arrow)
+source <(atuin init zsh --disable-ctrl-r --disable-up-arrow)
 source <(zoxide init --cmd cd zsh)
 source <(mise activate zsh)
 
@@ -55,17 +55,12 @@ fi
 source "$ZDOTDIR/zsh-aliases.zsh"
 source "$ZDOTDIR/zsh-functions.zsh"
 
-
 # Zsh-Vi-Mode
 function zvm_after_init() {
 	ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
 	zvm_bindkey viins '^r' atuin-search
 	zvm_bindkey viins '^p' atuin-up-search
     zvm_bindkey viins "^[[13;2u" insert-newline
-}
-function zvm_after_lazy_keybindings() {
-    zvm_bindkey vicmd '^r' atuin-search
-	zvm_bindkey vicmd '^p' atuin-up-search
 }
 
 # FZF modifications
