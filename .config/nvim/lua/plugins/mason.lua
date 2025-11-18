@@ -37,25 +37,25 @@ return {
                 { desc = "Give details of text below cursor" }
             },
             {
-                "n",
+                mode = "n",
                 "<leader>gd",
                 vim.lsp.buf.definition,
                 { desc = "Go to definition" }
             },
             {
-                "n",
+                mode = "n",
                 "<leader>gi",
                 vim.lsp.buf.implementation,
                 { desc = "Go to implementation" }
             },
             {
-                "n",
+                mode = "n",
                 "<leader>gr",
                 require("telescope.builtin").lsp_references,
                 { desc = "Go to references" }
             },
             {
-                "n",
+                mode = "n",
                 "<leader>ca",
                 vim.lsp.buf.code_action,
                 { desc = "Perform code actions [Attached to telescope]" }
