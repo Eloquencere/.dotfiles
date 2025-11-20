@@ -1,6 +1,7 @@
 # options
 setopt nobeep
 setopt correct
+setopt extended_glob
 setopt interactive_comments
 
 # Loading zinit
