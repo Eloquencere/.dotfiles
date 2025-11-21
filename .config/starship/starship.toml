@@ -1,15 +1,5 @@
 # Made with ♥︎  by Eloquencer and Divakar
 
-# ### ---------
-# ### "Power10"
-# ### ---------
-# - Variant 2: two line prompt, no background in top line, separators on left side, filling solid line in top row
-# - inspired by a powerlevel10k design-variant (https://github.com/romkatv/powerlevel10k)
-#
-# - Recommended / tested with Font 'MesloLGS NF Regular' from: Meslo Nerd Font patched for Powerlevel10k
-#   Link: https://github.com/romkatv/powerlevel10k?tab=readme-ov-file#manual-font-installation
-#         --> "Manual font installation", with currently 4 Font Types
-
 # Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
 
@@ -28,10 +18,8 @@ $cmd_duration\
 $jobs\
 $shell\
 $os\
-[\u2576\u256E](fg:#E95420)\
-[ ](fg:greydarker)\
+[\u2576\u256E ](fg:#E95420)\
 $line_break\
-\
 [\u2570\u2574](fg:cyan)\
 [$character]($style)\
 """
@@ -39,9 +27,6 @@ $line_break\
 right_format = """
 [\u2576\u256F](fg:#E95420)\
 """
-
-# Inserts a blank line between shell prompts:
-add_newline = true
 
 # Color Palette
 palette = "Power10"
@@ -124,6 +109,7 @@ format = "[\u3009$symbol $branch(:$remote_branch)]($style)[ ]()" # \u3009 \uf460
 style = 'fg:orangegit'
 symbol = "\ue702" # \ue702 
 # ignore_branches = ['master', 'main']
+disabled = false
 
 [git_commit]
 format = '[\($hash$tag\)]($style)[ ]()'
