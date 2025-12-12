@@ -76,7 +76,7 @@ if [[ $user_choice =~ ^[Yy]$ ]]; then
     git config --global core.preloadindex true
     git config --global core.editor nvim
     git config --global core.pager delta
-    git config --global delta.navigate true  # use n and N to move between diff sections
+    git config --global delta.navigate true
     git config --global delta.dark true
     git config --global delta.side-by-side true
     git config --global interactive.diffFilter 'delta --color-only'

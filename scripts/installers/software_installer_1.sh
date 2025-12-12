@@ -60,7 +60,7 @@ echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/w
 sudo apt update
 sudo apt install -y wezterm
 
-# Open in terminal option nautilus extension - WARN - Need to update when new version releases
+# Open in terminal option nautilus extension - WARN: Need to update when new version releases
 wget https://github.com/Stunkymonkey/nautilus-open-any-terminal/releases/download/0.6.0/nautilus-extension-any-terminal_0.6.0-1_all.deb
 sudo apt install -y ./nautilus-extension-any-terminal_0.6.0-1_all.deb
 rm -f nautilus-extension-any-terminal_0.6.0-1_all.deb
@@ -100,7 +100,7 @@ sudo apt install -y apt-transport-https && sudo apt update
 sudo apt install code
 rm -f packages.microsoft.gpg
 
-# Anki - WARN - Need to manually update when new version releases
+# Anki - WARN: Need to manually update when new version releases
 sudo apt install -y libxcb-xinerama0 libxcb-cursor0 libnss3
 wget https://github.com/ankitects/anki/releases/download/25.09/anki-launcher-25.09-linux.tar.zst
 tar xaf anki-launcher-25.09-linux.tar.zst
@@ -117,7 +117,7 @@ echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] 
 sudo apt update && sudo apt install signal-desktop
 rm -rf signal-desktop-keyring.gpg
 
-# Kicad - WARN - need to update when new version releases
+# Kicad - WARN: need to update when new version releases
 sudo add-apt-repository --yes ppa:kicad/kicad-9.0-releases
 sudo apt update
 sudo apt install --install-recommends -y kicad
@@ -156,10 +156,10 @@ sudo apt install -y flatpak gnome-software-plugin-flatpak
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 ADDITIONAL_APPS_FLATPAK=(
     "org.videolan.VLC"
-    "org.kde.okular"
+    "org.kde.okular" # WARN: not working sometimes
     # Electronics
     "com.github.reds.LogisimEvolution"
-    # System
+    # System - WARN: depricated in 26.04 LTS
     "net.nokyan.Resources"
     # Backup
     "org.gnome.World.PikaBackup"
@@ -181,8 +181,6 @@ xdg-mime default okular_okular.desktop application/pdf
 
 # Setting a reminder at 21:30 every alternate day to backup progress
 (crontab -l ; echo "30 21 */2 * * DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$(id -u)/bus notify-send 'Backup your current progress with PIKA BACKUP'") | crontab -
-# Setting a reminder at 21:30 every alternate day to software updater
-(crontab -l ; echo "00 21 */8 * * DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$(id -u)/bus notify-send 'Run the software updater'") | crontab -
 
 SNAP_BLOAT=(
     "thunderbird"
@@ -196,7 +194,9 @@ SOFTWARE_BLOAT=(
     "rhythmbox" "orca" "info" "yelp"
     "gnome-snapshot" "gnome-logs"
     "gnome-system-monitor" "gnome-power-manager"
-    "deja-dup" "totem" "seahorse" "shotwell" "evince" "gnome-calculator"
+    "deja-dup" "seahorse" "shotwell" "evince" "gnome-calculator"
+    # WARN: depricated in ubuntu 26.04 LTS to - "showtime"
+    "totem"
 )
 sudo nala purge -y "${SOFTWARE_BLOAT[@]}"
 
@@ -220,6 +220,7 @@ gsettings set org.gnome.desktop.interface text-scaling-factor 1.20
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 gsettings set org.gnome.desktop.interface gtk-theme 'Yaru-blue-dark'
 gsettings set org.gnome.desktop.interface icon-theme 'Yaru-blue'
+# sudo wget -P /usr/share/backgrounds https://ubuntucommunity.s3.us-east-2.amazonaws.com/original/3X/4/b/4bf6d235b96c6c5027be79e43ebd460a0bf25e07.jpeg
 sudo wget -P /usr/share/backgrounds https://ubuntucommunity.s3.us-east-2.amazonaws.com/original/3X/3/2/320af712c96e48da2d5a61f9b1d0ab2c792530ed.jpeg
 gsettings set org.gnome.desktop.background picture-uri-dark "file:///usr/share/backgrounds/320af712c96e48da2d5a61f9b1d0ab2c792530ed.jpeg"
 gsettings set org.gnome.desktop.background picture-options 'stretched'

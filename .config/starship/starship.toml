@@ -1,37 +1,34 @@
 # Made with ♥︎  by Eloquencer and Divakar
 
-# Get editor completions based on the config schema
-"$schema" = 'https://starship.rs/config-schema.json'
-
-# Customizing the prompt (and placing desired modules at desired position and sequence):
-# ╭╴ # \u256D\u2574
-# ╰╴ # \u2570\u2574
 format = """
-[\u256D\u2574](fg:cyan)\
-$hostname\
+[╭─](fg:directory)\
 $directory\
-$direnv\
 $git_branch$git_commit$git_state$git_metrics$git_status\
+$docker_context\
 $fill\
 $status\
 $cmd_duration\
 $jobs\
 $shell\
 $os\
-[\u2576\u256E ](fg:#E95420)\
+[─╮ ](fg:ubuntu)\
 $line_break\
-[\u2570\u2574](fg:cyan)\
+[╰╴](fg:directory)\
 [$character]($style)\
 """
 
 right_format = """
-[\u2576\u256F](fg:#E95420)\
+[╶╯](fg:ubuntu)\
 """
 
 # Color Palette
 palette = "Power10"
 
 [palettes.Power10]
+# colors
+directory = 'cyan'
+ubuntu = '#E95420'
+
 # only lowercase names
 greydimmed = '#424242'
 greydarker = '#242424'
@@ -40,8 +37,6 @@ user = 'green'
 userroot = 'red'
 sshsymbol = 'green'
 hostname = 'green'
-sudo = 'red'
-directory = 'cyan'
 python = 'yellow'
 # git start ---
 orangegit = '#E04D27'
@@ -65,100 +60,55 @@ status = 'red'
 localip = 'green'
 # shell = '#424242' # greydimmed
 
-[username]
-format = "[\ueab6 ](fg:user bold)[$user]($style)[ ]()" # \u276F ❯ \ueab6 
-style_user = 'fg:user bold'
-style_root = 'fg:userroot bold'
-show_always = false
-disabled = false
-
-[hostname]
-format = '[$ssh_symbol ](fg:sshsymbol bold)[$hostname](fg:hostname bold)[ ]()'
-ssh_only = true
-ssh_symbol = "\ue36e" # \ue36e '' # '⇒' # ' ' # 'ﬁ⇒'
-# trim_at = '.companyname.com'
-disabled = false
-
 [directory]
-format = "[$read_only]($read_only_style)[$repo_root]($repo_root_style)[$path ]($style)" # \u276F ❯ \ueab6 
+format = "[  ]($style)[$read_only]($read_only_style)[$repo_root]($repo_root_style)[$path ]($style)" # \u276F ❯ \ueab6 
 style = 'fg:directory bold'
-home_symbol = "~" # \uf015 ' ~'
+home_symbol = "~"
 read_only = "\uf023 " # \uf023 ' '
 read_only_style = 'red'
 truncation_length = 3
 truncation_symbol = '…/'
 truncate_to_repo = false
-repo_root_format = "[$read_only]($read_only_style)[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path ]($style)" # \u276F ❯ \ueab6 
-repo_root_style = 'fg:directory bold'
 use_os_path_sep = true
 disabled = false
 
-[direnv]
-symbol = 'direnv'
-style = 'fg:greydimmed'
-format = "[\u3009$symbol $loaded/$allowed ]($style)"
-allowed_msg = 'a' # 'ok' # '✓'
-not_allowed_msg = '!a' # 'nok' # '!'
-denied_msg = 'x' # '✘'
-loaded_msg = '+' # "\ueabc" # \ueabc  # '->' # 'yo' # '󰗡' # \udb81\udde1 # '󱥸✓' # '󱥸✓' # 
-unloaded_msg = '-' # "\ueabc!" # \ueabc ! # '->!' # 'no' # '󰅚' # '󱥸!' \udb86\udd78
-disabled = false
-
 [git_branch]
-format = "[\u3009$symbol $branch(:$remote_branch)]($style)[ ]()" # \u3009 \uf460 ❯
-style = 'fg:orangegit'
-symbol = "\ue702" # \ue702 
-# ignore_branches = ['master', 'main']
+format = "[\u3009$symbol$branch(:$remote_branch)]($style)[ ]()" # \u3009 \uf460 ❯
+style = 'fg:orangegit' # NOTE: try something like purple
+symbol = "\ue0a0" # \ue702 
 disabled = false
-
-[git_commit]
-format = '[\($hash$tag\)]($style)[ ]()'
-style = 'fg:orangegit'
-commit_hash_length = 8
-tag_symbol = " \uf412 " # \uf412 '  ' # '  ''
-tag_disabled = false
-disabled = true
-
-[git_metrics]
-format = '[\[+$added/]($added_style)[-$deleted\]]($deleted_style)[ ]()'
-added_style = 'fg:orangegit'
-deleted_style = 'fg:orangegit'
-disabled = true
 
 [git_status]
-format = '([$all_status$ahead_behind]($style))'
-style = 'fg:orangegit'
-conflicted = "[\ueaaf${count} ](fg:conflicted)" # 
-ahead = "[\u21E1${count} ](fg:ahead)" # ⇡ \ueaa0
-behind = "[\u21E3${unt} ](fg:behind)" # ⇣ \uea9d
-diverged = "[\u2195\u21E1${ahead_count} \u21E3${behind_count} ](fg:diverged)" # \u2195\u21E1 ⇕ ↕ ⇳ 󰹹 󰹺 󰧈
-up_to_date = "[\u2714 ](fg:uptodate)" # \u2714 ✔ \u2713 \ueab2 ✓
-untracked = "[󰟉.${count} ](fg:untracked)" # 󰟉 \uf441 \ueb32 ﳇ ' ' # '? '
-stashed = "[\ueb29${count} ](fg:stashed)" # \ueb29  '📦 '# ' ' # ' ' # ' ' # ' '
-modified = "[\uf040${count} ](fg:modified)" # \uf040 󰷉 '📝' # '! ' #  #  #  \uf044 \uea73
-staged = "[\u26DF .${count} ](fg:staged)" # \u26DF  '+ '
-renamed = "[\u0373${count} ](fg:renamed)" # \u0373 \ueb69  ' ' # '﫦' # ᴂ #  #  #  # ﳳ
-deleted = "[\uea81${count} ](fg:deleted)" # \uea81 \uf507 ﯊ '🗑 ' '- '
-disabled = true
+style = "fg:orangegit"
+format = '([$all_status]($style))'
+ahead = "[^${count} ](fg:ahead)"
+behind = "[v${count} ](fg:behind)"
+diverged = "[^${ahead_count} v${behind_count} ](fg:diverged)"
+# staged = "[+](fg:staged) "
+# deleted = "[-](fg:deleted) "
+# stashed = "[$](fg:stashed) "
+# conflicted = "[x](fg:conflicted) "
+# renamed = "[>](fg:renamed) "
+disabled = false
 
 [fill]
 style = 'fg:fill'
 symbol = "\u2500" # "\u2500" "─" # no line: ' '
 
 [status]
-format = "[$symbol $status $hex_status( \uf0a2 $signal_number-$signal_name)]($style)" # \uf0a2  , \ueaa2
+format = "[$symbol $hex_status( \uf0a2 $signal_number-$signal_name)]($style)" # \uf0a2  , \ueaa2
 style = 'fg:status'
 symbol = " \u2717" # \u2717 \uf467 \uebde  ✘
 disabled = false
 
 [cmd_duration]
-format = "[\ueab5 \uf017 $duration]($style)" # \ueab5 \uf017   
+format = "[\ueab5\uf017 $duration]($style)" # \ueab5 \uf017   
 style = 'fg:duration'
 min_time = 500
 disabled = false
 
 [jobs]
-format = "[\ueab5 ](fg:jobs bold)[$symbol $number]($style)" # \u3009
+format = "[\ueab5](fg:jobs bold)[$symbol $number]($style)" # \u3009
 style = 'fg:jobs'
 symbol = "\ueb7b" # \ueb7b  \uef0c 省 # '廒' # '󰜎' # ''
 symbol_threshold = 1
@@ -166,16 +116,16 @@ number_threshold = 2
 disabled = false
 
 [shell]
-format = "[\ueab5 ](fg:#D25E35)[$indicator]($style)"
-zsh_indicator = '_'
-bash_indicator = ''
-style = 'bold #D25E35'
-disabled = true
+format = "[\ueab5](fg:#FFB65E)[$indicator]($style)"
+zsh_indicator = 'zsh'
+bash_indicator = 'bash'
+style = 'fg:#FFB65E bold'
+disabled = false
 
 # Customization and activation of some modules:
 # Listed in the order of their position in the module rows above
 [os]
-format = "[\ueab5 ](fg:#E95420)[$symbol]($style)"
+format = "[\ueab5](fg:#E95420)[$symbol]($style)"
 style = "#E95420"
 disabled = false
 
@@ -227,4 +177,29 @@ Ultramarine = "󱙳 " # 🔷
 Unknown = "\uf108 " # ""
 Void = "\uf32e " #  
 Windows = "\uf17a " # ""
+
+[username]
+format = "[\ueab6 ](fg:user bold)[$user]($style)[ ]()" # \u276F ❯ \ueab6 
+style_user = 'fg:user bold'
+style_root = 'fg:userroot bold'
+show_always = false
+disabled = false
+
+[hostname]
+format = '[$ssh_symbol ](fg:sshsymbol bold)[$hostname](fg:hostname bold)[ ]()'
+ssh_only = true
+ssh_symbol = "\ue36e" # \ue36e '' # '⇒' # ' ' # 'ﬁ⇒'
+# trim_at = '.companyname.com'
+disabled = false
+
+[direnv]
+symbol = 'direnv'
+style = 'fg:greydimmed'
+format = "[\u3009$symbol $loaded/$allowed ]($style)"
+allowed_msg = 'a' # 'ok' # '✓'
+not_allowed_msg = '!a' # 'nok' # '!'
+denied_msg = 'x' # '✘'
+loaded_msg = '+' # "\ueabc" # \ueabc  # '->' # 'yo' # '󰗡' # \udb81\udde1 # '󱥸✓' # '󱥸✓' # 
+unloaded_msg = '-' # "\ueabc!" # \ueabc ! # '->!' # 'no' # '󰅚' # '󱥸!' \udb86\udd78
+disabled = false
 
