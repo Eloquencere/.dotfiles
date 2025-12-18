@@ -80,16 +80,8 @@ disabled = false
 
 [git_status]
 style = "fg:orangegit"
-format = '([\[$all_status$ahead_behind\]]($style) )'
-# format = '[\[$all_status\]]($style)'
-ahead = "[⇡${count}](fg:ahead)"
-behind = "[⇣${count}](fg:behind)"
-diverged = "[⇡{ahead_count} ⇣${behind_count}](fg:diverged)"
-# staged = "[+](fg:staged) "
-# deleted = "[-](fg:deleted) "
-# stashed = "[$](fg:stashed) "
-# conflicted = "[x](fg:conflicted) "
-# renamed = "[>](fg:renamed) "
+format = '([\[$all_status$ahead_behind\]]($style))'
+stashed = "[$](fg:stashed) "
 disabled = false
 
 [fill]
