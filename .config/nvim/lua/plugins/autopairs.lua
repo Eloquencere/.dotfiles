@@ -37,6 +37,12 @@ return {
                     return (prev_char == '{' and next_char == '}')
                 end),
         })
+
+        npairs.add_rules({
+            Rule("'", "'", {"verilog", "systemverilog"})
+                :with_pair(function() return false end)
+        })
+
     end,
 }
 
