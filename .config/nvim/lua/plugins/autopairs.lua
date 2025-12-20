@@ -39,10 +39,10 @@ return {
         })
 
         npairs.remove_rule("'")
-        npairs.add_rule({
+        npairs.add_rule(
           Rule("'", "'")
             :with_pair(cond.not_filetypes({ "verilog", "systemverilog" }))
-        })
+        )
     end,
 }
 
