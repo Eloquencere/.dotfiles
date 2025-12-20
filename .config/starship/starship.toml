@@ -61,7 +61,7 @@ localip = 'green'
 # shell = '#424242' # greydimmed
 
 [directory]
-format = "[  ]($style)[$read_only]($read_only_style)[$repo_root]($repo_root_style)[$path ]($style)" # \u276F ❯ \ueab6 
+format = "[  ]($style)[$read_only]($read_only_style)[$repo_root]($repo_root_style)[$path ]($style)"
 style = 'fg:directory bold'
 home_symbol = "~"
 read_only = "\uf023 " # \uf023 ' '
@@ -73,7 +73,7 @@ use_os_path_sep = true
 disabled = false
 
 [git_branch]
-format = "[\u3009$symbol$branch(:$remote_branch)]($style)[ ]()" # \u3009 \uf460 ❯
+format = "[\ue0b1 $symbol$branch(:$remote_branch) ]($style)()" # \u3009 or u276f #\ueab6 \ue0b1
 style = 'fg:orangegit' # NOTE: try something like purple
 symbol = "\ue0a0" # \ue702 
 disabled = false
@@ -118,8 +118,7 @@ disabled = false
 # Customization and activation of some modules:
 # Listed in the order of their position in the module rows above
 [os]
-format = "[\ueab5](fg:#E95420)[$symbol]($style)"
-style = "#E95420"
+format = "$symbol"
 disabled = false
 
 [os.symbols]
@@ -165,7 +164,7 @@ RockyLinux = "\uf32b " # 
 Redox = "\uf331 " #   󰺕
 Solus = "\uf32d " # "" # " "
 SUSE = "\uef6d " # ""
-Ubuntu = "\uf31b " # ""
+Ubuntu = "[\ueab5](fg:#E95420)[\uf31b](fg:#E95420) " # ""
 Ultramarine = "󱙳 " # 🔷
 Unknown = "\uf108 " # ""
 Void = "\uf32e " #  
