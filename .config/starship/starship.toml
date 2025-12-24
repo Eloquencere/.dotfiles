@@ -61,7 +61,7 @@ localip = 'green'
 # shell = '#424242' # greydimmed
 
 [directory]
-format = "[  ]($style)[$read_only]($read_only_style)[$repo_root]($repo_root_style)[$path ]($style)"
+format = "[  ]($style)[$read_only]($read_only_style)[$repo_root]($repo_root_style)[$path]($style)"
 style = 'fg:directory bold'
 home_symbol = "~"
 read_only = "\uf023 " # \uf023 ' '
@@ -73,14 +73,14 @@ use_os_path_sep = true
 disabled = false
 
 [git_branch]
-format = "[\ue0b1 $symbol$branch(:$remote_branch) ]($style)()" # \u3009 or u276f #\ueab6 \ue0b1
+format = "[ \ue0b1 $symbol$branch(:$remote_branch)]($style)()" # \u3009 or u276f #\ueab6 \ue0b1
 style = 'fg:orangegit' # NOTE: try something like purple
 symbol = "\ue0a0" # \ue702 
 disabled = false
 
 [git_status]
 style = "fg:orangegit"
-format = '([\[$all_status$ahead_behind\]]($style))'
+format = '( [\[$all_status$ahead_behind\]]($style))'
 stashed = "[$](fg:stashed) "
 disabled = false
 

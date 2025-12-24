@@ -14,6 +14,41 @@ return {
         },
     },
     {
+        "williamboman/mason-lspconfig.nvim",
+        event = { "VeryLazy" },
+        lazy = true,
+        vim.diagnostic.config({
+            virtual_text = { current_line = true }
+        }),
+        opts = {
+            ensure_installed = {
+                "lua_ls",
+                "html",
+                "jedi_language_server", -- Python
+                "clangd", -- C, C++
+                "biome", -- Javascript, Typescript, JSON
+                "cssls",
+                "marksman", -- Markdown
+                "bashls", -- Bash, Zsh
+                -- "verible",
+                -- "vhdl_ls",
+                "perlnavigator",
+                -- "julials", -- Julia - causing issues
+                "rust_analyzer",
+                "gopls", -- Go
+                "zls", -- Zig
+                "yamlls",
+                "dockerls",
+                "taplo", -- TOML
+                "neocmake",
+                -- TCL - N/A
+                -- Gitignore - N/A
+                -- KDL - N/A
+                -- Make - N/A
+            },
+        },
+    },
+    {
         "neovim/nvim-lspconfig",
         event = { "VeryLazy" },
         lazy = true,
@@ -59,41 +94,6 @@ return {
                 "<leader>ca",
                 vim.lsp.buf.code_action,
                 { desc = "Perform code actions [Attached to telescope]" }
-            },
-        },
-    },
-    {
-        "williamboman/mason-lspconfig.nvim",
-        event = { "VeryLazy" },
-        lazy = true,
-        vim.diagnostic.config({
-                virtual_text = { current_line = true }
-        }),
-        opts = {
-            ensure_installed = {
-                "lua_ls",
-                "html",
-                "jedi_language_server", -- Python
-                "clangd", -- C, C++
-                "biome", -- Javascript, Typescript, JSON
-                "cssls",
-                "marksman", -- Markdown
-                "bashls", -- Bash, Zsh
-                "verible",
-                "vhdl_ls",
-                "perlnavigator",
-                -- "julials", -- Julia - causing issues
-                "rust_analyzer",
-                "gopls", -- Go
-                "zls", -- Zig
-                "yamlls",
-                "dockerls",
-                "taplo", -- TOML
-                "neocmake",
-                -- TCL - N/A
-                -- Gitignore - N/A
-                -- KDL - N/A
-                -- Make - N/A
             },
         },
     },
