@@ -5,8 +5,12 @@
 - Setup your cloud file storage service provider
 - Group app icons in the app drawer
 - Setup PikaBKP and timeshift
-- Set Qalculate to trigger when the calc key is pressed
-- Set Wezterm to open when "Alt+Shift+W" sequence is entered
+- Install wine from the official website
+
+- App Quick launches
+    - Set calc key to launch Qalculate
+    - Set Alt+Shift+W to launch Wezterm
+    - Set Alt+Space to trigger Vicinae
 
 (Essentials)
 - Gnome Extensions

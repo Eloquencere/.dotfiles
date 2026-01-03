@@ -66,6 +66,10 @@ sudo apt install -y ./nautilus-extension-any-terminal_0.6.0-1_all.deb
 rm -f nautilus-extension-any-terminal_0.6.0-1_all.deb
 gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal wezterm
 
+# Vicinae - raycast alternative - WARN: Need to update when new version releases & also update in .config/autostart
+mkdir -p $HOME/AppImage
+wget https://github.com/vicinaehq/vicinae/releases/download/v0.17.3/Vicinae-e8e0c24ce-x86_64.AppImage -P $HOME/AppImage
+
 # browser
 echo -n "Installing browser
 b -> brave
@@ -109,13 +113,13 @@ sudo ./install.sh
 anki
 cd ..; rm -rf anki-launcher-25.09-linux anki-launcher-25.09-linux.tar.zst
 
-# Signal
-wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg;
-cat signal-desktop-keyring.gpg | sudo tee /usr/share/keyrings/signal-desktop-keyring.gpg > /dev/null
-echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main' |\
-  sudo tee /etc/apt/sources.list.d/signal-xenial.list
-sudo apt update && sudo apt install signal-desktop
-rm -rf signal-desktop-keyring.gpg
+# # Signal
+# wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg;
+# cat signal-desktop-keyring.gpg | sudo tee /usr/share/keyrings/signal-desktop-keyring.gpg > /dev/null
+# echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main' |\
+#   sudo tee /etc/apt/sources.list.d/signal-xenial.list
+# sudo apt update && sudo apt install signal-desktop
+# rm -rf signal-desktop-keyring.gpg
 
 # Kicad - WARN: need to update when new version releases
 sudo add-apt-repository --yes ppa:kicad/kicad-9.0-releases
