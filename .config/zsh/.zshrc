@@ -25,7 +25,7 @@ zinit ice wait lucid
 zinit snippet OMZ::plugins/sudo/sudo.plugin.zsh
 
 # Initialising completions directory
-fpath=($ZDOTDIR/completion $fpath)
+fpath+=$ZDOTDIR/completion
 
 autoload -Uz colors && colors
 autoload -Uz compinit && compinit

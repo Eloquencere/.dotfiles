@@ -30,7 +30,7 @@ return {
                 "cssls",
                 "marksman", -- Markdown
                 "bashls", -- Bash, Zsh
-                -- "verible",
+                -- "svls", -- good, but needs a lot of config
                 -- "vhdl_ls",
                 "perlnavigator",
                 -- "julials", -- Julia - causing issues
@@ -52,6 +52,10 @@ return {
         "neovim/nvim-lspconfig",
         event = { "VeryLazy" },
         lazy = true,
+
+        -- vim.lsp.config("svls", {
+        --     filetypes = { "verilog", "systemverilog" },
+        -- }),
         keys = {
             {
                 mode = "n",

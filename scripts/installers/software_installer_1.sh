@@ -95,7 +95,7 @@ sudo snap install notion-desktop drawio qalculate
 sudo snap install obsidian --classic
 # mcomix or kommiku
 
-sudo snap install varia surfshark
+sudo snap install surfshark
 
 # VSCode
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg && sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
@@ -163,8 +163,10 @@ ADDITIONAL_APPS_FLATPAK=(
     "org.kde.okular" # WARN: not working sometimes
     # Electronics
     "com.github.reds.LogisimEvolution"
-    # System - WARN: depricated in 26.04 LTS
-    "net.nokyan.Resources"
+    # System
+    "net.nokyan.Resources" # - WARN: depricated in 26.04 LTS
+    "net.epson.epsonscan2"
+    "io.github.giantpinkrobots.varia"
     # Backup
     "org.gnome.World.PikaBackup"
     # Project Management

@@ -61,5 +61,3 @@ _cheat() {
       ;;
   esac
 }
-
-compdef _cheat cheat
