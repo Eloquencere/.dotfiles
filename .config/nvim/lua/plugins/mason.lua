@@ -22,29 +22,28 @@ return {
         }),
         opts = {
             ensure_installed = {
-                "lua_ls",
-                "html",
-                "jedi_language_server", -- Python
                 "clangd", -- C, C++
-                "biome", -- Javascript, Typescript, JSON
-                "cssls",
-                "marksman", -- Markdown
-                "bashls", -- Bash, Zsh
-                -- "svls", -- good, but needs a lot of config
-                -- "vhdl_ls",
-                "perlnavigator",
-                -- "julials", -- Julia - causing issues
+                "neocmake",
+                "zls", -- Zig
                 "rust_analyzer",
                 "gopls", -- Go
-                "zls", -- Zig
+                "bashls", -- Bash, Zsh
+                "perlnavigator",
+                "lua_ls",
+                "jedi_language_server", -- Python
+                "html",
+                "cssls",
+                "marksman", -- Markdown
+                "biome", -- Javascript, Typescript, JSON
                 "yamlls",
-                "dockerls",
                 "taplo", -- TOML
-                "neocmake",
-                -- TCL - N/A
-                -- Gitignore - N/A
-                -- KDL - N/A
-                -- Make - N/A
+                "dockerls", -- Docker, Podman
+                -- "mbake", -- makefile (correct, but not recognized for some reason)
+                "just",
+                "bacon_ls",
+                -- "svls", -- good, but needs a lot of config
+                -- "julials", -- causing issues
+                -- "vhdl_ls",
             },
         },
     },
@@ -56,6 +55,16 @@ return {
         -- vim.lsp.config("svls", {
         --     filetypes = { "verilog", "systemverilog" },
         -- }),
+
+        vim.lsp.config("xilinx", {
+            cmd = { "xilinx-language-server" },
+            filetypes = { "xdc", "xsct", "tcl" },
+            root_markers = { ".git" },
+            init_options = {
+                method = "builtin",
+            },
+        }),
+
         keys = {
             {
                 mode = "n",

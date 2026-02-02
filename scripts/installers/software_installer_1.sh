@@ -96,6 +96,7 @@ sudo snap install obsidian --classic
 # mcomix or kommiku
 
 sudo snap install surfshark
+sudo snap install varia  # WARN: might stop working, use flatpak otherwise
 
 # VSCode
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg && sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
@@ -164,9 +165,8 @@ ADDITIONAL_APPS_FLATPAK=(
     # Electronics
     "com.github.reds.LogisimEvolution"
     # System
-    "net.nokyan.Resources" # - WARN: depricated in 26.04 LTS
+    "net.nokyan.Resources" # - WARN: default in 26.04LTS
     "net.epson.epsonscan2"
-    "io.github.giantpinkrobots.varia"
     # Backup
     "org.gnome.World.PikaBackup"
     # Project Management

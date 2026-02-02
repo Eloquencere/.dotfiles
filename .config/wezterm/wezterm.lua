@@ -59,6 +59,11 @@ config = {
             mods = "SHIFT",
             action = wezterm.action.SendString("\x1b[13;2u"),
         },
+        {
+            key = "Enter",
+            mods = "SHIFT",
+            action = wezterm.action.SendString("\x1b[200~\n\x1b[201~"),
+        },
     },
 
     table.insert(wezterm.default_hyperlink_rules(), {

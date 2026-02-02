@@ -10,7 +10,7 @@ plugins {
 }
 
 keybinds clear-defaults=true {
-    shared_except "renamepane" "renametab" "entersearch" "search" "resize" "locked" {
+    shared_except "locked" {
         // Navigation
         bind "Ctrl h" { MoveFocus "Left"; }
         bind "Ctrl j" { MoveFocus "Down"; }

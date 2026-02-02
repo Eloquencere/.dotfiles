@@ -1,13 +1,14 @@
 *finish up some GUI configuration while the installer runs*
 
-- Configure the search button to not output everything except Calendar and settings
 - Sync the web-browser on your default machine with the current machine
-- Setup your cloud file storage service provider
-- Group app icons in the app drawer
-- Setup PikaBKP and timeshift
+- Setup your cloud storage service provider
 - Install wine from the official website
+- Install WindowsVM using this tutorial - https://www.youtube.com/watch?v=Zei8i9CpAn0
+- Setup PikaBKP and timeshift
+- Configure the search button to not output everything except Calendar and settings
+- Group app icons in the app drawer
 
-- App Quick launches
+- App Keyboard Shortcuts
     - Set calc key to launch Qalculate
     - Set Alt+Shift+W to launch Wezterm
     - Set Alt+Space to trigger Vicinae
@@ -46,5 +47,5 @@
     - Forge (Tiling Manager)
     - Hide Top Bar
         - Show panel when mouse approaches edge of the screen - Enable
-- If facing mouse scroll wheel issues, install "imwheel" via apt
+- If there's mouse scroll wheel issues, install "imwheel" via nala
 

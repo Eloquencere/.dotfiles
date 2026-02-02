@@ -13,6 +13,7 @@ return {
                 { 'up', 'down' },
                 { 'top', 'bottom' },
                 { 'right', 'left' },
+                { 'input', 'output' }
             },
             allow_caps_additions = {
                 {'enable', 'disable'}
