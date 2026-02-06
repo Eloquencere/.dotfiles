@@ -98,12 +98,12 @@ sudo snap install obsidian --classic
 sudo snap install surfshark
 sudo snap install varia  # WARN: might stop working, use flatpak otherwise
 
-# VSCode
-wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg && sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
-sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
-sudo apt install -y apt-transport-https && sudo apt update
-sudo apt install code
-rm -f packages.microsoft.gpg
+# # VSCode
+# wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg && sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
+# sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
+# sudo apt install -y apt-transport-https && sudo apt update
+# sudo apt install code
+# rm -f packages.microsoft.gpg
 
 # Anki - WARN: Need to manually update when new version releases
 sudo apt install -y libxcb-xinerama0 libxcb-cursor0 libnss3

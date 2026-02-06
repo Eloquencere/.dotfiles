@@ -41,7 +41,6 @@ config = {
     font_size = 17.5,
     use_ime = false,
     default_cursor_style = "SteadyBar",
-    enable_osc52_copy = true, -- For remote connections
 
     -- Key mappings for tab movement in neovim, thanks to - reddit.com/r/neovim/comments/uc6q8h/ability_to_map_ctrl_tab_and_more/
     keys = {
