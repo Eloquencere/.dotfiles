@@ -38,6 +38,7 @@ return {
                 "yamlls",
                 "taplo", -- TOML
                 "dockerls", -- Docker, Podman
+                "tinymist", -- Typst
                 -- "mbake", -- makefile (correct, but not recognized for some reason)
                 "just",
                 "bacon_ls",
