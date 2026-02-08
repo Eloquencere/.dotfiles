@@ -37,18 +37,21 @@ sudo systemctl enable kanata --now
 cpan App::cpanminus
 
 # # Useful Python libraries
-# pip2 install --upgrade pip
-# pip install --upgrade pip
+pip2 install --upgrade pip
+pip install --upgrade pip
 # pip install icecream # for debugging
-# pip install drawio colorama pyfiglet # presentation
+# pip install colorama pyfiglet # presentation
 # pip install dash plotly seaborn mysql-connector-python # data representation and calculation
 # pip install fireducks xarray openpyxl
 # pip install numpy scipy pillow
 # pip install Cython numba taichi
 # pip install parse pendulum pydantic ruff mypy pyglet
 # pip install keras scikit-learn torch # AI/ML
-# Electronic Design
-# pip install wavedrom pydot python-statemachine
+
+# # EDA
+# pip install drawio wavedrom pydot python-statemachine
+# pip install pyslang xilinx-language-server
+# sudo nala install -y verilator
 
 # Useful Rust binaries
 CARGO_PKGS=(
@@ -173,6 +176,10 @@ if [[ $user_choice =~ ^[Yy]$ ]]; then
     shutdown now
 fi
 
+# # Vicinae - raycast alternative - WARN: Need to update when new version releases & also update in .config/autostart
+# mkdir -p $HOME/AppImage
+# wget https://github.com/vicinaehq/vicinae/releases/download/v0.17.3/Vicinae-e8e0c24ce-x86_64.AppImage -P $HOME/AppImage
+
 # # Auto-cpufreq
 # git clone https://github.com/AdnanHodzic/auto-cpufreq.git
 # cd auto-cpufreq && sudo ./auto-cpufreq-installer
@@ -191,6 +198,13 @@ fi
 # wget https://winegui.melroy.org/downloads/${wineGUI_version}.deb
 # sudo nala install -y ./${wineGUI_version}.deb
 # rm -f ${wineGUI_version}.deb
+
+# # VSCode
+# wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg && sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
+# sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
+# sudo apt install -y apt-transport-https && sudo apt update
+# sudo apt install code
+# rm -f packages.microsoft.gpg
 
 # # Doom Emacs
 # sudo nala install -y emacs-gtk

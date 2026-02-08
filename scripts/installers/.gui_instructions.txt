@@ -3,7 +3,6 @@
 - Sync the web-browser on your default machine with the current machine
 - Setup your cloud storage service provider
 - Install wine from the official website
-- Install WindowsVM using this tutorial - https://www.youtube.com/watch?v=Zei8i9CpAn0
 - Setup PikaBKP and timeshift
 - Configure the search button to not output everything except Calendar and settings
 - Group app icons in the app drawer
@@ -11,6 +10,7 @@
 - App Keyboard Shortcuts
     - Set calc key to launch Qalculate
     - Set Alt+Shift+W to launch Wezterm
+    (Optional)
     - Set Alt+Space to trigger Vicinae
 
 (Essentials)

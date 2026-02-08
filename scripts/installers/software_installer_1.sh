@@ -66,44 +66,20 @@ sudo apt install -y ./nautilus-extension-any-terminal_0.6.0-1_all.deb
 rm -f nautilus-extension-any-terminal_0.6.0-1_all.deb
 gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal wezterm
 
-# Vicinae - raycast alternative - WARN: Need to update when new version releases & also update in .config/autostart
-mkdir -p $HOME/AppImage
-wget https://github.com/vicinaehq/vicinae/releases/download/v0.17.3/Vicinae-e8e0c24ce-x86_64.AppImage -P $HOME/AppImage
-
-# browser
-echo -n "Installing browser
-b -> brave
-gc -> google chrome
-Which one would you like to install? "
-read browser_choice
-if [[ $browser_choice == "b" ]]; then
-    sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
-    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
-    sudo apt update
-    sudo apt install -y brave-browser
-    xdg-settings set default-web-browser brave-browser.desktop
-else
-    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-    sudo apt install -y ./google-chrome-stable_current_amd64.deb
-    rm -rf google-chrome-stable_current_amd64.deb
-    sudo apt -f install -y
-    xdg-settings set default-web-browser google-chrome.desktop
-fi
+# Brave browser
+sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+sudo apt update
+sudo apt install -y brave-browser
+xdg-settings set default-web-browser brave-browser.desktop
 
 # Office Software
 sudo snap install notion-desktop drawio qalculate
 sudo snap install obsidian --classic
-# mcomix or kommiku
+# install mcomix or kommiku
 
 sudo snap install surfshark
 sudo snap install varia  # WARN: might stop working, use flatpak otherwise
-
-# # VSCode
-# wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg && sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
-# sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
-# sudo apt install -y apt-transport-https && sudo apt update
-# sudo apt install code
-# rm -f packages.microsoft.gpg
 
 # Anki - WARN: Need to manually update when new version releases
 sudo apt install -y libxcb-xinerama0 libxcb-cursor0 libnss3
@@ -149,7 +125,7 @@ CLI_TOOLS=(
     "nixpkgs#podman" # look into Podman TUI
     # "nixpkgs#ollama"
     "nixpkgs#tlrc" "nixpkgs#cheat"
-    "nixpkgs#natural-docs" "nixpkgs#doxygen"
+    "nixpkgs#typst" "nixpkgs#natural-docs" "nixpkgs#doxygen"
 )
 zsh -li -c "export NIXPKGS_ALLOW_UNFREE=1; \
 nix profile install --impure $(printf '%s ' "${CLI_TOOLS[@]}"); \
@@ -161,7 +137,7 @@ sudo apt install -y flatpak gnome-software-plugin-flatpak
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 ADDITIONAL_APPS_FLATPAK=(
     "org.videolan.VLC"
-    "org.kde.okular" # WARN: not working sometimes
+    "org.kde.okular"
     # Electronics
     "com.github.reds.LogisimEvolution"
     # System
