@@ -111,7 +111,7 @@ cd ~/.dotfiles
 stow .
 cd -
 
-zsh -li -c "sh <(curl -L https://nixos.org/nix/install) --daemon"
+zsh -li -c "sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install) --daemon"
 CLI_TOOLS=(
     "nixpkgs#starship" "nixpkgs#fzf" "nixpkgs#atuin" "nixpkgs#zoxide" "nixpkgs#mise"
     "nixpkgs#eza" "nixpkgs#fd" "nixpkgs#bat" "nixpkgs#ripgrep" "nixpkgs#repgrep" "nixpkgs#duf" "nixpkgs#delta"
@@ -126,7 +126,9 @@ CLI_TOOLS=(
     # "nixpkgs#ollama"
     "nixpkgs#tlrc" "nixpkgs#cheat"
     "nixpkgs#typst" "nixpkgs#natural-docs" "nixpkgs#doxygen"
+    # "nixpkgs#impala" "nixpkgs#wiremix"
 )
+# WARN: might be a good idea to try to replace 'install' with 'add'
 zsh -li -c "export NIXPKGS_ALLOW_UNFREE=1; \
 nix profile install --impure $(printf '%s ' "${CLI_TOOLS[@]}"); \
 sudo update-alternatives --install /usr/bin/nvim editor \$(which nvim) 100"

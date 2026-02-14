@@ -36,6 +36,7 @@
     - Grand Theft Focus
     - Quick Settings Tweaks
     - Clipboard Indicator
+    - Wiggle (make cursor larger when shaken)
     (Future)
     - Pano Clipboard Manager
 
