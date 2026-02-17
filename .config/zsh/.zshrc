@@ -18,7 +18,7 @@ zinit light-mode for \
 
 # Syntax highlighting needs to load LAST
 zinit ice wait'1' lucid
-zinit light zsh-users/zsh-syntax-highlighting
+zinit light zdharma-continuum/fast-syntax-highlighting
 
 # OMZ sudo plugin (also turboed)
 zinit ice wait lucid

@@ -1,0 +1,47 @@
+*finish up some GUI configuration while the installer runs*
+
+Copy-Paste These commands AFTER reviewing
+(KiCAD)
+sudo add-apt-repository --yes ppa:kicad/kicad-9.0-releases
+sudo apt update
+sudo apt install --install-recommends -y kicad
+
+(Anki)
+sudo apt install -y libxcb-xinerama0 libxcb-cursor0 libnss3
+wget https://github.com/ankitects/anki/releases/download/25.09/anki-launcher-25.09-linux.tar.zst
+tar xaf anki-launcher-25.09-linux.tar.zst
+cd anki-launcher-25.09-linux
+sudo ./install.sh
+anki
+cd ..; rm -rf anki-launcher-25.09-linux anki-launcher-25.09-linux.tar.zst
+
+- Gnome Extensions
+    (Essentials)
+    - Bluetooth Battery Meter
+    - blur my shell
+    - CHC-E
+    - Clipboard Indicator
+    - Grand Theft Focus
+    - Just Perfection
+    - Quick Settings Tweaks
+    - Removable Drive Menu
+    - Wiggle
+    (Future)
+    - Pano Clipboard Manager
+
+    (Optional)
+    - Forge (Tiling Manager)
+
+Notes
+    - Install a wallpaper of your choice
+    - Sync the web-browser on your default machine with the current machine
+    - Setup your cloud storage service provider
+    - Setup timeshift (insert tutorial link here)
+    - Setup ufw (Firewall) - youtube.com/watch?v=5Ul1wd-dhLY
+    - Setup Virt-Manager - youtube.com/watch?v=Zei8i9CpAn0
+    - Install wine from the official website
+    - Optionally install Comic book reader - mcomix or kommiku
+    - Optionally install ClamAV (Anti-Virus) - youtube.com/watch?v=fCAvpFB5x6g
+
+    - If there's mouse scroll wheel issues, install "imwheel" via nala
+

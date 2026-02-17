@@ -1,5 +1,8 @@
 # Profile file. Runs on login. Environment variables are here
 
+# Setup System-manager
+export PATH="/run/system-manager/sw/bin/:${PATH}"
+
 # Default path
 export EDITOR="nvim"
 

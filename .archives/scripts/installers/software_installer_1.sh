@@ -126,7 +126,6 @@ CLI_TOOLS=(
     # "nixpkgs#ollama"
     "nixpkgs#tlrc" "nixpkgs#cheat"
     "nixpkgs#typst" "nixpkgs#natural-docs" "nixpkgs#doxygen"
-    # "nixpkgs#impala" "nixpkgs#wiremix"
 )
 # WARN: might be a good idea to try to replace 'install' with 'add'
 zsh -li -c "export NIXPKGS_ALLOW_UNFREE=1; \
