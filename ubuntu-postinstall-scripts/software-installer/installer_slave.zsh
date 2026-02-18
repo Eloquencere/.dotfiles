@@ -5,6 +5,9 @@
 # nix --extra-experimental-features 'nix-command flakes' run 'github:numtide/system-manager' -- switch --sudo
 # NOTE: Setup & configure kanata
 
+# be careful, nix not showing up
+nix profile install home-manager
+
 # Load wallpaper once
 gsettings set org.gnome.desktop.background picture-uri-dark "file://$HOME/.dotfiles/wallpapers/angkor_watt_gpt.png"
 gsettings set org.gnome.desktop.background picture-options 'stretched'
@@ -88,6 +91,7 @@ gnome-text-editor .gui_instructions.txt &
 cd ~/.dotfiles/.config/home-manager/
 home-manager switch --flake .
 cd -
+home-manager news # re-direct this to null
 
 sudo update-alternatives --install /usr/bin/nvim editor $(which nvim) 100
 

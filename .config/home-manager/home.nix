@@ -42,6 +42,6 @@
         ./dconf.nix
     ];
 
-    programs.home-manager.enable = true;
+    # programs.home-manager.enable = true; # NOTE: only enable this when using system manager
 }
 
