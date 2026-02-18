@@ -307,7 +307,8 @@ in
                         "games"
                         "virt-manager.desktop"
                         "anki.desktop"
-                        "io.github.giantpinkrobots.varia.desktop"
+                        "io.github.giantpinkrobots.varia.desktop" # flatpak name
+                        # "varia_varia.desktop" # snap name
                         "net.epson.epsonscan2.desktop"
                         "timeshift-gtk.desktop"
                         "org.kde.kdeconnect.app.desktop"

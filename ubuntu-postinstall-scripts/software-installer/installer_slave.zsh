@@ -1,17 +1,9 @@
- # NOTE: need to use either system manager or ~/.config/nix to enable experiemental nix flakes & to enable unfree pkgs & garbage collection
+# Installing system manager is optional
+# NOTE: need to use either system manager or ~/.config/nix to enable experiemental nix flakes & to enable unfree pkgs & garbage collection
 # nix run 'github:numtide/system-manager' --extra-experimental-features 'nix-command flakes' -- init
 # only this is probably sufficient
-nix --extra-experimental-features 'nix-command flakes' run 'github:numtide/system-manager' -- switch --sudo
-
-cd ~/.dotfiles/.config/home-manager/
-home-manager switch --flake .
-cd -
-# this might need a shell restart to take effect
-
-# ------Assuming all tools installed & dotfiles have been setup------
-
-# GUI setup
-gnome-text-editor .gui_instructions.txt &
+# nix --extra-experimental-features 'nix-command flakes' run 'github:numtide/system-manager' -- switch --sudo
+# NOTE: Setup & configure kanata
 
 # Load wallpaper once
 gsettings set org.gnome.desktop.background picture-uri-dark "file://$HOME/.dotfiles/wallpapers/angkor_watt_gpt.png"
@@ -23,30 +15,6 @@ source nerdfonts_download.sh
 sudo apt install -y preload
 sudo systemctl enable preload
 
-# NOTE: Setup & configure kanata
-
-# # Necessary libs to build python
-# sudo apt-get install -y \
-#   build-essential pkg-config \
-#   libssl-dev zlib1g-dev libbz2-dev liblzma-dev \
-#   libreadline-dev libsqlite3-dev libncursesw5-dev \
-#   libffi-dev tk-dev tcl-dev \
-#   libgdbm-dev uuid-dev libexpat1-dev
-
-# Programming languages
-
-rustup toolchain install stable
-rustup default stable
-cargo install sccache
-
-mise install # from config
-
-pip2 install --upgrade pip
-pip install --upgrade pip
-
-# cpanm package manager for perl
-cpan App::cpanminus
-
 # Brave browser
 sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
 echo "deb [arch=amd64 signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
@@ -56,10 +24,9 @@ xdg-settings set default-web-browser brave-browser.desktop
 
 # Virt-Manager
 cd ~/Downloads
+sudo apt install -y qemu-kvm bridge-utils virt-manager libosinfo-bin
 wget https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/archive-virtio/virtio-win-0.1.271-1/virtio-win.iso
 wget https://www.spice-space.org/download/windows/spice-guest-tools/spice-guest-tools-latest.exe
-sudo apt upgrade
-sudo nala install -y qemu-kvm bridge-utils virt-manager libosinfo-bin
 cd -
 
 # Wezterm
@@ -114,6 +81,40 @@ ADDITIONAL_APPS_FLATPAK=(
 flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
 xdg-mime default okular_okular.desktop application/pdf
 
+# GUI setup
+gnome-text-editor .gui_instructions.txt &
+
+# install nix pkgs
+cd ~/.dotfiles/.config/home-manager/
+home-manager switch --flake .
+cd -
+
+sudo update-alternatives --install /usr/bin/nvim editor $(which nvim) 100
+
+unset RUSTC_WRAPPER # to momentarily disable cargo from pointing to uninstalled sccache
+rustup toolchain install stable
+rustup default stable
+cargo install sccache # this will fail
+
+# # Necessary libs to build python
+sudo apt-get install -y \
+  build-essential pkg-config \
+  libssl-dev zlib1g-dev libbz2-dev liblzma-dev \
+  libreadline-dev libsqlite3-dev libncursesw5-dev \
+  libffi-dev tk-dev tcl-dev \
+  libgdbm-dev uuid-dev libexpat1-dev
+
+mise trust # config file
+mise install # from config
+
+pip2 install --upgrade pip
+pip install --upgrade pip
+
+echo "Say \"yes\" first & \"sudo\" to the next question"
+
+# cpanm package manager for perl
+cpan App::cpanminus
+
 mkdir -p $HOME/.config/zsh/personal
 
 echo -n "Enter the ID granted by your admin to register with your team via croc: "
@@ -155,10 +156,6 @@ rm -rf ~/.cache/thumbnails/*
 rm -rf ~/{.bash*,.profile,.fontconfig}
 sudo rm -rf ~/{Templates,Public,go,Music}
 
-sudo sh -c "apt --fix-broken install; apt-get autoremove; apt-get autoclean"
-flatpak uninstall --unused --delete-data --assumeyes
-source ../continual-reference/software_updater.zsh
-
 BLOAT_SNAP=(
     "thunderbird"
 )
@@ -175,14 +172,16 @@ BLOAT_APT=(
     # WARN: depricated in ubuntu 26.04 LTS to - "showtime"
     "totem"
     # cli tools that clash with nix
-    "git" "curl" # maybe - curl
+    "git" "curl" "stow"
 )
 sudo apt purge -y "${BLOAT_APT[@]}"
 
+sudo sh -c "apt --fix-broken install; apt-get autoremove; apt-get autoclean"
+flatpak uninstall --unused --delete-data --assumeyes
+source ../continual-reference/software_updater.zsh
+
 # NOTE: create separate script for hdl stuff & create requirements.txt for useful python pkgs
 
-# maybe not needed
-# sudo update-alternatives --install /usr/bin/nvim editor $(which nvim) 100
 
 
 # # Signal

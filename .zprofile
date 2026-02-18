@@ -41,5 +41,5 @@ if [[ -f "$ZDOTDIR/personal/zprofile.zsh" ]]; then
 fi
 
 # Plugin manager for zsh
-[[ ! -d "$ZDOTDIR/zinit" ]] && git clone https://github.com/zdharma-continuum/zinit.git "$XDG_DATA_HOME/zinit-pkgmngr"
+[[ ! -d "$XDG_DATA_HOME/zinit-pkgmngr" ]] && git clone https://github.com/zdharma-continuum/zinit.git "$XDG_DATA_HOME/zinit-pkgmngr"
 

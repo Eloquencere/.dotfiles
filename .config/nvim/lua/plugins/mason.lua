@@ -41,8 +41,8 @@ return {
                 "tinymist", -- Typst
                 -- "mbake", -- makefile (correct, but not recognized for some reason)
                 "just",
-                "bacon_ls",
                 -- "svls", -- good, but needs a lot of config
+                -- "bacon_ls", # this fails for some reason
                 -- "julials", -- causing issues
                 -- "vhdl_ls",
             },
