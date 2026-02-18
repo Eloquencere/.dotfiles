@@ -1,13 +1,12 @@
  # NOTE: need to use either system manager or ~/.config/nix to enable experiemental nix flakes & to enable unfree pkgs & garbage collection
-nix profile add home-manager
+# nix run 'github:numtide/system-manager' --extra-experimental-features 'nix-command flakes' -- init
+# only this is probably sufficient
+nix --extra-experimental-features 'nix-command flakes' run 'github:numtide/system-manager' -- switch --sudo
 
 cd ~/.dotfiles/.config/home-manager/
 home-manager switch --flake .
 cd -
 # this might need a shell restart to take effect
-cd ~/.dotfiles
-stow .
-cd -
 
 # ------Assuming all tools installed & dotfiles have been setup------
 
