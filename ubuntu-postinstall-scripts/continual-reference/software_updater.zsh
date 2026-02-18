@@ -1,3 +1,4 @@
+# Still got to make changes
 sudo sh -c "nala full-upgrade"
 sudo snap refresh
 zinit update --all

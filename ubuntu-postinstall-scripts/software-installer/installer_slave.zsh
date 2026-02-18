@@ -1,0 +1,216 @@
+ # NOTE: need to use either system manager or ~/.config/nix to enable experiemental nix flakes & to enable unfree pkgs & garbage collection
+nix profile add home-manager
+
+cd ~/.dotfiles/.config/home-manager/
+home-manager switch --flake .
+cd -
+# this might need a shell restart to take effect
+cd ~/.dotfiles
+stow .
+cd -
+
+# ------Assuming all tools installed & dotfiles have been setup------
+
+# GUI setup
+gnome-text-editor .gui_instructions.txt &
+
+# Load wallpaper once
+gsettings set org.gnome.desktop.background picture-uri-dark "file://$HOME/.dotfiles/wallpapers/angkor_watt_gpt.png"
+gsettings set org.gnome.desktop.background picture-options 'stretched'
+
+source nerdfonts_download.sh
+
+# performance improvement software
+sudo apt install -y preload
+sudo systemctl enable preload
+
+# NOTE: Setup & configure kanata
+
+# # Necessary libs to build python
+# sudo apt-get install -y \
+#   build-essential pkg-config \
+#   libssl-dev zlib1g-dev libbz2-dev liblzma-dev \
+#   libreadline-dev libsqlite3-dev libncursesw5-dev \
+#   libffi-dev tk-dev tcl-dev \
+#   libgdbm-dev uuid-dev libexpat1-dev
+
+# Programming languages
+
+rustup toolchain install stable
+rustup default stable
+cargo install sccache
+
+mise install # from config
+
+pip2 install --upgrade pip
+pip install --upgrade pip
+
+# cpanm package manager for perl
+cpan App::cpanminus
+
+# Brave browser
+sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+sudo apt update
+sudo apt install -y brave-browser
+xdg-settings set default-web-browser brave-browser.desktop
+
+# Virt-Manager
+cd ~/Downloads
+wget https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/archive-virtio/virtio-win-0.1.271-1/virtio-win.iso
+wget https://www.spice-space.org/download/windows/spice-guest-tools/spice-guest-tools-latest.exe
+sudo apt upgrade
+sudo nala install -y qemu-kvm bridge-utils virt-manager libosinfo-bin
+cd -
+
+# Wezterm
+curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
+echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
+sudo apt update
+sudo apt install -y wezterm
+
+APPLICATIONS=(
+    "gnome-shell-extension-manager"
+    "bleachbit" "timeshift"
+    "kdeconnect" "gufw"
+)
+sudo apt install -y "${APPLICATIONS[@]}"
+
+OFFICE_SOFTWARE_SNAP=(
+    "notion-desktop" "drawio" "qalculate"
+    "surfshark" "varia"
+)
+sudo snap install "${OFFICE_SOFTWARE_SNAP[@]}"
+sudo snap install obsidian --classic
+
+# Games
+mkdir ~/Games
+sudo snap install steam discord
+GAMES_FLATPAK=(
+    "com.heroicgameslauncher.hgl"
+    # "com.parsecgaming.parsec"
+)
+flatpak install --assumeyes flathub "${GAMES_FLATPAK[@]}"
+
+# Flatpaks
+ADDITIONAL_APPS_FLATPAK=(
+    "org.videolan.VLC"
+    "org.kde.okular"
+    # Electronics - NOTE: might be better to add to a separate hdl script
+    "com.github.reds.LogisimEvolution"
+    # System
+    "net.epson.epsonscan2"
+    # Project Management
+    "org.ghidra_sre.Ghidra"
+    "org.jitsi.jitsi-meet"
+    "com.rustdesk.RustDesk"
+    # Games
+    "org.gnome.Chess"
+    "org.gnome.Sudoku"
+    "app.drey.MultiplicationPuzzle"
+    "org.gnome.Mahjongg"
+    "org.gnome.Crosswords"
+    "org.gnome.Mines"
+)
+flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
+xdg-mime default okular_okular.desktop application/pdf
+
+mkdir -p $HOME/.config/zsh/personal
+
+echo -n "Enter the ID granted by your admin to register with your team via croc: "
+read croc_id
+echo "# Croc
+export CROC_SELF_TRANSFER_ID=$croc_id" >> $HOME/.config/zsh/personal/zprofile.zsh
+echo "Move a copy of the collaborators database given by your admin to the zsh home directory"
+mkdir ~/croc-inbox
+echo "file://$HOME/croc-inbox" >> ~/.config/gtk-3.0/bookmarks
+
+echo -n "Would you like to log into your git account?(y/N) "
+read user_choice
+if [[ $user_choice =~ ^[Yy]$ ]]; then
+    git config --global init.defaultBranch main
+    git config --global core.whitespace error
+    git config --global core.preloadindex true
+    git config --global core.editor nvim
+    git config --global core.pager delta
+    git config --global delta.navigate true
+    git config --global delta.dark true
+    git config --global delta.side-by-side true
+    git config --global interactive.diffFilter 'delta --color-only'
+    git config --global diff.colorMoved default
+    git config --global merge.conflictstyle diff3
+    echo -n "email ID: "
+    read email
+    git config --global user.email "Eloquencere"
+    git config --global user.name "$username"
+    echo "you need to login to Github as well"
+    gh auth login
+    sed -i '/.* = $/d' $HOME/.gitconfig
+fi
+
+# Clean up
+echo "file://$HOME/Projects" >> ~/.config/gtk-3.0/bookmarks
+sed -i "/Music/d" ~/.config/gtk-3.0/bookmarks
+# sed -i "/Videos\|Music/d" ~/.config/gtk-3.0/bookmarks
+rm -rf ~/.cache/thumbnails/*
+rm -rf ~/{.bash*,.profile,.fontconfig}
+sudo rm -rf ~/{Templates,Public,go,Music}
+
+sudo sh -c "apt --fix-broken install; apt-get autoremove; apt-get autoclean"
+flatpak uninstall --unused --delete-data --assumeyes
+source ../continual-reference/software_updater.zsh
+
+BLOAT_SNAP=(
+    "thunderbird"
+)
+sudo apt-get purge -y "${BLOAT_SNAP[@]}"
+sudo snap remove "${BLOAT_SNAP[@]}"
+
+BLOAT_APT=(
+    "ed" "vim-common" "nano"
+    "transmission-common" "transmission-gtk"
+    "rhythmbox" "orca" "info" "yelp"
+    "gnome-snapshot" "gnome-logs" "gnome-terminal"
+    "gnome-system-monitor" "gnome-power-manager"
+    "deja-dup" "seahorse" "shotwell" "evince" "gnome-calculator"
+    # WARN: depricated in ubuntu 26.04 LTS to - "showtime"
+    "totem"
+    # cli tools that clash with nix
+    "git" "curl" # maybe - curl
+)
+sudo apt purge -y "${BLOAT_APT[@]}"
+
+# NOTE: create separate script for hdl stuff & create requirements.txt for useful python pkgs
+
+# maybe not needed
+# sudo update-alternatives --install /usr/bin/nvim editor $(which nvim) 100
+
+
+# # Signal
+# wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg;
+# cat signal-desktop-keyring.gpg | sudo tee /usr/share/keyrings/signal-desktop-keyring.gpg > /dev/null
+# echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main' |\
+#   sudo tee /etc/apt/sources.list.d/signal-xenial.list
+# sudo apt update && sudo apt install signal-desktop
+# rm -rf signal-desktop-keyring.gpg
+
+# # Auto-cpufreq
+# git clone https://github.com/AdnanHodzic/auto-cpufreq.git
+# cd auto-cpufreq && sudo ./auto-cpufreq-installer
+# cd .. && rm -rf auto-cpufreq
+# sudo auto-cpufreq --install
+
+# # VSCode
+# wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg && sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
+# sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
+# sudo apt install -y apt-transport-https && sudo apt update
+# sudo apt install code
+# rm -f packages.microsoft.gpg
+
+# # Doom Emacs
+# sudo nala install -y emacs-gtk
+# git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
+# ~/.config/emacs/bin/doom install
+# echo '# Doom Emacs
+# export PATH=$XDG_CONFIG_HOME/emacs/bin:$PATH' >> ~/.zprofile
+

@@ -1,11 +1,11 @@
 # options
 setopt nobeep
 setopt correct
-setopt extended_glob
+# setopt extended_glob
 setopt interactive_comments
 
 # Loading zinit
-source "$ZDOTDIR/zinit/zinit.zsh"
+source "$XDG_DATA_HOME/zinit-pkgmngr/zinit.zsh"
 
 # Enable turbo mode by default
 zinit ice wait lucid
