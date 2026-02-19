@@ -1,0 +1,4 @@
+- Never uninstall Perl via apt
+- To remove snap from ubuntu
+    https://kskroyal.com/remove-snap-packages-from-ubuntu/
+

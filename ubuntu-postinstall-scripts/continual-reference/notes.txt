@@ -1,1 +1,0 @@
-- Never uninstall Perl via apt

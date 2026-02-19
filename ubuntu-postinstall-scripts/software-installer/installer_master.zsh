@@ -9,13 +9,14 @@ It will automatically reboot the system after it is done"
 # Installing nix pkg manager
 sh <(curl --proto "=https" --tlsv1.2 -L https://nixos.org/nix/install) --daemon --yes
 
-# this is mainly to load ~/.config/nix to enable flakes & to load ~/.config/system-manager (if that happens to be the case)
+# to load ~/.config/nix to enable flakes
 cd ~/.dotfiles
 stow .
 cd -
 
-zsh -lc "source ./installer_slave.zsh" # not sure if sourcing is good
-# or do - source /etc/profile.d/nix.sh
+cd sub-scripts/
+zsh -lc "source ./installer_slave.zsh"
+cd -
 
 echo "The system will reboot now to consolidate the installation"
 read -r "?Press Enter to reboot..."

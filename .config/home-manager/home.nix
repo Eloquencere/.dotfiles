@@ -12,8 +12,6 @@
     #    ${pkgs.nix}/bin/nix store gc || true
     #  '';
 
-    # NOTE: Do dotfile management with home manager
-
     home.packages = with pkgs; [
         # lanuage compilers
         rustup zig julia
@@ -27,15 +25,14 @@
         neovim zellij wl-clipboard
         gh lazygit
         podman # look into podmanTUI
-        stow git curl
+        stow git curl dos2unix
         # WARN: Cautious with Ubuntu 26.04LTS
         zoxide eza fd bat ripgrep duf delta repgrep mprocs
-
-        # # if not shipped by Ubuntu (delete if so)
-        # dos2unix curl p7zip unrar zstd gnuplot graphviz
+        graphviz # dependency for pydot
+        gnuplot # dependency for qalculate
 
         # optional
-        # jq jqp yq ollama cheat
+        # jq jqp yq ollama cheat p7zip unrar
     ];
 
     imports = [

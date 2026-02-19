@@ -1,25 +1,4 @@
 *finish up some GUI configuration while the installer runs*
-
-Copy-Paste These commands AFTER reviewing
-(Open in terminal extension)
-wget https://github.com/Stunkymonkey/nautilus-open-any-terminal/releases/download/0.8.1/nautilus-extension-any-terminal_0.8.1-1_all.deb
-sudo apt install -y ./nautilus-extension-any-terminal_0.8.1-1_all.deb
-rm -f nautilus-extension-any-terminal_0.8.1-1_all.deb
-
-(KiCAD)
-sudo add-apt-repository --yes ppa:kicad/kicad-9.0-releases
-sudo apt update
-sudo apt install --install-recommends -y kicad
-
-(Anki)
-sudo apt install -y libxcb-xinerama0 libxcb-cursor0 libnss3
-wget https://github.com/ankitects/anki/releases/download/25.09/anki-launcher-25.09-linux.tar.zst
-tar xaf anki-launcher-25.09-linux.tar.zst
-cd anki-launcher-25.09-linux
-sudo ./install.sh
-anki
-cd ..; rm -rf anki-launcher-25.09-linux anki-launcher-25.09-linux.tar.zst
-
 - Gnome Extensions
     (Essentials)
     - Bluetooth Battery Meter
@@ -38,10 +17,9 @@ cd ..; rm -rf anki-launcher-25.09-linux anki-launcher-25.09-linux.tar.zst
     - Forge (Tiling Manager)
 
 Notes
-    - Install a wallpaper of your choice
     - Sync the web-browser on your default machine with the current machine
     - Setup your cloud storage service provider
-    - Setup timeshift (insert tutorial link here)
+    - Setup timeshift (https://www.xda-developers.com/timeshift-saved-my-linux-install-after-i-broke-it)
     - Setup ufw (Firewall) - youtube.com/watch?v=5Ul1wd-dhLY
     - Setup Virt-Manager - youtube.com/watch?v=Zei8i9CpAn0
     - Install wine from the official website
@@ -50,12 +28,7 @@ Notes
 
     - If there's mouse scroll wheel issues, install "imwheel" via nala
 
-(Optional)
-# Signal
-wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg;
-cat signal-desktop-keyring.gpg | sudo tee /usr/share/keyrings/signal-desktop-keyring.gpg > /dev/null
-echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main' |\
-  sudo tee /etc/apt/sources.list.d/signal-xenial.list
-sudo apt update && sudo apt install signal-desktop
-rm -rf signal-desktop-keyring.gpg
+    - Backup fonts if libreoffice is not able to render MS office stuff
+        sudo apt install -y ttf-mscorefonts-installer fonts-crosextra-carlito fonts-crosextra-caladea # MS fonts for LibreOffice
+
 

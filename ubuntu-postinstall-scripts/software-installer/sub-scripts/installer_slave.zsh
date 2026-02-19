@@ -1,12 +1,9 @@
-# Installing system manager is optional
-# NOTE: need to use either system manager or ~/.config/nix to enable experiemental nix flakes & to enable unfree pkgs & garbage collection
-# nix run 'github:numtide/system-manager' --extra-experimental-features 'nix-command flakes' -- init
-# only this is probably sufficient
-# nix --extra-experimental-features 'nix-command flakes' run 'github:numtide/system-manager' -- switch --sudo
-# NOTE: Setup & configure kanata
+# system manager for automatic garbage collection & handling home-manager & maybe kanata
+# cd ~/.dotfiles/.config/system-manager
+# nix run 'github:numtide/system-manager' -- switch --flake . --sudo
+# cd -
 
-# be careful, nix not showing up
-nix profile install home-manager
+# NOTE: Setup & configure kanata
 
 # Load wallpaper once
 gsettings set org.gnome.desktop.background picture-uri-dark "file://$HOME/.dotfiles/wallpapers/angkor_watt_gpt.png"
@@ -25,18 +22,18 @@ sudo apt update
 sudo apt install -y brave-browser
 xdg-settings set default-web-browser brave-browser.desktop
 
+# Wezterm
+curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
+echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
+sudo apt update
+sudo apt install -y wezterm
+
 # Virt-Manager
 cd ~/Downloads
 sudo apt install -y qemu-kvm bridge-utils virt-manager libosinfo-bin
 wget https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/archive-virtio/virtio-win-0.1.271-1/virtio-win.iso
 wget https://www.spice-space.org/download/windows/spice-guest-tools/spice-guest-tools-latest.exe
 cd -
-
-# Wezterm
-curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
-echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
-sudo apt update
-sudo apt install -y wezterm
 
 APPLICATIONS=(
     "gnome-shell-extension-manager"
@@ -54,7 +51,8 @@ sudo snap install obsidian --classic
 
 # Games
 mkdir ~/Games
-sudo snap install steam discord
+sudo apt install steam
+sudo snap install discord
 GAMES_FLATPAK=(
     "com.heroicgameslauncher.hgl"
     # "com.parsecgaming.parsec"
@@ -68,6 +66,7 @@ ADDITIONAL_APPS_FLATPAK=(
     # Electronics - NOTE: might be better to add to a separate hdl script
     "com.github.reds.LogisimEvolution"
     # System
+    "net.nokyan.Resources" # - WARN: default in 26.04LTS
     "net.epson.epsonscan2"
     # Project Management
     "org.ghidra_sre.Ghidra"
@@ -88,21 +87,23 @@ xdg-mime default okular_okular.desktop application/pdf
 gnome-text-editor .gui_instructions.txt &
 
 # install nix pkgs
+nix profile add home-manager # WARN: nix still isn't available here
+
+source /etc/profile.d/nix.sh # to get nix in this shell instance
 cd ~/.dotfiles/.config/home-manager/
 home-manager switch --flake .
 cd -
-home-manager news # re-direct this to null
+home-manager news &> /dev/null
 
 sudo update-alternatives --install /usr/bin/nvim editor $(which nvim) 100
 
 unset RUSTC_WRAPPER # to momentarily disable cargo from pointing to uninstalled sccache
 rustup toolchain install stable
 rustup default stable
-cargo install sccache # this will fail
+cargo install sccache
 
 # # Necessary libs to build python
 sudo apt-get install -y \
-  build-essential pkg-config \
   libssl-dev zlib1g-dev libbz2-dev liblzma-dev \
   libreadline-dev libsqlite3-dev libncursesw5-dev \
   libffi-dev tk-dev tcl-dev \
@@ -156,9 +157,12 @@ fi
 echo "file://$HOME/Projects" >> ~/.config/gtk-3.0/bookmarks
 sed -i "/Music/d" ~/.config/gtk-3.0/bookmarks
 # sed -i "/Videos\|Music/d" ~/.config/gtk-3.0/bookmarks
-rm -rf ~/.cache/thumbnails/*
+
+rm -rf ~/.cache/* # generally safe, but be mindful
 rm -rf ~/{.bash*,.profile,.fontconfig}
+rm -rf ~/.mozilla/firefox/*/cache2/*
 sudo rm -rf ~/{Templates,Public,go,Music}
+sudo rm -rf rm -rf /tmp/*
 
 BLOAT_SNAP=(
     "thunderbird"
@@ -173,20 +177,24 @@ BLOAT_APT=(
     "gnome-snapshot" "gnome-logs" "gnome-terminal"
     "gnome-system-monitor" "gnome-power-manager"
     "deja-dup" "seahorse" "shotwell" "evince" "gnome-calculator"
-    # WARN: depricated in ubuntu 26.04 LTS to - "showtime"
-    "totem"
     # cli tools that clash with nix
     "git" "curl" "stow"
+    # WARN: depricated in ubuntu 26.04 LTS to - "showtime"
+    "totem"
 )
 sudo apt purge -y "${BLOAT_APT[@]}"
 
 sudo sh -c "apt --fix-broken install; apt-get autoremove; apt-get autoclean"
 flatpak uninstall --unused --delete-data --assumeyes
-source ../continual-reference/software_updater.zsh
-
-# NOTE: create separate script for hdl stuff & create requirements.txt for useful python pkgs
+source ../../continual-reference/software_updater.zsh
 
 
+
+# # Auto-cpufreq
+# git clone https://github.com/AdnanHodzic/auto-cpufreq.git
+# cd auto-cpufreq && sudo ./auto-cpufreq-installer
+# cd .. && rm -rf auto-cpufreq
+# sudo auto-cpufreq --install
 
 # # Signal
 # wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg;
@@ -195,12 +203,6 @@ source ../continual-reference/software_updater.zsh
 #   sudo tee /etc/apt/sources.list.d/signal-xenial.list
 # sudo apt update && sudo apt install signal-desktop
 # rm -rf signal-desktop-keyring.gpg
-
-# # Auto-cpufreq
-# git clone https://github.com/AdnanHodzic/auto-cpufreq.git
-# cd auto-cpufreq && sudo ./auto-cpufreq-installer
-# cd .. && rm -rf auto-cpufreq
-# sudo auto-cpufreq --install
 
 # # VSCode
 # wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg && sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
