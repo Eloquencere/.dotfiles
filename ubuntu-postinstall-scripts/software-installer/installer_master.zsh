@@ -9,7 +9,6 @@ It will automatically reboot the system after it is done"
 # Installing nix pkg manager
 sh <(curl --proto "=https" --tlsv1.2 -L https://nixos.org/nix/install) --daemon --yes
 
-# to load ~/.config/nix to enable flakes
 cd ~/.dotfiles
 stow .
 cd -

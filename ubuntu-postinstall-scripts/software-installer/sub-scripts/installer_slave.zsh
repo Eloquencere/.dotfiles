@@ -2,10 +2,9 @@
 # cd ~/.dotfiles/.config/system-manager
 # nix run 'github:numtide/system-manager' -- switch --flake . --sudo
 # cd -
+# TODO: Setup & configure kanata
 
 # TODO: when installing these packages look out for install recommendations or suggestions & add that flag to apt
-
-# NOTE: Setup & configure kanata
 
 # Load wallpaper once
 gsettings set org.gnome.desktop.background picture-uri-dark "file://$HOME/.dotfiles/wallpapers/angkor_watt_gpt.png"

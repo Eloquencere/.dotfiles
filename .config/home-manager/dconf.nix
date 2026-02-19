@@ -164,12 +164,12 @@ in
                 name = "Office";
                 translate = false;
                 apps = [
-                    "libreoffice-startcenter.desktop"
                     "libreoffice-writer.desktop"
                     "libreoffice-impress.desktop"
                     "libreoffice-calc.desktop"
                     "libreoffice-math.desktop"
                     "libreoffice-draw.desktop"
+                    "libreoffice-startcenter.desktop"
                     # drawio
                     "simple-scan.desktop" # Document scanner
                     "org.kde.okular.desktop"
