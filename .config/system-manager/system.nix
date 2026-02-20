@@ -1,7 +1,7 @@
 { lib, pkgs, ... }:
 {
     imports = [
-        ./kanta.nix
+        ./kanata.nix
     ];
 
     config = {
