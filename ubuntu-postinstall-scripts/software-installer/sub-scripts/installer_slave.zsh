@@ -26,6 +26,11 @@ echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/w
 sudo apt update
 sudo apt install -y wezterm
 
+# KiCAD
+sudo add-apt-repository --yes ppa:kicad/kicad-9.0-releases
+sudo apt update
+sudo apt install --install-recommends -y kicad
+
 # Virt-Manager
 cd ~/Downloads
 sudo apt install -y qemu-kvm bridge-utils virt-manager libosinfo-bin
@@ -83,13 +88,14 @@ xdg-mime default okular_okular.desktop application/pdf
 
 # GUI setup
 gnome-text-editor .gui_instructions.txt &
-
-source /etc/profile.d/nix.sh # to get nix in this shell instance
-cd ~/.dotfiles/.config/system-manager/
-nix run 'github:numtide/system-manager' -- switch --flake . --sudo
-# NOTE: don't forget to enable home-manager inside home.nix
-# NOTE: can do optional garbage collection within system.nix
-cd -
+#
+# source /etc/profile.d/nix.sh # to get nix in this shell instance
+# cd ~/.dotfiles/.config/system-manager/
+# nix run 'github:numtide/system-manager' -- switch --flake . --sudo
+# # NOTE: don't forget to enable home-manager inside home.nix
+# # NOTE: can do optional garbage collection within system.nix
+# On nixos configure to use systemd-boot & optimize for gaming performance
+# cd -
 
 cd ~/.dotfiles/.config/home-manager/
 home-manager switch --flake .

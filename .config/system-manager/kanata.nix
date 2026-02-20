@@ -9,9 +9,9 @@ in
         ];
 
         users.groups.uinput = {}; # create uinput group
-        users.users.${user} = {
+        users.users.${user} = { # don't uncomment
         	isNormalUser = true;
-            extraGroups = [ "input" "uinput" ];
+            extraGroups = [ "input" "uinput" "networkmanager" "wheel" "sudo" ];
         };
 
         environment.etc."udev/rules.d/99-kanata.rules".text = ''

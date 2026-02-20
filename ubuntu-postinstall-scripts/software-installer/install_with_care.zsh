@@ -5,11 +5,6 @@ wget https://github.com/Stunkymonkey/nautilus-open-any-terminal/releases/downloa
 sudo apt install -y ./nautilus-extension-any-terminal_0.8.1-1_all.deb
 rm -f nautilus-extension-any-terminal_0.8.1-1_all.deb
 
-# (KiCAD)
-sudo add-apt-repository --yes ppa:kicad/kicad-9.0-releases
-sudo apt update
-sudo apt install --install-recommends -y kicad
-
 # (Anki)
 sudo apt install -y libxcb-xinerama0 libxcb-cursor0 libnss3
 wget https://github.com/ankitects/anki/releases/download/25.09/anki-launcher-25.09-linux.tar.zst

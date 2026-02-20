@@ -45,7 +45,7 @@ in
             "org/gnome/desktop/interface" = {
                 show-battery-percentage = true;
                 cursor-size = 28;
-                text-scaling-factor = 1.30;
+                text-scaling-factor = 1.27;
                 color-scheme = "prefer-dark";
                 gtk-theme = "Yaru-blue-dark";
                 icon-theme = "Yaru-blue";
