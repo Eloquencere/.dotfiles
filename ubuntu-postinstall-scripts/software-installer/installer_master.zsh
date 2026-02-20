@@ -14,7 +14,7 @@ stow .
 cd -
 
 cd sub-scripts/
-zsh -lc "source ./installer_slave.zsh"
+source ./installer_slave.zsh
 cd -
 
 echo "The system will reboot now to consolidate the installation"
