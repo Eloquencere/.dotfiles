@@ -19,9 +19,6 @@ in
     dconf = {
         enable = true;
         settings = {
-            "com/github/stunkymonkey/nautilus-open-any-terminal" = {
-                terminal = "wezterm";
-            };
             "org/gnome/desktop/session" = {
                 idle-delay = 0;
             };
@@ -42,16 +39,13 @@ in
                 default-zoom-level = "small-plus";
             };
 
-            "org/gnome/shell/extensions/ding" = {
-                show-home = false;
-                start-corner = "top-left";
-            };
             "org/gnome/mutter" = {
                center-new-windows = true; 
             };
             "org/gnome/desktop/interface" = {
                 show-battery-percentage = true;
-                text-scaling-factor = 1.20;
+                cursor-size = 28;
+                text-scaling-factor = 1.30;
                 color-scheme = "prefer-dark";
                 gtk-theme = "Yaru-blue-dark";
                 icon-theme = "Yaru-blue";
@@ -67,6 +61,11 @@ in
                 night-light-schedule-to = 0.0;
             };
 
+            "org/gnome/shell/extensions/ding" = {
+                show-home = false;
+                start-corner = "top-left";
+            };
+
             "org/gnome/shell/extensions/dash-to-dock" = {
                multi-monitor = true;
                dash-max-icon-size = 50;
@@ -77,23 +76,6 @@ in
                always-center-icons = true;
                dock-position = "BOTTOM";
                click-action = "minimize-or-previews";
-            };
-            
-            "org/gnome/settings-daemon/plugins/media-keys" = {
-                custom-keybindings = [
-                    "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
-                    "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
-                ];
-            };
-            "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-                name="Qalculate Calculator";
-                command="qalculate";
-                binding="Calculator";
-            };
-            "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
-                name="Wezterm";
-                command="wezterm";
-                binding="<Alt><Shift>w";
             };
 
             "org/gnome/shell/extensions/Bluetooth-Battery-Meter" = {
@@ -128,6 +110,28 @@ in
             };
             "org/gnome/shell/extensions/blur-my-shell/panel" = {
                 blur=false;
+            };
+
+            "com/github/stunkymonkey/nautilus-open-any-terminal" = {
+                terminal = "wezterm";
+            };
+            
+            "org/gnome/settings-daemon/plugins/media-keys" = {
+                custom-keybindings = [
+                    "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+                    "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
+                ];
+            };
+            "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+                name="Qalculate Calculator";
+                command="qalculate";
+                binding="Calculator";
+            };
+
+            "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
+                name="Wezterm";
+                command="wezterm";
+                binding="<Alt><Shift>w";
             };
 
             "org/gnome/desktop/search-providers" = {

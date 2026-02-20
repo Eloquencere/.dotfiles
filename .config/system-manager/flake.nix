@@ -15,26 +15,16 @@
     };
   };
 
-  outputs =
+    outputs = { self, nixpkgs, system-manager, ... }:
     {
-      self,
-      nixpkgs,
-      system-manager,
-      ...
-    }:
-    let
-      system = "x86_64-linux";
-    in
-    {
-      systemConfigs.default = system-manager.lib.makeSystemConfig {
+        systemConfigs.default = system-manager.lib.makeSystemConfig {
         # Specify your system configuration modules here, for example,
         # the path to your system.nix.
-        modules = [ 
-            ./system.nix
-        ];
-
+            modules = [ 
+                ./system.nix
+            ];
         # Optionally specify extraSpecialArgs and overlays
-      };
+        };
     };
 }
 

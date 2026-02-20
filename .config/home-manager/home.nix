@@ -16,7 +16,6 @@
         # lanuage compilers
         rustup zig julia
         gdb valgrind strace
-        clang lldb
         conan scriptisto tio sqlite-interactive mise
         tlrc typst natural-docs doxygen
         # Prompt improvement

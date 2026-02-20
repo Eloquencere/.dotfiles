@@ -2,6 +2,7 @@
 # cd ~/.dotfiles/.config/system-manager
 # nix run 'github:numtide/system-manager' -- switch --flake . --sudo
 # cd -
+# NOTE: See how to enable house manager cleanly with system-manager
 # TODO: Setup & configure kanata
 
 # TODO: when installing these packages look out for install recommendations or suggestions & add that flag to apt
@@ -15,6 +16,9 @@ source nerdfonts_download.sh
 # performance improvement software
 sudo apt install -y preload
 sudo systemctl enable preload
+
+# Optional compiler - use apt only
+sudo apt install clang lldb
 
 # Brave browser
 sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
@@ -100,7 +104,7 @@ sudo update-alternatives --install /usr/bin/nvim editor $(which nvim) 100
 unset RUSTC_WRAPPER # to momentarily disable cargo from pointing to uninstalled sccache
 rustup toolchain install stable
 rustup default stable
-cargo install sccache
+cargo install sccache # WARN: this is failing again
 
 # # Necessary libs to build python
 sudo apt-get install -y \

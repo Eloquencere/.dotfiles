@@ -1,57 +1,40 @@
 { lib, pkgs, ... }:
+let
+    user = "eloquencer";
+in
 {
-  config = {
-    nixpkgs.hostPlatform = "x86_64-linux";
-    nix.settings.experimental-features = [ "nix-command" "flakes" ];
+    config = {
+        nixpkgs.hostPlatform = "x86_64-linux";
+        # nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-    # Enable and configure services
-    services = {
-      # nginx.enable = true;
+        environment.systemPackages = with pkgs; [
+            home-manager
+            kanata kmod
+        ];
+
+        users.groups.uinput = {}; # create uinput group
+        users.users.${user} = {
+            extraGroups = [ "input" "uinput" ];
+        };
+
+        services.udev.extraRules = ''
+            # Kanata
+            KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
+        '';
+        
+        systemd.services.kanata = {
+            description = "Kanata Keyboard remapper";
+            wantedBy = [ "multi-user.target" ];
+
+            serviceConfig = {
+                Type = "simple";
+                User = user;
+
+                SupplementaryGroups = [ "input" "uinput" ];
+                ExecStartPre = "${pkgs.kmod}/bin/modprobe uinput";
+                ExecStart    = "${pkgs.kanata}/bin/kanata --cfg /home/${user}/.config/kanata/config.kbd";
+            };
+        };
     };
-
-    environment = {
-      # Packages that should be installed on a system
-      systemPackages = with pkgs; [
-        home-manager
-      ];
-
-      # Add directories and files to `/etc` and set their permissions
-      etc = {
-        # with_ownership = {
-        #   text = ''
-        #     This is just a test!
-        #   '';
-        #   mode = "0755";
-        #   uid = 5;
-        #   gid = 6;
-        # };
-        #
-        # with_ownership2 = {
-        #   text = ''
-        #     This is just a test!
-        #   '';
-        #   mode = "0755";
-        #   user = "nobody";
-        #   group = "users";
-        # };
-      };
-    };
-
-    # Enable and configure systemd services
-    systemd.services = { };
-
-    # Configure systemd tmpfile settings
-    systemd.tmpfiles = {
-      # rules = [
-      #   "D /var/tmp/system-manager 0755 root root -"
-      # ];
-      #
-      # settings.sample = {
-      #   "/var/tmp/sample".d = {
-      #     mode = "0755";
-      #   };
-      # };
-    };
-  };
 }
 

@@ -29,7 +29,6 @@ fpath+=$ZDOTDIR/completion
 
 autoload -Uz colors && colors
 autoload -Uz compinit && compinit
-autoload -Uz edit-command-line; zle -N edit-command-line
 _comp_options+=(globdots) # Show hidden files
 zinit cdreplay -q
 
@@ -64,7 +63,6 @@ function zvm_after_init() {
     zvm_bindkey viins "^[[13;2u" insert-newline
 }
 
-# FZF modifications
 _fzf_compgen_path() {
     fd --follow --hidden --exclude .git . "$1" --color=always
 }
