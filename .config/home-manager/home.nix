@@ -12,6 +12,10 @@
     #    ${pkgs.nix}/bin/nix store gc || true
     #  '';
 
+    imports = [
+        ./dconf.nix
+    ];
+
     home.packages = with pkgs; [
         # lanuage compilers
         rustup zig julia
@@ -32,10 +36,6 @@
 
         # optional
         # jq jqp yq ollama cheat p7zip unrar
-    ];
-
-    imports = [
-        ./dconf.nix
     ];
 
     # programs.home-manager.enable = true; # NOTE: only enable this when using system manager

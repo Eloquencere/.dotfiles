@@ -1,10 +1,3 @@
-# system manager for automatic garbage collection & handling home-manager & maybe kanata
-# cd ~/.dotfiles/.config/system-manager
-# nix run 'github:numtide/system-manager' -- switch --flake . --sudo
-# cd -
-# NOTE: See how to enable house manager cleanly with system-manager
-# TODO: Setup & configure kanata
-
 # TODO: when installing these packages look out for install recommendations or suggestions & add that flag to apt
 
 # Load wallpaper once
@@ -92,7 +85,11 @@ xdg-mime default okular_okular.desktop application/pdf
 gnome-text-editor .gui_instructions.txt &
 
 source /etc/profile.d/nix.sh # to get nix in this shell instance
-nix profile add home-manager
+cd ~/.dotfiles/.config/system-manager/
+nix run 'github:numtide/system-manager' -- switch --flake . --sudo
+# NOTE: don't forget to enable home-manager inside home.nix
+# NOTE: can do optional garbage collection within system.nix
+cd -
 
 cd ~/.dotfiles/.config/home-manager/
 home-manager switch --flake .
