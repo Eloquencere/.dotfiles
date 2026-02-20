@@ -1,4 +1,5 @@
 # TODO: when installing these packages look out for install recommendations or suggestions & add that flag to apt
+# TODO : how to specify pip packages to be installed in mise declaratively
 
 # Load wallpaper once
 gsettings set org.gnome.desktop.background picture-uri-dark "file://$HOME/.dotfiles/wallpapers/angkor_watt_gpt.png"
@@ -88,19 +89,32 @@ xdg-mime default okular_okular.desktop application/pdf
 
 # GUI setup
 gnome-text-editor .gui_instructions.txt &
-#
-# source /etc/profile.d/nix.sh # to get nix in this shell instance
-# cd ~/.dotfiles/.config/system-manager/
-# nix run 'github:numtide/system-manager' -- switch --flake . --sudo
-# # NOTE: don't forget to enable home-manager inside home.nix
-# # NOTE: can do optional garbage collection within system.nix
-# On nixos configure to use systemd-boot & optimize for gaming performance
-# cd -
+
+nix profile add home-manager
+
+# Kanata install & config
+nix profile add kanata
+sudo groupadd uinput
+sudo usermod -aG input,uinput $USER
+sudo sh -c "echo '# Kanata
+KERNEL==uinput, MODE=0660, GROUP=uinput, OPTIONS+=static_node=uinput' >> /etc/udev/rules.d/99-input.rules"
+sudo sh -c "echo '[Unit]
+Description=Kanata keyboard remapper
+
+[Service]
+Type=simple
+ExecStartPre=/sbin/modprobe uinput
+ExecStart=$(which kanata) --cfg $XDG_CONFIG_HOME/kanata/config.kbd
+Restart=no
+
+[Install]
+WantedBy=default.target' > $XDG_CONFIG_HOME/systemd/user/kanata.service"
+systemctl --user enable kanata
 
 cd ~/.dotfiles/.config/home-manager/
 home-manager switch --flake .
-cd -
 home-manager news &> /dev/null
+cd -
 
 sudo update-alternatives --install /usr/bin/nvim editor $(which nvim) 100
 

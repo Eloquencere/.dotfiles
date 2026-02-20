@@ -5,6 +5,7 @@ idiomatic_version_file_enable_tools = ["python"]
 
 [tools]
 python = ["latest", "2.7"]
+uv = "latest"
 deno = "latest"
 go = "latest"
 node = "latest"
