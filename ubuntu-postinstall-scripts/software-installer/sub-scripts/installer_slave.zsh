@@ -1,6 +1,8 @@
 # TODO: when installing these packages look out for install recommendations or suggestions & add that flag to apt
 # TODO : how to specify pip packages to be installed in mise declaratively
 
+source $ZDOTDIR/.zshrc
+
 # Load wallpaper once
 gsettings set org.gnome.desktop.background picture-uri-dark "file://$HOME/.dotfiles/wallpapers/angkor_watt_gpt.png"
 gsettings set org.gnome.desktop.background picture-options 'stretched'
@@ -91,10 +93,10 @@ xdg-mime default okular_okular.desktop application/pdf
 gnome-text-editor .gui_instructions.txt &
 
 source /etc/profile.d/nix.sh # to get nix in this shell instance
-nix profile add home-manager
+nix profile add nixpkgs#home-manager
 
 # Kanata install & config
-nix profile add kanata
+nix profile add nixpkgs#kanata
 sudo groupadd uinput
 sudo usermod -aG input,uinput $USER
 sudo sh -c "echo '# Kanata
@@ -109,8 +111,8 @@ ExecStart=$(which kanata) --cfg $XDG_CONFIG_HOME/kanata/config.kbd
 Restart=no
 
 [Install]
-WantedBy=default.target' > $XDG_CONFIG_HOME/systemd/user/kanata.service"
-systemctl --user enable kanata
+WantedBy=default.target' > /lib/systemd/system/kanata.service"
+systemctl enable kanata
 
 cd ~/.dotfiles/.config/home-manager/
 home-manager switch --flake .
