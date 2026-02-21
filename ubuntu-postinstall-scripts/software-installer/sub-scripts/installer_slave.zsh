@@ -91,7 +91,6 @@ xdg-mime default okular_okular.desktop application/pdf
 gnome-text-editor .gui_instructions.txt &
 
 source /etc/profile.d/nix.sh # to get nix in this shell instance
-nix profile add nixpkgs#home-manager
 
 # Kanata install & config
 nix profile add nixpkgs#kanata
@@ -112,10 +111,9 @@ Restart=no
 WantedBy=default.target' > /lib/systemd/system/kanata.service"
 sudo systemctl enable kanata
 
-cd ~/.dotfiles/.config/home-manager/
-home-manager switch --flake .
+nix profile add nixpkgs#home-manager
+home-manager switch
 home-manager news &> /dev/null
-cd -
 
 sudo update-alternatives --install /usr/bin/nvim editor $(which nvim) 100
 
