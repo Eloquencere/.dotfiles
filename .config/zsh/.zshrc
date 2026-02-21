@@ -28,7 +28,7 @@ zinit snippet OMZ::plugins/sudo/sudo.plugin.zsh
 fpath+=$ZDOTDIR/completion
 
 autoload -Uz colors && colors
-autoload -Uz compinit && compinit
+autoload -Uz compinit && compinit -C
 _comp_options+=(globdots) # Show hidden files
 zinit cdreplay -q
 
@@ -41,11 +41,11 @@ zstyle ':fzf-tab:complete:(cd|ls|touch):*' fzf-preview '[[ -d $realpath ]] && ez
 zstyle ':fzf-tab:complete:((cp|mv|rm|nvim|jq|bat|delta):argument-rest|kate:*)' fzf-preview 'bat --color=always -- $realpath 2>/dev/null || eza --oneline --color=always --icons=always --all -- $realpath'
 
 # Shell integrations
-source <(starship init zsh)
-source <(fzf --zsh)
-source <(atuin init zsh --disable-ctrl-r --disable-up-arrow)
-source <(zoxide init --cmd cd zsh)
-source <(mise activate zsh)
+eval "$(starship init zsh)"
+eval "$(fzf --zsh)"
+eval "$(atuin init zsh --disable-ctrl-r --disable-up-arrow)"
+eval "$(zoxide init --cmd cd zsh)"
+eval "$(mise activate zsh)"
 
 # Personal confidential variables
 if [[ -f "$ZDOTDIR/personal/zshrc.zsh" ]]; then
@@ -56,11 +56,12 @@ source "$ZDOTDIR/zsh-aliases.zsh"
 source "$ZDOTDIR/zsh-functions.zsh"
 
 # Zsh-Vi-Mode
+function zvm_config() {
+    ZVM_INIT_MODE=sourcing # https://github.com/jeffreytse/zsh-vi-mode#initialization-mode
+}
 function zvm_after_init() {
-	ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
 	zvm_bindkey viins '^r' atuin-search
 	zvm_bindkey viins '^p' atuin-up-search
-    zvm_bindkey viins "^[[13;2u" insert-newline
 }
 
 _fzf_compgen_path() {

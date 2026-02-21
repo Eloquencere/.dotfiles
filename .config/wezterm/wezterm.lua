@@ -60,7 +60,7 @@ config = {
             action = wezterm.action.SendString("\x1b[13;2u"),
         },
 
-        -- To Address Zellij issue
+        -- Multi-line command in the shell
         {
             key = "Enter",
             mods = "SHIFT",

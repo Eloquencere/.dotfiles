@@ -110,7 +110,7 @@ Restart=no
 
 [Install]
 WantedBy=default.target' > /lib/systemd/system/kanata.service"
-systemctl enable kanata
+sudo systemctl enable kanata
 
 cd ~/.dotfiles/.config/home-manager/
 home-manager switch --flake .
@@ -119,7 +119,7 @@ cd -
 
 sudo update-alternatives --install /usr/bin/nvim editor $(which nvim) 100
 
-# # Necessary libs to build cargo & python
+# Necessary libs to build cargo & python
 sudo apt-get install -y \
   libssl-dev zlib1g-dev libbz2-dev liblzma-dev \
   libreadline-dev libsqlite3-dev libncursesw5-dev \
@@ -129,7 +129,7 @@ sudo apt-get install -y \
 unset RUSTC_WRAPPER # to momentarily disable cargo from pointing to uninstalled sccache
 rustup toolchain install stable
 rustup default stable
-cargo install sccache # WARN: this is failing again
+cargo install sccache # WARN: freezes here
 
 mise trust # config file
 mise install # from config
