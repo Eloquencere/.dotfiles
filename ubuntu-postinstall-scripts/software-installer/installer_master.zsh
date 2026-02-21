@@ -7,7 +7,7 @@ echo "Welcome to the *Ubuntu 26.04 LTS* installer :)"
 # Installing nix pkg manager
 sh <(curl --proto "=https" --tlsv1.2 -L https://nixos.org/nix/install) --daemon --yes
 
-stow --dir ~/.dotfiles
+stow --dir="$HOME/.dotfiles" .
 
 cd sub-scripts/
 zsh -lc "source ./installer_slave.zsh"
