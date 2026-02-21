@@ -19,6 +19,7 @@
     home.packages = with pkgs; [
         # lanuage compilers
         rustup zig julia
+        clang lldb
         gdb valgrind strace
         conan scriptisto tio sqlite-interactive mise
         tlrc typst natural-docs doxygen

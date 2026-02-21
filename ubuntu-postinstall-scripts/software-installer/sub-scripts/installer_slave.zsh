@@ -1,8 +1,6 @@
 # TODO: when installing these packages look out for install recommendations or suggestions & add that flag to apt
 # TODO : how to specify pip packages to be installed in mise declaratively
 
-source $ZDOTDIR/.zshrc
-
 # Load wallpaper once
 gsettings set org.gnome.desktop.background picture-uri-dark "file://$HOME/.dotfiles/wallpapers/angkor_watt_gpt.png"
 gsettings set org.gnome.desktop.background picture-options 'stretched'
