@@ -121,17 +121,17 @@ cd -
 
 sudo update-alternatives --install /usr/bin/nvim editor $(which nvim) 100
 
-unset RUSTC_WRAPPER # to momentarily disable cargo from pointing to uninstalled sccache
-rustup toolchain install stable
-rustup default stable
-cargo install sccache # WARN: this is failing again
-
-# # Necessary libs to build python
+# # Necessary libs to build cargo & python
 sudo apt-get install -y \
   libssl-dev zlib1g-dev libbz2-dev liblzma-dev \
   libreadline-dev libsqlite3-dev libncursesw5-dev \
   libffi-dev tk-dev tcl-dev \
   libgdbm-dev uuid-dev libexpat1-dev
+
+unset RUSTC_WRAPPER # to momentarily disable cargo from pointing to uninstalled sccache
+rustup toolchain install stable
+rustup default stable
+cargo install sccache # WARN: this is failing again
 
 mise trust # config file
 mise install # from config
