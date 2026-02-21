@@ -90,6 +90,7 @@ xdg-mime default okular_okular.desktop application/pdf
 # GUI setup
 gnome-text-editor .gui_instructions.txt &
 
+source /etc/profile.d/nix.sh # to get nix in this shell instance
 nix profile add home-manager
 
 # Kanata install & config
