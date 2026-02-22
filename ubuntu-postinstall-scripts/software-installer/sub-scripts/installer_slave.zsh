@@ -2,7 +2,7 @@
 # TODO : how to specify pip packages to be installed in mise declaratively
 
 # Load wallpaper once
-gsettings set org.gnome.desktop.background picture-uri-dark "file://$HOME/.dotfiles/wallpapers/angkor_watt_gpt.png"
+gsettings set org.gnome.desktop.background picture-uri-dark "file://$DOTFILES_HOME/wallpapers/angkor_watt_gpt.png"
 gsettings set org.gnome.desktop.background picture-options 'stretched'
 
 source nerdfonts_download.sh
@@ -140,15 +140,15 @@ echo "Say \"yes\" first & \"sudo\" to the next question"
 # cpanm package manager for perl
 cpan App::cpanminus
 
-mkdir -p $HOME/.config/zsh/personal
+mkdir -p $ZDOTDIR/personal
 
 echo -n "Enter the ID granted by your admin to register with your team via croc: "
 read croc_id
 echo "# Croc
-export CROC_SELF_TRANSFER_ID=$croc_id" >> $HOME/.config/zsh/personal/zprofile.zsh
+export CROC_SELF_TRANSFER_ID=$croc_id" >> $ZDOTDIR/personal/zprofile.zsh
 echo "Move a copy of the collaborators database given by your admin to the zsh home directory"
 mkdir ~/croc-inbox
-echo "file://$HOME/croc-inbox" >> ~/.config/gtk-3.0/bookmarks
+echo "file://$HOME/croc-inbox" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
 
 echo -n "Would you like to log into your git account?(y/N) "
 read user_choice
@@ -174,9 +174,9 @@ if [[ $user_choice =~ ^[Yy]$ ]]; then
 fi
 
 # Clean up
-echo "file://$HOME/Projects" >> ~/.config/gtk-3.0/bookmarks
-sed -i "/Music/d" ~/.config/gtk-3.0/bookmarks
-# sed -i "/Videos\|Music/d" ~/.config/gtk-3.0/bookmarks
+echo "file://$HOME/Projects" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
+sed -i "/Music/d" $XDG_CONFIG_HOME/gtk-3.0/bookmarks
+# sed -i "/Videos\|Music/d" $XDG_CONFIG_HOME/gtk-3.0/bookmarks
 
 rm -rf ~/.cache/* # generally safe, but be mindful
 rm -rf ~/{.bash*,.profile,.fontconfig}

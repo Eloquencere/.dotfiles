@@ -1,7 +1,6 @@
 --ignore=wallpapers
 --ignore=scripts
 --ignore=archives
---ignore=atuin
 --ignore=layout.kdl
 --ignore=\.git
 --ignore=\.gitignore
