@@ -127,7 +127,7 @@ sudo apt-get install -y \
 unset RUSTC_WRAPPER # to momentarily disable cargo from pointing to uninstalled sccache
 rustup toolchain install stable
 rustup default stable
-cargo install sccache # WARN: freezes here
+# cargo install sccache # WARN: freezes here
 
 mise trust # config file
 mise install # from config

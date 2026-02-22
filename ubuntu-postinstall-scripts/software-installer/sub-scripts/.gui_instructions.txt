@@ -9,12 +9,12 @@
     - Just Perfection
     - Quick Settings Tweaks
     - Removable Drive Menu
-    - Wiggle
     (Future)
     - Pano Clipboard Manager
 
     (Optional)
     - Forge (Tiling Manager)
+    - Wiggle
 
 Notes
     - Sync the web-browser on your default machine with the current machine

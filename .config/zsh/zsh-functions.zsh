@@ -35,56 +35,11 @@ croc() {
 	fi
 }
 
-# usbip
-usbip() {
-    if [[ $1 == "show" ]]; then
-        shift
-        lsusbip
-	elif [[ $1 == "attach" ]]; then
-		shift
-		sudo usbip attach --remote=$SERVER_IP --busid "$@"
-	elif [[ $1 == "detach" ]]; then
-		shift
-		sudo usbip detach --port "$@"
-	else
-		command usbip "$@"
-	fi
-}
-lsusbip() {
-	local server_devices usbip_port_output
-	local busid device_name vid_pid port_number
-  
-	IFS=$'\n' read -r -d '' -A server_devices < <(usbip list --remote=$SERVER_IP | grep --regexp "^\s+[-0-9]+:")
-	usbip_port_output=$(usbip port 2>/dev/null)
-	if [ ${#server_devices[@]} -eq 1 ]; then
-		return
-	fi
-	printf "Devices from %s\n" "$SERVER_IP"
-	printf "%-10s %-50s %-10s\n" "BUSID" "DEVICE" "PORT"
-	local regex="^\s+([-0-9]+):\s+(.*)\s+(\(.*\))$"
-	for server_device in $server_devices; do
-		if [[ $server_device =~ $regex ]]; then
-			busid=$match[1]
-			device_name=$match[2]
-			vid_pid=$match[3]
-		fi
-	done
-	port_number=$(echo "$usbip_port_output" | grep --before-context=1 "$vid_pid" | sed --silent '1s/.*\([-0-9]\+\):.*/\1/p')
-	printf "%-10s %-50s %-10s\n" "$busid" "${device_name:0:49}" "$port_number"
-}
-
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	yazi "$@" --cwd-file="$tmp"
-	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-		builtin cd -- "$cwd"
-	fi
+	command yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
 	rm -f -- "$tmp"
 }
-
-# Bind Shift+Enter to enter multiple commands
-function insert-newline() {
-  LBUFFER+=$'\n'
-}
-zle -N insert-newline
 
