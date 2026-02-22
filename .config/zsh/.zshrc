@@ -6,32 +6,22 @@ setopt interactive_comments
 
 source "$XDG_DATA_HOME/zinit-pkgmngr/zinit.zsh"
 
-# # Disabled at the moment
-# zinit ice wait lucid silent compile blockf
-# zinit light zsh-users/zsh-completions
-
 # Initialising completions directory
-if [[ -d $ZDOTDIR/completion ]]; then
-    fpath+=$ZDOTDIR/completion
-fi
+fpath+=$ZDOTDIR/completion
+zinit wait'0' lucid compile for zsh-users/zsh-completions
 
-autoload -Uz compinit && compinit -C
-zinit cdreplay -q
-_comp_options+=(globdots) # Show hidden files
-
-zinit ice wait lucid silent compile
-zinit light-mode for \
-  jeffreytse/zsh-vi-mode \
-  hlissner/zsh-autopair \
-  Aloxaf/fzf-tab \
-  Eloquencere/zsh-goto-cli
+zinit wait lucid compile for \
+    jeffreytse/zsh-vi-mode \
+    hlissner/zsh-autopair \
+    Aloxaf/fzf-tab \
+    Eloquencere/zsh-goto-cli
 zinit snippet OMZ::plugins/sudo/sudo.plugin.zsh
 
-# Syntax highlighting needs to load LAST
-zinit ice wait'1' lucid silent compile
-zinit light zdharma-continuum/fast-syntax-highlighting
+zinit wait'1' lucid compile for \
+    atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+    zdharma/fast-syntax-highlighting
 
-# autoload -Uz colors && colors
+_comp_options+=(globdots) # Show hidden files
 
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
