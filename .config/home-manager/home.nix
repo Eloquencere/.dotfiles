@@ -23,7 +23,7 @@
         conan scriptisto tio sqlite-interactive mise
         tlrc typst natural-docs doxygen
         # Prompt improvement
-        starship fzf atuin
+        starship fzf atuin carapace trash-cli
         croc fastfetch btop yazi
         neovim zellij wl-clipboard
         gh lazygit

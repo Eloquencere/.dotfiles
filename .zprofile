@@ -20,6 +20,9 @@ export FZF_DEFAULT_OPTS="--ansi"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git --color=always"
 
+# # Carapace
+# export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense'
+
 # Rust
 export CARGO_HOME="$XDG_DATA_HOME/rust/cargo"
 export RUSTUP_HOME="$XDG_DATA_HOME/rust/rustup"
