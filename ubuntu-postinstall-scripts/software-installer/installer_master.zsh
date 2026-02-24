@@ -17,3 +17,8 @@ echo "The system will reboot now to consolidate the installation"
 read -r "?Press Enter to reboot..."
 sudo reboot now
 
+# if you work on nixos -
+# use systemd-boot over grub
+# enable settings for faster boot
+# enable settings for best gaming experience
+

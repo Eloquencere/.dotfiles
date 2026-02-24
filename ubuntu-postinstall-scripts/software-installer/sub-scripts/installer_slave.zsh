@@ -1,18 +1,13 @@
-# TODO: when installing these packages look out for install recommendations or suggestions & add that flag to apt
-# TODO : how to specify pip packages to be installed in mise declaratively
+# TODO: how to specify pip packages to be installed in mise declaratively & same for cargo
+# TODO: need to configure V-Shell extension, that might invalidate other extensions
+# TODO: Take inspiration from Omakub https://learn.omacom.io/1/read
 
 # Load wallpaper once
 gsettings set org.gnome.desktop.background picture-uri-dark "file://$DOTFILES_HOME/wallpapers/angkor_watt_gpt.png"
 gsettings set org.gnome.desktop.background picture-options 'stretched'
 
+sudo apt install -y ttf-mscorefonts-installer fonts-crosextra-carlito fonts-crosextra-caladea # MS fonts for LibreOffice
 source nerdfonts_download.sh
-
-# performance improvement software
-sudo apt install -y preload
-sudo systemctl enable preload
-
-# Optional compiler - use apt only
-sudo apt install clang lldb
 
 # Brave browser
 sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
@@ -27,17 +22,21 @@ echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/w
 sudo apt update
 sudo apt install -y wezterm
 
-# KiCAD
-sudo add-apt-repository --yes ppa:kicad/kicad-9.0-releases
-sudo apt update
-sudo apt install --install-recommends -y kicad
-
 # Virt-Manager
 cd ~/Downloads
 sudo apt install -y qemu-kvm bridge-utils virt-manager libosinfo-bin
 wget https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/archive-virtio/virtio-win-0.1.271-1/virtio-win.iso
 wget https://www.spice-space.org/download/windows/spice-guest-tools/spice-guest-tools-latest.exe
 cd -
+
+# performance improvement software
+sudo apt install -y preload
+sudo systemctl enable preload
+
+# KiCAD
+sudo add-apt-repository --yes ppa:kicad/kicad-9.0-releases
+sudo apt update
+sudo apt install --install-recommends -y kicad
 
 APPLICATIONS=(
     "gnome-shell-extension-manager"
@@ -65,10 +64,8 @@ flatpak install --assumeyes flathub "${GAMES_FLATPAK[@]}"
 
 # Flatpaks
 ADDITIONAL_APPS_FLATPAK=(
-    "org.videolan.VLC"
     "org.kde.okular"
-    # Electronics - NOTE: might be better to add to a separate hdl script
-    "com.github.reds.LogisimEvolution"
+    "org.videolan.VLC"
     # System
     "net.nokyan.Resources" # - WARN: default in 26.04LTS
     "net.epson.epsonscan2"
@@ -92,7 +89,6 @@ gnome-text-editor .gui_instructions.txt &
 
 source /etc/profile.d/nix.sh # to get nix in this shell instance
 
-# Kanata install & config
 nix profile add nixpkgs#kanata
 sudo groupadd uinput
 sudo usermod -aG input,uinput $USER
@@ -141,7 +137,6 @@ echo "Say \"yes\" first & \"sudo\" to the next question"
 cpan App::cpanminus
 
 mkdir -p $ZDOTDIR/personal
-
 echo -n "Enter the ID granted by your admin to register with your team via croc: "
 read croc_id
 echo "# Croc
@@ -191,16 +186,16 @@ sudo apt-get purge -y "${BLOAT_SNAP[@]}"
 sudo snap remove "${BLOAT_SNAP[@]}"
 
 BLOAT_APT=(
-    "ed" "vim-common" "nano"
-    "transmission-common" "transmission-gtk"
+    "gnome-snapshot" "gnome-logs" "gnome-calculator"
+    "gnome-power-manager" "gnome-terminal" # WARN: most likely, replaced with "ptyxis"
+    "deja-dup" "seahorse" "shotwell" "evince" "totem" # WARN: replaced with "showtime"
     "rhythmbox" "orca" "info" "yelp"
-    "gnome-snapshot" "gnome-logs" "gnome-terminal"
-    "gnome-system-monitor" "gnome-power-manager"
-    "deja-dup" "seahorse" "shotwell" "evince" "gnome-calculator"
+    "transmission-common" "transmission-gtk"
+    "ed" "vim-common" "nano"
     # cli tools that clash with nix
     "git" "curl" "stow"
-    # WARN: depricated in ubuntu 26.04 LTS to - "showtime"
-    "totem"
+    # WARN: not present in 26.04LTS
+    "gnome-system-monitor"
 )
 sudo apt purge -y "${BLOAT_APT[@]}"
 
@@ -209,6 +204,9 @@ flatpak uninstall --unused --delete-data --assumeyes
 source ../../continual-reference/software_updater.zsh
 
 
+
+# # Optional C compiler - don't install via nix
+# sudo apt install clang lldb
 
 # # Auto-cpufreq
 # git clone https://github.com/AdnanHodzic/auto-cpufreq.git

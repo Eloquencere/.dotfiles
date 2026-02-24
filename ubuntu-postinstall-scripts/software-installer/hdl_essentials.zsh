@@ -5,3 +5,5 @@ pip install pyslang xilinx-language-server
 # pip install fusesoc # need to learn this
 sudo apt install -y verilator
 
+flatpak install --assumeyes flathub "com.github.reds.LogisimEvolution"
+

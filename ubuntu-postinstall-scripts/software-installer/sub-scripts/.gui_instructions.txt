@@ -15,6 +15,7 @@
     (Optional)
     - Forge (Tiling Manager)
     - Wiggle
+    - V-Shell
 
 Notes
     - Sync the web-browser on your default machine with the current machine
@@ -26,9 +27,6 @@ Notes
     - Optionally install Comic book reader - mcomix or kommiku
     - Optionally install ClamAV (Anti-Virus) - youtube.com/watch?v=fCAvpFB5x6g
 
-    - If there's mouse scroll wheel issues, install "imwheel" via nala
-
-    - Backup fonts if libreoffice is not able to render MS office stuff
-        sudo apt install -y ttf-mscorefonts-installer fonts-crosextra-carlito fonts-crosextra-caladea # MS fonts for LibreOffice
-
+    - If there's mouse scroll wheel issues
+        sudo apt install imwheel
 
