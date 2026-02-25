@@ -1,3 +1,4 @@
+# TODO: auto clean up older generations of home-manager
 # TODO: Configure the layout of the quick settings using the extension
 # TODO: how to specify pip packages to be installed in mise declaratively & same for cargo
 # TODO: need to configure V-Shell extension, that might invalidate other extensions
@@ -50,17 +51,17 @@ APPLICATIONS=(
 sudo apt install -y "${APPLICATIONS[@]}"
 
 OFFICE_SOFTWARE_SNAP=(
-    "notion-desktop" "drawio" "qalculate"
-    "surfshark" "varia"
+    "notion-desktop" "drawio"
+    "qalculate"
+    "surfshark"
 )
 sudo snap install "${OFFICE_SOFTWARE_SNAP[@]}"
-sudo snap install obsidian --classic
 
 # Games
 mkdir ~/Games
 sudo apt install steam --install-suggests
-sudo snap install discord
 GAMES_FLATPAK=(
+    "com.discordapp.Discord"
     "com.heroicgameslauncher.hgl"
     # "com.parsecgaming.parsec"
 )
@@ -74,6 +75,8 @@ ADDITIONAL_APPS_FLATPAK=(
     "net.nokyan.Resources" # - WARN: default in 26.04LTS
     "net.epson.epsonscan2"
     # Project Management
+    "md.obsidian.Obsidian"
+    "io.github.giantpinkrobots.varia"
     "org.ghidra_sre.Ghidra"
     "org.jitsi.jitsi-meet"
     "com.rustdesk.RustDesk"

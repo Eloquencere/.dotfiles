@@ -174,7 +174,7 @@ in
                     "libreoffice-math.desktop"
                     "libreoffice-draw.desktop"
                     "libreoffice-startcenter.desktop"
-                    # drawio
+                    "drawio_drawio.desktop"
                     "simple-scan.desktop" # Document scanner
                     "org.kde.okular.desktop"
                     "qalculate_qalculate.desktop"
@@ -217,7 +217,7 @@ in
                 apps = [
                     "steam_steam.desktop"
                     "com.heroicgameslauncher.hgl.desktop"
-                    "discord_discord.desktop"
+                    "com.discordapp.Discord.desktop"
                     "org.gnome.Crosswords.desktop"
                     "org.gnome.Chess.desktop"
                     "org.gnome.Mahjongg.desktop"
@@ -296,7 +296,7 @@ in
                 favorite-apps = [
                     "org.gnome.TextEditor.desktop"
                     "notion-desktop_notion-desktop.desktop"
-                    "obsidian_obsidian.desktop"
+                    "md.obsidian.Obsidian.desktop"
                     "brave-browser.desktop"
                     "org.wezfurlong.wezterm.desktop"
                     "org.gnome.Nautilus.desktop"
