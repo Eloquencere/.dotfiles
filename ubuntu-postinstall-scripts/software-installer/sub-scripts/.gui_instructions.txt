@@ -5,17 +5,18 @@
     - blur my shell
     - CHC-E
     - Clipboard Indicator
-    - Grand Theft Focus
+    - Grand Theft Focus (don't know if it even works)
     - Just Perfection
     - Quick Settings Tweaks
-    - Removable Drive Menu
     (Future)
-    - Pano Clipboard Manager
+    - Copyous
 
     (Optional)
-    - Forge (Tiling Manager)
+    - Battery time
+    - Removable Drive Menu
     - Wiggle
     - V-Shell
+    - Forge (Tiling Manager)
 
 Notes
     - Sync the web-browser on your default machine with the current machine

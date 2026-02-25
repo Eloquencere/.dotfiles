@@ -1,0 +1,163 @@
+#cloud-config
+autoinstall:
+  version: 1
+
+  timezone: "America/New_York"
+
+  identity:
+    realname: "eloquencer"
+    hostname: dev-machine
+    username: eloquencer
+    # WARN: use for hash generation: openssl passwd -6
+    password: ""
+
+  network:
+    version: 2
+    renderer: NetworkManager
+    ethernets:
+      wired:
+        match:
+          name: "en*"
+        dhcp4: true
+        nameservers:
+          addresses:
+            # IPv4
+            - 1.1.1.1 # Cloudflare
+            - 1.0.0.1 # "
+            - 8.8.8.8 # Google
+            - 8.8.4.4 # "
+            - 9.9.9.9 # Quad9
+            # # IPv6
+            # - 2606:4700:4700::1111 # Cloudflare
+            # - 2606:4700:4700::1001 # "
+            # - 2001:4860:4860::8888 # Google
+            # - 2001:4860:4860::8844 # "
+
+  storage:
+    config:
+      - id: disk0
+        type: disk
+        match:
+          size: largest
+        ptable: gpt
+        wipe: superblock-recursive
+        grub_device: true
+
+      # BIOS GRUB partition (required for GPT + BIOS)
+      - id: bios-grub
+        type: partition
+        device: disk0
+        size: 1M
+        flag: bios_grub
+
+      # Root Partition (entire remaining disk)
+      - id: root-partition
+        type: partition
+        device: disk0
+        size: -1
+
+      # Format as Btrfs
+      - id: root-format
+        type: format
+        fstype: btrfs
+        volume: root-partition
+
+      # Create subvolume @ (root)
+      - id: root-subvol
+        type: btrfs_subvolume
+        volume: root-format
+        name: "@"
+
+      # Create subvolume @home
+      - id: home-subvol
+        type: btrfs_subvolume
+        volume: root-format
+        name: "@home"
+
+      # Mount root
+      - id: root-mount
+        type: mount
+        path: /
+        device: root-format
+        options: "subvol=@,compress=zstd:5,noatime,ssd,discard=async,space_cache=v2,commit=120,autodefrag"
+
+      # Mount home
+      - id: home-mount
+        type: mount
+        path: /home
+        device: root-format
+        options: "subvol=@home,compress=zstd:5,noatime,ssd,discard=async,space_cache=v2,commit=120,autodefrag"
+    
+    # config:
+    #   - id: disk0
+    #     type: disk
+    #     match:
+    #       size: largest
+    #     ptable: gpt
+    #     wipe: superblock-recursive
+    #     grub_device: true
+    #
+    #   # EFI Partition
+    #   - id: efi-partition
+    #     type: partition
+    #     device: disk0
+    #     size: 512M
+    #     flag: boot
+    #   - id: efi-format
+    #     type: format
+    #     fstype: fat32
+    #     volume: efi-partition
+    #   - id: efi-mount
+    #     type: mount
+    #     path: /boot/efi
+    #     device: efi-format
+    #
+    #   # Root Partition
+    #   - id: root-partition
+    #     type: partition
+    #     device: disk0
+    #     size: -1
+    #   - id: root-format
+    #     type: format
+    #     fstype: btrfs
+    #     volume: root-partition
+    #   - id: root-mount
+    #     type: mount
+    #     path: /
+    #     device: root-format
+    #     options: "compress=zstd,noatime"
+
+  locale: en_US.UTF-8
+  keyboard:
+    layout: us
+
+  source:
+    id: ubuntu-desktop # Extended selection
+  drivers: # 3rd party Graphics & Wifi software
+    install: true
+  codecs: # support for media formats & MS Fonts(not sure)
+    install: true
+  updates: all
+
+  packages:
+    - build-essential
+    - pkg-config
+    - libfuse2t64    # Needed for appimages
+    # - openjdk-25-jre # needed to run .jar files - pre-installed
+    - sshfs
+    - zsh
+    # Flatpak package manager
+    - flatpak
+    - gnome-software-plugin-flatpak
+    # Will be uninstalled later in favor of nixpkgs
+    - git
+    - curl
+    - stow
+
+  late-commands:
+    - curtin in-target --target=/target -- bash -lc "dpkg --add-architecture i386; apt-get update"
+
+    - curtin in-target --target=/target -- flatpak remote-add --system --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
+    - curtin in-target --target=/target -- usermod -s /usr/bin/zsh eloquencer
+

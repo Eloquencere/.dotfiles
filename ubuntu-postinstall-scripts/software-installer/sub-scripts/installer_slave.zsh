@@ -1,3 +1,4 @@
+# TODO: Configure the layout of the quick settings using the extension
 # TODO: how to specify pip packages to be installed in mise declaratively & same for cargo
 # TODO: need to configure V-Shell extension, that might invalidate other extensions
 # TODO: Take inspiration from Omakub https://learn.omacom.io/1/read
@@ -6,8 +7,15 @@
 gsettings set org.gnome.desktop.background picture-uri-dark "file://$DOTFILES_HOME/wallpapers/angkor_watt_gpt.png"
 gsettings set org.gnome.desktop.background picture-options 'stretched'
 
-sudo apt install -y ttf-mscorefonts-installer fonts-crosextra-carlito fonts-crosextra-caladea # MS fonts for LibreOffice
+# Only keep 2 versions of a snap pkg
+sudo snap set system refresh.retain=2
+
 source nerdfonts_download.sh
+sudo apt install -y ttf-mscorefonts-installer fonts-crosextra-carlito fonts-crosextra-caladea # MS fonts for LibreOffice
+
+# Performance improvement software
+sudo apt install -y preload
+sudo systemctl enable preload
 
 # Brave browser
 sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
@@ -28,10 +36,6 @@ sudo apt install -y qemu-kvm bridge-utils virt-manager libosinfo-bin
 wget https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/archive-virtio/virtio-win-0.1.271-1/virtio-win.iso
 wget https://www.spice-space.org/download/windows/spice-guest-tools/spice-guest-tools-latest.exe
 cd -
-
-# performance improvement software
-sudo apt install -y preload
-sudo systemctl enable preload
 
 # KiCAD
 sudo add-apt-repository --yes ppa:kicad/kicad-9.0-releases
