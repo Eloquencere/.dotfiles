@@ -8,9 +8,6 @@
 gsettings set org.gnome.desktop.background picture-uri-dark "file://$DOTFILES_HOME/wallpapers/angkor_watt_gpt.png"
 gsettings set org.gnome.desktop.background picture-options 'stretched'
 
-# Only keep 2 versions of a snap pkg
-sudo snap set system refresh.retain=2
-
 source nerdfonts_download.sh
 sudo apt install -y ttf-mscorefonts-installer fonts-crosextra-carlito fonts-crosextra-caladea # MS fonts for LibreOffice
 
@@ -50,10 +47,14 @@ APPLICATIONS=(
 )
 sudo apt install -y "${APPLICATIONS[@]}"
 
+# Only keep 2 versions of a snap pkg
+sudo snap set system refresh.retain=2
+
 OFFICE_SOFTWARE_SNAP=(
-    "notion-desktop" "drawio"
-    "qalculate"
-    "surfshark"
+    "drawio" # windowing problem with flatpak
+    "qalculate" # cli not available with flatpak, impossible to setup keyboard shortcut
+    "notion-desktop" # Not available anywhere else
+    "surfshark" # not available anywhere else
 )
 sudo snap install "${OFFICE_SOFTWARE_SNAP[@]}"
 

@@ -1,50 +1,35 @@
 return {
     {
-        "williamboman/mason.nvim",
-        event = { "VeryLazy" },
-        lazy = true,
-        opts = {
-            ui = {
-                icons = {
-                    package_installed = "✓",
-                    package_pending = "➜",
-                    package_uninstalled = "✗",
-                },
-            },
+        'WhoIsSethDaniel/mason-tool-installer.nvim',
+        dependencies = {
+            "williamboman/mason.nvim",
         },
-    },
-    {
-        "williamboman/mason-lspconfig.nvim",
-        event = { "VeryLazy" },
-        lazy = true,
-        vim.diagnostic.config({
-            virtual_text = { current_line = true }
-        }),
+        -- can't be lazy loaded
         opts = {
             ensure_installed = {
+                -- language servers
                 "clangd", -- C, C++
-                "neocmake",
+                "neocmakelsp",
                 "zls", -- Zig
-                "rust_analyzer",
+                "rust-analyzer",
                 "gopls", -- Go
-                "bashls", -- Bash, Zsh
+                "bash-language-server", -- Bash, Zsh
                 "perlnavigator",
-                "lua_ls",
-                "jedi_language_server", -- Python
-                "html",
-                "cssls",
+                "lua-language-server",
+                "jedi-language-server", -- Python
+                "julia-lsp",
+                "html-lsp",
+                "css-lsp",
                 "marksman", -- Markdown
                 "biome", -- Javascript, Typescript, JSON
-                "yamlls",
+                "docker-language-server", -- Docker, Podman
+                "yaml-language-server",
                 "taplo", -- TOML
-                "dockerls", -- Docker, Podman
+                "mbake", -- makefile
+                "just-lsp",
                 "tinymist", -- Typst
-                -- "mbake", -- makefile (correct, but not recognized for some reason)
-                "just",
                 -- "svls", -- good, but needs a lot of config
-                -- "bacon_ls", # this fails for some reason
-                -- "julials", -- causing issues
-                -- "vhdl_ls",
+                -- "vhdl_ls", -- not needed at the moment
             },
         },
     },
@@ -53,10 +38,13 @@ return {
         event = { "VeryLazy" },
         lazy = true,
 
+        vim.diagnostic.config({
+            virtual_text = { current_line = true }
+        }),
+
         -- vim.lsp.config("svls", {
         --     filetypes = { "verilog", "systemverilog" },
         -- }),
-
         vim.lsp.config("xilinx", {
             cmd = { "xilinx-language-server" },
             filetypes = { "xdc", "xsct", "tcl" },
