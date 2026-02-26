@@ -19,6 +19,9 @@
     - Forge (Tiling Manager)
 
 Notes
+    - Okular
+        Settings -> Configure Okular -> General
+            Default Zoom: Fit Page
     - Sync the web-browser on your default machine with the current machine
     - Setup your cloud storage service provider
     - Setup timeshift (https://www.xda-developers.com/timeshift-saved-my-linux-install-after-i-broke-it)

@@ -27,6 +27,7 @@ export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git
 export CARGO_HOME="$XDG_DATA_HOME/rust/cargo"
 export RUSTUP_HOME="$XDG_DATA_HOME/rust/rustup"
 export RUSTC_WRAPPER="$CARGO_HOME/bin/sccache"
+export PATH="$CARGO_HOME/bin:$PATH"
 
 # Conan(C/C++)
 export CONAN_HOME="$XDG_DATA_HOME/conan"

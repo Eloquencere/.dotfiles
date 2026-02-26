@@ -296,7 +296,7 @@ in
                 favorite-apps = [
                     "org.gnome.TextEditor.desktop"
                     "notion-desktop_notion-desktop.desktop"
-                    "md.obsidian.Obsidian.desktop"
+                    "obsidian_obsidian.desktop"
                     "brave-browser.desktop"
                     "org.wezfurlong.wezterm.desktop"
                     "org.gnome.Nautilus.desktop"

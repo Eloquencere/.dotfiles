@@ -4,6 +4,9 @@
 # TODO: need to configure V-Shell extension, that might invalidate other extensions
 # TODO: Take inspiration from Omakub https://learn.omacom.io/1/read
 
+# Take a call to alternatively remove the notifier app in 26.04 LTS
+gsettings set com.ubuntu.update-notifier no-show-notifications true
+
 # Load wallpaper once
 gsettings set org.gnome.desktop.background picture-uri-dark "file://$DOTFILES_HOME/wallpapers/angkor_watt_gpt.png"
 gsettings set org.gnome.desktop.background picture-options 'stretched'
@@ -51,16 +54,17 @@ sudo apt install -y "${APPLICATIONS[@]}"
 sudo snap set system refresh.retain=2
 
 OFFICE_SOFTWARE_SNAP=(
-    "drawio" # windowing problem with flatpak
-    "qalculate" # cli not available with flatpak, impossible to setup keyboard shortcut
+    "drawio"         # In flatpak, window bezzels are white & don't fit the screen's aspect ratio
+    "qalculate"      # In flatpak, no cli exposed, impossible to setup keyboard shortcut
     "notion-desktop" # Not available anywhere else
-    "surfshark" # not available anywhere else
+    "surfshark"      # not available anywhere else
 )
 sudo snap install "${OFFICE_SOFTWARE_SNAP[@]}"
+sudo snap install obsidian --classic # In flatpak, write errors on mounted cloud drives
 
 # Games
 mkdir ~/Games
-sudo apt install steam --install-suggests
+sudo apt install steam --install-suggests -y
 GAMES_FLATPAK=(
     "com.discordapp.Discord"
     "com.heroicgameslauncher.hgl"
@@ -76,7 +80,6 @@ ADDITIONAL_APPS_FLATPAK=(
     "net.nokyan.Resources" # - WARN: default in 26.04LTS
     "net.epson.epsonscan2"
     # Project Management
-    "md.obsidian.Obsidian"
     "io.github.giantpinkrobots.varia"
     "org.ghidra_sre.Ghidra"
     "org.jitsi.jitsi-meet"
