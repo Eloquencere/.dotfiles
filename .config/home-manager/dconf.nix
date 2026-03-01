@@ -2,12 +2,11 @@
 let
     gv = lib.hm.gvariant;
 
-    # id -> <{ position: <uint32 N> }>
     mkEntry = id: pos:
     gv.mkDictionaryEntry [
         id
         (gv.mkVariant [
-        (gv.mkDictionaryEntry [ "position" (gv.mkVariant (gv.mkUint32 pos)) ])
+            (gv.mkDictionaryEntry [ "position" (gv.mkVariant (gv.mkUint32 pos)) ])
         ])
     ];
 
@@ -20,8 +19,12 @@ in
         enable = true;
         settings = {
             "org/gnome/desktop/session" = {
-                idle-delay = 0;
+                idle-delay = lib.gvariant.mkUint32 0;
             };
+            "org/gnome/settings-daemon/plugins/power" = {
+                idle-dim = false;
+            };
+
             "org/gnome/desktop/screensaver" = {
                 lock-enabled = false;
             };
@@ -95,6 +98,7 @@ in
             };
 
             "org/gnome/shell/extensions/just-perfection" = {
+                activities-button = false;
                 keyboard-layout = false;
                 accessibility-menu = false;
                 quick-settings-dark-mode = false;
@@ -103,6 +107,10 @@ in
                 workspace-popup = false;
                 dash-separator = true;
                 switcher-popup-delay = false;
+                events-button = false;
+                search = false;
+                workspace = false; # not sure
+                workspaces-in-app-grid = false;
             };
 
             "org/gnome/shell/extensions/blur-my-shell/dash-to-dock" = {

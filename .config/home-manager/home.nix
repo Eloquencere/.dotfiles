@@ -5,13 +5,6 @@
 
     home.stateVersion = "25.11"; # Please check HM release notes before changing this number
 
-    # can implement this logic cleanly in system manager if I decide to go ahead with it
-    # home.activation.nixGcOnSwitch =
-    #  lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    #    ${pkgs.nix}/bin/nix-collect-garbage --delete-old || true
-    #    ${pkgs.nix}/bin/nix store gc || true
-    #  '';
-
     imports = [
         ./dconf.nix
     ];
@@ -31,10 +24,10 @@
         stow git curl dos2unix
         # WARN: Cautious with Ubuntu 26.04LTS
         zoxide eza fd bat ripgrep duf delta repgrep mprocs
-        graphviz # dependency for pydot
-        gnuplot # dependency for qalculate
 
         # optional
+        # graphviz # dependency for pydot
+        # gnuplot # dependency for qalculate
         # jq jqp yq ollama cheat p7zip unrar
     ];
 

@@ -66,6 +66,14 @@ vim.api.nvim_create_autocmd(
     }
 )
 
+-- Disabling the annoying snapping behaviour
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "systemverilog", "verilog" },
+  callback = function()
+    vim.bo.indentkeys = "!^F,o,O,0),0}"
+  end,
+})
+
 -- vim.api.nvim_create_augroup('verilog_maps', { clear = true })
 -- vim.api.nvim_create_autocmd('FileType', {
 --   group = 'verilog_maps',

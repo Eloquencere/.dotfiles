@@ -1,5 +1,3 @@
-# TODO: auto clean up older generations of home-manager
-# TODO: Configure the layout of the quick settings using the extension
 # TODO: how to specify pip packages to be installed in mise declaratively & same for cargo
 # TODO: need to configure V-Shell extension, that might invalidate other extensions
 # TODO: Take inspiration from Omakub https://learn.omacom.io/1/read
@@ -76,6 +74,7 @@ flatpak install --assumeyes flathub "${GAMES_FLATPAK[@]}"
 ADDITIONAL_APPS_FLATPAK=(
     "org.kde.okular"
     "org.videolan.VLC"
+    # "com.github.tenderowl.frog"
     # System
     "net.nokyan.Resources" # - WARN: default in 26.04LTS
     "net.epson.epsonscan2"
