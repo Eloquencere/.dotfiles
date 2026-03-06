@@ -16,7 +16,7 @@
         conan scriptisto tio sqlite-interactive mise
         tlrc typst natural-docs doxygen
         # Prompt improvement
-        starship fzf atuin carapace trash-cli
+        starship fzf atuin trash-cli
         croc fastfetch btop yazi
         neovim zellij wl-clipboard
         gh lazygit
@@ -26,6 +26,7 @@
         zoxide eza fd bat ripgrep duf delta repgrep mprocs
 
         # optional
+        # carapace # needs to mature a lot
         # graphviz # dependency for pydot
         # gnuplot # dependency for qalculate
         # jq jqp yq ollama cheat p7zip unrar

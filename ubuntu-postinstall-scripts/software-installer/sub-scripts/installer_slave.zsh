@@ -1,8 +1,13 @@
+# TODO: test the slightly faster way to login on VM
+# TODO: Do AI integration with my setup (do testing on VM first)
 # TODO: how to specify pip packages to be installed in mise declaratively & same for cargo
-# TODO: need to configure V-Shell extension, that might invalidate other extensions
 # TODO: Take inspiration from Omakub https://learn.omacom.io/1/read
+# TODO: need to configure V-Shell extension, that might invalidate other extensions
+# TODO: how to disable telemetry
 
-# Take a call to alternatively remove the notifier app in 26.04 LTS
+# WARN: Need to confirm all the gsettings paths in 26.04 before using it as gospel (incl home-manager/dconf.nix)
+
+# Alternatively, take a call to completely remove the notifier app
 gsettings set com.ubuntu.update-notifier no-show-notifications true
 
 # Load wallpaper once
@@ -97,7 +102,8 @@ xdg-mime default okular_okular.desktop application/pdf
 # GUI setup
 gnome-text-editor .gui_instructions.txt &
 
-source /etc/profile.d/nix.sh # to get nix in this shell instance
+# Getting nix cli in this shell instance
+source /etc/profile.d/nix.sh
 
 nix profile add nixpkgs#kanata
 sudo groupadd uinput
@@ -158,7 +164,9 @@ echo "file://$HOME/croc-inbox" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
 echo -n "Would you like to log into your git account?(y/N) "
 read user_choice
 if [[ $user_choice =~ ^[Yy]$ ]]; then
-    git config --global init.defaultBranch main
+    mkdir $XDG_CONFIG_HOME/git
+    touch $XDG_CONFIG_HOME/git/config
+    git config --file $XDG_CONFIG_HOME/git/config init.defaultBranch main
     git config --global core.whitespace error
     git config --global core.preloadindex true
     git config --global core.editor nvim
@@ -186,7 +194,7 @@ sed -i "/Music/d" $XDG_CONFIG_HOME/gtk-3.0/bookmarks
 rm -rf ~/.cache/* # generally safe, but be mindful
 rm -rf ~/{.bash*,.profile,.fontconfig}
 rm -rf ~/.mozilla/firefox/*/cache2/*
-sudo rm -rf ~/{Templates,Public,go,Music}
+rm -rf ~/{Templates,Public,go,Music}
 sudo rm -rf rm -rf /tmp/*
 
 BLOAT_SNAP=(
