@@ -29,7 +29,7 @@
         # carapace # needs to mature a lot
         # graphviz # dependency for pydot
         # gnuplot # dependency for qalculate
-        # jq jqp yq ollama cheat p7zip unrar
+        # jq jqp yq cheat p7zip unrar
     ];
 
     # programs.home-manager.enable = true; # NOTE: only enable this when using system manager

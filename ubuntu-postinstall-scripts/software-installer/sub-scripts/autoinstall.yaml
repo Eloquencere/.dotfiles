@@ -88,6 +88,7 @@ autoinstall:
         device: root-format
         options: "subvol=@home,compress=zstd:5,noatime,ssd,discard=async,space_cache=v2,commit=120,autodefrag"
     
+    # For UEFI
     # config:
     #   - id: disk0
     #     type: disk
@@ -135,8 +136,8 @@ autoinstall:
     id: ubuntu-desktop # Extended selection
   drivers: # 3rd party Graphics & Wifi software
     install: true
-  codecs: # support for media formats & MS Fonts(not sure)
-    install: true
+  # codecs: # support for media formats & MS Fonts(not sure)
+  #   install: true
   updates: all
 
   packages:

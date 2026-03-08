@@ -1,11 +1,7 @@
-# TODO: test the slightly faster way to login on VM
-# TODO: Do AI integration with my setup (do testing on VM first)
-# TODO: how to specify pip packages to be installed in mise declaratively & same for cargo
-# TODO: Take inspiration from Omakub https://learn.omacom.io/1/read
-# TODO: need to configure V-Shell extension, that might invalidate other extensions
-# TODO: how to disable telemetry
+#!/bin/zsh
 
 # WARN: Need to confirm all the gsettings paths in 26.04 before using it as gospel (incl home-manager/dconf.nix)
+# WARN: ubuntu support for x86-64-v3 range
 
 # Alternatively, take a call to completely remove the notifier app
 gsettings set com.ubuntu.update-notifier no-show-notifications true
@@ -14,96 +10,8 @@ gsettings set com.ubuntu.update-notifier no-show-notifications true
 gsettings set org.gnome.desktop.background picture-uri-dark "file://$DOTFILES_HOME/wallpapers/angkor_watt_gpt.png"
 gsettings set org.gnome.desktop.background picture-options 'stretched'
 
-source nerdfonts_download.sh
-sudo apt install -y ttf-mscorefonts-installer fonts-crosextra-carlito fonts-crosextra-caladea # MS fonts for LibreOffice
-
-# Performance improvement software
-sudo apt install -y preload
-sudo systemctl enable preload
-
-# Brave browser
-sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
-echo "deb [arch=amd64 signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
-sudo apt update
-sudo apt install -y brave-browser
-xdg-settings set default-web-browser brave-browser.desktop
-
-# Wezterm
-curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
-echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
-sudo apt update
-sudo apt install -y wezterm
-
-# Virt-Manager
-cd ~/Downloads
-sudo apt install -y qemu-kvm bridge-utils virt-manager libosinfo-bin
-wget https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/archive-virtio/virtio-win-0.1.271-1/virtio-win.iso
-wget https://www.spice-space.org/download/windows/spice-guest-tools/spice-guest-tools-latest.exe
-cd -
-
-# KiCAD
-sudo add-apt-repository --yes ppa:kicad/kicad-9.0-releases
-sudo apt update
-sudo apt install --install-recommends -y kicad
-
-APPLICATIONS=(
-    "gnome-shell-extension-manager"
-    "bleachbit" "timeshift"
-    "kdeconnect" "gufw"
-)
-sudo apt install -y "${APPLICATIONS[@]}"
-
-# Only keep 2 versions of a snap pkg
-sudo snap set system refresh.retain=2
-
-OFFICE_SOFTWARE_SNAP=(
-    "drawio"         # In flatpak, window bezzels are white & don't fit the screen's aspect ratio
-    "qalculate"      # In flatpak, no cli exposed, impossible to setup keyboard shortcut
-    "notion-desktop" # Not available anywhere else
-    "surfshark"      # not available anywhere else
-)
-sudo snap install "${OFFICE_SOFTWARE_SNAP[@]}"
-sudo snap install obsidian --classic # In flatpak, write errors on mounted cloud drives
-
-# Games
-mkdir ~/Games
-sudo apt install steam --install-suggests -y
-GAMES_FLATPAK=(
-    "com.discordapp.Discord"
-    "com.heroicgameslauncher.hgl"
-    # "com.parsecgaming.parsec"
-)
-flatpak install --assumeyes flathub "${GAMES_FLATPAK[@]}"
-
-# Flatpaks
-ADDITIONAL_APPS_FLATPAK=(
-    "org.kde.okular"
-    "org.videolan.VLC"
-    # "com.github.tenderowl.frog"
-    # System
-    "net.nokyan.Resources" # - WARN: default in 26.04LTS
-    "net.epson.epsonscan2"
-    # Project Management
-    "io.github.giantpinkrobots.varia"
-    "org.ghidra_sre.Ghidra"
-    "org.jitsi.jitsi-meet"
-    "com.rustdesk.RustDesk"
-    # Games
-    "org.gnome.Chess"
-    "org.gnome.Sudoku"
-    "app.drey.MultiplicationPuzzle"
-    "org.gnome.Mahjongg"
-    "org.gnome.Crosswords"
-    "org.gnome.Mines"
-)
-flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
-xdg-mime default okular_okular.desktop application/pdf
-
 # GUI setup
 gnome-text-editor .gui_instructions.txt &
-
-# Getting nix cli in this shell instance
-source /etc/profile.d/nix.sh
 
 nix profile add nixpkgs#kanata
 sudo groupadd uinput
@@ -128,6 +36,7 @@ home-manager switch
 home-manager news &> /dev/null
 
 sudo update-alternatives --install /usr/bin/nvim editor $(which nvim) 100
+# sudo update-alternatives --set editor $(which $EDITOR)
 
 # Necessary libs to build cargo & python
 sudo apt-get install -y \
@@ -139,7 +48,7 @@ sudo apt-get install -y \
 unset RUSTC_WRAPPER # to momentarily disable cargo from pointing to uninstalled sccache
 rustup toolchain install stable
 rustup default stable
-# cargo install sccache # WARN: freezes here
+cargo install sccache # WARN: freezes here
 
 mise trust # config file
 mise install # from config
@@ -147,9 +56,8 @@ mise install # from config
 pip2 install --upgrade pip
 pip install --upgrade pip
 
-echo "Say \"yes\" first & \"sudo\" to the next question"
-
 # cpanm package manager for perl
+echo "Say \"yes\" first & \"sudo\" to the next question"
 cpan App::cpanminus
 
 mkdir -p $ZDOTDIR/personal
@@ -169,7 +77,7 @@ if [[ $user_choice =~ ^[Yy]$ ]]; then
     git config --file $XDG_CONFIG_HOME/git/config init.defaultBranch main
     git config --global core.whitespace error
     git config --global core.preloadindex true
-    git config --global core.editor nvim
+    git config --global core.editor $EDITOR
     git config --global core.pager delta
     git config --global delta.navigate true
     git config --global delta.dark true
@@ -177,20 +85,19 @@ if [[ $user_choice =~ ^[Yy]$ ]]; then
     git config --global interactive.diffFilter 'delta --color-only'
     git config --global diff.colorMoved default
     git config --global merge.conflictstyle diff3
+    git config --global user.name "Eloquencere"
     echo -n "email ID: "
     read email
-    git config --global user.email "Eloquencere"
-    git config --global user.name "$username"
+    git config --global user.email "$email"
     echo "you need to login to Github as well"
     gh auth login
-    sed -i '/.* = $/d' $HOME/.gitconfig
+    sed -i '/.* = $/d' $XDG_CONFIG_HOME/git/config
 fi
 
-# Clean up
 echo "file://$HOME/Projects" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
-sed -i "/Music/d" $XDG_CONFIG_HOME/gtk-3.0/bookmarks
-# sed -i "/Videos\|Music/d" $XDG_CONFIG_HOME/gtk-3.0/bookmarks
+sed -i "|Music|d" $XDG_CONFIG_HOME/gtk-3.0/bookmarks
 
+# Clean up
 rm -rf ~/.cache/* # generally safe, but be mindful
 rm -rf ~/{.bash*,.profile,.fontconfig}
 rm -rf ~/.mozilla/firefox/*/cache2/*
@@ -210,17 +117,20 @@ BLOAT_APT=(
     "rhythmbox" "orca" "info" "yelp"
     "transmission-common" "transmission-gtk"
     "ed" "vim-common" "nano"
-    # cli tools that clash with nix
-    "git" "curl" "stow"
     # WARN: not present in 26.04LTS
     "gnome-system-monitor"
+    # cli tools that clash with nix
+    "git" "curl" "stow"
 )
 sudo apt purge -y "${BLOAT_APT[@]}"
 
 sudo sh -c "apt --fix-broken install; apt-get autoremove; apt-get autoclean"
 flatpak uninstall --unused --delete-data --assumeyes
-source ../../continual-reference/software_updater.zsh
+source ../continual-reference/software_updater.zsh
 
+echo "The system will reboot now to consolidate the installation"
+read -r "?Press Enter to reboot..."
+sudo reboot now
 
 
 # # Optional C compiler - don't install via nix
@@ -231,6 +141,12 @@ source ../../continual-reference/software_updater.zsh
 # cd auto-cpufreq && sudo ./auto-cpufreq-installer
 # cd .. && rm -rf auto-cpufreq
 # sudo auto-cpufreq --install
+
+# # LM Studio
+# wget -L -O lmstudio.deb \                                                                                                                   ╶╯
+# "https://lmstudio.ai/download/latest/linux/x64?format=deb"
+# sudo apt install ./lmstudio.deb
+# rm -f ./lmstudio.deb
 
 # # Signal
 # wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg;
@@ -246,6 +162,9 @@ source ../../continual-reference/software_updater.zsh
 # sudo apt install -y apt-transport-https && sudo apt update
 # sudo apt install code
 # rm -f packages.microsoft.gpg
+
+# # Getting nix cli in this shell instance
+# source /etc/profile.d/nix.sh
 
 # # Doom Emacs
 # sudo nala install -y emacs-gtk
