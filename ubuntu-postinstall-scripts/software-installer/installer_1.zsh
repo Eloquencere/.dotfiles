@@ -5,8 +5,11 @@ cd "$(dirname "${(%):-%x}")" # change directory to script location
 echo "Welcome to the *Ubuntu 26.04 LTS* installer :)"
 
 # TODO: how to specify pip packages to be installed in mise declaratively & same for cargo
+# TODO: delta/diff completion is still broken
 # TODO: Take inspiration from Omakub https://learn.omacom.io/1/read
 # TODO: need to configure V-Shell extension, that might invalidate other extensions
+
+# WARN: ubuntu support for x86-64-v3 range
 
 source sub-scripts/nerdfonts_download.sh
 sudo apt install -y ttf-mscorefonts-installer fonts-crosextra-carlito fonts-crosextra-caladea # MS fonts for LibreOffice
@@ -104,7 +107,17 @@ echo "The system will reboot now to consolidate the installation"
 sudo reboot now
 
 # if you work on nixos -
-# use systemd-boot over grub
-# enable settings for faster boot
-# enable settings for best gaming experience
+# Hyprland setup - youtube.com/watch?v=ftHfRmtqDTU
+# This too - youtube.com/watch?v=fR3vZMqyGTk - his nvim setup is also cool, start from scratch when 0.12 is released
+# For ricing take some examples of rainmeter as well
+# Auto detect monitors and apply best settings
+# services.earlyoom.enable = true;
+# enable settings for faster boot like systemd-boot over grub & others
+# enable settings for best gaming experience and take inspiration from cachyOS
+# master distrobox for launching vivado & matlab etc
+# Clean up all necessary config files & commit to git
+# Setup garbage collection of nix generations & maybe even for home-manager
+# https://github.com/NixOS/patchelf or nix-ld
+
+# keyboard based switching from translucent effects to transparent effects (from hyprland)
 

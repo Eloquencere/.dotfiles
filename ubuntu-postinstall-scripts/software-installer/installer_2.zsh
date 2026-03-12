@@ -1,7 +1,6 @@
 #!/bin/zsh
 
 # WARN: Need to confirm all the gsettings paths in 26.04 before using it as gospel (incl home-manager/dconf.nix)
-# WARN: ubuntu support for x86-64-v3 range
 
 # Alternatively, take a call to completely remove the notifier app
 gsettings set com.ubuntu.update-notifier no-show-notifications true
@@ -40,15 +39,13 @@ sudo update-alternatives --install /usr/bin/nvim editor $(which nvim) 100
 
 # Necessary libs to build cargo & python
 sudo apt-get install -y \
-  libssl-dev zlib1g-dev libbz2-dev liblzma-dev \
-  libreadline-dev libsqlite3-dev libncursesw5-dev \
-  libffi-dev tk-dev tcl-dev \
-  libgdbm-dev uuid-dev libexpat1-dev
+    libssl-dev zlib1g-dev libbz2-dev liblzma-dev \
+    libreadline-dev libsqlite3-dev libncursesw5-dev \
+    libffi-dev tk-dev tcl-dev \
+    libgdbm-dev uuid-dev libexpat1-dev
 
-unset RUSTC_WRAPPER # to momentarily disable cargo from pointing to uninstalled sccache
 rustup toolchain install stable
 rustup default stable
-cargo install sccache # WARN: freezes here
 
 mise trust # config file
 mise install # from config
@@ -102,7 +99,7 @@ rm -rf ~/.cache/* # generally safe, but be mindful
 rm -rf ~/{.bash*,.profile,.fontconfig}
 rm -rf ~/.mozilla/firefox/*/cache2/*
 rm -rf ~/{Templates,Public,go,Music}
-sudo rm -rf rm -rf /tmp/*
+sudo rm -rf /tmp/*
 
 BLOAT_SNAP=(
     "thunderbird"

@@ -15,6 +15,7 @@ let
     builtins.genList(i: mkEntry (builtins.elemAt ids i) i)(builtins.length ids);
 in
 {
+    # WARN: Gotta test these work in 26.04, by running gsettings get on these schemas
     dconf = {
         enable = true;
         settings = {
@@ -27,6 +28,9 @@ in
 
             "org/gnome/desktop/screensaver" = {
                 lock-enabled = false;
+            };
+            "org/gnome/desktop/sound" = {
+                event-sounds = false;
             };
 
             "org/gnome/TextEditor" = {
@@ -108,6 +112,7 @@ in
                 dash-separator = true;
                 switcher-popup-delay = false;
                 events-button = false;
+                startup-status = 1;
                 search = false;
                 workspace = false; # not sure
                 workspaces-in-app-grid = false;
@@ -122,6 +127,14 @@ in
 
             "com/github/stunkymonkey/nautilus-open-any-terminal" = {
                 terminal = "wezterm";
+            };
+
+            "org/gnome/shell/extensions/space-bar/behavior/always-show-numbers" = {
+                always-show-numbers = true;
+                smart-workspace-names = false;
+                enable-activate-workspace-shortcuts = false;
+                enable-move-to-workspace-shortcuts = true;
+                open-menu = "@as []";
             };
             
             "org/gnome/settings-daemon/plugins/media-keys" = {
@@ -325,7 +338,7 @@ in
                         "timeshift-gtk.desktop"
                         "org.kde.kdeconnect.app.desktop"
                         "surfshark_surfshark.desktop"
-                        "net.nokyan.Resources.desktop"
+                        "net.nokyan.Resources.desktop" # WARN: default in 26.04
                     ])
                     (mkPage[
                         "gnome-session-properties.desktop" # startup applications

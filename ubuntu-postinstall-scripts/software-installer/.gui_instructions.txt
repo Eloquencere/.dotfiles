@@ -4,11 +4,14 @@
     - Bluetooth Battery Meter
     - blur my shell
     - CHC-E
-    - Clipboard Indicator
-    - Grand Theft Focus (don't know if it even works)
     - Just Perfection
     - Quick Settings Tweaks
-    - Workspace Indicator
+    - Space Bar
+    - Grand Theft Focus (don't know if it even works)
+    - dynamic music pill
+    - Open bar
+    (Now)
+    - Clipboard Indicator
     (Future)
     - Copyous
 
