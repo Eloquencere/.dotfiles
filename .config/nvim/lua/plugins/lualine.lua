@@ -100,7 +100,10 @@ return {
                     'progress',
                 },
                 lualine_z = {
-                    'location'
+                    {
+                        icon = "\u{e64e}",
+                        'location',
+                    }
                 },
             },
             extensions = { 'lazy', 'mason', 'oil' },

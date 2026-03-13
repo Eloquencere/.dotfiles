@@ -8,14 +8,14 @@
     - Quick Settings Tweaks
     - Space Bar
     - Grand Theft Focus (don't know if it even works)
-    - dynamic music pill
-    - Open bar
     (Now)
     - Clipboard Indicator
     (Future)
     - Copyous
 
     (Optional)
+    - dynamic music pill
+    - Open bar
     - Battery time
     - Removable Drive Menu
     - Wiggle

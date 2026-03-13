@@ -76,6 +76,7 @@ flatpak install --assumeyes flathub "${GAMES_FLATPAK[@]}"
 ADDITIONAL_APPS_FLATPAK=(
     "org.kde.okular"
     "org.videolan.VLC"
+    "it.mijorus.gearlever" # appimage management
     # "com.github.tenderowl.frog"
     # System
     "net.nokyan.Resources" # - WARN: default in 26.04LTS
@@ -106,18 +107,21 @@ stow --dir="$HOME/.dotfiles" .
 echo "The system will reboot now to consolidate the installation"
 sudo reboot now
 
-# if you work on nixos -
-# Hyprland setup - youtube.com/watch?v=ftHfRmtqDTU
-# This too - youtube.com/watch?v=fR3vZMqyGTk - his nvim setup is also cool, start from scratch when 0.12 is released
-# For ricing take some examples of rainmeter as well
-# Auto detect monitors and apply best settings
-# services.earlyoom.enable = true;
-# enable settings for faster boot like systemd-boot over grub & others
-# enable settings for best gaming experience and take inspiration from cachyOS
-# master distrobox for launching vivado & matlab etc
-# Clean up all necessary config files & commit to git
-# Setup garbage collection of nix generations & maybe even for home-manager
-# https://github.com/NixOS/patchelf or nix-ld
-
+# Action items Nixos -
+# Mimic this hyprland setup (except for waybar)
+#    youtube.com/watch?v=ftHfRmtqDTU
+# bind = SUPER, F, fullscreen, 1 # 1 goes over waybar & 2 respects it
+# Run Vivado & maybe matlab on Distrobox
+#   https://github.com/NixOS/patchelf or nix-ld
+# Use quickshell instead of waybar for top panel
+#   Clickable menu items like under wifi, an option to turn it off, list of available devices, strength of signal & same for bluetooth like power level of connected devices
+# Clean up every config file going to git
+# Setup git version control & script to load config.nix from repo
+# Move to using flakes
+# Try zathura for pdf, else okular is good
+# Config to auto detect monitor & apply best setting insead of having to specify
+# Configure disko like autoinstall
+# On Boot
+#   setup plymouth splashscreen like ubuntu & bootloader theme & a nice looking login screen
 # keyboard based switching from translucent effects to transparent effects (from hyprland)
 
