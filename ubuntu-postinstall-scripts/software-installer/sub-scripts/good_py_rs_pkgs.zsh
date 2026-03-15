@@ -12,7 +12,7 @@ pip install keras scikit-learn torch # AI/ML
 
 # Useful Rust binaries
 CARGO_PKGS=(
-    "cargo-expand" "irust" "bacon"
+    "cargo-expand" "cargo-info" "irust" "bacon"
 )
 cargo install "${CARGO_PKGS[@]}"
 

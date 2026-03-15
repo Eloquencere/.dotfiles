@@ -145,8 +145,8 @@ in
             };
             "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
                 name="Qalculate Calculator";
-                command="qalculate";
-                binding="Calculator";
+                command="flatpak run io.github.Qalculate";
+                binding="XF86Calculator";
             };
 
             "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {

@@ -15,6 +15,8 @@
         gdb valgrind strace
         conan scriptisto tio sqlite-interactive mise
         tlrc typst natural-docs doxygen
+        just # better alternative to make(file)
+        mask # CLI task runner from markdown file
         # Prompt improvement
         starship fzf atuin trash-cli
         croc fastfetch btop yazi
@@ -26,6 +28,7 @@
         zoxide eza fd bat ripgrep duf delta repgrep mprocs
 
         # optional
+        # presenterm
         # carapace # needs to mature a lot
         # graphviz # dependency for pydot
         # gnuplot # dependency for qalculate

@@ -1,15 +1,17 @@
 #!/bin/zsh
 
+# Use pushd & popd
 cd "$(dirname "${(%):-%x}")" # change directory to script location
 
 echo "Welcome to the *Ubuntu 26.04 LTS* installer :)"
 
-# TODO: how to specify pip packages to be installed in mise declaratively & same for cargo
 # TODO: delta/diff completion is still broken
+# TODO: how to specify pip packages to be installed in mise declaratively & same for cargo
 # TODO: Take inspiration from Omakub https://learn.omacom.io/1/read
 # TODO: need to configure V-Shell extension, that might invalidate other extensions
 
 # WARN: ubuntu support for x86-64-v3 range
+# WARN: check if ntsync support is there
 
 source sub-scripts/nerdfonts_download.sh
 sudo apt install -y ttf-mscorefonts-installer fonts-crosextra-carlito fonts-crosextra-caladea # MS fonts for LibreOffice
@@ -54,10 +56,8 @@ sudo apt install -y "${APPLICATIONS[@]}"
 sudo snap set system refresh.retain=2
 
 OFFICE_SOFTWARE_SNAP=(
-    "drawio"         # In flatpak, window bezzels are white & don't fit the screen's aspect ratio
-    "qalculate"      # In flatpak, no cli exposed, impossible to setup keyboard shortcut
     "notion-desktop" # Not available anywhere else
-    "surfshark"      # not available anywhere else
+    "drawio"         # In flatpak, window bezzels are white & don't fit the screen's aspect ratio
 )
 sudo snap install "${OFFICE_SOFTWARE_SNAP[@]}"
 sudo snap install obsidian --classic # In flatpak, write errors on mounted cloud drives
@@ -74,9 +74,11 @@ flatpak install --assumeyes flathub "${GAMES_FLATPAK[@]}"
 
 # Flatpaks
 ADDITIONAL_APPS_FLATPAK=(
-    "org.kde.okular"
-    "org.videolan.VLC"
+    "io.github.Qalculate"
     "it.mijorus.gearlever" # appimage management
+    "org.kde.okular"
+    "com.surfshark.Surfshark"
+    "org.videolan.VLC"
     # "com.github.tenderowl.frog"
     # System
     "net.nokyan.Resources" # - WARN: default in 26.04LTS
@@ -106,22 +108,4 @@ stow --dir="$HOME/.dotfiles" .
 
 echo "The system will reboot now to consolidate the installation"
 sudo reboot now
-
-# Action items Nixos -
-# Mimic this hyprland setup (except for waybar)
-#    youtube.com/watch?v=ftHfRmtqDTU
-# bind = SUPER, F, fullscreen, 1 # 1 goes over waybar & 2 respects it
-# Run Vivado & maybe matlab on Distrobox
-#   https://github.com/NixOS/patchelf or nix-ld
-# Use quickshell instead of waybar for top panel
-#   Clickable menu items like under wifi, an option to turn it off, list of available devices, strength of signal & same for bluetooth like power level of connected devices
-# Clean up every config file going to git
-# Setup git version control & script to load config.nix from repo
-# Move to using flakes
-# Try zathura for pdf, else okular is good
-# Config to auto detect monitor & apply best setting insead of having to specify
-# Configure disko like autoinstall
-# On Boot
-#   setup plymouth splashscreen like ubuntu & bootloader theme & a nice looking login screen
-# keyboard based switching from translucent effects to transparent effects (from hyprland)
 
