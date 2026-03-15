@@ -7,7 +7,6 @@ setopt interactive_comments
 
 source "$XDG_DATA_HOME/zinit-pkgmngr/zinit.zsh"
 
-
 zinit wait lucid compile for \
     jeffreytse/zsh-vi-mode \
     hlissner/zsh-autopair \
@@ -20,8 +19,6 @@ fpath+=$ZDOTDIR/completion
 zinit wait lucid compile for \
     atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
     zsh-users/zsh-completions
-# autoload -Uz compinit && compinit -C
-# eval "$(carapace _carapace zsh)"
 
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':fzf-tab:*' use-fzf-default-opts yes

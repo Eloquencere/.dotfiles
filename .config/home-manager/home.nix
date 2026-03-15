@@ -28,10 +28,9 @@
         zoxide eza fd bat ripgrep duf delta repgrep mprocs
 
         # optional
-        # presenterm
         # carapace # needs to mature a lot
+        # presenterm
         # graphviz # dependency for pydot
-        # gnuplot # dependency for qalculate
         # jq jqp yq cheat p7zip unrar
     ];
 

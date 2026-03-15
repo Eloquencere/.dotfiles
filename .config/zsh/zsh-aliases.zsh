@@ -14,7 +14,7 @@ alias tree="ls --all --tree --smart-group"
 alias fd="fd --color=always"
 alias find=fd
 alias cat=bat
-alias diff="delta --dark --side-by-side"
+# alias diff="delta --dark --side-by-side"
 alias grep=rg
 alias df=duf
 alias neofetch=fastfetch
