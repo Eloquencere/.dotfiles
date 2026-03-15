@@ -26,6 +26,7 @@
         stow git curl dos2unix
         # WARN: Cautious with Ubuntu 26.04LTS
         zoxide eza fd bat ripgrep duf delta repgrep mprocs
+        fortune
 
         # optional
         # carapace # needs to mature a lot

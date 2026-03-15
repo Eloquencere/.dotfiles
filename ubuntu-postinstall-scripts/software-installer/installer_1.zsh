@@ -14,8 +14,8 @@ source sub-scripts/nerdfonts_download.sh
 sudo nala install -y ttf-mscorefonts-installer fonts-crosextra-carlito fonts-crosextra-caladea # MS fonts for LibreOffice
 
 # Performance improvement software
-sudo nala install -y preload
-sudo systemctl enable preload
+sudo nala install -y preload earlyoom
+sudo systemctl enable preload earlyoom
 
 # Brave browser
 sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
