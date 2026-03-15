@@ -126,6 +126,7 @@ in
 
             "com/github/stunkymonkey/nautilus-open-any-terminal" = {
                 terminal = "wezterm";
+                new-tab = false;
             };
 
             "org/gnome/shell/extensions/space-bar/behavior/always-show-numbers" = {

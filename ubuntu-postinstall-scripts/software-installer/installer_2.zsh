@@ -35,7 +35,7 @@ home-manager switch
 home-manager news &> /dev/null
 
 sudo update-alternatives --install /usr/bin/nvim editor $(which nvim) 100
-# sudo update-alternatives --set editor $(which $EDITOR)
+# TEST: sudo update-alternatives --set editor $(which $EDITOR)
 
 # Necessary libs to build cargo & python
 sudo nala install -y \
