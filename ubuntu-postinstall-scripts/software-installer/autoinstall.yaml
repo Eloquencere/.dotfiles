@@ -147,6 +147,7 @@ autoinstall:
     # - openjdk-25-jre # needed to run .jar files - pre-installed
     - sshfs
     - zsh
+    - nala
     # Flatpak package manager
     - flatpak
     - gnome-software-plugin-flatpak

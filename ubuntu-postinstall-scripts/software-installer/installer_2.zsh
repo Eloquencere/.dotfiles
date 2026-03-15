@@ -38,7 +38,7 @@ sudo update-alternatives --install /usr/bin/nvim editor $(which nvim) 100
 # sudo update-alternatives --set editor $(which $EDITOR)
 
 # Necessary libs to build cargo & python
-sudo apt-get install -y \
+sudo nala install -y \
     libssl-dev zlib1g-dev libbz2-dev liblzma-dev \
     libreadline-dev libsqlite3-dev libncursesw5-dev \
     libffi-dev tk-dev tcl-dev \
@@ -104,7 +104,7 @@ sudo rm -rf /tmp/*
 BLOAT_SNAP=(
     "thunderbird"
 )
-sudo apt-get purge -y "${BLOAT_SNAP[@]}"
+sudo nala purge -y "${BLOAT_SNAP[@]}"
 sudo snap remove "${BLOAT_SNAP[@]}"
 
 BLOAT_APT=(
@@ -119,9 +119,9 @@ BLOAT_APT=(
     # cli tools that clash with nix
     "git" "curl" "stow"
 )
-sudo apt purge -y "${BLOAT_APT[@]}"
+sudo nala purge -y "${BLOAT_APT[@]}"
 
-sudo sh -c "apt --fix-broken install; apt-get autoremove; apt-get autoclean"
+sudo sh -c "nala install --fix-broken; nala autoremove; apt autoclean"
 flatpak uninstall --unused --delete-data --assumeyes
 source ../continual-reference/software_updater.zsh
 
@@ -131,19 +131,13 @@ sudo reboot now
 
 
 # # Optional C compiler - don't install via nix
-# sudo apt install clang lldb
+# sudo nala install clang lldb
 
 # # Auto-cpufreq
 # git clone https://github.com/AdnanHodzic/auto-cpufreq.git
 # cd auto-cpufreq && sudo ./auto-cpufreq-installer
 # cd .. && rm -rf auto-cpufreq
 # sudo auto-cpufreq --install
-
-# # LM Studio
-# wget -L -O lmstudio.deb \                                                                                                                   ╶╯
-# "https://lmstudio.ai/download/latest/linux/x64?format=deb"
-# sudo apt install ./lmstudio.deb
-# rm -f ./lmstudio.deb
 
 # # Signal
 # wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg;

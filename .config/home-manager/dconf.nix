@@ -107,7 +107,6 @@ in
                 accessibility-menu = false;
                 quick-settings-dark-mode = false;
                 quick-settings-airplane-mode = false;
-                show-apps-button = false;
                 workspace-popup = false;
                 dash-separator = true;
                 switcher-popup-delay = false;
@@ -198,7 +197,7 @@ in
                     "drawio_drawio.desktop"
                     "simple-scan.desktop" # Document scanner
                     "org.kde.okular.desktop"
-                    "qalculate_qalculate.desktop"
+                    "io.github.Qalculate.desktop"
                     "org.gnome.eog.desktop" # Image Viewer
                 ];
             };
@@ -337,7 +336,7 @@ in
                         "net.epson.epsonscan2.desktop"
                         "timeshift-gtk.desktop"
                         "org.kde.kdeconnect.app.desktop"
-                        "surfshark_surfshark.desktop"
+                        "com.surfshark.Surfshark.desktop"
                         "net.nokyan.Resources.desktop" # WARN: default in 26.04
                     ])
                     (mkPage[
