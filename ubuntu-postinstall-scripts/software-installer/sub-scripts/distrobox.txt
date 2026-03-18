@@ -1,0 +1,26 @@
+mkdir -p ~/.config/containers
+cat > ~/.config/containers/policy.json << 'EOF'
+{"default":[{"type":"insecureAcceptAnything"}]}
+EOF
+
+cat > ~/.config/containers/registries.conf << 'EOF'
+[registries.search]
+registries = ["docker.io"]
+EOF
+
+distrobox create --yes \
+	--name ubuntu-old \
+	--image ubuntu:latest \
+	--volume /run/current-system/sw/bin:/nix-host-bin
+
+echo 'source ~/.bashrc' >> ~/.bash_profile # distrobox only sources bash_profile on launch
+
+in bashrc -
+if [ -f /run/.containerenv ]; then
+    export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$PATH:/nix-host-bin"
+fi
+
+To set zsh in ubuntu -
+echo $(which zsh) | sudo tee -a /etc/shells
+chsh -s $(which zsh)
+

@@ -74,15 +74,15 @@ in
             };
 
             "org/gnome/shell/extensions/dash-to-dock" = {
-               multi-monitor = true;
                dash-max-icon-size = 50;
+               extend-height = false;
                dock-fixed = false;
                autohide-in-fullscreen = true;
-               extend-height = false;
                show-mounts-only-mounted = true;
                always-center-icons = true;
                dock-position = "BOTTOM";
                click-action = "minimize-or-previews";
+               multi-monitor = true;
             };
 
             "org/gnome/shell/extensions/Bluetooth-Battery-Meter" = {
