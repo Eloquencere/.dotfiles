@@ -143,7 +143,7 @@ autoinstall:
   packages:
     - build-essential
     - pkg-config
-    - libfuse2t64    # Needed for appimages
+    - libfuse2t64    # Needed for appimage compatibility
     # - openjdk-25-jre # needed to run .jar files - pre-installed
     - sshfs
     - zsh

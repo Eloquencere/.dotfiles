@@ -195,7 +195,7 @@ in
                     "libreoffice-math.desktop"
                     "libreoffice-draw.desktop"
                     "libreoffice-startcenter.desktop"
-                    "drawio_drawio.desktop"
+                    "com.jgraph.drawio.desktop.desktop"
                     "simple-scan.desktop" # Document scanner
                     "org.kde.okular.desktop"
                     "io.github.Qalculate.desktop"
@@ -256,6 +256,7 @@ in
                     "com.mattjakeman.ExtensionManager.desktop"
                     "software-properties-gtk.desktop" # Software & Updates
                     "update-manager.desktop" # WARN: depricated in Ubuntu 26.04LTS
+                    "it.mijorus.gearlever.desktop" # AppImage Manager
                 ];
             };
             "org/gnome/desktop/app-folders/folders/bleachbit" = {
@@ -330,15 +331,16 @@ in
                         "programming"
                         "kicad"
                         "games"
+                        "lm_studio.desktop"
                         "virt-manager.desktop"
                         "anki.desktop"
                         "io.github.giantpinkrobots.varia.desktop" # flatpak name
                         # "varia_varia.desktop" # snap name
-                        "net.epson.epsonscan2.desktop"
                         "timeshift-gtk.desktop"
-                        "org.kde.kdeconnect.app.desktop"
                         "com.surfshark.Surfshark.desktop"
+                        "org.kde.kdeconnect.app.desktop"
                         "net.nokyan.Resources.desktop" # WARN: default in 26.04
+                        "net.epson.epsonscan2.desktop"
                     ])
                     (mkPage[
                         "gnome-session-properties.desktop" # startup applications

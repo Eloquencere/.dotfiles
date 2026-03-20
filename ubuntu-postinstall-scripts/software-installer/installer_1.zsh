@@ -55,7 +55,6 @@ sudo snap set system refresh.retain=2
 
 OFFICE_SOFTWARE_SNAP=(
     "notion-desktop" # Not available anywhere else
-    "drawio"         # In flatpak, window bezzels are white & don't fit the screen's aspect ratio
 )
 sudo snap install "${OFFICE_SOFTWARE_SNAP[@]}"
 sudo snap install obsidian --classic # In flatpak, write errors on mounted cloud drives
@@ -72,11 +71,13 @@ flatpak install --assumeyes flathub "${GAMES_FLATPAK[@]}"
 
 # Flatpaks
 ADDITIONAL_APPS_FLATPAK=(
-    "io.github.Qalculate"
     "it.mijorus.gearlever" # appimage management
-    "org.kde.okular"
     "com.surfshark.Surfshark"
     "org.videolan.VLC"
+    # Project
+    "com.jgraph.drawio.desktop"
+    "io.github.Qalculate"
+    "org.kde.okular"
     # "com.github.tenderowl.frog"
     # System
     "net.nokyan.Resources" # - WARN: default in 26.04LTS
@@ -96,6 +97,10 @@ ADDITIONAL_APPS_FLATPAK=(
 )
 flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
 xdg-mime default okular_okular.desktop application/pdf
+
+# fix to title bar rendering in a different color than the app
+flatpak install --assumeyes flathub org.gtk.Gtk3theme.Yaru-dark                                                                                       ╶╯
+flatpak override --user --env=GTK_THEME=Yaru-dark
 
 # NOTE: following will take effect after (shell) restart
 

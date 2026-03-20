@@ -9,6 +9,16 @@ gsettings set com.ubuntu.update-notifier no-show-notifications true
 gsettings set org.gnome.desktop.background picture-uri-dark "file://$DOTFILES_HOME/wallpapers/angkor_watt_gpt.png"
 gsettings set org.gnome.desktop.background picture-options 'stretched'
 
+echo "Click on 'Move to App Menu'"
+
+# LM Studio
+wget -O lm-studio.AppImage 'https://lmstudio.ai/download/latest/linux/x64?format=AppImage'
+flatpak run it.mijorus.gearlever lm-studio.AppImage
+
+# WinBoat
+wget -O winboat.AppImage 'https://github.com/TibixDev/winboat/releases/download/v0.9.0/winboat-0.9.0-x86_64.AppImage'
+flatpak run it.mijorus.gearlever winboat.AppImage
+
 # GUI setup
 gnome-text-editor .gui_instructions.txt &
 
@@ -130,6 +140,9 @@ read -r "?Press Enter to reboot..."
 sudo reboot now
 
 
+# # Getting nix cli in this shell instance
+# source /etc/profile.d/nix.sh
+
 # # Optional C compiler - don't install via nix
 # sudo nala install clang lldb
 
@@ -153,9 +166,6 @@ sudo reboot now
 # sudo apt install -y apt-transport-https && sudo apt update
 # sudo apt install code
 # rm -f packages.microsoft.gpg
-
-# # Getting nix cli in this shell instance
-# source /etc/profile.d/nix.sh
 
 # # Doom Emacs
 # sudo nala install -y emacs-gtk
