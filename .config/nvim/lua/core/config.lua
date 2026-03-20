@@ -59,7 +59,7 @@ vim.api.nvim_create_autocmd(
 vim.api.nvim_create_autocmd(
     { "FileType" },
 	{ 
-	    pattern = { "verilog", "systemverilog", "fortran", "kdl", "c", "cpp"},
+	    pattern = { "fortran" },
 	    callback = function()
             vim.opt_local.commentstring = "// %s"
 	    end,

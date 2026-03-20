@@ -3,9 +3,10 @@
 # NOTE: Use pushd & popd instead
 cd "$(dirname "${(%):-%x}")" # change directory to script location
 
-echo "Welcome to the *Ubuntu 26.04 LTS* installer :)"
+echo "Welcome to the *Ubuntu 24.04 LTS* installer :)"
 
 # TODO: delta/diff completion is still broken
+# TODO: Need to configure nix gnome to look like ubuntu
 
 # WARN: ubuntu support for x86-64-v3 range
 # WARN: check if ntsync support is there
