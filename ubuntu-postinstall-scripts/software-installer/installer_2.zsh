@@ -15,13 +15,16 @@ echo "Click on 'Move to App Menu'"
 wget -O lm-studio.AppImage 'https://lmstudio.ai/download/latest/linux/x64?format=AppImage'
 flatpak run it.mijorus.gearlever lm-studio.AppImage
 
-# WinBoat
-wget -O winboat.AppImage 'https://github.com/TibixDev/winboat/releases/download/v0.9.0/winboat-0.9.0-x86_64.AppImage'
-flatpak run it.mijorus.gearlever winboat.AppImage
-
 # GUI setup
 gnome-text-editor .gui_instructions.txt &
 
+nix profile add nixpkgs#home-manager
+home-manager switch
+home-manager news &> /dev/null
+sudo update-alternatives --install /usr/bin/nvim editor $(which nvim) 100
+# TEST: sudo update-alternatives --set editor $(which $EDITOR)
+
+# install kanata via home-manager
 nix profile add nixpkgs#kanata
 sudo groupadd uinput
 sudo usermod -aG input,uinput $USER
@@ -40,13 +43,6 @@ Restart=no
 WantedBy=default.target' > /lib/systemd/system/kanata.service"
 sudo systemctl enable kanata
 
-nix profile add nixpkgs#home-manager
-home-manager switch
-home-manager news &> /dev/null
-
-sudo update-alternatives --install /usr/bin/nvim editor $(which nvim) 100
-# TEST: sudo update-alternatives --set editor $(which $EDITOR)
-
 # Necessary libs to build cargo & python
 sudo nala install -y \
     libssl-dev zlib1g-dev libbz2-dev liblzma-dev \
@@ -64,7 +60,7 @@ pip2 install --upgrade pip
 pip install --upgrade pip
 
 # cpanm package manager for perl
-echo "Say \"yes\" first & \"sudo\" to the next question"
+echo "Say \"yes\" to the first & \"sudo\" to the next question"
 cpan App::cpanminus
 
 mkdir -p $ZDOTDIR/personal
@@ -151,6 +147,11 @@ sudo reboot now
 # cd auto-cpufreq && sudo ./auto-cpufreq-installer
 # cd .. && rm -rf auto-cpufreq
 # sudo auto-cpufreq --install
+
+# # WinBoat
+# winboat_version="0.9.0"
+# wget -O winboat.AppImage 'https://github.com/TibixDev/winboat/releases/download/v$winboat_version/winboat-$winboat_version-x86_64.AppImage'
+# flatpak run it.mijorus.gearlever winboat.AppImage
 
 # # Signal
 # wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg;

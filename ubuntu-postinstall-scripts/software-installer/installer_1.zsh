@@ -5,6 +5,7 @@ cd "$(dirname "${(%):-%x}")" # change directory to script location
 
 echo "Welcome to the *Ubuntu 24.04 LTS* installer :)"
 
+# TODO: try running vivado on niri
 # TODO: delta/diff completion is still broken
 # TODO: Need to configure nix gnome to look like ubuntu
 
@@ -41,7 +42,7 @@ cd -
 # KiCAD
 sudo add-apt-repository --yes ppa:kicad/kicad-9.0-releases
 sudo nala update
-sudo nala install --install-recommends -y kicad
+sudo nala install -y --install-recommends kicad
 
 APPLICATIONS=(
     "gnome-shell-extension-manager"
@@ -58,13 +59,15 @@ OFFICE_SOFTWARE_SNAP=(
 )
 sudo snap install "${OFFICE_SOFTWARE_SNAP[@]}"
 sudo snap install obsidian --classic # In flatpak, write errors on mounted cloud drives
+# Firefox is snap by default & it is needed by Vivado
 
 # Games
-mkdir ~/Games
-sudo nala install steam --install-suggests -y
+mkdir -p ~/Games/{windows,switch}
+sudo nala install -y steam --install-suggests
 GAMES_FLATPAK=(
     "com.discordapp.Discord"
     "com.heroicgameslauncher.hgl"
+    "io.github.ryubing.Ryujinx" # Switch emulator
     # "com.parsecgaming.parsec"
 )
 flatpak install --assumeyes flathub "${GAMES_FLATPAK[@]}"
@@ -98,9 +101,10 @@ ADDITIONAL_APPS_FLATPAK=(
 flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
 xdg-mime default okular_okular.desktop application/pdf
 
-# fix to title bar rendering in a different color than the app
-flatpak install --assumeyes flathub org.gtk.Gtk3theme.Yaru-dark                                                                                       ╶╯
-flatpak override --user --env=GTK_THEME=Yaru-dark
+# Uncomment when resources still works when this snippet is run
+# # fix to title bar rendering in a different color than the app
+# flatpak install --assumeyes flathub org.gtk.Gtk3theme.Yaru-dark                                                                                       ╶╯
+# flatpak override --user --env=GTK_THEME=Yaru-dark
 
 # NOTE: following will take effect after (shell) restart
 

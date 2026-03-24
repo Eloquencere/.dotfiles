@@ -88,6 +88,7 @@ autoinstall:
         device: root-format
         options: "subvol=@home,compress=zstd:5,noatime,ssd,discard=async,space_cache=v2,commit=120,autodefrag"
     
+    # Keep to Ext4 but check better config
     # For UEFI
     # config:
     #   - id: disk0

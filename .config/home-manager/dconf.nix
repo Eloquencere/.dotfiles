@@ -182,6 +182,7 @@ in
                     "kde-connect"
                     "drivers"
                     "language-support"
+                    "xterm" # Steam dependency
                 ];
             };
 
@@ -236,8 +237,9 @@ in
                 name = "Games";
                 translate = false;
                 apps = [
-                    "steam_steam.desktop"
+                    "steam.desktop"
                     "com.heroicgameslauncher.hgl.desktop"
+                    "io.github.ryubing.Ryujinx.desktop"
                     "com.discordapp.Discord.desktop"
                     "org.gnome.Crosswords.desktop"
                     "org.gnome.Chess.desktop"
@@ -313,6 +315,14 @@ in
                     "gnome-language-selector.desktop"
                 ];
             };
+            "org/gnome/desktop/app-folders/folders/xterm" = {
+                name = "xterm";
+                translate = false;
+                apps = [
+                    "debian-uxterm.desktop"
+                    "debian-xterm.desktop"
+                ];
+            };
 
             "org/gnome/shell" = {
                 favorite-apps = [
@@ -352,6 +362,7 @@ in
                         "network"
                         "language-support"
                         "kde-connect"
+                        "xterm"
                         "firefox_firefox.desktop"
                         "org.videolan.VLC.desktop"
                         "org.gnome.Calendar.desktop"
