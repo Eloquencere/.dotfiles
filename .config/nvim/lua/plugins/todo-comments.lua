@@ -8,12 +8,12 @@ return {
             NOTE = {
                 icon = " ",
                 color = "hint",
-                desc = { "Additional point to the reader" },
+                desc = "Additional point to the reader",
             },
             TODO = { 
                 icon = " ",
                 color = "info",
-                desc = { "To be completed" },
+                desc = "To be completed",
             },
             DOUBT = {
                 icon = " ",

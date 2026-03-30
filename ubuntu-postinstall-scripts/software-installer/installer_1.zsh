@@ -5,12 +5,8 @@ cd "$(dirname "${(%):-%x}")" # change directory to script location
 
 echo "Welcome to the *Ubuntu 24.04 LTS* installer :)"
 
-# TODO: try running vivado on niri
 # TODO: delta/diff completion is still broken
-# TODO: Need to configure nix gnome to look like ubuntu
-
-# WARN: ubuntu support for x86-64-v3 range
-# WARN: check if ntsync support is there
+# TODO: enable ubuntu support for x86-64-v3 range
 
 source sub-scripts/nerdfonts_download.sh
 sudo nala install -y ttf-mscorefonts-installer fonts-crosextra-carlito fonts-crosextra-caladea # MS fonts for LibreOffice
@@ -62,6 +58,7 @@ sudo snap install obsidian --classic # In flatpak, write errors on mounted cloud
 # Firefox is snap by default & it is needed by Vivado
 
 # Games
+echo "ntsync" | sudo tee /etc/modules-load.d/ntsync.conf # loading ntsync - WARN: Need to check, if it's enabled by default
 mkdir -p ~/Games/{windows,switch}
 sudo nala install -y steam --install-suggests
 GAMES_FLATPAK=(
@@ -83,7 +80,7 @@ ADDITIONAL_APPS_FLATPAK=(
     "org.kde.okular"
     # "com.github.tenderowl.frog"
     # System
-    "net.nokyan.Resources" # - WARN: default in 26.04LTS
+    "net.nokyan.Resources" # WARN: default in 26.04
     "net.epson.epsonscan2"
     # Project Management
     "io.github.giantpinkrobots.varia"

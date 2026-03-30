@@ -1,6 +1,8 @@
 #!/bin/zsh
 
-# WARN: Need to confirm all the gsettings paths in 26.04 before using it as gospel (incl home-manager/dconf.nix)
+cd "$(dirname "${(%):-%x}")" # change directory to script location
+
+# WARN: Need to check all gsettings, here & in dconf.nix
 
 # Alternatively, take a call to completely remove the notifier app
 gsettings set com.ubuntu.update-notifier no-show-notifications true
@@ -21,11 +23,12 @@ gnome-text-editor .gui_instructions.txt &
 nix profile add nixpkgs#home-manager
 home-manager switch
 home-manager news &> /dev/null
+
+# Nvim setup
 sudo update-alternatives --install /usr/bin/nvim editor $(which nvim) 100
 # TEST: sudo update-alternatives --set editor $(which $EDITOR)
 
-# install kanata via home-manager
-nix profile add nixpkgs#kanata
+# Kanata setup
 sudo groupadd uinput
 sudo usermod -aG input,uinput $USER
 sudo sh -c "echo '# Kanata
@@ -115,13 +118,12 @@ sudo snap remove "${BLOAT_SNAP[@]}"
 
 BLOAT_APT=(
     "gnome-snapshot" "gnome-logs" "gnome-calculator"
-    "gnome-power-manager" "gnome-terminal" # WARN: most likely, replaced with "ptyxis"
-    "deja-dup" "seahorse" "shotwell" "evince" "totem" # WARN: replaced with "showtime"
+    "gnome-power-manager" "gnome-terminal" # WARN: replaced by "ptyxis" in 26.04
+    "deja-dup" "seahorse" "shotwell" "evince" "totem" # WARN: replaced by "showtime" in 26.04
     "rhythmbox" "orca" "info" "yelp"
     "transmission-common" "transmission-gtk"
     "ed" "vim-common" "nano"
-    # WARN: not present in 26.04LTS
-    "gnome-system-monitor"
+    "gnome-system-monitor" # WARN: not in 26.04
     # cli tools that clash with nix
     "git" "curl" "stow"
 )

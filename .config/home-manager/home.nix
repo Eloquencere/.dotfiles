@@ -18,6 +18,7 @@
         just # better alternative to make(file)
         mask # CLI task runner from markdown file
         # Prompt improvement
+        kanata
         starship fzf atuin trash-cli
         croc fastfetch btop yazi
         neovim zellij wl-clipboard

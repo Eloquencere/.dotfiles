@@ -21,6 +21,8 @@ right_format = """
 [╶╯](fg:ubuntu)\
 """
 
+# add_newline = false
+
 # Color Palette
 palette = "Power10"
 

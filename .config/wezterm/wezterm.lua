@@ -31,7 +31,7 @@ config = {
             },
             width = "100%",
             height = "100%",
-            opacity = 0.81,
+            opacity = 0.80,
         },
     },
 
@@ -44,6 +44,7 @@ config = {
 
     -- Key mappings for tab movement in neovim, thanks to - reddit.com/r/neovim/comments/uc6q8h/ability_to_map_ctrl_tab_and_more/
     keys = {
+        -- Nvim tab movements
         {
             key = "Tab",
             mods = "CTRL",
@@ -53,11 +54,6 @@ config = {
             key = "Tab",
             mods = "CTRL|SHIFT",
             action = wezterm.action.SendString("\x1b[9;6u"),
-        },
-        {
-            key = "Enter",
-            mods = "SHIFT",
-            action = wezterm.action.SendString("\x1b[13;2u"),
         },
 
         -- Multi-line command in the shell
