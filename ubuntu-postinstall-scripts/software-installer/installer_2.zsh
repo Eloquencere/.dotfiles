@@ -2,8 +2,6 @@
 
 cd "$(dirname "${(%):-%x}")" # change directory to script location
 
-# WARN: Need to check all gsettings, here & in dconf.nix
-
 # Add this to dconf.nix Alternatively, take a call to completely remove the notifier app
 gsettings set com.ubuntu.update-notifier no-show-notifications true
 
@@ -25,10 +23,6 @@ gnome-text-editor .gui_instructions.txt &
 nix profile add nixpkgs#home-manager
 home-manager switch
 home-manager news &> /dev/null
-
-# Nvim setup
-sudo update-alternatives --install /usr/bin/nvim editor $(which nvim) 100
-# TEST: sudo update-alternatives --set editor $(which $EDITOR)
 
 # Kanata setup
 sudo groupadd uinput
@@ -57,10 +51,14 @@ sudo nala install -y \
 
 rustup toolchain install stable
 rustup default stable
+unset RUSTC_WRAPPER # to momentarily disable cargo from pointing to uninstalled sccache
+cargo install sccache
 
 mise trust # config file
 mise install # from config
+# WARN: having issues with python 2.7
 
+# WARN: pip not found
 pip2 install --upgrade pip
 pip install --upgrade pip
 
@@ -102,13 +100,13 @@ if [[ $user_choice =~ ^[Yy]$ ]]; then
     sed -i '/.* = $/d' $XDG_CONFIG_HOME/git/config
 fi
 
+mkdir -p $HOME/Projects
 echo "file://$HOME/Projects" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
-sed -i "|Music|d" $XDG_CONFIG_HOME/gtk-3.0/bookmarks
+sed -i "\|Music|d" $XDG_CONFIG_HOME/gtk-3.0/bookmarks
 
 # Clean up
 rm -rf ~/.cache/* # generally safe, but be mindful
-rm -rf ~/{.bash*,.profile,.fontconfig}
-rm -rf ~/.mozilla/firefox/*/cache2/*
+rm -rf ~/{.bash*,.profile}
 rm -rf ~/{Templates,Public,go,Music}
 sudo rm -rf /tmp/*
 
@@ -121,12 +119,12 @@ sudo snap remove "${BLOAT_SNAP[@]}"
 BLOAT_APT=(
     "gnome-snapshot" "gnome-logs" "gnome-calculator"
     "gnome-power-manager" "ptyxis"
-    "deja-dup" "seahorse" "shotwell" "evince" "showtime"
+    "deja-dup" "seahorse" "shotwell" "papers" "showtime"
     "rhythmbox" "orca" "info" "yelp"
     "transmission-common" "transmission-gtk"
     "ed" "vim-common" "nano"
     # cli tools that clash with nix
-    "git" "curl" "stow"
+    "git" "stow"
 )
 sudo nala purge -y "${BLOAT_APT[@]}"
 

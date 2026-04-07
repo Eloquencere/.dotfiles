@@ -127,12 +127,12 @@ autoinstall:
     - sshfs
     - zsh
     - nala
+    - curl
     # Flatpak package manager
     - flatpak
     - gnome-software-plugin-flatpak
     # Will be uninstalled later in favor of nixpkgs
     - git
-    - curl
     - stow
 
   late-commands:

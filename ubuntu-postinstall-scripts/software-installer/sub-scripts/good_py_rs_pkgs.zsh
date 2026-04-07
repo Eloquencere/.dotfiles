@@ -1,6 +1,3 @@
-unset RUSTC_WRAPPER # to momentarily disable cargo from pointing to uninstalled sccache
-cargo install sccache # WARN: freezes here
-
 pip install icecream # for debugging
 pip install colorama pyfiglet # presentation
 pip install dash plotly seaborn mysql-connector-python # data representation and calculation

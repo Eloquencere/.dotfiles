@@ -4,10 +4,12 @@ cd "$(dirname "${(%):-%x}")" # change directory to script location
 
 echo "Welcome to the *Ubuntu 26.04 LTS* installer :)"
 
-# TODO: General shell completions under the completions dir isn't working
+# WARN: need to verify default settings of ubuntu 26.04 of dconf.nix
+# TODO: General shell completions under the completions dir aren't working
 # TODO: diff completion is good, delta is not showing hidden files
 
-# To experiment on a VM - echo 'APT::Architecture-Variants "amd64v3";' | sudo tee /etc/apt/apt.conf.d/99amd64v3 && apt update && apt upgrade -y
+# Experiment
+# echo 'APT::Architecture-Variants "amd64v3";' | sudo tee /etc/apt/apt.conf.d/99amd64v3 && apt update && apt full-upgrade -y
 
 source sub-scripts/nerdfonts_download.sh
 sudo nala install -y ttf-mscorefonts-installer fonts-crosextra-carlito fonts-crosextra-caladea # MS fonts for LibreOffice
@@ -61,8 +63,7 @@ sudo snap install obsidian --classic # In flatpak, write errors on mounted cloud
 # Games
 # echo "ntsync" | sudo tee /etc/modules-load.d/ntsync.conf # loading ntsync - WARN: Need to check, if it's enabled by default
 mkdir -p ~/Games/{windows,switch}
-sudo nala install -y steam --install-suggests
-# WARN: need to actually install steam by clicking on the desktop icon
+sudo nala install steam
 GAMES_FLATPAK=(
     "com.discordapp.Discord"
     "com.heroicgameslauncher.hgl"
@@ -109,7 +110,7 @@ xdg-mime default okular_okular.desktop application/pdf
 # Installing nix pkg manager
 sh <(curl --proto "=https" --tlsv1.2 -L https://nixos.org/nix/install) --daemon --yes
 
-stow --dir="$HOME/.dotfiles" .
+cd "$HOME/.dotfiles" && stow . && cd -
 
 echo "The system will reboot now to consolidate the installation"
 sudo reboot now
