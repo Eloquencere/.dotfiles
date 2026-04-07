@@ -32,7 +32,6 @@ autoinstall:
             # - 2606:4700:4700::1001 # "
             # - 2001:4860:4860::8888 # Google
             # - 2001:4860:4860::8844 # "
-
   storage:
     config:
       - id: disk0
@@ -50,43 +49,24 @@ autoinstall:
         size: 1M
         flag: bios_grub
 
-      # Root Partition (entire remaining disk)
+      # Root partition (rest of disk)
       - id: root-partition
         type: partition
         device: disk0
         size: -1
 
-      # Format as Btrfs
+      # Format as ext4
       - id: root-format
         type: format
-        fstype: btrfs
+        fstype: ext4
         volume: root-partition
-
-      # Create subvolume @ (root)
-      - id: root-subvol
-        type: btrfs_subvolume
-        volume: root-format
-        name: "@"
-
-      # Create subvolume @home
-      - id: home-subvol
-        type: btrfs_subvolume
-        volume: root-format
-        name: "@home"
 
       # Mount root
       - id: root-mount
         type: mount
         path: /
         device: root-format
-        options: "subvol=@,compress=zstd:5,noatime,ssd,discard=async,space_cache=v2,commit=120,autodefrag"
-
-      # Mount home
-      - id: home-mount
-        type: mount
-        path: /home
-        device: root-format
-        options: "subvol=@home,compress=zstd:5,noatime,ssd,discard=async,space_cache=v2,commit=120,autodefrag"
+        options: "noatime,errors=remount-ro"
     
     # Keep to Ext4 but check better config
     # For UEFI
@@ -137,8 +117,6 @@ autoinstall:
     id: ubuntu-desktop # Extended selection
   drivers: # 3rd party Graphics & Wifi software
     install: true
-  # codecs: # support for media formats & MS Fonts(not sure)
-  #   install: true
   updates: all
 
   packages:

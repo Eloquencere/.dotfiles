@@ -10,7 +10,7 @@ alias py2=python2
 
 # Better command line utils
 alias ls="eza --git --group-directories-first --color=always --icons=always"
-alias tree="ls --all --tree --smart-group"
+alias tree="ls --tree --smart-group"
 alias fd="fd --color=always"
 alias find=fd
 alias cat=bat

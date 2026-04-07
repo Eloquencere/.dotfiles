@@ -17,6 +17,7 @@
         tlrc typst natural-docs doxygen
         just # better alternative to make(file)
         mask # CLI task runner from markdown file
+        ffmpeg
         # Prompt improvement
         kanata
         starship fzf atuin trash-cli

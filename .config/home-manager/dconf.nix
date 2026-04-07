@@ -368,7 +368,6 @@ in
                         "org.gnome.Calendar.desktop"
                         "org.gnome.Settings.desktop"
                         "org.gnome.clocks.desktop"
-                        "org.videolan.VLC.desktop"
                     ])
                 ];
             };

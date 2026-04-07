@@ -4,8 +4,10 @@ cd "$(dirname "${(%):-%x}")" # change directory to script location
 
 # WARN: Need to check all gsettings, here & in dconf.nix
 
-# Alternatively, take a call to completely remove the notifier app
+# Add this to dconf.nix Alternatively, take a call to completely remove the notifier app
 gsettings set com.ubuntu.update-notifier no-show-notifications true
+
+gsettings set org.gnome.desktop.datetime automatic-timezone true
 
 # Load wallpaper once
 gsettings set org.gnome.desktop.background picture-uri-dark "file://$DOTFILES_HOME/wallpapers/angkor_watt_gpt.png"
@@ -118,12 +120,11 @@ sudo snap remove "${BLOAT_SNAP[@]}"
 
 BLOAT_APT=(
     "gnome-snapshot" "gnome-logs" "gnome-calculator"
-    "gnome-power-manager" "gnome-terminal" # WARN: replaced by "ptyxis" in 26.04
-    "deja-dup" "seahorse" "shotwell" "evince" "totem" # WARN: replaced by "showtime" in 26.04
+    "gnome-power-manager" "ptyxis"
+    "deja-dup" "seahorse" "shotwell" "evince" "showtime"
     "rhythmbox" "orca" "info" "yelp"
     "transmission-common" "transmission-gtk"
     "ed" "vim-common" "nano"
-    "gnome-system-monitor" # WARN: not in 26.04
     # cli tools that clash with nix
     "git" "curl" "stow"
 )

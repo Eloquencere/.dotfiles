@@ -1,17 +1,18 @@
 #!/bin/zsh
 
-# NOTE: Use pushd & popd instead
 cd "$(dirname "${(%):-%x}")" # change directory to script location
 
-echo "Welcome to the *Ubuntu 24.04 LTS* installer :)"
+echo "Welcome to the *Ubuntu 26.04 LTS* installer :)"
 
-# TODO: delta/diff completion is still broken
-# TODO: enable ubuntu support for x86-64-v3 range
+# TODO: General shell completions under the completions dir isn't working
+# TODO: diff completion is good, delta is not showing hidden files
+
+# To experiment on a VM - echo 'APT::Architecture-Variants "amd64v3";' | sudo tee /etc/apt/apt.conf.d/99amd64v3 && apt update && apt upgrade -y
 
 source sub-scripts/nerdfonts_download.sh
 sudo nala install -y ttf-mscorefonts-installer fonts-crosextra-carlito fonts-crosextra-caladea # MS fonts for LibreOffice
 
-# Performance improvement software
+# Performance improvement
 sudo nala install -y preload earlyoom
 sudo systemctl enable preload earlyoom
 
@@ -55,12 +56,13 @@ OFFICE_SOFTWARE_SNAP=(
 )
 sudo snap install "${OFFICE_SOFTWARE_SNAP[@]}"
 sudo snap install obsidian --classic # In flatpak, write errors on mounted cloud drives
-# Firefox is snap by default & it is needed by Vivado
+# Firefox is snap by default & it's needed by Vivado
 
 # Games
-echo "ntsync" | sudo tee /etc/modules-load.d/ntsync.conf # loading ntsync - WARN: Need to check, if it's enabled by default
+# echo "ntsync" | sudo tee /etc/modules-load.d/ntsync.conf # loading ntsync - WARN: Need to check, if it's enabled by default
 mkdir -p ~/Games/{windows,switch}
 sudo nala install -y steam --install-suggests
+# WARN: need to actually install steam by clicking on the desktop icon
 GAMES_FLATPAK=(
     "com.discordapp.Discord"
     "com.heroicgameslauncher.hgl"
@@ -80,7 +82,6 @@ ADDITIONAL_APPS_FLATPAK=(
     "org.kde.okular"
     # "com.github.tenderowl.frog"
     # System
-    "net.nokyan.Resources" # WARN: default in 26.04
     "net.epson.epsonscan2"
     # Project Management
     "io.github.giantpinkrobots.varia"
