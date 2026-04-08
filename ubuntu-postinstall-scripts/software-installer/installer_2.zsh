@@ -4,7 +4,6 @@ cd "$(dirname "${(%):-%x}")" # change directory to script location
 
 # Add this to dconf.nix Alternatively, take a call to completely remove the notifier app
 gsettings set com.ubuntu.update-notifier no-show-notifications true
-
 gsettings set org.gnome.desktop.datetime automatic-timezone true
 
 # Load wallpaper once
@@ -56,9 +55,8 @@ cargo install sccache
 
 mise trust # config file
 mise install # from config
-# WARN: having issues with python 2.7
+# WARN: python install not happening
 
-# WARN: pip not found
 pip2 install --upgrade pip
 pip install --upgrade pip
 

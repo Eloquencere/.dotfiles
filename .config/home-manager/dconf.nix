@@ -44,6 +44,10 @@ in
 
             "org/gnome/nautilus/icon-view" = {
                 default-zoom-level = "small-plus";
+                captions = [ "size" "none" "none" ];
+            };
+            "org/gnome/nautilus/preferences" = {
+                click-policy = "single";
             };
 
             "org/gnome/mutter" = {

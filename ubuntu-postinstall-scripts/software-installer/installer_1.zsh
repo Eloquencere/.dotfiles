@@ -8,8 +8,14 @@ echo "Welcome to the *Ubuntu 26.04 LTS* installer :)"
 # TODO: General shell completions under the completions dir aren't working
 # TODO: diff completion is good, delta is not showing hidden files
 
-# Experiment
-# echo 'APT::Architecture-Variants "amd64v3";' | sudo tee /etc/apt/apt.conf.d/99amd64v3 && apt update && apt full-upgrade -y
+# # Experiment - breaks host to guest clipboard
+# echo 'APT::Architecture-Variants "amd64v3";' | sudo tee /etc/apt/apt.conf.d/99amd64v3
+# sudo apt update
+# sudo apt full-upgrade -y
+
+# # Improve Nautilus
+# sudo nala install python3-nautilus python3-gi
+# mkdir -p ~/.local/share/nautilus-python/extensions
 
 source sub-scripts/nerdfonts_download.sh
 sudo nala install -y ttf-mscorefonts-installer fonts-crosextra-carlito fonts-crosextra-caladea # MS fonts for LibreOffice
@@ -46,7 +52,7 @@ sudo nala install -y --install-recommends kicad
 APPLICATIONS=(
     "gnome-shell-extension-manager"
     "bleachbit" "timeshift"
-    "kdeconnect" "gufw"
+    "gufw" # "kdeconnect" # WARN: prefer GSConnect extension over this
 )
 sudo nala install -y "${APPLICATIONS[@]}"
 
@@ -87,7 +93,7 @@ ADDITIONAL_APPS_FLATPAK=(
     # Project Management
     "io.github.giantpinkrobots.varia"
     "org.ghidra_sre.Ghidra"
-    "org.jitsi.jitsi-meet"
+    # "org.jitsi.jitsi-meet"
     "com.rustdesk.RustDesk"
     # Games
     "org.gnome.Chess"
@@ -110,7 +116,7 @@ xdg-mime default okular_okular.desktop application/pdf
 # Installing nix pkg manager
 sh <(curl --proto "=https" --tlsv1.2 -L https://nixos.org/nix/install) --daemon --yes
 
-cd "$HOME/.dotfiles" && stow . && cd -
+cd $HOME/.dotfiles && stow . && cd -
 
 echo "The system will reboot now to consolidate the installation"
 sudo reboot now

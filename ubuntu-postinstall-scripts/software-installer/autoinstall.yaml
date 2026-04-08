@@ -32,6 +32,7 @@ autoinstall:
             # - 2606:4700:4700::1001 # "
             # - 2001:4860:4860::8888 # Google
             # - 2001:4860:4860::8844 # "
+        # Add these dns servers to wifi too
   storage:
     config:
       - id: disk0
@@ -136,7 +137,7 @@ autoinstall:
     - stow
 
   late-commands:
-    - curtin in-target --target=/target -- bash -lc "dpkg --add-architecture i386; apt-get update"
+    - curtin in-target --target=/target -- bash -c "dpkg --add-architecture i386; apt-get update"
 
     - curtin in-target --target=/target -- flatpak remote-add --system --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
