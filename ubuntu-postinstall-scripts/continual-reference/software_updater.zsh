@@ -1,9 +1,13 @@
 sudo sh -c "nala full-upgrade -y"
 sudo snap refresh
-zinit update --all
+
 flatpak update --assumeyes
+flatpak uninstall --unused --delete-data --assumeyes
+
 nix profile upgrade --all; nix flake update
 nix-collect-garbage --delete-old; nix store gc
+
+zinit update --all
 
 echo "Update your nvim plugins & researt your machine"
 

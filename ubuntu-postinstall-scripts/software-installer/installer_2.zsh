@@ -4,7 +4,6 @@ cd "$(dirname "${(%):-%x}")" # change directory to script location
 
 # Add this to dconf.nix Alternatively, take a call to completely remove the notifier app
 gsettings set com.ubuntu.update-notifier no-show-notifications true
-gsettings set org.gnome.desktop.datetime automatic-timezone true
 
 # Load wallpaper once
 gsettings set org.gnome.desktop.background picture-uri-dark "file://$DOTFILES_HOME/wallpapers/angkor_watt_gpt.png"
@@ -16,19 +15,28 @@ echo "Click on 'Move to App Menu'"
 wget -O lm-studio.AppImage 'https://lmstudio.ai/download/latest/linux/x64?format=AppImage'
 flatpak run it.mijorus.gearlever lm-studio.AppImage
 
+# WARN: Add Winboat
+
 # GUI setup
 gnome-text-editor .gui_instructions.txt &
+
+# To Allow GSConnect to work
+sudo ufw allow 1714:1764/udp
+sudo ufw allow 1714:1764/tcp
+# sudo ufw reload # not sure if needed, since I'm rebooting anyways
 
 nix profile add nixpkgs#home-manager
 home-manager switch
 home-manager news &> /dev/null
 
 # Kanata setup
+nix profile add nixpkgs#kanata # WARN: before installing pls remove it from home-manager
 sudo groupadd uinput
 sudo usermod -aG input,uinput $USER
-sudo sh -c "echo '# Kanata
-KERNEL==uinput, MODE=0660, GROUP=uinput, OPTIONS+=static_node=uinput' >> /etc/udev/rules.d/99-input.rules"
-sudo sh -c "echo '[Unit]
+echo '# Kanata
+KERNEL==uinput, MODE=0660, GROUP=uinput, OPTIONS+=static_node=uinput' \
+| sudo tee /etc/udev/rules.d/99-kanata.rules
+echo "[Unit]
 Description=Kanata keyboard remapper
 
 [Service]
@@ -38,7 +46,8 @@ ExecStart=$(which kanata) --cfg $XDG_CONFIG_HOME/kanata/config.kbd
 Restart=no
 
 [Install]
-WantedBy=default.target' > /lib/systemd/system/kanata.service"
+WantedBy=default.target" \
+| sudo tee /etc/systemd/system/kanata.service
 sudo systemctl enable kanata
 
 # Necessary libs to build cargo & python
@@ -64,14 +73,18 @@ pip install --upgrade pip
 echo "Say \"yes\" to the first & \"sudo\" to the next question"
 cpan App::cpanminus
 
+mkdir -p $HOME/Projects
+echo "file://$HOME/Projects" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
+sed -i "\|Music|d" $XDG_CONFIG_HOME/gtk-3.0/bookmarks
+
 mkdir -p $ZDOTDIR/personal
 echo -n "Enter the ID granted by your admin to register with your team via croc: "
 read croc_id
 echo "# Croc
 export CROC_SELF_TRANSFER_ID=$croc_id" >> $ZDOTDIR/personal/zprofile.zsh
 echo "Move a copy of the collaborators database given by your admin to the zsh home directory"
-mkdir ~/croc-inbox
-echo "file://$HOME/croc-inbox" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
+mkdir -p ~/Transfers/{croc,GSConnect}
+echo "file://$HOME/Transfers" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
 
 echo -n "Would you like to log into your git account?(y/N) "
 read user_choice
@@ -98,10 +111,6 @@ if [[ $user_choice =~ ^[Yy]$ ]]; then
     sed -i '/.* = $/d' $XDG_CONFIG_HOME/git/config
 fi
 
-mkdir -p $HOME/Projects
-echo "file://$HOME/Projects" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
-sed -i "\|Music|d" $XDG_CONFIG_HOME/gtk-3.0/bookmarks
-
 # Clean up
 rm -rf ~/.cache/* # generally safe, but be mindful
 rm -rf ~/{.bash*,.profile}
@@ -109,34 +118,30 @@ rm -rf ~/{Templates,Public,go,Music}
 sudo rm -rf /tmp/*
 
 BLOAT_SNAP=(
-    "thunderbird"
+    "thunderbird" "firefox"
 )
-sudo nala purge -y "${BLOAT_SNAP[@]}"
-sudo snap remove "${BLOAT_SNAP[@]}"
+sudo snap remove --purge "${BLOAT_SNAP[@]}"
 
+# Might need to add more
 BLOAT_APT=(
     "gnome-snapshot" "gnome-logs" "gnome-calculator"
     "gnome-power-manager" "ptyxis"
-    "deja-dup" "seahorse" "shotwell" "papers" "showtime"
+    "deja-dup" "seahorse" "shotwell" "showtime"
     "rhythmbox" "orca" "info" "yelp"
     "transmission-common" "transmission-gtk"
     "ed" "vim-common" "nano"
-    # cli tools that clash with nix
+    # cli tools that clash with nixpkgs
     "git" "stow"
 )
 sudo nala purge -y "${BLOAT_APT[@]}"
 
 sudo sh -c "nala install --fix-broken; nala autoremove; apt autoclean"
-flatpak uninstall --unused --delete-data --assumeyes
 source ../continual-reference/software_updater.zsh
 
 echo "The system will reboot now to consolidate the installation"
 read -r "?Press Enter to reboot..."
 sudo reboot now
 
-
-# # Getting nix cli in this shell instance
-# source /etc/profile.d/nix.sh
 
 # # Optional C compiler - don't install via nix
 # sudo nala install clang lldb
@@ -148,8 +153,8 @@ sudo reboot now
 # sudo auto-cpufreq --install
 
 # # WinBoat
-# winboat_version="0.9.0"
-# wget -O winboat.AppImage 'https://github.com/TibixDev/winboat/releases/download/v$winboat_version/winboat-$winboat_version-x86_64.AppImage'
+# version="0.9.0"
+# wget -O winboat.AppImage 'https://github.com/TibixDev/winboat/releases/download/v$version/winboat-$version-x86_64.AppImage'
 # flatpak run it.mijorus.gearlever winboat.AppImage
 
 # # Signal

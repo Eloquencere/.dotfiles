@@ -19,6 +19,10 @@ in
     dconf = {
         enable = true;
         settings = {
+            "org/gnome/desktop/datetime" = {
+                automatic-timezone = true;
+            };
+
             "org/gnome/desktop/session" = {
                 idle-delay = lib.gvariant.mkUint32 0;
             };
@@ -128,17 +132,26 @@ in
                 blur=false;
             };
 
-            "com/github/stunkymonkey/nautilus-open-any-terminal" = {
-                terminal = "wezterm";
-                new-tab = false;
-            };
-
             "org/gnome/shell/extensions/space-bar/behavior/always-show-numbers" = {
                 always-show-numbers = true;
                 smart-workspace-names = false;
                 enable-activate-workspace-shortcuts = false;
                 enable-move-to-workspace-shortcuts = true;
                 open-menu = "@as []";
+            };
+
+            "org/gnome/shell/extensions/quick-settings-tweaks" = {
+                dnd-quick-toggle-enabled = false;
+                # toggles-layout-order = "[{'hide': <<false>>, 'isSystem': <<true>>, 'constructorName': <<'NMWiredToggle'>>}, {'hide': <<false>>, 'isSystem': <<true>>, 'constructorName': <<'NMWirelessToggle'>>}, {'hide': <<false>>, 'isSystem': <<true>>, 'constructorName': <<'NMModemToggle'>>}, {'hide': <<false>>, 'isSystem': <<true>>, 'constructorName': <<'NMBluetoothToggle'>>}, {'hide': <<false>>, 'isSystem': <<true>>, 'constructorName': <<'NMVpnToggle'>>}, {'hide': <<false>>, 'isSystem': <<true>>, 'constructorName': <<'BluetoothToggle'>>}, {'nonOrdered': <<true>>, 'hide': <<false>>}, {'hide': <<false>>, 'isSystem': <<true>>, 'constructorName': <<'PowerProfilesToggle'>>}, {'hide': <<false>>, 'isSystem': <<true>>, 'constructorName': <<'NightLightToggle'>>}, {'hide': <<false>>, 'isSystem': <<true>>, 'constructorName': <<'DarkModeToggle'>>}, {'hide': <<false>>, 'isSystem': <<true>>, 'constructorName': <<'KeyboardBrightnessToggle'>>}, {'hide': <<false>>, 'isSystem': <<true>>, 'constructorName': <<'RfkillToggle'>>}, {'hide': <<false>>, 'isSystem': <<true>>, 'constructorName': <<'RotationToggle'>>}, {'hide': <<false>>, 'isSystem': <<true>>, 'constructorName': <<'DndQuickToggle'>>}, {'hide': <<false>>, 'isSystem': <<true>>, 'constructorName': <<'UnsafeQuickToggle'>>}]";
+            };
+
+            "org/gnome/shell/extensions/gsconnect/device/5b2b61c98372436b9e8a00c7ed2b5a17/plugin/share" = {
+                receive-directory = "/home/eloquencer/Transfers/GSConnect";
+            };
+
+            "com/github/stunkymonkey/nautilus-open-any-terminal" = {
+                terminal = "wezterm";
+                new-tab = false;
             };
             
             "org/gnome/settings-daemon/plugins/media-keys" = {
@@ -183,7 +196,6 @@ in
                     "bleachbit"
                     "disk"
                     "network"
-                    "kde-connect"
                     "drivers"
                     "language-support"
                     "xterm" # Steam dependency
@@ -301,15 +313,6 @@ in
                     "nm-connection-editor.desktop" # Advanced network configuration
                 ];
             };
-            "org/gnome/desktop/app-folders/folders/kde-connect" = {
-                name = "KDE Connect";
-                translate = false;
-                apps = [
-                    "org.kde.kdeconnect.nonplasma.desktop"
-                    "org.kde.kdeconnect-settings.desktop"
-                    "org.kde.kdeconnect.sms.desktop"
-                ];
-            };
             "org/gnome/desktop/app-folders/folders/language-support" = {
                 name = "Language Support";
                 translate = false;
@@ -352,7 +355,6 @@ in
                         # "varia_varia.desktop" # snap name
                         "timeshift-gtk.desktop"
                         "com.surfshark.Surfshark.desktop"
-                        "org.kde.kdeconnect.app.desktop"
                         "net.nokyan.Resources.desktop" # WARN: default in 26.04
                         "net.epson.epsonscan2.desktop"
                     ])
@@ -365,9 +367,7 @@ in
                         "disk"
                         "network"
                         "language-support"
-                        "kde-connect"
                         "xterm"
-                        "firefox_firefox.desktop"
                         "org.videolan.VLC.desktop"
                         "org.gnome.Calendar.desktop"
                         "org.gnome.Settings.desktop"
