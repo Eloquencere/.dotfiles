@@ -10,25 +10,22 @@
     ];
 
     home.packages = with pkgs; [
-        # lanuage compilers
-        rustup zig julia
-        gdb valgrind strace
-        conan scriptisto tio sqlite-interactive mise
-        tlrc typst natural-docs doxygen
-        just # better alternative to make(file)
-        mask # CLI task runner from markdown file
-        ffmpeg
         # Prompt improvement
-        kanata
         starship fzf atuin trash-cli
-        croc fastfetch btop yazi
+
+        lldb gdb valgrind strace
+        scriptisto tio mise
+        tlrc typst natural-docs doxygen
+
         neovim zellij wl-clipboard
         gh lazygit
         podman # look into podmanTUI
-        stow git curl dos2unix
+
+        croc fastfetch btop yazi
+        stow git dos2unix
+        ffmpeg fortune
         # WARN: Cautious with Ubuntu 26.04LTS
         zoxide eza fd bat ripgrep duf delta repgrep mprocs
-        fortune
 
         # optional
         # carapace # needs to mature a lot

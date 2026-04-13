@@ -29,8 +29,8 @@ nix profile add nixpkgs#home-manager
 home-manager switch
 home-manager news &> /dev/null
 
-# Kanata setup
-nix profile add nixpkgs#kanata # WARN: before installing pls remove it from home-manager
+# Kanata setup - System level
+nix profile add nixpkgs#kanata
 sudo groupadd uinput
 sudo usermod -aG input,uinput $USER
 echo '# Kanata
@@ -141,10 +141,6 @@ source ../continual-reference/software_updater.zsh
 echo "The system will reboot now to consolidate the installation"
 read -r "?Press Enter to reboot..."
 sudo reboot now
-
-
-# # Optional C compiler - don't install via nix
-# sudo nala install clang lldb
 
 # # Auto-cpufreq
 # git clone https://github.com/AdnanHodzic/auto-cpufreq.git
