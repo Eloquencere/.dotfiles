@@ -57,14 +57,14 @@ sudo nala install -y \
     libffi-dev tk-dev tcl-dev \
     libgdbm-dev uuid-dev libexpat1-dev
 
+mise trust # config file
+mise install # from config
+# WARN: python install not happening
+
 rustup toolchain install stable
 rustup default stable
 unset RUSTC_WRAPPER # to momentarily disable cargo from pointing to uninstalled sccache
 cargo install sccache
-
-mise trust # config file
-mise install # from config
-# WARN: python install not happening
 
 pip2 install --upgrade pip
 pip install --upgrade pip

@@ -5,13 +5,9 @@ cd "$(dirname "${(%):-%x}")" # change directory to script location
 echo "Welcome to the *Ubuntu 26.04 LTS* installer :)"
 
 # WARN: need to verify default ubuntu 26.04 settings of dconf.nix & if the paths are still relevant
+# TODO: install lemonade - reddit.com/r/LocalLLaMA/comments/1rqxc71/you_can_run_llms_on_your_amd_npu_on_linux/#:~:text=If%20you%20have%20a%20Ryzen%E2%84%A2%20AI%20300/400%2Dseries,just%20small%20demos%2C%20but%20real%20local%20inference
 # TODO: General shell completions under the completions dir aren't working
 # TODO: diff completion is good, delta is not showing hidden files
-
-# # Experiment - breaks host to guest clipboard
-# echo 'APT::Architecture-Variants "amd64v3";' | sudo tee /etc/apt/apt.conf.d/99amd64v3
-# sudo apt update
-# sudo apt full-upgrade -y
 
 source sub-scripts/nerdfonts_download.sh
 sudo nala install -y ttf-mscorefonts-installer fonts-crosextra-carlito fonts-crosextra-caladea # MS fonts for LibreOffice
@@ -117,6 +113,14 @@ sudo reboot now
 # # Improve Nautilus
 # sudo nala install python3-nautilus python3-gi
 # mkdir -p ~/.local/share/nautilus-python/extensions
+# New File.. but adding slashes creates a Folder & there will be a preview of the icon if created, so Folder will have folder icon or Python file or empty file & even support {} like in the shell for muliple file creation
+# Open With <terminal> whatever the xdg defaults say about the terminal
+# Be able to copy a download link & right click on a folder in nautilus to Download link here.. (with wget)
+
+# # Experiment - breaks host to guest clipboard
+# echo 'APT::Architecture-Variants "amd64v3";' | sudo tee /etc/apt/apt.conf.d/99amd64v3
+# sudo apt update
+# sudo apt full-upgrade -y
 
 # # Xournal++
 # sudo add-apt-repository --yes ppa:apandada1/xournalpp-stable
