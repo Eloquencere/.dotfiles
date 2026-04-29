@@ -3,25 +3,22 @@
     (Essentials)
     - Bluetooth Battery Meter
     - blur my shell
-    - CHC-E
     - Just Perfection
-    - Quick Settings Tweaks
-    - Space Bar
-    - Grand Theft Focus
-    - GSConnect
-    (Now)
-    - Clipboard Indicator
-    (Future)
     - Copyous
+    - CHC-E - No support
+    - Space Bar - No support
+    - Quick Settings Tweaks - No support
+    - Grand Theft Focus - No support
+    - GSConnect - No support
 
     (Optional)
-    - dynamic music pill
-    - Open bar
-    - Battery time
-    - Removable Drive Menu
     - Wiggle
-    - V-Shell
     - Forge (Tiling Manager)
+    - Battery time
+    - dynamic music pill
+    - V-Shell
+    - Open bar
+    - Removable Drive Menu
 
 Notes
     - Okular

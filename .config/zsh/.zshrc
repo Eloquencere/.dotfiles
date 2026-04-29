@@ -24,6 +24,7 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':fzf-tab:*' use-fzf-default-opts yes
 zstyle ':fzf-tab:*' fzf-pad 5
 zstyle ':fzf-tab:*' fzf-min-height 20
+zstyle ':fzf-tab:*' fzf-command fzf
 zstyle ':fzf-tab:complete:*:*' fzf-preview '[[ -d $realpath ]] && eza --all --oneline --group-directories-first --color=always --icons=always -- $realpath || bat --color=always -- $realpath 2>/dev/null'
 
 autoload -Uz add-zsh-hook

@@ -22,7 +22,7 @@ autoinstall:
         nameservers:
           addresses:
             # IPv4
-            - 1.1.1.1 # Cloudflare
+            - 1.1.1.2 # Cloudflare
             - 1.0.0.1 # "
             - 8.8.8.8 # Google
             - 8.8.4.4 # "

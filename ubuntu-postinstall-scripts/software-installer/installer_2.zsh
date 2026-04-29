@@ -11,9 +11,9 @@ gsettings set org.gnome.desktop.background picture-options 'stretched'
 
 echo "Click on 'Move to App Menu'"
 
-# LM Studio
-wget -O lm-studio.AppImage 'https://lmstudio.ai/download/latest/linux/x64?format=AppImage'
-flatpak run it.mijorus.gearlever lm-studio.AppImage
+# # LM Studio - Dropped for Lemonade
+# wget -O lm-studio.AppImage 'https://lmstudio.ai/download/latest/linux/x64?format=AppImage'
+# flatpak run it.mijorus.gearlever lm-studio.AppImage
 
 # WARN: Add Winboat
 
@@ -23,7 +23,6 @@ gnome-text-editor .gui_instructions.txt &
 # To Allow GSConnect to work
 sudo ufw allow 1714:1764/udp
 sudo ufw allow 1714:1764/tcp
-# sudo ufw reload # not sure if needed, since I'm rebooting anyways
 
 nix profile add nixpkgs#home-manager
 home-manager switch
@@ -59,15 +58,13 @@ sudo nala install -y \
 
 mise trust # config file
 mise install # from config
-# WARN: python install not happening
+
+pip install --upgrade pip
 
 rustup toolchain install stable
 rustup default stable
 unset RUSTC_WRAPPER # to momentarily disable cargo from pointing to uninstalled sccache
 cargo install sccache
-
-pip2 install --upgrade pip
-pip install --upgrade pip
 
 # cpanm package manager for perl
 echo "Say \"yes\" to the first & \"sudo\" to the next question"
@@ -88,20 +85,19 @@ echo "file://$HOME/Transfers" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
 
 echo -n "Would you like to log into your git account?(y/N) "
 read user_choice
+mkdir $XDG_CONFIG_HOME/git
+touch $XDG_CONFIG_HOME/git/config
+git config --file $XDG_CONFIG_HOME/git/config init.defaultBranch main
+git config --global core.whitespace error
+git config --global core.preloadindex true
+git config --global core.pager delta
+git config --global delta.navigate true
+git config --global delta.dark true
+git config --global delta.side-by-side true
+git config --global interactive.diffFilter 'delta --color-only'
+git config --global diff.colorMoved default
+git config --global merge.conflictstyle diff3
 if [[ $user_choice =~ ^[Yy]$ ]]; then
-    mkdir $XDG_CONFIG_HOME/git
-    touch $XDG_CONFIG_HOME/git/config
-    git config --file $XDG_CONFIG_HOME/git/config init.defaultBranch main
-    git config --global core.whitespace error
-    git config --global core.preloadindex true
-    git config --global core.editor $EDITOR
-    git config --global core.pager delta
-    git config --global delta.navigate true
-    git config --global delta.dark true
-    git config --global delta.side-by-side true
-    git config --global interactive.diffFilter 'delta --color-only'
-    git config --global diff.colorMoved default
-    git config --global merge.conflictstyle diff3
     git config --global user.name "Eloquencere"
     echo -n "email ID: "
     read email
@@ -113,7 +109,7 @@ fi
 
 # Clean up
 rm -rf ~/.cache/* # generally safe, but be mindful
-rm -rf ~/{.bash*,.profile}
+rm -rf ~/{.bash*,.profile,.zshrc,.zcompdump}
 rm -rf ~/{Templates,Public,go,Music}
 sudo rm -rf /tmp/*
 
@@ -125,8 +121,7 @@ sudo snap remove --purge "${BLOAT_SNAP[@]}"
 # Might need to add more
 BLOAT_APT=(
     "gnome-snapshot" "gnome-logs" "gnome-calculator"
-    "gnome-power-manager" "ptyxis"
-    "deja-dup" "seahorse" "shotwell" "showtime"
+    "ptyxis" "deja-dup" "seahorse" "shotwell" "showtime"
     "rhythmbox" "orca" "info" "yelp"
     "transmission-common" "transmission-gtk"
     "ed" "vim-common" "nano"

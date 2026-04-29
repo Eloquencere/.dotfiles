@@ -33,7 +33,5 @@
         # graphviz # dependency for pydot
         # jq jqp yq cheat p7zip unrar
     ];
-
-    # programs.home-manager.enable = true; # NOTE: only enable this when using system manager
 }
 

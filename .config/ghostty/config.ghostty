@@ -1,0 +1,41 @@
+# thanks - github.com/sahaj-b/ghostty-cursor-shaders
+# custom-shader = shaders/cursor_warp.glsl
+
+# --- Initialisation ---
+auto-update = off
+gtk-titlebar = false
+
+# --- Window ---
+window-decoration = false
+window-padding-x = 0
+window-padding-y = 0
+
+# --- Appearance ---
+theme = Abernathy
+# theme = Firefly Traditional
+background = #000000
+background-opacity = 0.78
+
+# --- Text ---
+font-family = UbuntuSansMono Nerd Font
+font-style = Medium
+font-size = 15
+# or 17.5 from wezterm
+# font-feature = -calt
+# font-feature = -clig
+# font-feature = -liga
+
+cursor-style = bar
+cursor-style-blink = false
+
+# --- Key mappings ---
+
+# Ctrl+Tab → send kitty-style escape for nvim tab forward
+keybind = ctrl+tab=text:\x1b[9;5u
+
+# Ctrl+Shift+Tab → send kitty-style escape for nvim tab backward
+keybind = ctrl+shift+tab=text:\x1b[9;6u
+
+# Shift+Enter → bracketed paste newline (multi-line shell command)
+keybind = shift+enter=text:\x1b[200~\n\x1b[201~
+

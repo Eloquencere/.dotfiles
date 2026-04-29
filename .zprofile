@@ -26,6 +26,9 @@ export RUSTUP_HOME="$XDG_DATA_HOME/rust/rustup"
 export RUSTC_WRAPPER="$CARGO_HOME/bin/sccache"
 export PATH="$CARGO_HOME/bin:$PATH"
 
+# Python
+export PYTHONHISTORY="/dev/null"
+
 # Conan(C/C++)
 export CONAN_HOME="$XDG_DATA_HOME/conan"
 

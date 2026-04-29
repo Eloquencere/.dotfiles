@@ -6,7 +6,7 @@ idiomatic_version_file_enable_tools = ["python"]
 [tools]
 zig = "latest"
 rust = "latest"
-# clang = "latest"
+clang = "latest"
 # conan = "latest"
 
 just = "latest" # better alternative to make(file)
@@ -20,6 +20,6 @@ julia = "latest"
 deno = "latest"
 node = "latest"
 
-python = ["latest", "2.7"]
+python = "latest"
 uv = "latest"
 

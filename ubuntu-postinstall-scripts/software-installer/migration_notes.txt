@@ -1,0 +1,9 @@
+- Do a dry run of the install scripts on a VM
+- Check if dconf settings are still relevant
+    - if some features are made default
+    - if some options are depricated
+    - Check for new options by configuing via GUI & monitoring via 'dconf watch /'
+- Backup Brave profiles in another device & check if stuff like bookmarks still work
+- Backup Desktop, Docs, Downloads, Screenshots, Videos, Transfers & Projects folders
+- Make note of which custom software is installed & have those files ready
+- Add password to autoinstall.yaml

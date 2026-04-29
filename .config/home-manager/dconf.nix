@@ -15,26 +15,70 @@ let
     builtins.genList(i: mkEntry (builtins.elemAt ids i) i)(builtins.length ids);
 in
 {
-    # WARN: Gotta test these work in 26.04, by running gsettings get on these schemas
     dconf = {
         enable = true;
         settings = {
-            "org/gnome/desktop/datetime" = {
-                automatic-timezone = true;
+            "org/gnome/settings-daemon/plugins/media-keys" = {
+                custom-keybindings = [
+                    "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+                    "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
+                    "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/" # WARN: & this
+                ];
+            };
+            "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+                name="Qalculate Calculator";
+                command="flatpak run io.github.Qalculate";
+                binding="XF86Calculator";
+            };
+            "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
+                name="wezterm";
+                command="wezterm";
+                binding="<Alt><Shift>w";
             };
 
-            "org/gnome/desktop/session" = {
-                idle-delay = lib.gvariant.mkUint32 0;
+            # WARN: Remove this
+            "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" = {
+                name="ghostty";
+                command="ghostty";
+                binding="<Alt><Shift>g";
             };
+
+            "org/gnome/settings-daemon/plugins/color" = {
+                night-light-enabled = true;
+                night-light-temperature = lib.gvariant.mkUint32 3249;
+                night-light-schedule-automatic = false;
+                night-light-schedule-from = 0.0; # Always enabled
+                night-light-schedule-to = 0.0;
+            };
+
             "org/gnome/settings-daemon/plugins/power" = {
                 idle-dim = false;
             };
+            "org/gnome/desktop/session" = {
+                idle-delay = lib.gvariant.mkUint32 0;
+            };
 
-            "org/gnome/desktop/screensaver" = {
-                lock-enabled = false;
+            "org/gnome/desktop/datetime" = {
+                automatic-timezone = true;
             };
             "org/gnome/desktop/sound" = {
                 event-sounds = false;
+            };
+
+            "org/gnome/desktop/interface" = {
+                ## Dark Mode
+                color-scheme            = "prefer-dark";
+                gtk-theme               = "Yaru-blue-dark";
+                icon-theme              = "Yaru-blue-dark";
+                # accent-color            = "blue"; # WARN: only in 26.04
+                ## Dark Mode
+
+                text-scaling-factor     = 1.25; # WARN: try with 1.25-1.28 range
+                cursor-size             = 29;
+
+                show-battery-percentage = true;
+                clock-show-weekday      = true;
+                clock-format            = "24h";
             };
 
             "org/gnome/TextEditor" = {
@@ -42,7 +86,6 @@ in
                 restore-session = false;
                 show-line-numbers = true;
                 highlight-current-line = true;
-                highlight-matching-brackets = true;
                 tab-width = 4;
             };
 
@@ -54,43 +97,23 @@ in
                 click-policy = "single";
             };
 
-            "org/gnome/mutter" = {
-               center-new-windows = true; 
-            };
-            "org/gnome/desktop/interface" = {
-                show-battery-percentage = true;
-                cursor-size             = 29;
-                text-scaling-factor     = 1.25;
-                color-scheme            = "prefer-dark";
-                gtk-theme               = "Yaru-blue-dark";
-                icon-theme              = "Yaru-blue";
-                clock-show-weekday      = true;
-                clock-format            = "24h";
-            };
-
-            "org/gnome/settings-daemon/plugins/color" = {
-                night-light-enabled = true;
-                night-light-temperature = lib.gvariant.mkUint32 3249;
-                night-light-schedule-automatic = false;
-                night-light-schedule-from = 0.0; # Always enabled
-                night-light-schedule-to = 0.0;
-            };
-
             "org/gnome/shell/extensions/ding" = {
                 show-home = false;
                 start-corner = "top-left";
             };
 
             "org/gnome/shell/extensions/dash-to-dock" = {
-               dash-max-icon-size = 50;
-               extend-height = false;
-               dock-fixed = false;
-               autohide-in-fullscreen = true;
-               show-mounts-only-mounted = true;
-               always-center-icons = true;
-               dock-position = "BOTTOM";
-               click-action = "minimize-or-previews";
-               multi-monitor = true;
+                dash-max-icon-size = 50;
+                dock-fixed = false;
+                extend-height = false;
+                dock-position = "BOTTOM";
+                click-action = "minimize-or-previews";
+                show-mounts-only-mounted = true;
+                multi-monitor = true;
+
+                # WARN: Absent in GUI, prob not needed
+                always-center-icons = true;
+                autohide-in-fullscreen = true;
             };
 
             "org/gnome/shell/extensions/Bluetooth-Battery-Meter" = {
@@ -116,7 +139,6 @@ in
                 quick-settings-dark-mode = false;
                 quick-settings-airplane-mode = false;
                 workspace-popup = false;
-                dash-separator = true;
                 switcher-popup-delay = false;
                 events-button = false;
                 startup-status = 1;
@@ -145,31 +167,8 @@ in
                 # toggles-layout-order = "[{'hide': <<false>>, 'isSystem': <<true>>, 'constructorName': <<'NMWiredToggle'>>}, {'hide': <<false>>, 'isSystem': <<true>>, 'constructorName': <<'NMWirelessToggle'>>}, {'hide': <<false>>, 'isSystem': <<true>>, 'constructorName': <<'NMModemToggle'>>}, {'hide': <<false>>, 'isSystem': <<true>>, 'constructorName': <<'NMBluetoothToggle'>>}, {'hide': <<false>>, 'isSystem': <<true>>, 'constructorName': <<'NMVpnToggle'>>}, {'hide': <<false>>, 'isSystem': <<true>>, 'constructorName': <<'BluetoothToggle'>>}, {'nonOrdered': <<true>>, 'hide': <<false>>}, {'hide': <<false>>, 'isSystem': <<true>>, 'constructorName': <<'PowerProfilesToggle'>>}, {'hide': <<false>>, 'isSystem': <<true>>, 'constructorName': <<'NightLightToggle'>>}, {'hide': <<false>>, 'isSystem': <<true>>, 'constructorName': <<'DarkModeToggle'>>}, {'hide': <<false>>, 'isSystem': <<true>>, 'constructorName': <<'KeyboardBrightnessToggle'>>}, {'hide': <<false>>, 'isSystem': <<true>>, 'constructorName': <<'RfkillToggle'>>}, {'hide': <<false>>, 'isSystem': <<true>>, 'constructorName': <<'RotationToggle'>>}, {'hide': <<false>>, 'isSystem': <<true>>, 'constructorName': <<'DndQuickToggle'>>}, {'hide': <<false>>, 'isSystem': <<true>>, 'constructorName': <<'UnsafeQuickToggle'>>}]";
             };
 
-            "org/gnome/shell/extensions/gsconnect/device/5b2b61c98372436b9e8a00c7ed2b5a17/plugin/share" = {
-                receive-directory = "/home/eloquencer/Transfers/GSConnect";
-            };
-
-            "com/github/stunkymonkey/nautilus-open-any-terminal" = {
-                terminal = "wezterm";
-                new-tab = false;
-            };
-            
-            "org/gnome/settings-daemon/plugins/media-keys" = {
-                custom-keybindings = [
-                    "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
-                    "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
-                ];
-            };
-            "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-                name="Qalculate Calculator";
-                command="flatpak run io.github.Qalculate";
-                binding="XF86Calculator";
-            };
-
-            "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
-                name="Wezterm";
-                command="wezterm";
-                binding="<Alt><Shift>w";
+            "org/gnome/shell/extensions/copyous" = {
+                show-indicator = false;
             };
 
             "org/gnome/desktop/search-providers" = {
@@ -191,14 +190,15 @@ in
                     "project-management"
                     "programming"
                     "kicad"
+                    "virtualisation"
                     "games"
-                    "software-management"
                     "bleachbit"
+                    "security"
+                    "software-management"
+                    "system-tools"
                     "disk"
                     "network"
-                    "drivers"
                     "language-support"
-                    "xterm" # Steam dependency
                 ];
             };
 
@@ -216,7 +216,9 @@ in
                     "simple-scan.desktop" # Document scanner
                     "org.kde.okular.desktop"
                     "io.github.Qalculate.desktop"
-                    "org.gnome.eog.desktop" # Image Viewer
+                    "org.gnome.Papers.desktop"
+                    "org.gnome.Loupe.desktop"
+                    "org.gnome.eog.desktop" # WARN: Not in 26
                 ];
             };
             "org/gnome/desktop/app-folders/folders/project-management" = {
@@ -249,6 +251,14 @@ in
                     "org.kicad.eeschema.desktop"
                 ];
             };
+            "org/gnome/desktop/app-folders/folders/virtualisation" = {
+                name = "Virtualisation";
+                translate = false;
+                apps = [
+                    "virt-manager.desktop"
+                    # WARN: include WinBoat
+                ];
+            };
             "org/gnome/desktop/app-folders/folders/games" = {
                 name = "Games";
                 translate = false;
@@ -265,18 +275,6 @@ in
                     "org.gnome.Mines.desktop"
                 ];
             };
-            "org/gnome/desktop/app-folders/folders/software-management" = {
-                name = "Software Management";
-                translate = false;
-                apps = [
-                    "org.gnome.Software.desktop"
-                    "snap-store_snap-store.desktop"
-                    "com.mattjakeman.ExtensionManager.desktop"
-                    "software-properties-gtk.desktop" # Software & Updates
-                    "update-manager.desktop" # WARN: depricated in Ubuntu 26.04LTS
-                    "it.mijorus.gearlever.desktop" # AppImage Manager
-                ];
-            };
             "org/gnome/desktop/app-folders/folders/bleachbit" = {
                 name = "Bleachbit";
                 translate = false;
@@ -285,13 +283,34 @@ in
                     "bleachbit-root.desktop"
                 ];
             };
-            "org/gnome/desktop/app-folders/folders/drivers" = {
-                name = "Drivers";
+            "org/gnome/desktop/app-folders/folders/security" = {
+                name = "Security";
                 translate = false;
                 apps = [
-                    "software-properties-drivers.desktop"
+                    "desktop-security-center_desktop-security-center.desktop"
+                    "gufw.desktop"
+                ];
+            };
+            "org/gnome/desktop/app-folders/folders/software-management" = {
+                name = "Software Management";
+                translate = false;
+                apps = [
+                    "org.gnome.Software.desktop"
+                    "snap-store_snap-store.desktop"
+                    "com.mattjakeman.ExtensionManager.desktop"
+                    "software-properties-gtk.desktop" # Software & Updates
+                    "update-manager.desktop" # WARN: not in 26
+                    "it.mijorus.gearlever.desktop"
+                ];
+            };
+            "org/gnome/desktop/app-folders/folders/system-tools" = {
+                name = "System Tools";
+                translate = false;
+                apps = [
                     "firmware-updater_firmware-updater.desktop"
                     "nvidia-settings.desktop"
+                    "org.gnome.Sysprof.desktop"
+                    "software-properties-drivers.desktop" # Not in 26
                 ];
             };
             "org/gnome/desktop/app-folders/folders/disk" = {
@@ -309,8 +328,8 @@ in
                 translate = false;
                 apps = [
                     "org.remmina.Remmina.desktop"
-                    "remote-viewer.desktop"
                     "nm-connection-editor.desktop" # Advanced network configuration
+                    "remote-viewer.desktop" # WARN: Not in 26
                 ];
             };
             "org/gnome/desktop/app-folders/folders/language-support" = {
@@ -322,14 +341,6 @@ in
                     "gnome-language-selector.desktop"
                 ];
             };
-            "org/gnome/desktop/app-folders/folders/xterm" = {
-                name = "xterm";
-                translate = false;
-                apps = [
-                    "debian-uxterm.desktop"
-                    "debian-xterm.desktop"
-                ];
-            };
 
             "org/gnome/shell" = {
                 favorite-apps = [
@@ -337,7 +348,8 @@ in
                     "notion-desktop_notion-desktop.desktop"
                     "obsidian_obsidian.desktop"
                     "brave-browser.desktop"
-                    "org.wezfurlong.wezterm.desktop"
+                    "org.wezfurlong.wezterm.desktop" # WARN: depricated
+                    "com.mitchellh.ghostty.desktop"
                     "org.gnome.Nautilus.desktop"
                 ];
 
@@ -347,27 +359,26 @@ in
                         "project-management"
                         "programming"
                         "kicad"
+                        "virtualisation"
                         "games"
                         "lm_studio.desktop"
-                        "virt-manager.desktop"
                         "anki.desktop"
                         "io.github.giantpinkrobots.varia.desktop" # flatpak name
                         # "varia_varia.desktop" # snap name
                         "timeshift-gtk.desktop"
                         "com.surfshark.Surfshark.desktop"
-                        "net.nokyan.Resources.desktop" # WARN: default in 26.04
+                        "net.nokyan.Resources.desktop"
                         "net.epson.epsonscan2.desktop"
                     ])
                     (mkPage[
-                        "gnome-session-properties.desktop" # startup applications
-                        "gufw.desktop"
-                        "software-management"
+                        "gnome-session-properties.desktop" # WARN: not in 26
                         "bleachbit"
-                        "drivers"
+                        "security"
+                        "software-management"
+                        "system-tools"
                         "disk"
                         "network"
                         "language-support"
-                        "xterm"
                         "org.videolan.VLC.desktop"
                         "org.gnome.Calendar.desktop"
                         "org.gnome.Settings.desktop"
@@ -378,4 +389,5 @@ in
         };
     };
 }
+
 
