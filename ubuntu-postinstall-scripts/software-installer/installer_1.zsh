@@ -1,5 +1,6 @@
 #!/bin/zsh
 
+# WARN: The app grid icon size is too small
 # TODO: General shell completions under the completions dir aren't working
 # TODO: diff completion is good, delta is not showing hidden files
 

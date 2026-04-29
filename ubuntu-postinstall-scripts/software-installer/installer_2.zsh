@@ -2,20 +2,16 @@
 
 cd "$(dirname "${(%):-%x}")" # change directory to script location
 
-# Add this to dconf.nix Alternatively, take a call to completely remove the notifier app
-gsettings set com.ubuntu.update-notifier no-show-notifications true
-
-# Load wallpaper once
-gsettings set org.gnome.desktop.background picture-uri-dark "file://$DOTFILES_HOME/wallpapers/angkor_watt_gpt.png"
-gsettings set org.gnome.desktop.background picture-options 'stretched'
-
 echo "Click on 'Move to App Menu'"
+
+# WinBoat - WARN: Get it to work
+version="0.9.0"
+wget -O winboat.AppImage 'https://github.com/TibixDev/winboat/releases/download/v$version/winboat-$version-x86_64.AppImage'
+flatpak run it.mijorus.gearlever winboat.AppImage
 
 # # LM Studio - Dropped for Lemonade
 # wget -O lm-studio.AppImage 'https://lmstudio.ai/download/latest/linux/x64?format=AppImage'
-# flatpak run it.mijorus.gearlever lm-studio.AppImage
-
-# WARN: Add Winboat
+# flatpak run it.mijorus.gearlever ./lm-studio.AppImage
 
 # GUI setup
 gnome-text-editor .gui_instructions.txt &
@@ -69,6 +65,13 @@ cargo install sccache
 # cpanm package manager for perl
 echo "Say \"yes\" to the first & \"sudo\" to the next question"
 cpan App::cpanminus
+
+# Add this to dconf.nix Alternatively, take a call to completely remove the notifier app
+gsettings set com.ubuntu.update-notifier no-show-notifications true
+
+# Load wallpaper once
+gsettings set org.gnome.desktop.background picture-uri-dark "file://$DOTFILES_HOME/wallpapers/angkor_watt_gpt.png"
+gsettings set org.gnome.desktop.background picture-options 'scaled'
 
 mkdir -p $HOME/Projects
 echo "file://$HOME/Projects" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
@@ -142,11 +145,6 @@ sudo reboot now
 # cd auto-cpufreq && sudo ./auto-cpufreq-installer
 # cd .. && rm -rf auto-cpufreq
 # sudo auto-cpufreq --install
-
-# # WinBoat
-# version="0.9.0"
-# wget -O winboat.AppImage 'https://github.com/TibixDev/winboat/releases/download/v$version/winboat-$version-x86_64.AppImage'
-# flatpak run it.mijorus.gearlever winboat.AppImage
 
 # # Signal
 # wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg;

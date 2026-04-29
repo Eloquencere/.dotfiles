@@ -13,3 +13,25 @@ CARGO_PKGS=(
 )
 cargo install "${CARGO_PKGS[@]}"
 
+# # Other useful rust binaries
+# cargo-audit
+# cargo-bloat
+# cargo-outdated
+# cargo-deny
+# cargo-flamegraph & hyperfine - profiling code
+# cargo-nextest
+# cargo-dist
+# cargo-generate
+# xh - use with yew
+
+# # Useful rust libs
+# itertools
+# regex & sqlx | sqlite
+# Color eyre
+# Tracing
+# Clap
+# Rayon & dashmap
+# serde
+# Tokio & axum & tonic & yew & reqwest & egui
+# cargo clippy -- -W clippy::pedantic -W clippy::nursery -W clippy::unwrap_used clippy::expect_used
+

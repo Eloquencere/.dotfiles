@@ -19,7 +19,7 @@
 
         neovim zellij wl-clipboard
         gh lazygit
-        podman # look into podmanTUI
+        podman podman-compose freerdp # look into podmanTUI
 
         croc fastfetch btop yazi
         stow git dos2unix

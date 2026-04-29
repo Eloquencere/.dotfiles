@@ -18,6 +18,9 @@ in
     dconf = {
         enable = true;
         settings = {
+            # WARN: gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:minimize,maximize,close'
+            # Brave browser buttons seem to be messed up. Check first with get then, apply change
+
             "org/gnome/settings-daemon/plugins/media-keys" = {
                 custom-keybindings = [
                     "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
@@ -68,17 +71,22 @@ in
             "org/gnome/desktop/interface" = {
                 ## Dark Mode
                 color-scheme            = "prefer-dark";
-                gtk-theme               = "Yaru-blue-dark";
-                icon-theme              = "Yaru-blue-dark";
                 # accent-color            = "blue"; # WARN: only in 26.04
+                icon-theme              = "Yaru-blue-dark";
+                gtk-theme               = "Yaru-blue-dark";
                 ## Dark Mode
 
                 text-scaling-factor     = 1.25; # WARN: try with 1.25-1.28 range
-                cursor-size             = 29;
+                cursor-size             = 29; # issue with Wezterm, maybe not with ghostty
 
                 show-battery-percentage = true;
                 clock-show-weekday      = true;
-                clock-format            = "24h";
+                clock-format            = "24h"; # Default
+            };
+
+            # WARN: Default in 26
+            "org/gnome/mutter" = {
+                center-new-windows = true; 
             };
 
             "org/gnome/TextEditor" = {
@@ -256,7 +264,7 @@ in
                 translate = false;
                 apps = [
                     "virt-manager.desktop"
-                    # WARN: include WinBoat
+                    "winboat.desktop"
                 ];
             };
             "org/gnome/desktop/app-folders/folders/games" = {
@@ -389,5 +397,4 @@ in
         };
     };
 }
-
 
