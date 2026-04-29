@@ -19,7 +19,7 @@
 
         neovim zellij wl-clipboard
         gh lazygit
-        podman podman-compose freerdp # look into podmanTUI
+        podman # Look into podman TUI
 
         croc fastfetch btop yazi
         stow git dos2unix
@@ -27,7 +27,7 @@
         # WARN: Cautious with Ubuntu 26.04LTS
         zoxide eza fd bat ripgrep duf delta repgrep mprocs
 
-        # optional
+        # # optional
         # carapace # needs to mature a lot
         # presenterm
         # graphviz # dependency for pydot

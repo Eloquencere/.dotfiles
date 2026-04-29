@@ -33,7 +33,14 @@ Notes
     - Install wine from the official website
     - Optionally install Comic book reader - mcomix or kommiku & foliate
     - Optionally install ClamAV (Anti-Virus) - youtube.com/watch?v=fCAvpFB5x6g
+    - Winboat config
+        - Install Windows 10 LTSC 2021
+        - Allocate >= 8GB RAM & >= 2 cores & >= 100GB storage
+        - Sharing home folder with linux is questionable
+        - Disable autostart container
+        - Disable animations
 
     - If there's mouse scroll wheel issues
         sudo apt install imwheel
+
 

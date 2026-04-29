@@ -4,9 +4,9 @@ cd "$(dirname "${(%):-%x}")" # change directory to script location
 
 echo "Click on 'Move to App Menu'"
 
-# WinBoat - WARN: Get it to work
+# WinBoat
 version="0.9.0"
-wget -O winboat.AppImage 'https://github.com/TibixDev/winboat/releases/download/v$version/winboat-$version-x86_64.AppImage'
+wget -O winboat.AppImage "https://github.com/TibixDev/winboat/releases/download/v$version/winboat-$version-x86_64.AppImage"
 flatpak run it.mijorus.gearlever winboat.AppImage
 
 # # LM Studio - Dropped for Lemonade
