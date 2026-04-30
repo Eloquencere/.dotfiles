@@ -112,10 +112,10 @@ in
 
             "org/gnome/shell/extensions/dash-to-dock" = {
                 dash-max-icon-size = 50;
-                dock-fixed = false;
-                extend-height = false;
                 dock-position = "BOTTOM";
                 click-action = "minimize-or-previews";
+                dock-fixed = false;
+                extend-height = false;
                 show-mounts-only-mounted = true;
                 multi-monitor = true;
 
@@ -205,7 +205,7 @@ in
                     "software-management"
                     "system-tools"
                     "disk"
-                    "network"
+                    "network-utilities"
                     "language-support"
                 ];
             };
@@ -221,9 +221,9 @@ in
                     "libreoffice-draw.desktop"
                     "libreoffice-startcenter.desktop"
                     "com.jgraph.drawio.desktop.desktop"
-                    "simple-scan.desktop" # Document scanner
-                    "org.kde.okular.desktop"
                     "io.github.Qalculate.desktop"
+                    "net.epson.epsonscan2.desktop"
+                    "simple-scan.desktop" # Document scanner
                     "org.gnome.Papers.desktop"
                     "org.gnome.Loupe.desktop"
                     "org.gnome.eog.desktop" # WARN: Not in 26
@@ -331,13 +331,14 @@ in
                     "org.gnome.FileRoller.desktop"
                 ];
             };
-            "org/gnome/desktop/app-folders/folders/network" = {
+            "org/gnome/desktop/app-folders/folders/network-utilities" = {
                 name = "Network Utilities";
                 translate = false;
                 apps = [
                     "org.remmina.Remmina.desktop"
                     "nm-connection-editor.desktop" # Advanced network configuration
                     "remote-viewer.desktop" # WARN: Not in 26
+                    # "xfreerdp.desktop" # WARN: maybe, maybe not depends if the app is still there
                 ];
             };
             "org/gnome/desktop/app-folders/folders/language-support" = {
@@ -370,13 +371,13 @@ in
                         "virtualisation"
                         "games"
                         "lm_studio.desktop"
+                        # WARN: Add lemonade here instead of lm studio
                         "anki.desktop"
                         "io.github.giantpinkrobots.varia.desktop" # flatpak name
                         # "varia_varia.desktop" # snap name
                         "timeshift-gtk.desktop"
                         "com.surfshark.Surfshark.desktop"
                         "net.nokyan.Resources.desktop"
-                        "net.epson.epsonscan2.desktop"
                     ])
                     (mkPage[
                         "gnome-session-properties.desktop" # WARN: not in 26
@@ -385,7 +386,7 @@ in
                         "software-management"
                         "system-tools"
                         "disk"
-                        "network"
+                        "network-utilities"
                         "language-support"
                         "org.videolan.VLC.desktop"
                         "org.gnome.Calendar.desktop"

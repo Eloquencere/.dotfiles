@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-# WARN: The app grid icon size is too small
+# Consider using lightdm & configuring it to look the way I want
 # TODO: General shell completions under the completions dir aren't working
 # TODO: diff completion is good, delta is not showing hidden files
 
@@ -57,13 +57,16 @@ sudo snap set system refresh.retain=2
 
 OFFICE_SOFTWARE_SNAP=(
     "notion-desktop" # Not available anywhere else
-    "lemonade-desktop"
+    "lemonade-desktop" # Not available anywhere else
 )
 sudo snap install "${OFFICE_SOFTWARE_SNAP[@]}"
 sudo snap install obsidian --classic # In flatpak, write errors on mounted cloud drives
 
 # Games
-# echo "ntsync" | sudo tee /etc/modules-load.d/ntsync.conf # How to know if games are already making use?
+# echo 'ntsync
+# KERNEL=="ntsync", MODE="0660", TAG+="uaccess"' | sudo tee /etc/modules-load.d/ntsync.conf
+# # Only enable if /dev/ntsync is missing
+
 mkdir -p ~/Games/{windows,switch}
 sudo nala install -y steam
 GAMES_FLATPAK=(
@@ -100,7 +103,7 @@ ADDITIONAL_APPS_FLATPAK=(
 )
 flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
 
-# fix title bar color rendering
+# fix title bar color - (draw.io & Heroic)
 flatpak install --assumeyes flathub org.gtk.Gtk3theme.Yaru-dark
 flatpak override --user --env=GTK_THEME=Yaru-dark
 
@@ -120,7 +123,7 @@ sudo reboot now
 # New File.. but adding slashes creates a Folder & there will be a preview of the icon if created, so Folder will have folder icon or Python file or empty file & even support {} like in the shell for muliple file creation
 # Be able to copy a download link & right click on a folder in nautilus to Download link here.. (with wget)
 
-# # Experiment - breaks host to guest clipboard
+# # Experiment - weird artifacts in text editor
 # echo 'APT::Architecture-Variants "amd64v3";' | sudo tee /etc/apt/apt.conf.d/99amd64v3
 # sudo apt update
 # sudo apt full-upgrade -y

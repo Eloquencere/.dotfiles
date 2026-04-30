@@ -9,16 +9,8 @@ version="0.9.0"
 wget -O winboat.AppImage "https://github.com/TibixDev/winboat/releases/download/v$version/winboat-$version-x86_64.AppImage"
 flatpak run it.mijorus.gearlever winboat.AppImage
 
-# # LM Studio - Dropped for Lemonade
-# wget -O lm-studio.AppImage 'https://lmstudio.ai/download/latest/linux/x64?format=AppImage'
-# flatpak run it.mijorus.gearlever ./lm-studio.AppImage
-
 # GUI setup
 gnome-text-editor .gui_instructions.txt &
-
-# To Allow GSConnect to work
-sudo ufw allow 1714:1764/udp
-sudo ufw allow 1714:1764/tcp
 
 nix profile add nixpkgs#home-manager
 home-manager switch
@@ -59,19 +51,27 @@ pip install --upgrade pip
 
 rustup toolchain install stable
 rustup default stable
+rustup component add miri
 unset RUSTC_WRAPPER # to momentarily disable cargo from pointing to uninstalled sccache
-cargo install sccache
+cargo binstall sccache
 
 # cpanm package manager for perl
 echo "Say \"yes\" to the first & \"sudo\" to the next question"
 cpan App::cpanminus
 
+# To Allow GSConnect to work
+sudo ufw allow 1714:1764/udp
+sudo ufw allow 1714:1764/tcp
+
 # Add this to dconf.nix Alternatively, take a call to completely remove the notifier app
 gsettings set com.ubuntu.update-notifier no-show-notifications true
 
-# Load wallpaper once
-gsettings set org.gnome.desktop.background picture-uri-dark "file://$DOTFILES_HOME/wallpapers/angkor_watt_gpt.png"
-gsettings set org.gnome.desktop.background picture-options 'scaled'
+# Load wallpaper
+gsettings set org.gnome.desktop.background picture-options 'zoom'
+gsettings set org.gnome.desktop.background picture-uri-dark 'file:///usr/share/backgrounds/osselo-Ask_a_friend.jpg'
+# Alternate
+# gsettings set org.gnome.desktop.background picture-options 'scaled'
+# gsettings set org.gnome.desktop.background picture-uri-dark "file://$DOTFILES_HOME/wallpapers/angkor_watt_gpt.png"
 
 mkdir -p $HOME/Projects
 echo "file://$HOME/Projects" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
@@ -86,8 +86,6 @@ echo "Move a copy of the collaborators database given by your admin to the zsh h
 mkdir -p ~/Transfers/{croc,GSConnect}
 echo "file://$HOME/Transfers" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
 
-echo -n "Would you like to log into your git account?(y/N) "
-read user_choice
 mkdir $XDG_CONFIG_HOME/git
 touch $XDG_CONFIG_HOME/git/config
 git config --file $XDG_CONFIG_HOME/git/config init.defaultBranch main
@@ -100,6 +98,8 @@ git config --global delta.side-by-side true
 git config --global interactive.diffFilter 'delta --color-only'
 git config --global diff.colorMoved default
 git config --global merge.conflictstyle diff3
+echo -n "Would you like to log into your git account?(y/N) "
+read user_choice
 if [[ $user_choice =~ ^[Yy]$ ]]; then
     git config --global user.name "Eloquencere"
     echo -n "email ID: "
@@ -123,9 +123,9 @@ sudo snap remove --purge "${BLOAT_SNAP[@]}"
 
 # Might need to add more
 BLOAT_APT=(
-    "gnome-snapshot" "gnome-logs" "gnome-calculator"
+    "gnome-logs" "gnome-calculator" # "gnome-snapshot" - wanna keep
     "ptyxis" "deja-dup" "seahorse" "shotwell" "showtime"
-    "rhythmbox" "orca" "info" "yelp"
+    "rhythmbox" "orca" "info" "yelp" # "simple-scan" - debating
     "transmission-common" "transmission-gtk"
     "ed" "vim-common" "nano"
     # cli tools that clash with nixpkgs
@@ -145,6 +145,10 @@ sudo reboot now
 # cd auto-cpufreq && sudo ./auto-cpufreq-installer
 # cd .. && rm -rf auto-cpufreq
 # sudo auto-cpufreq --install
+
+# # LM Studio - Dropped for Lemonade
+# wget -O lm-studio.AppImage 'https://lmstudio.ai/download/latest/linux/x64?format=AppImage'
+# flatpak run it.mijorus.gearlever ./lm-studio.AppImage
 
 # # Signal
 # wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg;

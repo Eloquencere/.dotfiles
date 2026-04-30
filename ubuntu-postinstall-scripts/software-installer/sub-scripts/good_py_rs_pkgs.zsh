@@ -9,29 +9,28 @@ pip install keras scikit-learn torch # AI/ML
 
 # Useful Rust binaries
 CARGO_PKGS=(
-    "cargo-expand" "cargo-info" "irust" "bacon"
+    "cargo-expand"
+    "cargo-info"
+    "irust"
+    # Profiling code
+    "cargo-bloat" "cargo-flamegraph"
+    "cargo-nextest"
+    "cargo-deny"
+    "cargo-generate"
+    # "cargo-dist"
+    # "cargo-inspect" # Educational
 )
-cargo install "${CARGO_PKGS[@]}"
+cargo binstall "${CARGO_PKGS[@]}"
 
-# # Other useful rust binaries
-# cargo-audit
-# cargo-bloat
-# cargo-outdated
-# cargo-deny
-# cargo-flamegraph & hyperfine - profiling code
-# cargo-nextest
-# cargo-dist
-# cargo-generate
-# xh - use with yew
+# cargo clippy -- -W clippy::pedantic -W clippy::nursery -W clippy::unwrap_used clippy::expect_used
 
 # # Useful rust libs
 # itertools
+# serde
 # regex & sqlx | sqlite
+# Rayon & dashmap & crossbeam
 # Color eyre
 # Tracing
 # Clap
-# Rayon & dashmap
-# serde
 # Tokio & axum & tonic & yew & reqwest & egui
-# cargo clippy -- -W clippy::pedantic -W clippy::nursery -W clippy::unwrap_used clippy::expect_used
 

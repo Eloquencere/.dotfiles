@@ -19,11 +19,11 @@
 
         neovim zellij wl-clipboard
         gh lazygit
-        podman # Look into podman TUI
+        # podman # Look into podman TUI
 
         croc fastfetch btop yazi
-        stow git dos2unix
-        ffmpeg fortune
+        stow git dos2unix hyperfine
+        ffmpeg fortune bacon
         # WARN: Cautious with Ubuntu 26.04LTS
         zoxide eza fd bat ripgrep duf delta repgrep mprocs
 
