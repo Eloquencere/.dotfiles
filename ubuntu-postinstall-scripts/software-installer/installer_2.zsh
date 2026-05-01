@@ -73,7 +73,7 @@ gsettings set org.gnome.desktop.background picture-uri-dark 'file:///usr/share/b
 # gsettings set org.gnome.desktop.background picture-options 'scaled'
 # gsettings set org.gnome.desktop.background picture-uri-dark "file://$DOTFILES_HOME/wallpapers/angkor_watt_gpt.png"
 
-mkdir -p $HOME/Projects
+mkdir -p $HOME/Projects # NOTE: Gonna be default at some point
 echo "file://$HOME/Projects" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
 sed -i "\|Music|d" $XDG_CONFIG_HOME/gtk-3.0/bookmarks
 

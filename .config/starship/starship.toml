@@ -1,8 +1,7 @@
 # Made with ♥︎  by Eloquencer and Divakar
 
 format = """
-[╭─](fg:directory)\
-$directory\
+[╭─](fg:directory)$directory\
 $git_branch$git_metrics$git_status\
 $docker_context\
 $fill\

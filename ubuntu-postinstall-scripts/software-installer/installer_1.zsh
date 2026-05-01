@@ -1,6 +1,5 @@
 #!/bin/zsh
 
-# Consider using lightdm & configuring it to look the way I want
 # TODO: General shell completions under the completions dir aren't working
 # TODO: diff completion is good, delta is not showing hidden files
 
@@ -10,6 +9,7 @@ cd "$(dirname "${(%):-%x}")" # change directory to script location
 
 echo "Welcome to the *Ubuntu 26.04 LTS* installer :)"
 
+# WARN: This appears to fail
 source sub-scripts/nerdfonts_download.sh
 sudo nala install -y ttf-mscorefonts-installer fonts-crosextra-carlito fonts-crosextra-caladea # MS fonts for LibreOffice
 
