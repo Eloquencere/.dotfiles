@@ -27,10 +27,10 @@ zstyle ':fzf-tab:*' fzf-min-height 20
 zstyle ':fzf-tab:*' fzf-command fzf
 zstyle ':fzf-tab:complete:*:*' fzf-preview '[[ -d $realpath ]] && eza --all --oneline --group-directories-first --color=always --icons=always -- $realpath || bat --color=always -- $realpath 2>/dev/null'
 
+eval "$(fzf --zsh)"
 autoload -Uz add-zsh-hook
 function __lazy_shell_tools {
     eval "$(starship init zsh)"
-    eval "$(fzf --zsh)"
     eval "$(atuin init zsh --disable-ctrl-r --disable-up-arrow)"
     eval "$(zoxide init --cmd cd zsh)"
     eval "$(mise activate zsh)"

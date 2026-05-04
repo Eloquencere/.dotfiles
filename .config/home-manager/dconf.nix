@@ -18,9 +18,6 @@ in
     dconf = {
         enable = true;
         settings = {
-            # WARN: gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:minimize,maximize,close'
-            # Brave browser buttons seem to be messed up. Check first with get then, apply change
-
             "org/gnome/settings-daemon/plugins/media-keys" = {
                 custom-keybindings = [
                     "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
@@ -227,6 +224,7 @@ in
                     "org.gnome.Papers.desktop"
                     "org.gnome.Loupe.desktop"
                     "org.gnome.eog.desktop" # WARN: Not in 26
+                    "com.github.tenderowl.frog.desktop"
                 ];
             };
             "org/gnome/desktop/app-folders/folders/project-management" = {
@@ -338,7 +336,7 @@ in
                     "org.remmina.Remmina.desktop"
                     "nm-connection-editor.desktop" # Advanced network configuration
                     "remote-viewer.desktop" # WARN: Not in 26
-                    # "xfreerdp.desktop" # WARN: maybe, maybe not depends if the app is still there
+                    "xfreerdp.desktop"
                 ];
             };
             "org/gnome/desktop/app-folders/folders/language-support" = {
@@ -370,8 +368,8 @@ in
                         "kicad"
                         "virtualisation"
                         "games"
-                        "lm_studio.desktop"
-                        # WARN: Add lemonade here instead of lm studio
+                        "lm_studio.desktop" # WARN: Depricated
+                        "lemonade-desktop_lemonade-desktop.desktop"
                         "anki.desktop"
                         "io.github.giantpinkrobots.varia.desktop" # flatpak name
                         # "varia_varia.desktop" # snap name
@@ -398,4 +396,5 @@ in
         };
     };
 }
+
 

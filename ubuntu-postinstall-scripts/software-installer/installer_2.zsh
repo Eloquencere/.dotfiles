@@ -14,7 +14,6 @@ gnome-text-editor .gui_instructions.txt &
 
 nix profile add nixpkgs#home-manager
 home-manager switch
-home-manager news &> /dev/null
 
 # Kanata setup - System level
 nix profile add nixpkgs#kanata
@@ -47,12 +46,13 @@ sudo nala install -y \
 mise trust # config file
 mise install # from config
 
-pip install --upgrade pip
+pip3 install --upgrade pip # WARN: pip not recognized
 
 rustup toolchain install stable
 rustup default stable
-rustup component add miri
+# rustup component add miri # unavailable in stable
 unset RUSTC_WRAPPER # to momentarily disable cargo from pointing to uninstalled sccache
+cargo install cargo-binstall --locked
 cargo binstall sccache
 
 # cpanm package manager for perl
@@ -123,12 +123,12 @@ sudo snap remove --purge "${BLOAT_SNAP[@]}"
 
 # Might need to add more
 BLOAT_APT=(
-    "gnome-logs" "gnome-calculator" # "gnome-snapshot" - wanna keep
+    "gnome-logs" "gnome-calculator" "gnome-snapshot"
     "ptyxis" "deja-dup" "seahorse" "shotwell" "showtime"
     "rhythmbox" "orca" "info" "yelp" # "simple-scan" - debating
     "transmission-common" "transmission-gtk"
     "ed" "vim-common" "nano"
-    # cli tools that clash with nixpkgs
+    # Tools that clash with nixpkgs
     "git" "stow"
 )
 sudo nala purge -y "${BLOAT_APT[@]}"

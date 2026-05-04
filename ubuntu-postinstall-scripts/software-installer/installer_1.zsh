@@ -1,15 +1,16 @@
 #!/bin/zsh
 
+# WARN: with treesitter archived, the config needs to be updated to make use of in-built features
+# WARN: transition to neovim package manager
 # TODO: General shell completions under the completions dir aren't working
 # TODO: diff completion is good, delta is not showing hidden files
 
-# Known Issue - fzf tab not working as intended - github.com/Aloxaf/fzf-tab/issues/549
+# Known Issue - fzf tab not working as intended - https://github.com/Aloxaf/fzf-tab/issues/549
 
 cd "$(dirname "${(%):-%x}")" # change directory to script location
 
 echo "Welcome to the *Ubuntu 26.04 LTS* installer :)"
 
-# WARN: This appears to fail
 source sub-scripts/nerdfonts_download.sh
 sudo nala install -y ttf-mscorefonts-installer fonts-crosextra-carlito fonts-crosextra-caladea # MS fonts for LibreOffice
 
@@ -26,11 +27,10 @@ xdg-settings set default-web-browser brave-browser.desktop
 xdg-mime default brave-browser.desktop x-scheme-handler/mailto
 brave-browser &
 
-# Wezterm
-curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
-echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
+# Ghostty
+sudo add-apt-repository --yes ppa:mkasberg/ghostty-ubuntu
 sudo nala update
-sudo nala install -y wezterm
+sudo nala install -y ghostty
 
 # Virt-Manager
 sudo nala install -y virt-manager qemu-system-x86 libvirt-daemon-system libvirt-clients bridge-utils qemu-utils
@@ -42,7 +42,7 @@ sudo nala update
 sudo nala install -y --install-recommends kicad
 
 # Docker - Specifically for winboat
-sudo nala install docker.io docker-compose util-linux-extra freerdp3-x11 # try for - freerdp3-wayland
+sudo nala install -y docker.io docker-compose util-linux-extra freerdp3-x11 # try for - freerdp3-wayland
 sudo usermod -aG docker $USER
 
 APPLICATIONS=(
@@ -62,11 +62,11 @@ OFFICE_SOFTWARE_SNAP=(
 sudo snap install "${OFFICE_SOFTWARE_SNAP[@]}"
 sudo snap install obsidian --classic # In flatpak, write errors on mounted cloud drives
 
-# Games
 # echo 'ntsync
 # KERNEL=="ntsync", MODE="0660", TAG+="uaccess"' | sudo tee /etc/modules-load.d/ntsync.conf
 # # Only enable if /dev/ntsync is missing
 
+# Games
 mkdir -p ~/Games/{windows,switch}
 sudo nala install -y steam
 GAMES_FLATPAK=(
@@ -117,24 +117,25 @@ cd $HOME/.dotfiles && stow . && cd -
 echo "The system will reboot now to consolidate the installation"
 sudo reboot now
 
+# # Experiment - weird artifacts in text editor
+# echo 'APT::Architecture-Variants "amd64v3";' | sudo tee /etc/apt/apt.conf.d/99amd64v3
+# sudo apt update
+# sudo apt full-upgrade -y
+
+# # Wezterm - Cursor size & shape changes inside
+# curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
+# echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
+# sudo nala update
+# sudo nala install -y wezterm
+
 # # Improve Nautilus
 # sudo nala install python3-nautilus python3-gi
 # mkdir -p ~/.local/share/nautilus-python/extensions
 # New File.. but adding slashes creates a Folder & there will be a preview of the icon if created, so Folder will have folder icon or Python file or empty file & even support {} like in the shell for muliple file creation
 # Be able to copy a download link & right click on a folder in nautilus to Download link here.. (with wget)
 
-# # Experiment - weird artifacts in text editor
-# echo 'APT::Architecture-Variants "amd64v3";' | sudo tee /etc/apt/apt.conf.d/99amd64v3
-# sudo apt update
-# sudo apt full-upgrade -y
-
 # # Xournal++
 # sudo add-apt-repository --yes ppa:apandada1/xournalpp-stable
 # sudo nala update
 # sudo nala install -y xournalpp
-
-# # Ghostty
-# sudo add-apt-repository --yes ppa:mkasberg/ghostty-ubuntu
-# sudo nala update
-# sudo nala install -y ghostty
 

@@ -13,5 +13,5 @@ for font in "${fonts[@]}"; do
     rm -f "${font}.zip"
 done
 find "$fonts_dir" -name '*Windows Compatible*' -delete
-fc-cache -fv
+fc-cache -f
 

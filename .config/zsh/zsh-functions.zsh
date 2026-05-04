@@ -41,5 +41,7 @@ croc() {
     else
         command croc "$@"
 	fi
+    
+    unset CROC_SECRET
 }
 

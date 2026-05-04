@@ -9,10 +9,10 @@
     - GSConnect - No support
     - CHC-E - No support
     - Space Bar - No support
-    - Quick Settings Tweaks - No support
     - Grand Theft Focus - No support
 
     (Optional)
+    - Quick Settings Tweaks - No support
     - Wiggle
     - Forge (Tiling Manager)
     - Battery time

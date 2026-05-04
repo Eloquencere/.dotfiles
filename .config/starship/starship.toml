@@ -25,6 +25,15 @@ right_format = """
 # Color Palette
 palette = "Power10"
 
+[profiles]
+transient = """
+$character\
+"""
+rtransient = """
+$cmd_duration\
+$time\
+"""
+
 [palettes.Power10]
 # colors
 directory = 'cyan'

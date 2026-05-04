@@ -4,8 +4,13 @@ sudo snap refresh
 flatpak update --assumeyes
 flatpak uninstall --unused --delete-data --assumeyes
 
+nix-channel --update
+cd ~/.config/home-manager
 nix profile upgrade --all; nix flake update
+home-manager switch --flake .
+home-manager news &> /dev/null
 nix-collect-garbage --delete-old; nix store gc
+cd -
 
 zinit update --all
 

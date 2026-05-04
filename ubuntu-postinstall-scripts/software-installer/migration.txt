@@ -1,0 +1,15 @@
+- Do a dry run of the install scripts on a VM
+- Check if dconf settings are still relevant
+    - if some features are made default
+    - if some options are depricated
+    - Check for new options by configuing via GUI & monitoring via 'dconf watch /'
+- Backup Brave profiles in another device & check if stuff like bookmarks still work
+- Backup Desktop/, Docs/, Downloads/, Screenshots/, Videos/, Transfers/ & Projects/ folders
+    - Backup personal/ under ZDOTDIR
+- Make note of which custom software is installed & have those files ready
+- autoinstall.yaml
+    - Add user password hash via:     openssl passwd -6
+    - Check serving machine's IP via: hostname -I
+    - Initiate LAN transfer via:      python3 -m http.server <port>
+        - Ensure that your firewall is not blocking <port>
+    - Access from the yaml file as - http://<host-ip>:<port>/autoinstall.yaml
