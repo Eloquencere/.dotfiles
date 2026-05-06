@@ -12,6 +12,7 @@
     home.packages = with pkgs; [
         # Prompt improvement
         starship fzf atuin trash-cli
+        tree-sitter
 
         lldb gdb valgrind strace
         scriptisto tio mise

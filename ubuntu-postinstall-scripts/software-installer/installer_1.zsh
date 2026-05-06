@@ -96,6 +96,7 @@ ADDITIONAL_APPS_FLATPAK=(
     "net.epson.epsonscan2"
     "com.github.tenderowl.frog"
     "it.mijorus.gearlever"
+    "io.github.totoshko88.RustConn"
     # Project Management
     "com.rustdesk.RustDesk"
     # "org.jitsi.jitsi-meet"

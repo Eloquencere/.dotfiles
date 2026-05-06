@@ -1,50 +1,32 @@
 return {
-    "nvim-treesitter/nvim-treesitter",
-    event = "VeryLazy",
-    lazy = true,
-    build = ":TSUpdate",
-    dependencies = {
-        "nvim-treesitter/nvim-treesitter-textobjects",
-        "windwp/nvim-ts-autotag",
-    },
-    config = function()
-        local treesitter = require("nvim-treesitter.configs")
-
-        -- Configure treesitter
-        treesitter.setup({
-            -- Ensure these Language Parsers are Installed
-            ensure_installed = {
-                "javascript", "typescript", "tsx",
-                "html", "css",
-                "markdown", "markdown_inline",
-                "bash", "tcl",
-                "vhdl", "verilog",
-                "lua", "perl", "julia",
-                "c", "cpp", "rust", "go", "python", "zig",
-                "json", "yaml",
-                "gitignore", "dockerfile", "toml", "kdl",
-                "cmake", "make", -- "just",
-                "doxygen",
-            },
-            highlight = { 
-                enable = true,
-                disable = { "verilog", "systemverilog" }
-            },
-            indent = { enable = true },
-            autotag = { enable = true },
-            incremental_selection = {
-                enable = true,
-                keymaps = {
-                    init_selection = "<C-space>",
-                    node_incremental = "<C-space>",
-                    scope_incremental = false,
-                    node_decremental = "<bs>",
+    {
+        "romus204/tree-sitter-manager.nvim",
+        config = function()
+            require("tree-sitter-manager").setup({
+                highlight = false,
+                ensure_installed = {
+                    "javascript", "typescript", "tsx",
+                    "html", "css",
+                    "markdown", "markdown_inline",
+                    "bash", "tcl",
+                    "vhdl", "systemverilog",
+                    "lua", "perl", "julia",
+                    "c", "cpp", "rust", "go", "python", "zig",
+                    "json", "yaml",
+                    "gitignore", "dockerfile", "toml", "kdl",
+                    "cmake", "make", "doxygen",
                 },
-            },
-            textobjects = {
+            })
+        end,
+    },
+    {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        branch = "main",
+        config = function()
+            require("nvim-treesitter-textobjects").setup({
                 select = {
                     enable = true,
-                    lookahead = true, -- Automatically jump to the next textobject
+                    lookahead = true,
                     keymaps = {
                         ["ii"] = "@conditional.inner",
                         ["ai"] = "@conditional.outer",
@@ -97,21 +79,21 @@ return {
                         ["[d"] = "@conditional.outer",
                     }
                 },
-            },
-        })
+            })
 
-        local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
-        local keymap = vim.keymap
-
-        -- Repeat movement with ; and ,
-        keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move)
-        keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_opposite)
-
-        -- Optionally, make builtin f, F, t, T also repeatable with ; and ,
-        keymap.set({ "n", "x", "o" }, "f", ts_repeat_move.builtin_f_expr, { expr = true })
-        keymap.set({ "n", "x", "o" }, "F", ts_repeat_move.builtin_F_expr, { expr = true })
-        keymap.set({ "n", "x", "o" }, "t", ts_repeat_move.builtin_t_expr, { expr = true })
-        keymap.set({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T_expr, { expr = true })
-    end,
+            local ts_repeat_move = require("nvim-treesitter-textobjects.repeatable_move")
+            vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move)
+            vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_opposite)
+            vim.keymap.set({ "n", "x", "o" }, "f", ts_repeat_move.builtin_f_expr, { expr = true })
+            vim.keymap.set({ "n", "x", "o" }, "F", ts_repeat_move.builtin_F_expr, { expr = true })
+            vim.keymap.set({ "n", "x", "o" }, "t", ts_repeat_move.builtin_t_expr, { expr = true })
+            vim.keymap.set({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T_expr, { expr = true })
+        end,
+    },
+    {
+        "windwp/nvim-ts-autotag",
+        event = "VeryLazy",
+        opts = {},
+    },
 }
 

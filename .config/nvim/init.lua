@@ -1,3 +1,5 @@
+require("vim._core.ui2").enable()
+
 require("core.config")
 require("core.keymaps")
 require("core.custom_macros")
