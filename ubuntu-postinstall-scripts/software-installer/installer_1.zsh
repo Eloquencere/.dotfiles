@@ -1,7 +1,5 @@
 #!/bin/zsh
 
-# WARN: with treesitter archived, the config needs to be updated to make use of in-built features
-# WARN: transition to neovim package manager
 # TODO: General shell completions under the completions dir aren't working
 # TODO: diff completion is good, delta is not showing hidden files
 

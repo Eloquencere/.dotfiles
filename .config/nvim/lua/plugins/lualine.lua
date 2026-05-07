@@ -4,7 +4,6 @@ return {
     lazy = true,
     dependencies = { "nvim-tree/nvim-web-devicons" },
     init = function()
-        -- Vim settings
         vim.opt.showmode = false
     end,
     config = function()

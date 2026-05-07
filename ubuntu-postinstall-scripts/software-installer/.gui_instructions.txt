@@ -5,8 +5,9 @@
     - blur my shell
     - Just Perfection
     - Copyous
+    - AATWS
+    - GSConnect
 
-    - GSConnect - No support
     - CHC-E - No support
     - Space Bar - No support
     - Grand Theft Focus - No support
