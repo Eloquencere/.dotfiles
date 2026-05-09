@@ -40,7 +40,7 @@ sudo nala update
 sudo nala install -y --install-recommends kicad
 
 # Docker - Specifically for winboat
-sudo nala install -y docker.io docker-compose util-linux-extra freerdp3-x11 # try for - freerdp3-wayland
+sudo nala install -y docker.io docker-compose util-linux-extra freerdp3-x11 # try for freerdp3-wayland
 sudo usermod -aG docker $USER
 
 APPLICATIONS=(

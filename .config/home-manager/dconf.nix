@@ -173,7 +173,7 @@ in
                 # toggles-layout-order = "[{'hide': <<false>>, 'isSystem': <<true>>, 'constructorName': <<'NMWiredToggle'>>}, {'hide': <<false>>, 'isSystem': <<true>>, 'constructorName': <<'NMWirelessToggle'>>}, {'hide': <<false>>, 'isSystem': <<true>>, 'constructorName': <<'NMModemToggle'>>}, {'hide': <<false>>, 'isSystem': <<true>>, 'constructorName': <<'NMBluetoothToggle'>>}, {'hide': <<false>>, 'isSystem': <<true>>, 'constructorName': <<'NMVpnToggle'>>}, {'hide': <<false>>, 'isSystem': <<true>>, 'constructorName': <<'BluetoothToggle'>>}, {'nonOrdered': <<true>>, 'hide': <<false>>}, {'hide': <<false>>, 'isSystem': <<true>>, 'constructorName': <<'PowerProfilesToggle'>>}, {'hide': <<false>>, 'isSystem': <<true>>, 'constructorName': <<'NightLightToggle'>>}, {'hide': <<false>>, 'isSystem': <<true>>, 'constructorName': <<'DarkModeToggle'>>}, {'hide': <<false>>, 'isSystem': <<true>>, 'constructorName': <<'KeyboardBrightnessToggle'>>}, {'hide': <<false>>, 'isSystem': <<true>>, 'constructorName': <<'RfkillToggle'>>}, {'hide': <<false>>, 'isSystem': <<true>>, 'constructorName': <<'RotationToggle'>>}, {'hide': <<false>>, 'isSystem': <<true>>, 'constructorName': <<'DndQuickToggle'>>}, {'hide': <<false>>, 'isSystem': <<true>>, 'constructorName': <<'UnsafeQuickToggle'>>}]";
             };
 
-            "/org/gnome/shell/extensions/advanced-alt-tab-window-switcher" = {
+            "org/gnome/shell/extensions/advanced-alt-tab-window-switcher" = {
                 switcher-popup-monitor = 3;
             };
 
@@ -341,6 +341,7 @@ in
                     "org.remmina.Remmina.desktop"
                     "nm-connection-editor.desktop" # Advanced network configuration
                     "remote-viewer.desktop" # WARN: Not in 26
+                    "io.github.totoshko88.RustConn.desktop"
                     "xfreerdp.desktop"
                 ];
             };

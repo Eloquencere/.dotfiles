@@ -30,7 +30,6 @@ autoinstall:
             - 2001:4860:4860::8844 # "
             - 9.9.9.9              # Quad9
             - 2620:fe::fe          # "
-    # # Uncomment only if target machine has wifi support
     # wifis:
     #   wifi:
     #     match:
@@ -112,6 +111,8 @@ autoinstall:
     - git
     - stow
 
+  shutdown: poweroff
+
   late-commands:
     - curtin in-target --target=/target -- bash -c "dpkg --add-architecture i386; apt-get update"
 
@@ -119,6 +120,6 @@ autoinstall:
 
     - curtin in-target --target=/target -- usermod -s /usr/bin/zsh eloquencer
 
-    # # if fzf-tab issue still persists, uncomment
+    # # WARN: if fzf-tab issue still persists, uncomment
     # - curtin in-target --target=/target -- apt-get install -y coreutils-from-gnu coreutils-from-uutils- --allow-remove-essential
 

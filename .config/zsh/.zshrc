@@ -2,8 +2,9 @@
 setopt nobeep
 setopt correct
 setopt glob_dots
-# setopt extended_glob
+setopt extended_glob
 setopt interactive_comments
+setopt hist_ignore_all_dups
 
 source "$XDG_DATA_HOME/zinit-pkgmngr/zinit.zsh"
 

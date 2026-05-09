@@ -6,7 +6,8 @@
 - Backup Brave profiles in another device & check if stuff like bookmarks still work
 - Backup Desktop/, Docs/, Downloads/, Screenshots/, Videos/, Transfers/ & Projects/ folders
     - Backup personal/ under ZDOTDIR
-- Make note of which custom software is installed & have those files ready
+    - Backup Game save data like Rocket League replay saves
+- Make note of which custom software are installed & have those files ready
 - autoinstall.yaml
     - Add user password hash via:     openssl passwd -6
     - Check serving machine's IP via: hostname -I
