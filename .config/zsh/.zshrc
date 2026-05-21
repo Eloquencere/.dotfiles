@@ -1,10 +1,9 @@
-# options
 setopt nobeep
 setopt correct
 setopt glob_dots
 setopt extended_glob
-setopt interactive_comments
 setopt hist_ignore_all_dups
+setopt interactive_comments
 
 source "$XDG_DATA_HOME/zinit-pkgmngr/zinit.zsh"
 
@@ -43,11 +42,10 @@ add-zsh-hook precmd __lazy_shell_tools
 if [[ -f "$ZDOTDIR/personal/zshrc.zsh" ]]; then
     source "$ZDOTDIR/personal/zshrc.zsh"
 fi
-# aliases & functions
+
 source "$ZDOTDIR/zsh-aliases.zsh"
 source "$ZDOTDIR/zsh-functions.zsh"
 
-# Zsh-Vi-Mode
 function zvm_config() {
     ZVM_INIT_MODE=sourcing # github.com/jeffreytse/zsh-vi-mode#initialization-mode
 }

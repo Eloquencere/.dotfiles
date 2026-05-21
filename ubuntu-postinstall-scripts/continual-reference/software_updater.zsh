@@ -1,4 +1,4 @@
-sudo sh -c "nala full-upgrade -y"
+sudo nala full-upgrade -y
 sudo snap refresh
 
 flatpak update --assumeyes
@@ -20,6 +20,11 @@ echo "Update your nvim plugins & researt your machine"
 # sudo $(which nix-env) --install --file '<nixpkgs>' --attr nix -I nixpkgs=channel:nixpkgs-unstable
 # sudo systemctl daemon-reload
 # sudo systemctl restart nix-daemon
+
+# # Firmware updater
+# sudo fwupdmgr refresh
+# sudo fwupdmgr get-devices
+# sudo fwupdmgr get-updates
 
 # sudo auto-cpufreq --update
 

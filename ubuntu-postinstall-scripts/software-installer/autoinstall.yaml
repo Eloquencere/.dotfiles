@@ -47,6 +47,8 @@ autoinstall:
     #         - 2001:4860:4860::8844 # "
     #         - 9.9.9.9              # Quad9
     #         - 2620:fe::fe          # "
+
+  # For BIOS
   storage:
     config:
       - id: disk0
@@ -82,8 +84,6 @@ autoinstall:
         path: /
         device: root-format
         options: "noatime,errors=remount-ro"
-    
-    # For UEFI
 
   locale: en_US.UTF-8
   keyboard:
@@ -119,7 +119,4 @@ autoinstall:
     - curtin in-target --target=/target -- flatpak remote-add --system --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
     - curtin in-target --target=/target -- usermod -s /usr/bin/zsh eloquencer
-
-    # # WARN: if fzf-tab issue still persists, uncomment
-    # - curtin in-target --target=/target -- apt-get install -y coreutils-from-gnu coreutils-from-uutils- --allow-remove-essential
 

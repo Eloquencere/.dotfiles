@@ -9,12 +9,26 @@ cd "$(dirname "${(%):-%x}")" # change directory to script location
 
 echo "Welcome to the *Ubuntu 26.04 LTS* installer :)"
 
+# Setup
+# # WARN: if fzf-tab issue still persists, uncomment
+# sudo apt-get install -y coreutils-from-gnu coreutils-from-uutils- --allow-remove-essential
+
 source sub-scripts/nerdfonts_download.sh
 sudo nala install -y ttf-mscorefonts-installer fonts-crosextra-carlito fonts-crosextra-caladea # MS fonts for LibreOffice
 
 # Performance improvement
 sudo nala install -y preload earlyoom
 sudo systemctl enable preload earlyoom
+
+# Anki
+version='25.09'
+sudo nala install -y libxcb-xinerama0 libxcb-cursor0 libnss3 libxcb-icccm4 libxcb-keysyms1
+wget https://github.com/ankitects/anki/releases/download/$version/anki-launcher-$version-linux.tar.zst
+tar xaf anki-launcher-$version-linux.tar.zst
+cd anki-launcher-$version-linux
+sudo ./install.sh
+anki
+cd ..; rm -rf anki-launcher-$version-linux*
 
 # Brave browser
 sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
@@ -50,7 +64,7 @@ APPLICATIONS=(
 )
 sudo nala install -y "${APPLICATIONS[@]}"
 
-# Only keep 2 versions of a snap pkg (curr & prev)
+# Only keep curr & prev versions of a snap pkg 
 sudo snap set system refresh.retain=2
 
 OFFICE_SOFTWARE_SNAP=(
@@ -59,10 +73,6 @@ OFFICE_SOFTWARE_SNAP=(
 )
 sudo snap install "${OFFICE_SOFTWARE_SNAP[@]}"
 sudo snap install obsidian --classic # In flatpak, write errors on mounted cloud drives
-
-# echo 'ntsync
-# KERNEL=="ntsync", MODE="0660", TAG+="uaccess"' | sudo tee /etc/modules-load.d/ntsync.conf
-# # Only enable if /dev/ntsync is missing
 
 # Games
 mkdir -p ~/Games/{windows,switch}
@@ -116,16 +126,14 @@ cd $HOME/.dotfiles && stow . && cd -
 echo "The system will reboot now to consolidate the installation"
 sudo reboot now
 
-# # Experiment - weird artifacts in text editor
+# # Experiment - weird artifacts in the text editor
 # echo 'APT::Architecture-Variants "amd64v3";' | sudo tee /etc/apt/apt.conf.d/99amd64v3
 # sudo apt update
 # sudo apt full-upgrade -y
 
-# # Wezterm - Cursor size & shape changes inside
-# curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
-# echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
-# sudo nala update
-# sudo nala install -y wezterm
+# # Only enable if /dev/ntsync is missing
+# echo 'ntsync
+# KERNEL=="ntsync", MODE="0660", TAG+="uaccess"' | sudo tee /etc/modules-load.d/ntsync.conf
 
 # # Improve Nautilus
 # sudo nala install python3-nautilus python3-gi
@@ -137,4 +145,10 @@ sudo reboot now
 # sudo add-apt-repository --yes ppa:apandada1/xournalpp-stable
 # sudo nala update
 # sudo nala install -y xournalpp
+
+# # Wezterm - Cursor size & shape changes inside
+# curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
+# echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
+# sudo nala update
+# sudo nala install -y wezterm
 

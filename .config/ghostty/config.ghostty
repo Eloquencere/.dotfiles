@@ -6,6 +6,8 @@ auto-update = off
 gtk-titlebar = false
 
 # --- Window ---
+maximize = true
+fullscreen = true
 window-decoration = false
 window-padding-x = 0
 window-padding-y = 0

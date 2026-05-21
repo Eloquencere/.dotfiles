@@ -4,8 +4,8 @@ experimental = true
 idiomatic_version_file_enable_tools = ["python"]
 
 [tools]
-zig = "latest"
 rust = "latest"
+# zig = "latest"
 # clang = "latest"
 # conan = "latest"
 
