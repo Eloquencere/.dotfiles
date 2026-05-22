@@ -6,7 +6,7 @@ echo "Click on 'Move to App Menu'"
 
 # WinBoat
 version="0.9.0"
-wget -O winboat.AppImage "https://github.com/TibixDev/winboat/releases/download/v$version/winboat-$version-x86_64.AppImage"
+wget -O winboat.AppImage "https://github.com/TibixDev/winboat/releases/latest/download/winboat-$version-x86_64.AppImage"
 flatpak run it.mijorus.gearlever winboat.AppImage
 
 # GUI setup
@@ -50,9 +50,7 @@ pip3 install --upgrade pip # WARN: pip not recognized
 
 rustup toolchain install stable
 rustup default stable
-# rustup component add miri # unavailable in stable
-unset RUSTC_WRAPPER # to momentarily disable cargo from pointing to uninstalled sccache
-cargo install cargo-binstall --locked
+unset RUSTC_WRAPPER # to momentarily stop cargo from pointing to sccache that is yet to be installed
 cargo binstall sccache
 
 # cpanm package manager for perl
@@ -73,8 +71,10 @@ gsettings set org.gnome.desktop.background picture-uri-dark 'file:///usr/share/b
 # gsettings set org.gnome.desktop.background picture-options 'scaled'
 # gsettings set org.gnome.desktop.background picture-uri-dark "file://$DOTFILES_HOME/wallpapers/angkor_watt_gpt.png"
 
-mkdir -p $HOME/Projects # NOTE: Gonna be default at some point
+# NOTE: Gonna be default in the future
+mkdir -p $HOME/Projects
 echo "file://$HOME/Projects" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
+
 sed -i "\|Music|d" $XDG_CONFIG_HOME/gtk-3.0/bookmarks
 
 mkdir -p $ZDOTDIR/personal
@@ -150,20 +150,16 @@ sudo reboot now
 # wget -O lm-studio.AppImage 'https://lmstudio.ai/download/latest/linux/x64?format=AppImage'
 # flatpak run it.mijorus.gearlever ./lm-studio.AppImage
 
-# # Signal
-# wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg;
-# cat signal-desktop-keyring.gpg | sudo tee /usr/share/keyrings/signal-desktop-keyring.gpg > /dev/null
-# echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main' |\
-#   sudo tee /etc/apt/sources.list.d/signal-xenial.list
-# sudo apt update && sudo apt install signal-desktop
-# rm -rf signal-desktop-keyring.gpg
+# # Improve Nautilus
+# sudo nala install python3-nautilus python3-gi
+# mkdir -p ~/.local/share/nautilus-python/extensions
+# New File.. but adding slashes creates a Folder & there will be a preview of the icon if created, so Folder will have folder icon or Python file or empty file & even support {} like in the shell for muliple file creation
+# Be able to copy a download link & right click on a folder in nautilus to Download link here.. (with wget)
 
-# # VSCode
-# wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg && sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
-# sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
-# sudo apt install -y apt-transport-https && sudo apt update
-# sudo apt install code
-# rm -f packages.microsoft.gpg
+# # Xournal++
+# sudo add-apt-repository --yes ppa:apandada1/xournalpp-stable
+# sudo nala update
+# sudo nala install -y xournalpp
 
 # # Doom Emacs
 # sudo nala install -y emacs-gtk

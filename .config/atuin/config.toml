@@ -6,6 +6,7 @@ update_check = false
 search_mode = "fuzzy"
 filter_mode = "global"
 search_mode_shell_up_key_binding = "prefix"
+ctrl_n_shortcuts = true
 # inline_height = 0 # Full screen
 show_preview = false
 show_help = false

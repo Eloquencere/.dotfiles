@@ -3,14 +3,11 @@
 # TODO: General shell completions under the completions dir aren't working
 # TODO: diff completion is good, delta is not showing hidden files
 
-# Known Issue - fzf tab not working as intended - https://github.com/Aloxaf/fzf-tab/issues/549
-
 cd "$(dirname "${(%):-%x}")" # change directory to script location
 
 echo "Welcome to the *Ubuntu 26.04 LTS* installer :)"
 
-# Setup
-# # WARN: if fzf-tab issue still persists, uncomment
+# # WARN: Known Issue - fzf tab not working as intended - https://github.com/Aloxaf/fzf-tab/issues/549
 # sudo apt-get install -y coreutils-from-gnu coreutils-from-uutils- --allow-remove-essential
 
 source sub-scripts/nerdfonts_download.sh
@@ -27,7 +24,7 @@ wget https://github.com/ankitects/anki/releases/download/$version/anki-launcher-
 tar xaf anki-launcher-$version-linux.tar.zst
 cd anki-launcher-$version-linux
 sudo ./install.sh
-anki
+anki # WARN: Not sure if this thing will close the terminal after completing
 cd ..; rm -rf anki-launcher-$version-linux*
 
 # Brave browser
@@ -107,6 +104,7 @@ ADDITIONAL_APPS_FLATPAK=(
     "io.github.totoshko88.RustConn"
     # Project Management
     "com.rustdesk.RustDesk"
+    # "io.github.alainm23.planify"
     # "org.jitsi.jitsi-meet"
     # "org.ghidra_sre.Ghidra"
 )
@@ -135,20 +133,24 @@ sudo reboot now
 # echo 'ntsync
 # KERNEL=="ntsync", MODE="0660", TAG+="uaccess"' | sudo tee /etc/modules-load.d/ntsync.conf
 
-# # Improve Nautilus
-# sudo nala install python3-nautilus python3-gi
-# mkdir -p ~/.local/share/nautilus-python/extensions
-# New File.. but adding slashes creates a Folder & there will be a preview of the icon if created, so Folder will have folder icon or Python file or empty file & even support {} like in the shell for muliple file creation
-# Be able to copy a download link & right click on a folder in nautilus to Download link here.. (with wget)
-
-# # Xournal++
-# sudo add-apt-repository --yes ppa:apandada1/xournalpp-stable
-# sudo nala update
-# sudo nala install -y xournalpp
-
 # # Wezterm - Cursor size & shape changes inside
 # curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
 # echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
 # sudo nala update
 # sudo nala install -y wezterm
+
+# # VSCode
+# wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg && sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
+# sudo sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
+# sudo apt install -y apt-transport-https && sudo apt update
+# sudo apt install code
+# rm -f packages.microsoft.gpg
+
+# # Signal
+# wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg;
+# cat signal-desktop-keyring.gpg | sudo tee /usr/share/keyrings/signal-desktop-keyring.gpg > /dev/null
+# echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main' |\
+#   sudo tee /etc/apt/sources.list.d/signal-xenial.list
+# sudo apt update && sudo apt install signal-desktop
+# rm -rf signal-desktop-keyring.gpg
 

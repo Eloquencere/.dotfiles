@@ -7,7 +7,7 @@ pip install Cython numba taichi
 pip install parse pendulum pydantic ruff mypy pyglet
 pip install keras scikit-learn torch # AI/ML
 
-# Useful Rust binaries
+# Useful Rust binaries - consider installing these via nix, depending on version support
 CARGO_PKGS=(
     "cargo-expand"
     "cargo-info"
@@ -21,6 +21,7 @@ CARGO_PKGS=(
     # "cargo-inspect" # Educational
 )
 cargo binstall "${CARGO_PKGS[@]}"
+# rustup component add miri # unavailable in stable
 
 # cargo clippy -- -W clippy::pedantic -W clippy::nursery -W clippy::unwrap_used clippy::expect_used
 

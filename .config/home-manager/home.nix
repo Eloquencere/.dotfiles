@@ -28,6 +28,9 @@
         # WARN: Cautious with Ubuntu 26.04LTS
         zoxide eza fd bat ripgrep duf delta repgrep mprocs
 
+        # Rust crates
+        cargo-binstall
+
         # # optional
         # carapace # needs to mature a lot
         # presenterm
