@@ -1,4 +1,4 @@
-pip install icecream # for debugging
+pip install icecream loguru # for debugging
 pip install colorama pyfiglet # presentation
 pip install dash plotly seaborn mysql-connector-python # data representation and calculation
 pip install fireducks xarray openpyxl
