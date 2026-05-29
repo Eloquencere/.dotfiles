@@ -96,7 +96,7 @@ autoinstall:
   updates: all
 
   packages:
-    - build-essential
+    - build-essential # WARN: missing g++15 sometimes
     - pkg-config
     - libfuse2t64    # Needed for appimage compatibility
     - openjdk-25-jre # needed to run .jar files

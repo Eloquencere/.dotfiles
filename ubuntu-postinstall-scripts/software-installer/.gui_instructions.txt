@@ -7,10 +7,9 @@
     - Copyous
     - AATWS
     - GSConnect
-
-    - CHC-E - No support
-    - Space Bar - No support
-    - Grand Theft Focus - No support
+    - CHC-E
+    - Space Bar
+    - Grand Theft Focus
 
     (Optional)
     - Quick Settings Tweaks - No support

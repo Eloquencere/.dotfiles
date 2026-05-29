@@ -5,9 +5,9 @@ idiomatic_version_file_enable_tools = ["python"]
 
 [tools]
 rust = "latest"
-# zig = "latest"
 # clang = "latest"
 # conan = "latest"
+# zig = "latest"
 
 just = "latest" # better alternative to make(file)
 mask = "latest" # CLI task runner from markdown file

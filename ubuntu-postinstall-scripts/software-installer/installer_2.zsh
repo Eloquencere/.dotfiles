@@ -12,11 +12,11 @@ flatpak run it.mijorus.gearlever winboat.AppImage
 # GUI setup
 gnome-text-editor .gui_instructions.txt &
 
-nix profile add nixpkgs#home-manager
+nix profile add 'nixpkgs#home-manager'
 home-manager switch
 
 # Kanata setup - System level
-nix profile add nixpkgs#kanata
+nix profile add 'nixpkgs#kanata'
 sudo groupadd uinput
 sudo usermod -aG input,uinput $USER
 echo '# Kanata
@@ -46,15 +46,13 @@ sudo nala install -y \
 mise trust # config file
 mise install # from config
 
-pip3 install --upgrade pip # WARN: pip not recognized
-
 rustup toolchain install stable
 rustup default stable
 unset RUSTC_WRAPPER # to momentarily stop cargo from pointing to sccache that is yet to be installed
 cargo binstall sccache
 
 # cpanm package manager for perl
-echo "Say \"yes\" to the first & \"sudo\" to the next question"
+echo "Say \"yes\" to the first & \"sudo\" to the next question" # NOTE: add colors
 cpan App::cpanminus
 
 # To Allow GSConnect to work
@@ -86,7 +84,7 @@ echo "Move a copy of the collaborators database given by your admin to the zsh h
 mkdir -p ~/Transfers/{croc,GSConnect}
 echo "file://$HOME/Transfers" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
 
-mkdir $XDG_CONFIG_HOME/git
+mkdir -p $XDG_CONFIG_HOME/git
 touch $XDG_CONFIG_HOME/git/config
 git config --file $XDG_CONFIG_HOME/git/config init.defaultBranch main
 git config --global core.whitespace error
@@ -113,8 +111,9 @@ fi
 # Clean up
 rm -rf ~/.cache/* # generally safe, but be mindful
 rm -rf ~/{.bash*,.profile,.zshrc,.zcompdump}
-rm -rf ~/{Templates,Public,go,Music}
+rm -rf ~/{Public,go,Music}
 sudo rm -rf /tmp/*
+# NOTE: Don't delete Templates folder
 
 BLOAT_SNAP=(
     "thunderbird" "firefox"

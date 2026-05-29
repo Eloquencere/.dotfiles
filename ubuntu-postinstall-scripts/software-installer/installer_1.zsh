@@ -24,7 +24,7 @@ wget https://github.com/ankitects/anki/releases/download/$version/anki-launcher-
 tar xaf anki-launcher-$version-linux.tar.zst
 cd anki-launcher-$version-linux
 sudo ./install.sh
-anki # WARN: Not sure if this thing will close the terminal after completing
+anki
 cd ..; rm -rf anki-launcher-$version-linux*
 
 # Brave browser
@@ -51,7 +51,7 @@ sudo nala update
 sudo nala install -y --install-recommends kicad
 
 # Docker - Specifically for winboat
-sudo nala install -y docker.io docker-compose util-linux-extra freerdp3-x11 # try for freerdp3-wayland
+sudo nala install -y docker.io docker-compose util-linux-extra freerdp3-x11 # try for freerdp3-wayland instead
 sudo usermod -aG docker $USER
 
 APPLICATIONS=(
@@ -72,7 +72,7 @@ sudo snap install "${OFFICE_SOFTWARE_SNAP[@]}"
 sudo snap install obsidian --classic # In flatpak, write errors on mounted cloud drives
 
 # Games
-mkdir -p ~/Games/{windows,switch}
+mkdir -p ~/Games/{switch}
 sudo nala install -y steam
 GAMES_FLATPAK=(
     "com.discordapp.Discord"
@@ -123,6 +123,9 @@ cd $HOME/.dotfiles && stow . && cd -
 
 echo "The system will reboot now to consolidate the installation"
 sudo reboot now
+
+# OnlyOffice - If you want some niche MS support
+# sudo snap install onlyoffice-desktopeditors
 
 # # Experiment - weird artifacts in the text editor
 # echo 'APT::Architecture-Variants "amd64v3";' | sudo tee /etc/apt/apt.conf.d/99amd64v3

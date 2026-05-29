@@ -150,7 +150,7 @@ in
                 startup-status = 1;
                 search = false;
                 workspace = false; # not sure
-                workspaces-in-app-grid = false;
+                workspaces-in-app-grid = false; # WARN: Set to true in 26.04 else it looks weird
             };
 
             "org/gnome/shell/extensions/blur-my-shell/dash-to-dock" = {
