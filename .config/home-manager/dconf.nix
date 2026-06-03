@@ -230,6 +230,7 @@ in
                     "org.gnome.Loupe.desktop"
                     "org.gnome.eog.desktop" # WARN: Not in 26
                     "com.github.tenderowl.frog.desktop"
+                    "org.kde.drawy.desktop"
                 ];
             };
             "org/gnome/desktop/app-folders/folders/project-management" = {

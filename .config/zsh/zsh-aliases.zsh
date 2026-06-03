@@ -20,6 +20,3 @@ alias df=duf
 alias neofetch=fastfetch
 alias cheat="cheat --colorize"
 
-# Drawio
-alias drawio='flatpak run com.jgraph.drawio.desktop'
-

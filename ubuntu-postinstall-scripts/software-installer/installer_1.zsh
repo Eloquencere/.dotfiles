@@ -7,9 +7,6 @@ cd "$(dirname "${(%):-%x}")" # change directory to script location
 
 echo "Welcome to the *Ubuntu 26.04 LTS* installer :)"
 
-# # WARN: Known Issue - fzf tab not working as intended - https://github.com/Aloxaf/fzf-tab/issues/549
-# sudo apt-get install -y coreutils-from-gnu coreutils-from-uutils- --allow-remove-essential
-
 source sub-scripts/nerdfonts_download.sh
 sudo nala install -y ttf-mscorefonts-installer fonts-crosextra-carlito fonts-crosextra-caladea # MS fonts for LibreOffice
 
@@ -94,6 +91,7 @@ ADDITIONAL_APPS_FLATPAK=(
     # Office
     "io.github.Qalculate"
     "com.jgraph.drawio.desktop"
+    "org.kde.drawy"
     # System
     "org.videolan.VLC"
     "com.surfshark.Surfshark"

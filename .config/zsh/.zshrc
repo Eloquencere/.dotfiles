@@ -13,7 +13,6 @@ zinit wait lucid compile for \
     Aloxaf/fzf-tab \
     Eloquencere/zsh-goto-cli \
     zdharma/fast-syntax-highlighting
-zinit snippet OMZ::plugins/sudo/sudo.plugin.zsh
 
 fpath+=$ZDOTDIR/completion
 zinit wait lucid compile for \
@@ -27,12 +26,12 @@ zstyle ':fzf-tab:*' fzf-min-height 20
 zstyle ':fzf-tab:*' fzf-command fzf
 zstyle ':fzf-tab:complete:*:*' fzf-preview '[[ -d $realpath ]] && eza --all --oneline --group-directories-first --color=always --icons=always -- $realpath || bat --color=always -- $realpath 2>/dev/null'
 
-eval "$(fzf --zsh)"
 autoload -Uz add-zsh-hook
 function __lazy_shell_tools {
     eval "$(starship init zsh)" &> /dev/null
     eval "$(atuin init zsh --disable-ctrl-r --disable-up-arrow)"
     eval "$(zoxide init --cmd cd zsh)"
+    eval "$(fzf --zsh)"
     eval "$(mise activate zsh)"
     add-zsh-hook -d precmd __lazy_shell_tools
 }
@@ -46,11 +45,17 @@ fi
 source "$ZDOTDIR/zsh-aliases.zsh"
 source "$ZDOTDIR/zsh-functions.zsh"
 
+function clear-keep-buffer() {
+    zle clear-screen
+}
+zle -N clear-keep-buffer
+
 function zvm_config() {
     ZVM_INIT_MODE=sourcing # github.com/jeffreytse/zsh-vi-mode#initialization-mode
 }
 function zvm_after_init() {
 	zvm_bindkey viins '^r' atuin-search
 	zvm_bindkey viins '^p' atuin-up-search
+    zvm_bindkey viins '^b' clear-keep-buffer
 }
 

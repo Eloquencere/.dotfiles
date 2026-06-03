@@ -13,19 +13,18 @@ return {
                 -- language servers
                 "clangd", -- C, C++
                 "neocmakelsp",
-                "zls", -- Zig
+                -- "zls", -- Zig
                 "rust-analyzer",
                 "gopls", -- Go
                 "bash-language-server", -- Bash, Zsh
                 "perlnavigator",
                 "lua-language-server",
-                "jedi-language-server", -- Python
+                "pyrefly", -- Python
                 "julia-lsp",
                 "html-lsp",
                 "css-lsp",
                 "marksman", -- Markdown
                 "biome", -- Javascript, Typescript, JSON
-                "docker-language-server", -- Docker, Podman
                 "yaml-language-server",
                 "taplo", -- TOML
                 "mbake", -- makefile
@@ -56,7 +55,37 @@ return {
                     method = "builtin",
                 },
             })
+            -- vim.lsp.config('mbake')
+
+            vim.filetype.add({
+                extension = {
+                    gotmpl = "gotmpl",
+                },
+            })
+
+            vim.lsp.enable({
+                "clangd", -- C, C++
+                "neocmake",
+                -- "zls", -- Zig
+                "rust_analyzer",
+                "gopls", -- Go
+                "bashls", -- Bash, Zsh
+                "perlnavigator",
+                "lua_ls",
+                "pyrefly", -- Python
+                "julials",
+                "html",
+                "cssls",
+                "marksman", -- Markdown
+                "biome", -- Javascript, Typescript, JSON
+                "yamlls",
+                "taplo", -- TOML
+                "mbake", -- makefile
+                "jdtls",
+                "tinymist", -- Typst
+            })
         end,
+
         keys = {
             {
                 mode = "n",
@@ -103,3 +132,4 @@ return {
         },
     },
 }
+
