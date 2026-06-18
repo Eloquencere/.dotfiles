@@ -21,9 +21,6 @@
     - Open bar
     - Removable Drive Menu
 
-Anki Extensions
-    - Scale Images - ankiweb.net/shared/info/1312865748
-
 Notes
     - Sync the web-browser on your default machine with the current machine
     - Setup your cloud storage service provider
@@ -42,4 +39,11 @@ Notes
 
     - If there's mouse scroll wheel issues
         sudo apt install imwheel
+
+Anki Extensions
+    - Scale Images - ankiweb.net/shared/info/1312865748
+
+Cine Video Player
+    - harware accleration - enable
+    - progress bar thumbnail - enable
 

@@ -1,0 +1,21 @@
+services:
+  stirling-pdf:
+    image: docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
+    container_name: stirling-pdf
+    ports:
+      - "127.0.0.1:8787:8080"
+    environment: 
+      - SECURITY_ENABLELOGIN=false
+      # - DOCKER_ENABLE_SECURITY=false
+      ## uncomment if some feature is missing
+      # - DISABLE_ADDITIONAL_FEATURES=false
+      ## Optional: Uncomment the lines below to increase file upload limits to 100MB
+      # - SPRING_SERVLET_MULTIPART_MAX_FILE_SIZE=100MB
+      # - SPRING_SERVLET_MULTIPART_MAX_REQUEST_SIZE=100MB
+    volumes:
+      - ${XDG_DATA_HOME}/stirling-pdf/trainingData:/trainingData
+      - ${XDG_DATA_HOME}/stirling-pdf/configs:/configs
+      - ${XDG_DATA_HOME}/stirling-pdf/logs:/logs
+      - ${XDG_DATA_HOME}/stirling-pdf/customFiles:/customFiles
+    restart: unless-stopped
+

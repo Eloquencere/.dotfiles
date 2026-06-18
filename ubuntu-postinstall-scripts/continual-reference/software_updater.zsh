@@ -13,6 +13,7 @@ nix-collect-garbage --delete-old; nix store gc
 cd -
 
 zinit update --all
+mise upgrade
 
 echo "Update your nvim plugins & researt your machine"
 

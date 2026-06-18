@@ -1,7 +1,12 @@
 #!/bin/zsh
 
+# TODO: Enable variable refresh rate
 # TODO: General shell completions under the completions dir aren't working
 # TODO: diff completion is good, delta is not showing hidden files
+
+# WARN: even this doesn't work
+# Add this to dconf.nix Alternatively, take a call to completely remove the notifier app
+# gsettings set com.ubuntu.update-notifier no-show-notifications true
 
 cd "$(dirname "${(%):-%x}")" # change directory to script location
 
@@ -15,23 +20,29 @@ sudo nala install -y preload earlyoom
 sudo systemctl enable preload earlyoom
 
 # Anki
-version='25.09'
+version='26.05'
 sudo nala install -y libxcb-xinerama0 libxcb-cursor0 libnss3 libxcb-icccm4 libxcb-keysyms1
 wget https://github.com/ankitects/anki/releases/download/$version/anki-launcher-$version-linux.tar.zst
 tar xaf anki-launcher-$version-linux.tar.zst
-cd anki-launcher-$version-linux
+cd anki-launcher-$version-linux/
 sudo ./install.sh
 anki
 cd ..; rm -rf anki-launcher-$version-linux*
 
-# Brave browser
-sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
-echo "deb [arch=amd64 signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+# Ulauncher
+sudo add-apt-repository -y ppa:agornostal/ulauncher
 sudo nala update
-sudo nala install -y brave-browser
-xdg-settings set default-web-browser brave-browser.desktop
-xdg-mime default brave-browser.desktop x-scheme-handler/mailto
-brave-browser &
+sudo nala install -y ulauncher
+
+# Brave Origin browser
+name='brave-origin'
+sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+sudo curl -fsSLo /etc/apt/sources.list.d/brave-browser-release.sources https://brave-browser-apt-release.s3.brave.com/brave-browser.sources
+sudo nala update
+sudo nala install -y $name
+xdg-settings set default-web-browser $name.desktop
+xdg-mime default $name.desktop x-scheme-handler/mailto
+$name &
 
 # Ghostty
 sudo add-apt-repository --yes ppa:mkasberg/ghostty-ubuntu
@@ -42,19 +53,43 @@ sudo nala install -y ghostty
 sudo nala install -y virt-manager qemu-system-x86 libvirt-daemon-system libvirt-clients bridge-utils qemu-utils
 # Try for qemu-system-x86-hwe
 
+# VSCode
+curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | sudo gpg --dearmor --yes -o /usr/share/keyrings/microsoft.gpg
+printf '%s\n' \
+  'Types: deb' \
+  'URIs: https://packages.microsoft.com/repos/code' \
+  'Suites: stable' \
+  'Components: main' \
+  'Architectures: amd64' \
+  'Signed-By: /usr/share/keyrings/microsoft.gpg' \
+  | sudo tee /etc/apt/sources.list.d/vscode.sources > /dev/null
+sudo nala update
+sudo nala install code
+
+# Antigravity
+curl -fsSL https://us-central1-apt.pkg.dev/doc/repo-signing-key.gpg | \
+  sudo gpg --dearmor --yes -o /etc/apt/keyrings/antigravity-repo-key.gpg
+echo "deb [signed-by=/etc/apt/keyrings/antigravity-repo-key.gpg] https://us-central1-apt.pkg.dev/projects/antigravity-auto-updater-dev/ antigravity-debian main" | \
+  sudo tee /etc/apt/sources.list.d/antigravity.list > /dev/null
+sudo nala update
+sudo nala install antigravity
+
 # KiCAD
-sudo add-apt-repository --yes ppa:kicad/kicad-10.0-releases
+version='10.0'
+sudo add-apt-repository --yes ppa:kicad/kicad-$version-releases
 sudo nala update
 sudo nala install -y --install-recommends kicad
 
-# Docker - Specifically for winboat
-sudo nala install -y docker.io docker-compose util-linux-extra freerdp3-x11 # try for freerdp3-wayland instead
+# Docker
+sudo nala install -y docker.io docker-compose util-linux-extra freerdp3-x11 # try for freerdp3-wayland
 sudo usermod -aG docker $USER
 
 APPLICATIONS=(
     "gnome-shell-extension-manager"
     "bleachbit" "timeshift"
     "gufw"
+    # Data Recovery
+    "testdisk"
 )
 sudo nala install -y "${APPLICATIONS[@]}"
 
@@ -62,11 +97,10 @@ sudo nala install -y "${APPLICATIONS[@]}"
 sudo snap set system refresh.retain=2
 
 OFFICE_SOFTWARE_SNAP=(
-    "notion-desktop" # Not available anywhere else
-    "lemonade-desktop" # Not available anywhere else
+    "notion-desktop"   # Not available elsewhere
+    # "scrcpy"           # Not available elsewhere # WARN: Not working
 )
 sudo snap install "${OFFICE_SOFTWARE_SNAP[@]}"
-sudo snap install obsidian --classic # In flatpak, write errors on mounted cloud drives
 
 # Games
 mkdir -p ~/Games/{switch}
@@ -85,6 +119,8 @@ GAMES_FLATPAK=(
     # "org.gnome.Mines"
 )
 flatpak install --assumeyes flathub "${GAMES_FLATPAK[@]}"
+echo 'ntsync
+KERNEL=="ntsync", MODE="0660", TAG+="uaccess"' | sudo tee /etc/modules-load.d/ntsync.conf
 
 # Flatpaks
 ADDITIONAL_APPS_FLATPAK=(
@@ -92,8 +128,9 @@ ADDITIONAL_APPS_FLATPAK=(
     "io.github.Qalculate"
     "com.jgraph.drawio.desktop"
     "org.kde.drawy"
+    "md.obsidian.Obsidian"
     # System
-    "org.videolan.VLC"
+    "io.github.diegopvlk.Cine"
     "com.surfshark.Surfshark"
     "io.github.giantpinkrobots.varia"
     "net.epson.epsonscan2"
@@ -102,7 +139,6 @@ ADDITIONAL_APPS_FLATPAK=(
     "io.github.totoshko88.RustConn"
     # Project Management
     "com.rustdesk.RustDesk"
-    # "io.github.alainm23.planify"
     # "org.jitsi.jitsi-meet"
     # "org.ghidra_sre.Ghidra"
 )
@@ -117,7 +153,7 @@ flatpak override --user --env=GTK_THEME=Yaru-dark
 # Installing nix pkg manager
 sh <(curl --proto "=https" --tlsv1.2 -L https://nixos.org/nix/install) --daemon --yes
 
-cd $HOME/.dotfiles && stow . && cd -
+cd $HOME/.dotfiles/ && stow . && cd -
 
 echo "The system will reboot now to consolidate the installation"
 sudo reboot now
@@ -130,22 +166,11 @@ sudo reboot now
 # sudo apt update
 # sudo apt full-upgrade -y
 
-# # Only enable if /dev/ntsync is missing
-# echo 'ntsync
-# KERNEL=="ntsync", MODE="0660", TAG+="uaccess"' | sudo tee /etc/modules-load.d/ntsync.conf
-
 # # Wezterm - Cursor size & shape changes inside
 # curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
 # echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
 # sudo nala update
 # sudo nala install -y wezterm
-
-# # VSCode
-# wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg && sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
-# sudo sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
-# sudo apt install -y apt-transport-https && sudo apt update
-# sudo apt install code
-# rm -f packages.microsoft.gpg
 
 # # Signal
 # wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg;
@@ -154,4 +179,7 @@ sudo reboot now
 #   sudo tee /etc/apt/sources.list.d/signal-xenial.list
 # sudo apt update && sudo apt install signal-desktop
 # rm -rf signal-desktop-keyring.gpg
+
+# # Kodi
+# sudo nala install -y kodi
 

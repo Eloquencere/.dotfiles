@@ -3,7 +3,7 @@ return {
         "romus204/tree-sitter-manager.nvim",
         config = function()
             require("tree-sitter-manager").setup({
-                highlight = false,
+                highlight = true,
                 ensure_installed = {
                     "javascript", "typescript", "tsx",
                     "html", "css",

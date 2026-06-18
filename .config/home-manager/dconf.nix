@@ -22,7 +22,8 @@ in
                 custom-keybindings = [
                     "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
                     "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
-                    "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/" # WARN: & this
+                    "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/" # & this
+                    "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/" # WARN: & this
                 ];
             };
             "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
@@ -31,16 +32,21 @@ in
                 binding="XF86Calculator";
             };
             "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
-                name="wezterm";
-                command="wezterm";
-                binding="<Alt><Shift>w";
+                name="Ulauncher";
+                command="ulauncher";
+                binding="<Alt>space";
             };
-
             # WARN: Remove this
             "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" = {
                 name="ghostty";
                 command="ghostty";
                 binding="<Alt><Shift>g";
+            };
+            # WARN: Remove this
+            "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3" = {
+                name="wezterm";
+                command="wezterm";
+                binding="<Alt><Shift>w";
             };
 
             "org/gnome/settings-daemon/plugins/color" = {
@@ -361,7 +367,8 @@ in
                     "org.gnome.TextEditor.desktop"
                     "notion-desktop_notion-desktop.desktop"
                     "obsidian_obsidian.desktop"
-                    "brave-browser.desktop"
+                    "brave-browser.desktop" # WARN: remove in 26
+                    # "brave-origin.desktop"
                     "org.wezfurlong.wezterm.desktop" # WARN: depricated
                     "com.mitchellh.ghostty.desktop"
                     "org.gnome.Nautilus.desktop"
@@ -375,13 +382,13 @@ in
                         "kicad"
                         "virtualisation"
                         "games"
-                        "lm_studio.desktop" # WARN: Depricated
-                        "lemonade-desktop_lemonade-desktop.desktop"
+                        "lmstudio.desktop"
                         "anki.desktop"
                         "io.github.giantpinkrobots.varia.desktop" # flatpak name
                         # "varia_varia.desktop" # snap name
                         "timeshift-gtk.desktop"
                         "com.surfshark.Surfshark.desktop"
+                        "tv.kodi.Kodi.desktop"
                         "net.nokyan.Resources.desktop"
                     ])
                     (mkPage[
@@ -393,7 +400,7 @@ in
                         "disk"
                         "network-utilities"
                         "language-support"
-                        "org.videolan.VLC.desktop"
+                        "io.github.diegopvlk.Cine.desktop"
                         "org.gnome.Calendar.desktop"
                         "org.gnome.Settings.desktop"
                         "org.gnome.clocks.desktop"

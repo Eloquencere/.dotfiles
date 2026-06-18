@@ -63,7 +63,16 @@ return {
             R      = "REPLACE",
         }
 
-        -- Add the Vim icon and mode to the left section
+        local function word_char_count()
+            local wc = vim.fn.wordcount()
+            return string.format("󰉿 %d \u{f031} %d", wc.words, wc.chars)
+        end
+        local wordcount_filetypes = {
+            markdown = true,
+            text = true,
+            tex = true,
+        }
+
         lualine.setup({
             options = {
                 theme = my_lualine_theme,
@@ -72,7 +81,7 @@ return {
                 lualine_a = {
                     {
                         'mode',
-                        fmt = function(mode)
+                        fmt = function()
                             local mode = vim.fn.mode()
                             local padded_mode = mode_map[mode] or mode
                             return "\u{e6ae} " .. padded_mode
@@ -80,7 +89,14 @@ return {
                     },
                 },
                 lualine_b = { 'filename' },
-                lualine_c = { '' },
+                lualine_c = {
+                    {
+                        word_char_count,
+                        cond = function()
+                            return wordcount_filetypes[vim.bo.filetype] or false
+                        end,
+                    },
+                },
 
                 lualine_x = { '' },
                 lualine_y = {
@@ -95,7 +111,7 @@ return {
                         separator = { left = '', right = ''},
                     },
                     'branch',
-                    'fileformat',
+                    -- 'fileformat',
                     'progress',
                 },
                 lualine_z = {

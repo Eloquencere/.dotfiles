@@ -43,9 +43,11 @@ return {
                 virtual_text = { current_line = true }
             })
 
-            -- vim.lsp.config("svls", {
-            --     filetypes = { "verilog", "systemverilog" },
-            -- })
+            vim.filetype.add({
+                extension = {
+                    gotmpl = "gotmpl",
+                },
+            })
 
             vim.lsp.config("xilinx", {
                 cmd = { "xilinx-language-server" },
@@ -57,16 +59,9 @@ return {
             })
             -- vim.lsp.config('mbake')
 
-            vim.filetype.add({
-                extension = {
-                    gotmpl = "gotmpl",
-                },
-            })
-
             vim.lsp.enable({
                 "clangd", -- C, C++
                 "neocmake",
-                -- "zls", -- Zig
                 "rust_analyzer",
                 "gopls", -- Go
                 "bashls", -- Bash, Zsh

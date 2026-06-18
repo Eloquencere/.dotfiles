@@ -5,12 +5,21 @@ cd "$(dirname "${(%):-%x}")" # change directory to script location
 echo "Click on 'Move to App Menu'"
 
 # WinBoat
-version="0.9.0"
+version='0.9.0'
 wget -O winboat.AppImage "https://github.com/TibixDev/winboat/releases/latest/download/winboat-$version-x86_64.AppImage"
 flatpak run it.mijorus.gearlever winboat.AppImage
 
+# LM Studio - Dropped for Lemonade
+wget -O lm-studio.AppImage 'https://lmstudio.ai/download/latest/linux/x64?format=AppImage'
+flatpak run it.mijorus.gearlever ./lm-studio.AppImage
+
 # GUI setup
 gnome-text-editor .gui_instructions.txt &
+
+# Install/Update Stirling pdf
+cd ~/.config/stirling-pdf/
+docker compose pull && docker compose up -d
+cd -
 
 nix profile add 'nixpkgs#home-manager'
 home-manager switch
@@ -58,9 +67,6 @@ cpan App::cpanminus
 # To Allow GSConnect to work
 sudo ufw allow 1714:1764/udp
 sudo ufw allow 1714:1764/tcp
-
-# Add this to dconf.nix Alternatively, take a call to completely remove the notifier app
-gsettings set com.ubuntu.update-notifier no-show-notifications true
 
 # Load wallpaper
 gsettings set org.gnome.desktop.background picture-options 'zoom'
@@ -141,13 +147,9 @@ sudo reboot now
 
 # # Auto-cpufreq
 # git clone https://github.com/AdnanHodzic/auto-cpufreq.git
-# cd auto-cpufreq && sudo ./auto-cpufreq-installer
+# cd auto-cpufreq/ && sudo ./auto-cpufreq-installer
 # cd .. && rm -rf auto-cpufreq
 # sudo auto-cpufreq --install
-
-# # LM Studio - Dropped for Lemonade
-# wget -O lm-studio.AppImage 'https://lmstudio.ai/download/latest/linux/x64?format=AppImage'
-# flatpak run it.mijorus.gearlever ./lm-studio.AppImage
 
 # # Improve Nautilus
 # sudo nala install python3-nautilus python3-gi

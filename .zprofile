@@ -32,6 +32,9 @@ export PYTHONHISTORY="/dev/null"
 # Conan(C/C++)
 export CONAN_HOME="$XDG_DATA_HOME/conan"
 
+# LM studio
+export PATH="$HOME/.lmstudio/bin":$PATH
+
 # 32-bit library path
 export LIBRARY_PATH="/usr/lib32":$LIBRARY_PATH
 export PATH="$HOME/.local/bin":$PATH

@@ -11,25 +11,38 @@
 
     home.packages = with pkgs; [
         # Prompt improvement
-        starship fzf atuin trash-cli
-        tree-sitter
+        starship fzf atuin
 
-        lldb gdb valgrind strace
-        scriptisto tio mise
+        scriptisto
+        gdb valgrind strace tio
         tlrc typst natural-docs doxygen
 
-        neovim zellij wl-clipboard
+        neovim tree-sitter
+        zellij wl-clipboard
         gh lazygit
-        # podman # Look into podman TUI
+        mise
 
-        croc fastfetch btop yazi
-        stow git dos2unix hyperfine
-        ffmpeg fortune bacon
-        # WARN: Cautious with Ubuntu 26.04LTS
-        zoxide eza fd bat ripgrep duf delta repgrep mprocs
+        kilocode-cli github-copilot-cli
+
+        zoxide eza yazi fd bat ripgrep repgrep duf delta trash-cli
+        croc fastfetch btop hyperfine mprocs
+        stow git dos2unix
+        ffmpeg fortune
 
         # Rust crates
+        bacon
         cargo-binstall
+        cargo-expand # slightly outdated
+        cargo-info
+        cargo-deny # slightly outdated
+        # # Profiling
+        # cargo-bloat cargo-flamegraph
+
+        # irust
+        # cargo-generate # slightly outdated
+        # cargo-nextest
+        # cargo-dist
+        # cargo-inspect # educational
 
         # # optional
         # carapace # needs to mature a lot

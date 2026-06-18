@@ -24,24 +24,30 @@ return {
 
         -- Completion rules
         npairs.remove_rule('`')
-        npairs.add_rules({
+        npairs.add_rule(
             Rule("$", "$", "lua")
-                :with_pair(ts_conds.is_not_ts_node({'function'})),
-            Rule(' ', ' ')
-                :with_pair(function(opts)
-                    -- Get two characters: before and after the cursor
-                    local prev_char = opts.line:sub(opts.col - 1, opts.col - 1)
-                    local next_char = opts.line:sub(opts.col, opts.col)
-
-                    -- Check if you are between matching brackets with nothing inside
-                    return (prev_char == '{' and next_char == '}')
-                end),
-        })
+                :with_pair(ts_conds.is_not_ts_node({'function'}))
+        )
 
         npairs.remove_rule("'")
         npairs.add_rule(
           Rule("'", "'")
             :with_pair(cond.not_filetypes({ "Rust", "verilog", "systemverilog" }))
+        )
+
+        npairs.add_rule(
+            Rule(' ', ' ')
+                :with_pair(function(opts)
+                    local prev_char = opts.line:sub(opts.col - 1, opts.col - 1)
+                    local next_char = opts.line:sub(opts.col, opts.col)
+                    return (prev_char == '{' and next_char == '}')
+                end)
+                :with_del(function(opts)
+                    -- Only delete the pair if we're between '{ }' (space on both sides)
+                    local prev_char = opts.line:sub(opts.col - 2, opts.col - 2)
+                    local next_char = opts.line:sub(opts.col, opts.col)
+                    return (prev_char == '{' and next_char == '}')
+                end)
         )
     end,
 }

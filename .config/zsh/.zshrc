@@ -33,6 +33,7 @@ function __lazy_shell_tools {
     eval "$(zoxide init --cmd cd zsh)"
     eval "$(fzf --zsh)"
     eval "$(mise activate zsh)"
+    # eval "$(just --completions zsh)"
     add-zsh-hook -d precmd __lazy_shell_tools
 }
 add-zsh-hook precmd __lazy_shell_tools
