@@ -21,9 +21,9 @@ flatpak run it.mijorus.gearlever ./lm-studio.AppImage
 # GUI setup
 gnome-text-editor .gui_instructions.txt &
 
-# Install/Update Stirling pdf
+# Install Stirling pdf
 cd ~/.config/stirling-pdf/
-docker compose pull && docker compose up -d
+docker compose pull && docker compose up -d --build
 cd -
 
 nix profile add 'nixpkgs#home-manager'

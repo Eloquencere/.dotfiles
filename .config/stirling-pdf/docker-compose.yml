@@ -1,10 +1,31 @@
 services:
+  caddy:
+    build:
+      context: .
+      dockerfile: Dockerfile.caddy
+    ports:
+      - "127.0.0.1:8787:8787"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+    depends_on:
+      - sablier
+    restart: unless-stopped
+
+  sablier:
+    image: sablierapp/sablier:1.12.0
+    command:
+      - start
+      - --provider.name=docker
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
+
   stirling-pdf:
     image: docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
     container_name: stirling-pdf
-    ports:
-      - "127.0.0.1:8787:8080"
-    environment: 
+    expose:
+      - "8080"
+    environment:
       - SECURITY_ENABLELOGIN=false
       # - DOCKER_ENABLE_SECURITY=false
       ## uncomment if some feature is missing
@@ -17,5 +38,8 @@ services:
       - ${XDG_DATA_HOME}/stirling-pdf/configs:/configs
       - ${XDG_DATA_HOME}/stirling-pdf/logs:/logs
       - ${XDG_DATA_HOME}/stirling-pdf/customFiles:/customFiles
-    restart: unless-stopped
+    labels:
+      - sablier.enable=true
+      - sablier.group=stirling
+    restart: no
 

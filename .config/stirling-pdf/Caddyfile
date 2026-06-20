@@ -1,0 +1,13 @@
+:8787 {
+    route {
+        sablier http://sablier:10000 {
+            group stirling
+            session_duration 10m
+            blocking {
+                timeout 3m
+            }
+        }
+        reverse_proxy stirling-pdf:8080
+    }
+}
+

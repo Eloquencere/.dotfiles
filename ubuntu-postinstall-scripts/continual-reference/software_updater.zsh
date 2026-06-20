@@ -17,15 +17,16 @@ mise upgrade
 
 echo "Update your nvim plugins & researt your machine"
 
-# # Update nix pkg manager
+# # Update stirling pdf (Manually)
+# cd ~/.config/stirling-pdf/
+# docker compose pull stirling-pdf && docker compose up -d stirling-pdf
+# cd -
+
+# # Update nix pkg manager (Manually)
 # sudo $(which nix-env) --install --file '<nixpkgs>' --attr nix -I nixpkgs=channel:nixpkgs-unstable
 # sudo systemctl daemon-reload
 # sudo systemctl restart nix-daemon
 
-# # Firmware updater
-# sudo fwupdmgr refresh
-# sudo fwupdmgr get-devices
-# sudo fwupdmgr get-updates
-
+# # Not installed
 # sudo auto-cpufreq --update
 

@@ -10,12 +10,17 @@
     ];
 
     home.packages = with pkgs; [
-        # Prompt improvement
-        starship fzf atuin
-
         scriptisto
         gdb valgrind strace tio
         tlrc typst natural-docs doxygen
+
+        # Prompt improvement
+        starship fzf atuin
+
+        zoxide eza yazi fd bat ripgrep repgrep duf delta trash-cli
+        croc fastfetch btop hyperfine mprocs
+        stow git dos2unix
+        ffmpeg fortune
 
         neovim tree-sitter
         zellij wl-clipboard
@@ -23,11 +28,6 @@
         mise
 
         kilocode-cli github-copilot-cli
-
-        zoxide eza yazi fd bat ripgrep repgrep duf delta trash-cli
-        croc fastfetch btop hyperfine mprocs
-        stow git dos2unix
-        ffmpeg fortune
 
         # Rust crates
         bacon
