@@ -5,7 +5,8 @@ setopt extended_glob
 setopt hist_ignore_all_dups
 setopt interactive_comments
 
-source "$XDG_DATA_HOME/zinit-pkgmngr/zinit.zsh"
+source "$ZINIT_HOME/zinit.zsh"
+# source "$XDG_DATA_HOME/zinit-pkgmngr/zinit.zsh"
 
 zinit wait lucid compile for \
     jeffreytse/zsh-vi-mode \

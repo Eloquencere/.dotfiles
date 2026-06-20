@@ -40,6 +40,9 @@ Notes
     - If there's mouse scroll wheel issues
         sudo apt install imwheel
 
+Zotero
+    - Under Edit -> Settings -> Advanced, set the data storage location to ~/Documents/Zotero
+
 Anki Extensions
     - Scale Images - ankiweb.net/shared/info/1312865748
 

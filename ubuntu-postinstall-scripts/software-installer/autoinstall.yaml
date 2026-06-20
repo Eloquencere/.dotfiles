@@ -98,12 +98,13 @@ autoinstall:
   packages:
     - build-essential
     - pkg-config
-    - libfuse2t64    # For appimage compatibility
-    - openjdk-25-jre # To run .jar files
     - sshfs
     - zsh
     - nala
     - curl
+    - libfuse2t64    # For appimage compatibility
+    - openjdk-25-jre # To run .jar files
+    - libreoffice-java-common
     # Flatpak package manager
     - flatpak
     - gnome-software-plugin-flatpak

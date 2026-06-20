@@ -29,10 +29,11 @@ sudo ./install.sh
 anki
 cd ..; rm -rf anki-launcher-$version-linux*
 
-# Ulauncher
-sudo add-apt-repository -y ppa:agornostal/ulauncher
+# KiCAD
+version='10.0'
+sudo add-apt-repository --yes ppa:kicad/kicad-$version-releases
 sudo nala update
-sudo nala install -y ulauncher
+sudo nala install -y --install-recommends kicad
 
 # Brave Origin browser
 name='brave-origin'
@@ -48,6 +49,15 @@ $name &
 sudo add-apt-repository --yes ppa:mkasberg/ghostty-ubuntu
 sudo nala update
 sudo nala install -y ghostty
+
+# Ulauncher
+sudo add-apt-repository -y ppa:agornostal/ulauncher
+sudo nala update
+sudo nala install -y ulauncher
+
+# Docker
+sudo nala install -y docker.io docker-compose util-linux-extra freerdp3-x11 # try for freerdp3-wayland
+sudo usermod -aG docker $USER
 
 # Virt-Manager
 sudo nala install -y virt-manager qemu-system-x86 libvirt-daemon-system libvirt-clients bridge-utils qemu-utils
@@ -67,22 +77,15 @@ sudo nala update
 sudo nala install code
 
 # Antigravity
-curl -fsSL https://us-central1-apt.pkg.dev/doc/repo-signing-key.gpg | \
-  sudo gpg --dearmor --yes -o /etc/apt/keyrings/antigravity-repo-key.gpg
-echo "deb [signed-by=/etc/apt/keyrings/antigravity-repo-key.gpg] https://us-central1-apt.pkg.dev/projects/antigravity-auto-updater-dev/ antigravity-debian main" | \
-  sudo tee /etc/apt/sources.list.d/antigravity.list > /dev/null
+curl -fsSL https://us-central1-apt.pkg.dev/doc/repo-signing-key.gpg | sudo gpg --dearmor --yes -o /etc/apt/keyrings/antigravity-repo-key.gpg
+echo "deb [signed-by=/etc/apt/keyrings/antigravity-repo-key.gpg] https://us-central1-apt.pkg.dev/projects/antigravity-auto-updater-dev/ antigravity-debian main" | sudo tee /etc/apt/sources.list.d/antigravity.list > /dev/null
 sudo nala update
 sudo nala install antigravity
 
-# KiCAD
-version='10.0'
-sudo add-apt-repository --yes ppa:kicad/kicad-$version-releases
+# Zotero
+curl -sL https://raw.githubusercontent.com/retorquere/zotero-pkg/master/install.sh | sudo bash
 sudo nala update
-sudo nala install -y --install-recommends kicad
-
-# Docker
-sudo nala install -y docker.io docker-compose util-linux-extra freerdp3-x11 # try for freerdp3-wayland
-sudo usermod -aG docker $USER
+sudo nala install zotero
 
 APPLICATIONS=(
     "gnome-shell-extension-manager"
@@ -103,6 +106,8 @@ OFFICE_SOFTWARE_SNAP=(
 sudo snap install "${OFFICE_SOFTWARE_SNAP[@]}"
 
 # Games
+echo 'ntsync
+KERNEL=="ntsync", MODE="0660", TAG+="uaccess"' | sudo tee /etc/modules-load.d/ntsync.conf
 mkdir -p ~/Games/{switch}
 sudo nala install -y steam
 GAMES_FLATPAK=(
@@ -119,8 +124,6 @@ GAMES_FLATPAK=(
     # "org.gnome.Mines"
 )
 flatpak install --assumeyes flathub "${GAMES_FLATPAK[@]}"
-echo 'ntsync
-KERNEL=="ntsync", MODE="0660", TAG+="uaccess"' | sudo tee /etc/modules-load.d/ntsync.conf
 
 # Flatpaks
 ADDITIONAL_APPS_FLATPAK=(
@@ -166,7 +169,7 @@ sudo reboot now
 # sudo apt update
 # sudo apt full-upgrade -y
 
-# # Wezterm - Cursor size & shape changes inside
+# # Wezterm
 # curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
 # echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
 # sudo nala update

@@ -9,7 +9,12 @@ version='0.9.0'
 wget -O winboat.AppImage "https://github.com/TibixDev/winboat/releases/latest/download/winboat-$version-x86_64.AppImage"
 flatpak run it.mijorus.gearlever winboat.AppImage
 
-# LM Studio - Dropped for Lemonade
+# Handy - AI transcribing
+version='0.8.3'
+wget -O handy.AppImage "https://github.com/cjpais/Handy/releases/latest/download/Handy_${version}_amd64.AppImage"
+flatpak run it.mijorus.gearlever ./handy.AppImage
+
+# LM Studio
 wget -O lm-studio.AppImage 'https://lmstudio.ai/download/latest/linux/x64?format=AppImage'
 flatpak run it.mijorus.gearlever ./lm-studio.AppImage
 
@@ -79,8 +84,6 @@ gsettings set org.gnome.desktop.background picture-uri-dark 'file:///usr/share/b
 mkdir -p $HOME/Projects
 echo "file://$HOME/Projects" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
 
-sed -i "\|Music|d" $XDG_CONFIG_HOME/gtk-3.0/bookmarks
-
 mkdir -p $ZDOTDIR/personal
 echo -n "Enter the ID granted by your admin to register with your team via croc: "
 read croc_id
@@ -89,6 +92,8 @@ export CROC_SELF_TRANSFER_ID=$croc_id" >> $ZDOTDIR/personal/zprofile.zsh
 echo "Move a copy of the collaborators database given by your admin to the zsh home directory"
 mkdir -p ~/Transfers/{croc,GSConnect}
 echo "file://$HOME/Transfers" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
+
+sed -i "\|Music|d" $XDG_CONFIG_HOME/gtk-3.0/bookmarks
 
 mkdir -p $XDG_CONFIG_HOME/git
 touch $XDG_CONFIG_HOME/git/config
@@ -156,11 +161,6 @@ sudo reboot now
 # mkdir -p ~/.local/share/nautilus-python/extensions
 # New File.. but adding slashes creates a Folder & there will be a preview of the icon if created, so Folder will have folder icon or Python file or empty file & even support {} like in the shell for muliple file creation
 # Be able to copy a download link & right click on a folder in nautilus to Download link here.. (with wget)
-
-# # Xournal++
-# sudo add-apt-repository --yes ppa:apandada1/xournalpp-stable
-# sudo nala update
-# sudo nala install -y xournalpp
 
 # # Doom Emacs
 # sudo nala install -y emacs-gtk
