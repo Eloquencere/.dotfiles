@@ -8,6 +8,8 @@
     - [] Backup Game save data like Rocket League replay saves
     - [] Sync Anki changes
 - [] Make note of software installed manually
+- [] Hermes
+    - save config.yaml & SOUL.md
 
 - autoinstall.yaml
     - Add user password hash via:     openssl passwd -6

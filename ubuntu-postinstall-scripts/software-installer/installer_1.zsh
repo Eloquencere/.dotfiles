@@ -1,7 +1,7 @@
 #!/bin/zsh
 
-# TODO: Enable variable refresh rate
-# TODO: General shell completions under the completions dir aren't working
+# TODO: configure gnome search to show Brave, Files, settings, Qalculate
+# TODO: General shell completions under the completions dir aren't working & check carapace
 # TODO: diff completion is good, delta is not showing hidden files
 
 # WARN: even this doesn't work
@@ -49,11 +49,6 @@ $name &
 sudo add-apt-repository --yes ppa:mkasberg/ghostty-ubuntu
 sudo nala update
 sudo nala install -y ghostty
-
-# Ulauncher
-sudo add-apt-repository -y ppa:agornostal/ulauncher
-sudo nala update
-sudo nala install -y ulauncher
 
 # Docker
 sudo nala install -y docker.io docker-compose util-linux-extra freerdp3-x11 # try for freerdp3-wayland
@@ -182,7 +177,4 @@ sudo reboot now
 #   sudo tee /etc/apt/sources.list.d/signal-xenial.list
 # sudo apt update && sudo apt install signal-desktop
 # rm -rf signal-desktop-keyring.gpg
-
-# # Kodi
-# sudo nala install -y kodi
 

@@ -4,6 +4,14 @@ cd "$(dirname "${(%):-%x}")" # change directory to script location
 
 echo "Click on 'Move to App Menu'"
 
+# AI integration
+# Hermes
+curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
+
+# LM Studio
+wget -O lm-studio.AppImage 'https://lmstudio.ai/download/latest/linux/x64?format=AppImage'
+flatpak run it.mijorus.gearlever ./lm-studio.AppImage
+
 # WinBoat
 version='0.9.0'
 wget -O winboat.AppImage "https://github.com/TibixDev/winboat/releases/latest/download/winboat-$version-x86_64.AppImage"
@@ -13,10 +21,6 @@ flatpak run it.mijorus.gearlever winboat.AppImage
 version='0.8.3'
 wget -O handy.AppImage "https://github.com/cjpais/Handy/releases/latest/download/Handy_${version}_amd64.AppImage"
 flatpak run it.mijorus.gearlever ./handy.AppImage
-
-# LM Studio
-wget -O lm-studio.AppImage 'https://lmstudio.ai/download/latest/linux/x64?format=AppImage'
-flatpak run it.mijorus.gearlever ./lm-studio.AppImage
 
 # GUI setup
 gnome-text-editor .gui_instructions.txt &
@@ -124,18 +128,17 @@ rm -rf ~/.cache/* # generally safe, but be mindful
 rm -rf ~/{.bash*,.profile,.zshrc,.zcompdump}
 rm -rf ~/{Public,go,Music}
 sudo rm -rf /tmp/*
-# NOTE: Don't delete Templates folder
+# NOTE: Don't delete Templates folder, create a template with 1 char name
 
 BLOAT_SNAP=(
     "thunderbird" "firefox"
 )
 sudo snap remove --purge "${BLOAT_SNAP[@]}"
 
-# Might need to add more
 BLOAT_APT=(
     "gnome-logs" "gnome-calculator" "gnome-snapshot"
     "ptyxis" "deja-dup" "seahorse" "shotwell" "showtime"
-    "rhythmbox" "orca" "info" "yelp" # "simple-scan" - debating
+    "rhythmbox" "orca" "info" "yelp" # "simple-scan"
     "transmission-common" "transmission-gtk"
     "ed" "vim-common" "nano"
     # Tools that clash with nixpkgs

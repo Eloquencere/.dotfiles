@@ -10,17 +10,10 @@ $cmd_duration\
 $jobs\
 $shell\
 $os\
-[─╮ ](fg:ubuntu)\
 $line_break\
 [╰╴](fg:directory)\
 [$character]($style)\
 """
-
-right_format = """
-[╶╯](fg:ubuntu)\
-"""
-
-# add_newline = false
 
 # Color Palette
 palette = "Power10"

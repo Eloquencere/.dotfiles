@@ -3,13 +3,15 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    hermes-agent.url = "github:NousResearch/hermes-agent";
+
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { nixpkgs, home-manager, ... }:
+  outputs = { nixpkgs, home-manager, hermes-agent, ... }:
     let
       system = "x86_64-linux";
         pkgs = import nixpkgs {
@@ -23,9 +25,8 @@
         modules = [
             ./home.nix
         ];
+        extraSpecialArgs = { inherit hermes-agent; };
       };
     };
 }
-
-# install rustup via nix
 

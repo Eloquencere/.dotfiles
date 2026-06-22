@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, hermes-agent, ... }:
 {
     home.username = "eloquencer";
     home.homeDirectory = "/home/${config.home.username}";
@@ -17,9 +17,10 @@
         # Prompt improvement
         starship fzf atuin
 
-        zoxide eza yazi fd bat ripgrep repgrep duf delta trash-cli
-        croc fastfetch btop hyperfine mprocs
         stow git dos2unix
+        zoxide eza fd bat ripgrep duf delta
+        yazi repgrep trash-cli
+        croc fastfetch btop hyperfine mprocs
         ffmpeg fortune
 
         neovim tree-sitter
@@ -27,7 +28,8 @@
         gh lazygit
         mise
 
-        kilocode-cli github-copilot-cli
+        # hermes-agent.packages.${pkgs.system}.default
+        opencode github-copilot-cli
 
         # Rust crates
         bacon

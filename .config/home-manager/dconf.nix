@@ -71,6 +71,7 @@ in
                 event-sounds = false;
             };
 
+            # TODO: Enable variable refresh rate
             "org/gnome/desktop/interface" = {
                 ## Dark Mode
                 color-scheme            = "prefer-dark";
@@ -80,7 +81,7 @@ in
                 ## Dark Mode
 
                 text-scaling-factor     = 1.25; # WARN: try with 1.25-1.28 range
-                cursor-size             = 29; # issue with Wezterm, maybe not with ghostty
+                cursor-size             = 30;
 
                 show-battery-percentage = true;
                 clock-show-weekday      = true;
@@ -410,5 +411,4 @@ in
         };
     };
 }
-
 

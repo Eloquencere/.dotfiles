@@ -2,7 +2,7 @@
     route {
         sablier http://sablier:10000 {
             group stirling
-            session_duration 10m
+            session_duration 5m
             blocking {
                 timeout 3m
             }
