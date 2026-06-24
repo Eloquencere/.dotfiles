@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-# TODO: install https://github.com/jo-inc/camofox-browser
+# TODO: check if the document scanner app is as good as epson scan 2 & can connect to my printer
 # TODO: General shell completions under the completions dir aren't working & check carapace
 # TODO: diff completion is good, delta is not showing hidden files
 
@@ -21,13 +21,12 @@ sudo systemctl enable preload earlyoom
 
 # Anki
 version='26.05'
-sudo nala install -y libxcb-xinerama0 libxcb-cursor0 libnss3 libxcb-icccm4 libxcb-keysyms1
-wget https://github.com/ankitects/anki/releases/download/$version/anki-launcher-$version-linux.tar.zst
-tar xaf anki-launcher-$version-linux.tar.zst
-cd anki-launcher-$version-linux/
+wget https://github.com/ankitects/anki/releases/latest/download/anki-$version-linux-x86_64.tar.zst
+tar xaf anki-$version-linux-x86_64.tar.zst
+cd anki-linux/
 sudo ./install.sh
 anki
-cd ..; rm -rf anki-launcher-$version-linux*
+cd ..; rm -rf anki-*
 
 # KiCAD
 version='10.0'
@@ -66,7 +65,7 @@ printf '%s\n' \
   'Signed-By: /etc/apt/keyrings/docker.asc' \
   | sudo tee /etc/apt/sources.list.d/docker.sources > /dev/null
 sudo nala update
-sudo nala install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
+sudo nala install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin freerdp3-x11 # try for freerdp3-wayland
 sudo usermod -aG docker $USER
 
 # VSCode
@@ -120,7 +119,8 @@ sudo snap install "${OFFICE_SOFTWARE_SNAP[@]}"
 
 # Games
 echo 'ntsync
-KERNEL=="ntsync", MODE="0660", TAG+="uaccess"' | sudo tee /etc/modules-load.d/ntsync.conf
+KERNEL=="ntsync", MODE="0660", TAG+="uaccess"' \ 
+| sudo tee /etc/modules-load.d/ntsync.conf
 mkdir -p ~/Games/{switch}
 sudo nala install -y steam
 GAMES_FLATPAK=(
@@ -169,7 +169,7 @@ flatpak override --user --env=GTK_THEME=Yaru-dark
 # Installing nix pkg manager
 sh <(curl --proto "=https" --tlsv1.2 -L https://nixos.org/nix/install) --daemon --yes
 
-cd $HOME/.dotfiles/ && stow . && cd -
+cd ~/.dotfiles/ && stow . && cd -
 
 echo "The system will reboot now to consolidate the installation"
 sudo reboot now

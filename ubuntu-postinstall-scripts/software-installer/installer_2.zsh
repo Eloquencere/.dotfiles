@@ -7,7 +7,6 @@ echo "Click on 'Move to App Menu'"
 # AI integration
 # # Hermes
 # curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
-
 # LM Studio
 wget -O lm-studio.AppImage 'https://lmstudio.ai/download/latest/linux/x64?format=AppImage'
 flatpak run it.mijorus.gearlever ./lm-studio.AppImage
@@ -15,7 +14,7 @@ flatpak run it.mijorus.gearlever ./lm-studio.AppImage
 # WinBoat
 version='0.9.0'
 wget -O winboat.AppImage "https://github.com/TibixDev/winboat/releases/latest/download/winboat-$version-x86_64.AppImage"
-flatpak run it.mijorus.gearlever winboat.AppImage
+flatpak run it.mijorus.gearlever ./winboat.AppImage
 
 # Handy - AI transcribing
 version='0.8.3'
@@ -54,13 +53,6 @@ WantedBy=default.target" \
 | sudo tee /etc/systemd/system/kanata.service
 sudo systemctl enable kanata
 
-# Necessary libs to build cargo & python
-sudo nala install -y \
-    libssl-dev zlib1g-dev libbz2-dev liblzma-dev \
-    libreadline-dev libsqlite3-dev libncursesw5-dev \
-    libffi-dev tk-dev tcl-dev \
-    libgdbm-dev uuid-dev libexpat1-dev
-
 mise trust # config file
 mise install # from config
 
@@ -80,11 +72,13 @@ sudo ufw allow 1714:1764/tcp
 # Load wallpaper
 gsettings set org.gnome.desktop.background picture-options 'zoom'
 gsettings set org.gnome.desktop.background picture-uri-dark 'file:///usr/share/backgrounds/osselo-Ask_a_friend.jpg'
-# Alternate
+# # Alternate
 # gsettings set org.gnome.desktop.background picture-options 'scaled'
 # gsettings set org.gnome.desktop.background picture-uri-dark "file://$DOTFILES_HOME/wallpapers/angkor_watt_gpt.png"
 
-# NOTE: Gonna be default in the future
+touch ~/Templates/file
+
+# NOTE: Will be default in the future
 mkdir -p $HOME/Projects
 echo "file://$HOME/Projects" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
 
@@ -128,7 +122,6 @@ rm -rf ~/.cache/* # generally safe, but be mindful
 rm -rf ~/{.bash*,.profile,.zshrc,.zcompdump}
 rm -rf ~/{Public,go,Music}
 sudo rm -rf /tmp/*
-# NOTE: Don't delete Templates folder, create a template with 1 char name
 
 BLOAT_SNAP=(
     "thunderbird" "firefox"

@@ -235,18 +235,19 @@ in
                     "libreoffice-writer.desktop"
                     "libreoffice-impress.desktop"
                     "libreoffice-calc.desktop"
-                    "libreoffice-math.desktop"
-                    "libreoffice-draw.desktop"
                     "libreoffice-startcenter.desktop"
                     "com.jgraph.drawio.desktop.desktop"
-                    "io.github.Qalculate.desktop"
+                    "org.kde.drawy.desktop"
+                    "zotero.desktop"
                     "net.epson.epsonscan2.desktop"
-                    "simple-scan.desktop" # Document scanner
+                    "io.github.Qalculate.desktop"
+                    "libreoffice-math.desktop"
+                    "libreoffice-draw.desktop"
                     "org.gnome.Papers.desktop"
                     "org.gnome.Loupe.desktop"
                     "org.gnome.eog.desktop" # WARN: Not in 26
                     "com.github.tenderowl.frog.desktop"
-                    "org.kde.drawy.desktop"
+                    "simple-scan.desktop" # Document scanner
                 ];
             };
             "org/gnome/desktop/app-folders/folders/project-management" = {
