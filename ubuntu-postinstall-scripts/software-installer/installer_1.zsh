@@ -50,13 +50,24 @@ sudo add-apt-repository --yes ppa:mkasberg/ghostty-ubuntu
 sudo nala update
 sudo nala install -y ghostty
 
-# Docker
-sudo nala install -y docker.io docker-compose util-linux-extra freerdp3-x11 # try for freerdp3-wayland
-sudo usermod -aG docker $USER
-
 # Virt-Manager
 sudo nala install -y virt-manager qemu-system-x86 libvirt-daemon-system libvirt-clients bridge-utils qemu-utils
 # Try for qemu-system-x86-hwe
+
+# Docker
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+printf '%s\n' \
+  'Types: deb' \
+  'URIs: https://download.docker.com/linux/ubuntu' \
+  "Suites: $(. /etc/os-release && echo ${UBUNTU_CODENAME:-$VERSION_CODENAME})" \
+  'Components: stable' \
+  "Architectures: $(dpkg --print-architecture)" \
+  'Signed-By: /etc/apt/keyrings/docker.asc' \
+  | sudo tee /etc/apt/sources.list.d/docker.sources > /dev/null
+sudo nala update
+sudo nala install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
+sudo usermod -aG docker $USER
 
 # VSCode
 curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | sudo gpg --dearmor --yes -o /usr/share/keyrings/microsoft.gpg
@@ -65,22 +76,29 @@ printf '%s\n' \
   'URIs: https://packages.microsoft.com/repos/code' \
   'Suites: stable' \
   'Components: main' \
-  'Architectures: amd64' \
+  "Architectures: $(dpkg --print-architecture)" \
   'Signed-By: /usr/share/keyrings/microsoft.gpg' \
   | sudo tee /etc/apt/sources.list.d/vscode.sources > /dev/null
 sudo nala update
-sudo nala install code
+sudo nala install -y code
 
 # Antigravity
 curl -fsSL https://us-central1-apt.pkg.dev/doc/repo-signing-key.gpg | sudo gpg --dearmor --yes -o /etc/apt/keyrings/antigravity-repo-key.gpg
-echo "deb [signed-by=/etc/apt/keyrings/antigravity-repo-key.gpg] https://us-central1-apt.pkg.dev/projects/antigravity-auto-updater-dev/ antigravity-debian main" | sudo tee /etc/apt/sources.list.d/antigravity.list > /dev/null
+printf '%s\n' \
+  'Types: deb' \
+  'URIs: https://us-central1-apt.pkg.dev/projects/antigravity-auto-updater-dev/' \
+  'Suites: antigravity-debian' \
+  'Components: main' \
+  "Architectures: $(dpkg --print-architecture)" \
+  'Signed-By: /etc/apt/keyrings/antigravity-repo-key.gpg' \
+  | sudo tee /etc/apt/sources.list.d/antigravity.sources > /dev/null
 sudo nala update
-sudo nala install antigravity
+sudo nala install -y antigravity
 
 # Zotero
 curl -sL https://raw.githubusercontent.com/retorquere/zotero-pkg/master/install.sh | sudo bash
 sudo nala update
-sudo nala install zotero
+sudo nala install -y zotero
 
 APPLICATIONS=(
     "gnome-shell-extension-manager"
@@ -113,10 +131,10 @@ GAMES_FLATPAK=(
     # # Optional
     # "org.gnome.Chess"
     # "org.gnome.Sudoku"
-    # "app.drey.MultiplicationPuzzle"
     # "org.gnome.Mahjongg"
-    # "org.gnome.Crosswords"
     # "org.gnome.Mines"
+    # "org.gnome.Crosswords"
+    # "app.drey.MultiplicationPuzzle"
 )
 flatpak install --assumeyes flathub "${GAMES_FLATPAK[@]}"
 
