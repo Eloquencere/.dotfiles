@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-# TODO: configure gnome search to show Brave, Files, settings, Qalculate
+# TODO: install https://github.com/jo-inc/camofox-browser
 # TODO: General shell completions under the completions dir aren't working & check carapace
 # TODO: diff completion is good, delta is not showing hidden files
 

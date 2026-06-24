@@ -36,7 +36,7 @@
         cargo-binstall
         cargo-expand # slightly outdated
         cargo-info
-        cargo-deny # slightly outdated
+        cargo-deny   # slightly outdated
         # # Profiling
         # cargo-bloat cargo-flamegraph
 

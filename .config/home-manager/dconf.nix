@@ -188,17 +188,26 @@ in
                 show-indicator = false;
             };
 
+            # WARN: uncomment in 26.04
+            # "org/gnome/desktop/break-reminders" = {
+            #     selected-breaks = ["eyesight"];
+            # }
+
             "org/gnome/desktop/search-providers" = {
                 sort-order = [
-                    "org.gnome.Documents.desktop"
+                    # "brave-origin.desktop" # WARN: uncomment in 26.04
                     "org.gnome.Nautilus.desktop"
+                    "org.gnome.Settings.desktop"
+                    "io.github.Qalculate.desktop"
                 ];
                 disabled = [
-                    "org.gnome.Nautilus.desktop"
-                    "org.gnome.Characters.desktop"
-                    "org.gnome.clocks.desktop"
-                    "org.gnome.Software.desktop"
                     "org.gnome.Contacts.desktop"
+                    "org.gnome.clocks.desktop"
+                    "org.gnome.Characters.desktop"
+                    "org.gnome.Calendar.desktop"
+                    "org.gnome.Documents.desktop" # NOTE: idk what this is
+                    "org.gnome.Software.desktop"
+                    # "snap-store_snap-store.desktop" # WARN: un in 26.04
                 ];
             };
             "org/gnome/desktop/app-folders" = {

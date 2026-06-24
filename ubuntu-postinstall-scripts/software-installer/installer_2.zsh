@@ -5,8 +5,8 @@ cd "$(dirname "${(%):-%x}")" # change directory to script location
 echo "Click on 'Move to App Menu'"
 
 # AI integration
-# Hermes
-curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
+# # Hermes
+# curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
 
 # LM Studio
 wget -O lm-studio.AppImage 'https://lmstudio.ai/download/latest/linux/x64?format=AppImage'
