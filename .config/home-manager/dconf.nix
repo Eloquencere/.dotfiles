@@ -195,7 +195,7 @@ in
 
             "org/gnome/desktop/search-providers" = {
                 sort-order = [
-                    # "brave-origin.desktop" # WARN: uncomment in 26.04
+                    # "brave-browser.desktop" # WARN: uncomment in 26.04
                     "org.gnome.Nautilus.desktop"
                     "org.gnome.Settings.desktop"
                     "io.github.Qalculate.desktop"
@@ -378,8 +378,7 @@ in
                     "org.gnome.TextEditor.desktop"
                     "notion-desktop_notion-desktop.desktop"
                     "obsidian_obsidian.desktop"
-                    "brave-browser.desktop" # WARN: remove in 26
-                    # "brave-origin.desktop"
+                    "brave-browser.desktop"
                     "org.wezfurlong.wezterm.desktop" # WARN: depricated
                     "com.mitchellh.ghostty.desktop"
                     "org.gnome.Nautilus.desktop"

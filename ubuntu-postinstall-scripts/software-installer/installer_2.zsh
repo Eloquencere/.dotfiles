@@ -7,6 +7,7 @@ echo "Click on 'Move to App Menu'"
 # AI integration
 # # Hermes
 # curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
+# hermes update
 # LM Studio
 wget -O lm-studio.AppImage 'https://lmstudio.ai/download/latest/linux/x64?format=AppImage'
 flatpak run it.mijorus.gearlever ./lm-studio.AppImage

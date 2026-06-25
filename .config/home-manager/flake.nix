@@ -2,7 +2,7 @@
   description = "Home Manager configuration of eloquencer";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     hermes-agent.url = "github:NousResearch/hermes-agent";
 
     home-manager = {

@@ -3,7 +3,7 @@
     home.username = "eloquencer";
     home.homeDirectory = "/home/${config.home.username}";
 
-    home.stateVersion = "25.11"; # Please check HM release notes before changing this number
+    home.stateVersion = "26.05"; # Please check HM release notes before changing this number
 
     imports = [
         ./dconf.nix

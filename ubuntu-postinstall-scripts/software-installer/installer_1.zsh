@@ -1,6 +1,5 @@
 #!/bin/zsh
 
-# TODO: check if the document scanner app is as good as epson scan 2 & can connect to my printer
 # TODO: General shell completions under the completions dir aren't working & check carapace
 # TODO: diff completion is good, delta is not showing hidden files
 
@@ -35,7 +34,7 @@ sudo nala update
 sudo nala install -y --install-recommends kicad
 
 # Brave Origin browser
-name='brave-origin'
+name='brave-browser'
 sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
 sudo curl -fsSLo /etc/apt/sources.list.d/brave-browser-release.sources https://brave-browser-apt-release.s3.brave.com/brave-browser.sources
 sudo nala update
@@ -51,7 +50,6 @@ sudo nala install -y ghostty
 
 # Virt-Manager
 sudo nala install -y virt-manager qemu-system-x86 libvirt-daemon-system libvirt-clients bridge-utils qemu-utils
-# Try for qemu-system-x86-hwe
 
 # Docker
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
@@ -141,10 +139,10 @@ flatpak install --assumeyes flathub "${GAMES_FLATPAK[@]}"
 # Flatpaks
 ADDITIONAL_APPS_FLATPAK=(
     # Office
-    "io.github.Qalculate"
+    "md.obsidian.Obsidian"
     "com.jgraph.drawio.desktop"
     "org.kde.drawy"
-    "md.obsidian.Obsidian"
+    "io.github.Qalculate"
     # System
     "io.github.diegopvlk.Cine"
     "com.surfshark.Surfshark"
@@ -156,6 +154,7 @@ ADDITIONAL_APPS_FLATPAK=(
     # Project Management
     "com.rustdesk.RustDesk"
     # "org.jitsi.jitsi-meet"
+    # # Coding
     # "org.ghidra_sre.Ghidra"
 )
 flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
