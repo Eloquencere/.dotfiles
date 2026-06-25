@@ -23,7 +23,7 @@ wget -O handy.AppImage "https://github.com/cjpais/Handy/releases/latest/download
 flatpak run it.mijorus.gearlever ./handy.AppImage
 
 # GUI setup
-gnome-text-editor .gui_instructions.txt &
+open .gui_instructions.txt
 
 # Install Stirling pdf
 cd ~/.config/stirling-pdf/
@@ -77,8 +77,6 @@ gsettings set org.gnome.desktop.background picture-uri-dark 'file:///usr/share/b
 # gsettings set org.gnome.desktop.background picture-options 'scaled'
 # gsettings set org.gnome.desktop.background picture-uri-dark "file://$DOTFILES_HOME/wallpapers/angkor_watt_gpt.png"
 
-touch ~/Templates/file
-
 # NOTE: Will be default in the future
 mkdir -p $HOME/Projects
 echo "file://$HOME/Projects" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
@@ -121,7 +119,7 @@ fi
 # Clean up
 rm -rf ~/.cache/* # generally safe, but be mindful
 rm -rf ~/{.bash*,.profile,.zshrc,.zcompdump}
-rm -rf ~/{Public,go,Music}
+rm -rf ~/{Music,Templates,Public,go}
 sudo rm -rf /tmp/*
 
 BLOAT_SNAP=(

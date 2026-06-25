@@ -214,7 +214,7 @@ in
                 folder-children = [ 
                     "office"
                     "project-management"
-                    "programming"
+                    "coding"
                     "kicad"
                     "virtualisation"
                     "games"
@@ -222,9 +222,10 @@ in
                     "security"
                     "software-management"
                     "system-tools"
-                    "disk"
+                    "disk-utilities"
                     "network-utilities"
                     "language-support"
+                    "libreoffice"
                 ];
             };
 
@@ -232,22 +233,29 @@ in
                 name = "Office";
                 translate = false;
                 apps = [
-                    "libreoffice-writer.desktop"
-                    "libreoffice-impress.desktop"
-                    "libreoffice-calc.desktop"
                     "libreoffice-startcenter.desktop"
+                    "onlyoffice-desktopeditors_onlyoffice-desktopeditors.desktop"
                     "com.jgraph.drawio.desktop.desktop"
                     "org.kde.drawy.desktop"
                     "zotero.desktop"
+                    "com.github.tenderowl.frog.desktop"
                     "net.epson.epsonscan2.desktop"
                     "io.github.Qalculate.desktop"
+                    "org.gnome.Papers.desktop"
+                    "org.gnome.eog.desktop" # WARN: Not in 26
+                    # "org.gnome.Loupe.desktop" # WARN: enable in 26
+                    "simple-scan.desktop" # WARN: might not be in 26 
+                ];
+            };
+            "org/gnome/desktop/app-folders/folders/libreoffice" = {
+                name = "LibreOffice";
+                translate = false;
+                apps = [
+                    "libreoffice-calc.desktop"
+                    "libreoffice-writer.desktop"
+                    "libreoffice-impress.desktop"
                     "libreoffice-math.desktop"
                     "libreoffice-draw.desktop"
-                    "org.gnome.Papers.desktop"
-                    "org.gnome.Loupe.desktop"
-                    "org.gnome.eog.desktop" # WARN: Not in 26
-                    "com.github.tenderowl.frog.desktop"
-                    "simple-scan.desktop" # Document scanner
                 ];
             };
             "org/gnome/desktop/app-folders/folders/project-management" = {
@@ -255,17 +263,18 @@ in
                 translate = false;
                 apps = [
                     "org.jitsi.jitsi-meet.desktop"
-                    "signal-desktop.desktop"
                     "com.rustdesk.RustDesk.desktop"
+                    "signal-desktop.desktop"
                 ];
             };
-            "org/gnome/desktop/app-folders/folders/programming" = {
-                name = "Programming";
+            "org/gnome/desktop/app-folders/folders/coding" = {
+                name = "Coding";
                 translate = false;
                 apps = [
                     "org.ghidra_sre.Ghidra.desktop"
                     "code.desktop"
                     "com.github.reds.LogisimEvolution.desktop"
+                    # WARN: Add antigravity here
                 ];
             };
             "org/gnome/desktop/app-folders/folders/kicad" = {
@@ -342,7 +351,7 @@ in
                     "software-properties-drivers.desktop" # Not in 26
                 ];
             };
-            "org/gnome/desktop/app-folders/folders/disk" = {
+            "org/gnome/desktop/app-folders/folders/disk-utilities" = {
                 name = "Disk Utilities";
                 translate = false;
                 apps = [
@@ -388,28 +397,28 @@ in
                     (mkPage[
                         "office"
                         "project-management"
-                        "programming"
+                        "coding"
                         "kicad"
                         "virtualisation"
                         "games"
                         "lmstudio.desktop"
                         "anki.desktop"
-                        "io.github.giantpinkrobots.varia.desktop" # flatpak name
-                        # "varia_varia.desktop" # snap name
-                        "timeshift-gtk.desktop"
                         "com.surfshark.Surfshark.desktop"
+                        "io.github.giantpinkrobots.varia.desktop" # flatpak name
+                        "timeshift-gtk.desktop"
                         "tv.kodi.Kodi.desktop"
                         "net.nokyan.Resources.desktop"
                     ])
                     (mkPage[
                         "gnome-session-properties.desktop" # WARN: not in 26
+                        "software-management"
                         "bleachbit"
                         "security"
-                        "software-management"
                         "system-tools"
-                        "disk"
+                        "disk-utilities"
                         "network-utilities"
                         "language-support"
+                        "libreoffice"
                         "io.github.diegopvlk.Cine.desktop"
                         "org.gnome.Calendar.desktop"
                         "org.gnome.Settings.desktop"

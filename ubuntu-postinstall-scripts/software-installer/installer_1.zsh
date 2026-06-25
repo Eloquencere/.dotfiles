@@ -14,6 +14,10 @@ echo "Welcome to the *Ubuntu 26.04 LTS* installer :)"
 source sub-scripts/nerdfonts_download.sh
 sudo nala install -y ttf-mscorefonts-installer fonts-crosextra-carlito fonts-crosextra-caladea # MS fonts for LibreOffice
 
+# Improving nautilus
+sudo nala install -y python3-nautilus python3-charset-normalizer at python3-polib
+curl -fsSL https://raw.githubusercontent.com/SimBoi/nautilus-create-new-file/main/install.sh | bash
+
 # Performance improvement
 sudo nala install -y preload earlyoom
 sudo systemctl enable preload earlyoom
@@ -110,6 +114,7 @@ sudo nala install -y "${APPLICATIONS[@]}"
 sudo snap set system refresh.retain=2
 
 OFFICE_SOFTWARE_SNAP=(
+    "onlyoffice-desktopeditors" # Niche MS Office support
     "notion-desktop"   # Not available elsewhere
     # "scrcpy"           # Not available elsewhere # WARN: Not working
 )
@@ -172,9 +177,6 @@ cd ~/.dotfiles/ && stow . && cd -
 
 echo "The system will reboot now to consolidate the installation"
 sudo reboot now
-
-# OnlyOffice - If you want some niche MS support
-# sudo snap install onlyoffice-desktopeditors
 
 # # Experiment - weird artifacts in the text editor
 # echo 'APT::Architecture-Variants "amd64v3";' | sudo tee /etc/apt/apt.conf.d/99amd64v3
