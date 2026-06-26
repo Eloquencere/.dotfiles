@@ -1,3 +1,8 @@
+#!/bin/zsh
+set -o errexit \
+    -o nounset \
+    -o pipefail
+
 pip install --upgrade pip
 
 pip install icecream loguru # for debugging

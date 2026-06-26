@@ -1,3 +1,8 @@
+#!/bin/zsh
+set -o errexit \
+    -o nounset \
+    -o pipefail
+
 # EDA
 pip install coco-tb # TODO: need to add others
 pip install drawpyo wavedrom pydot python-statemachine

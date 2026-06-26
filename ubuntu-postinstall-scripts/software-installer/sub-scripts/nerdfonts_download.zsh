@@ -1,3 +1,8 @@
+#!/bin/zsh
+set -o errexit \
+    -o nounset \
+    -o pipefail
+
 # Thanks - gist.github.com/matthewjberger/7dd7e079f282f8138a9dc3b045ebefa0
 
 declare -a fonts=(

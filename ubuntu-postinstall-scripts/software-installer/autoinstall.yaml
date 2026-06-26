@@ -112,7 +112,7 @@ autoinstall:
     - git
     - stow
 
-  shutdown: poweroff
+  shutdown: reboot
 
   late-commands:
     - curtin in-target --target=/target -- bash -c "dpkg --add-architecture i386; apt-get update"

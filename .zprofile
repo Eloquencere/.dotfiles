@@ -20,10 +20,7 @@ export TOOLS_HOME="$HOME/Tools"
 export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
 
 # fzf modifications
-export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git --color=always"
 export FZF_DEFAULT_OPTS="--ansi"
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git --color=always"
 
 # Rust
 export CARGO_HOME="$XDG_DATA_HOME/rust/cargo"

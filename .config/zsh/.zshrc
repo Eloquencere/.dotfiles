@@ -32,7 +32,6 @@ function __lazy_shell_tools {
     eval "$(starship init zsh)" &> /dev/null
     eval "$(atuin init zsh --disable-ctrl-r --disable-up-arrow)"
     eval "$(zoxide init --cmd cd zsh)"
-    eval "$(fzf --zsh)"
     eval "$(mise activate zsh)"
     add-zsh-hook -d precmd __lazy_shell_tools
 }

@@ -1,4 +1,7 @@
 #!/bin/zsh
+set -o errexit \
+    -o nounset \
+    -o pipefail
 
 # TODO: Do a clean, from scratch setup of Hermes & check if my config file has no bloat
 
@@ -10,7 +13,7 @@ cd "$(dirname "${(%):-%x}")" # change directory to script location
 
 echo "Welcome to the *Ubuntu 26.04 LTS* installer :)"
 
-source sub-scripts/nerdfonts_download.sh
+source sub-scripts/nerdfonts_download.zsh
 sudo nala install -y ttf-mscorefonts-installer fonts-crosextra-carlito fonts-crosextra-caladea # MS fonts for LibreOffice
 
 # Improving nautilus

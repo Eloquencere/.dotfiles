@@ -6,7 +6,7 @@ alias rm="rm -i"
 # Basic tools
 alias n=nvim
 alias py=python3
-alias py2=python2
+# alias py2=python2
 
 # Better command line utils
 alias ls="eza --git --group-directories-first --color=always --icons=always"
@@ -17,6 +17,5 @@ alias cat=bat
 alias diff="delta --dark --side-by-side"
 alias grep=rg
 alias df=duf
-alias neofetch=fastfetch
 # alias cheat="cheat --colorize"
 

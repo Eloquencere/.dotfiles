@@ -1,4 +1,7 @@
 #!/bin/zsh
+set -o errexit \
+    -o nounset \
+    -o pipefail
 
 cd "$(dirname "${(%):-%x}")" # change directory to script location
 
@@ -61,6 +64,7 @@ rustup toolchain install stable
 rustup default stable
 unset RUSTC_WRAPPER # to momentarily stop cargo from pointing to sccache that is yet to be installed
 cargo binstall sccache
+cargo binstall usage-cli # needed for mise tab completion
 
 # cpanm package manager for perl
 echo "Say \"yes\" to the first & \"sudo\" to the next question" # NOTE: add colors
@@ -130,7 +134,7 @@ sudo snap remove --purge "${BLOAT_SNAP[@]}"
 BLOAT_APT=(
     "gnome-logs" "gnome-calculator" "gnome-snapshot"
     "ptyxis" "deja-dup" "seahorse" "shotwell" "showtime"
-    "rhythmbox" "orca" "info" "yelp" # "simple-scan"
+    "rhythmbox" "orca" "yelp" # "simple-scan" "info"
     "transmission-common" "transmission-gtk"
     "ed" "vim-common" "nano"
     # Tools that clash with nixpkgs

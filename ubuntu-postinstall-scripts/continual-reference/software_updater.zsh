@@ -1,3 +1,8 @@
+#!/bin/zsh
+set -o errexit \
+    -o nounset \
+    -o pipefail
+
 sudo nala full-upgrade -y
 sudo snap refresh
 
