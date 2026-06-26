@@ -3,7 +3,7 @@ set -o errexit \
     -o nounset \
     -o pipefail
 
-# TODO: Do a clean, from scratch setup of Hermes & check if my config file has no bloat
+# TODO: Do a clean, from scratch setup of Hermes & check if my config file has any bloat
 
 # WARN: this doesn't work
 # Add this to dconf.nix Alternatively, take a call to completely remove the notifier app

@@ -23,9 +23,9 @@ export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
 export FZF_DEFAULT_OPTS="--ansi"
 
 # Rust
-export CARGO_HOME="$XDG_DATA_HOME/rust/cargo"
 export RUSTUP_HOME="$XDG_DATA_HOME/rust/rustup"
-export RUSTC_WRAPPER="$CARGO_HOME/bin/sccache"
+export RUSTC_WRAPPER="sccache"
+export CARGO_HOME="$XDG_DATA_HOME/rust/cargo"
 export PATH="$PATH:$CARGO_HOME/bin"
 
 # Python

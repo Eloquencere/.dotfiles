@@ -32,6 +32,7 @@
         opencode github-copilot-cli
 
         # Rust crates
+        sccache
         bacon
         cargo-binstall
         cargo-expand # slightly outdated

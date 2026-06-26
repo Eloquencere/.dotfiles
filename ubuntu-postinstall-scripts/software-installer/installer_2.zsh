@@ -7,14 +7,6 @@ cd "$(dirname "${(%):-%x}")" # change directory to script location
 
 echo "Click on 'Move to App Menu'"
 
-# AI integration
-# # Hermes
-# curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
-# hermes update
-# LM Studio
-wget -O lm-studio.AppImage 'https://lmstudio.ai/download/latest/linux/x64?format=AppImage'
-flatpak run it.mijorus.gearlever ./lm-studio.AppImage
-
 # WinBoat
 version='0.9.0'
 wget -O winboat.AppImage "https://github.com/TibixDev/winboat/releases/latest/download/winboat-$version-x86_64.AppImage"
@@ -24,6 +16,10 @@ flatpak run it.mijorus.gearlever ./winboat.AppImage
 version='0.8.3'
 wget -O handy.AppImage "https://github.com/cjpais/Handy/releases/latest/download/Handy_${version}_amd64.AppImage"
 flatpak run it.mijorus.gearlever ./handy.AppImage
+
+# LM Studio
+wget -O lm-studio.AppImage 'https://lmstudio.ai/download/latest/linux/x64?format=AppImage'
+flatpak run it.mijorus.gearlever ./lm-studio.AppImage
 
 # GUI setup
 open .gui_instructions.txt
@@ -62,17 +58,18 @@ mise install # from config
 
 rustup toolchain install stable
 rustup default stable
-unset RUSTC_WRAPPER # to momentarily stop cargo from pointing to sccache that is yet to be installed
-cargo binstall sccache
-cargo binstall usage-cli # needed for mise tab completion
+cargo binstall usage-cli # For mise tab completion
 
 # cpanm package manager for perl
-echo "Say \"yes\" to the first & \"sudo\" to the next question" # NOTE: add colors
+echo $'Say "\033[1;33myes\033[0m" to the first & "\033[1;33msudo\033[0m" to the next question'
 cpan App::cpanminus
 
+# # Hermes
+# curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
+# hermes update
+
 # To Allow GSConnect to work
-sudo ufw allow 1714:1764/udp
-sudo ufw allow 1714:1764/tcp
+sudo ufw allow 1714:1764
 
 # Load wallpaper
 gsettings set org.gnome.desktop.background picture-options 'zoom'
