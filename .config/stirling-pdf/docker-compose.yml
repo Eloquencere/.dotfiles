@@ -42,4 +42,3 @@ services:
       - sablier.enable=true
       - sablier.group=stirling
     restart: no
-

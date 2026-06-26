@@ -6,7 +6,6 @@ setopt hist_ignore_all_dups
 setopt interactive_comments
 
 source "$ZINIT_HOME/zinit.zsh"
-# source "$XDG_DATA_HOME/zinit-pkgmngr/zinit.zsh"
 
 zinit wait lucid compile for \
     jeffreytse/zsh-vi-mode \
@@ -17,8 +16,9 @@ zinit wait lucid compile for \
 
 fpath+=$ZDOTDIR/completion
 zinit wait lucid compile for \
-    atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+    atinit"zicompinit; zicdreplay" \
     zsh-users/zsh-completions
+_comps[delta]=_files
 
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':fzf-tab:*' use-fzf-default-opts yes
@@ -34,7 +34,6 @@ function __lazy_shell_tools {
     eval "$(zoxide init --cmd cd zsh)"
     eval "$(fzf --zsh)"
     eval "$(mise activate zsh)"
-    # eval "$(just --completions zsh)"
     add-zsh-hook -d precmd __lazy_shell_tools
 }
 add-zsh-hook precmd __lazy_shell_tools

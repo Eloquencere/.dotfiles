@@ -12,7 +12,7 @@
     home.packages = with pkgs; [
         scriptisto
         gdb valgrind strace tio
-        tlrc typst natural-docs doxygen
+        tlrc typst natural-docs doxygen cheat
 
         # Prompt improvement
         starship fzf atuin

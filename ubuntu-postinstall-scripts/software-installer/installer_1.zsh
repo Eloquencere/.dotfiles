@@ -1,7 +1,6 @@
 #!/bin/zsh
 
-# TODO: General shell completions under the completions dir aren't working & check carapace
-# TODO: diff completion is good, delta is not showing hidden files
+# TODO: Do a clean, from scratch setup of Hermes & check if my config file has no bloat
 
 # WARN: even this doesn't work
 # Add this to dconf.nix Alternatively, take a call to completely remove the notifier app

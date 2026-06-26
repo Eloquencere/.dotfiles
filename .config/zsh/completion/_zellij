@@ -1225,7 +1225,9 @@ _zellij__action__write-chars_commands() {
     _describe -t commands 'zellij action write-chars commands' commands "$@"
 }
 
-_zellij "$@"
+# The line below (previously: _zellij "$@") was removed to avoid
+# double-invocation with new-style autoload — zsh itself calls _zellij
+# after sourcing the file, so the extra call is redundant.
 function zr () { zellij run --name "$*" -- zsh -ic "$*";}
 function zrf () { zellij run --name "$*" --floating -- zsh -ic "$*";}
 function zri () { zellij run --name "$*" --in-place -- zsh -ic "$*";}
