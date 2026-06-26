@@ -134,7 +134,7 @@ sudo snap remove --purge "${BLOAT_SNAP[@]}"
 BLOAT_APT=(
     "gnome-logs" "gnome-calculator" "gnome-snapshot"
     "ptyxis" "deja-dup" "seahorse" "shotwell" "showtime"
-    "rhythmbox" "orca" "yelp" # "simple-scan" "info"
+    "rhythmbox" "orca" "yelp" # WARN: "simple-scan" "info"
     "transmission-common" "transmission-gtk"
     "ed" "vim-common" "nano"
     # Tools that clash with nixpkgs

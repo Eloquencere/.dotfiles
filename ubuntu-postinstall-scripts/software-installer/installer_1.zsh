@@ -5,7 +5,7 @@ set -o errexit \
 
 # TODO: Do a clean, from scratch setup of Hermes & check if my config file has no bloat
 
-# WARN: even this doesn't work
+# WARN: this doesn't work
 # Add this to dconf.nix Alternatively, take a call to completely remove the notifier app
 # gsettings set com.ubuntu.update-notifier no-show-notifications true
 
@@ -19,6 +19,8 @@ sudo nala install -y ttf-mscorefonts-installer fonts-crosextra-carlito fonts-cro
 # Improving nautilus
 sudo nala install -y python3-nautilus python3-charset-normalizer at python3-polib
 curl -fsSL https://raw.githubusercontent.com/SimBoi/nautilus-create-new-file/main/install.sh | bash
+
+xdg-mime default org.gnome.TextEditor.desktop text/markdown
 
 # Performance improvement
 sudo nala install -y preload earlyoom
@@ -45,7 +47,7 @@ sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://b
 sudo curl -fsSLo /etc/apt/sources.list.d/brave-browser-release.sources https://brave-browser-apt-release.s3.brave.com/brave-browser.sources
 sudo nala update
 sudo nala install -y $name
-xdg-settings set default-web-browser $name.desktop
+# xdg-settings set default-web-browser $name.desktop # WARN: might be creating duplicate entries in ~/.config/mimeapps.list
 xdg-mime default $name.desktop x-scheme-handler/mailto
 $name &
 
@@ -124,8 +126,8 @@ sudo snap install "${OFFICE_SOFTWARE_SNAP[@]}"
 
 # Games
 echo 'ntsync
-KERNEL=="ntsync", MODE="0660", TAG+="uaccess"' \ 
-| sudo tee /etc/modules-load.d/ntsync.conf
+KERNEL=="ntsync", MODE="0660", TAG+="uaccess"' \
+ | sudo tee /etc/modules-load.d/ntsync.conf
 mkdir -p ~/Games/{switch}
 sudo nala install -y steam
 GAMES_FLATPAK=(

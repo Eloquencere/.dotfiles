@@ -1,5 +1,54 @@
 #compdef just
+
 source <(JUST_COMPLETE=zsh just)
-if [ "$funcstack[1]" = "_just" ]; then
-  _clap_dynamic_completer_just "$@"
+
+_just_complete() {
+    local cur="${words[$CURRENT]}"
+    local -i idx=$((CURRENT - 1))
+
+    # One directory scan → hash for O(1) filtering vs N stat calls
+    local -A is_file
+    local f
+    for f in . .. *(DN); do is_file[$f]=1; done
+
+    local _CLAP_IFS=$'\n'
+    local completions=("${(@f)$(
+        _CLAP_IFS="$_CLAP_IFS" \
+        _CLAP_COMPLETE_INDEX=$idx \
+        JUST_COMPLETE=zsh \
+        just -- "${words[@]}" 2>/dev/null
+    )}")
+
+    if [[ -n $completions ]]; then
+        local -a dirs=() other=()
+        local completion value
+        for completion in $completions; do
+            value="${completion%%:*}"
+            if [[ "$value" == */ ]]; then
+                local dir="${value%/}"
+                # Skip directory entries that exist on disk (justfile path noise)
+                if (( $+is_file[$dir] )); then
+                    :
+                elif [[ "$completion" == *:* ]]; then
+                    dirs+=("$dir:${completion#*:}")
+                else
+                    dirs+=("$dir")
+                fi
+            elif [[ "$value" == --* ]] && [[ "$cur" != -* ]]; then
+                :   # skip flags unless user typed -
+            elif (( $+is_file[$value] )); then
+                :   # skip filesystem noise
+            else
+                other+=("$completion")
+            fi
+        done
+        [[ -n $dirs ]] && _describe -V 'values' dirs -S '/' -r '/'
+        [[ -n $other ]] && _describe -V 'values' other
+    fi
+}
+
+if [[ "$funcstack[1]" == "_just" ]]; then
+    compdef -d just 2>/dev/null || true
+    compdef _just_complete just
+    _just_complete "$@"
 fi
