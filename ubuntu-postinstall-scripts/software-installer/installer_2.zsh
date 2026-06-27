@@ -55,7 +55,7 @@ sudo systemctl enable kanata
 
 mise trust
 mise install
-# need to restart shell here
+# WARN: need to restart shell here
 
 # cpanm package manager for perl
 echo $'Say "\033[1;33myes\033[0m" to the first & "\033[1;33msudo\033[0m" to the next question'
@@ -139,7 +139,7 @@ sudo nala purge -y "${BLOAT_APT[@]}"
 
 sudo sh -c "nala install --fix-broken; nala autoremove; apt autoclean"
 source ../continual-reference/software_updater.zsh
-# WARN: terminal exiting here
+# WARN: terminal appears to exit here
 
 echo "The system will reboot now to consolidate the installation"
 read -r "?Press Enter to reboot..."

@@ -17,9 +17,10 @@ home-manager news &> /dev/null
 nix-collect-garbage --delete-old; nix store gc
 cd -
 
+mise upgrade
+
 zinit self-update
 zinit update --all
-mise upgrade
 
 echo "Update your nvim plugins & researt your machine"
 

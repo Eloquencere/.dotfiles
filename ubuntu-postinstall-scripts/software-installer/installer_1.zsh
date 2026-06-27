@@ -3,7 +3,6 @@ set -o errexit \
     -o nounset \
     -o pipefail
 
-# WARN: disable the notification on boot about updates required
 # TODO: Do a clean, from scratch setup of Hermes & check if my config file has any bloat
 # Find out how to set hermes config to ~/.config
 
@@ -22,15 +21,14 @@ xdg-mime default org.gnome.TextEditor.desktop text/markdown
 
 # Performance improvement
 sudo nala install -y preload earlyoom
-sudo systemctl enable preload earlyoom # WARN: maybe they auto-enable
 
 # Anki - WARN: wayland issue
 version='26.05'
 wget https://github.com/ankitects/anki/releases/latest/download/anki-$version-linux-x86_64.tar.zst
 tar xaf anki-$version-linux-x86_64.tar.zst
 cd anki-linux/
-ANKI_WAYLAND=1 sudo ./install.sh
-anki
+sudo ./install.sh
+ANKI_WAYLAND=1 anki
 cd ..; rm -rf anki-*
 
 # KiCAD
@@ -165,10 +163,6 @@ ADDITIONAL_APPS_FLATPAK=(
     # "org.ghidra_sre.Ghidra"
 )
 flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
-
-# fix title bar color - (draw.io & Heroic) - WARN: this is making other apps look old
-flatpak install --assumeyes flathub org.gtk.Gtk3theme.Yaru-dark
-flatpak override --user --env=GTK_THEME=Yaru-dark
 
 # NOTE: following will take effect after (system) restart
 
