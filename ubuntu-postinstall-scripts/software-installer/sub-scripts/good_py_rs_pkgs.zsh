@@ -3,6 +3,11 @@ set -o errexit \
     -o nounset \
     -o pipefail
 
+# WARN: cmd never found
+rustup toolchain install stable
+rustup default stable
+cargo binstall usage-cli # For mise tab completion
+
 pip install --upgrade pip
 
 pip install icecream loguru # for debugging

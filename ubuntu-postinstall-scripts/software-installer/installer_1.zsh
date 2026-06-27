@@ -21,14 +21,14 @@ xdg-mime default org.gnome.TextEditor.desktop text/markdown
 
 # Performance improvement
 sudo nala install -y preload earlyoom
-sudo systemctl enable preload earlyoom
+sudo systemctl enable preload earlyoom # WARN: maybe they auto-enable
 
-# Anki
+# Anki - WARN: wayland issue
 version='26.05'
 wget https://github.com/ankitects/anki/releases/latest/download/anki-$version-linux-x86_64.tar.zst
 tar xaf anki-$version-linux-x86_64.tar.zst
 cd anki-linux/
-sudo ./install.sh
+ANKI_WAYLAND=1 sudo ./install.sh
 anki
 cd ..; rm -rf anki-*
 
@@ -44,7 +44,7 @@ sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://b
 sudo curl -fsSLo /etc/apt/sources.list.d/brave-browser-release.sources https://brave-browser-apt-release.s3.brave.com/brave-browser.sources
 sudo nala update
 sudo nala install -y $name
-# xdg-settings set default-web-browser $name.desktop # WARN: might be creating duplicate entries in ~/.config/mimeapps.list
+xdg-settings set default-web-browser $name.desktop
 xdg-mime default $name.desktop x-scheme-handler/mailto
 $name &
 
@@ -52,6 +52,7 @@ $name &
 sudo add-apt-repository --yes ppa:mkasberg/ghostty-ubuntu
 sudo nala update
 sudo nala install -y ghostty
+rm -rf ~/.config/ghostty
 
 # Virt-Manager
 sudo nala install -y virt-manager qemu-system-x86 libvirt-daemon-system libvirt-clients bridge-utils qemu-utils
@@ -164,20 +165,19 @@ ADDITIONAL_APPS_FLATPAK=(
 )
 flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
 
-# fix title bar color - (draw.io & Heroic)
+# fix title bar color - (draw.io & Heroic) - WARN: this is making other apps look old
 flatpak install --assumeyes flathub org.gtk.Gtk3theme.Yaru-dark
 flatpak override --user --env=GTK_THEME=Yaru-dark
 
-# NOTE: following will take effect after (shell) restart
+# NOTE: following will take effect after (system) restart
 
 # Installing nix pkg manager
 sh <(curl --proto "=https" --tlsv1.2 -L https://nixos.org/nix/install) --daemon --yes
 
 cd ~/.dotfiles/ && stow . && cd -
 
-echo "The shell will exit now, please open your terminal application & run installer_2"
-read -r "?Press Enter to acknowledge..."
-exit
+echo "The system will reboot now to consolidate the installation"
+sudo reboot now
 
 # # Experiment - weird artifacts in the text editor
 # echo 'APT::Architecture-Variants "amd64v3";' | sudo tee /etc/apt/apt.conf.d/99amd64v3

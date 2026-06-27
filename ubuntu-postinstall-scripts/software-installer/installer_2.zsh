@@ -53,12 +53,9 @@ WantedBy=default.target" \
 | sudo tee /etc/systemd/system/kanata.service
 sudo systemctl enable kanata
 
-mise trust # config file
-mise install # from config
-
-rustup toolchain install stable
-rustup default stable
-cargo binstall usage-cli # For mise tab completion
+mise trust
+mise install
+# need to restart shell here
 
 # cpanm package manager for perl
 echo $'Say "\033[1;33myes\033[0m" to the first & "\033[1;33msudo\033[0m" to the next question'
@@ -69,7 +66,8 @@ cpan App::cpanminus
 # hermes update
 
 # To Allow GSConnect to work
-sudo ufw allow 1714:1764
+sudo ufw allow 1714:1764/tcp
+sudo ufw allow 1714:1764/udp
 
 # Load wallpaper
 gsettings set org.gnome.desktop.background picture-options 'zoom'
@@ -131,7 +129,7 @@ sudo snap remove --purge "${BLOAT_SNAP[@]}"
 BLOAT_APT=(
     "gnome-logs" "gnome-calculator" "gnome-snapshot"
     "ptyxis" "deja-dup" "seahorse" "shotwell" "showtime"
-    "rhythmbox" "orca" "yelp" # WARN: "simple-scan"
+    "rhythmbox" "orca" "info" "yelp" # WARN: "simple-scan"
     "transmission-common" "transmission-gtk"
     "ed" "vim-common" "nano"
     # Tools that clash with nixpkgs
@@ -141,6 +139,7 @@ sudo nala purge -y "${BLOAT_APT[@]}"
 
 sudo sh -c "nala install --fix-broken; nala autoremove; apt autoclean"
 source ../continual-reference/software_updater.zsh
+# WARN: terminal exiting here
 
 echo "The system will reboot now to consolidate the installation"
 read -r "?Press Enter to reboot..."
