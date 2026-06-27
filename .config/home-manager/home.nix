@@ -29,7 +29,8 @@
         mise
 
         # hermes-agent.packages.${pkgs.system}.default
-        opencode github-copilot-cli
+        opencode
+        github-copilot-cli codex
 
         # Rust crates
         sccache

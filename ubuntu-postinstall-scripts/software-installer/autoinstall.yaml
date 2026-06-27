@@ -48,7 +48,7 @@ autoinstall:
     #         - 9.9.9.9              # Quad9
     #         - 2620:fe::fe          # "
 
-  # For BIOS
+  # For BIOS - WARN: mention swap partition
   storage:
     config:
       - id: disk0

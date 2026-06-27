@@ -3,11 +3,8 @@ set -o errexit \
     -o nounset \
     -o pipefail
 
+# WARN: disable the notification on boot about updates required
 # TODO: Do a clean, from scratch setup of Hermes & check if my config file has any bloat
-
-# WARN: this doesn't work
-# Add this to dconf.nix Alternatively, take a call to completely remove the notifier app
-# gsettings set com.ubuntu.update-notifier no-show-notifications true
 
 cd "$(dirname "${(%):-%x}")" # change directory to script location
 
@@ -120,7 +117,6 @@ sudo snap set system refresh.retain=2
 OFFICE_SOFTWARE_SNAP=(
     "onlyoffice-desktopeditors" # Niche MS Office support
     "notion-desktop"   # Not available elsewhere
-    # "scrcpy"           # Not available elsewhere # WARN: Not working
 )
 sudo snap install "${OFFICE_SOFTWARE_SNAP[@]}"
 
@@ -179,8 +175,9 @@ sh <(curl --proto "=https" --tlsv1.2 -L https://nixos.org/nix/install) --daemon 
 
 cd ~/.dotfiles/ && stow . && cd -
 
-echo "The system will reboot now to consolidate the installation"
-sudo reboot now
+echo "The shell will exit now, please open your terminal application & run installer_2"
+read -r "?Press Enter to acknowledge..."
+exit
 
 # # Experiment - weird artifacts in the text editor
 # echo 'APT::Architecture-Variants "amd64v3";' | sudo tee /etc/apt/apt.conf.d/99amd64v3

@@ -36,6 +36,7 @@ Notes
         - Sharing home folder with linux is questionable
         - Disable autostart container
         - Disable animations
+    - Optionally setup Ubuntu Pro
 
     - If there's mouse scroll wheel issues
         sudo apt install imwheel

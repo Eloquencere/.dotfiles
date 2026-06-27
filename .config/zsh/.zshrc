@@ -30,6 +30,7 @@ zstyle ':fzf-tab:complete:*:*' fzf-preview '[[ -d $realpath ]] && eza --all --on
 autoload -Uz add-zsh-hook
 function __lazy_shell_tools {
     eval "$(starship init zsh)" &> /dev/null
+    prompt_starship_precmd  # call directly so first prompt gets starship rendering
     eval "$(atuin init zsh --disable-ctrl-r --disable-up-arrow)"
     eval "$(zoxide init --cmd cd zsh)"
     eval "$(mise activate zsh)"
