@@ -403,7 +403,7 @@ in
                         "games"
                         "lmstudio.desktop"
                         "anki.desktop"
-                        "com.surfshark.Surfshark.desktop"
+                        "surfshark_surfshark.desktop"
                         "io.github.giantpinkrobots.varia.desktop" # flatpak name
                         "timeshift-gtk.desktop"
                         "tv.kodi.Kodi.desktop"

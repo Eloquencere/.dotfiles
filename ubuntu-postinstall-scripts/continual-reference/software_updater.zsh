@@ -17,6 +17,7 @@ home-manager news &> /dev/null
 nix-collect-garbage --delete-old; nix store gc
 cd -
 
+zinit self-update
 zinit update --all
 mise upgrade
 

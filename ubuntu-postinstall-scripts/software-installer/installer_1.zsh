@@ -5,6 +5,7 @@ set -o errexit \
 
 # WARN: disable the notification on boot about updates required
 # TODO: Do a clean, from scratch setup of Hermes & check if my config file has any bloat
+# Find out how to set hermes config to ~/.config
 
 cd "$(dirname "${(%):-%x}")" # change directory to script location
 
@@ -118,6 +119,7 @@ sudo snap set system refresh.retain=2
 OFFICE_SOFTWARE_SNAP=(
     "onlyoffice-desktopeditors" # Niche MS Office support
     "notion-desktop"   # Not available elsewhere
+    "surfshark" # kill switch not available in flatpak version
 )
 sudo snap install "${OFFICE_SOFTWARE_SNAP[@]}"
 
@@ -151,7 +153,6 @@ ADDITIONAL_APPS_FLATPAK=(
     "io.github.Qalculate"
     # System
     "io.github.diegopvlk.Cine"
-    "com.surfshark.Surfshark"
     "io.github.giantpinkrobots.varia"
     "net.epson.epsonscan2"
     "com.github.tenderowl.frog"

@@ -1,9 +1,15 @@
 setopt nobeep
 setopt correct
+setopt auto_cd
 setopt glob_dots
+setopt no_clobber
+setopt no_flow_control
 setopt extended_glob
 setopt hist_ignore_all_dups
 setopt interactive_comments
+
+# This does work
+# export HERMES_HOME="$XDG_CONFIG_HOME/hermes"
 
 source "$ZINIT_HOME/zinit.zsh"
 
@@ -12,12 +18,14 @@ zinit wait lucid compile for \
     hlissner/zsh-autopair \
     Aloxaf/fzf-tab \
     Eloquencere/zsh-goto-cli \
-    zdharma/fast-syntax-highlighting
+    zdharma-continuum/fast-syntax-highlighting
 
 fpath+=$ZDOTDIR/completion
-zinit wait lucid compile for \
-    atinit"zicompinit; zicdreplay" \
+zinit wait lucid compile atinit"[[ -r $ZINIT_HOME/.zcompdump ]] && compinit -C || { zicompinit; zicdreplay; }" for \
     zsh-users/zsh-completions
+# zinit wait lucid compile for \
+#     atinit"zicompinit; zicdreplay" \
+#     zsh-users/zsh-completions
 _comps[delta]=_files
 
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
