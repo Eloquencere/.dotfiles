@@ -10,6 +10,7 @@
 - [] Make note of software installed manually
 - [] Hermes
     - save config.yaml & SOUL.md
+- [ ] GSConnect & KDEConnect settings into notion
 
 - autoinstall.yaml
     - Add user password hash via:     openssl passwd -6

@@ -55,17 +55,20 @@ sudo systemctl enable kanata
 
 mise trust
 mise install
-# WARN: need to restart shell here
+# WARN: don't have access to rustup here
+# mise doctor
+# mise reshim
 
 # cpanm package manager for perl
 echo $'Say "\033[1;33myes\033[0m" to the first & "\033[1;33msudo\033[0m" to the next question'
 cpan App::cpanminus
 
-# # Hermes
+# # Hermes WARN: Address all the action points in Agent Insertion
 # curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
 # hermes update
 
-# To Allow GSConnect to work
+# GSConnect
+mkdir -p ~/Transfers/GSConnect
 sudo ufw allow 1714:1764/tcp
 sudo ufw allow 1714:1764/udp
 
@@ -75,6 +78,10 @@ gsettings set org.gnome.desktop.background picture-uri-dark 'file:///usr/share/b
 # # Alternate
 # gsettings set org.gnome.desktop.background picture-options 'scaled'
 # gsettings set org.gnome.desktop.background picture-uri-dark "file://$DOTFILES_HOME/wallpapers/angkor_watt_gpt.png"
+
+xdg-mime default org.gnome.TextEditor.desktop text/markdown
+
+# NOTE: might be best to arrange dirs in the bookmarks section
 
 # NOTE: Will be default in the future
 mkdir -p $HOME/Projects
@@ -86,7 +93,7 @@ read croc_id
 echo "# Croc
 export CROC_SELF_TRANSFER_ID=$croc_id" >> $ZDOTDIR/personal/zprofile.zsh
 echo "Move a copy of the collaborators database given by your admin to the zsh home directory"
-mkdir -p ~/Transfers/{croc,GSConnect}
+mkdir -p ~/Transfers/croc
 echo "file://$HOME/Transfers" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
 
 sed -i "\|Music|d" $XDG_CONFIG_HOME/gtk-3.0/bookmarks

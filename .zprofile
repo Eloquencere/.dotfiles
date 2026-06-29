@@ -1,5 +1,8 @@
 # Profile file. Runs on login. Environment variables are here
 
+# Anki - Remove when wayland support is fixed
+export ANKI_WAYLAND=1
+
 # Default path
 export EDITOR="nvim"
 

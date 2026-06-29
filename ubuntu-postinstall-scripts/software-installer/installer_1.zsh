@@ -17,12 +17,10 @@ sudo nala install -y ttf-mscorefonts-installer fonts-crosextra-carlito fonts-cro
 sudo nala install -y python3-nautilus python3-charset-normalizer at python3-polib
 curl -fsSL https://raw.githubusercontent.com/SimBoi/nautilus-create-new-file/main/install.sh | bash
 
-xdg-mime default org.gnome.TextEditor.desktop text/markdown
-
 # Performance improvement
 sudo nala install -y preload earlyoom
 
-# Anki - WARN: wayland issue
+# Anki - NOTE: wayland issue
 version='26.05'
 wget https://github.com/ankitects/anki/releases/latest/download/anki-$version-linux-x86_64.tar.zst
 tar xaf anki-$version-linux-x86_64.tar.zst
@@ -116,8 +114,8 @@ sudo snap set system refresh.retain=2
 
 OFFICE_SOFTWARE_SNAP=(
     "onlyoffice-desktopeditors" # Niche MS Office support
-    "notion-desktop"   # Not available elsewhere
-    "surfshark" # kill switch not available in flatpak version
+    "notion-desktop"            # Not available elsewhere
+    "surfshark"                 # kill switch not available in flatpak
 )
 sudo snap install "${OFFICE_SOFTWARE_SNAP[@]}"
 
@@ -174,17 +172,6 @@ cd ~/.dotfiles/ && stow . && cd -
 echo "The system will reboot now to consolidate the installation"
 sudo reboot now
 
-# # Experiment - weird artifacts in the text editor
-# echo 'APT::Architecture-Variants "amd64v3";' | sudo tee /etc/apt/apt.conf.d/99amd64v3
-# sudo apt update
-# sudo apt full-upgrade -y
-
-# # Wezterm
-# curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
-# echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
-# sudo nala update
-# sudo nala install -y wezterm
-
 # # Signal
 # wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg;
 # cat signal-desktop-keyring.gpg | sudo tee /usr/share/keyrings/signal-desktop-keyring.gpg > /dev/null
@@ -192,4 +179,22 @@ sudo reboot now
 #   sudo tee /etc/apt/sources.list.d/signal-xenial.list
 # sudo apt update && sudo apt install signal-desktop
 # rm -rf signal-desktop-keyring.gpg
+
+# Wezterm - high ram usage when running zellij
+# curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
+# printf '%s\n' \
+#   'Types: deb' \
+#   'URIs: https://apt.fury.io/wez/' \
+#   'Suites: *' \
+#   'Components: *' \
+#   "Architectures: $(dpkg --print-architecture)" \
+#   'Signed-By: /usr/share/keyrings/wezterm-fury.gpg' \
+#   | sudo tee /etc/apt/sources.list.d/wezterm.sources > /dev/null
+# sudo nala update
+# sudo nala install -y wezterm
+
+# # Experiment - weird artifacts in the text editor
+# echo 'APT::Architecture-Variants "amd64v3";' | sudo tee /etc/apt/apt.conf.d/99amd64v3
+# sudo apt update
+# sudo apt full-upgrade -y
 
