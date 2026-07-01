@@ -5,14 +5,33 @@ set -o errexit \
 
 cd "$(dirname "${(%):-%x}")" # change directory to script location
 
-echo "Click on 'Move to App Menu'"
+# Browser
+name='brave-browser'
+sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+sudo curl -fsSLo /etc/apt/sources.list.d/brave-browser-release.sources https://brave-browser-apt-release.s3.brave.com/brave-browser.sources
+sudo nala update
+sudo nala install -y $name
+xdg-settings set default-web-browser $name.desktop
+xdg-mime default $name.desktop x-scheme-handler/mailto
+$name &
+
+# Anki
+version='26.05'
+wget https://github.com/ankitects/anki/releases/latest/download/anki-$version-linux-x86_64.tar.zst
+tar xaf anki-$version-linux-x86_64.tar.zst
+cd anki-linux/
+sudo ./install.sh
+anki
+cd ..; rm -rf anki-*
+
+echo $'Click on "\033[1;33mMove to App Menu\033[0m"'
 
 # WinBoat
 version='0.9.0'
 wget -O winboat.AppImage "https://github.com/TibixDev/winboat/releases/latest/download/winboat-$version-x86_64.AppImage"
 flatpak run it.mijorus.gearlever ./winboat.AppImage
 
-# Handy - AI transcribing
+# Handy
 version='0.8.3'
 wget -O handy.AppImage "https://github.com/cjpais/Handy/releases/latest/download/Handy_${version}_amd64.AppImage"
 flatpak run it.mijorus.gearlever ./handy.AppImage
@@ -21,13 +40,13 @@ flatpak run it.mijorus.gearlever ./handy.AppImage
 wget -O lm-studio.AppImage 'https://lmstudio.ai/download/latest/linux/x64?format=AppImage'
 flatpak run it.mijorus.gearlever ./lm-studio.AppImage
 
+# GSConnect
+mkdir -p ~/Transfers/GSConnect
+sudo ufw allow 1714:1764/tcp
+sudo ufw allow 1714:1764/udp
+
 # GUI setup
 open .gui_instructions.txt
-
-# Install Stirling pdf
-cd ~/.config/stirling-pdf/
-docker compose pull && docker compose up -d --build
-cd -
 
 nix profile add 'nixpkgs#home-manager'
 home-manager switch
@@ -55,9 +74,15 @@ sudo systemctl enable kanata
 
 mise trust
 mise install
-# WARN: don't have access to rustup here
+# NOTE: incase command not found
 # mise doctor
 # mise reshim
+
+rustup toolchain install stable
+rustup default stable
+cargo binstall usage-cli # For mise tab completion
+
+pip install --upgrade pip
 
 # cpanm package manager for perl
 echo $'Say "\033[1;33myes\033[0m" to the first & "\033[1;33msudo\033[0m" to the next question'
@@ -65,39 +90,11 @@ cpan App::cpanminus
 
 # # Hermes WARN: Address all the action points in Agent Insertion
 # curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
-# hermes update
+# hermes update # see if this works even if I use the in-built python
+# NOTE: Install hermes voice dependencies (incl camouflage, add to requirements.txt)
+# ignore everything & explicity add what I wanna version control
 
-# GSConnect
-mkdir -p ~/Transfers/GSConnect
-sudo ufw allow 1714:1764/tcp
-sudo ufw allow 1714:1764/udp
-
-# Load wallpaper
-gsettings set org.gnome.desktop.background picture-options 'zoom'
-gsettings set org.gnome.desktop.background picture-uri-dark 'file:///usr/share/backgrounds/osselo-Ask_a_friend.jpg'
-# # Alternate
-# gsettings set org.gnome.desktop.background picture-options 'scaled'
-# gsettings set org.gnome.desktop.background picture-uri-dark "file://$DOTFILES_HOME/wallpapers/angkor_watt_gpt.png"
-
-xdg-mime default org.gnome.TextEditor.desktop text/markdown
-
-# NOTE: might be best to arrange dirs in the bookmarks section
-
-# NOTE: Will be default in the future
-mkdir -p $HOME/Projects
-echo "file://$HOME/Projects" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
-
-mkdir -p $ZDOTDIR/personal
-echo -n "Enter the ID granted by your admin to register with your team via croc: "
-read croc_id
-echo "# Croc
-export CROC_SELF_TRANSFER_ID=$croc_id" >> $ZDOTDIR/personal/zprofile.zsh
-echo "Move a copy of the collaborators database given by your admin to the zsh home directory"
-mkdir -p ~/Transfers/croc
-echo "file://$HOME/Transfers" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
-
-sed -i "\|Music|d" $XDG_CONFIG_HOME/gtk-3.0/bookmarks
-
+# Git
 mkdir -p $XDG_CONFIG_HOME/git
 touch $XDG_CONFIG_HOME/git/config
 git config --file $XDG_CONFIG_HOME/git/config init.defaultBranch main
@@ -122,9 +119,35 @@ if [[ $user_choice =~ ^[Yy]$ ]]; then
     sed -i '/.* = $/d' $XDG_CONFIG_HOME/git/config
 fi
 
+mkdir -p $ZDOTDIR/personal
+echo -n "Enter the ID granted by your admin to register with your team via croc: "
+read croc_id
+echo "# Croc
+export CROC_SELF_TRANSFER_ID=$croc_id" >> $ZDOTDIR/personal/zprofile.zsh
+echo "Move a copy of the collaborators database given by your admin to the zsh home directory"
+mkdir -p ~/Transfers/croc
+echo "file://$HOME/Transfers" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
+
+# NOTE: Will be default in the future
+mkdir -p $HOME/Projects
+echo "file://$HOME/Projects" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
+
+# NOTE: might be best to arrange dirs in the bookmarks section
+sed -i "\|Music|d" $XDG_CONFIG_HOME/gtk-3.0/bookmarks
+
+xdg-mime default org.gnome.TextEditor.desktop text/markdown
+
+# Load wallpaper
+gsettings set org.gnome.desktop.background picture-options 'zoom'
+gsettings set org.gnome.desktop.background picture-uri-dark 'file:///usr/share/backgrounds/osselo-Ask_a_friend.jpg'
+# # Alternate
+# gsettings set org.gnome.desktop.background picture-options 'scaled'
+# gsettings set org.gnome.desktop.background picture-uri-dark "file://$DOTFILES_HOME/wallpapers/angkor_watt_gpt.png"
+
 # Clean up
-rm -rf ~/.cache/* # generally safe, but be mindful
 rm -rf ~/{.bash*,.profile,.zshrc,.zcompdump}
+rm -rf ~/.cache/* # generally safe, but be mindful
+rm -rf ~/{.mozilla}
 rm -rf ~/{Music,Templates,Public,go}
 sudo rm -rf /tmp/*
 
@@ -146,7 +169,6 @@ sudo nala purge -y "${BLOAT_APT[@]}"
 
 sudo sh -c "nala install --fix-broken; nala autoremove; apt autoclean"
 source ../continual-reference/software_updater.zsh
-# WARN: terminal appears to exit here
 
 echo "The system will reboot now to consolidate the installation"
 read -r "?Press Enter to reboot..."
@@ -170,4 +192,9 @@ sudo reboot now
 # ~/.config/emacs/bin/doom install
 # echo '# Doom Emacs
 # export PATH=$XDG_CONFIG_HOME/emacs/bin:$PATH' >> ~/.zprofile
+
+# # Install Stirling pdf
+# cd ~/.config/stirling-pdf/
+# docker compose pull && docker compose up -d --build
+# cd -
 

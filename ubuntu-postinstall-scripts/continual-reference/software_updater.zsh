@@ -1,7 +1,4 @@
 #!/bin/zsh
-set -o errexit \
-    -o nounset \
-    -o pipefail
 
 sudo nala full-upgrade -y
 sudo snap refresh
@@ -23,6 +20,10 @@ zinit self-update
 zinit update --all
 
 echo "Update your nvim plugins & researt your machine"
+
+# Adding dependencies to Hermes
+# uv pip install --python $HERMES_HOME/hermes-agent/.venv/ -r $HERMES_HOME/hermes-agent/requirements.txt
+# hermes-update && uv pip -U hermes-agent
 
 # # Update stirling pdf (Manually)
 # cd ~/.config/stirling-pdf/

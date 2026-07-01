@@ -10,6 +10,9 @@ cd "$(dirname "${(%):-%x}")" # change directory to script location
 
 echo "Welcome to the *Ubuntu 26.04 LTS* installer :)"
 
+# Performance improvement
+sudo nala install -y preload earlyoom
+
 source sub-scripts/nerdfonts_download.zsh
 sudo nala install -y ttf-mscorefonts-installer fonts-crosextra-carlito fonts-crosextra-caladea # MS fonts for LibreOffice
 
@@ -17,33 +20,11 @@ sudo nala install -y ttf-mscorefonts-installer fonts-crosextra-carlito fonts-cro
 sudo nala install -y python3-nautilus python3-charset-normalizer at python3-polib
 curl -fsSL https://raw.githubusercontent.com/SimBoi/nautilus-create-new-file/main/install.sh | bash
 
-# Performance improvement
-sudo nala install -y preload earlyoom
-
-# Anki - NOTE: wayland issue
-version='26.05'
-wget https://github.com/ankitects/anki/releases/latest/download/anki-$version-linux-x86_64.tar.zst
-tar xaf anki-$version-linux-x86_64.tar.zst
-cd anki-linux/
-sudo ./install.sh
-ANKI_WAYLAND=1 anki
-cd ..; rm -rf anki-*
-
 # KiCAD
 version='10.0'
 sudo add-apt-repository --yes ppa:kicad/kicad-$version-releases
 sudo nala update
 sudo nala install -y --install-recommends kicad
-
-# Brave Origin browser
-name='brave-browser'
-sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
-sudo curl -fsSLo /etc/apt/sources.list.d/brave-browser-release.sources https://brave-browser-apt-release.s3.brave.com/brave-browser.sources
-sudo nala update
-sudo nala install -y $name
-xdg-settings set default-web-browser $name.desktop
-xdg-mime default $name.desktop x-scheme-handler/mailto
-$name &
 
 # Ghostty
 sudo add-apt-repository --yes ppa:mkasberg/ghostty-ubuntu

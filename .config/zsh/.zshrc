@@ -8,9 +8,6 @@ setopt extended_glob
 setopt hist_ignore_all_dups
 setopt interactive_comments
 
-# This does work
-# export HERMES_HOME="$XDG_CONFIG_HOME/hermes"
-
 source "$ZINIT_HOME/zinit.zsh"
 
 zinit wait lucid compile for \

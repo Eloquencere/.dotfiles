@@ -218,7 +218,6 @@ in
                     "kicad"
                     "virtualisation"
                     "games"
-                    "bleachbit"
                     "security"
                     "software-management"
                     "system-tools"
@@ -313,14 +312,6 @@ in
                     "org.gnome.Mines.desktop"
                 ];
             };
-            "org/gnome/desktop/app-folders/folders/bleachbit" = {
-                name = "Bleachbit";
-                translate = false;
-                apps = [
-                    "org.bleachbit.BleachBit.desktop"
-                    "bleachbit-root.desktop"
-                ];
-            };
             "org/gnome/desktop/app-folders/folders/security" = {
                 name = "Security";
                 translate = false;
@@ -358,6 +349,8 @@ in
                     "org.gnome.baobab.desktop" # Disk Usage Analyser
                     "org.gnome.DiskUtility.desktop"
                     "usb-creator-gtk.desktop"  # Starup Disk Creator
+                    "org.bleachbit.BleachBit.desktop"
+                    "bleachbit-root.desktop"
                     "org.gnome.FileRoller.desktop"
                 ];
             };
@@ -411,14 +404,13 @@ in
                     ])
                     (mkPage[
                         "gnome-session-properties.desktop" # WARN: not in 26
-                        "software-management"
-                        "bleachbit"
                         "security"
                         "system-tools"
                         "disk-utilities"
                         "network-utilities"
-                        "language-support"
+                        "software-management"
                         "libreoffice"
+                        "language-support"
                         "io.github.diegopvlk.Cine.desktop"
                         "org.gnome.Calendar.desktop"
                         "org.gnome.Settings.desktop"
