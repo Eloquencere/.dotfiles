@@ -2,14 +2,8 @@ return {
     "kylechui/nvim-surround", version = "^3.0.0",
     event = "VeryLazy",
     lazy = true,
-    config = function()
-        vim.keymap.set(
-            { 'n', 'v' },
-            's',
-            '<Nop>',
-            { desc = "Unsetting it to allow for surround to work" }
-        )
 
+    config = function()
         require("nvim-surround").setup({
             keymaps = {
                 normal = "s",

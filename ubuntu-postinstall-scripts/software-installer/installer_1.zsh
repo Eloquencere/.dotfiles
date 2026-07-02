@@ -3,9 +3,6 @@ set -o errexit \
     -o nounset \
     -o pipefail
 
-# TODO: Do a clean, from scratch setup of Hermes & check if my config file has any bloat
-# Find out how to set hermes config to ~/.config
-
 cd "$(dirname "${(%):-%x}")" # change directory to script location
 
 echo "Welcome to the *Ubuntu 26.04 LTS* installer :)"

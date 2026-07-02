@@ -40,13 +40,39 @@ flatpak run it.mijorus.gearlever ./handy.AppImage
 wget -O lm-studio.AppImage 'https://lmstudio.ai/download/latest/linux/x64?format=AppImage'
 flatpak run it.mijorus.gearlever ./lm-studio.AppImage
 
+# GUI setup
+open .gui_instructions.txt
+
 # GSConnect
 mkdir -p ~/Transfers/GSConnect
 sudo ufw allow 1714:1764/tcp
 sudo ufw allow 1714:1764/udp
 
-# GUI setup
-open .gui_instructions.txt
+mkdir -p $ZDOTDIR/personal
+echo -n "Enter the ID granted by your admin to register with your team via croc: "
+read croc_id
+echo "# Croc
+export CROC_SELF_TRANSFER_ID=$croc_id" >> $ZDOTDIR/personal/zprofile.zsh
+echo "Move a copy of the collaborators database given by your admin to the zsh home directory"
+mkdir -p ~/Transfers/croc
+echo "file://$HOME/Transfers" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
+
+# NOTE: Will be default in the future
+mkdir -p $HOME/Projects
+echo "file://$HOME/Projects" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
+
+# NOTE: might be best to arrange dirs in the bookmarks section
+
+sed -i "\|Music|d" $XDG_CONFIG_HOME/gtk-3.0/bookmarks
+
+xdg-mime default org.gnome.TextEditor.desktop text/markdown
+
+# Load wallpaper
+gsettings set org.gnome.desktop.background picture-options 'zoom'
+gsettings set org.gnome.desktop.background picture-uri-dark 'file:///usr/share/backgrounds/osselo-Ask_a_friend.jpg'
+# # Alternate
+# gsettings set org.gnome.desktop.background picture-options 'scaled'
+# gsettings set org.gnome.desktop.background picture-uri-dark "file://$DOTFILES_HOME/wallpapers/angkor_watt_gpt.png"
 
 nix profile add 'nixpkgs#home-manager'
 home-manager switch
@@ -88,11 +114,12 @@ pip install --upgrade pip
 echo $'Say "\033[1;33myes\033[0m" to the first & "\033[1;33msudo\033[0m" to the next question'
 cpan App::cpanminus
 
-# # Hermes WARN: Address all the action points in Agent Insertion
-# curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
-# hermes update # see if this works even if I use the in-built python
-# NOTE: Install hermes voice dependencies (incl camouflage, add to requirements.txt)
+# TODO: Do a clean, from scratch setup of Hermes & check if my config file has any bloat
+# Hermes WARN: Address all the action points in Agent Insertion
+curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
 # ignore everything & explicity add what I wanna version control
+
+# WARN: Setup opencommit
 
 # Git
 mkdir -p $XDG_CONFIG_HOME/git
@@ -118,31 +145,6 @@ if [[ $user_choice =~ ^[Yy]$ ]]; then
     gh auth login
     sed -i '/.* = $/d' $XDG_CONFIG_HOME/git/config
 fi
-
-mkdir -p $ZDOTDIR/personal
-echo -n "Enter the ID granted by your admin to register with your team via croc: "
-read croc_id
-echo "# Croc
-export CROC_SELF_TRANSFER_ID=$croc_id" >> $ZDOTDIR/personal/zprofile.zsh
-echo "Move a copy of the collaborators database given by your admin to the zsh home directory"
-mkdir -p ~/Transfers/croc
-echo "file://$HOME/Transfers" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
-
-# NOTE: Will be default in the future
-mkdir -p $HOME/Projects
-echo "file://$HOME/Projects" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
-
-# NOTE: might be best to arrange dirs in the bookmarks section
-sed -i "\|Music|d" $XDG_CONFIG_HOME/gtk-3.0/bookmarks
-
-xdg-mime default org.gnome.TextEditor.desktop text/markdown
-
-# Load wallpaper
-gsettings set org.gnome.desktop.background picture-options 'zoom'
-gsettings set org.gnome.desktop.background picture-uri-dark 'file:///usr/share/backgrounds/osselo-Ask_a_friend.jpg'
-# # Alternate
-# gsettings set org.gnome.desktop.background picture-options 'scaled'
-# gsettings set org.gnome.desktop.background picture-uri-dark "file://$DOTFILES_HOME/wallpapers/angkor_watt_gpt.png"
 
 # Clean up
 rm -rf ~/{.bash*,.profile,.zshrc,.zcompdump}

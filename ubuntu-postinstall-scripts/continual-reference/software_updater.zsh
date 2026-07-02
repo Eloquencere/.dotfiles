@@ -21,9 +21,12 @@ zinit update --all
 
 echo "Update your nvim plugins & researt your machine"
 
-# Adding dependencies to Hermes
-# uv pip install --python $HERMES_HOME/hermes-agent/.venv/ -r $HERMES_HOME/hermes-agent/requirements.txt
-# hermes-update && uv pip -U hermes-agent
+# # Update hermes
+# source $HERMES_HOME/hermes-agent/venv/bin/activate
+# # uv pip install -Ur $HERMES_HOME/hermes-agent/requirements.txt
+# uv pip install -Ur $HOME/hermes_requirements.txt
+# hermes update
+# deactivate
 
 # # Update stirling pdf (Manually)
 # cd ~/.config/stirling-pdf/

@@ -3,10 +3,21 @@ return {
     event = "BufEnter",
     lazy = true,
     config = function()
+        vim.wo.colorcolumn = "99999"
+
         require("ibl").setup({
             debounce = 100,
             indent = {
-                char = "│", highlight = highlight
+                char = "│",
+                -- highlight = {
+                --     "RainbowRed",
+                --     "RainbowYellow",
+                --     "RainbowBlue",
+                --     "RainbowOrange",
+                --     "RainbowGreen",
+                --     "RainbowViolet",
+                --     "RainbowCyan",
+                -- },
             },
             scope = {
                 enabled = true,
@@ -46,7 +57,6 @@ return {
             },
         })
         
-        vim.wo.colorcolumn = "99999"
     end,
 }
 

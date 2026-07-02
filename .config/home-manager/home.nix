@@ -1,4 +1,4 @@
-{ config, pkgs, lib, hermes-agent, ... }:
+{ config, pkgs, lib, ... }:
 {
     home.username = "eloquencer";
     home.homeDirectory = "/home/${config.home.username}";
@@ -29,9 +29,9 @@
         gh lazygit
         mise
 
-        # hermes-agent.packages.${pkgs.system}.default
-        opencode
         github-copilot-cli codex
+        opencode
+        opencommit
 
         # Rust crates
         sccache

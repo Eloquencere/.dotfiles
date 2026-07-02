@@ -1,17 +1,14 @@
 return {
     "jiaoshijie/undotree",
+    dependencies = { "nvim-lua/plenary.nvim" },
     event = "VeryLazy",
     lazy = true,
-    dependencies = { "nvim-lua/plenary.nvim" },
-    config = function()
-        require('undotree').setup()
-    end,
+
+    opts = {},
     keys = {
         {
             "<Leader>u",
-            function()
-                require("undotree").toggle()
-            end,
+            function() require("undotree").toggle() end,
             { desc = "Undotree: toggle" },
         },
     },

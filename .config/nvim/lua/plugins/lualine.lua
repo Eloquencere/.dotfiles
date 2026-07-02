@@ -14,6 +14,7 @@ return {
             green = "#3EFFDC",
             violet = "#FF61EF",
             yellow = "#FFDA7B",
+            semilightgray = "#7f8c8d",
             red = "#FF4A4A",
             fg = "#D3D3D3",
             bg = "#1A1A1A",

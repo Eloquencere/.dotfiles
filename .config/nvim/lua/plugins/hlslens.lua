@@ -4,13 +4,10 @@ return {
     lazy = true,
     init = function()
         vim.opt.shortmess:append("S") -- Turning off total search match number at the bottom
-
-        require("hlslens").setup({
-            nearest_only = true
-        })
     end,
-
-    -- Will have to configure further to integrate with nvim-ufo
+    opts = {
+        nearest_only = true,
+    },
     keys = {
         {
             "n",
@@ -27,4 +24,3 @@ return {
         { "<ESC>", [[<cmd>noh<CR><cmd>lua require('hlslens').stop()<CR>]] },
     },
 }
-

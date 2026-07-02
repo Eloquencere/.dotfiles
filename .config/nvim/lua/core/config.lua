@@ -5,15 +5,12 @@ vim.opt.cursorline     = true
 vim.opt.termguicolors  = true
 vim.opt.signcolumn     = "yes"
 vim.opt.wrap           = false
-vim.opt.lazyredraw     = true
 -- vim.opt.scrolloff      = 10    -- Keep 10 lines above/below cursor
 -- vim.opt.sidescrolloff  = 8     -- Keep 8 columns left/right cursor
 
 -- Intricate settings
 vim.opt.clipboard:append("unnamedplus")
-vim.opt.backspace  = "indent,eol,start"
 vim.opt.modelines  = 0
-vim.opt.visualbell = true
 vim.opt.autochdir  = true
 
 -- Tabs and Indentation
@@ -24,7 +21,7 @@ vim.opt.expandtab     = true
 vim.opt.autoindent    = true
 vim.opt.smartindent   = true
 vim.opt.breakindent   = true
-vim.opt.formatoptions = tcqrn1
+vim.opt.formatoptions = "jcroql"
 
 -- Search
 vim.opt.ignorecase = true

@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
-    hermes-agent.url = "github:NousResearch/hermes-agent";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
@@ -11,7 +10,7 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, hermes-agent, ... }:
+  outputs = { nixpkgs, home-manager, ... }:
     let
       system = "x86_64-linux";
         pkgs = import nixpkgs {
@@ -25,7 +24,6 @@
         modules = [
             ./home.nix
         ];
-        extraSpecialArgs = { inherit hermes-agent; };
       };
     };
 }

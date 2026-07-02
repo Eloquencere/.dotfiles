@@ -9,6 +9,12 @@ return {
         })
 
         vim.cmd("colorscheme carbonfox")
-        vim.cmd("highlight MatchParen guifg=#ffbf00") -- Needs to be initialised after changing scheme
+        vim.api.nvim_create_autocmd("ColorScheme", {
+            group = vim.api.nvim_create_augroup("override_matchparen", { clear = true }),
+            callback = function()
+                vim.api.nvim_set_hl(0, "MatchParen", { fg = "#ffbf00" })
+            end,
+        })
     end
 }
+

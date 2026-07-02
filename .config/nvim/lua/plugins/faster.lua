@@ -1,3 +1,4 @@
 return {
-    "pteroctopus/faster.nvim"
+    "pteroctopus/faster.nvim",
+    lazy = true,
 }

@@ -1,6 +1,6 @@
 return {
     "andymass/vim-matchup",
-    setup = function()
+    init = function()
         vim.g.matchup_matchparen_enabled   = 0
         vim.g.matchup_matchparen_offscreen = { method = 'popup' }
         vim.g.matchup_matchparen_deferred  = 1
