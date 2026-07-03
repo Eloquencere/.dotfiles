@@ -3,10 +3,11 @@ return {
     event = "VeryLazy",
     lazy = true,
     dependencies = { "nvim-lua/plenary.nvim" },
-    config = true,
+
     init = function()
         vim.g.netrw_nogx = 1
     end,
+    config = true,
     cmd = { "Browse" },
     keys = {
         {

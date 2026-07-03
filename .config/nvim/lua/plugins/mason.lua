@@ -34,28 +34,17 @@ return {
     {
         "neovim/nvim-lspconfig",
         event = "VeryLazy",
-        config = function()
+
+        init = function()
             vim.diagnostic.config({
-                virtual_text = { current_line = true }
+                virtual_text = { current_line = true },
             })
 
-            vim.filetype.add({
-                extension = {
-                    gotmpl = "gotmpl",
-                },
-            })
+            vim.env.PATH = vim.fn.stdpath("data") .. "/mason/bin:" .. vim.env.PATH
+        end,
 
-            vim.lsp.config("xilinx", {
-                cmd = { "xilinx-language-server" },
-                filetypes = { "xdc", "xsct", "tcl" },
-                root_markers = { ".git" },
-                init_options = {
-                    method = "builtin",
-                },
-            })
-            -- vim.lsp.config('mbake')
-
-            vim.lsp.enable({
+        config = function()
+            local servers = {
                 "clangd", -- C, C++
                 "neocmake",
                 "rust_analyzer",
@@ -74,7 +63,26 @@ return {
                 "mbake", -- makefile
                 "jdtls",
                 "tinymist", -- Typst
+            }
+            for _, server in ipairs(servers) do
+                vim.lsp.config(server, {})  -- override any broken lspconfig registration
+            end
+
+            vim.lsp.config("xilinx", {
+                cmd = { "xilinx-language-server" },
+                filetypes = { "xdc", "xsct", "tcl" },
+                root_markers = { ".git" },
+                init_options = {
+                    method = "builtin",
+                },
             })
+            vim.lsp.config("mbake", {
+                cmd = { "mbake" },
+                filetypes = { "makefile", "make" },
+                root_markers = { ".git", "Makefile" },
+            })
+
+            vim.lsp.enable(servers)
         end,
 
         keys = {

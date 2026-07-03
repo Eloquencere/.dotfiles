@@ -1,3 +1,5 @@
+vim.g.loaded_matchparen = 1  -- disable built-in matchparen; vim-matchup handles it
+
 -- Appearance
 vim.opt.number         = true
 vim.opt.relativenumber = true

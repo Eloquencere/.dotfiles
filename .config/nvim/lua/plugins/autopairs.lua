@@ -2,9 +2,11 @@ return {
     'windwp/nvim-autopairs',
     event = "InsertEnter",
     lazy = true,
+
     init = function()
         vim.opt.matchpairs:append('<:>')
     end,
+
     config = function()
         local npairs = require("nvim-autopairs")
         local Rule = require('nvim-autopairs.rule')

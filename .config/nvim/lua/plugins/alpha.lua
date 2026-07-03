@@ -2,6 +2,7 @@ return {
     "goolord/alpha-nvim",
     event = "VimEnter",
     lazy = true,
+
     config = function()
         local alpha = require("alpha")
         local lazy = require("lazy")
@@ -35,3 +36,4 @@ return {
         vim.cmd([[autocmd FileType alpha setlocal nofoldenable]])
     end,
 }
+
