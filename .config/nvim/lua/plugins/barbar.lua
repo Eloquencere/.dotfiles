@@ -4,8 +4,6 @@ return {
         'nvim-tree/nvim-web-devicons', -- File icons
     },
 
-    lazy = true,
-
     init = function()
         vim.g.barbar_auto_setup = false
     end,

@@ -1,6 +1,6 @@
 # Made with ♥︎  by Eloquencer and Divakar
 
-format = """
+format = """\
 [╭─](fg:directory)$directory\
 $git_branch$git_metrics$git_status\
 $docker_context\
@@ -17,15 +17,6 @@ $line_break\
 
 # Color Palette
 palette = "Power10"
-
-[profiles]
-transient = """
-$character\
-"""
-rtransient = """
-$cmd_duration\
-$time\
-"""
 
 [palettes.Power10]
 # colors
@@ -172,6 +163,15 @@ Ultramarine = "󱙳 " # 🔷
 Unknown = "\uf108 " # ""
 Void = "\uf32e " #  
 Windows = "\uf17a " # ""
+
+[profiles]
+transient = """\
+$character\
+"""
+rtransient = """\
+$cmd_duration\
+$time\
+"""
 
 [username]
 format = "[\ueab6 ](fg:user bold)[$user]($style)[ ]()" # \u276F ❯ \ueab6 

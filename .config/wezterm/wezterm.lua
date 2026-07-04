@@ -1,16 +1,14 @@
 local wezterm = require("wezterm")
-local config = wezterm.config_builder()
 
-wezterm.on("gui-startup", function()
-    local _, _, window = wezterm.mux.spawn_window({})
+wezterm.on('gui-startup', function(cmd)
+    local _, _, window = wezterm.mux.spawn_window(cmd or {})
     window:gui_window():maximize()
 end)
 
-config = {
+local config = {
     -- Initialisations
     check_for_updates = false,
     max_fps = 144,
-    animation_fps = 30,
 
     -- Window config
     enable_tab_bar = false,
@@ -22,8 +20,10 @@ config = {
         top = 0,
         bottom = 0,
     },
+    -- exit_behavior = "Hold",
 
     -- Appearance
+    color_scheme = "Default (dark)",
     background = {
         {
             source = {
@@ -39,7 +39,6 @@ config = {
     font = wezterm.font("UbuntuSansMono Nerd Font", { weight = "Medium" }),
     harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }, -- disable ligatures
     font_size = 17.5,
-    use_ime = false,
     default_cursor_style = "SteadyBar",
 
     -- Key mappings for tab movement in neovim, thanks to - reddit.com/r/neovim/comments/uc6q8h/ability_to_map_ctrl_tab_and_more/
@@ -63,12 +62,14 @@ config = {
             action = wezterm.action.SendString("\x1b[200~\n\x1b[201~"),
         },
     },
-
-    table.insert(wezterm.default_hyperlink_rules(), {
-        regex = [[["]?([\w\d]{1}[-\w\d]+)(/){1}([-\w\d\.]+)["]?]],
-        format = 'https://www.github.com/$1/$3',
-    }),
 }
+
+-- Custom hyperlink rules
+config.hyperlink_rules = wezterm.default_hyperlink_rules()
+table.insert(config.hyperlink_rules, {
+    regex = [[["]?([\w\d]{1}[-\w\d]+)(/){1}([-\w\d\.]+)["]?]],
+    format = 'https://www.github.com/$1/$3',
+})
 
 if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
     config.default_domain = 'WSL:Ubuntu-24.04'

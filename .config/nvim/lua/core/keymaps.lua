@@ -38,6 +38,14 @@ keymap.set(
     { desc = "Make splits equal size" }
 )
 
+-- Paste without overwriting the register (black-hole delete, then put)
+keymap.set(
+    "x",
+    "<leader>p",
+    '"_dP',
+    { desc = "Paste over selection without yanking replaced text" }
+)
+
 -- -- Tabs
 -- keymap.set(
 --     "n", "<leader>to",
