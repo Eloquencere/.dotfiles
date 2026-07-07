@@ -7,27 +7,31 @@ cd "$(dirname "${(%):-%x}")" # change directory to script location
 
 echo "Welcome to the *Ubuntu 26.04 LTS* installer :)"
 
+# Improving nautilus
+sudo nala install -y python3-nautilus python3-charset-normalizer at python3-polib
+curl -fsSL https://raw.githubusercontent.com/SimBoi/nautilus-create-new-file/main/install.sh | bash
+
 # Performance improvement
 sudo nala install -y preload earlyoom
 
 source sub-scripts/nerdfonts_download.zsh
 sudo nala install -y ttf-mscorefonts-installer fonts-crosextra-carlito fonts-crosextra-caladea # MS fonts for LibreOffice
 
-# Improving nautilus
-sudo nala install -y python3-nautilus python3-charset-normalizer at python3-polib
-curl -fsSL https://raw.githubusercontent.com/SimBoi/nautilus-create-new-file/main/install.sh | bash
-
-# KiCAD
-version='10.0'
-sudo add-apt-repository --yes ppa:kicad/kicad-$version-releases
+# Browser
+name='brave-browser'
+sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+sudo curl -fsSLo /etc/apt/sources.list.d/brave-browser-release.sources https://brave-browser-apt-release.s3.brave.com/brave-browser.sources
 sudo nala update
-sudo nala install -y --install-recommends kicad
+sudo nala install -y $name
+xdg-settings set default-web-browser $name.desktop
+xdg-mime default $name.desktop x-scheme-handler/mailto
+$name &
 
 # Ghostty
 sudo add-apt-repository --yes ppa:mkasberg/ghostty-ubuntu
 sudo nala update
 sudo nala install -y ghostty
-rm -rf ~/.config/ghostty
+rm -rf ~/.config/ghostty # NOTE: might not be necessary
 
 # Virt-Manager
 sudo nala install -y virt-manager qemu-system-x86 libvirt-daemon-system libvirt-clients bridge-utils qemu-utils
@@ -78,14 +82,14 @@ curl -sL https://raw.githubusercontent.com/retorquere/zotero-pkg/master/install.
 sudo nala update
 sudo nala install -y zotero
 
-APPLICATIONS=(
+APPLICATIONS_APT=(
     "gnome-shell-extension-manager"
     "bleachbit" "timeshift"
     "gufw"
     # Data Recovery
     "testdisk"
 )
-sudo nala install -y "${APPLICATIONS[@]}"
+sudo nala install -y "${APPLICATIONS_APT[@]}"
 
 # Only keep curr & prev versions of a snap pkg 
 sudo snap set system refresh.retain=2
@@ -147,7 +151,8 @@ sh <(curl --proto "=https" --tlsv1.2 -L https://nixos.org/nix/install) --daemon 
 
 cd ~/.dotfiles/ && stow . && cd -
 
-echo "The system will reboot now to consolidate the installation"
+echo "This is the end of installer_1, run installer_2 after reboot"
+read -r "?Address all other open windows & Press Enter to reboot..."
 sudo reboot now
 
 # # Signal

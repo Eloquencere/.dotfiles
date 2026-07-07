@@ -1,3 +1,5 @@
-camoufox[geoip]
 httpx
+camoufox[geoip]
 ddgs
+sounddevice
+

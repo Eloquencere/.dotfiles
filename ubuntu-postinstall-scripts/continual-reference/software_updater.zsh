@@ -19,19 +19,13 @@ mise upgrade
 zinit self-update
 zinit update --all
 
+# Update hermes
+uv pip install --python $HERMES_HOME/hermes-agent/venv \
+    -Ur $DOTFILES_HOME/ubuntu-postinstall-scripts/software-installer/sub-scripts/hermes_requirements.txt # NOTE: Temporary
+    # -Ur $HERMES_HOME/hermes-agent/requirements.txt
+hermes update
+
 echo "Update your nvim plugins & researt your machine"
-
-# # Update hermes
-# source $HERMES_HOME/hermes-agent/venv/bin/activate
-# # uv pip install -Ur $HERMES_HOME/hermes-agent/requirements.txt
-# uv pip install -Ur $HOME/hermes_requirements.txt
-# hermes update
-# deactivate
-
-# # Update stirling pdf (Manually)
-# cd ~/.config/stirling-pdf/
-# docker compose pull stirling-pdf && docker compose up -d stirling-pdf
-# cd -
 
 # # Update nix pkg manager (Manually)
 # sudo $(which nix-env) --install --file '<nixpkgs>' --attr nix -I nixpkgs=channel:nixpkgs-unstable

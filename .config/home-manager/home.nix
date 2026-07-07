@@ -25,7 +25,7 @@
         ffmpeg fortune
 
         neovim tree-sitter
-        zellij wl-clipboard
+        zellij
         gh lazygit
         mise
 

@@ -5,15 +5,11 @@ set -o errexit \
 
 cd "$(dirname "${(%):-%x}")" # change directory to script location
 
-# Browser
-name='brave-browser'
-sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
-sudo curl -fsSLo /etc/apt/sources.list.d/brave-browser-release.sources https://brave-browser-apt-release.s3.brave.com/brave-browser.sources
+# KiCAD
+version='10.0'
+sudo add-apt-repository --yes ppa:kicad/kicad-$version-releases
 sudo nala update
-sudo nala install -y $name
-xdg-settings set default-web-browser $name.desktop
-xdg-mime default $name.desktop x-scheme-handler/mailto
-$name &
+sudo nala install -y --install-recommends kicad
 
 # Anki
 version='26.05'
@@ -40,13 +36,30 @@ flatpak run it.mijorus.gearlever ./handy.AppImage
 wget -O lm-studio.AppImage 'https://lmstudio.ai/download/latest/linux/x64?format=AppImage'
 flatpak run it.mijorus.gearlever ./lm-studio.AppImage
 
-# GUI setup
-open .gui_instructions.txt
-
-# GSConnect
-mkdir -p ~/Transfers/GSConnect
-sudo ufw allow 1714:1764/tcp
-sudo ufw allow 1714:1764/udp
+# Git
+mkdir -p $XDG_CONFIG_HOME/git
+touch $XDG_CONFIG_HOME/git/config
+git config --file $XDG_CONFIG_HOME/git/config init.defaultBranch main
+git config --global core.whitespace error
+git config --global core.preloadindex true
+git config --global core.pager delta
+git config --global delta.navigate true
+git config --global delta.dark true
+git config --global delta.side-by-side true
+git config --global interactive.diffFilter 'delta --color-only'
+git config --global diff.colorMoved default
+git config --global merge.conflictstyle diff3
+echo -n "Would you like to log into your git account?(y/N) "
+read user_choice
+if [[ $user_choice =~ ^[Yy]$ ]]; then
+    git config --global user.name "Eloquencere"
+    echo -n "email ID: "
+    read email
+    git config --global user.email "$email"
+    echo "you need to login to Github as well"
+    gh auth login
+    sed -i '/.* = $/d' $XDG_CONFIG_HOME/git/config
+fi
 
 mkdir -p $ZDOTDIR/personal
 echo -n "Enter the ID granted by your admin to register with your team via croc: "
@@ -57,13 +70,17 @@ echo "Move a copy of the collaborators database given by your admin to the zsh h
 mkdir -p ~/Transfers/croc
 echo "file://$HOME/Transfers" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
 
+# GUI setup
+open .gui_instructions.txt
+
 # NOTE: Will be default in the future
 mkdir -p $HOME/Projects
 echo "file://$HOME/Projects" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
 
-# NOTE: might be best to arrange dirs in the bookmarks section
-
-sed -i "\|Music|d" $XDG_CONFIG_HOME/gtk-3.0/bookmarks
+# GSConnect
+mkdir -p ~/Transfers/GSConnect
+sudo ufw allow 1714:1764/tcp
+sudo ufw allow 1714:1764/udp
 
 xdg-mime default org.gnome.TextEditor.desktop text/markdown
 
@@ -115,42 +132,19 @@ echo $'Say "\033[1;33myes\033[0m" to the first & "\033[1;33msudo\033[0m" to the 
 cpan App::cpanminus
 
 # TODO: Do a clean, from scratch setup of Hermes & check if my config file has any bloat
-# Hermes WARN: Address all the action points in Agent Insertion
 curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
 # ignore everything & explicity add what I wanna version control
 
 # WARN: Setup opencommit
 
-# Git
-mkdir -p $XDG_CONFIG_HOME/git
-touch $XDG_CONFIG_HOME/git/config
-git config --file $XDG_CONFIG_HOME/git/config init.defaultBranch main
-git config --global core.whitespace error
-git config --global core.preloadindex true
-git config --global core.pager delta
-git config --global delta.navigate true
-git config --global delta.dark true
-git config --global delta.side-by-side true
-git config --global interactive.diffFilter 'delta --color-only'
-git config --global diff.colorMoved default
-git config --global merge.conflictstyle diff3
-echo -n "Would you like to log into your git account?(y/N) "
-read user_choice
-if [[ $user_choice =~ ^[Yy]$ ]]; then
-    git config --global user.name "Eloquencere"
-    echo -n "email ID: "
-    read email
-    git config --global user.email "$email"
-    echo "you need to login to Github as well"
-    gh auth login
-    sed -i '/.* = $/d' $XDG_CONFIG_HOME/git/config
-fi
-
 # Clean up
+# NOTE: might be best to arrange dirs in the bookmarks section
+sed -i "\|Music|d" $XDG_CONFIG_HOME/gtk-3.0/bookmarks
+
 rm -rf ~/{.bash*,.profile,.zshrc,.zcompdump}
 rm -rf ~/.cache/* # generally safe, but be mindful
-rm -rf ~/{.mozilla}
-rm -rf ~/{Music,Templates,Public,go}
+rm -rf ~/.mozilla # WARN: Check if anything else can be removed
+rm -rf ~/{Music,Templates,Public}
 sudo rm -rf /tmp/*
 
 BLOAT_SNAP=(
@@ -173,7 +167,7 @@ sudo sh -c "nala install --fix-broken; nala autoremove; apt autoclean"
 source ../continual-reference/software_updater.zsh
 
 echo "The system will reboot now to consolidate the installation"
-read -r "?Press Enter to reboot..."
+read -r "?Address all other open windows & Press Enter to reboot..."
 sudo reboot now
 
 # # Auto-cpufreq
@@ -185,7 +179,7 @@ sudo reboot now
 # # Improve Nautilus
 # sudo nala install python3-nautilus python3-gi
 # mkdir -p ~/.local/share/nautilus-python/extensions
-# New File.. but adding slashes creates a Folder & there will be a preview of the icon if created, so Folder will have folder icon or Python file or empty file & even support {} like in the shell for muliple file creation
+# New.. but adding slashes creates a Folder & there will be a preview of the icon if created, so Folder will have folder icon or Python file or empty file & even support {} like in the shell for muliple file creation
 # Be able to copy a download link & right click on a folder in nautilus to Download link here.. (with wget)
 
 # # Doom Emacs
@@ -198,5 +192,9 @@ sudo reboot now
 # # Install Stirling pdf
 # cd ~/.config/stirling-pdf/
 # docker compose pull && docker compose up -d --build
+# cd -
+# # Update stirling pdf (Manually)
+# cd ~/.config/stirling-pdf/
+# docker compose pull stirling-pdf && docker compose up -d stirling-pdf
 # cd -
 
