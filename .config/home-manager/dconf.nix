@@ -270,9 +270,9 @@ in
                 name = "Coding";
                 translate = false;
                 apps = [
-                    "org.ghidra_sre.Ghidra.desktop"
                     "code.desktop"
                     "com.github.reds.LogisimEvolution.desktop"
+                    "org.ghidra_sre.Ghidra.desktop"
                     # WARN: Add antigravity here
                 ];
             };
@@ -411,7 +411,7 @@ in
                         "software-management"
                         "libreoffice"
                         "language-support"
-                        "io.github.diegopvlk.Cine.desktop"
+                        # "io.github.diegopvlk.Cine.desktop"
                         "org.gnome.Calendar.desktop"
                         "org.gnome.Settings.desktop"
                         "org.gnome.clocks.desktop"

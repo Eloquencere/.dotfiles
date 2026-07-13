@@ -68,7 +68,7 @@ sudo nala install -y code
 curl -fsSL https://us-central1-apt.pkg.dev/doc/repo-signing-key.gpg | sudo gpg --dearmor --yes -o /etc/apt/keyrings/antigravity-repo-key.gpg
 printf '%s\n' \
   'Types: deb' \
-  'URIs: https://us-central1-apt.pkg.dev/projects/antigravity-auto-updater-dev/' \
+  'URIs: https://us-central1-apt.pkg.dev/projects/antigravity-auto-updater-dev' \
   'Suites: antigravity-debian' \
   'Components: main' \
   "Architectures: $(dpkg --print-architecture)" \
@@ -77,10 +77,27 @@ printf '%s\n' \
 sudo nala update
 sudo nala install -y antigravity
 
+# OnlyOffice
+curl -fsSL https://download.onlyoffice.com/GPG-KEY-ONLYOFFICE | sudo gpg --dearmor -o /usr/share/keyrings/onlyoffice.gpg
+printf '%s\n' \
+  'Types: deb' \
+  'URIs: https://download.onlyoffice.com/repo/debian' \
+  'Suites: squeeze' \
+  'Components: main' \
+  'Signed-By: /usr/share/keyrings/onlyoffice.gpg' \
+  | sudo tee /etc/apt/sources.list.d/onlyoffice.sources > /dev/null
+sudo nala update
+sudo nala install -y onlyoffice-desktopeditors
+
 # Zotero
 curl -sL https://raw.githubusercontent.com/retorquere/zotero-pkg/master/install.sh | sudo bash
 sudo nala update
 sudo nala install -y zotero
+
+# VLC
+sudo add-apt-repository -y ppa:ubuntuhandbook1/vlc
+sudo nala update
+sudo nala install -y vlc
 
 APPLICATIONS_APT=(
     "gnome-shell-extension-manager"
@@ -95,9 +112,8 @@ sudo nala install -y "${APPLICATIONS_APT[@]}"
 sudo snap set system refresh.retain=2
 
 OFFICE_SOFTWARE_SNAP=(
-    "onlyoffice-desktopeditors" # Niche MS Office support
     "notion-desktop"            # Not available elsewhere
-    "surfshark"                 # kill switch not available in flatpak
+    "surfshark"                 # kill switch not in flatpak
 )
 sudo snap install "${OFFICE_SOFTWARE_SNAP[@]}"
 
@@ -130,7 +146,6 @@ ADDITIONAL_APPS_FLATPAK=(
     "org.kde.drawy"
     "io.github.Qalculate"
     # System
-    "io.github.diegopvlk.Cine"
     "io.github.giantpinkrobots.varia"
     "net.epson.epsonscan2"
     "com.github.tenderowl.frog"

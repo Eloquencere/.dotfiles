@@ -153,7 +153,7 @@ BLOAT_SNAP=(
 sudo snap remove --purge "${BLOAT_SNAP[@]}"
 
 BLOAT_APT=(
-    "gnome-logs" "gnome-calculator" "gnome-snapshot"
+    "gnome-logs" "gnome-calculator"
     "ptyxis" "deja-dup" "seahorse" "shotwell" "showtime"
     "rhythmbox" "orca" "info" "yelp" # WARN: "simple-scan"
     "transmission-common" "transmission-gtk"
@@ -176,12 +176,6 @@ sudo reboot now
 # cd .. && rm -rf auto-cpufreq
 # sudo auto-cpufreq --install
 
-# # Improve Nautilus
-# sudo nala install python3-nautilus python3-gi
-# mkdir -p ~/.local/share/nautilus-python/extensions
-# New.. but adding slashes creates a Folder & there will be a preview of the icon if created, so Folder will have folder icon or Python file or empty file & even support {} like in the shell for muliple file creation
-# Be able to copy a download link & right click on a folder in nautilus to Download link here.. (with wget)
-
 # # Doom Emacs
 # sudo nala install -y emacs-gtk
 # git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
@@ -197,4 +191,10 @@ sudo reboot now
 # cd ~/.config/stirling-pdf/
 # docker compose pull stirling-pdf && docker compose up -d stirling-pdf
 # cd -
+
+# # Improve Nautilus
+# sudo nala install python3-nautilus python3-gi
+# mkdir -p ~/.local/share/nautilus-python/extensions
+# New.. but adding slashes creates a Folder & there will be a preview of the icon if created, so Folder will have folder icon or Python file or empty file & even support {} like in the shell for muliple file creation
+# Be able to copy a download link & right click on a folder in nautilus to Download link here.. (with wget)
 
