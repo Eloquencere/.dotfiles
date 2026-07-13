@@ -3,6 +3,8 @@ set -o errexit \
     -o nounset \
     -o pipefail
 
+# NOTE: Learn to setup Jitsi-Meet via apt installation
+
 cd "$(dirname "${(%):-%x}")" # change directory to script location
 
 echo "Welcome to the *Ubuntu 26.04 LTS* installer :)"
@@ -31,10 +33,9 @@ $name &
 sudo add-apt-repository --yes ppa:mkasberg/ghostty-ubuntu
 sudo nala update
 sudo nala install -y ghostty
-rm -rf ~/.config/ghostty # NOTE: might not be necessary
 
 # Virt-Manager
-sudo nala install -y virt-manager qemu-system-x86 libvirt-daemon-system libvirt-clients bridge-utils qemu-utils
+sudo nala install -y virt-manager qemu-system-x86 qemu-utils libvirt-daemon-system libvirt-clients bridge-utils
 
 # Docker
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
@@ -116,6 +117,9 @@ OFFICE_SOFTWARE_SNAP=(
     "surfshark"                 # kill switch not in flatpak
 )
 sudo snap install "${OFFICE_SOFTWARE_SNAP[@]}"
+
+# sudo snap install --channel=6/stable lxd
+# sudo snap install --classic workshop
 
 # Games
 echo 'ntsync

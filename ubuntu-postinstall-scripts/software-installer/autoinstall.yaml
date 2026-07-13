@@ -99,10 +99,9 @@ autoinstall:
     - build-essential
     - pkg-config
     - wl-clipboard
-    - openjdk-25-jre # To run .jar files
     - libreoffice-java-common
     - libfuse2t64    # For appimage compatibility
-    - libportaudio2  # Hermes Dependency
+    - openjdk-25-jre # To run .jar files
     - sshfs
     - zsh
     - nala

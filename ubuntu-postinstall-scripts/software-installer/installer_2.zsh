@@ -94,26 +94,26 @@ gsettings set org.gnome.desktop.background picture-uri-dark 'file:///usr/share/b
 nix profile add 'nixpkgs#home-manager'
 home-manager switch
 
-# Kanata setup - System level
+# Kanata setup
 nix profile add 'nixpkgs#kanata'
 sudo groupadd uinput
 sudo usermod -aG input,uinput $USER
-echo '# Kanata
-KERNEL==uinput, MODE=0660, GROUP=uinput, OPTIONS+=static_node=uinput' \
-| sudo tee /etc/udev/rules.d/99-kanata.rules
+echo 'KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"' \
+  | sudo tee /etc/udev/rules.d/99-kanata.rules
+sudo udevadm control --reload-rules
+sudo udevadm trigger
 echo "[Unit]
 Description=Kanata keyboard remapper
 
 [Service]
 Type=simple
-ExecStartPre=/sbin/modprobe uinput
 ExecStart=$(which kanata) --cfg $XDG_CONFIG_HOME/kanata/config.kbd
-Restart=no
+Restart=on-failure
 
 [Install]
 WantedBy=default.target" \
-| sudo tee /etc/systemd/system/kanata.service
-sudo systemctl enable kanata
+  | tee $XDG_CONFIG_HOME/systemd/user/kanata.service
+systemctl --user enable kanata
 
 mise trust
 mise install
@@ -131,9 +131,35 @@ pip install --upgrade pip
 echo $'Say "\033[1;33myes\033[0m" to the first & "\033[1;33msudo\033[0m" to the next question'
 cpan App::cpanminus
 
+# Hermes
+HERMES_DEP_APT=(
+    "libportaudio2"
+    "xdotool"
+    "ydotool" "ydotoold"
+    "wtype"
+)
+sudo nala install "${HERMES_DEP_APT[@]}"
+echo "[Unit]
+Description=ydotool daemon - virtual input automation
+Documentation=https://github.com/ReimuNotMoe/ydotool
+
+[Service]
+ExecStart=/usr/bin/ydotoold
+Restart=on-failure
+
+[Install]
+WantedBy=default.target" \
+  | tee $XDG_CONFIG_HOME/systemd/user/ydotoold.service
+systemctl --user enable ydotoold
+
 # TODO: Do a clean, from scratch setup of Hermes & check if my config file has any bloat
 curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
-# ignore everything & explicity add what I wanna version control
+# ignore everything & explicity add what I wanna version control in the hermes folder
+npm install -g @agent-sh/computer-use-linux
+computer-use-linux doctor
+hermes skills tap add agent-sh/computer-use-linux
+hermes skills install agent-sh/computer-use-linux/computer-use-linux
+computer-use-linux setup-window-targeting
 
 # WARN: Setup opencommit
 
