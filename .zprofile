@@ -20,7 +20,7 @@ export ZINIT_HOME="$XDG_DATA_HOME/zinit/zinit.git"
 export DOTFILES_HOME="$HOME/.dotfiles"
 export TOOLS_HOME="$HOME/Tools"
 
-# # WARN: uncomment this
+# # WARN: uncomment this for 26.04
 # export HERMES_HOME="$XDG_CONFIG_HOME/hermes"
 
 # Starship config

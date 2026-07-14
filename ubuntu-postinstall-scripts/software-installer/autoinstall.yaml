@@ -106,6 +106,7 @@ autoinstall:
     - zsh
     - nala
     - curl
+    - dos2unix
     # Flatpak package manager
     - flatpak
     - gnome-software-plugin-flatpak

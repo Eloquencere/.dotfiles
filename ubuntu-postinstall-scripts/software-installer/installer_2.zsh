@@ -49,12 +49,10 @@ git config --global delta.side-by-side true
 git config --global interactive.diffFilter 'delta --color-only'
 git config --global diff.colorMoved default
 git config --global merge.conflictstyle diff3
-echo -n "Would you like to log into your git account?(y/N) "
-read user_choice
+read -q "user_choice?Would you like to log into your git account (y/N)? "
 if [[ $user_choice =~ ^[Yy]$ ]]; then
     git config --global user.name "Eloquencere"
-    echo -n "email ID: "
-    read email
+    read -r "email?Email ID: "
     git config --global user.email "$email"
     echo "you need to login to Github as well"
     gh auth login
@@ -62,8 +60,7 @@ if [[ $user_choice =~ ^[Yy]$ ]]; then
 fi
 
 mkdir -p $ZDOTDIR/personal
-echo -n "Enter the ID granted by your admin to register with your team via croc: "
-read croc_id
+read -r "croc_id?Enter the ID granted by your admin to register with your team via croc: "
 echo "# Croc
 export CROC_SELF_TRANSFER_ID=$croc_id" >> $ZDOTDIR/personal/zprofile.zsh
 echo "Move a copy of the collaborators database given by your admin to the zsh home directory"
@@ -95,25 +92,12 @@ nix profile add 'nixpkgs#home-manager'
 home-manager switch
 
 # Kanata setup
-nix profile add 'nixpkgs#kanata'
 sudo groupadd uinput
-sudo usermod -aG input,uinput $USER
 echo 'KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"' \
-  | sudo tee /etc/udev/rules.d/99-kanata.rules
+  | sudo tee /etc/udev/rules.d/99-uinput.rules
 sudo udevadm control --reload-rules
 sudo udevadm trigger
-echo "[Unit]
-Description=Kanata keyboard remapper
-
-[Service]
-Type=simple
-ExecStart=$(which kanata) --cfg $XDG_CONFIG_HOME/kanata/config.kbd
-Restart=on-failure
-
-[Install]
-WantedBy=default.target" \
-  | tee $XDG_CONFIG_HOME/systemd/user/kanata.service
-systemctl --user enable kanata
+sudo usermod -aG input,uinput $USER
 
 mise trust
 mise install
@@ -123,7 +107,6 @@ mise install
 
 rustup toolchain install stable
 rustup default stable
-cargo binstall usage-cli # For mise tab completion
 
 pip install --upgrade pip
 
@@ -134,32 +117,17 @@ cpan App::cpanminus
 # Hermes
 HERMES_DEP_APT=(
     "libportaudio2"
-    "xdotool"
-    "ydotool" "ydotoold"
-    "wtype"
 )
-sudo nala install "${HERMES_DEP_APT[@]}"
-echo "[Unit]
-Description=ydotool daemon - virtual input automation
-Documentation=https://github.com/ReimuNotMoe/ydotool
-
-[Service]
-ExecStart=/usr/bin/ydotoold
-Restart=on-failure
-
-[Install]
-WantedBy=default.target" \
-  | tee $XDG_CONFIG_HOME/systemd/user/ydotoold.service
-systemctl --user enable ydotoold
+sudo nala install -y "${HERMES_DEP_APT[@]}"
 
 # TODO: Do a clean, from scratch setup of Hermes & check if my config file has any bloat
 curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
 # ignore everything & explicity add what I wanna version control in the hermes folder
 npm install -g @agent-sh/computer-use-linux
 computer-use-linux doctor
+computer-use-linux setup-window-targeting
 hermes skills tap add agent-sh/computer-use-linux
 hermes skills install agent-sh/computer-use-linux/computer-use-linux
-computer-use-linux setup-window-targeting
 
 # WARN: Setup opencommit
 
@@ -193,7 +161,7 @@ sudo sh -c "nala install --fix-broken; nala autoremove; apt autoclean"
 source ../continual-reference/software_updater.zsh
 
 echo "The system will reboot now to consolidate the installation"
-read -r "?Address all other open windows & Press Enter to reboot..."
+read "?Address all other open windows & Press Enter to reboot..."
 sudo reboot now
 
 # # Auto-cpufreq

@@ -100,6 +100,11 @@ sudo add-apt-repository -y ppa:ubuntuhandbook1/vlc
 sudo nala update
 sudo nala install -y vlc
 
+# Mise
+sudo add-apt-repository -y ppa:jdxcode/mise
+sudo nala update
+sudo nala install -y mise
+
 APPLICATIONS_APT=(
     "gnome-shell-extension-manager"
     "bleachbit" "timeshift"
@@ -171,7 +176,7 @@ sh <(curl --proto "=https" --tlsv1.2 -L https://nixos.org/nix/install) --daemon 
 cd ~/.dotfiles/ && stow . && cd -
 
 echo "This is the end of installer_1, run installer_2 after reboot"
-read -r "?Address all other open windows & Press Enter to reboot..."
+read "?Address all other open windows & Press Enter to reboot..."
 sudo reboot now
 
 # # Signal

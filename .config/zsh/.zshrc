@@ -10,29 +10,40 @@ setopt interactive_comments
 
 source "$ZINIT_HOME/zinit.zsh"
 
+fpath+=$ZDOTDIR/completion
+zinit wait lucid compile atinit"
+    [[ -r $ZINIT_HOME/.zcompdump ]] && compinit -C || { zicompinit; zicdreplay; }
+    _comps[delta]=_files
+" for zsh-users/zsh-completions
+
 zinit wait lucid compile for \
     jeffreytse/zsh-vi-mode \
     hlissner/zsh-autopair \
-    Aloxaf/fzf-tab \
-    Eloquencere/zsh-goto-cli \
-    zdharma-continuum/fast-syntax-highlighting
+    Eloquencere/zsh-goto-cli
 
-fpath+=$ZDOTDIR/completion
-zinit wait lucid compile atinit"[[ -r $ZINIT_HOME/.zcompdump ]] && compinit -C || { zicompinit; zicdreplay; }" for \
-    zsh-users/zsh-completions
-# zinit wait lucid compile for \
-#     atinit"zicompinit; zicdreplay" \
-#     zsh-users/zsh-completions
-_comps[delta]=_files
+zinit wait lucid compile atload'
+    # Wrap fzf-tab-complete to force fast-syntax-highlighting to re-apply
+    # syntax colors after fzf-tab exits (fixes command color loss when
+    # pressing Esc to cancel a completion preview).
+    typeset -g _orig_ftc=${widgets[fzf-tab-complete]#*:}
+    function _wrap_ftc() {
+        ${_orig_ftc} "$@"
+        typeset -g _ZSH_HIGHLIGHT_PRIOR_BUFFER=
+    }
+    zle -N fzf-tab-complete _wrap_ftc
+' for Aloxaf/fzf-tab
+
+zinit wait lucid compile for \
+    zdharma-continuum/fast-syntax-highlighting
 
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':fzf-tab:*' use-fzf-default-opts yes
 zstyle ':fzf-tab:*' fzf-pad 5
 zstyle ':fzf-tab:*' fzf-min-height 20
 zstyle ':fzf-tab:*' fzf-command fzf
+zstyle ':fzf-tab:complete:just:*' fzf-preview 'just --color always --show $word 2>/dev/null'
 zstyle ':fzf-tab:complete:*:*' fzf-preview '[[ -d $realpath ]] && eza --all --oneline --group-directories-first --color=always --icons=always -- $realpath || bat --color=always -- $realpath 2>/dev/null'
 
-autoload -Uz add-zsh-hook
 function __lazy_shell_tools {
     eval "$(starship init zsh)" &> /dev/null
     prompt_starship_precmd  # call directly so first prompt gets starship rendering
@@ -51,17 +62,12 @@ fi
 source "$ZDOTDIR/zsh-aliases.zsh"
 source "$ZDOTDIR/zsh-functions.zsh"
 
-function clear-keep-buffer() {
-    zle clear-screen
-}
-zle -N clear-keep-buffer
-
 function zvm_config() {
     ZVM_INIT_MODE=sourcing # github.com/jeffreytse/zsh-vi-mode#initialization-mode
 }
 function zvm_after_init() {
 	zvm_bindkey viins '^r' atuin-search
 	zvm_bindkey viins '^p' atuin-up-search
-    zvm_bindkey viins '^b' clear-keep-buffer
+    zvm_bindkey viins '^b' clear-screen
 }
 
