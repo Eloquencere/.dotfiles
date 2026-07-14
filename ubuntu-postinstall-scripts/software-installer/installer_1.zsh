@@ -13,6 +13,8 @@ echo "Welcome to the *Ubuntu 26.04 LTS* installer :)"
 sudo nala install -y python3-nautilus python3-charset-normalizer at python3-polib
 curl -fsSL https://raw.githubusercontent.com/SimBoi/nautilus-create-new-file/main/install.sh | bash
 
+xdg-mime default org.gnome.TextEditor.desktop text/markdown
+
 # Performance improvement
 sudo nala install -y preload earlyoom
 
@@ -105,6 +107,16 @@ sudo add-apt-repository -y ppa:jdxcode/mise
 sudo nala update
 sudo nala install -y mise
 
+mise trust
+mise install
+# NOTE: incase command not found
+# mise doctor
+# mise reshim
+
+rustup toolchain install stable
+rustup default stable
+pip install --upgrade pip
+
 APPLICATIONS_APT=(
     "gnome-shell-extension-manager"
     "bleachbit" "timeshift"
@@ -118,11 +130,10 @@ sudo nala install -y "${APPLICATIONS_APT[@]}"
 sudo snap set system refresh.retain=2
 
 OFFICE_SOFTWARE_SNAP=(
-    "notion-desktop"            # Not available elsewhere
-    "surfshark"                 # kill switch not in flatpak
+    "notion-desktop" # Not available elsewhere
+    "surfshark"      # kill switch not in flatpak
 )
 sudo snap install "${OFFICE_SOFTWARE_SNAP[@]}"
-
 # sudo snap install --channel=6/stable lxd
 # sudo snap install --classic workshop
 

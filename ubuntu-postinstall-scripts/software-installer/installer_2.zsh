@@ -36,6 +36,27 @@ flatpak run it.mijorus.gearlever ./handy.AppImage
 wget -O lm-studio.AppImage 'https://lmstudio.ai/download/latest/linux/x64?format=AppImage'
 flatpak run it.mijorus.gearlever ./lm-studio.AppImage
 
+# cpanm package manager for perl
+echo $'Say "\033[1;33myes\033[0m" to the first & "\033[1;33msudo\033[0m" to the next question'
+cpan App::cpanminus
+
+# Hermes
+HERMES_DEP_APT=(
+    "libportaudio2"
+)
+sudo nala install -y "${HERMES_DEP_APT[@]}"
+
+# TODO: Do a clean, from scratch setup of Hermes & check if my config file has any bloat
+curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
+# ignore everything & explicity add what I wanna version control in the hermes folder
+npm install -g @agent-sh/computer-use-linux
+computer-use-linux doctor
+computer-use-linux setup-window-targeting
+hermes skills tap add agent-sh/computer-use-linux
+hermes skills install agent-sh/computer-use-linux/computer-use-linux
+
+# WARN: Setup opencommit
+
 # Git
 mkdir -p $XDG_CONFIG_HOME/git
 touch $XDG_CONFIG_HOME/git/config
@@ -70,16 +91,16 @@ echo "file://$HOME/Transfers" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
 # GUI setup
 open .gui_instructions.txt
 
-# NOTE: Will be default in the future
-mkdir -p $HOME/Projects
-echo "file://$HOME/Projects" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
+# Kanata (nix) setup
+sudo groupadd uinput
+echo 'KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"' \
+  | sudo tee /etc/udev/rules.d/99-uinput.rules
+sudo udevadm control --reload-rules
+sudo udevadm trigger
+sudo usermod -aG input,uinput $USER
 
-# GSConnect
-mkdir -p ~/Transfers/GSConnect
-sudo ufw allow 1714:1764/tcp
-sudo ufw allow 1714:1764/udp
-
-xdg-mime default org.gnome.TextEditor.desktop text/markdown
+nix profile add 'nixpkgs#home-manager'
+home-manager switch
 
 # Load wallpaper
 gsettings set org.gnome.desktop.background picture-options 'zoom'
@@ -88,53 +109,19 @@ gsettings set org.gnome.desktop.background picture-uri-dark 'file:///usr/share/b
 # gsettings set org.gnome.desktop.background picture-options 'scaled'
 # gsettings set org.gnome.desktop.background picture-uri-dark "file://$DOTFILES_HOME/wallpapers/angkor_watt_gpt.png"
 
-nix profile add 'nixpkgs#home-manager'
-home-manager switch
+# GSConnect
+mkdir -p ~/Transfers/GSConnect
+sudo ufw allow 1714:1764/tcp
+sudo ufw allow 1714:1764/udp
 
-# Kanata setup
-sudo groupadd uinput
-echo 'KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"' \
-  | sudo tee /etc/udev/rules.d/99-uinput.rules
-sudo udevadm control --reload-rules
-sudo udevadm trigger
-sudo usermod -aG input,uinput $USER
+# NOTE: Will be default in the future
+mkdir -p $HOME/Projects
+echo "file://$HOME/Projects" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
 
-mise trust
-mise install
-# NOTE: incase command not found
-# mise doctor
-# mise reshim
-
-rustup toolchain install stable
-rustup default stable
-
-pip install --upgrade pip
-
-# cpanm package manager for perl
-echo $'Say "\033[1;33myes\033[0m" to the first & "\033[1;33msudo\033[0m" to the next question'
-cpan App::cpanminus
-
-# Hermes
-HERMES_DEP_APT=(
-    "libportaudio2"
-)
-sudo nala install -y "${HERMES_DEP_APT[@]}"
-
-# TODO: Do a clean, from scratch setup of Hermes & check if my config file has any bloat
-curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
-# ignore everything & explicity add what I wanna version control in the hermes folder
-npm install -g @agent-sh/computer-use-linux
-computer-use-linux doctor
-computer-use-linux setup-window-targeting
-hermes skills tap add agent-sh/computer-use-linux
-hermes skills install agent-sh/computer-use-linux/computer-use-linux
-
-# WARN: Setup opencommit
-
-# Clean up
 # NOTE: might be best to arrange dirs in the bookmarks section
 sed -i "\|Music|d" $XDG_CONFIG_HOME/gtk-3.0/bookmarks
 
+# Clean up
 rm -rf ~/{.bash*,.profile,.zshrc,.zcompdump}
 rm -rf ~/.cache/* # generally safe, but be mindful
 rm -rf ~/.mozilla # WARN: Check if anything else can be removed
