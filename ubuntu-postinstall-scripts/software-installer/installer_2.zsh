@@ -5,21 +5,6 @@ set -o errexit \
 
 cd "$(dirname "${(%):-%x}")" # change directory to script location
 
-# KiCAD
-version='10.0'
-sudo add-apt-repository --yes ppa:kicad/kicad-$version-releases
-sudo nala update
-sudo nala install -y --install-recommends kicad
-
-# Anki
-version='26.05'
-wget https://github.com/ankitects/anki/releases/latest/download/anki-$version-linux-x86_64.tar.zst
-tar xaf anki-$version-linux-x86_64.tar.zst
-cd anki-linux/
-sudo ./install.sh
-anki
-cd ..; rm -rf anki-*
-
 echo $'Click on "\033[1;33mMove to App Menu\033[0m"'
 
 # WinBoat
@@ -28,7 +13,7 @@ wget -O winboat.AppImage "https://github.com/TibixDev/winboat/releases/latest/do
 flatpak run it.mijorus.gearlever ./winboat.AppImage
 
 # Handy
-version='0.8.3'
+version='0.9.2'
 wget -O handy.AppImage "https://github.com/cjpais/Handy/releases/latest/download/Handy_${version}_amd64.AppImage"
 flatpak run it.mijorus.gearlever ./handy.AppImage
 
@@ -40,22 +25,13 @@ flatpak run it.mijorus.gearlever ./lm-studio.AppImage
 echo $'Say "\033[1;33myes\033[0m" to the first & "\033[1;33msudo\033[0m" to the next question'
 cpan App::cpanminus
 
-# Hermes
-HERMES_DEP_APT=(
-    "libportaudio2"
-)
-sudo nala install -y "${HERMES_DEP_APT[@]}"
-
-# TODO: Do a clean, from scratch setup of Hermes & check if my config file has any bloat
-curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
-# ignore everything & explicity add what I wanna version control in the hermes folder
-npm install -g @agent-sh/computer-use-linux
-computer-use-linux doctor
-computer-use-linux setup-window-targeting
-hermes skills tap add agent-sh/computer-use-linux
-hermes skills install agent-sh/computer-use-linux/computer-use-linux
-
-# WARN: Setup opencommit
+mkdir -p $ZDOTDIR/personal
+read -r "croc_id?Enter the ID granted by your admin to register with your team via croc: "
+echo "# Croc
+export CROC_SELF_TRANSFER_ID=$croc_id" >> $ZDOTDIR/personal/zprofile.zsh
+echo "Move a copy of the collaborators database given by your admin to the zsh home directory"
+mkdir -p ~/Transfers/croc
+echo "file://$HOME/Transfers" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
 
 # Git
 mkdir -p $XDG_CONFIG_HOME/git
@@ -71,6 +47,7 @@ git config --global interactive.diffFilter 'delta --color-only'
 git config --global diff.colorMoved default
 git config --global merge.conflictstyle diff3
 read -q "user_choice?Would you like to log into your git account (y/N)? "
+echo
 if [[ $user_choice =~ ^[Yy]$ ]]; then
     git config --global user.name "Eloquencere"
     read -r "email?Email ID: "
@@ -80,16 +57,46 @@ if [[ $user_choice =~ ^[Yy]$ ]]; then
     sed -i '/.* = $/d' $XDG_CONFIG_HOME/git/config
 fi
 
-mkdir -p $ZDOTDIR/personal
-read -r "croc_id?Enter the ID granted by your admin to register with your team via croc: "
-echo "# Croc
-export CROC_SELF_TRANSFER_ID=$croc_id" >> $ZDOTDIR/personal/zprofile.zsh
-echo "Move a copy of the collaborators database given by your admin to the zsh home directory"
-mkdir -p ~/Transfers/croc
-echo "file://$HOME/Transfers" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
+# Hermes
+HERMES_DEP_APT=(
+    "libportaudio2"
+)
+sudo nala install -y "${HERMES_DEP_APT[@]}"
+
+# TODO: Do a clean, from scratch setup of Hermes & check if my config file has any bloat
+curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
+# ignore everything & explicity add what I wanna version control in the hermes folder
+
+npm install -g @agent-sh/computer-use-linux
+computer-use-linux doctor
+computer-use-linux setup-window-targeting
+hermes skills tap add agent-sh/computer-use-linux
+hermes skills install agent-sh/computer-use-linux/computer-use-linux
+
+# WARN: Setup opencommit
 
 # GUI setup
 open .gui_instructions.txt
+
+# KiCAD
+version='10.0'
+sudo add-apt-repository --yes ppa:kicad/kicad-$version-releases
+sudo nala update
+sudo nala install -y --install-recommends kicad
+
+# Anki
+version='26.05'
+wget https://github.com/ankitects/anki/releases/latest/download/anki-$version-linux-x86_64.tar.zst
+tar xaf anki-$version-linux-x86_64.tar.zst
+cd anki-linux/
+sudo ./install.sh
+anki
+cd ..; rm -rf anki-*
+
+# WARN: not detected
+# rustup toolchain install stable
+# rustup default stable
+pip install --upgrade pip
 
 # Kanata (nix) setup
 sudo groupadd uinput

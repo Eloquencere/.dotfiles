@@ -9,15 +9,16 @@ cd "$(dirname "${(%):-%x}")" # change directory to script location
 
 echo "Welcome to the *Ubuntu 26.04 LTS* installer :)"
 
+sudo nala full-upgrade -y
+cd ~/.dotfiles/ && stow . && cd -
+
 # Improving nautilus
 sudo nala install -y python3-nautilus python3-charset-normalizer at python3-polib
 curl -fsSL https://raw.githubusercontent.com/SimBoi/nautilus-create-new-file/main/install.sh | bash
 
 xdg-mime default org.gnome.TextEditor.desktop text/markdown
 
-# Performance improvement
-sudo nala install -y preload earlyoom
-
+# Nerd Fonts
 source sub-scripts/nerdfonts_download.zsh
 sudo nala install -y ttf-mscorefonts-installer fonts-crosextra-carlito fonts-crosextra-caladea # MS fonts for LibreOffice
 
@@ -106,21 +107,18 @@ sudo nala install -y vlc
 sudo add-apt-repository -y ppa:jdxcode/mise
 sudo nala update
 sudo nala install -y mise
-
 mise trust
 mise install
-# NOTE: incase command not found
-# mise doctor
-# mise reshim
 
-rustup toolchain install stable
-rustup default stable
-pip install --upgrade pip
+# Timeshift
+sudo add-apt-repository -y ppa:teejee2008/timeshift
+sudo nala update
+sudo nala install -y timeshift
 
 APPLICATIONS_APT=(
     "gnome-shell-extension-manager"
-    "bleachbit" "timeshift"
-    "gufw"
+    "bleachbit" "gufw"
+    "preload" "earlyoom"
     # Data Recovery
     "testdisk"
 )
@@ -179,12 +177,8 @@ ADDITIONAL_APPS_FLATPAK=(
 )
 flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
 
-# NOTE: following will take effect after (system) restart
-
 # Installing nix pkg manager
 sh <(curl --proto "=https" --tlsv1.2 -L https://nixos.org/nix/install) --daemon --yes
-
-cd ~/.dotfiles/ && stow . && cd -
 
 echo "This is the end of installer_1, run installer_2 after reboot"
 read "?Address all other open windows & Press Enter to reboot..."
