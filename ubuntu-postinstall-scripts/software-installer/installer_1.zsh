@@ -98,12 +98,12 @@ curl -sL https://raw.githubusercontent.com/retorquere/zotero-pkg/master/install.
 sudo nala update
 sudo nala install -y zotero
 
-# VLC
+# VLC - WARN: Doesn't have a release file
 sudo add-apt-repository -y ppa:ubuntuhandbook1/vlc
 sudo nala update
 sudo nala install -y vlc
 
-# Mise
+# Mise - WARN: CLI not working
 sudo add-apt-repository -y ppa:jdxcode/mise
 sudo nala update
 sudo nala install -y mise

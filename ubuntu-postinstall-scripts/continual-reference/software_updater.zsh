@@ -8,7 +8,7 @@ flatpak uninstall --unused --delete-data --assumeyes
 
 nix profile upgrade --all
 cd $XDG_CONFIG_HOME/home-manager
-read -qt 5 "REPLY?Run 'nix flake update' (y/N)? " && nix flake update
+read -qt 10 "REPLY?Run 'nix flake update' (y/N)? " && nix flake update
 home-manager switch --flake .
 home-manager news &> /dev/null
 nix-collect-garbage --delete-old
@@ -22,7 +22,7 @@ zinit update --all
 
 # # Update hermes
 # uv pip install --python $HERMES_HOME/hermes-agent/venv \
-#     -Ur $DOTFILES_HOME/ubuntu-postinstall-scripts/software-installer/sub-scripts/hermes_requirements.txt # NOTE: Temporary
+#   -Ur $DOTFILES_HOME/ubuntu-postinstall-scripts/software-installer/sub-scripts/hermes_requirements.txt # NOTE: Temporary
 #     # -Ur $HERMES_HOME/hermes-agent/requirements.txt
 # hermes update
 

@@ -7,7 +7,7 @@ return {
         opts = {
             ensure_installed = {
                 -- language servers
-                "clangd", -- C, C++
+                "clangd", -- C, C++ WARN: Not working again
                 "neocmakelsp",
                 -- "zls", -- Zig
                 "rust-analyzer",

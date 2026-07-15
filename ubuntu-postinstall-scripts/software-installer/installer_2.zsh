@@ -72,6 +72,7 @@ computer-use-linux doctor
 computer-use-linux setup-window-targeting
 hermes skills tap add agent-sh/computer-use-linux
 hermes skills install agent-sh/computer-use-linux/computer-use-linux
+# Setup camoufox
 
 # WARN: Setup opencommit
 
@@ -117,7 +118,7 @@ gsettings set org.gnome.desktop.background picture-uri-dark 'file:///usr/share/b
 # gsettings set org.gnome.desktop.background picture-uri-dark "file://$DOTFILES_HOME/wallpapers/angkor_watt_gpt.png"
 
 # GSConnect
-mkdir -p ~/Transfers/GSConnect
+mkdir -p $HOME/Transfers/GSConnect
 sudo ufw allow 1714:1764/tcp
 sudo ufw allow 1714:1764/udp
 
@@ -129,12 +130,6 @@ echo "file://$HOME/Projects" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
 sed -i "\|Music|d" $XDG_CONFIG_HOME/gtk-3.0/bookmarks
 
 # Clean up
-rm -rf ~/{.bash*,.profile,.zshrc,.zcompdump}
-rm -rf ~/.cache/* # generally safe, but be mindful
-rm -rf ~/.mozilla # WARN: Check if anything else can be removed
-rm -rf ~/{Music,Templates,Public}
-sudo rm -rf /tmp/*
-
 BLOAT_SNAP=(
     "thunderbird" "firefox"
 )
@@ -153,6 +148,12 @@ sudo nala purge -y "${BLOAT_APT[@]}"
 
 sudo sh -c "nala install --fix-broken; nala autoremove; apt autoclean"
 source ../continual-reference/software_updater.zsh
+
+rm -rf ~/{.bash*,.profile,.zshrc,.zcompdump}
+rm -rf ~/.cache/* # generally safe, but be mindful
+rm -rf ~/.mozilla # WARN: Check if anything else can be removed
+rm -rf ~/{Music,Templates,Public}
+sudo rm -rf /tmp/*
 
 echo "The system will reboot now to consolidate the installation"
 read "?Address all other open windows & Press Enter to reboot..."

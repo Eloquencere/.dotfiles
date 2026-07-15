@@ -20,22 +20,17 @@ export ZINIT_HOME="$XDG_DATA_HOME/zinit/zinit.git"
 export DOTFILES_HOME="$HOME/.dotfiles"
 export TOOLS_HOME="$HOME/Tools"
 
-# # WARN: uncomment this for 26.04
-# export HERMES_HOME="$XDG_CONFIG_HOME/hermes"
+export HERMES_HOME="$XDG_CONFIG_HOME/hermes"
 
-# Starship config
 export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
 
-# fzf modifications
 export FZF_DEFAULT_OPTS="--ansi"
 
-# Rust
 export RUSTUP_HOME="$XDG_DATA_HOME/rust/rustup"
 export RUSTC_WRAPPER="sccache"
 export CARGO_HOME="$XDG_DATA_HOME/rust/cargo"
 export PATH="$PATH:$CARGO_HOME/bin"
 
-# Python
 export PYTHONHISTORY="/dev/null"
 
 # Conan(C/C++)
