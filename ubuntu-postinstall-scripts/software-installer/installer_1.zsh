@@ -98,11 +98,6 @@ curl -sL https://raw.githubusercontent.com/retorquere/zotero-pkg/master/install.
 sudo nala update
 sudo nala install -y zotero
 
-# VLC - WARN: Doesn't have a release file
-sudo add-apt-repository -y ppa:ubuntuhandbook1/vlc
-sudo nala update
-sudo nala install -y vlc
-
 # Mise - WARN: CLI not working
 sudo add-apt-repository -y ppa:jdxcode/mise
 sudo nala update
@@ -119,6 +114,7 @@ APPLICATIONS_APT=(
     "gnome-shell-extension-manager"
     "bleachbit" "gufw"
     "preload" "earlyoom"
+    "vlc"
     # Data Recovery
     "testdisk"
 )
@@ -192,7 +188,7 @@ sudo reboot now
 # sudo apt update && sudo apt install signal-desktop
 # rm -rf signal-desktop-keyring.gpg
 
-# Wezterm - high ram usage when running zellij
+# # Wezterm - high ram usage when running zellij
 # curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
 # printf '%s\n' \
 #   'Types: deb' \

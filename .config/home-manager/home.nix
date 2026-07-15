@@ -32,7 +32,6 @@
         neovim tree-sitter
         zellij
         gh lazygit
-        usage
         mise # WARN: remove in 26.04
 
         github-copilot-cli

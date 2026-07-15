@@ -1,6 +1,7 @@
 # thanks - github.com/sahaj-b/ghostty-cursor-shaders
 # custom-shader = shaders/cursor_warp.glsl
 
+# WARN: Starship icon rendering is weird
 # --- Initialisation ---
 auto-update = off
 gtk-titlebar = false

@@ -46,8 +46,7 @@ git config --global delta.side-by-side true
 git config --global interactive.diffFilter 'delta --color-only'
 git config --global diff.colorMoved default
 git config --global merge.conflictstyle diff3
-read -q "user_choice?Would you like to log into your git account (y/N)? "
-echo
+read -q "user_choice?Would you like to log into your git account (y/N)? "; echo
 if [[ $user_choice =~ ^[Yy]$ ]]; then
     git config --global user.name "Eloquencere"
     read -r "email?Email ID: "
@@ -66,13 +65,13 @@ sudo nala install -y "${HERMES_DEP_APT[@]}"
 # TODO: Do a clean, from scratch setup of Hermes & check if my config file has any bloat
 curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
 # ignore everything & explicity add what I wanna version control in the hermes folder
-
-npm install -g @agent-sh/computer-use-linux
-computer-use-linux doctor
-computer-use-linux setup-window-targeting
-hermes skills tap add agent-sh/computer-use-linux
-hermes skills install agent-sh/computer-use-linux/computer-use-linux
 # Setup camoufox
+
+# npm install -g @agent-sh/computer-use-linux
+# computer-use-linux doctor
+# computer-use-linux setup-window-targeting
+# hermes skills tap add agent-sh/computer-use-linux
+# hermes skills install agent-sh/computer-use-linux/computer-use-linux
 
 # WARN: Setup opencommit
 
@@ -94,10 +93,11 @@ sudo ./install.sh
 anki
 cd ..; rm -rf anki-*
 
+pip install --upgrade pip
 # WARN: not detected
 # rustup toolchain install stable
 # rustup default stable
-pip install --upgrade pip
+# cargo binstall usage-cli
 
 # Kanata (nix) setup
 sudo groupadd uinput

@@ -186,6 +186,7 @@ in
 
             "org/gnome/shell/extensions/copyous" = {
                 show-indicator = false;
+                auto-hide-search = true;
             };
 
             # WARN: uncomment in 26.04
