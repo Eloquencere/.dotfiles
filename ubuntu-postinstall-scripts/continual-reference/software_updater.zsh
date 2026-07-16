@@ -15,15 +15,13 @@ nix-collect-garbage --delete-old
 cd -
 
 mise upgrade
-# npm update -g
 
 zinit self-update
 zinit update --all
 
 # Update hermes
 uv pip install --python $HERMES_HOME/hermes-agent/venv \
-  -Ur $DOTFILES_HOME/ubuntu-postinstall-scripts/software-installer/sub-scripts/hermes_requirements.txt # NOTE: Temporary
-  # -Ur $HERMES_HOME/hermes-agent/hermes_requirements.txt
+  -Ur $DOTFILES_HOME/ubuntu-postinstall-scripts/continual-reference/hermes_requirements.txt
 hermes update
 
 echo "Update your nvim plugins & researt your machine"
