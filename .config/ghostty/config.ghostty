@@ -1,7 +1,6 @@
 # thanks - github.com/sahaj-b/ghostty-cursor-shaders
 # custom-shader = shaders/cursor_warp.glsl
 
-# WARN: Starship icon rendering is weird
 # --- Initialisation ---
 auto-update = off
 gtk-titlebar = false
@@ -19,7 +18,7 @@ background = #000000
 background-opacity = 0.78
 
 # --- Text ---
-font-family = UbuntuSansMono Nerd Font
+font-family = "UbuntuSansMono Nerd Font"
 font-style = Medium
 font-size = 14
 # font-feature = -calt

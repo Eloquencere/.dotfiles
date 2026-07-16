@@ -16,6 +16,8 @@
         gdb valgrind strace
         tio
 
+        nerd-fonts.ubuntu-sans
+
         # Prompt improvement
         starship fzf atuin
 
@@ -62,6 +64,9 @@
         # scriptisto hyperfine
     ];
 
+    # Nerd Fonts for terminal icons (Starship, etc.)
+    fonts.fontconfig.enable = true;
+
     systemd.user.services.kanata = {
         Unit = {
             Description = "Kanata keyboard remapper";
@@ -70,6 +75,7 @@
             Type = "simple";
             ExecStart = "${pkgs.kanata}/bin/kanata --cfg %h/.config/kanata/config.kbd";
             Restart = "on-failure";
+            RestartSec = "2s";
         };
         Install = {
             WantedBy = [ "default.target" ];
@@ -84,11 +90,11 @@
         Service = {
             ExecStart = "${pkgs.ydotool}/bin/ydotoold";
             Restart = "on-failure";
+            RestartSec = "2s";
         };
         Install = {
             WantedBy = [ "default.target" ];
         };
     };
-
 }
 

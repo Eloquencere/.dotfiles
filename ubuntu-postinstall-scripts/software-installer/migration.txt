@@ -13,6 +13,7 @@
 - [ ] GSConnect & KDEConnect settings into notion
 
 - autoinstall.yaml
+    - Change timezone if necessary
     - Add user password hash via:     openssl passwd -6
     - Check serving machine's IP via: hostname -I
     - Initiate LAN transfer via:      python3 -m http.server <port>

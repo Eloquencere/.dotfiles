@@ -13,7 +13,7 @@ wget -O winboat.AppImage "https://github.com/TibixDev/winboat/releases/latest/do
 flatpak run it.mijorus.gearlever ./winboat.AppImage
 
 # Handy
-version='0.9.2'
+version='0.9.3'
 wget -O handy.AppImage "https://github.com/cjpais/Handy/releases/latest/download/Handy_${version}_amd64.AppImage"
 flatpak run it.mijorus.gearlever ./handy.AppImage
 
@@ -93,11 +93,16 @@ sudo ./install.sh
 anki
 cd ..; rm -rf anki-*
 
+# Mise
+sudo add-apt-repository -y ppa:jdxcode/mise
+sudo nala update
+sudo nala install -y mise
+mise trust
+mise install
 pip install --upgrade pip
-# WARN: not detected
-# rustup toolchain install stable
-# rustup default stable
-# cargo binstall usage-cli
+rustup toolchain install stable
+rustup default stable
+cargo binstall usage-cli
 
 # Kanata (nix) setup
 sudo groupadd uinput
@@ -121,6 +126,10 @@ gsettings set org.gnome.desktop.background picture-uri-dark 'file:///usr/share/b
 mkdir -p $HOME/Transfers/GSConnect
 sudo ufw allow 1714:1764/tcp
 sudo ufw allow 1714:1764/udp
+
+# Improving nautilus
+xdg-mime default org.gnome.TextEditor.desktop text/markdown
+touch ~/Templates/file
 
 # NOTE: Will be default in the future
 mkdir -p $HOME/Projects
@@ -151,8 +160,8 @@ source ../continual-reference/software_updater.zsh
 
 rm -rf ~/{.bash*,.profile,.zshrc,.zcompdump}
 rm -rf ~/.cache/* # generally safe, but be mindful
-rm -rf ~/.mozilla # WARN: Check if anything else can be removed
-rm -rf ~/{Music,Templates,Public}
+rm -rf ~/.mozilla # NOTE: Check if anything else can be removed
+rm -rf ~/{Music,Public}
 sudo rm -rf /tmp/*
 
 echo "The system will reboot now to consolidate the installation"

@@ -22,7 +22,7 @@ in
                 custom-keybindings = [
                     "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
                     "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
-                    "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/" # & this
+                    "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/"
                     "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/" # WARN: & this
                 ];
             };
@@ -32,11 +32,10 @@ in
                 binding="XF86Calculator";
             };
             "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
-                name="Ulauncher";
-                command="ulauncher";
-                binding="<Alt>space";
+                name="Handy";
+                command="/home/${config.home.username}/AppImages/handy.appimage --toggle-transcription";
+                binding="<Ctrl>space";
             };
-            # WARN: Remove this
             "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" = {
                 name="ghostty";
                 command="ghostty";

@@ -15,10 +15,10 @@ mask = "latest" # CLI task runner from markdown file
 sqlite = "latest"
 
 go = "latest"
-julia = "latest"
+# julia = "latest"
 
-deno = "latest"
 node = "latest"
+# deno = "latest"
 
 python = "latest"
 uv = "latest"

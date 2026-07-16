@@ -12,14 +12,6 @@ echo "Welcome to the *Ubuntu 26.04 LTS* installer :)"
 sudo nala full-upgrade -y
 cd ~/.dotfiles/ && stow . && cd -
 
-# Improving nautilus
-sudo nala install -y python3-nautilus python3-charset-normalizer at python3-polib
-curl -fsSL https://raw.githubusercontent.com/SimBoi/nautilus-create-new-file/main/install.sh | bash
-
-xdg-mime default org.gnome.TextEditor.desktop text/markdown
-
-# Nerd Fonts
-source sub-scripts/nerdfonts_download.zsh
 sudo nala install -y ttf-mscorefonts-installer fonts-crosextra-carlito fonts-crosextra-caladea # MS fonts for LibreOffice
 
 # Browser
@@ -31,11 +23,6 @@ sudo nala install -y $name
 xdg-settings set default-web-browser $name.desktop
 xdg-mime default $name.desktop x-scheme-handler/mailto
 $name &
-
-# Ghostty
-sudo add-apt-repository --yes ppa:mkasberg/ghostty-ubuntu
-sudo nala update
-sudo nala install -y ghostty
 
 # Virt-Manager
 sudo nala install -y virt-manager qemu-system-x86 qemu-utils libvirt-daemon-system libvirt-clients bridge-utils
@@ -93,17 +80,23 @@ printf '%s\n' \
 sudo nala update
 sudo nala install -y onlyoffice-desktopeditors
 
+# Wezterm
+curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
+printf '%s\n' \
+  'Types: deb' \
+  'URIs: https://apt.fury.io/wez/' \
+  'Suites: *' \
+  'Components: *' \
+  "Architectures: $(dpkg --print-architecture)" \
+  'Signed-By: /usr/share/keyrings/wezterm-fury.gpg' \
+  | sudo tee /etc/apt/sources.list.d/wezterm.sources > /dev/null
+sudo nala update
+sudo nala install -y wezterm
+
 # Zotero
 curl -sL https://raw.githubusercontent.com/retorquere/zotero-pkg/master/install.sh | sudo bash
 sudo nala update
 sudo nala install -y zotero
-
-# Mise - WARN: CLI not working
-sudo add-apt-repository -y ppa:jdxcode/mise
-sudo nala update
-sudo nala install -y mise
-mise trust
-mise install
 
 # Timeshift
 sudo add-apt-repository -y ppa:teejee2008/timeshift
@@ -188,18 +181,10 @@ sudo reboot now
 # sudo apt update && sudo apt install signal-desktop
 # rm -rf signal-desktop-keyring.gpg
 
-# # Wezterm - high ram usage when running zellij
-# curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
-# printf '%s\n' \
-#   'Types: deb' \
-#   'URIs: https://apt.fury.io/wez/' \
-#   'Suites: *' \
-#   'Components: *' \
-#   "Architectures: $(dpkg --print-architecture)" \
-#   'Signed-By: /usr/share/keyrings/wezterm-fury.gpg' \
-#   | sudo tee /etc/apt/sources.list.d/wezterm.sources > /dev/null
+# # Ghostty - Starship NF icon rendering is weird but, RAM usage is low with zellij
+# sudo add-apt-repository --yes ppa:mkasberg/ghostty-ubuntu
 # sudo nala update
-# sudo nala install -y wezterm
+# sudo nala install -y ghostty
 
 # # Experiment - weird artifacts in the text editor
 # echo 'APT::Architecture-Variants "amd64v3";' | sudo tee /etc/apt/apt.conf.d/99amd64v3
