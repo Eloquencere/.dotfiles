@@ -8,7 +8,9 @@ cd "$(dirname "${(%):-%x}")" # change directory to script location
 # AppManager
 version='3.7.2'
 wget -O appmanager.AppImage "https://github.com/kem-a/AppManager/releases/latest/download/AppManager-$version-anylinux-x86_64.AppImage"
-chomd +x ./appmanager.AppImage && ./appmanager.AppImage
+chmod +x ./appmanager.AppImage && ./appmanager.AppImage
+wget -O zsync2.AppImage "https://github.com/AppImageCommunity/zsync2/releases/download/2.0.0-alpha-1-20250926/zsync2-93-fc62ae7-x86_64.AppImage"
+app-manager install ./zsync2.AppImage
 
 # WinBoat
 version='0.9.0'
@@ -140,6 +142,10 @@ echo "file://$HOME/Projects" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
 sed -i "\|Music|d" $XDG_CONFIG_HOME/gtk-3.0/bookmarks
 
 # Clean up
+rm -f ~/{Music,Public}
+rm -f ~/{.bash*,.profile,.zshrc,.zcompdump}
+rm -rf ~/.mozilla # NOTE: Check if anything else can be removed
+
 BLOAT_SNAP=(
     "thunderbird" "firefox"
 )
@@ -156,14 +162,8 @@ BLOAT_APT=(
 )
 sudo nala purge -y "${BLOAT_APT[@]}"
 
-sudo sh -c "nala install --fix-broken; nala autoremove; apt autoclean"
+sudo nala install --fix-broken
 source ../continual-reference/software_updater.zsh
-
-rm -rf ~/{.bash*,.profile,.zshrc,.zcompdump}
-rm -rf ~/.cache/* # generally safe, but be mindful
-rm -rf ~/.mozilla # NOTE: Check if anything else can be removed
-rm -rf ~/{Music,Public}
-sudo rm -rf /tmp/*
 
 echo "The system will reboot now to consolidate the installation"
 read "?Address all other open windows & Press Enter to reboot..."

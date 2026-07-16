@@ -1,22 +1,23 @@
 #!/bin/zsh
 
-sudo nala full-upgrade -y
+sudo zsh -c "nala full-upgrade -y; nala autoremove; nala clean"
 sudo snap refresh
+app-manager --update-all
 
 flatpak update --assumeyes
 flatpak uninstall --unused --delete-data --assumeyes
 
 nix profile upgrade --all
 cd $XDG_CONFIG_HOME/home-manager
-read -qt 10 "REPLY?Run 'nix flake update' (y/N)? " && nix flake update
+read -qt 10 "?Run 'nix flake update' (y/N)? " && nix flake update
 home-manager switch --flake .
 home-manager news &> /dev/null
 nix-collect-garbage --delete-old
 cd -
 
-app-manager --update-all
-
-mise upgrade
+mise upgrade && mise cache clear && mise prune
+pip cache purge
+uv cache prune
 
 zinit self-update
 zinit update --all
@@ -24,6 +25,9 @@ zinit update --all
 hermes update
 uv pip install --python $HERMES_HOME/hermes-agent/venv \
   -Ur $DOTFILES_HOME/ubuntu-postinstall-scripts/continual-reference/hermes_requirements.txt
+
+rm -rf ~/.cache/*
+sudo journalctl --vacuum-time=7d
 
 echo "Update your nvim plugins & researt your machine"
 

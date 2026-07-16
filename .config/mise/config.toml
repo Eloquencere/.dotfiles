@@ -15,7 +15,7 @@ mask = "latest" # CLI task runner from markdown file
 
 sqlite = "latest"
 
-go = "latest"
+# go = "latest"
 # julia = "latest"
 
 node = "latest"
@@ -23,5 +23,4 @@ node = "latest"
 
 python = "latest"
 uv = "latest"
-
 

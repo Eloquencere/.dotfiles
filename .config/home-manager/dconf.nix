@@ -33,7 +33,7 @@ in
             };
             "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
                 name="Handy";
-                command="/home/${config.home.username}/Applications/Handy --toggle-transcription";
+                command="handy --toggle-transcription";
                 binding="<Ctrl>space";
             };
             "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" = {
