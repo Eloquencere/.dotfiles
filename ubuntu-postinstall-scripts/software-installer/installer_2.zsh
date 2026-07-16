@@ -101,7 +101,6 @@ mise install
 pip install --upgrade pip
 rustup toolchain install stable
 rustup default stable
-cargo binstall usage-cli
 
 # Kanata (nix) setup
 sudo groupadd uinput

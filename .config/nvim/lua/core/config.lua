@@ -13,7 +13,7 @@ vim.opt.wrap           = false
 -- Intricate settings
 vim.opt.clipboard:append("unnamedplus")
 vim.opt.modelines  = 0
-vim.opt.autochdir  = true
+-- vim.opt.autochdir  = true
 
 -- Tabs and Indentation
 vim.opt.tabstop       = 4    -- Number of spaces a tab character takes up

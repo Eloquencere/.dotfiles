@@ -31,7 +31,7 @@ return {
         -- default virt_text is "".
         bookmark_0 = {
             sign = "⚑",
-            virt_text = "hello world",
+            virt_text = "",
             -- explicitly prompt for a virtual line annotation when setting a bookmark from this group.
             -- defaults to false.
             annotate = false,

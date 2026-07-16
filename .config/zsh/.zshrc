@@ -1,6 +1,5 @@
 setopt nobeep
 setopt correct
-setopt auto_cd
 setopt glob_dots
 setopt no_clobber
 setopt no_flow_control
