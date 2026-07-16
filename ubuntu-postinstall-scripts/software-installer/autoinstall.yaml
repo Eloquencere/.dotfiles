@@ -114,7 +114,6 @@ autoinstall:
     - pkg-config
     - wl-clipboard
     - libreoffice-java-common
-    - libfuse2t64    # For appimage compatibility
     - openjdk-25-jre # To run .jar files
     - sshfs
     - zsh

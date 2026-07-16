@@ -5,21 +5,24 @@ set -o errexit \
 
 cd "$(dirname "${(%):-%x}")" # change directory to script location
 
-echo $'Click on "\033[1;33mMove to App Menu\033[0m"'
+# AppManager
+version='3.7.2'
+wget -O appmanager.AppImage "https://github.com/kem-a/AppManager/releases/latest/download/AppManager-$version-anylinux-x86_64.AppImage"
+chomd +x ./appmanager.AppImage && ./appmanager.AppImage
 
 # WinBoat
 version='0.9.0'
 wget -O winboat.AppImage "https://github.com/TibixDev/winboat/releases/latest/download/winboat-$version-x86_64.AppImage"
-flatpak run it.mijorus.gearlever ./winboat.AppImage
+app-manager install ./winboat.AppImage
 
 # Handy
 version='0.9.3'
 wget -O handy.AppImage "https://github.com/cjpais/Handy/releases/latest/download/Handy_${version}_amd64.AppImage"
-flatpak run it.mijorus.gearlever ./handy.AppImage
+app-manager install ./handy.AppImage
 
 # LM Studio
 wget -O lm-studio.AppImage 'https://lmstudio.ai/download/latest/linux/x64?format=AppImage'
-flatpak run it.mijorus.gearlever ./lm-studio.AppImage
+app-manager install ./lm-studio.AppImage
 
 # cpanm package manager for perl
 echo $'Say "\033[1;33myes\033[0m" to the first & "\033[1;33msudo\033[0m" to the next question'

@@ -39,5 +39,4 @@ return {
             remap = true,
         },
     },
-    config = true,
 }

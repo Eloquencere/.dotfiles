@@ -14,15 +14,16 @@ home-manager news &> /dev/null
 nix-collect-garbage --delete-old
 cd -
 
+app-manager --update-all
+
 mise upgrade
 
 zinit self-update
 zinit update --all
 
-# Update hermes
+hermes update
 uv pip install --python $HERMES_HOME/hermes-agent/venv \
   -Ur $DOTFILES_HOME/ubuntu-postinstall-scripts/continual-reference/hermes_requirements.txt
-hermes update
 
 echo "Update your nvim plugins & researt your machine"
 

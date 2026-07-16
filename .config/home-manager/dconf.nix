@@ -33,7 +33,7 @@ in
             };
             "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
                 name="Handy";
-                command="/home/${config.home.username}/AppImages/handy.appimage --toggle-transcription";
+                command="/home/${config.home.username}/Applications/Handy --toggle-transcription";
                 binding="<Ctrl>space";
             };
             "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" = {
@@ -244,6 +244,7 @@ in
                     "org.gnome.eog.desktop" # WARN: Not in 26
                     # "org.gnome.Loupe.desktop" # WARN: enable in 26
                     "simple-scan.desktop" # WARN: might not be in 26 
+                    "Handy.desktop"
                 ];
             };
             "org/gnome/desktop/app-folders/folders/libreoffice" = {
@@ -326,10 +327,10 @@ in
                 apps = [
                     "org.gnome.Software.desktop"
                     "snap-store_snap-store.desktop"
+                    "com.github.AppManager.desktop"
                     "com.mattjakeman.ExtensionManager.desktop"
                     "software-properties-gtk.desktop" # Software & Updates
                     "update-manager.desktop" # WARN: not in 26
-                    "it.mijorus.gearlever.desktop"
                 ];
             };
             "org/gnome/desktop/app-folders/folders/system-tools" = {
@@ -394,7 +395,7 @@ in
                         "kicad"
                         "virtualisation"
                         "games"
-                        "lmstudio.desktop"
+                        "lm-studio.desktop"
                         "anki.desktop"
                         "surfshark_surfshark.desktop"
                         "io.github.giantpinkrobots.varia.desktop" # flatpak name
