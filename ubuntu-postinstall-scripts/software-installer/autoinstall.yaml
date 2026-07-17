@@ -48,6 +48,7 @@ autoinstall:
     #         - 9.9.9.9              # Quad9
     #         - 2620:fe::fe          # "
 
+  # WARN: Currently BIOS, change to UEFI for 26.04
   storage:
     config:
       - id: disk0
@@ -96,8 +97,6 @@ autoinstall:
         path: /
         device: root-format
         options: "noatime,errors=remount-ro"
-
-  # WARN: Add config for UEFI for 26.04
 
   locale: en_US.UTF-8
   keyboard:

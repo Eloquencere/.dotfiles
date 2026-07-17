@@ -10,7 +10,10 @@ setopt interactive_comments
 source "$ZINIT_HOME/zinit.zsh"
 
 fpath+=$ZDOTDIR/completion
-zinit wait lucid compile atinit"
+# nocd stops zinit from cd-ing into the plugin dir when running atinit.
+# If prompt still shows wrong dir on startup, drop nocd and instead
+# move compinit out of atinit to the end of this file (plain autoload).
+zinit wait lucid compile nocd atinit"
     [[ -r $ZINIT_HOME/.zcompdump ]] && compinit -C || { zicompinit; zicdreplay; }
     _comps[delta]=_files
 " for zsh-users/zsh-completions
@@ -60,6 +63,11 @@ fi
 
 source "$ZDOTDIR/zsh-aliases.zsh"
 source "$ZDOTDIR/zsh-functions.zsh"
+
+# Belt-and-suspenders: ensure promptsubst is globally on.  Starship's init
+# sets it, but an async zinit zle -F firing during the first PROMPT eval can
+# momentarily catch it off, causing the raw $() string to appear.
+setopt promptsubst
 
 function zvm_config() {
     ZVM_INIT_MODE=sourcing # github.com/jeffreytse/zsh-vi-mode#initialization-mode

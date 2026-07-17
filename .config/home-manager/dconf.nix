@@ -23,7 +23,6 @@ in
                     "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
                     "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
                     "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/"
-                    "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/" # WARN: & this
                 ];
             };
             "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
@@ -37,12 +36,6 @@ in
                 binding="<Ctrl>space";
             };
             "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" = {
-                name="ghostty";
-                command="ghostty";
-                binding="<Alt><Shift>g";
-            };
-            # WARN: Remove this
-            "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3" = {
                 name="wezterm";
                 command="wezterm";
                 binding="<Alt><Shift>w";
@@ -382,8 +375,7 @@ in
                     "notion-desktop_notion-desktop.desktop"
                     "obsidian_obsidian.desktop"
                     "brave-browser.desktop"
-                    "org.wezfurlong.wezterm.desktop" # WARN: depricated
-                    "com.mitchellh.ghostty.desktop"
+                    "org.wezfurlong.wezterm.desktop"
                     "org.gnome.Nautilus.desktop"
                 ];
 
@@ -398,7 +390,7 @@ in
                         "lm-studio.desktop"
                         "anki.desktop"
                         "surfshark_surfshark.desktop"
-                        "io.github.giantpinkrobots.varia.desktop" # flatpak name
+                        "io.github.giantpinkrobots.varia.desktop"
                         "timeshift-gtk.desktop"
                         "tv.kodi.Kodi.desktop"
                         "net.nokyan.Resources.desktop"

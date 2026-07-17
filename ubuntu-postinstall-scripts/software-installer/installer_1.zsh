@@ -42,6 +42,8 @@ sudo nala update
 sudo nala install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin freerdp3-x11 # try for freerdp3-wayland
 sudo usermod -aG docker $USER
 
+# WARN: Look into how to install podman in a similar way
+
 # VSCode
 curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | sudo gpg --dearmor --yes -o /usr/share/keyrings/microsoft.gpg
 printf '%s\n' \
@@ -164,6 +166,10 @@ ADDITIONAL_APPS_FLATPAK=(
     # "org.ghidra_sre.Ghidra"
 )
 flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
+
+# # Consider this over creating a custom keybind for qalculate in dconf.nix
+# sudo rm $(which gnome-calculator) /usr/bin/gnome-calculator-original
+# sudo ln -sT $(which qalculate) /usr/bin/gnome-calculator
 
 # Installing nix pkg manager
 sh <(curl --proto "=https" --tlsv1.2 -L https://nixos.org/nix/install) --daemon --yes

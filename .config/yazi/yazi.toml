@@ -1,6 +1,8 @@
 [mgr]
 ratio = [2, 3, 3]
+short_by = "natural"
 show_hidden = true
+show_dir_first = true # no effect
 
 [preview]
 max_width = 600

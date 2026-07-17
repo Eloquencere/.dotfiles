@@ -25,7 +25,8 @@
         zoxide eza fd bat ripgrep duf delta
         yazi repgrep trash-cli
         croc fastfetch btop mprocs
-        ffmpeg fortune
+        ffmpeg pandoc
+        fortune
 
         # Documentation
         navi tlrc
@@ -37,8 +38,7 @@
         mise # WARN: remove in 26.04
 
         github-copilot-cli
-        opencode
-        opencommit
+        opencode opencommit
 
         # Rust crates
         sccache

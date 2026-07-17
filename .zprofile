@@ -21,6 +21,7 @@ export DOTFILES_HOME="$HOME/.dotfiles"
 export TOOLS_HOME="$HOME/Tools"
 
 export HERMES_HOME="$XDG_CONFIG_HOME/hermes"
+# export HERMES_HOME="$HOME/.hermes" # WARN: uncomment for 26.04
 
 export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
 

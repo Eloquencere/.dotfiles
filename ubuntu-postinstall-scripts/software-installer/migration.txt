@@ -10,7 +10,7 @@
 - [] Make note of software installed manually
 - [] Hermes
     - save config.yaml & SOUL.md
-- [ ] GSConnect & KDEConnect settings into notion
+- [ ] GSConnect & KDEConnect settings into Notion
 
 - autoinstall.yaml
     - Change timezone if necessary

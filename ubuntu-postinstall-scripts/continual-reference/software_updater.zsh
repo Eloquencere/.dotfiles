@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-sudo zsh -c "nala full-upgrade -y; nala autoremove; nala clean"
+sudo sh -c "nala full-upgrade -y; nala autoremove; nala clean"
 sudo snap refresh
 app-manager --update-all
 
@@ -26,7 +26,6 @@ hermes update
 uv pip install --python $HERMES_HOME/hermes-agent/venv \
   -Ur $DOTFILES_HOME/ubuntu-postinstall-scripts/continual-reference/hermes_requirements.txt
 
-rm -rf ~/.cache/*
 sudo journalctl --vacuum-time=7d
 
 echo "Update your nvim plugins & researt your machine"

@@ -9,8 +9,6 @@ cd "$(dirname "${(%):-%x}")" # change directory to script location
 version='3.7.2'
 wget -O appmanager.AppImage "https://github.com/kem-a/AppManager/releases/latest/download/AppManager-$version-anylinux-x86_64.AppImage"
 chmod +x ./appmanager.AppImage && ./appmanager.AppImage
-wget -O zsync2.AppImage "https://github.com/AppImageCommunity/zsync2/releases/download/2.0.0-alpha-1-20250926/zsync2-93-fc62ae7-x86_64.AppImage"
-app-manager install ./zsync2.AppImage
 
 # WinBoat
 version='0.9.0'
@@ -145,6 +143,7 @@ sed -i "\|Music|d" $XDG_CONFIG_HOME/gtk-3.0/bookmarks
 rm -f ~/{Music,Public}
 rm -f ~/{.bash*,.profile,.zshrc,.zcompdump}
 rm -rf ~/.mozilla # NOTE: Check if anything else can be removed
+rm -rf ~/.cache/*
 
 BLOAT_SNAP=(
     "thunderbird" "firefox"
@@ -196,4 +195,8 @@ sudo reboot now
 # mkdir -p ~/.local/share/nautilus-python/extensions
 # New.. but adding slashes creates a Folder & there will be a preview of the icon if created, so Folder will have folder icon or Python file or empty file & even support {} like in the shell for muliple file creation
 # Be able to copy a download link & right click on a folder in nautilus to Download link here.. (with wget)
+
+# # AppManager - Optional (if installed, hide from app drawer)
+# wget -O zsync2.AppImage "https://github.com/AppImageCommunity/zsync2/releases/download/2.0.0-alpha-1-20250926/zsync2-93-fc62ae7-x86_64.AppImage"
+# app-manager install ./zsync2.AppImage
 

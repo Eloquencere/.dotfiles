@@ -14,7 +14,7 @@ enter_accept = true
 show_preview = false
 show_help = false
 prefers_reduced_motion = true
-# Ctrl as alternative to Alt for number shortcuts — uncomment if needed
+# # Ctrl as alternative to Alt for number shortcuts — uncomment if needed
 # ctrl_n_shortcuts = true
 
 # Key bindings
@@ -34,8 +34,4 @@ secrets_filter = true
 # cwd_filter = [
 #   "^/very/secret/directory",
 # ]
-
-# Make Ctrl+C respect exit_mode (behave like Esc) instead of always returning original
-[keymap.emacs]
-"ctrl-c" = "exit"
 
