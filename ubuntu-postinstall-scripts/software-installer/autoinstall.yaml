@@ -2,7 +2,8 @@
 autoinstall:
   version: 1
 
-  timezone: America/New_York
+  timezone: Europe/Stockholm
+  # timezone: America/New_York
 
   identity:
     realname: eloquencer
@@ -24,10 +25,6 @@ autoinstall:
             - 2606:4700:4700::1112 # "
             - 1.0.0.2              # "
             - 2606:4700:4700::1002 # "
-            - 8.8.8.8              # Google
-            - 2001:4860:4860::8888 # "
-            - 8.8.4.4              # "
-            - 2001:4860:4860::8844 # "
             - 9.9.9.9              # Quad9
             - 2620:fe::fe          # "
     # wifis:
@@ -37,14 +34,10 @@ autoinstall:
     #     dhcp4: true
     #     nameservers:
     #       addresses:
-    #         - 1.1.1.2 # Cloudflare
-    #         - 2606:4700:4700::1112 # Cloudflare
+    #         - 1.1.1.2              # Cloudflare
+    #         - 2606:4700:4700::1112 # "
     #         - 1.0.0.2              # "
     #         - 2606:4700:4700::1002 # "
-    #         - 8.8.8.8              # Google
-    #         - 2001:4860:4860::8888 # Google
-    #         - 8.8.4.4              # "
-    #         - 2001:4860:4860::8844 # "
     #         - 9.9.9.9              # Quad9
     #         - 2620:fe::fe          # "
 
@@ -103,7 +96,7 @@ autoinstall:
     layout: us
 
   source:
-    id: ubuntu-desktop # Extended selection
+    id: ubuntu-desktop-minimal # for full: ubuntu-desktop
   drivers: # 3rd party Graphics & Wifi software
     install: true
   updates: all

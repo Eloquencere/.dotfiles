@@ -167,10 +167,6 @@ ADDITIONAL_APPS_FLATPAK=(
 )
 flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
 
-# # Consider this over creating a custom keybind for qalculate in dconf.nix
-# sudo rm $(which gnome-calculator) /usr/bin/gnome-calculator-original
-# sudo ln -sT $(which qalculate) /usr/bin/gnome-calculator
-
 # Installing nix pkg manager
 sh <(curl --proto "=https" --tlsv1.2 -L https://nixos.org/nix/install) --daemon --yes
 

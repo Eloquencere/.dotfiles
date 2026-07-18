@@ -24,7 +24,7 @@ zinit update --all
 
 hermes update
 uv pip install --python $HERMES_HOME/hermes-agent/venv \
-  -Ur $DOTFILES_HOME/ubuntu-postinstall-scripts/continual-reference/hermes_requirements.txt
+  -r $DOTFILES_HOME/ubuntu-postinstall-scripts/continual-reference/hermes_requirements.txt
 
 sudo journalctl --vacuum-time=7d
 
