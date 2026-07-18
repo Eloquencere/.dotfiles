@@ -96,7 +96,7 @@ autoinstall:
     layout: us
 
   source:
-    id: ubuntu-desktop-minimal # for full: ubuntu-desktop
+    id: ubuntu-desktop # Extended install
   drivers: # 3rd party Graphics & Wifi software
     install: true
   updates: all

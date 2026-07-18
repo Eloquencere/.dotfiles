@@ -81,7 +81,7 @@ function zvm_after_init() {
 # Fix prompt duplication when switching between zellij/tmux panes.
 if [[ -n "$ZELLIJ" ]]; then
     TRAPWINCH() {
-        zle .reset-prompt 2>/dev/null
+        zle .reset-prompt &> /dev/null
     }
 fi
 
