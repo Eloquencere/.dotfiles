@@ -32,7 +32,7 @@
         navi tlrc
         typst doxygen natural-docs
 
-        neovim tree-sitter
+        neovim
         zellij
         gh lazygit
         mise # WARN: remove in 26.04

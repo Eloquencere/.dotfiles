@@ -4,23 +4,21 @@ experimental = true
 idiomatic_version_file_enable_tools = ["python"]
 
 [tools]
-usage = "latest" # tab completion (mainly for mise)
-
+# Languages
 rust = "latest"
 # clang = "latest"
 # conan = "latest"
-
-just = "latest" # better alternative to make(file)
-mask = "latest" # CLI task runner from markdown file
-
 sqlite = "latest"
-
 # go = "latest"
 # julia = "latest"
-
 node = "latest"
 # deno = "latest"
-
 python = "latest"
+
+# CLI Tools
+just = "latest" # better alternative to make(file)
+mask = "latest" # CLI task runner from markdown file
+usage = "latest" # tab completion (mainly for mise)
+tree-sitter = "latest"
 uv = "latest"
 

@@ -4,6 +4,8 @@ set -o errexit \
     -o pipefail
 
 # NOTE: Learn to setup Jitsi-Meet via apt installation
+# WARN: Need to find out in what stage of the Installation does nautilus insert "Open with Wezterm"
+# WARN: Look into flatpak install flathub com.super_productivity.SuperProductivity
 
 cd "$(dirname "${(%):-%x}")" # change directory to script location
 
@@ -42,7 +44,7 @@ sudo nala update
 sudo nala install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin freerdp3-x11 # try for freerdp3-wayland
 sudo usermod -aG docker $USER
 
-# WARN: Look into how to install podman in a similar way
+# sudo nala install -y podman podman-compose # podman-docker
 
 # VSCode
 curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | sudo gpg --dearmor --yes -o /usr/share/keyrings/microsoft.gpg
@@ -104,6 +106,11 @@ sudo nala install -y zotero
 sudo add-apt-repository -y ppa:teejee2008/timeshift
 sudo nala update
 sudo nala install -y timeshift
+
+# Mise
+sudo add-apt-repository -y ppa:jdxcode/mise
+sudo nala update
+sudo nala install -y mise
 
 APPLICATIONS_APT=(
     "gnome-shell-extension-manager"

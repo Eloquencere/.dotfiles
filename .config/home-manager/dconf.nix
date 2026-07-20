@@ -30,11 +30,6 @@ in
                 command="flatpak run io.github.Qalculate";
                 binding="XF86Calculator";
             };
-            "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
-                name="Handy";
-                command="handy --toggle-transcription";
-                binding="<Ctrl>space";
-            };
             "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" = {
                 name="wezterm";
                 command="wezterm";
@@ -237,7 +232,7 @@ in
                     "org.gnome.eog.desktop" # WARN: Not in 26
                     # "org.gnome.Loupe.desktop" # WARN: enable in 26
                     "simple-scan.desktop" # WARN: might not be in 26 
-                    "Handy.desktop"
+                    "vocalinux.desktop"
                 ];
             };
             "org/gnome/desktop/app-folders/folders/libreoffice" = {

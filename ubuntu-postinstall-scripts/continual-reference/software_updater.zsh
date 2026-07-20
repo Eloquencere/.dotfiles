@@ -16,8 +16,9 @@ nix-collect-garbage --delete-old
 cd -
 
 mise upgrade && mise cache clear && mise prune
-pip cache purge
+pip install --upgrade pip && pip cache purge
 uv cache prune
+# npm update -g
 
 zinit self-update
 zinit update --all

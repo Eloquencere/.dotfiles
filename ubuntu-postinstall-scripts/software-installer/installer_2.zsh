@@ -15,11 +15,6 @@ version='0.9.0'
 wget -O winboat.AppImage "https://github.com/TibixDev/winboat/releases/latest/download/winboat-$version-x86_64.AppImage"
 app-manager install ./winboat.AppImage
 
-# Handy
-version='0.9.3'
-wget -O handy.AppImage "https://github.com/cjpais/Handy/releases/latest/download/Handy_${version}_amd64.AppImage"
-app-manager install ./handy.AppImage
-
 # LM Studio
 wget -O lm-studio.AppImage 'https://lmstudio.ai/download/latest/linux/x64?format=AppImage'
 app-manager install ./lm-studio.AppImage
@@ -59,6 +54,14 @@ if [[ $user_choice =~ ^[Yy]$ ]]; then
     sed -i '/.* = $/d' $XDG_CONFIG_HOME/git/config
 fi
 
+# Voice
+sudo apt install -y libgirepository-2.0-dev
+pkg-config --cflags --libs girepository-2.0
+curl -fsSL \
+  https://raw.githubusercontent.com/jatinkrmalik/vocalinux/main/install.sh \
+  -o /tmp/vl.sh && \
+bash /tmp/vl.sh --interactive
+
 # Hermes
 HERMES_DEP_APT=(
     "libportaudio2"
@@ -68,12 +71,6 @@ sudo nala install -y "${HERMES_DEP_APT[@]}"
 # TODO: Do a clean, from scratch setup of Hermes & check if my config file has any bloat
 curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
 # ignore everything & explicity add what I wanna version control in the hermes folder
-
-# npm install -g @agent-sh/computer-use-linux
-# computer-use-linux doctor
-# computer-use-linux setup-window-targeting
-# hermes skills tap add agent-sh/computer-use-linux
-# hermes skills install agent-sh/computer-use-linux/computer-use-linux
 
 # WARN: Setup opencommit
 
@@ -96,12 +93,8 @@ anki
 cd ..; rm -rf anki-*
 
 # Mise
-sudo add-apt-repository -y ppa:jdxcode/mise
-sudo nala update
-sudo nala install -y mise
 mise trust
 mise install
-pip install --upgrade pip
 rustup toolchain install stable
 rustup default stable
 
