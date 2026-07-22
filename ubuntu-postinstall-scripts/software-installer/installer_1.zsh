@@ -121,6 +121,12 @@ APPLICATIONS_APT=(
     "testdisk"
 )
 sudo nala install -y "${APPLICATIONS_APT[@]}"
+sudo ufw enable
+# GSConnect
+mkdir -p $HOME/Transfers/GSConnect
+sudo ufw allow 1714:1764/tcp
+sudo ufw allow 1714:1764/udp
+echo 'vm.swappiness=10' | sudo tee /etc/sysctl.d/99-swappiness.conf
 
 # Only keep curr & prev versions of a snap pkg 
 sudo snap set system refresh.retain=2
@@ -137,7 +143,7 @@ sudo snap install "${OFFICE_SOFTWARE_SNAP[@]}"
 echo 'ntsync
 KERNEL=="ntsync", MODE="0660", TAG+="uaccess"' \
  | sudo tee /etc/modules-load.d/ntsync.conf
-mkdir -p ~/Games/{switch}
+mkdir -p ~/Games/{Ryujinx}
 sudo nala install -y steam
 GAMES_FLATPAK=(
     "com.discordapp.Discord"

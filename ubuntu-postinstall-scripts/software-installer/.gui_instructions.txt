@@ -23,14 +23,9 @@
 
 Notes
     - Sync the web-browser on your default machine with the current machine
-    - Update to the latest GPU driver
+    - Update to the latest GPU driver (Additional Drivers app)
     - Setup your cloud storage service provider
     - Setup timeshift (https://www.xda-developers.com/timeshift-saved-my-linux-install-after-i-broke-it)
-    - Setup ufw (Firewall) - youtube.com/watch?v=5Ul1wd-dhLY
-    - Setup Virt-Manager - youtube.com/watch?v=Zei8i9CpAn0
-    - Install wine from the official website
-    - Optionally install Comic book reader - mcomix or kommiku & foliate
-    - Optionally install ClamAV (Anti-Virus) - youtube.com/watch?v=fCAvpFB5x6g
     - Winboat config
         - Install Windows 10 LTSC 2021
         - Allocate >= 8GB RAM & >= 2 cores & >= 100GB storage
@@ -38,15 +33,17 @@ Notes
         - Disable autostart container
         - Disable animations
     - AppManager
-        - set owner repo for - winboat, handy
+        - set repo url (for updates) for - winboat
         - remove from path for - winboat, lm-studio
+    - Zotero
+        - Under Edit -> Settings -> Advanced, set the data storage location to ~/Documents/Zotero
+    - Anki Extensions
+        - Scale Images - ankiweb.net/shared/info/1312865748
 
+Optional
+    - Install wine from the official website
+    - Install ClamAV (Anti-Virus) - youtube.com/watch?v=fCAvpFB5x6g
+    - Install Comic book reader - mcomix or kommiku & foliate
     - If there's mouse scroll wheel issues
         sudo apt install imwheel
-
-Zotero
-    - Under Edit -> Settings -> Advanced, set the data storage location to ~/Documents/Zotero
-
-Anki Extensions
-    - Scale Images - ankiweb.net/shared/info/1312865748
 

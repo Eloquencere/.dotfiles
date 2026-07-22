@@ -15,13 +15,15 @@ home-manager news &> /dev/null
 nix-collect-garbage --delete-old
 cd -
 
+zinit self-update
+zinit update --all
+
 mise upgrade && mise cache clear && mise prune
 pip install --upgrade pip && pip cache purge
 uv cache prune
 # npm update -g
 
-zinit self-update
-zinit update --all
+# Updater for vocalinux
 
 hermes update
 uv pip install --python $HERMES_HOME/hermes-agent/venv \
@@ -29,7 +31,7 @@ uv pip install --python $HERMES_HOME/hermes-agent/venv \
 
 sudo journalctl --vacuum-time=7d
 
-echo "Update your nvim plugins & researt your machine"
+echo "Update your nvim plugins & restart your machine"
 
 # # Update nix pkg manager (Manually)
 # sudo $(which nix-env) --install --file '<nixpkgs>' --attr nix -I nixpkgs=channel:nixpkgs-unstable

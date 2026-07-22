@@ -10,7 +10,7 @@ return {
                 "bash", "tcl",
                 "vhdl", "systemverilog",
                 "lua", "perl", "julia",
-                "c", "cpp", "rust", "go", "python", "zig",
+                "c", "cpp", "rust", "go", "python",
                 "json", "yaml",
                 "gitignore", "dockerfile", "toml", "kdl",
                 "cmake", "make", "doxygen",
@@ -64,15 +64,17 @@ return {
                 goto_previous = { ["[d"] = "@conditional.outer" },
             },
         },
-        -- WARN: Fix this
-        -- -- repeatable move (keeps working)
-        -- local ts_repeat_move = require("nvim-treesitter-textobjects.repeatable_move")
-        -- vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move)
-        -- vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_opposite)
-        -- vim.keymap.set({ "n", "x", "o" }, "f", ts_repeat_move.builtin_f_expr, { expr = true })
-        -- vim.keymap.set({ "n", "x", "o" }, "F", ts_repeat_move.builtin_F_expr, { expr = true })
-        -- vim.keymap.set({ "n", "x", "o" }, "t", ts_repeat_move.builtin_t_expr, { expr = true })
-        -- vim.keymap.set({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T_expr, { expr = true })
+        config = function(_, opts)
+            require("nvim-treesitter-textobjects").setup(opts)
+
+            local ts_repeat = require("nvim-treesitter-textobjects.repeatable_move")
+            vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat.repeat_last_move)
+            vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat.repeat_last_move_opposite)
+            vim.keymap.set({ "n", "x", "o" }, "f", ts_repeat.builtin_f_expr, { expr = true })
+            vim.keymap.set({ "n", "x", "o" }, "F", ts_repeat.builtin_F_expr, { expr = true })
+            vim.keymap.set({ "n", "x", "o" }, "t", ts_repeat.builtin_t_expr, { expr = true })
+            vim.keymap.set({ "n", "x", "o" }, "T", ts_repeat.builtin_T_expr, { expr = true })
+        end,
     },
     -- Auto-closing tags (works standalone)
     {

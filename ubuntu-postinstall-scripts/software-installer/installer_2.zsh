@@ -54,8 +54,8 @@ if [[ $user_choice =~ ^[Yy]$ ]]; then
     sed -i '/.* = $/d' $XDG_CONFIG_HOME/git/config
 fi
 
-# Voice
-sudo apt install -y libgirepository-2.0-dev
+# Speech to Text
+sudo nala install -y libgirepository-2.0-dev
 pkg-config --cflags --libs girepository-2.0
 curl -fsSL \
   https://raw.githubusercontent.com/jatinkrmalik/vocalinux/main/install.sh \
@@ -67,7 +67,6 @@ HERMES_DEP_APT=(
     "libportaudio2"
 )
 sudo nala install -y "${HERMES_DEP_APT[@]}"
-
 # TODO: Do a clean, from scratch setup of Hermes & check if my config file has any bloat
 curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
 # ignore everything & explicity add what I wanna version control in the hermes folder
@@ -115,11 +114,6 @@ gsettings set org.gnome.desktop.background picture-uri-dark 'file:///usr/share/b
 # # Alternate
 # gsettings set org.gnome.desktop.background picture-options 'scaled'
 # gsettings set org.gnome.desktop.background picture-uri-dark "file://$DOTFILES_HOME/wallpapers/angkor_watt_gpt.png"
-
-# GSConnect
-mkdir -p $HOME/Transfers/GSConnect
-sudo ufw allow 1714:1764/tcp
-sudo ufw allow 1714:1764/udp
 
 # Improving nautilus
 xdg-mime default org.gnome.TextEditor.desktop text/markdown
@@ -188,8 +182,4 @@ sudo reboot now
 # mkdir -p ~/.local/share/nautilus-python/extensions
 # New.. but adding slashes creates a Folder & there will be a preview of the icon if created, so Folder will have folder icon or Python file or empty file & even support {} like in the shell for muliple file creation
 # Be able to copy a download link & right click on a folder in nautilus to Download link here.. (with wget)
-
-# # AppManager - Optional (if installed, hide from app drawer)
-# wget -O zsync2.AppImage "https://github.com/AppImageCommunity/zsync2/releases/download/2.0.0-alpha-1-20250926/zsync2-93-fc62ae7-x86_64.AppImage"
-# app-manager install ./zsync2.AppImage
 
