@@ -5,20 +5,6 @@ set -o errexit \
 
 cd "$(dirname "${(%):-%x}")" # change directory to script location
 
-# AppManager
-version='3.7.2'
-wget -O appmanager.AppImage "https://github.com/kem-a/AppManager/releases/latest/download/AppManager-$version-anylinux-x86_64.AppImage"
-chmod +x ./appmanager.AppImage && ./appmanager.AppImage
-
-# WinBoat
-version='0.9.0'
-wget -O winboat.AppImage "https://github.com/TibixDev/winboat/releases/latest/download/winboat-$version-x86_64.AppImage"
-app-manager install ./winboat.AppImage
-
-# LM Studio
-wget -O lm-studio.AppImage 'https://lmstudio.ai/download/latest/linux/x64?format=AppImage'
-app-manager install ./lm-studio.AppImage
-
 # cpanm package manager for perl
 echo $'Say "\033[1;33myes\033[0m" to the first & "\033[1;33msudo\033[0m" to the next question'
 cpan App::cpanminus
@@ -76,21 +62,6 @@ curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
 # GUI setup
 open .gui_instructions.txt
 
-# KiCAD
-version='10.0'
-sudo add-apt-repository --yes ppa:kicad/kicad-$version-releases
-sudo nala update
-sudo nala install -y --install-recommends kicad
-
-# Anki
-version='26.05'
-wget https://github.com/ankitects/anki/releases/latest/download/anki-$version-linux-x86_64.tar.zst
-tar xaf anki-$version-linux-x86_64.tar.zst
-cd anki-linux/
-sudo ./install.sh
-anki
-cd ..; rm -rf anki-*
-
 # Mise
 mise trust
 mise install
@@ -107,30 +78,6 @@ sudo usermod -aG input,uinput $USER
 
 nix profile add 'nixpkgs#home-manager'
 home-manager switch
-
-# Load wallpaper
-gsettings set org.gnome.desktop.background picture-options 'zoom'
-gsettings set org.gnome.desktop.background picture-uri-dark 'file:///usr/share/backgrounds/osselo-Ask_a_friend.jpg'
-# # Alternate
-# gsettings set org.gnome.desktop.background picture-options 'scaled'
-# gsettings set org.gnome.desktop.background picture-uri-dark "file://$DOTFILES_HOME/wallpapers/angkor_watt_gpt.png"
-
-# Improving nautilus
-xdg-mime default org.gnome.TextEditor.desktop text/markdown
-touch ~/Templates/file
-
-# NOTE: Will be default in the future
-mkdir -p $HOME/Projects
-echo "file://$HOME/Projects" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
-
-# NOTE: might be best to arrange dirs in the bookmarks section
-sed -i "\|Music|d" $XDG_CONFIG_HOME/gtk-3.0/bookmarks
-
-# Clean up
-rm -f ~/{Music,Public}
-rm -f ~/{.bash*,.profile,.zshrc,.zcompdump}
-rm -rf ~/.mozilla # NOTE: Check if anything else can be removed
-rm -rf ~/.cache/*
 
 BLOAT_SNAP=(
     "thunderbird" "firefox"
@@ -150,6 +97,11 @@ sudo nala purge -y "${BLOAT_APT[@]}"
 
 sudo nala install --fix-broken
 source ../continual-reference/software_updater.zsh
+
+# Clean up
+rm -f ~/{.bash*,.profile,.zshrc,.zcompdump}
+rm -rf ~/.mozilla # NOTE: Check if anything else can be removed
+rm -rf ~/.cache/*
 
 echo "The system will reboot now to consolidate the installation"
 read "?Address all other open windows & Press Enter to reboot..."

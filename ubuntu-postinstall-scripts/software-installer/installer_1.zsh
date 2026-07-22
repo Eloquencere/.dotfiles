@@ -29,6 +29,19 @@ $name &
 # Virt-Manager
 sudo nala install -y virt-manager qemu-system-x86 qemu-utils libvirt-daemon-system libvirt-clients bridge-utils
 
+# Wezterm
+curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
+printf '%s\n' \
+  'Types: deb' \
+  'URIs: https://apt.fury.io/wez/' \
+  'Suites: *' \
+  'Components: *' \
+  "Architectures: $(dpkg --print-architecture)" \
+  'Signed-By: /usr/share/keyrings/wezterm-fury.gpg' \
+  | sudo tee /etc/apt/sources.list.d/wezterm.sources > /dev/null
+sudo nala update
+sudo nala install -y wezterm
+
 # Docker
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
 sudo chmod a+r /etc/apt/keyrings/docker.asc
@@ -43,8 +56,6 @@ printf '%s\n' \
 sudo nala update
 sudo nala install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin freerdp3-x11 # try for freerdp3-wayland
 sudo usermod -aG docker $USER
-
-# sudo nala install -y podman podman-compose # podman-docker
 
 # VSCode
 curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | sudo gpg --dearmor --yes -o /usr/share/keyrings/microsoft.gpg
@@ -84,18 +95,9 @@ printf '%s\n' \
 sudo nala update
 sudo nala install -y onlyoffice-desktopeditors
 
-# Wezterm
-curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
-printf '%s\n' \
-  'Types: deb' \
-  'URIs: https://apt.fury.io/wez/' \
-  'Suites: *' \
-  'Components: *' \
-  "Architectures: $(dpkg --print-architecture)" \
-  'Signed-By: /usr/share/keyrings/wezterm-fury.gpg' \
-  | sudo tee /etc/apt/sources.list.d/wezterm.sources > /dev/null
+# Libre office
+sudo add-apt-repository ppa:libreoffice/ppa
 sudo nala update
-sudo nala install -y wezterm
 
 # Zotero
 curl -sL https://raw.githubusercontent.com/retorquere/zotero-pkg/master/install.sh | sudo bash
@@ -111,6 +113,21 @@ sudo nala install -y timeshift
 sudo add-apt-repository -y ppa:jdxcode/mise
 sudo nala update
 sudo nala install -y mise
+
+# KiCAD
+version='10.0'
+sudo add-apt-repository --yes ppa:kicad/kicad-$version-releases
+sudo nala update
+sudo nala install -y --install-recommends kicad
+
+# Anki
+version='26.05'
+wget https://github.com/ankitects/anki/releases/latest/download/anki-$version-linux-x86_64.tar.zst
+tar xaf anki-$version-linux-x86_64.tar.zst
+cd anki-linux/
+sudo ./install.sh
+anki
+cd ..; rm -rf anki-*
 
 APPLICATIONS_APT=(
     "gnome-shell-extension-manager"
@@ -165,7 +182,7 @@ ADDITIONAL_APPS_FLATPAK=(
     # Office
     "md.obsidian.Obsidian"
     "com.jgraph.drawio.desktop"
-    "org.kde.drawy"
+    "com.github.flxzt.rnote" # alternative to drawy
     "io.github.Qalculate"
     # System
     "io.github.giantpinkrobots.varia"
@@ -180,8 +197,39 @@ ADDITIONAL_APPS_FLATPAK=(
 )
 flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
 
+# AppManager
+version='3.7.2'
+wget -O appmanager.AppImage "https://github.com/kem-a/AppManager/releases/latest/download/AppManager-$version-anylinux-x86_64.AppImage"
+chmod +x ./appmanager.AppImage && ./appmanager.AppImage
+
+# WinBoat
+version='0.9.0'
+wget -O winboat.AppImage "https://github.com/TibixDev/winboat/releases/latest/download/winboat-$version-x86_64.AppImage"
+app-manager install ./winboat.AppImage
+
+# LM Studio
+wget -O lm-studio.AppImage 'https://lmstudio.ai/download/latest/linux/x64?format=AppImage'
+app-manager install ./lm-studio.AppImage
+
 # Installing nix pkg manager
 sh <(curl --proto "=https" --tlsv1.2 -L https://nixos.org/nix/install) --daemon --yes
+
+# Improving nautilus
+xdg-mime default org.gnome.TextEditor.desktop text/markdown
+touch ~/Templates/file
+
+mkdir -p $HOME/Projects
+echo "file://$HOME/Projects" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
+# NOTE: might be best to arrange dirs in the bookmarks section
+sed -i "\|Music|d" $XDG_CONFIG_HOME/gtk-3.0/bookmarks
+rm -f ~/{Music,Public}
+
+# Load wallpaper
+gsettings set org.gnome.desktop.background picture-options 'zoom'
+gsettings set org.gnome.desktop.background picture-uri-dark 'file:///usr/share/backgrounds/osselo-Ask_a_friend.jpg'
+# # Alternate
+# gsettings set org.gnome.desktop.background picture-options 'scaled'
+# gsettings set org.gnome.desktop.background picture-uri-dark "file://$DOTFILES_HOME/wallpapers/angkor_watt_gpt.png"
 
 echo "This is the end of installer_1, run installer_2 after reboot"
 read "?Address all other open windows & Press Enter to reboot..."

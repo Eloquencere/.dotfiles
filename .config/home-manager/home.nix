@@ -12,11 +12,10 @@
     home.packages = with pkgs; [
         kanata
         ydotool xdotool
+        nerd-fonts.ubuntu-sans
 
         gdb valgrind strace
         tio
-
-        nerd-fonts.ubuntu-sans
 
         # Prompt improvement
         starship fzf atuin
@@ -29,13 +28,12 @@
         fortune
 
         # Documentation
-        navi tlrc
+        tlrc cheat
         typst doxygen natural-docs
 
         neovim
         zellij
         gh lazygit
-        mise # WARN: remove in 26.04
 
         github-copilot-cli
         opencode opencommit
@@ -57,11 +55,11 @@
         # cargo-inspect # educational
 
         # # optional
-        # carapace # needs to mature a lot
-        # presenterm
-        # graphviz # dependency for pydot
-        # jq jqp yq cheat p7zip unrar
+        # lazydocker
+        # jq jqp yq
         # scriptisto hyperfine
+        # presenterm
+        # carapace # needs to mature a lot
     ];
 
     # Nerd Fonts for terminal icons (Starship, etc.)
