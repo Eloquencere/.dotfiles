@@ -3,11 +3,13 @@ set -o errexit \
     -o nounset \
     -o pipefail
 
+# NOTE: hermes fix for zellij still not working
 # NOTE: Learn to setup Jitsi-Meet via apt installation
 # WARN: Need to find out in what stage of the Installation does nautilus insert "Open with Wezterm"
 # WARN: Look into flatpak install flathub com.super_productivity.SuperProductivity
 
 cd "$(dirname "${(%):-%x}")" # change directory to script location
+sudo -v
 
 echo "Welcome to the *Ubuntu 26.04 LTS* installer :)"
 
@@ -96,7 +98,9 @@ sudo nala update
 sudo nala install -y onlyoffice-desktopeditors
 
 # Libre office
-sudo add-apt-repository ppa:libreoffice/ppa
+sudo add-apt-repository -y ppa:libreoffice/ppa
+sudo add-apt-repository -y ppa:ubuntuhandbook1/transmission
+sudo add-apt-repository -y ppa:git-core/ppa
 sudo nala update
 
 # Zotero
@@ -113,6 +117,16 @@ sudo nala install -y timeshift
 sudo add-apt-repository -y ppa:jdxcode/mise
 sudo nala update
 sudo nala install -y mise
+
+# Fastfetch
+sudo add-apt-repository -y ppa:zhangsongcui3371/fastfetch
+sudo nala update
+sudo nala install -y fastfetch
+
+# ffmpeg
+sudo add-apt-repository ppa:ubuntuhandbook1/ffmpeg8
+sudo nala update
+sudo nala install -y ffmpeg
 
 # KiCAD
 version='10.0'
@@ -133,7 +147,6 @@ APPLICATIONS_APT=(
     "gnome-shell-extension-manager"
     "bleachbit" "gufw"
     "preload" "earlyoom"
-    "vlc"
     # Data Recovery
     "testdisk"
 )
@@ -185,7 +198,8 @@ ADDITIONAL_APPS_FLATPAK=(
     "com.github.flxzt.rnote" # alternative to drawy
     "io.github.Qalculate"
     # System
-    "io.github.giantpinkrobots.varia"
+    "flathub org.videolan.VLC"
+    "com.warlordsoftwares.media-downloader"
     "net.epson.epsonscan2"
     "io.github.totoshko88.RustConn"
     # Project Management
@@ -205,11 +219,6 @@ chmod +x ./appmanager.AppImage && ./appmanager.AppImage
 version='0.9.0'
 wget -O winboat.AppImage "https://github.com/TibixDev/winboat/releases/latest/download/winboat-$version-x86_64.AppImage"
 app-manager install ./winboat.AppImage
-
-# Stirling-PDF
-version='2.14.2'
-wget -o stirling-pdf.AppImage "https://github.com/pkgforge-dev/Stirling-PDF-AppImage/releases/latest/download/Stirling-PDF-v$version-anylinux-x86_64.AppImage"
-app-manager install ./stirling-pdf.AppImage
 
 # LM Studio
 wget -O lm-studio.AppImage 'https://lmstudio.ai/download/latest/linux/x64?format=AppImage'
@@ -231,9 +240,6 @@ rm -f ~/{Music,Public}
 # Load wallpaper
 gsettings set org.gnome.desktop.background picture-options 'zoom'
 gsettings set org.gnome.desktop.background picture-uri-dark 'file:///usr/share/backgrounds/osselo-Ask_a_friend.jpg'
-# # Alternate
-# gsettings set org.gnome.desktop.background picture-options 'scaled'
-# gsettings set org.gnome.desktop.background picture-uri-dark "file://$DOTFILES_HOME/wallpapers/angkor_watt_gpt.png"
 
 echo "This is the end of installer_1, run installer_2 after reboot"
 read "?Address all other open windows & Press Enter to reboot..."

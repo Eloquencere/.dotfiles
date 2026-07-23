@@ -26,6 +26,7 @@ Notes
     - Update to the latest GPU driver (Additional Drivers app)
     - Setup your cloud storage service provider
     - Setup timeshift (https://www.xda-developers.com/timeshift-saved-my-linux-install-after-i-broke-it)
+      - Take 1 snapshot every 2-3 days
     - Winboat config
         - Install Windows 10 LTSC 2021
         - Allocate >= 8GB RAM & >= 2 cores & >= 100GB storage

@@ -20,11 +20,11 @@
         # Prompt improvement
         starship fzf atuin
 
-        stow git
+        stow
         zoxide eza fd bat ripgrep duf delta
         yazi repgrep trash-cli
-        croc fastfetch btop mprocs
-        ffmpeg pandoc
+        croc btop mprocs
+        pandoc
         fortune
 
         # Documentation

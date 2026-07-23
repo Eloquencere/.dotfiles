@@ -4,6 +4,7 @@ set -o errexit \
     -o pipefail
 
 cd "$(dirname "${(%):-%x}")" # change directory to script location
+sudo -v
 
 # cpanm package manager for perl
 echo $'Say "\033[1;33myes\033[0m" to the first & "\033[1;33msudo\033[0m" to the next question'
@@ -85,13 +86,12 @@ BLOAT_SNAP=(
 sudo snap remove --purge "${BLOAT_SNAP[@]}"
 
 BLOAT_APT=(
-    "gnome-logs" "gnome-calculator"
+    "gnome-calculator"
     "ptyxis" "deja-dup" "seahorse" "shotwell" "showtime"
-    "rhythmbox" "orca" "info" "yelp" # WARN: "simple-scan"
-    "transmission-common" "transmission-gtk"
+    "rhythmbox" "orca" "brltty" "info" # WARN: "simple-scan"
     "ed" "vim-common" "nano"
     # Tools that clash with nixpkgs
-    "git" "stow"
+    "stow"
 )
 sudo nala purge -y "${BLOAT_APT[@]}"
 
@@ -103,8 +103,7 @@ rm -f ~/{.bash*,.profile,.zshrc,.zcompdump}
 rm -rf ~/.mozilla # NOTE: Check if anything else can be removed
 rm -rf ~/.cache/*
 
-echo "The system will reboot now to consolidate the installation"
-read "?Address all other open windows & Press Enter to reboot..."
+read "?Address all other open windows & Press Enter to reboot and consolidate the installation..."
 sudo reboot now
 
 # # Auto-cpufreq

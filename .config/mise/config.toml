@@ -8,17 +8,17 @@ idiomatic_version_file_enable_tools = ["python"]
 rust = "latest"
 # clang = "latest"
 # conan = "latest"
-sqlite = "latest"
 # go = "latest"
-# julia = "latest"
 node = "latest"
 # deno = "latest"
+# julia = "latest"
 python = "latest"
+uv = "latest"
+sqlite = "latest"
 
 # CLI Tools
-just = "latest" # better alternative to make(file)
+just = "latest"
 mask = "latest" # CLI task runner from markdown file
 usage = "latest" # tab completion (mainly for mise)
 tree-sitter = "latest"
-uv = "latest"
 
