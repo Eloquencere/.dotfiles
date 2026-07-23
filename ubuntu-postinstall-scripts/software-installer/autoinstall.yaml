@@ -63,7 +63,7 @@ autoinstall:
       - id: swap-partition
         type: partition
         device: disk0
-        size: 4G
+        size: 8G
         flag: swap
 
       # Swap format

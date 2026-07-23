@@ -187,7 +187,6 @@ ADDITIONAL_APPS_FLATPAK=(
     # System
     "io.github.giantpinkrobots.varia"
     "net.epson.epsonscan2"
-    "com.github.tenderowl.frog"
     "io.github.totoshko88.RustConn"
     # Project Management
     "com.rustdesk.RustDesk"
@@ -198,7 +197,7 @@ ADDITIONAL_APPS_FLATPAK=(
 flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
 
 # AppManager
-version='3.7.2'
+version='3.7.3'
 wget -O appmanager.AppImage "https://github.com/kem-a/AppManager/releases/latest/download/AppManager-$version-anylinux-x86_64.AppImage"
 chmod +x ./appmanager.AppImage && ./appmanager.AppImage
 
@@ -206,6 +205,11 @@ chmod +x ./appmanager.AppImage && ./appmanager.AppImage
 version='0.9.0'
 wget -O winboat.AppImage "https://github.com/TibixDev/winboat/releases/latest/download/winboat-$version-x86_64.AppImage"
 app-manager install ./winboat.AppImage
+
+# Stirling-PDF
+version='2.14.2'
+wget -o stirling-pdf.AppImage "https://github.com/pkgforge-dev/Stirling-PDF-AppImage/releases/latest/download/Stirling-PDF-v$version-anylinux-x86_64.AppImage"
+app-manager install ./stirling-pdf.AppImage
 
 # LM Studio
 wget -O lm-studio.AppImage 'https://lmstudio.ai/download/latest/linux/x64?format=AppImage'

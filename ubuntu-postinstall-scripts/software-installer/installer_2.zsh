@@ -120,15 +120,6 @@ sudo reboot now
 # echo '# Doom Emacs
 # export PATH=$XDG_CONFIG_HOME/emacs/bin:$PATH' >> ~/.zprofile
 
-# # Install Stirling pdf
-# cd ~/.config/stirling-pdf/
-# docker compose pull && docker compose up -d --build
-# cd -
-# # Update stirling pdf (Manually)
-# cd ~/.config/stirling-pdf/
-# docker compose pull stirling-pdf && docker compose up -d stirling-pdf
-# cd -
-
 # # Improve Nautilus
 # sudo nala install python3-nautilus python3-gi
 # mkdir -p ~/.local/share/nautilus-python/extensions
