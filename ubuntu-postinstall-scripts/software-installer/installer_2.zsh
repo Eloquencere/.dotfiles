@@ -77,6 +77,7 @@ sudo nala install -y "${HERMES_DEP_APT[@]}"
 # TODO: Do a clean, from scratch setup of Hermes & check if my config file has any bloat
 curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
 # ignore everything & explicity add what I wanna version control in the hermes folder
+# WARN: install - https://github.com/lfnovo/open-notebook
 
 BLOAT_SNAP=(
     "thunderbird" "firefox"
