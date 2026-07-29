@@ -18,6 +18,13 @@ cd ~/.dotfiles/ && stow . && cd -
 
 sudo nala install -y ttf-mscorefonts-installer fonts-crosextra-carlito fonts-crosextra-caladea # MS fonts for LibreOffice
 
+# Virt-Manager
+sudo nala install -y virt-manager qemu-system-x86 qemu-utils libvirt-daemon-system libvirt-clients bridge-utils
+
+# Perf improvement
+sudo nala install -y preload earlyoom
+echo 'vm.swappiness=10' | sudo tee /etc/sysctl.d/99-swappiness.conf
+
 # Browser
 name='brave-browser'
 sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
@@ -27,9 +34,6 @@ sudo nala install -y $name
 xdg-settings set default-web-browser $name.desktop
 xdg-mime default $name.desktop x-scheme-handler/mailto
 $name &
-
-# Virt-Manager
-sudo nala install -y virt-manager qemu-system-x86 qemu-utils libvirt-daemon-system libvirt-clients bridge-utils
 
 # Wezterm
 curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
@@ -58,6 +62,10 @@ printf '%s\n' \
 sudo nala update
 sudo nala install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin freerdp3-x11 # try for freerdp3-wayland
 sudo usermod -aG docker $USER
+# no other option
+wget -O docker-desktop.deb 'https://desktop.docker.com/linux/main/amd64/docker-desktop-amd64.deb?utm_source=docker&utm_medium=webreferral&utm_campaign=docs-driven-download-linux-amd64'
+sudo nala install -y ./docker-desktop.deb
+rm -f ./docker-desktop.deb
 
 # VSCode
 curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | sudo gpg --dearmor --yes -o /usr/share/keyrings/microsoft.gpg
@@ -139,19 +147,18 @@ cd ..; rm -rf anki-*
 
 APPLICATIONS_APT=(
     "gnome-shell-extension-manager"
-    "bleachbit" "gufw"
-    "preload" "earlyoom"
-    "ffmpeg"
+    "bleachbit" "ffmpeg"
     # Data Recovery
     "testdisk"
 )
 sudo nala install -y "${APPLICATIONS_APT[@]}"
+
+sudo nala install -y gufw
 sudo ufw enable
 # GSConnect
-mkdir -p $HOME/Transfers/GSConnect
 sudo ufw allow 1714:1764/tcp
 sudo ufw allow 1714:1764/udp
-echo 'vm.swappiness=10' | sudo tee /etc/sysctl.d/99-swappiness.conf
+mkdir -p $HOME/Transfers/GSConnect
 
 # Only keep curr & prev versions of a snap pkg 
 sudo snap set system refresh.retain=2
@@ -219,7 +226,7 @@ app-manager install ./winboat.AppImage
 wget -O lm-studio.AppImage 'https://lmstudio.ai/download/latest/linux/x64?format=AppImage'
 app-manager install ./lm-studio.AppImage
 
-# Installing nix pkg manager
+# Nixpkg manager
 sh <(curl --proto "=https" --tlsv1.2 -L https://nixos.org/nix/install) --daemon --yes
 
 # Gradia - GNOME Extension - WARN: Setup dconf.nix

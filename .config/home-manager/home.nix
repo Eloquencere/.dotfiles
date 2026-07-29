@@ -36,23 +36,7 @@
         gh lazygit
 
         github-copilot-cli
-        opencode opencommit
-
-        # Rust crates
-        sccache
-        bacon
-        cargo-binstall
-        cargo-expand # slightly outdated
-        cargo-info
-        cargo-deny   # slightly outdated
-        # # Profiling
-        # cargo-bloat cargo-flamegraph
-
-        # irust
-        # cargo-generate # slightly outdated
-        # cargo-nextest
-        # cargo-dist
-        # cargo-inspect # educational
+        opencode
 
         # # optional
         # lazydocker
@@ -65,6 +49,7 @@
     # Nerd Fonts for terminal icons (Starship, etc.)
     fonts.fontconfig.enable = true;
 
+    # Move this to installer script
     systemd.user.services.kanata = {
         Unit = {
             Description = "Kanata keyboard remapper";

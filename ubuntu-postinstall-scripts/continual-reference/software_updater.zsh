@@ -3,9 +3,7 @@
 sudo sh -c "nala full-upgrade -y; nala autoremove; nala clean"
 sudo snap refresh
 app-manager --update-all
-
-flatpak update --assumeyes
-flatpak uninstall --unused --delete-data --assumeyes
+flatpak update --assumeyes; flatpak uninstall --unused --delete-data --assumeyes
 
 nix profile upgrade --all
 cd $XDG_CONFIG_HOME/home-manager
@@ -15,15 +13,15 @@ home-manager news &> /dev/null
 nix-collect-garbage --delete-old
 cd -
 
-zinit self-update
-zinit update --all
-
 mise upgrade && mise cache clear && mise prune
 pip install --upgrade pip && pip cache purge
 uv cache prune
 # npm update -g
 
-# Updater for vocalinux
+zinit self-update
+zinit update --all
+
+# WARN: Updater for vocalinux
 
 hermes update
 uv pip install --python $HERMES_HOME/hermes-agent/venv \

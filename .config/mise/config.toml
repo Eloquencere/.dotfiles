@@ -2,6 +2,7 @@
 # python_compile = true
 experimental = true
 idiomatic_version_file_enable_tools = ["python"]
+cargo.binstall = true
 
 [tools]
 # Languages
@@ -21,4 +22,22 @@ usage = "latest" # tab completion (mainly for mise)
 just = "latest"
 mask = "latest" # CLI task runner from markdown file
 tree-sitter = "latest"
+
+
+# Cargo Stuff
+"cargo:sccache" = "latest"
+"cargo:bacon" = "latest"
+"cargo:cargo-binstall" = "latest"
+"cargo:cargo-expand" = "latest"
+"cargo:cargo-info" = "latest"
+"cargo:cargo-deny" = "latest"
+# # Profiling
+# "cargo:cargo-bloat" = "latest"
+# "cargo:cargo-flamegraph" = "latest"
+
+# "cargo:irust" = "latest"
+# "cargo:cargo-generate" = "latest"
+# "cargo:cargo-nextest" = "latest"
+# "cargo:cargo-dist" = "latest"
+# "cargo:cargo-inspect" = "latest" # educational
 

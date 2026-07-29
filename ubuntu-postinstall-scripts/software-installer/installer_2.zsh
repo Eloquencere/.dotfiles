@@ -78,8 +78,6 @@ sudo nala install -y "${HERMES_DEP_APT[@]}"
 curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
 # ignore everything & explicity add what I wanna version control in the hermes folder
 
-# WARN: Setup opencommit
-
 BLOAT_SNAP=(
     "thunderbird" "firefox"
 )
