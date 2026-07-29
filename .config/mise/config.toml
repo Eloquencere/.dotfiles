@@ -17,8 +17,8 @@ uv = "latest"
 sqlite = "latest"
 
 # CLI Tools
+usage = "latest" # tab completion (mainly for mise)
 just = "latest"
 mask = "latest" # CLI task runner from markdown file
-usage = "latest" # tab completion (mainly for mise)
 tree-sitter = "latest"
 

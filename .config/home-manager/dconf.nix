@@ -231,7 +231,6 @@ in
                     "org.gnome.Papers.desktop"
                     "org.gnome.eog.desktop" # WARN: Not in 26
                     # "org.gnome.Loupe.desktop" # WARN: enable in 26
-                    "simple-scan.desktop" # WARN: might not be in 26 
                     "vocalinux.desktop"
                 ];
             };
@@ -313,8 +312,8 @@ in
                 name = "Software Management";
                 translate = false;
                 apps = [
-                    "org.gnome.Software.desktop"
                     "snap-store_snap-store.desktop"
+                    "org.gnome.Software.desktop"
                     "com.github.AppManager.desktop"
                     "com.mattjakeman.ExtensionManager.desktop"
                     "software-properties-gtk.desktop" # Software & Updates

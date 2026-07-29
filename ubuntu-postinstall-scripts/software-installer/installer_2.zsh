@@ -6,6 +6,26 @@ set -o errexit \
 cd "$(dirname "${(%):-%x}")" # change directory to script location
 sudo -v
 
+# GUI setup
+open .gui_instructions.txt
+
+# Mise
+mise trust
+mise install
+rustup toolchain install stable
+rustup default stable
+
+# Kanata (nix) setup
+sudo groupadd uinput
+echo 'KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"' \
+  | sudo tee /etc/udev/rules.d/99-uinput.rules
+sudo udevadm control --reload-rules
+sudo udevadm trigger
+sudo usermod -aG input,uinput $USER
+
+nix profile add 'nixpkgs#home-manager'
+home-manager switch
+
 # cpanm package manager for perl
 echo $'Say "\033[1;33myes\033[0m" to the first & "\033[1;33msudo\033[0m" to the next question'
 cpan App::cpanminus
@@ -60,26 +80,6 @@ curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
 
 # WARN: Setup opencommit
 
-# GUI setup
-open .gui_instructions.txt
-
-# Mise
-mise trust
-mise install
-rustup toolchain install stable
-rustup default stable
-
-# Kanata (nix) setup
-sudo groupadd uinput
-echo 'KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"' \
-  | sudo tee /etc/udev/rules.d/99-uinput.rules
-sudo udevadm control --reload-rules
-sudo udevadm trigger
-sudo usermod -aG input,uinput $USER
-
-nix profile add 'nixpkgs#home-manager'
-home-manager switch
-
 BLOAT_SNAP=(
     "thunderbird" "firefox"
 )
@@ -88,7 +88,7 @@ sudo snap remove --purge "${BLOAT_SNAP[@]}"
 BLOAT_APT=(
     "gnome-calculator"
     "ptyxis" "deja-dup" "seahorse" "shotwell" "showtime"
-    "rhythmbox" "orca" "brltty" "info" # WARN: "simple-scan"
+    "rhythmbox" "orca" "brltty" "info" "simple-scan"
     "ed" "vim-common" "nano"
     # Tools that clash with nixpkgs
     "stow"

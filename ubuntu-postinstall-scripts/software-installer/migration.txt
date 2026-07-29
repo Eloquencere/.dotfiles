@@ -10,7 +10,7 @@
 - [] Make note of software installed manually
 - [] Hermes
     - save config.yaml & SOUL.md
-    - backup tracking.md
+    - backup tracking.md & ~/hermes
 - [ ] GSConnect & KDEConnect settings into Notion
 
 - autoinstall.yaml

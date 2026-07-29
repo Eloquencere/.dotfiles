@@ -2,3 +2,6 @@
 /.config/zsh/personal
 /.config/zsh/completion/*.zwc
 
+/.config/transmission/*
+!/.config/transmission/settings.json
+

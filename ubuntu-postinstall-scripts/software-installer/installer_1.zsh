@@ -97,10 +97,9 @@ printf '%s\n' \
 sudo nala update
 sudo nala install -y onlyoffice-desktopeditors
 
-# Libre office
 sudo add-apt-repository -y ppa:libreoffice/ppa
-sudo add-apt-repository -y ppa:ubuntuhandbook1/transmission
 sudo add-apt-repository -y ppa:git-core/ppa
+sudo add-apt-repository -y ppa:ubuntuhandbook1/transmission
 sudo nala update
 
 # Zotero
@@ -123,11 +122,6 @@ sudo add-apt-repository -y ppa:zhangsongcui3371/fastfetch
 sudo nala update
 sudo nala install -y fastfetch
 
-# ffmpeg
-sudo add-apt-repository ppa:ubuntuhandbook1/ffmpeg8
-sudo nala update
-sudo nala install -y ffmpeg
-
 # KiCAD
 version='10.0'
 sudo add-apt-repository --yes ppa:kicad/kicad-$version-releases
@@ -147,6 +141,7 @@ APPLICATIONS_APT=(
     "gnome-shell-extension-manager"
     "bleachbit" "gufw"
     "preload" "earlyoom"
+    "ffmpeg"
     # Data Recovery
     "testdisk"
 )
@@ -199,7 +194,7 @@ ADDITIONAL_APPS_FLATPAK=(
     "io.github.Qalculate"
     # System
     "flathub org.videolan.VLC"
-    "com.warlordsoftwares.media-downloader"
+    # "io.github.mhogomchungu.media-downloader" # alternatives - "com.github.unrud.VideoDownloader" "org.nickvision.tubeconverter"
     "net.epson.epsonscan2"
     "io.github.totoshko88.RustConn"
     # Project Management
@@ -226,6 +221,12 @@ app-manager install ./lm-studio.AppImage
 
 # Installing nix pkg manager
 sh <(curl --proto "=https" --tlsv1.2 -L https://nixos.org/nix/install) --daemon --yes
+
+# Gradia - GNOME Extension - WARN: Setup dconf.nix
+git clone https://github.com/AlexanderVanhee/gradia-capture.git
+cd gradia-capture
+./build.sh -i
+flatpak install --assumeyes flathub be.alexandervanhee.gradia
 
 # Improving nautilus
 xdg-mime default org.gnome.TextEditor.desktop text/markdown
