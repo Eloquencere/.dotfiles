@@ -14,14 +14,17 @@
         ydotool xdotool
         nerd-fonts.ubuntu-sans
 
-        gdb valgrind strace
+        valgrind strace
         tio
 
         # Prompt improvement
-        starship fzf atuin
+        starship # Slightly outdated
+        fzf # slightly outdated
+        atuin # Slightly outdated
 
         stow
-        zoxide eza fd bat ripgrep duf delta
+        zoxide # Slightly outdated
+        eza fd bat ripgrep duf delta
         yazi repgrep trash-cli
         croc btop mprocs
         pandoc
@@ -30,6 +33,7 @@
         # Documentation
         tlrc cheat
         typst doxygen natural-docs
+        mask
         hledger
 
         neovim

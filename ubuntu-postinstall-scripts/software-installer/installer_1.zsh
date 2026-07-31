@@ -18,13 +18,6 @@ cd ~/.dotfiles/ && stow . && cd -
 
 sudo nala install -y ttf-mscorefonts-installer fonts-crosextra-carlito fonts-crosextra-caladea # MS fonts for LibreOffice
 
-# Virt-Manager
-sudo nala install -y virt-manager qemu-system-x86 qemu-utils libvirt-daemon-system libvirt-clients bridge-utils
-
-# Perf improvement
-sudo nala install -y preload earlyoom
-echo 'vm.swappiness=10' | sudo tee /etc/sysctl.d/99-swappiness.conf
-
 # Browser
 name='brave-browser'
 sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
@@ -105,6 +98,21 @@ printf '%s\n' \
 sudo nala update
 sudo nala install -y onlyoffice-desktopeditors
 
+# Anki
+version='26.05'
+wget https://github.com/ankitects/anki/releases/latest/download/anki-$version-linux-x86_64.tar.zst
+tar xaf anki-$version-linux-x86_64.tar.zst
+cd anki-linux/
+sudo ./install.sh
+anki
+cd ..; rm -rf anki-*
+
+# KiCAD
+version='10.0'
+sudo add-apt-repository --yes ppa:kicad/kicad-$version-releases
+sudo nala update
+sudo nala install -y --install-recommends kicad
+
 sudo add-apt-repository -y ppa:libreoffice/ppa
 sudo add-apt-repository -y ppa:git-core/ppa
 sudo add-apt-repository -y ppa:ubuntuhandbook1/transmission
@@ -130,28 +138,20 @@ sudo add-apt-repository -y ppa:zhangsongcui3371/fastfetch
 sudo nala update
 sudo nala install -y fastfetch
 
-# KiCAD
-version='10.0'
-sudo add-apt-repository --yes ppa:kicad/kicad-$version-releases
-sudo nala update
-sudo nala install -y --install-recommends kicad
-
-# Anki
-version='26.05'
-wget https://github.com/ankitects/anki/releases/latest/download/anki-$version-linux-x86_64.tar.zst
-tar xaf anki-$version-linux-x86_64.tar.zst
-cd anki-linux/
-sudo ./install.sh
-anki
-cd ..; rm -rf anki-*
-
 APPLICATIONS_APT=(
+    "gdb"
     "gnome-shell-extension-manager"
     "bleachbit" "ffmpeg"
+    # Virtual machine
+    "virt-manager" "qemu-system-x86" "qemu-utils" "libvirt-daemon-system" "libvirt-clients" "bridge-utils"
     # Data Recovery
     "testdisk"
 )
 sudo nala install -y "${APPLICATIONS_APT[@]}"
+
+# Perf Improvement
+sudo nala install -y preload earlyoom
+echo 'vm.swappiness=10' | sudo tee /etc/sysctl.d/99-swappiness.conf
 
 sudo nala install -y gufw
 sudo ufw enable

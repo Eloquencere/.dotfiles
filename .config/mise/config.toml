@@ -17,10 +17,9 @@ python = "latest"
 uv = "latest"
 sqlite = "latest"
 
-# CLI Tools
-usage = "latest" # tab completion (mainly for mise)
+# CLI Tools - outdated in nix
+usage = "latest" # tab completion (for mise, best handled by mise)
 just = "latest"
-mask = "latest" # CLI task runner from markdown file
 tree-sitter = "latest"
 
 
