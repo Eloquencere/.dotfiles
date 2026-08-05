@@ -19,14 +19,14 @@ sqlite = "latest"
 
 # CLI Tools - outdated in nix
 usage = "latest" # tab completion (for mise, best handled by mise)
-just = "latest"
-tree-sitter = "latest"
 
 
 # Cargo Stuff
+"cargo-binstall" = "latest"
 "cargo:sccache" = "latest"
 "cargo:bacon" = "latest"
-"cargo:cargo-binstall" = "latest"
+
+# Rust crates
 "cargo:cargo-expand" = "latest"
 "cargo:cargo-info" = "latest"
 "cargo:cargo-deny" = "latest"

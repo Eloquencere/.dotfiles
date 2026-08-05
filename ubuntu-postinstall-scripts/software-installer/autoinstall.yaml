@@ -104,6 +104,7 @@ autoinstall:
   packages:
     - build-essential
     - pkg-config
+    - libnss3-tools # certificate validation tools
     - wl-clipboard
     - libreoffice-java-common
     - openjdk-25-jre # To run .jar files

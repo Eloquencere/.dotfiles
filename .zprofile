@@ -40,6 +40,8 @@ export CONAN_HOME="$XDG_DATA_HOME/conan"
 # LM studio
 export PATH="$HOME/.lmstudio/bin":$PATH
 
+export LEDGER_FILE="$HOME/Documents/Obsidian/Finances/finances.journal"
+
 # Personal confidential environment variables
 if [[ -f "$ZDOTDIR/personal/zprofile.zsh" ]]; then
     source "$ZDOTDIR/personal/zprofile.zsh"

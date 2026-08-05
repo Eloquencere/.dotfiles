@@ -11,20 +11,17 @@
 
     home.packages = with pkgs; [
         kanata
-        ydotool xdotool
+        xdotool
         nerd-fonts.ubuntu-sans
 
         valgrind strace
         tio
 
         # Prompt improvement
-        starship # Slightly outdated
-        fzf # slightly outdated
-        atuin # Slightly outdated
+        starship fzf atuin
 
         stow
-        zoxide # Slightly outdated
-        eza fd bat ripgrep duf delta
+        zoxide eza fd bat ripgrep duf delta
         yazi repgrep trash-cli
         croc btop mprocs
         pandoc
@@ -33,10 +30,10 @@
         # Documentation
         tlrc cheat
         typst doxygen natural-docs
-        mask
+        mask just
         hledger
 
-        neovim
+        neovim tree-sitter
         zellij
         gh lazygit
 
@@ -62,21 +59,6 @@
         Service = {
             Type = "simple";
             ExecStart = "${pkgs.kanata}/bin/kanata --cfg %h/.config/kanata/config.kbd";
-            Restart = "on-failure";
-            RestartSec = "2s";
-        };
-        Install = {
-            WantedBy = [ "default.target" ];
-        };
-    };
-
-    systemd.user.services.ydotoold = {
-        Unit = {
-            Description = "ydotool daemon - virtual input automation";
-            Documentation = "https://github.com/ReimuNotMoe/ydotool";
-        };
-        Service = {
-            ExecStart = "${pkgs.ydotool}/bin/ydotoold";
             Restart = "on-failure";
             RestartSec = "2s";
         };

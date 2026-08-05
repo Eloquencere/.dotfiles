@@ -13,7 +13,7 @@ home-manager news &> /dev/null
 nix-collect-garbage --delete-old
 cd -
 
-mise upgrade && mise cache clear && mise prune
+mise upgrade && mise cache clear && mise prune -y
 pip install --upgrade pip && pip cache purge
 uv cache prune
 # npm update -g
