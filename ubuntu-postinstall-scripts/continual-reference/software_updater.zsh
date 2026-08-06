@@ -16,7 +16,7 @@ cd -
 mise upgrade && mise cache clear && mise prune -y
 pip install --upgrade pip && pip cache purge
 uv cache prune
-# npm update -g
+npm update -g
 
 zinit self-update
 zinit update --all
@@ -26,6 +26,7 @@ zinit update --all
 hermes update
 uv pip install --python $HERMES_HOME/hermes-agent/venv \
   -r $DOTFILES_HOME/ubuntu-postinstall-scripts/continual-reference/hermes_requirements.txt
+agy update
 
 sudo journalctl --vacuum-time=7d
 

@@ -202,6 +202,7 @@ ADDITIONAL_APPS_FLATPAK=(
     # System
     "flathub org.videolan.VLC"
     # "io.github.mhogomchungu.media-downloader" # alternatives - "com.github.unrud.VideoDownloader" "org.nickvision.tubeconverter"
+    "com.github.jeromerobert.pdfarranger"
     "net.epson.epsonscan2"
     "io.github.totoshko88.RustConn"
     # Project Management

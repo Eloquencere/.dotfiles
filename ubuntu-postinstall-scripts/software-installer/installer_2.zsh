@@ -70,14 +70,17 @@ curl -fsSL \
 bash /tmp/vl.sh --interactive
 
 # Hermes
-HERMES_DEP_APT=(
-    "libportaudio2"
-)
-sudo nala install -y "${HERMES_DEP_APT[@]}"
 # TODO: Do a clean, from scratch setup of Hermes & check if my config file has any bloat
-curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
 # ignore everything & explicity add what I wanna version control in the hermes folder
-# WARN: install - https://github.com/lfnovo/open-notebook
+sudo nala install -y "libportaudio2"
+curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
+
+# Antigravity CLI
+curl -fsSL https://antigravity.google/cli/install.sh | bash
+agy
+
+# Cline
+npm install -g cline
 
 BLOAT_SNAP=(
     "thunderbird" "firefox"
