@@ -78,10 +78,8 @@ function zvm_after_init() {
     zvm_bindkey viins '^b' clear-screen
 }
 
-# Fix prompt duplication when switching between zellij/tmux panes.
+# Fix ghost prompt line when switching panes in zellij (SIGWINCH redraw)
 if [[ -n "$ZELLIJ" ]]; then
-    TRAPWINCH() {
-        zle .reset-prompt &> /dev/null
-    }
+    TRAPWINCH() { [[ -o zle ]] && zle .reset-prompt 2>/dev/null; }
 fi
 

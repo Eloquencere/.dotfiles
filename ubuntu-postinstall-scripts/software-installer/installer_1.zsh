@@ -3,10 +3,7 @@ set -o errexit \
     -o nounset \
     -o pipefail
 
-# NOTE: hermes fix for zellij still not working
-# NOTE: Learn to setup Jitsi-Meet via apt installation
-# WARN: Need to find out in what stage of the Installation does nautilus insert "Open with Wezterm"
-# WARN: Look into flatpak install flathub com.super_productivity.SuperProductivity
+# WARN: Need to find out in what stage of the Installation nautilus inserts "Open with Wezterm"
 
 cd "$(dirname "${(%):-%x}")" # change directory to script location
 sudo -v
@@ -207,7 +204,7 @@ ADDITIONAL_APPS_FLATPAK=(
     "io.github.totoshko88.RustConn"
     # Project Management
     "com.rustdesk.RustDesk"
-    # "org.jitsi.jitsi-meet"
+    "org.jitsi.jitsi-meet" # Jitsi-client
     # # Coding
     # "org.ghidra_sre.Ghidra"
 )
@@ -245,10 +242,6 @@ echo "file://$HOME/Projects" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
 # NOTE: might be best to arrange dirs in the bookmarks section
 sed -i "\|Music|d" $XDG_CONFIG_HOME/gtk-3.0/bookmarks
 rm -f ~/{Music,Public}
-
-# Load wallpaper
-gsettings set org.gnome.desktop.background picture-options 'zoom'
-gsettings set org.gnome.desktop.background picture-uri-dark 'file:///usr/share/backgrounds/osselo-Ask_a_friend.jpg'
 
 echo "This is the end of installer_1, run installer_2 after reboot"
 read "?Address all other open windows & Press Enter to reboot..."

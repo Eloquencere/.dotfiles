@@ -6,6 +6,10 @@ set -o errexit \
 cd "$(dirname "${(%):-%x}")" # change directory to script location
 sudo -v
 
+# Load wallpaper
+gsettings set org.gnome.desktop.background picture-options 'zoom'
+gsettings set org.gnome.desktop.background picture-uri-dark "file://$DOTFILES_HOME/wallpapers/Noble-Numbat-Mascot.jpeg"
+
 # GUI setup
 open .gui_instructions.txt
 

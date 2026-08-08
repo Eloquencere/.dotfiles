@@ -11,11 +11,11 @@
 
     home.packages = with pkgs; [
         kanata
-        xdotool
         nerd-fonts.ubuntu-sans
 
         valgrind strace
         tio
+        xdotool
 
         # Prompt improvement
         starship fzf atuin
