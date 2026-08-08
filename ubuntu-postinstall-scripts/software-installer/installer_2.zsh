@@ -121,9 +121,3 @@ sudo reboot now
 # echo '# Doom Emacs
 # export PATH=$XDG_CONFIG_HOME/emacs/bin:$PATH' >> ~/.zprofile
 
-# # Improve Nautilus
-# sudo nala install python3-nautilus python3-gi
-# mkdir -p ~/.local/share/nautilus-python/extensions
-# New.. but adding slashes creates a Folder & there will be a preview of the icon if created, so Folder will have folder icon or Python file or empty file & even support {} like in the shell for muliple file creation
-# Be able to copy a download link & right click on a folder in nautilus to Download link here.. (with wget)
-

@@ -206,6 +206,7 @@ in
                     "kicad"
                     "virtualisation"
                     "games"
+                    "downloaders"
                     "security"
                     "software-management"
                     "system-tools"
@@ -225,7 +226,7 @@ in
                     "com.jgraph.drawio.desktop.desktop"
                     "org.kde.drawy.desktop"
                     "zotero.desktop"
-                    "com.github.tenderowl.frog.desktop"
+                    "com.github.jeromerobert.pdfarranger.desktop"
                     "net.epson.epsonscan2.desktop"
                     "io.github.Qalculate.desktop"
                     "org.gnome.Papers.desktop"
@@ -282,6 +283,7 @@ in
                 apps = [
                     "virt-manager.desktop"
                     "winboat.desktop"
+                    "docker-desktop.desktop"
                 ];
             };
             "org/gnome/desktop/app-folders/folders/games" = {
@@ -298,6 +300,14 @@ in
                     "app.drey.MultiplicationPuzzle.desktop"
                     "org.gnome.Sudoku.desktop"
                     "org.gnome.Mines.desktop"
+                ];
+            };
+            "org/gnome/desktop/app-folders/folders/downloaders" = {
+                name = "Downloaders";
+                translate = false;
+                apps = [
+                    "transmission-gtk.desktop"
+                    "io.github.mhogomchungu.media-downloader.desktop"
                 ];
             };
             "org/gnome/desktop/app-folders/folders/security" = {
@@ -384,7 +394,7 @@ in
                         "lm-studio.desktop"
                         "anki.desktop"
                         "surfshark_surfshark.desktop"
-                        "io.github.giantpinkrobots.varia.desktop"
+                        "downloaders"
                         "timeshift-gtk.desktop"
                         "tv.kodi.Kodi.desktop"
                         "net.nokyan.Resources.desktop"
