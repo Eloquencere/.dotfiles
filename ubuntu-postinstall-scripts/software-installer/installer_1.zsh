@@ -100,11 +100,6 @@ curl -sL https://raw.githubusercontent.com/retorquere/zotero-pkg/master/install.
 sudo nala update
 sudo nala install -y zotero
 
-# Timeshift
-sudo add-apt-repository -y ppa:teejee2008/timeshift
-sudo nala update
-sudo nala install -y timeshift
-
 # Mise
 sudo add-apt-repository -y ppa:jdxcode/mise
 sudo nala update
@@ -117,6 +112,7 @@ sudo nala install -y fastfetch
 
 sudo add-apt-repository -y ppa:libreoffice/ppa
 sudo add-apt-repository -y ppa:git-core/ppa
+sudo add-apt-repository -y ppa:ubuntuhandbook1/transmission
 sudo nala update
 
 APPLICATIONS_APT=(
@@ -126,7 +122,7 @@ APPLICATIONS_APT=(
     # Virtual machine
     "virt-manager" "qemu-system-x86" "qemu-utils" "libvirt-daemon-system" "libvirt-clients" "bridge-utils"
     # Data Recovery
-    "testdisk"
+    "testdisk" "timeshift"
 )
 sudo nala install -y "${APPLICATIONS_APT[@]}"
 
@@ -234,6 +230,6 @@ sudo reboot now
 # sudo apt full-upgrade -y
 
 # For ubuntu 26.04 - No release file
-# sudo add-apt-repository -y ppa:ubuntuhandbook1/transmission
 # sudo add-apt-repository -y ppa:ubuntuhandbook1/vlc
+# sudo add-apt-repository -y ppa:teejee2008/timeshift
 
