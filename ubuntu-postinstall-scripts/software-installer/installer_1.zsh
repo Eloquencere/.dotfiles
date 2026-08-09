@@ -174,7 +174,7 @@ flatpak install --assumeyes flathub "${GAMES_FLATPAK[@]}"
 ADDITIONAL_APPS_FLATPAK=(
     # Office
     "md.obsidian.Obsidian"
-    "com.github.flxzt.rnote" # alternative to drawy
+    "org.kde.drawy" # rnote dark mode not working
     "io.github.Qalculate"
     # System
     # "io.github.mhogomchungu.media-downloader" # alternatives - "com.github.unrud.VideoDownloader" "org.nickvision.tubeconverter"
@@ -224,12 +224,12 @@ sudo reboot now
 # sudo nala update
 # sudo nala install -y ghostty
 
+# For ubuntu 26.04 - No release file
+# sudo add-apt-repository -y ppa:ubuntuhandbook1/vlc
+# sudo add-apt-repository -y ppa:teejee2008/timeshift
+
 # # Experiment - weird artifacts in the text editor
 # echo 'APT::Architecture-Variants "amd64v3";' | sudo tee /etc/apt/apt.conf.d/99amd64v3
 # sudo apt update
 # sudo apt full-upgrade -y
-
-# For ubuntu 26.04 - No release file
-# sudo add-apt-repository -y ppa:ubuntuhandbook1/vlc
-# sudo add-apt-repository -y ppa:teejee2008/timeshift
 

@@ -35,12 +35,12 @@ app-manager install ./winboat.AppImage
 wget -O lm-studio.AppImage 'https://lmstudio.ai/download/latest/linux/x64?format=AppImage'
 app-manager install ./lm-studio.AppImage
 
+# GUI setup
+open .gui_instructions.txt
+
 # Load wallpaper
 gsettings set org.gnome.desktop.background picture-options 'zoom'
 gsettings set org.gnome.desktop.background picture-uri-dark "file://$DOTFILES_HOME/wallpapers/Noble-Numbat-Mascot.jpeg"
-
-# GUI setup
-open .gui_instructions.txt
 
 # Mise
 unset RUSTC_WRAPPER # Temporarily disabling sccache for installation

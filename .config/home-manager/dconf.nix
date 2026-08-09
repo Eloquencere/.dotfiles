@@ -226,8 +226,7 @@ in
                     "onlyoffice-desktopeditors_onlyoffice-desktopeditors.desktop" # WARN: Remove in 26
                     "drawio_drawio.desktop"
                     "com.jgraph.drawio.desktop.desktop" # WARN: remove in 26
-                    "com.github.flxzt.rnote.desktop"
-                    "org.kde.drawy.desktop" # WARN: remove in 26
+                    "org.kde.drawy.desktop"
                     "zotero.desktop"
                     "com.github.jeromerobert.pdfarranger.desktop"
                     "net.epson.epsonscan2.desktop"
