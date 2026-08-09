@@ -222,16 +222,20 @@ in
                 translate = false;
                 apps = [
                     "libreoffice-startcenter.desktop"
-                    "onlyoffice-desktopeditors_onlyoffice-desktopeditors.desktop"
-                    "com.jgraph.drawio.desktop.desktop"
-                    "org.kde.drawy.desktop"
+                    "onlyoffice-desktopeditors.desktop"
+                    "onlyoffice-desktopeditors_onlyoffice-desktopeditors.desktop" # WARN: Remove in 26
+                    "drawio_drawio.desktop"
+                    "com.jgraph.drawio.desktop.desktop" # WARN: remove in 26
+                    "com.github.flxzt.rnote.desktop"
+                    "org.kde.drawy.desktop" # WARN: remove in 26
                     "zotero.desktop"
                     "com.github.jeromerobert.pdfarranger.desktop"
                     "net.epson.epsonscan2.desktop"
                     "io.github.Qalculate.desktop"
+                    "be.alexandervanhee.gradia.desktop"
                     "org.gnome.Papers.desktop"
                     "org.gnome.eog.desktop" # WARN: Not in 26
-                    # "org.gnome.Loupe.desktop" # WARN: enable in 26
+                    "org.gnome.Loupe.desktop"
                     "vocalinux.desktop"
                 ];
             };
@@ -260,6 +264,7 @@ in
                 translate = false;
                 apps = [
                     "code.desktop"
+                    "antigravity.desktop"
                     "com.github.reds.LogisimEvolution.desktop"
                     "org.ghidra_sre.Ghidra.desktop"
                     # WARN: Add antigravity here
@@ -337,7 +342,8 @@ in
                     "firmware-updater_firmware-updater.desktop"
                     "nvidia-settings.desktop"
                     "org.gnome.Sysprof.desktop"
-                    "software-properties-drivers.desktop" # Not in 26
+                    "org.gnome.Logs.desktop"
+                    "software-properties-drivers.desktop" # WARN: Not in 26
                 ];
             };
             "org/gnome/desktop/app-folders/folders/disk-utilities" = {
@@ -377,7 +383,8 @@ in
                 favorite-apps = [
                     "org.gnome.TextEditor.desktop"
                     "notion-desktop_notion-desktop.desktop"
-                    "obsidian_obsidian.desktop"
+                    "md.obsidian.Obsidian.desktop"
+                    "obsidian_obsidian.desktop" # WARN: remove in 26
                     "brave-browser.desktop"
                     "org.wezfurlong.wezterm.desktop"
                     "org.gnome.Nautilus.desktop"
@@ -418,4 +425,5 @@ in
         };
     };
 }
+
 

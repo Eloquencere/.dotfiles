@@ -6,6 +6,35 @@ set -o errexit \
 cd "$(dirname "${(%):-%x}")" # change directory to script location
 sudo -v
 
+# KiCAD
+version='10.0'
+sudo add-apt-repository --yes ppa:kicad/kicad-$version-releases
+sudo nala update
+sudo nala install -y --install-recommends kicad
+
+# Anki
+version='26.08.1'
+wget https://github.com/ankitects/anki/releases/latest/download/anki-$version-linux-x86_64.tar.zst
+tar xaf anki-$version-linux-x86_64.tar.zst
+cd anki-linux/
+sudo ./install.sh
+anki
+cd ..; rm -rf anki-*
+
+# AppManager
+version='3.7.3'
+wget -O appmanager.AppImage "https://github.com/kem-a/AppManager/releases/latest/download/AppManager-$version-anylinux-x86_64.AppImage"
+chmod +x ./appmanager.AppImage && ./appmanager.AppImage
+
+# WinBoat
+version='0.9.0'
+wget -O winboat.AppImage "https://github.com/TibixDev/winboat/releases/latest/download/winboat-$version-x86_64.AppImage"
+app-manager install ./winboat.AppImage
+
+# LM Studio
+wget -O lm-studio.AppImage 'https://lmstudio.ai/download/latest/linux/x64?format=AppImage'
+app-manager install ./lm-studio.AppImage
+
 # Load wallpaper
 gsettings set org.gnome.desktop.background picture-options 'zoom'
 gsettings set org.gnome.desktop.background picture-uri-dark "file://$DOTFILES_HOME/wallpapers/Noble-Numbat-Mascot.jpeg"
@@ -14,6 +43,7 @@ gsettings set org.gnome.desktop.background picture-uri-dark "file://$DOTFILES_HO
 open .gui_instructions.txt
 
 # Mise
+unset RUSTC_WRAPPER # Temporarily disabling sccache for installation
 mise trust
 mise install
 rustup toolchain install stable
@@ -66,7 +96,7 @@ if [[ $user_choice =~ ^[Yy]$ ]]; then
 fi
 
 # Speech to Text
-sudo nala install -y libgirepository-2.0-dev
+sudo nala install -y libgirepository-2.0-dev             libvulkan-dev glslc # OR CUDA toolkit
 pkg-config --cflags --libs girepository-2.0
 curl -fsSL \
   https://raw.githubusercontent.com/jatinkrmalik/vocalinux/main/install.sh \
@@ -94,7 +124,7 @@ sudo snap remove --purge "${BLOAT_SNAP[@]}"
 BLOAT_APT=(
     "gnome-calculator"
     "ptyxis" "deja-dup" "seahorse" "shotwell" "showtime"
-    "rhythmbox" "orca" "brltty" "info" "simple-scan"
+    "rhythmbox" "orca" "info" "simple-scan"
     "ed" "vim-common" "nano"
     # Tools that clash with nixpkgs
     "stow"

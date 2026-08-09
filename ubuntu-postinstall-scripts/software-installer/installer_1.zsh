@@ -95,26 +95,6 @@ printf '%s\n' \
 sudo nala update
 sudo nala install -y onlyoffice-desktopeditors
 
-# Anki
-version='26.05'
-wget https://github.com/ankitects/anki/releases/latest/download/anki-$version-linux-x86_64.tar.zst
-tar xaf anki-$version-linux-x86_64.tar.zst
-cd anki-linux/
-sudo ./install.sh
-anki
-cd ..; rm -rf anki-*
-
-# KiCAD
-version='10.0'
-sudo add-apt-repository --yes ppa:kicad/kicad-$version-releases
-sudo nala update
-sudo nala install -y --install-recommends kicad
-
-sudo add-apt-repository -y ppa:libreoffice/ppa
-sudo add-apt-repository -y ppa:git-core/ppa
-sudo add-apt-repository -y ppa:ubuntuhandbook1/transmission
-sudo nala update
-
 # Zotero
 curl -sL https://raw.githubusercontent.com/retorquere/zotero-pkg/master/install.sh | sudo bash
 sudo nala update
@@ -135,10 +115,14 @@ sudo add-apt-repository -y ppa:zhangsongcui3371/fastfetch
 sudo nala update
 sudo nala install -y fastfetch
 
+sudo add-apt-repository -y ppa:libreoffice/ppa
+sudo add-apt-repository -y ppa:git-core/ppa
+sudo nala update
+
 APPLICATIONS_APT=(
     "gdb"
-    "gnome-shell-extension-manager"
-    "bleachbit" "ffmpeg"
+    "gnome-shell-extension-manager" "bleachbit"
+    "ffmpeg" "vlc"
     # Virtual machine
     "virt-manager" "qemu-system-x86" "qemu-utils" "libvirt-daemon-system" "libvirt-clients" "bridge-utils"
     # Data Recovery
@@ -163,6 +147,7 @@ sudo snap set system refresh.retain=2
 OFFICE_SOFTWARE_SNAP=(
     "notion-desktop" # Not available elsewhere
     "surfshark"      # kill switch not in flatpak
+    "drawio"         # flatpak is not official
 )
 sudo snap install "${OFFICE_SOFTWARE_SNAP[@]}"
 # sudo snap install --channel=6/stable lxd
@@ -172,7 +157,7 @@ sudo snap install "${OFFICE_SOFTWARE_SNAP[@]}"
 echo 'ntsync
 KERNEL=="ntsync", MODE="0660", TAG+="uaccess"' \
  | sudo tee /etc/modules-load.d/ntsync.conf
-mkdir -p ~/Games/{Ryujinx}
+mkdir -p ~/Games/Ryujinx
 sudo nala install -y steam
 GAMES_FLATPAK=(
     "com.discordapp.Discord"
@@ -193,13 +178,10 @@ flatpak install --assumeyes flathub "${GAMES_FLATPAK[@]}"
 ADDITIONAL_APPS_FLATPAK=(
     # Office
     "md.obsidian.Obsidian"
-    "com.jgraph.drawio.desktop"
     "com.github.flxzt.rnote" # alternative to drawy
     "io.github.Qalculate"
     # System
-    "flathub org.videolan.VLC"
     # "io.github.mhogomchungu.media-downloader" # alternatives - "com.github.unrud.VideoDownloader" "org.nickvision.tubeconverter"
-    "com.github.jeromerobert.pdfarranger"
     "net.epson.epsonscan2"
     "io.github.totoshko88.RustConn"
     # Project Management
@@ -209,20 +191,6 @@ ADDITIONAL_APPS_FLATPAK=(
     # "org.ghidra_sre.Ghidra"
 )
 flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
-
-# AppManager
-version='3.7.3'
-wget -O appmanager.AppImage "https://github.com/kem-a/AppManager/releases/latest/download/AppManager-$version-anylinux-x86_64.AppImage"
-chmod +x ./appmanager.AppImage && ./appmanager.AppImage
-
-# WinBoat
-version='0.9.0'
-wget -O winboat.AppImage "https://github.com/TibixDev/winboat/releases/latest/download/winboat-$version-x86_64.AppImage"
-app-manager install ./winboat.AppImage
-
-# LM Studio
-wget -O lm-studio.AppImage 'https://lmstudio.ai/download/latest/linux/x64?format=AppImage'
-app-manager install ./lm-studio.AppImage
 
 # Nixpkg manager
 sh <(curl --proto "=https" --tlsv1.2 -L https://nixos.org/nix/install) --daemon --yes
@@ -237,14 +205,14 @@ flatpak install --assumeyes flathub be.alexandervanhee.gradia
 xdg-mime default org.gnome.TextEditor.desktop text/markdown
 touch ~/Templates/file
 
+# NOTE: might be best to arrange dirs in the bookmarks section
 mkdir -p $HOME/Projects
 echo "file://$HOME/Projects" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
-# NOTE: might be best to arrange dirs in the bookmarks section
-sed -i "\|Music|d" $XDG_CONFIG_HOME/gtk-3.0/bookmarks
-rm -f ~/{Music,Public}
+rmdir ~/Public
+# sed -i "\|Music|d" $XDG_CONFIG_HOME/gtk-3.0/bookmarks
 
 echo "This is the end of installer_1, run installer_2 after reboot"
-read "?Address all other open windows & Press Enter to reboot..."
+read "?Address all other open windows & Press Enter to reboot..." # probably not needed
 sudo reboot now
 
 # # Signal
@@ -264,4 +232,8 @@ sudo reboot now
 # echo 'APT::Architecture-Variants "amd64v3";' | sudo tee /etc/apt/apt.conf.d/99amd64v3
 # sudo apt update
 # sudo apt full-upgrade -y
+
+# For ubuntu 26.04 - No release file
+# sudo add-apt-repository -y ppa:ubuntuhandbook1/transmission
+# sudo add-apt-repository -y ppa:ubuntuhandbook1/vlc
 
