@@ -342,6 +342,7 @@ in
                     "nvidia-settings.desktop"
                     "org.gnome.Sysprof.desktop"
                     "org.gnome.Logs.desktop"
+                    "org.gnome.Yelp.desktop"
                     "software-properties-drivers.desktop" # WARN: Not in 26
                 ];
             };
