@@ -1,7 +1,4 @@
 #!/bin/zsh
-set -o errexit \
-    -o nounset \
-    -o pipefail
 
 cd "$(dirname "${(%):-%x}")" # change directory to script location
 sudo -v
@@ -37,6 +34,12 @@ app-manager install ./lm-studio.AppImage
 
 # GUI setup
 open .gui_instructions.txt
+
+# NOTE: might be best to arrange dirs in the bookmarks section
+mkdir -p $HOME/Projects
+echo "file://$HOME/Projects" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
+rmdir ~/Public
+# sed -i "\|Music|d" $XDG_CONFIG_HOME/gtk-3.0/bookmarks
 
 # Load wallpaper
 gsettings set org.gnome.desktop.background picture-options 'zoom'

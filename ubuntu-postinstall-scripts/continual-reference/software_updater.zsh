@@ -15,8 +15,6 @@ cd -
 
 mise upgrade && mise cache clear && mise prune -y
 pip install --upgrade pip && pip cache purge
-uv cache prune
-npm update -g
 
 zinit self-update
 zinit update --all
@@ -36,6 +34,10 @@ echo "Update your nvim plugins & restart your machine"
 # sudo $(which nix-env) --install --file '<nixpkgs>' --attr nix -I nixpkgs=channel:nixpkgs-unstable
 # sudo systemctl daemon-reload
 # sudo systemctl restart nix-daemon
+
+# # Run manually
+# uv cache prune
+# npm update -g
 
 # # Not installed
 # sudo auto-cpufreq --update

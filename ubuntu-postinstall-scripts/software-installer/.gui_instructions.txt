@@ -1,51 +1,51 @@
 *finish up some GUI configuration while the installer runs*
 - Gnome Extensions
-    (Essentials)
-    - Bluetooth Battery Meter
-    - blur my shell
-    - Just Perfection
-    - Copyous
-    - AATWS
-    - GSConnect
-    - CHC-E
-    - Space Bar
-    - Grand Theft Focus
+  (Essentials)
+  - Bluetooth Battery Meter
+  - blur my shell
+  - Just Perfection
+  - Copyous
+  - AATWS
+  - GSConnect
+  - CHC-E
+  - Space Bar
+  - Grand Theft Focus
+  - Battery time (pomoke)
 
-    (Optional)
-    - Quick Settings Tweaks - No support
-    - Wiggle
-    - Forge (Tiling Manager)
-    - Battery time
-    - dynamic music pill
-    - V-Shell
-    - Open bar
-    - Removable Drive Menu
+  (Optional)
+  - Quick Settings Tweaks - No support
+  - Wiggle - No support
+  - Removable Drive Menu
+  - Forge (Tiling Manager) - No support
+  - dynamic music pill
+  - V-Shell
+  - Open bar
 
 Notes
-    - Sync the web-browser on your default machine with the current machine
-    - Update to the latest GPU driver (Additional Drivers app)
-    - Setup your cloud storage service provider
-    - Setup timeshift (https://www.xda-developers.com/timeshift-saved-my-linux-install-after-i-broke-it)
-      - Take 1 snapshot every 2-3 days
-      - Backup the documents & Projects & Downloads folders
-    - Winboat config
-        - Install Windows 10 LTSC 2021
-        - Allocate >= 8GB RAM & >= 2 cores & >= 100GB storage
-        - Sharing home folder with linux is questionable
-        - Disable autostart container
-        - Disable animations
-    - AppManager
-        - set repo url (for updates) for - winboat
-        - remove from path for - winboat, lm-studio
-    - Zotero
-        - Under Edit -> Settings -> Advanced, set the data storage location to ~/Documents/Zotero
-    - Anki Extensions
-        - Scale Images - ankiweb.net/shared/info/1312865748
+  - Sync the web-browser on your default machine with the current machine
+  - Setup your cloud storage service provider
+  - Setup timeshift (https://www.xda-developers.com/timeshift-saved-my-linux-install-after-i-broke-it)
+    - Take 1 snapshot every 2-3 days
+    - Backup the documents & Projects & Downloads folders
+  - Zotero
+    - Under Edit -> Settings -> Advanced, set the data storage location to ~/Documents/Zotero
+  - Update to the latest GPU driver (Additional Drivers app)
+  - AppManager
+    - set repo url (for updates) for - winboat
+    - remove from path for - winboat, lm-studio
+  - Winboat config
+    - Install Windows 10 LTSC 2021
+    - Allocate >= 8GB RAM & >= 2 cores & >= 100GB storage
+    - Sharing home folder with linux is questionable
+    - Disable autostart container
+    - Disable animations
+  - Anki Extensions
+    - Scale Images - ankiweb.net/shared/info/1312865748
 
 Optional
-    - Install wine from the official website
-    - Install ClamAV (Anti-Virus) - youtube.com/watch?v=fCAvpFB5x6g
-    - Install Comic book reader - mcomix or kommiku & foliate
-    - If there's mouse scroll wheel issues
-        sudo apt install imwheel
+  - Install wine from the official website
+  - Install ClamAV (Anti-Virus) - youtube.com/watch?v=fCAvpFB5x6g
+  - Install Comic book reader - mcomix or kommiku & foliate
+  - If there's mouse scroll wheel issues
+    sudo apt install imwheel
 

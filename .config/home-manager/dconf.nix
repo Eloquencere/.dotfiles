@@ -383,7 +383,7 @@ in
                 favorite-apps = [
                     "org.gnome.TextEditor.desktop"
                     "notion-desktop_notion-desktop.desktop"
-                    "md.obsidian.Obsidian.desktop"
+                    "obsidian_md.obsidian.Obsidian.desktop"
                     "obsidian_obsidian.desktop" # WARN: remove in 26
                     "brave-browser.desktop"
                     "org.wezfurlong.wezterm.desktop"

@@ -1,7 +1,4 @@
 #!/bin/zsh
-set -o errexit \
-    -o nounset \
-    -o pipefail
 
 # WARN: Need to find out in what stage of the Installation nautilus inserts "Open with Wezterm"
 
@@ -190,6 +187,7 @@ flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
 
 # Nixpkg manager
 sh <(curl --proto "=https" --tlsv1.2 -L https://nixos.org/nix/install) --daemon --yes
+# WARN: last exited here
 
 # Gradia - GNOME Extension - WARN: Setup dconf.nix
 git clone https://github.com/AlexanderVanhee/gradia-capture.git
@@ -201,14 +199,7 @@ flatpak install --assumeyes flathub be.alexandervanhee.gradia
 xdg-mime default org.gnome.TextEditor.desktop text/markdown
 touch ~/Templates/file
 
-# NOTE: might be best to arrange dirs in the bookmarks section
-mkdir -p $HOME/Projects
-echo "file://$HOME/Projects" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
-rmdir ~/Public
-# sed -i "\|Music|d" $XDG_CONFIG_HOME/gtk-3.0/bookmarks
-
 echo "This is the end of installer_1, run installer_2 after reboot"
-read "?Address all other open windows & Press Enter to reboot..." # probably not needed
 sudo reboot now
 
 # # Signal
