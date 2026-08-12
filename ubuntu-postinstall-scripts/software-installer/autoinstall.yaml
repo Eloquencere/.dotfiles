@@ -2,8 +2,7 @@
 autoinstall:
   version: 1
 
-  timezone: Europe/Stockholm
-  # timezone: America/New_York
+  timezone: America/New_York
 
   identity:
     realname: eloquencer

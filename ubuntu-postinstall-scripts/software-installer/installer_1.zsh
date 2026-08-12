@@ -1,11 +1,16 @@
 #!/bin/zsh
 
+# WARN: review & check all dconf.nix settings
 # WARN: Need to find out in what stage of the Installation nautilus inserts "Open with Wezterm"
 
 cd "$(dirname "${(%):-%x}")" # change directory to script location
 sudo -v
 
 echo "Welcome to the *Ubuntu 26.04 LTS* installer :)"
+
+# To prevent the screen from dimming
+gsettings set org.gnome.settings-daemon.plugins.power idle-dim false
+gsettings set org.gnome.desktop.session idle-delay 0
 
 sudo nala full-upgrade -y
 cd ~/.dotfiles/ && stow . && cd -
@@ -174,12 +179,13 @@ ADDITIONAL_APPS_FLATPAK=(
     "org.kde.drawy" # rnote dark mode not working
     "io.github.Qalculate"
     # System
+    # WARN: uncomment something
     # "io.github.mhogomchungu.media-downloader" # alternatives - "com.github.unrud.VideoDownloader" "org.nickvision.tubeconverter"
     "net.epson.epsonscan2"
     "io.github.totoshko88.RustConn"
     # Project Management
     "com.rustdesk.RustDesk"
-    "org.jitsi.jitsi-meet" # Jitsi-client
+    # "org.jitsi.jitsi-meet" # Jitsi-client
     # # Coding
     # "org.ghidra_sre.Ghidra"
 )
@@ -187,9 +193,8 @@ flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
 
 # Nixpkg manager
 sh <(curl --proto "=https" --tlsv1.2 -L https://nixos.org/nix/install) --daemon --yes
-# WARN: last exited here
 
-# Gradia - GNOME Extension - WARN: Setup dconf.nix
+# Gradia - GNOME Extension
 git clone https://github.com/AlexanderVanhee/gradia-capture.git
 cd gradia-capture
 ./build.sh -i
@@ -215,7 +220,7 @@ sudo reboot now
 # sudo nala update
 # sudo nala install -y ghostty
 
-# For ubuntu 26.04 - No release file
+# No release file (On 26.04)
 # sudo add-apt-repository -y ppa:ubuntuhandbook1/vlc
 # sudo add-apt-repository -y ppa:teejee2008/timeshift
 

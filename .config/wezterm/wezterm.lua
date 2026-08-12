@@ -59,15 +59,6 @@ local config = {
             mods = "SHIFT",
             action = wezterm.action.SendString("\x1b[200~\n\x1b[201~"),
         },
-
-        -- Manual maximize (replaces the removed gui-startup auto-maximize)
-        {
-            key = "M",
-            mods = "CTRL|SHIFT",
-            action = wezterm.action_callback(function(window, pane)
-                window:maximize()
-            end),
-        },
     },
 }
 

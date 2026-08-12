@@ -35,7 +35,7 @@ app-manager install ./lm-studio.AppImage
 # GUI setup
 open .gui_instructions.txt
 
-# NOTE: might be best to arrange dirs in the bookmarks section
+# WARN: might be best to arrange dirs in the bookmarks section
 mkdir -p $HOME/Projects
 echo "file://$HOME/Projects" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
 rmdir ~/Public
@@ -107,9 +107,7 @@ curl -fsSL \
 bash /tmp/vl.sh --interactive
 
 # Hermes
-# TODO: Do a clean, from scratch setup of Hermes & check if my config file has any bloat
-# ignore everything & explicity add what I wanna version control in the hermes folder
-sudo nala install -y "libportaudio2"
+sudo nala install -y libportaudio2
 curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
 
 # Antigravity CLI
