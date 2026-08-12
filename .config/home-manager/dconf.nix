@@ -183,7 +183,7 @@ in
 
             "org/gnome/desktop/search-providers" = {
                 sort-order = [
-                    # "brave-browser.desktop" # WARN: uncomment in 26.04
+                    "brave-browser.desktop"
                     "org.gnome.Nautilus.desktop"
                     "org.gnome.Settings.desktop"
                     "io.github.Qalculate.desktop"
@@ -195,7 +195,7 @@ in
                     "org.gnome.Calendar.desktop"
                     "org.gnome.Documents.desktop" # NOTE: idk what this is
                     "org.gnome.Software.desktop"
-                    # "snap-store_snap-store.desktop" # WARN: un in 26.04
+                    "snap-store_snap-store.desktop"
                 ];
             };
             "org/gnome/desktop/app-folders" = {
@@ -264,9 +264,8 @@ in
                 apps = [
                     "code.desktop"
                     "antigravity.desktop"
-                    "com.github.reds.LogisimEvolution.desktop"
+                    "logisim-evolution-snapcraft_logisim-evolution-snapcraft.desktop"
                     "org.ghidra_sre.Ghidra.desktop"
-                    # WARN: Add antigravity here
                 ];
             };
             "org/gnome/desktop/app-folders/folders/kicad" = {

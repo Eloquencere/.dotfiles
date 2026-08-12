@@ -35,6 +35,8 @@ app-manager install ./lm-studio.AppImage
 # GUI setup
 open .gui_instructions.txt
 
+source ./sub-scripts/hdl_essentials.zsh
+
 # WARN: might be best to arrange dirs in the bookmarks section
 mkdir -p $HOME/Projects
 echo "file://$HOME/Projects" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
