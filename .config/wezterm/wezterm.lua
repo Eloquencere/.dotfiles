@@ -1,9 +1,12 @@
 local wezterm = require("wezterm")
 
-wezterm.on('gui-startup', function(cmd)
-    local _, _, window = wezterm.mux.spawn_window(cmd or {})
-    window:gui_window():maximize()
-end)
+-- 2026-08-12: gui-startup + maximize() at map time races the Wayland
+-- first-configure, which left the boot window unplaced/invisible until the
+-- overview was toggled. Maximize is now manual via CTRL+SHIFT+M (see keys).
+-- wezterm.on('gui-startup', function(cmd)
+--     local _, _, window = wezterm.mux.spawn_window(cmd or {})
+--     window:gui_window():maximize()
+-- end)
 
 local config = {
     -- Initialisations
@@ -60,6 +63,15 @@ local config = {
             key = "Enter",
             mods = "SHIFT",
             action = wezterm.action.SendString("\x1b[200~\n\x1b[201~"),
+        },
+
+        -- Manual maximize (replaces the removed gui-startup auto-maximize)
+        {
+            key = "M",
+            mods = "CTRL|SHIFT",
+            action = wezterm.action_callback(function(window, pane)
+                window:maximize()
+            end),
         },
     },
 }
