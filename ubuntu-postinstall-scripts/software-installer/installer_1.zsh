@@ -1,7 +1,6 @@
 #!/bin/zsh
 
 # WARN: review & check all dconf.nix settings
-# WARN: Need to find out in what stage of the Installation nautilus inserts "Open with Wezterm"
 
 cd "$(dirname "${(%):-%x}")" # change directory to script location
 sudo -v
@@ -179,8 +178,7 @@ ADDITIONAL_APPS_FLATPAK=(
     "org.kde.drawy" # rnote dark mode not working
     "io.github.Qalculate"
     # System
-    # WARN: uncomment something
-    # "io.github.mhogomchungu.media-downloader" # alternatives - "com.github.unrud.VideoDownloader" "org.nickvision.tubeconverter"
+    "io.github.mhogomchungu.media-downloader"
     "net.epson.epsonscan2"
     "io.github.totoshko88.RustConn"
     # Project Management

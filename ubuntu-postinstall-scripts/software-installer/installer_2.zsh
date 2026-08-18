@@ -37,11 +37,20 @@ open .gui_instructions.txt
 
 source ./sub-scripts/hdl_essentials.zsh
 
-# WARN: might be best to arrange dirs in the bookmarks section
+
+rmdir ~/{Public,Music}
+printf '%s\n' \
+  "file://$HOME/Documents" \
+  "file://$HOME/Downloads" \
+  >! $XDG_CONFIG_HOME/gtk-3.0/bookmarks
 mkdir -p $HOME/Projects
 echo "file://$HOME/Projects" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
-rmdir ~/Public
-# sed -i "\|Music|d" $XDG_CONFIG_HOME/gtk-3.0/bookmarks
+printf '%s\n' \
+  "file://$HOME/Transfers" \
+  "file://$HOME/Pictures" \
+  "file://$HOME/Videos" \
+  >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
+
 
 # Load wallpaper
 gsettings set org.gnome.desktop.background picture-options 'zoom'
@@ -117,7 +126,7 @@ curl -fsSL https://antigravity.google/cli/install.sh | bash
 agy
 
 # Cline
-npm install -g cline
+npm install -g cline omniroute
 
 BLOAT_SNAP=(
     "thunderbird" "firefox"

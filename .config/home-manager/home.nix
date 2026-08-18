@@ -30,7 +30,6 @@
         # Documentation
         tlrc cheat
         typst doxygen natural-docs
-        mask just
         hledger
 
         neovim tree-sitter
