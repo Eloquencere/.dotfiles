@@ -40,9 +40,9 @@ typst = "latest"
 hledger = "latest"
 fastfetch = "latest"
 neovim = "latest"
+gh = "latest"
 "tree-sitter" = "latest"
 zellij = "latest"
-gh = "latest"
 lazygit = "latest"
 
 
