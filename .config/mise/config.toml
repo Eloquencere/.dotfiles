@@ -19,6 +19,31 @@ sqlite = "latest"
 
 # CLI Tools - outdated in nix
 usage = "latest" # tab completion (for mise, best handled by mise)
+starship = "latest"
+fzf = "latest"
+atuin = "latest"
+zoxide = "latest"
+eza = "latest"
+fd = "latest"
+bat = "latest"
+ripgrep = "latest"
+duf = "latest"
+delta = "latest"
+yazi = "latest"
+croc = "latest"
+btop = "latest"
+mprocs = "latest"
+pandoc = "latest"
+tlrc = "latest"
+cheat = "latest"
+typst = "latest"
+hledger = "latest"
+fastfetch = "latest"
+neovim = "latest"
+"tree-sitter" = "latest"
+zellij = "latest"
+gh = "latest"
+lazygit = "latest"
 
 
 # Cargo Stuff

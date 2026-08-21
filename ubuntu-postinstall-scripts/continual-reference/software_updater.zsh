@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+cd "$(dirname "${(%):-%x}")" # change directory to script location
+
 sudo sh -c "nala full-upgrade -y; nala autoremove; nala clean"
 sudo snap refresh
 app-manager --update-all
@@ -19,8 +21,6 @@ pip install --upgrade pip && pip cache purge
 zinit self-update
 zinit update --all
 
-# WARN: Updater for vocalinux
-
 hermes update
 uv pip install --python $HERMES_HOME/hermes-agent/venv \
   -r $DOTFILES_HOME/ubuntu-postinstall-scripts/continual-reference/hermes_requirements.txt
@@ -29,6 +29,14 @@ agy update
 sudo journalctl --vacuum-time=7d
 
 echo "Update your nvim plugins & restart your machine"
+
+cd - &> /dev/null
+
+# # Vocalinux (official installer; rebuilds whisper.cpp with Vulkan for GPU)
+# curl -fsSL https://raw.githubusercontent.com/VocaHQ/vocalinux/main/install.sh \
+#   -o /tmp/vocalinux-update.sh && \
+# bash /tmp/vocalinux-update.sh --auto
+# rm -f /tmp/vocalinux-update.sh
 
 # # Update nix pkg manager (Manually)
 # sudo $(which nix-env) --install --file '<nixpkgs>' --attr nix -I nixpkgs=channel:nixpkgs-unstable

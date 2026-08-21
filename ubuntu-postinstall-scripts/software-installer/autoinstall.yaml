@@ -111,13 +111,13 @@ autoinstall:
     - zsh
     - nala
     - curl
-    - git
+    - stow
     - dos2unix
+    - trash-cli
+    - git
     # Flatpak package manager
     - flatpak
     - gnome-software-plugin-flatpak
-    # Will be uninstalled later in favor of nixpkgs
-    - stow
 
   shutdown: reboot
 

@@ -106,18 +106,12 @@ sudo add-apt-repository -y ppa:jdxcode/mise
 sudo nala update
 sudo nala install -y mise
 
-# Fastfetch
-sudo add-apt-repository -y ppa:zhangsongcui3371/fastfetch
-sudo nala update
-sudo nala install -y fastfetch
-
 sudo add-apt-repository -y ppa:libreoffice/ppa
 sudo add-apt-repository -y ppa:git-core/ppa
-sudo add-apt-repository -y ppa:ubuntuhandbook1/transmission
 sudo nala update
 
 APPLICATIONS_APT=(
-    "gdb"
+    "gdb" "valgrind" "strace"
     "gnome-shell-extension-manager" "bleachbit"
     "ffmpeg" "vlc"
     # Virtual machine
@@ -147,13 +141,18 @@ OFFICE_SOFTWARE_SNAP=(
     "drawio"         # flatpak is not official
 )
 sudo snap install "${OFFICE_SOFTWARE_SNAP[@]}"
+sudo snap install tio --classic
 # sudo snap install --channel=6/stable lxd
 # sudo snap install --classic workshop
 
 # Games
-echo 'ntsync
-KERNEL=="ntsync", MODE="0660", TAG+="uaccess"' \
- | sudo tee /etc/modules-load.d/ntsync.conf
+# Load the ntsync kernel module at boot
+echo 'ntsync' | sudo tee /etc/modules-load.d/ntsync.conf
+# udev rule for /dev/ntsync permissions (belongs in rules.d, not modules-load.d)
+echo 'KERNEL=="ntsync", MODE="0660", TAG+="uaccess"' \
+  | sudo tee /etc/udev/rules.d/99-ntsync.rules
+sudo udevadm control --reload-rules
+sudo udevadm trigger
 mkdir -p ~/Games/Ryujinx
 sudo nala install -y steam
 GAMES_FLATPAK=(
@@ -193,10 +192,13 @@ flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
 sh <(curl --proto "=https" --tlsv1.2 -L https://nixos.org/nix/install) --daemon --yes
 
 # Gradia - GNOME Extension
-git clone https://github.com/AlexanderVanhee/gradia-capture.git
-cd gradia-capture
-./build.sh -i
-flatpak install --assumeyes flathub be.alexandervanhee.gradia
+(
+  git clone https://github.com/AlexanderVanhee/gradia-capture.git && \
+  cd gradia-capture && \
+  ./build.sh -i
+  # WARN: check if that repo's folder is still there
+  flatpak install --assumeyes flathub be.alexandervanhee.gradia
+)
 
 # Improving nautilus
 xdg-mime default org.gnome.TextEditor.desktop text/markdown
@@ -221,6 +223,7 @@ sudo reboot now
 # No release file (On 26.04)
 # sudo add-apt-repository -y ppa:ubuntuhandbook1/vlc
 # sudo add-apt-repository -y ppa:teejee2008/timeshift
+# sudo add-apt-repository -y ppa:ubuntuhandbook1/transmission
 
 # # Experiment - weird artifacts in the text editor
 # echo 'APT::Architecture-Variants "amd64v3";' | sudo tee /etc/apt/apt.conf.d/99amd64v3

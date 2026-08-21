@@ -13,31 +13,8 @@
         kanata
         nerd-fonts.ubuntu-sans
 
-        valgrind strace
-        tio
-        xdotool
-
-        # Prompt improvement
-        starship fzf atuin
-
-        stow
-        zoxide eza fd bat ripgrep duf delta
-        yazi repgrep trash-cli
-        croc btop mprocs
-        pandoc
-        fortune
-
         # Documentation
-        tlrc cheat
-        typst doxygen natural-docs
-        hledger
-
-        neovim tree-sitter
-        zellij
-        gh lazygit
-
-        github-copilot-cli
-        opencode
+        doxygen natural-docs
 
         # # optional
         # lazydocker
