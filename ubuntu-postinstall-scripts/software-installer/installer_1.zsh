@@ -53,10 +53,6 @@ printf '%s\n' \
 sudo nala update
 sudo nala install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin freerdp3-x11 # try for freerdp3-wayland
 sudo usermod -aG docker $USER
-# no other option
-wget -O docker-desktop.deb 'https://desktop.docker.com/linux/main/amd64/docker-desktop-amd64.deb?utm_source=docker&utm_medium=webreferral&utm_campaign=docs-driven-download-linux-amd64'
-sudo nala install -y ./docker-desktop.deb
-rm -f ./docker-desktop.deb
 
 # VSCode
 curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | sudo gpg --dearmor --yes -o /usr/share/keyrings/microsoft.gpg
@@ -121,6 +117,9 @@ APPLICATIONS_APT=(
 )
 sudo nala install -y "${APPLICATIONS_APT[@]}"
 
+sudo nala install tio
+sudo usermod -aG dialout $USER
+
 # Perf Improvement
 sudo nala install -y preload earlyoom
 echo 'vm.swappiness=10' | sudo tee /etc/sysctl.d/99-swappiness.conf
@@ -141,18 +140,13 @@ OFFICE_SOFTWARE_SNAP=(
     "drawio"         # flatpak is not official
 )
 sudo snap install "${OFFICE_SOFTWARE_SNAP[@]}"
-sudo snap install tio --classic
 # sudo snap install --channel=6/stable lxd
 # sudo snap install --classic workshop
 
 # Games
-# Load the ntsync kernel module at boot
 echo 'ntsync' | sudo tee /etc/modules-load.d/ntsync.conf
-# udev rule for /dev/ntsync permissions (belongs in rules.d, not modules-load.d)
 echo 'KERNEL=="ntsync", MODE="0660", TAG+="uaccess"' \
   | sudo tee /etc/udev/rules.d/99-ntsync.rules
-sudo udevadm control --reload-rules
-sudo udevadm trigger
 mkdir -p ~/Games/Ryujinx
 sudo nala install -y steam
 GAMES_FLATPAK=(
@@ -192,13 +186,12 @@ flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
 sh <(curl --proto "=https" --tlsv1.2 -L https://nixos.org/nix/install) --daemon --yes
 
 # Gradia - GNOME Extension
-(
-  git clone https://github.com/AlexanderVanhee/gradia-capture.git && \
-  cd gradia-capture && \
-  ./build.sh -i
-  # WARN: check if that repo's folder is still there
-  flatpak install --assumeyes flathub be.alexandervanhee.gradia
-)
+git clone https://github.com/AlexanderVanhee/gradia-capture.git && \
+cd gradia-capture && \
+./build.sh -i
+cd -
+rm -rf gradia-capture
+flatpak install --assumeyes flathub be.alexandervanhee.gradia
 
 # Improving nautilus
 xdg-mime default org.gnome.TextEditor.desktop text/markdown
@@ -214,6 +207,11 @@ sudo reboot now
 #   sudo tee /etc/apt/sources.list.d/signal-xenial.list
 # sudo apt update && sudo apt install signal-desktop
 # rm -rf signal-desktop-keyring.gpg
+
+# # Docker desktop
+# wget -O docker-desktop.deb 'https://desktop.docker.com/linux/main/amd64/docker-desktop-amd64.deb?utm_source=docker&utm_medium=webreferral&utm_campaign=docs-driven-download-linux-amd64'
+# sudo nala install -y ./docker-desktop.deb
+# rm -f ./docker-desktop.deb
 
 # # Ghostty - Starship NF icon rendering is weird but, RAM usage is low with zellij
 # sudo add-apt-repository --yes ppa:mkasberg/ghostty-ubuntu

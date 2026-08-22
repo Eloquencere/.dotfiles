@@ -53,26 +53,7 @@ open .gui_instructions.txt
 
 source ./sub-scripts/hdl_essentials.zsh
 
-
-rmdir ~/{Public,Music}
-printf '%s\n' \
-  "file://$HOME/Documents" \
-  "file://$HOME/Downloads" \
-  >! $XDG_CONFIG_HOME/gtk-3.0/bookmarks
-mkdir -p $HOME/Projects
-echo "file://$HOME/Projects" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
-printf '%s\n' \
-  "file://$HOME/Transfers" \
-  "file://$HOME/Pictures" \
-  "file://$HOME/Videos" \
-  >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
-
-
-# Load wallpaper
-gsettings set org.gnome.desktop.background picture-options 'zoom'
-gsettings set org.gnome.desktop.background picture-uri-dark "file://$DOTFILES_HOME/wallpapers/Noble-Numbat-Mascot.jpeg"
-
-# Mise
+# Mise - WARN: check if this works in installer 1
 unset RUSTC_WRAPPER # Temporarily disabling sccache for installation
 mise trust
 mise install
@@ -89,6 +70,23 @@ sudo usermod -aG input,uinput $USER
 
 nix profile add 'nixpkgs#home-manager'
 home-manager switch
+
+# Load wallpaper
+gsettings set org.gnome.desktop.background picture-options 'zoom'
+gsettings set org.gnome.desktop.background picture-uri-dark "file://$DOTFILES_HOME/wallpapers/Noble-Numbat-Mascot.jpeg"
+
+rmdir ~/{Public,Music}
+printf '%s\n' \
+  "file://$HOME/Documents" \
+  "file://$HOME/Downloads" \
+  >! $XDG_CONFIG_HOME/gtk-3.0/bookmarks
+mkdir -p $HOME/Projects
+echo "file://$HOME/Projects" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
+printf '%s\n' \
+  "file://$HOME/Transfers" \
+  "file://$HOME/Pictures" \
+  "file://$HOME/Videos" \
+  >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
 
 mkdir -p $ZDOTDIR/personal
 read -r "croc_id?Enter the ID granted by your admin to register with your team via croc: "
