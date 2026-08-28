@@ -57,13 +57,6 @@ gsettings set org.gnome.desktop.background picture-uri-dark "file://$DOTFILES_HO
 
 source ./sub-scripts/hdl_essentials.zsh
 
-# Mise - WARN: check if this works in installer 1
-unset RUSTC_WRAPPER # Temporarily disabling sccache for installation
-mise trust
-mise install
-rustup toolchain install stable
-rustup default stable
-
 # Kanata (nix) setup
 sudo groupadd uinput
 echo 'KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"' \
@@ -74,6 +67,13 @@ sudo usermod -aG input,uinput $USER
 
 nix profile add 'nixpkgs#home-manager'
 home-manager switch
+
+# Mise
+unset RUSTC_WRAPPER # Temporarily disabling sccache for installation
+mise trust
+mise install
+rustup toolchain install stable
+rustup default stable
 
 rmdir ~/{Public,Music}
 printf '%s\n' \

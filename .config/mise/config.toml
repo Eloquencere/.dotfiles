@@ -28,7 +28,7 @@ usage = "latest" # tab completion (for mise, best handled by mise)
 
 # Rust crates
 "cargo:cargo-expand" = "latest"
-"cargo:cargo-info" = "latest"
+"cargo:cargo-information" = "latest"
 "cargo:cargo-deny" = "latest"
 # # Profiling
 # "cargo:cargo-bloat" = "latest"

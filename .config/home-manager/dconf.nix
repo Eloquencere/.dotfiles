@@ -111,7 +111,7 @@ in
                 multi-monitor = true;
                 isolate-monitors = true;
 
-                # WARN: Absent in GUI, prob not needed
+                # WARN: not needed in 26.04
                 always-center-icons = true;
                 autohide-in-fullscreen = true;
             };
@@ -179,7 +179,7 @@ in
             # WARN: uncomment in 26.04
             # "org/gnome/desktop/break-reminders" = {
             #     selected-breaks = ["eyesight"];
-            # }
+            # };
 
             "org/gnome/desktop/search-providers" = {
                 sort-order = [
@@ -235,6 +235,7 @@ in
                     "org.gnome.Papers.desktop"
                     "org.gnome.eog.desktop" # WARN: Not in 26
                     "org.gnome.Loupe.desktop"
+                    "org.gnome.gitlab.somas.Apostrophe.desktop"
                     "vocalinux.desktop"
                 ];
             };
@@ -255,7 +256,8 @@ in
                 apps = [
                     "org.jitsi.jitsi-meet.desktop"
                     "com.rustdesk.RustDesk.desktop"
-                    "lm-studio.desktop"
+                    "ai.elementlabs.lmstudio.desktop"
+                    "lm-studio.desktop" # WARN: remove in 26.04
                     "signal-desktop.desktop"
                 ];
             };
@@ -331,7 +333,7 @@ in
                     "com.github.AppManager.desktop"
                     "com.mattjakeman.ExtensionManager.desktop"
                     "software-properties-gtk.desktop" # Software & Updates
-                    "update-manager.desktop" # WARN: not in 26
+                    "update-manager.desktop"
                 ];
             };
             "org/gnome/desktop/app-folders/folders/system-tools" = {
@@ -383,7 +385,7 @@ in
                 favorite-apps = [
                     "org.gnome.TextEditor.desktop"
                     "notion-desktop_notion-desktop.desktop"
-                    "obsidian_md.obsidian.Obsidian.desktop"
+                    "md.obsidian.Obsidian.desktop"
                     "obsidian_obsidian.desktop" # WARN: remove in 26
                     "brave-browser.desktop"
                     "org.wezfurlong.wezterm.desktop"
@@ -424,5 +426,4 @@ in
         };
     };
 }
-
 

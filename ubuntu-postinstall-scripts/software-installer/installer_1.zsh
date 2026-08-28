@@ -1,7 +1,6 @@
 #!/bin/zsh
 
-# WARN: review & check all dconf.nix settings
-# WARN: See why cargo-binstall isn't working
+# WARN: review all dconf.nix settings
 
 cd "$(dirname "${(%):-%x}")" # change directory to script location
 sudo -v
@@ -105,7 +104,7 @@ APPLICATIONS_APT=(
 )
 sudo nala install -y "${APPLICATIONS_APT[@]}"
 
-sudo nala install tio
+sudo nala install -y tio
 sudo usermod -aG dialout $USER
 
 # Perf Improvement
@@ -188,6 +187,7 @@ xdg-mime default org.gnome.TextEditor.desktop text/markdown
 touch ~/Templates/file
 
 echo "This is the end of installer_1, run installer_2 after reboot"
+sleep 2
 sudo reboot now
 
 # # Antigravity
