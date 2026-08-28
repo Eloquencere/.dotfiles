@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, unstable, ... }:
 {
     home.username = "eloquencer";
     home.homeDirectory = "/home/${config.home.username}";
@@ -12,9 +12,26 @@
     home.packages = with pkgs; [
         kanata
         nerd-fonts.ubuntu-sans
+        xdotool
+
+        # Prompt improvement
+        starship fzf unstable.atuin
+
+        zoxide eza fd bat ripgrep duf delta
+        yazi
+        croc btop mprocs
+        pandoc
+        fastfetch
+        unstable.cargo-binstall
 
         # Documentation
-        doxygen natural-docs
+        tlrc cheat
+        typst doxygen natural-docs
+        hledger
+
+        unstable.neovim tree-sitter
+        unstable.zellij
+        gh unstable.lazygit
 
         # # optional
         # lazydocker
@@ -43,4 +60,3 @@
         };
     };
 }
-

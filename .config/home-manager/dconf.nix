@@ -255,6 +255,7 @@ in
                 apps = [
                     "org.jitsi.jitsi-meet.desktop"
                     "com.rustdesk.RustDesk.desktop"
+                    "lm-studio.desktop"
                     "signal-desktop.desktop"
                 ];
             };
@@ -265,6 +266,7 @@ in
                     "code.desktop"
                     "antigravity.desktop"
                     "logisim-evolution-snapcraft_logisim-evolution-snapcraft.desktop"
+                    "org.kicad.kicad.desktop"
                     "org.ghidra_sre.Ghidra.desktop"
                 ];
             };
@@ -272,7 +274,6 @@ in
                 name = "KiCAD";
                 translate = false;
                 apps = [
-                    "org.kicad.kicad.desktop"
                     "org.kicad.gerbview.desktop"
                     "org.kicad.bitmap2component.desktop"
                     "org.kicad.pcbcalculator.desktop"
@@ -394,10 +395,8 @@ in
                         "office"
                         "project-management"
                         "coding"
-                        "kicad"
                         "virtualisation"
                         "games"
-                        "lm-studio.desktop"
                         "anki.desktop"
                         "surfshark_surfshark.desktop"
                         "downloaders"
@@ -413,6 +412,7 @@ in
                         "network-utilities"
                         "software-management"
                         "libreoffice"
+                        "kicad"
                         "language-support"
                         # "io.github.diegopvlk.Cine.desktop"
                         "org.gnome.Calendar.desktop"

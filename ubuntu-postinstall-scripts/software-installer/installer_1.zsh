@@ -1,6 +1,7 @@
 #!/bin/zsh
 
 # WARN: review & check all dconf.nix settings
+# WARN: See why cargo-binstall isn't working
 
 cd "$(dirname "${(%):-%x}")" # change directory to script location
 sudo -v
@@ -67,19 +68,6 @@ printf '%s\n' \
 sudo nala update
 sudo nala install -y code
 
-# Antigravity
-curl -fsSL https://us-central1-apt.pkg.dev/doc/repo-signing-key.gpg | sudo gpg --dearmor --yes -o /etc/apt/keyrings/antigravity-repo-key.gpg
-printf '%s\n' \
-  'Types: deb' \
-  'URIs: https://us-central1-apt.pkg.dev/projects/antigravity-auto-updater-dev' \
-  'Suites: antigravity-debian' \
-  'Components: main' \
-  "Architectures: $(dpkg --print-architecture)" \
-  'Signed-By: /etc/apt/keyrings/antigravity-repo-key.gpg' \
-  | sudo tee /etc/apt/sources.list.d/antigravity.sources > /dev/null
-sudo nala update
-sudo nala install -y antigravity
-
 # OnlyOffice
 curl -fsSL https://download.onlyoffice.com/GPG-KEY-ONLYOFFICE | sudo gpg --dearmor -o /usr/share/keyrings/onlyoffice.gpg
 printf '%s\n' \
@@ -109,7 +97,7 @@ sudo nala update
 APPLICATIONS_APT=(
     "gdb" "valgrind" "strace"
     "gnome-shell-extension-manager" "bleachbit"
-    "ffmpeg" "vlc"
+    "ffmpeg"
     # Virtual machine
     "virt-manager" "qemu-system-x86" "qemu-utils" "libvirt-daemon-system" "libvirt-clients" "bridge-utils"
     # Data Recovery
@@ -170,10 +158,12 @@ ADDITIONAL_APPS_FLATPAK=(
     "md.obsidian.Obsidian"
     "org.kde.drawy" # rnote dark mode not working
     "io.github.Qalculate"
+    "org.videolan.VLC"
+    "org.gnome.gitlab.somas.Apostrophe"
     # System
     "io.github.mhogomchungu.media-downloader"
     "net.epson.epsonscan2"
-    "io.github.totoshko88.RustConn"
+    # "io.github.totoshko88.RustConn"
     # Project Management
     "com.rustdesk.RustDesk"
     # "org.jitsi.jitsi-meet" # Jitsi-client
@@ -199,6 +189,19 @@ touch ~/Templates/file
 
 echo "This is the end of installer_1, run installer_2 after reboot"
 sudo reboot now
+
+# # Antigravity
+# curl -fsSL https://us-central1-apt.pkg.dev/doc/repo-signing-key.gpg | sudo gpg --dearmor --yes -o /etc/apt/keyrings/antigravity-repo-key.gpg
+# printf '%s\n' \
+#   'Types: deb' \
+#   'URIs: https://us-central1-apt.pkg.dev/projects/antigravity-auto-updater-dev' \
+#   'Suites: antigravity-debian' \
+#   'Components: main' \
+#   "Architectures: $(dpkg --print-architecture)" \
+#   'Signed-By: /etc/apt/keyrings/antigravity-repo-key.gpg' \
+#   | sudo tee /etc/apt/sources.list.d/antigravity.sources > /dev/null
+# sudo nala update
+# sudo nala install -y antigravity
 
 # # Signal
 # wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg;

@@ -9,7 +9,10 @@ return {
     end,
 
     config = function()
-        require('barbar').setup()
+        require('barbar').setup({
+            -- Hide the tabline when there's only one buffer open
+            auto_hide = 1,
+        })
 
         -- Moving between buffers
         vim.keymap.set(

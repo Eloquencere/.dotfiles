@@ -51,6 +51,10 @@ cpan App::cpanminus
 # GUI setup
 open .gui_instructions.txt
 
+# Load wallpaper
+gsettings set org.gnome.desktop.background picture-options 'zoom'
+gsettings set org.gnome.desktop.background picture-uri-dark "file://$DOTFILES_HOME/wallpapers/Noble-Numbat-Mascot.jpeg"
+
 source ./sub-scripts/hdl_essentials.zsh
 
 # Mise - WARN: check if this works in installer 1
@@ -70,10 +74,6 @@ sudo usermod -aG input,uinput $USER
 
 nix profile add 'nixpkgs#home-manager'
 home-manager switch
-
-# Load wallpaper
-gsettings set org.gnome.desktop.background picture-options 'zoom'
-gsettings set org.gnome.desktop.background picture-uri-dark "file://$DOTFILES_HOME/wallpapers/Noble-Numbat-Mascot.jpeg"
 
 rmdir ~/{Public,Music}
 printf '%s\n' \
@@ -130,8 +130,6 @@ bash /tmp/vl.sh --interactive
 # Hermes
 sudo nala install -y libportaudio2
 curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
-# NOTE: Run
-# hermes config set skills.write_approval true
 
 # Antigravity CLI
 curl -fsSL https://antigravity.google/cli/install.sh | bash

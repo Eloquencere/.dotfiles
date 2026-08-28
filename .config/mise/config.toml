@@ -3,6 +3,7 @@
 experimental = true
 idiomatic_version_file_enable_tools = ["python"]
 cargo.binstall = true
+cargo.binstall_quickinstall = true
 
 [tools]
 # Languages
@@ -17,37 +18,11 @@ python = "latest"
 uv = "latest"
 sqlite = "latest"
 
-# CLI Tools - outdated in nix
+# CLI Tools - mise only
 usage = "latest" # tab completion (for mise, best handled by mise)
-starship = "latest"
-fzf = "latest"
-atuin = "latest"
-zoxide = "latest"
-eza = "latest"
-fd = "latest"
-bat = "latest"
-ripgrep = "latest"
-duf = "latest"
-delta = "latest"
-yazi = "latest"
-croc = "latest"
-btop = "latest"
-mprocs = "latest"
-pandoc = "latest"
-tlrc = "latest"
-cheat = "latest"
-typst = "latest"
-hledger = "latest"
-fastfetch = "latest"
-neovim = "latest"
-gh = "latest"
-"tree-sitter" = "latest"
-zellij = "latest"
-lazygit = "latest"
 
 
 # Cargo Stuff
-"cargo-binstall" = "latest"
 "cargo:sccache" = "latest"
 "cargo:bacon" = "latest"
 
@@ -64,4 +39,3 @@ lazygit = "latest"
 # "cargo:cargo-nextest" = "latest"
 # "cargo:cargo-dist" = "latest"
 # "cargo:cargo-inspect" = "latest" # educational
-

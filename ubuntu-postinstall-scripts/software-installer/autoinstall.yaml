@@ -8,7 +8,7 @@ autoinstall:
     realname: eloquencer
     hostname: dev-machine
     username: eloquencer
-    password: ""
+    password: "$6$SvNv3rzvGkrDVvzL$Ne8eIKVq1zOYlmNEyFNVD6QMOG1hJGVOznzUfRvP4gfgQAVMqJm96EbCFEnq.bIR4PDr4c.bSnVsyrFVAXbcf1"
 
   network:
     version: 2

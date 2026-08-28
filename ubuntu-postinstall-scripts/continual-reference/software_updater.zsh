@@ -22,15 +22,13 @@ zinit self-update
 zinit update --all
 
 hermes update
-uv pip install --python $HERMES_HOME/hermes-agent/venv \
+uv pip install --python $HOME/.hermes/hermes-agent/venv \
   -r $DOTFILES_HOME/ubuntu-postinstall-scripts/continual-reference/hermes_requirements.txt
 agy update
 
 sudo journalctl --vacuum-time=7d
 
 echo "Update your nvim plugins & restart your machine"
-
-cd - &> /dev/null
 
 # # Vocalinux (official installer; rebuilds whisper.cpp with Vulkan for GPU)
 # curl -fsSL https://raw.githubusercontent.com/VocaHQ/vocalinux/main/install.sh \
