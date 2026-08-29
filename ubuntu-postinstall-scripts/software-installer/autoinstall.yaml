@@ -88,7 +88,7 @@ autoinstall:
         type: mount
         path: /
         device: root-format
-        options: "noatime,errors=remount-ro"
+        options: "noatime,errors=remount-ro,discard=async"
 
   locale: en_US.UTF-8
   keyboard:

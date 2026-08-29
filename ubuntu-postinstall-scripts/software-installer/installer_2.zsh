@@ -15,8 +15,7 @@ latest_tag() {
 }
 
 # KiCAD
-version="$(latest_tag KiCad/kicad-source-mirror)"
-version="${version%.*}" # PPA uses major.minor (e.g. 10.0), not the patch
+version="${$(latest_tag KiCad/kicad-source-mirror)%.*}"
 sudo add-apt-repository --yes ppa:kicad/kicad-$version-releases
 sudo nala update
 sudo nala install -y --install-recommends kicad
@@ -43,10 +42,6 @@ app-manager install ./winboat.AppImage
 # LM Studio
 wget -O lm-studio.AppImage 'https://lmstudio.ai/download/latest/linux/x64?format=AppImage'
 app-manager install ./lm-studio.AppImage
-
-# cpanm package manager for perl
-echo $'Say "\033[1;33myes\033[0m" to the first & "\033[1;33msudo\033[0m" to the next question'
-cpan App::cpanminus
 
 # GUI setup
 open .gui_instructions.txt

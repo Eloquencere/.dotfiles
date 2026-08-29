@@ -1,7 +1,5 @@
 #!/bin/zsh
 
-# WARN: review all dconf.nix settings
-
 cd "$(dirname "${(%):-%x}")" # change directory to script location
 sudo -v
 
@@ -104,9 +102,6 @@ APPLICATIONS_APT=(
 )
 sudo nala install -y "${APPLICATIONS_APT[@]}"
 
-sudo nala install -y tio
-sudo usermod -aG dialout $USER
-
 # Perf Improvement
 sudo nala install -y preload earlyoom
 echo 'vm.swappiness=10' | sudo tee /etc/sysctl.d/99-swappiness.conf
@@ -135,7 +130,7 @@ echo 'ntsync' | sudo tee /etc/modules-load.d/ntsync.conf
 echo 'KERNEL=="ntsync", MODE="0660", TAG+="uaccess"' \
   | sudo tee /etc/udev/rules.d/99-ntsync.rules
 mkdir -p ~/Games/Ryujinx
-sudo nala install -y steam
+sudo nala install -y steam gamemode
 GAMES_FLATPAK=(
     "com.discordapp.Discord"
     "com.heroicgameslauncher.hgl"
@@ -170,6 +165,9 @@ ADDITIONAL_APPS_FLATPAK=(
     # "org.ghidra_sre.Ghidra"
 )
 flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
+
+# cpanminus pkg manager for perl
+sudo sh -c 'curl -fsSL https://cpanmin.us | perl - App::cpanminus'
 
 # Nixpkg manager
 sh <(curl --proto "=https" --tlsv1.2 -L https://nixos.org/nix/install) --daemon --yes

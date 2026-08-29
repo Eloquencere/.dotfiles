@@ -1,6 +1,10 @@
 #!/bin/zsh
 
 sudo nala install -y verilator
+
+sudo nala install -y tio
+sudo usermod -aG dialout $USER
+
 sudo snap install logisim-evolution-snapcraft
 cpanm --sudo Verilog::Std
 

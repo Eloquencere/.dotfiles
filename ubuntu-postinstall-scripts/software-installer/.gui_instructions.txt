@@ -13,6 +13,7 @@
   - Battery time (pomoke)
 
   (Optional)
+  - Brightness control using ddcutil
   - Quick Settings Tweaks - No support
   - Wiggle - No support
   - Removable Drive Menu
@@ -48,4 +49,12 @@ Optional
   - Install Comic book reader - mcomix or kommiku & foliate
   - If there's mouse scroll wheel issues
     sudo apt install imwheel
+  - Additional screen support
+    sudo nala install ddcutil ddcci-dkms
+    echo ddcci | sudo tee /etc/modules-load.d/ddcci.conf
+    - NOTE: get {name} by running 'ddcutil detect'
+    sudo tee /etc/udev/rules.d/60-ddcci-monitor.rules >/dev/null <<'EOF'
+    ACTION=="add", KERNEL=="i2c-*", ATTR{name}=="NVIDIA i2c adapter 5 at 1:00.0", RUN+="/bin/sh -c 'echo ddcci 0x37 >/sys$devpath/new_device'"
+    EOF
+
 

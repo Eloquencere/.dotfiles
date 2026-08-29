@@ -176,6 +176,10 @@ in
                 auto-hide-search = true;
             };
 
+            "org/gnome/shell/extensions/display-brightness-ddcutil" = {
+                button-location = 1;
+            };
+
             # WARN: uncomment in 26.04
             # "org/gnome/desktop/break-reminders" = {
             #     selected-breaks = ["eyesight"];
