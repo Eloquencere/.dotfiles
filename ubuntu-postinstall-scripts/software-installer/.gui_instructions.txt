@@ -57,4 +57,3 @@ Optional
     ACTION=="add", KERNEL=="i2c-*", ATTR{name}=="NVIDIA i2c adapter 5 at 1:00.0", RUN+="/bin/sh -c 'echo ddcci 0x37 >/sys$devpath/new_device'"
     EOF
 
-

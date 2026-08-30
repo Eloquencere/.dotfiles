@@ -64,7 +64,6 @@ nix profile add 'nixpkgs#home-manager'
 home-manager switch
 
 # Mise
-unset RUSTC_WRAPPER # Temporarily disabling sccache for installation - NOTE: might not be needed
 mise trust
 mise install
 rustup toolchain install stable

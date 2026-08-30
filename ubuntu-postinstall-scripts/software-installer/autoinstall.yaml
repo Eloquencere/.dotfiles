@@ -8,7 +8,7 @@ autoinstall:
     realname: eloquencer
     hostname: dev-machine
     username: eloquencer
-    password: ""
+    password: "$6$jtk1hrh5hTIcH0i1$gdnmUl5bR.bWR8Bh0KLjW4nKCDuZvtOIUeKLoixS9dcTMEyRQxBW59eW6e2pT/2nwdx.jgWLdVVYHjtb4exep/"
 
   network:
     version: 2
@@ -88,7 +88,7 @@ autoinstall:
         type: mount
         path: /
         device: root-format
-        options: "noatime,errors=remount-ro,discard=async"
+        options: "noatime,errors=remount-ro"
 
   locale: en_US.UTF-8
   keyboard:
