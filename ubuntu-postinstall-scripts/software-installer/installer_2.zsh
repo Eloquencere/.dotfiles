@@ -64,7 +64,7 @@ nix profile add 'nixpkgs#home-manager'
 home-manager switch
 
 # Mise
-unset RUSTC_WRAPPER # Temporarily disabling sccache for installation
+unset RUSTC_WRAPPER # Temporarily disabling sccache for installation - NOTE: might not be needed
 mise trust
 mise install
 rustup toolchain install stable
@@ -111,6 +111,7 @@ if [[ $user_choice =~ ^[Yy]$ ]]; then
     git config --global user.email "$email"
     echo "you need to login to Github as well"
     gh auth login
+    # WARN: include logic to give read & write access to projects
     sed -i '/.* = $/d' $XDG_CONFIG_HOME/git/config
 fi
 
@@ -155,9 +156,9 @@ sudo nala install --fix-broken
 source ../continual-reference/software_updater.zsh
 
 # Clean up
-rm -f ~/{.bash*,.profile,.zshrc,.zcompdump}
-rm -rf ~/.mozilla # NOTE: Check if anything else can be removed
 rm -rf ~/.cache/*
+rm -f ~/{.bash*,.profile,.zshrc,.zcompdump}
+rm -rf ~/.mozilla
 
 read "?Address all other open windows & Press Enter to reboot and consolidate the installation..."
 sudo reboot now

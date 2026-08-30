@@ -8,7 +8,7 @@ autoinstall:
     realname: eloquencer
     hostname: dev-machine
     username: eloquencer
-    password: "$6$SvNv3rzvGkrDVvzL$Ne8eIKVq1zOYlmNEyFNVD6QMOG1hJGVOznzUfRvP4gfgQAVMqJm96EbCFEnq.bIR4PDr4c.bSnVsyrFVAXbcf1"
+    password: ""
 
   network:
     version: 2
@@ -103,10 +103,11 @@ autoinstall:
   packages:
     - build-essential
     - pkg-config
-    - libnss3-tools # certificate validation tools
     - wl-clipboard
-    - libreoffice-java-common
+    - libnss3-tools # certificate validation tools
+    - libfuse2t64 # To run appimages
     - openjdk-25-jre # To run .jar files
+    - libreoffice-java-common
     - sshfs
     - zsh
     - nala
@@ -117,7 +118,6 @@ autoinstall:
     - git
     # Flatpak package manager
     - flatpak
-    - gnome-software-plugin-flatpak
 
   shutdown: reboot
 

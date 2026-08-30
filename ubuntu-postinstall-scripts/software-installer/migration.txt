@@ -1,22 +1,22 @@
 - [] Do a dry run of the install scripts on a VM
 - [] Check if dconf settings are still relevant
-    - if some features are made default
-    - if some options are depricated
+  - if some features are made default
+  - if some options are depricated
 - [] Backup ALL Brave profiles in another device & check if stuff like bookmarks still work
 - [] Backup ~/{Desktop,Documents,Downloads,Videos,Transfers,Projects} & Screenshot folders
-    - [] Backup $ZDOTDIR/personal/
-    - [] Backup Game save data like Rocket League replay saves
-    - [] Sync Anki changes
+  - [] Backup $ZDOTDIR/personal/
+  - [] Backup Game save data like Rocket League replay saves
+  - [] Sync Anki
 - [] Make note of software installed manually
 - [] Hermes
-    - save config.yaml & SOUL.md
-    - backup tracking.md & ~/hermes
+    - backup sessions/, skills/, memories/, config.yaml, .env
 - [ ] GSConnect & KDEConnect settings into Notion
 
 - autoinstall.yaml
-    - Change timezone if necessary
-    - Add user password hash via:     openssl passwd -6
-    - Check serving machine's IP via: hostname -I
-    - Initiate LAN transfer via:      python3 -m http.server <port>
-        - Ensure that your firewall is not blocking <port>
-    - Access from the yaml file as - http://<host-ip>:<port>/autoinstall.yaml
+  - Change timezone if necessary
+  - Add user password hash via:     openssl passwd -6
+  - Check serving machine's IP via: hostname -I
+  - Initiate LAN transfer via:      python3 -m http.server <port>
+      - Ensure that your firewall is not blocking <port>
+  - Access from the yaml file as - http://<host-ip>:<port>/autoinstall.yaml
+
