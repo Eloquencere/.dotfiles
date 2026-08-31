@@ -108,7 +108,6 @@ autoinstall:
     - libfuse2t64 # To run appimages
     - openjdk-25-jre # To run .jar files
     - libreoffice-java-common
-    - sshfs
     - zsh
     - nala
     - curl

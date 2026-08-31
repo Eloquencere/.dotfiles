@@ -1,12 +1,34 @@
 local wezterm = require("wezterm")
+
 wezterm.on('gui-startup', function(cmd)
     local _, _, window = wezterm.mux.spawn_window(cmd or {})
     window:gui_window():maximize()
 end)
 
+-- wezterm/wezterm#1742
+local xcursor_theme = nil
+local xcursor_size = nil
+
+local success, stdout = wezterm.run_child_process({
+    "gsettings", "get", "org.gnome.desktop.interface", "cursor-theme",
+})
+if success then
+    xcursor_theme = stdout:gsub("'(.+)'%s*$", "%1")
+end
+
+success, stdout = wezterm.run_child_process({
+    "gsettings", "get", "org.gnome.desktop.interface", "cursor-size",
+})
+if success then
+    xcursor_size = tonumber(stdout)
+end
+
 local config = {
     -- Initialisations
+    enable_wayland = true,
     check_for_updates = false,
+    xcursor_theme = xcursor_theme,
+    xcursor_size = xcursor_size,
     max_fps = 144,
 
     -- Window config

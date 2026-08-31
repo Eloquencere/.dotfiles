@@ -33,6 +33,8 @@
         unstable.zellij
         gh unstable.lazygit
 
+        rclone
+
         # # optional
         # lazydocker
         # jq jqp yq

@@ -1,16 +1,17 @@
-- [] Do a dry run of the install scripts on a VM
-- [] Check if dconf settings are still relevant
+- [x] Do a dry run of the install scripts on a VM
+- [x] Check if dconf settings are still relevant
   - if some features are made default
   - if some options are depricated
-- [] Backup ALL Brave profiles in another device & check if stuff like bookmarks still work
-- [] Backup ~/{Desktop,Documents,Downloads,Videos,Transfers,Projects} & Screenshot folders
-  - [] Backup $ZDOTDIR/personal/
-  - [] Backup Game save data like Rocket League replay saves
-  - [] Sync Anki
-- [] Make note of software installed manually
-- [] Hermes
-    - backup sessions/, skills/, memories/, config.yaml, .env
-- [ ] GSConnect & KDEConnect settings into Notion
+- [x] Make note of software installed manually
+- [x] GSConnect & KDEConnect settings into Notion
+- [x] Sync Anki
+- [x] Hermes backup memories/, skills/, terminal-sessions/, sessions/, config.yaml, .env
+- [ ] Backup ALL Brave profiles in another device & check if stuff like bookmarks still work
+- [ ] Backup ~/{Desktop,Documents,Downloads,Pictures,Projects,Transfers,Videos}
+  - backup desktop & projects
+  - [x] Backup $ZDOTDIR/personal/
+  - [x] Backup Game save data like Rocket League replay saves
+- REMOVE ME: remove all lines with warn in dconf.nix
 
 - autoinstall.yaml
   - Change timezone if necessary
