@@ -62,7 +62,7 @@ in
             "org/gnome/desktop/interface" = {
                 ## Dark Mode
                 color-scheme            = "prefer-dark";
-                # accent-color            = "blue"; # WARN: only in 26.04
+                accent-color            = "blue";
                 icon-theme              = "Yaru-blue-dark";
                 gtk-theme               = "Yaru-blue-dark";
                 ## Dark Mode
@@ -73,11 +73,6 @@ in
                 show-battery-percentage = true;
                 clock-show-weekday      = true;
                 clock-format            = "24h"; # Default
-            };
-
-            # WARN: Default in 26
-            "org/gnome/mutter" = {
-                center-new-windows = true; 
             };
 
             "org/gnome/TextEditor" = {
@@ -111,9 +106,9 @@ in
                 multi-monitor = true;
                 isolate-monitors = true;
 
-                # WARN: not needed in 26.04
-                always-center-icons = true;
-                autohide-in-fullscreen = true;
+                # # WARN: not needed in 26.04
+                # always-center-icons = true;
+                # autohide-in-fullscreen = true;
             };
 
             "org/gnome/shell/extensions/Bluetooth-Battery-Meter" = {
@@ -144,7 +139,7 @@ in
                 startup-status = 1;
                 search = false;
                 workspace = false; # not sure
-                workspaces-in-app-grid = false; # WARN: Set to true in 26.04 else it looks weird
+                workspaces-in-app-grid = true;
             };
 
             "org/gnome/shell/extensions/blur-my-shell/dash-to-dock" = {
@@ -180,10 +175,9 @@ in
                 button-location = 1;
             };
 
-            # WARN: uncomment in 26.04
-            # "org/gnome/desktop/break-reminders" = {
-            #     selected-breaks = ["eyesight"];
-            # };
+            "org/gnome/desktop/break-reminders" = {
+                selected-breaks = ["eyesight"];
+            };
 
             "org/gnome/desktop/search-providers" = {
                 sort-order = [
@@ -227,9 +221,7 @@ in
                 apps = [
                     "libreoffice-startcenter.desktop"
                     "onlyoffice-desktopeditors.desktop"
-                    "onlyoffice-desktopeditors_onlyoffice-desktopeditors.desktop" # WARN: Remove in 26
                     "drawio_drawio.desktop"
-                    "com.jgraph.drawio.desktop.desktop" # WARN: remove in 26
                     "org.kde.drawy.desktop"
                     "zotero.desktop"
                     "com.github.jeromerobert.pdfarranger.desktop"
@@ -237,7 +229,6 @@ in
                     "io.github.Qalculate.desktop"
                     "be.alexandervanhee.gradia.desktop"
                     "org.gnome.Papers.desktop"
-                    "org.gnome.eog.desktop" # WARN: Not in 26
                     "org.gnome.Loupe.desktop"
                     "org.gnome.gitlab.somas.Apostrophe.desktop"
                     "vocalinux.desktop"
@@ -261,7 +252,6 @@ in
                     "org.jitsi.jitsi-meet.desktop"
                     "com.rustdesk.RustDesk.desktop"
                     "ai.elementlabs.lmstudio.desktop"
-                    "lm-studio.desktop" # WARN: remove in 26.04
                     "signal-desktop.desktop"
                 ];
             };
@@ -349,7 +339,6 @@ in
                     "org.gnome.Sysprof.desktop"
                     "org.gnome.Logs.desktop"
                     "org.gnome.Yelp.desktop"
-                    "software-properties-drivers.desktop" # WARN: Not in 26
                 ];
             };
             "org/gnome/desktop/app-folders/folders/disk-utilities" = {
@@ -370,7 +359,6 @@ in
                 apps = [
                     "org.remmina.Remmina.desktop"
                     "nm-connection-editor.desktop" # Advanced network configuration
-                    "remote-viewer.desktop" # WARN: Not in 26
                     "io.github.totoshko88.RustConn.desktop"
                     "xfreerdp.desktop"
                 ];
@@ -390,7 +378,6 @@ in
                     "org.gnome.TextEditor.desktop"
                     "notion-desktop_notion-desktop.desktop"
                     "md.obsidian.Obsidian.desktop"
-                    "obsidian_obsidian.desktop" # WARN: remove in 26
                     "brave-browser.desktop"
                     "org.wezfurlong.wezterm.desktop"
                     "org.gnome.Nautilus.desktop"
@@ -411,7 +398,6 @@ in
                         "net.nokyan.Resources.desktop"
                     ])
                     (mkPage[
-                        "gnome-session-properties.desktop" # WARN: not in 26
                         "security"
                         "system-tools"
                         "disk-utilities"

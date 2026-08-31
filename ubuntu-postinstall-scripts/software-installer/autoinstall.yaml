@@ -40,7 +40,6 @@ autoinstall:
     #         - 9.9.9.9              # Quad9
     #         - 2620:fe::fe          # "
 
-  # WARN: Currently BIOS, change to UEFI for 26.04
   storage:
     config:
       - id: disk0
@@ -49,16 +48,27 @@ autoinstall:
           size: largest
         ptable: gpt
         wipe: superblock-recursive
-        grub_device: true
 
-      # BIOS GRUB partition (required for GPT + BIOS)
-      - id: bios-grub
+      # EFI System Partition (ESP) - required for UEFI boot
+      - id: efi-partition
         type: partition
         device: disk0
-        size: 1M
-        flag: bios_grub
+        size: 512M
+        flag: esp
 
-      # Swap partition (4GB — recommended minimum for laptops)
+      # ESP format (FAT32)
+      - id: efi-format
+        type: format
+        fstype: vfat
+        volume: efi-partition
+
+      # Mount ESP at /boot/efi
+      - id: efi-mount
+        type: mount
+        path: /boot/efi
+        device: efi-format
+
+      # Swap partition (8GB — recommended minimum for laptops)
       - id: swap-partition
         type: partition
         device: disk0

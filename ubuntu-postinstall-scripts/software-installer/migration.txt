@@ -7,11 +7,9 @@
 - [x] Sync Anki
 - [x] Hermes backup memories/, skills/, terminal-sessions/, sessions/, config.yaml, .env
 - [ ] Backup ALL Brave profiles in another device & check if stuff like bookmarks still work
-- [ ] Backup ~/{Desktop,Documents,Downloads,Pictures,Projects,Transfers,Videos}
-  - backup desktop & projects
+- [x] Backup ~/{Desktop,Documents,Downloads,Pictures,Projects,Transfers,Videos}
   - [x] Backup $ZDOTDIR/personal/
   - [x] Backup Game save data like Rocket League replay saves
-- REMOVE ME: remove all lines with warn in dconf.nix
 
 - autoinstall.yaml
   - Change timezone if necessary
