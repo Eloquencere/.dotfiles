@@ -85,7 +85,7 @@ printf '%s\n' \
 mkdir -p $ZDOTDIR/personal
 read -r "croc_id?Enter the ID granted by your admin to register with your team via croc: "
 echo "# Croc
-export CROC_SELF_TRANSFER_ID=$croc_id" >> $ZDOTDIR/personal/zprofile.zsh
+export CROC_SELF_TRANSFER_ID=$croc_id" >! $ZDOTDIR/personal/zprofile.zsh
 echo "Move a copy of the collaborators database given by your admin to the zsh home directory"
 mkdir -p ~/Transfers/croc
 echo "file://$HOME/Transfers" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks

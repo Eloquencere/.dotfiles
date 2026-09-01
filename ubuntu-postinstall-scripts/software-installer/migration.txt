@@ -1,15 +1,15 @@
-- [x] Do a dry run of the install scripts on a VM
-- [x] Check if dconf settings are still relevant
+- [ ] Do a dry run of the install scripts on a VM (Ensure that the device is in UEFI mode)
+- [ ] Check if dconf settings are still relevant
   - if some features are made default
   - if some options are depricated
-- [x] Make note of software installed manually
-- [x] GSConnect & KDEConnect settings into Notion
-- [x] Sync Anki
-- [x] Hermes backup memories/, skills/, terminal-sessions/, sessions/, config.yaml, .env
+- [ ] Make note of software installed manually
+- [ ] GSConnect & KDEConnect settings into Notion
+- [ ] Sync Anki
+- [ ] Hermes backup memories/, skills/, terminal-sessions/, sessions/, config.yaml, .env
 - [ ] Backup ALL Brave profiles in another device & check if stuff like bookmarks still work
-- [x] Backup ~/{Desktop,Documents,Downloads,Pictures,Projects,Transfers,Videos}
-  - [x] Backup $ZDOTDIR/personal/
-  - [x] Backup Game save data like Rocket League replay saves
+- [ ] Backup ~/{Desktop,Documents,Downloads,Pictures,Projects,Transfers,Videos}
+  - [ ] Backup $ZDOTDIR/personal/
+  - [ ] Backup Game save data like Rocket League replay saves
 
 - autoinstall.yaml
   - Change timezone if necessary
@@ -18,4 +18,5 @@
   - Initiate LAN transfer via:      python3 -m http.server <port>
       - Ensure that your firewall is not blocking <port>
   - Access from the yaml file as - http://<host-ip>:<port>/autoinstall.yaml
+  - There is an installer bug where after loading the autoinstall.yaml, the wifi disconnects, so go to settings & reconnect
 

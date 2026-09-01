@@ -87,7 +87,6 @@ sudo add-apt-repository -y ppa:jdxcode/mise
 sudo nala update
 sudo nala install -y mise
 
-sudo add-apt-repository -y ppa:libreoffice/ppa
 sudo add-apt-repository -y ppa:git-core/ppa
 sudo nala update
 
@@ -218,6 +217,9 @@ sudo reboot now
 # sudo add-apt-repository --yes ppa:mkasberg/ghostty-ubuntu
 # sudo nala update
 # sudo nala install -y ghostty
+
+# Very recent
+# sudo add-apt-repository -y ppa:libreoffice/ppa
 
 # No release file (On 26.04)
 # sudo add-apt-repository -y ppa:ubuntuhandbook1/vlc

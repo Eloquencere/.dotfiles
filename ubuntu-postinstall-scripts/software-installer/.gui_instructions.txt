@@ -23,15 +23,15 @@
   - Open bar
 
 Notes
-  - Sync the web-browser on your default machine with the current machine
-  - Setup your cloud storage service provider
-  - Setup timeshift (https://www.xda-developers.com/timeshift-saved-my-linux-install-after-i-broke-it)
+  - [x] Enable Variable Refresh Rate under the Display settings
+  - [x] Sync the web-browser on your default machine with the current machine
+  - [x] Setup your cloud storage service provider
+  - [x] Setup timeshift (https://www.xda-developers.com/timeshift-saved-my-linux-install-after-i-broke-it)
     - Take 1 snapshot every 2-3 days
-    - Backup the documents & Projects & Downloads folders
-  - Zotero
-    - Under Edit -> Settings -> Advanced, set the data storage location to ~/Documents/Zotero
-  - Update to the latest GPU driver (Additional Drivers app)
-  - AppManager
+  - [x] Zotero
+    - Under Edit -> Settings -> Advanced, set the data directory to ~/Documents/Zotero
+  - [x] Setup GSConnect & KDEconnect
+  - [x] AppManager
     - set repo url (for updates) for - winboat
     - remove from path for - winboat, lm-studio
   - Winboat config
@@ -47,8 +47,6 @@ Optional
   - Install wine from the official website
   - Install ClamAV (Anti-Virus) - youtube.com/watch?v=fCAvpFB5x6g
   - Install Comic book reader - mcomix or kommiku & foliate
-  - If there's mouse scroll wheel issues
-    sudo apt install imwheel
   - Additional screen support
     sudo nala install ddcutil ddcci-dkms
     echo ddcci | sudo tee /etc/modules-load.d/ddcci.conf
@@ -56,4 +54,8 @@ Optional
     sudo tee /etc/udev/rules.d/60-ddcci-monitor.rules >/dev/null <<'EOF'
     ACTION=="add", KERNEL=="i2c-*", ATTR{name}=="NVIDIA i2c adapter 5 at 1:00.0", RUN+="/bin/sh -c 'echo ddcci 0x37 >/sys$devpath/new_device'"
     EOF
+  - Setup scrcpy
+    sudo nala install scrcpy android-tools-adb
+- If there's mouse scroll wheel issues
+  sudo apt install imwheel
 

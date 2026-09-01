@@ -49,3 +49,7 @@ if [[ ! -d $ZINIT_HOME ]]; then
     git clone https://github.com/zdharma-continuum/zinit.git $ZINIT_HOME
 fi
 
+
+
+# Added by Antigravity CLI installer
+export PATH="/home/eloquencer/.local/bin:$PATH"

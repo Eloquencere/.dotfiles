@@ -38,7 +38,7 @@ in
 
             "org/gnome/settings-daemon/plugins/color" = {
                 night-light-enabled = true;
-                night-light-temperature = lib.gvariant.mkUint32 3249;
+                night-light-temperature = lib.gvariant.mkUint32 3389;
                 night-light-schedule-automatic = false;
                 night-light-schedule-from = 0.0; # Always enabled
                 night-light-schedule-to = 0.0;
@@ -67,7 +67,7 @@ in
                 gtk-theme               = "Yaru-blue-dark";
                 ## Dark Mode
 
-                text-scaling-factor     = 1.25; # WARN: try with 1.25-1.28 range
+                text-scaling-factor     = 1.25;
                 cursor-size             = 30;
 
                 show-battery-percentage = true;
@@ -81,6 +81,7 @@ in
                 show-line-numbers = true;
                 highlight-current-line = true;
                 tab-width = 4;
+                custom-font = "Monospace 12";
             };
 
             "org/gnome/nautilus/icon-view" = {
@@ -97,7 +98,7 @@ in
             };
 
             "org/gnome/shell/extensions/dash-to-dock" = {
-                dash-max-icon-size = 50;
+                dash-max-icon-size = 52;
                 dock-position = "BOTTOM";
                 click-action = "minimize-or-previews";
                 dock-fixed = false;
@@ -105,10 +106,6 @@ in
                 show-mounts-only-mounted = true;
                 multi-monitor = true;
                 isolate-monitors = true;
-
-                # # WARN: not needed in 26.04
-                # always-center-icons = true;
-                # autohide-in-fullscreen = true;
             };
 
             "org/gnome/shell/extensions/Bluetooth-Battery-Meter" = {
@@ -212,6 +209,7 @@ in
                     "network-utilities"
                     "language-support"
                     "libreoffice"
+                    "scrcpy"
                 ];
             };
 
@@ -372,6 +370,14 @@ in
                     "gnome-language-selector.desktop"
                 ];
             };
+            "org/gnome/desktop/app-folders/folders/scrcpy" = {
+                name = "Scrcpy";
+                translate = false;
+                apps = [
+                    "scrcpy.desktop"
+                    "scrcpy-console.desktop"
+                ];
+            };
 
             "org/gnome/shell" = {
                 favorite-apps = [
@@ -406,6 +412,7 @@ in
                         "libreoffice"
                         "kicad"
                         "language-support"
+                        "scrcpy"
                         # "io.github.diegopvlk.Cine.desktop"
                         "org.gnome.Calendar.desktop"
                         "org.gnome.Settings.desktop"

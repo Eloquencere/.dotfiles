@@ -2,13 +2,16 @@
 autoinstall:
   version: 1
 
-  timezone: America/New_York
-
   identity:
-    realname: eloquencer
     hostname: dev-machine
+    realname: eloquencer
     username: eloquencer
     password: "$6$jtk1hrh5hTIcH0i1$gdnmUl5bR.bWR8Bh0KLjW4nKCDuZvtOIUeKLoixS9dcTMEyRQxBW59eW6e2pT/2nwdx.jgWLdVVYHjtb4exep/"
+
+  timezone: America/New_York
+  locale: en_US.UTF-8
+  keyboard:
+    layout: us
 
   network:
     version: 2
@@ -26,19 +29,6 @@ autoinstall:
             - 2606:4700:4700::1002 # "
             - 9.9.9.9              # Quad9
             - 2620:fe::fe          # "
-    # wifis:
-    #   wifi:
-    #     match:
-    #       name: "wl*"
-    #     dhcp4: true
-    #     nameservers:
-    #       addresses:
-    #         - 1.1.1.2              # Cloudflare
-    #         - 2606:4700:4700::1112 # "
-    #         - 1.0.0.2              # "
-    #         - 2606:4700:4700::1002 # "
-    #         - 9.9.9.9              # Quad9
-    #         - 2620:fe::fe          # "
 
   storage:
     config:
@@ -47,68 +37,60 @@ autoinstall:
         match:
           size: largest
         ptable: gpt
-        wipe: superblock-recursive
+        wipe: zero
+        grub_device: true
 
-      # EFI System Partition (ESP) - required for UEFI boot
-      - id: efi-partition
+      # EFI System Partition (must be first partition)
+      - id: esp
         type: partition
         device: disk0
         size: 512M
-        flag: esp
+        flag: boot
+        grub_device: true
 
-      # ESP format (FAT32)
-      - id: efi-format
+      - id: esp-format
         type: format
-        fstype: vfat
-        volume: efi-partition
+        fstype: fat32
+        volume: esp
 
-      # Mount ESP at /boot/efi
-      - id: efi-mount
+      - id: esp-mount
         type: mount
         path: /boot/efi
-        device: efi-format
+        device: esp-format
 
-      # Swap partition (8GB — recommended minimum for laptops)
+      # Swap
       - id: swap-partition
         type: partition
         device: disk0
         size: 8G
         flag: swap
 
-      # Swap format
       - id: swap-format
         type: format
         fstype: swap
         volume: swap-partition
 
-      # Root partition (rest of disk)
+      # Root
       - id: root-partition
         type: partition
         device: disk0
         size: -1
 
-      # Format as ext4
       - id: root-format
         type: format
         fstype: ext4
         volume: root-partition
 
-      # Mount root
       - id: root-mount
         type: mount
         path: /
         device: root-format
         options: "noatime,errors=remount-ro"
 
-  locale: en_US.UTF-8
-  keyboard:
-    layout: us
-
   source:
     id: ubuntu-desktop # Extended install
   drivers: # 3rd party Graphics & Wifi software
     install: true
-  updates: all
 
   packages:
     - build-essential
@@ -118,22 +100,24 @@ autoinstall:
     - libfuse2t64 # To run appimages
     - openjdk-25-jre # To run .jar files
     - libreoffice-java-common
+    - sshpass
     - zsh
-    - nala
     - curl
     - stow
     - dos2unix
     - trash-cli
     - git
-    # Flatpak package manager
+    # Pkg managers
+    - nala
     - flatpak
-
-  shutdown: reboot
+  updates: all
 
   late-commands:
-    - curtin in-target --target=/target -- bash -c "dpkg --add-architecture i386; apt-get update"
+    - curtin in-target -- bash -c "dpkg --add-architecture i386; apt-get update"
 
-    - curtin in-target --target=/target -- flatpak remote-add --system --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+    - curtin in-target -- flatpak remote-add --system --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
-    - curtin in-target --target=/target -- usermod -s /usr/bin/zsh eloquencer
+    - curtin in-target -- usermod -s /usr/bin/zsh eloquencer
+
+  shutdown: poweroff # WARN: change to 'poweroff' the real thing & 'reboot' for testing
 
