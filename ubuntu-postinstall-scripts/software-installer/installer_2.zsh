@@ -50,7 +50,7 @@ open .gui_instructions.txt
 gsettings set org.gnome.desktop.background picture-options 'zoom'
 gsettings set org.gnome.desktop.background picture-uri-dark "file://$DOTFILES_HOME/wallpapers/Noble-Numbat-Mascot.jpeg"
 
-source ./sub-scripts/hdl_essentials.zsh
+source ./hdl_essentials.zsh
 
 # Kanata (nix) setup
 sudo groupadd uinput
@@ -127,6 +127,9 @@ bash /tmp/vl.sh --interactive
 # Hermes
 sudo nala install -y libportaudio2
 curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
+
+# Pi
+curl -fsSL https://pi.dev/install.sh | sh
 
 # Antigravity CLI
 curl -fsSL https://antigravity.google/cli/install.sh | bash

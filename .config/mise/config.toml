@@ -17,16 +17,23 @@ node = "latest"
 python = "latest"
 uv = "latest"
 sqlite = "latest"
-
-# CLI Tools - mise only
 usage = "latest" # tab completion (for mise, best handled by mise)
 
+# Pip stuff
+# USEFUL_PIP_PKGS=(
+#     "icecream" "loguru" # for debugging
+#     "colorama" "pyfiglet" # presentation
+#     "dash" "plotly" "seaborn" "mysql-connector-python" # data representation and calculation
+#     "fireducks" "xarray" "openpyxl"
+#     "numpy" "scipy" "pillow"
+#     "Cython" "numba" "taichi"
+#     "parse" "pendulum" "pydantic" "ruff" "mypy" "pyglet"
+#     "keras" "scikit-learn" "torch" # AI/ML
+# )
 
 # Cargo Stuff
 "cargo:sccache" = "latest"
 "cargo:bacon" = "latest"
-
-# Rust crates
 "cargo:cargo-expand" = "latest"
 "cargo:cargo-information" = "latest"
 "cargo:cargo-deny" = "latest"
@@ -39,3 +46,17 @@ usage = "latest" # tab completion (for mise, best handled by mise)
 # "cargo:cargo-nextest" = "latest"
 # "cargo:cargo-dist" = "latest"
 # "cargo:cargo-inspect" = "latest" # educational
+
+# # Useful rust libs
+# rustup component add miri # unavailable in stable
+# https://www.namtao.com/rust/
+# cargo clippy -- -W clippy::unwrap_used clippy::expect_used
+# itertools
+# serde
+# regex & sqlx | sqlite
+# Rayon & dashmap & crossbeam
+# Color eyre
+# Tracing
+# Clap
+# Tokio & axum & tonic & yew & reqwest & egui
+
