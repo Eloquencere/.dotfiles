@@ -87,6 +87,7 @@ sudo add-apt-repository -y ppa:jdxcode/mise
 sudo nala update
 sudo nala install -y mise
 
+sudo add-apt-repository -y ppa:libreoffice/ppa
 sudo add-apt-repository -y ppa:git-core/ppa
 sudo nala update
 
@@ -183,9 +184,8 @@ flatpak install --assumeyes flathub be.alexandervanhee.gradia
 xdg-mime default org.gnome.TextEditor.desktop text/markdown
 touch ~/Templates/file
 
-echo "This is the end of installer_1, run installer_2 after reboot"
+echo "This is the end of installer_1, run installer_2 after a reboot"
 sleep 2
-sudo reboot now
 
 # # Antigravity
 # curl -fsSL https://us-central1-apt.pkg.dev/doc/repo-signing-key.gpg | sudo gpg --dearmor --yes -o /etc/apt/keyrings/antigravity-repo-key.gpg
@@ -217,9 +217,6 @@ sudo reboot now
 # sudo add-apt-repository --yes ppa:mkasberg/ghostty-ubuntu
 # sudo nala update
 # sudo nala install -y ghostty
-
-# Very recent
-# sudo add-apt-repository -y ppa:libreoffice/ppa
 
 # No release file (On 26.04)
 # sudo add-apt-repository -y ppa:ubuntuhandbook1/vlc

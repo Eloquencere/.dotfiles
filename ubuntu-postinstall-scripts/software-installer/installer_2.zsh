@@ -61,7 +61,9 @@ sudo udevadm trigger
 sudo usermod -aG input,uinput $USER
 
 nix profile add 'nixpkgs#home-manager'
-home-manager switch
+sleep 2
+home-manager switch # WARN: can freeze here
+sleep 2
 
 # Mise
 mise trust

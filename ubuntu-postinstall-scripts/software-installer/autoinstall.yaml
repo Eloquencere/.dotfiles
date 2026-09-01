@@ -119,5 +119,5 @@ autoinstall:
 
     - curtin in-target -- usermod -s /usr/bin/zsh eloquencer
 
-  shutdown: poweroff # WARN: change to 'poweroff' the real thing & 'reboot' for testing
+  shutdown: poweroff
 
