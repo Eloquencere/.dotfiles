@@ -1,18 +1,18 @@
 *finish up some GUI configuration while the installer runs*
 - Gnome Extensions
   (Essentials)
-  - Bluetooth Battery Meter
-  - blur my shell
-  - Just Perfection
-  - Copyous
-  - AATWS
-  - GSConnect
-  - CHC-E
-  - Space Bar
-  - Grand Theft Focus
-  - Battery time (pomoke)
+  - [ ] Bluetooth Battery Meter
+  - [ ] Battery time (pomoke)
+  - [ ] Blur my shell
+  - [ ] Just Perfection
+  - [ ] Copyous
+  - [ ] GSConnect
+  - [ ] Grand Theft Focus
+  - [ ] AATWS
 
   (Optional)
+  - Space Bar
+  - CHC-E
   - Brightness control using ddcutil
   - Quick Settings Tweaks - No support
   - Wiggle - No support

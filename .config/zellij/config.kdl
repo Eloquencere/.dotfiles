@@ -114,7 +114,7 @@ keybinds clear-defaults=true {
     scroll {
         bind "Esc"    { SwitchToMode "Normal"; }
         bind "Ctrl s" { SwitchToMode "Tmux"; }
-        bind "/"      { SwitchToMode "EnterSearch"; SearchInput 0; }
+        bind "s"      { SwitchToMode "EnterSearch"; SearchInput 0; }
         bind "c"      { SearchToggleOption "CaseSensitivity"; }
         bind "w"      { SearchToggleOption "Wrap"; }
         bind "o"      { SearchToggleOption "WholeWord"; }

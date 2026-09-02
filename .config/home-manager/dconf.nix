@@ -125,7 +125,7 @@ in
             };
 
             "org/gnome/shell/extensions/just-perfection" = {
-                activities-button = false;
+                activities-button = true; # set to false, when using space-bar
                 keyboard-layout = false;
                 accessibility-menu = false;
                 quick-settings-dark-mode = false;

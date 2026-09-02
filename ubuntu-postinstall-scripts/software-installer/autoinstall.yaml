@@ -41,7 +41,7 @@ autoinstall:
         grub_device: true
 
       # EFI System Partition (must be first partition)
-      - id: esp
+      - id: esp-partition
         type: partition
         device: disk0
         size: 512M
@@ -51,7 +51,7 @@ autoinstall:
       - id: esp-format
         type: format
         fstype: fat32
-        volume: esp
+        volume: esp-partition
 
       - id: esp-mount
         type: mount
@@ -62,7 +62,7 @@ autoinstall:
       - id: swap-partition
         type: partition
         device: disk0
-        size: 8G
+        size: 8193M # 8G WARN: check if right
         flag: swap
 
       - id: swap-format
