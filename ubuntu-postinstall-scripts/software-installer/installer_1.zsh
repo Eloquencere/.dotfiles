@@ -155,7 +155,7 @@ ADDITIONAL_APPS_FLATPAK=(
     "org.videolan.VLC"
     "org.gnome.gitlab.somas.Apostrophe"
     # System
-    "io.github.mhogomchungu.media-downloader"
+    "io.github.giantpinkrobots.varia"
     "net.epson.epsonscan2"
     # "io.github.totoshko88.RustConn"
     # Project Management

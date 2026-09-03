@@ -76,12 +76,12 @@ printf '%s\n' \
   "file://$HOME/Documents" \
   "file://$HOME/Downloads" \
   >! $XDG_CONFIG_HOME/gtk-3.0/bookmarks
+printf "file://$HOME/Desktop/NCSU" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
 mkdir -p $HOME/Projects
 echo "file://$HOME/Projects" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
 printf '%s\n' \
   "file://$HOME/Transfers" \
   "file://$HOME/Pictures" \
-  "file://$HOME/Videos" \
   >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
 
 mkdir -p $ZDOTDIR/personal
@@ -151,7 +151,7 @@ sudo snap remove --purge "${BLOAT_SNAP[@]}"
 BLOAT_APT=(
     "gnome-calculator"
     "ptyxis" "deja-dup" "seahorse" "shotwell" "showtime"
-    "rhythmbox" "orca" "info" "simple-scan"
+    "rhythmbox" "orca" "info" "simple-scan" "transmission-gtk"
     "ed" "vim-common" "nano"
 )
 sudo nala purge -y "${BLOAT_APT[@]}"

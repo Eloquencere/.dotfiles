@@ -11,27 +11,27 @@
   - [ ] AATWS
 
   (Optional)
-  - Space Bar
-  - CHC-E
   - Brightness control using ddcutil
-  - Quick Settings Tweaks - No support
   - Wiggle - No support
+  - CHC-E
+  - Quick Settings Tweaks - No support
+  - Space Bar
+  - dynamic music pill
   - Removable Drive Menu
   - Forge (Tiling Manager) - No support
-  - dynamic music pill
   - V-Shell
   - Open bar
 
 Notes
-  - [x] Enable Variable Refresh Rate under the Display settings
-  - [x] Sync the web-browser on your default machine with the current machine
-  - [x] Setup your cloud storage service provider
-  - [x] Setup timeshift (https://www.xda-developers.com/timeshift-saved-my-linux-install-after-i-broke-it)
+  - [ ] Enable Variable Refresh Rate under the Display settings
+  - [ ] Sync the web-browser on your default machine with the current machine
+  - [ ] Setup your cloud storage service provider
+  - [ ] Setup timeshift (https://www.xda-developers.com/timeshift-saved-my-linux-install-after-i-broke-it)
     - Take 1 snapshot every 2-3 days
-  - [x] Zotero
+  - [ ] Zotero
     - Under Edit -> Settings -> Advanced, set the data directory to ~/Documents/Zotero
-  - [x] Setup GSConnect & KDEconnect
-  - [x] AppManager
+  - [ ] Setup GSConnect & KDEconnect
+  - [ ] AppManager
     - set repo url (for updates) for - winboat
     - remove from path for - winboat, lm-studio
   - Winboat config
@@ -46,7 +46,7 @@ Notes
 Optional
   - Install wine from the official website
   - Install ClamAV (Anti-Virus) - youtube.com/watch?v=fCAvpFB5x6g
-  - Install Comic book reader - mcomix or kommiku & foliate
+  - Comic book reader - Komikku or Foliage
   - Additional screen support
     sudo nala install ddcutil ddcci-dkms
     echo ddcci | sudo tee /etc/modules-load.d/ddcci.conf
@@ -56,6 +56,6 @@ Optional
     EOF
   - Setup scrcpy
     sudo nala install scrcpy android-tools-adb
-- If there's mouse scroll wheel issues
-  sudo apt install imwheel
+  - If there's mouse scroll wheel issues
+    sudo apt install imwheel
 

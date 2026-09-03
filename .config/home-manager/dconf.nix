@@ -67,8 +67,8 @@ in
                 gtk-theme               = "Yaru-blue-dark";
                 ## Dark Mode
 
-                text-scaling-factor     = 1.25;
-                cursor-size             = 30;
+                text-scaling-factor     = 1.27;
+                cursor-size             = 36;
 
                 show-battery-percentage = true;
                 clock-show-weekday      = true;
@@ -90,6 +90,7 @@ in
             };
             "org/gnome/nautilus/preferences" = {
                 click-policy = "single";
+                default-folder-viewer = "list-view";
             };
 
             "org/gnome/shell/extensions/ding" = {
@@ -176,6 +177,27 @@ in
                 selected-breaks = ["eyesight"];
             };
 
+            # WARN: check which of these are already default
+            "org/gnome/desktop/break-reminders/eyesight" = {
+                # --- Time between breaks: 20 minutes (for now) ---
+                interval-seconds = lib.gvariant.mkUint32 1200;
+                # Short eyesight break: glance away ~20s (20-20-20)
+                duration-seconds = lib.gvariant.mkUint32 20;
+                # Snooze delay when you postpone a break
+                delay-seconds    = lib.gvariant.mkUint32 120; # 2 minutes
+
+                # --- Screen behaviour during a break ---
+                fade-screen = true;    # dim the screen for the break
+                lock-screen = false;   # do NOT lock the session
+                play-sound  = true;    # chime when the break finishes
+
+                # --- Notifications ---
+                notify          = true;  # notify when a break is due
+                notify-upcoming = false; # skip "upcoming" spam at a 5-min cadence
+                notify-overdue  = true;  # nag if a break is skipped/overdue
+                countdown       = false; # avoid a big full-screen overlay every 5 min
+            };
+
             "org/gnome/desktop/search-providers" = {
                 sort-order = [
                     "brave-browser.desktop"
@@ -201,7 +223,6 @@ in
                     "kicad"
                     "virtualisation"
                     "games"
-                    "downloaders"
                     "security"
                     "software-management"
                     "system-tools"
@@ -300,14 +321,6 @@ in
                     "org.gnome.Mines.desktop"
                 ];
             };
-            "org/gnome/desktop/app-folders/folders/downloaders" = {
-                name = "Downloaders";
-                translate = false;
-                apps = [
-                    "transmission-gtk.desktop"
-                    "io.github.mhogomchungu.media-downloader.desktop"
-                ];
-            };
             "org/gnome/desktop/app-folders/folders/security" = {
                 name = "Security";
                 translate = false;
@@ -398,7 +411,7 @@ in
                         "games"
                         "anki.desktop"
                         "surfshark_surfshark.desktop"
-                        "downloaders"
+                        "io.github.giantpinkrobots.varia.desktop"
                         "timeshift-gtk.desktop"
                         "tv.kodi.Kodi.desktop"
                         "net.nokyan.Resources.desktop"
