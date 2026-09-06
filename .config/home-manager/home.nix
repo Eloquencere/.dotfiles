@@ -18,22 +18,21 @@
         starship fzf unstable.atuin
 
         zoxide eza fd bat ripgrep duf delta
-        yazi
+        yazi fastfetch
         croc btop mprocs
-        pandoc
-        fastfetch
-        unstable.cargo-binstall
+        pandoc # WARN: eval if needed
+        rclone
+
+        unstable.neovim tree-sitter
+        unstable.zellij
+        gh unstable.lazygit
 
         # Documentation
         tlrc cheat
         typst doxygen natural-docs
         hledger
 
-        unstable.neovim tree-sitter
-        unstable.zellij
-        gh unstable.lazygit
-
-        rclone
+        unstable.cargo-binstall
 
         # # optional
         # lazydocker
@@ -62,3 +61,4 @@
         };
     };
 }
+

@@ -1,7 +1,5 @@
 return {
     "andymass/vim-matchup",
-    lazy = true,
-    ft = { "systemverilog", "verilog", "vhdl" },
     init = function()
        vim.g.matchup_matchparen_enabled = 1
        vim.g.matchup_matchparen_offscreen = { method = 'popup' }

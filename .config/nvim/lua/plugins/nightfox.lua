@@ -9,7 +9,9 @@ return {
         })
 
         vim.cmd("colorscheme carbonfox")
-        vim.cmd("highlight MatchParen guifg=#ffbf00") -- Needs to be initialised after changing scheme
+        -- MatchParen must be set after the scheme loads (the scheme resets it).
+        -- lightblue bg + dark fg so the matching pair visibly lights up.
+        vim.api.nvim_set_hl(0, "MatchParen", { bg = "#add8e6", fg = "#1f2430" })
     end
 }
 

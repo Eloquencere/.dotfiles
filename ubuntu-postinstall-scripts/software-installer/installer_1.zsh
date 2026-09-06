@@ -153,7 +153,6 @@ ADDITIONAL_APPS_FLATPAK=(
     "org.kde.drawy" # rnote dark mode not working
     "io.github.Qalculate"
     "org.videolan.VLC"
-    "org.gnome.gitlab.somas.Apostrophe"
     # System
     "io.github.giantpinkrobots.varia"
     "net.epson.epsonscan2"

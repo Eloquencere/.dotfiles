@@ -19,17 +19,7 @@ uv = "latest"
 sqlite = "latest"
 usage = "latest" # tab completion (for mise, best handled by mise)
 
-# Pip stuff
-# USEFUL_PIP_PKGS=(
-#     "icecream" "loguru" # for debugging
-#     "colorama" "pyfiglet" # presentation
-#     "dash" "plotly" "seaborn" "mysql-connector-python" # data representation and calculation
-#     "fireducks" "xarray" "openpyxl"
-#     "numpy" "scipy" "pillow"
-#     "Cython" "numba" "taichi"
-#     "parse" "pendulum" "pydantic" "ruff" "mypy" "pyglet"
-#     "keras" "scikit-learn" "torch" # AI/ML
-# )
+# tracked via pipx:jupyterlab below (jupyterlab ships the `jupyter` command)
 
 # Cargo Stuff
 "cargo:sccache" = "latest"
@@ -47,6 +37,9 @@ usage = "latest" # tab completion (for mise, best handled by mise)
 # "cargo:cargo-dist" = "latest"
 # "cargo:cargo-inspect" = "latest" # educational
 
+# "pipx:jupyterlab" = "latest"
+
+
 # # Useful rust libs
 # rustup component add miri # unavailable in stable
 # https://www.namtao.com/rust/
@@ -59,4 +52,17 @@ usage = "latest" # tab completion (for mise, best handled by mise)
 # Tracing
 # Clap
 # Tokio & axum & tonic & yew & reqwest & egui
+
+# Pip stuff
+# USEFUL_PIP_PKGS=(
+#     "icecream" "loguru" # for debugging
+#     "colorama" "pyfiglet" # presentation
+#     "dash" "plotly" "seaborn" "mysql-connector-python" # data representation and calculation
+#     "fireducks" "xarray" "openpyxl"
+#     "numpy" "scipy" "pillow"
+#     "Cython" "numba" "taichi"
+#     "parse" "pendulum" "pydantic" "ruff" "mypy" "pyglet"
+#     "keras" "scikit-learn" "torch" # AI/ML
+# )
+
 

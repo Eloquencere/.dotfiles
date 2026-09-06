@@ -55,7 +55,7 @@ in
                 automatic-timezone = true;
             };
             "org/gnome/desktop/sound" = {
-                event-sounds = false;
+                event-sounds = true;
             };
 
             # TODO: Enable variable refresh rate
@@ -90,7 +90,6 @@ in
             };
             "org/gnome/nautilus/preferences" = {
                 click-policy = "single";
-                default-folder-viewer = "list-view";
             };
 
             "org/gnome/shell/extensions/ding" = {
@@ -249,7 +248,6 @@ in
                     "be.alexandervanhee.gradia.desktop"
                     "org.gnome.Papers.desktop"
                     "org.gnome.Loupe.desktop"
-                    "org.gnome.gitlab.somas.Apostrophe.desktop"
                     "vocalinux.desktop"
                 ];
             };

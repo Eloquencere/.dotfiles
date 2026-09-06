@@ -7,9 +7,9 @@ sudo snap refresh
 app-manager --update-all
 flatpak update --assumeyes; flatpak uninstall --unused --delete-data --assumeyes
 
-nix profile upgrade --all
+# nix profile upgrade --all # updates home-manager
 cd $XDG_CONFIG_HOME/home-manager
-read -qt 10 "?Run 'nix flake update' (y/N)? " && nix flake update
+read -qt 10 "?Run 'nix flake update' (y/N)? " && nix flake update nixpkgs nixpkgs-unstable
 home-manager switch --flake .
 home-manager news &> /dev/null
 nix-collect-garbage --delete-old

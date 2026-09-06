@@ -30,6 +30,7 @@ autoinstall:
             - 9.9.9.9              # Quad9
             - 2620:fe::fe          # "
 
+  # consider migrating to btrfs if ubuntu 28.04 still supports or LVM on ext4 for better paritioning user space stuff
   storage:
     config:
       - id: disk0
