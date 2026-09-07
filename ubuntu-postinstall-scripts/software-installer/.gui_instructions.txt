@@ -5,10 +5,10 @@
   - [ ] Battery time (pomoke)
   - [x] Blur my shell
   - [x] Just Perfection
-  - [ ] Copyous
+  - [x] Copyous
   - [x] GSConnect
   - [x] Grand Theft Focus
-  - [ ] AATWS
+  - [x] AATWS
 
   (Optional)
   - Brightness control using ddcutil

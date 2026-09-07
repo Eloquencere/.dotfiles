@@ -21,7 +21,7 @@ pip install --upgrade pip && pip cache purge
 zinit self-update
 zinit update --all
 
-hermes update
+hermes update -y
 uv pip install --python $HOME/.hermes/hermes-agent/venv \
   -r $DOTFILES_HOME/ubuntu-postinstall-scripts/continual-reference/hermes_requirements.txt
 agy update

@@ -10,7 +10,7 @@ return {
                 color = "hint",
                 desc = "Additional point to the reader",
             },
-            TODO = { 
+            TODO = {
                 icon = " ",
                 color = "info",
                 desc = "To be completed",
@@ -21,7 +21,7 @@ return {
                 desc = "Intent not clear",
             },
             HACK = {
-                icon = " ", 
+                icon = " ",
                 color = "warning",
                 desc = "This looks funky",
             },
@@ -37,7 +37,7 @@ return {
                 alt = { "WARNING"},
             },
             PERF = {
-                icon = " ", 
+                icon = " ",
                 alt = { "OPTIM", "OPTIMIZE", "PERFORMANCE"},
             },
             TEST = {
