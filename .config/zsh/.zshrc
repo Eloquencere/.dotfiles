@@ -10,9 +10,12 @@ setopt promptsubst
 
 source "$ZINIT_HOME/zinit.zsh"
 
+# Keep compinit's completion cache in XDG cache dir, not ZDOTDIR
+ZINIT[ZCOMPDUMP_PATH]="$XDG_CACHE_HOME/zinit/.zcompdump"
+
 fpath+=$ZDOTDIR/completion
 zinit wait lucid compile nocd atinit"
-    [[ -r $ZINIT_HOME/.zcompdump ]] && compinit -C || { zicompinit; zicdreplay; }
+    [[ -r ${ZINIT[ZCOMPDUMP_PATH]} ]] && compinit -C -d "$ZINIT[ZCOMPDUMP_PATH]" || { zicompinit; zicdreplay; }
     _comps[delta]=_files
 " for zsh-users/zsh-completions
 

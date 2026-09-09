@@ -108,6 +108,7 @@ autoinstall:
     - dos2unix
     - trash-cli
     - git
+    - unrar
     # Pkg managers
     - nala
     - flatpak

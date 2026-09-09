@@ -11,7 +11,7 @@ return {
     config = function()
         require('barbar').setup({
             -- Hide the tabline when there's only one buffer open
-            auto_hide = 1,
+            auto_hide = 0,
         })
 
         -- Moving between buffers

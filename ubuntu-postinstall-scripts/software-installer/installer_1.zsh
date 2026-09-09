@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+# NOTE: Can check if sudo apt update is required before running nala install since that also runs update anyways
+
 cd "$(dirname "${(%):-%x}")" # change directory to script location
 sudo -v
 
@@ -185,19 +187,6 @@ touch ~/Templates/file
 
 echo "This is the end of installer_1, run installer_2 after a reboot"
 sleep 2
-
-# # Antigravity
-# curl -fsSL https://us-central1-apt.pkg.dev/doc/repo-signing-key.gpg | sudo gpg --dearmor --yes -o /etc/apt/keyrings/antigravity-repo-key.gpg
-# printf '%s\n' \
-#   'Types: deb' \
-#   'URIs: https://us-central1-apt.pkg.dev/projects/antigravity-auto-updater-dev' \
-#   'Suites: antigravity-debian' \
-#   'Components: main' \
-#   "Architectures: $(dpkg --print-architecture)" \
-#   'Signed-By: /etc/apt/keyrings/antigravity-repo-key.gpg' \
-#   | sudo tee /etc/apt/sources.list.d/antigravity.sources > /dev/null
-# sudo nala update
-# sudo nala install -y antigravity
 
 # # Signal
 # wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg;
