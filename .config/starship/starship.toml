@@ -85,7 +85,7 @@ symbol = "\u2500" # "\u2500" "─" # no line: ' '
 [status]
 format = "[$symbol $hex_status( \uf0a2 $signal_number-$signal_name)]($style)" # \uf0a2  , \ueaa2
 style = 'fg:status'
-symbol = " \u2717" # \u2717 \uf467 \uebde  ✘
+symbol = " \uf00d" # \u2717 \uf467 \uebde  ✘
 disabled = false
 
 [cmd_duration]

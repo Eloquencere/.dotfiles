@@ -32,7 +32,7 @@ in
             };
             "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" = {
                 name="wezterm";
-                command="wezterm";
+                command="export WINIT_UNIX_BACKEND=x11 wezterm start";
                 binding="<Alt><Shift>w";
             };
 
@@ -101,6 +101,7 @@ in
                 dash-max-icon-size = 52;
                 dock-position = "BOTTOM";
                 click-action = "minimize-or-previews";
+                autohide-in-fullscreen = true;
                 dock-fixed = false;
                 extend-height = false;
                 show-mounts-only-mounted = true;

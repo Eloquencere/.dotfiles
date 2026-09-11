@@ -21,6 +21,7 @@ background-opacity = 0.78
 font-family = "UbuntuSansMono Nerd Font"
 font-style = Medium
 font-size = 14
+adjust-icon-height = 25%
 # font-feature = -calt
 # font-feature = -clig
 # font-feature = -liga

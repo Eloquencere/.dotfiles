@@ -1,7 +1,5 @@
 #!/bin/zsh
 
-# NOTE: Can check if sudo apt update is required before running nala install since that also runs update anyways
-
 cd "$(dirname "${(%):-%x}")" # change directory to script location
 sudo -v
 
@@ -20,8 +18,7 @@ sudo nala install -y ttf-mscorefonts-installer fonts-crosextra-carlito fonts-cro
 name='brave-browser'
 sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
 sudo curl -fsSLo /etc/apt/sources.list.d/brave-browser-release.sources https://brave-browser-apt-release.s3.brave.com/brave-browser.sources
-sudo nala update
-sudo nala install -y $name
+sudo nala install --update -y $name
 xdg-settings set default-web-browser $name.desktop
 xdg-mime default $name.desktop x-scheme-handler/mailto
 $name &
@@ -36,8 +33,7 @@ printf '%s\n' \
   "Architectures: $(dpkg --print-architecture)" \
   'Signed-By: /usr/share/keyrings/wezterm-fury.gpg' \
   | sudo tee /etc/apt/sources.list.d/wezterm.sources > /dev/null
-sudo nala update
-sudo nala install -y wezterm
+sudo nala install --update -y wezterm
 
 # Docker
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
@@ -50,8 +46,7 @@ printf '%s\n' \
   "Architectures: $(dpkg --print-architecture)" \
   'Signed-By: /etc/apt/keyrings/docker.asc' \
   | sudo tee /etc/apt/sources.list.d/docker.sources > /dev/null
-sudo nala update
-sudo nala install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin freerdp3-x11 # try for freerdp3-wayland
+sudo nala install --update -y docker-ce docker-ce-cli containerd.io docker-compose-plugin freerdp3-x11 # try for freerdp3-wayland
 sudo usermod -aG docker $USER
 
 # VSCode
@@ -64,8 +59,7 @@ printf '%s\n' \
   "Architectures: $(dpkg --print-architecture)" \
   'Signed-By: /usr/share/keyrings/microsoft.gpg' \
   | sudo tee /etc/apt/sources.list.d/vscode.sources > /dev/null
-sudo nala update
-sudo nala install -y code
+sudo nala install --update -y code
 
 # OnlyOffice
 curl -fsSL https://download.onlyoffice.com/GPG-KEY-ONLYOFFICE | sudo gpg --dearmor -o /usr/share/keyrings/onlyoffice.gpg
@@ -76,18 +70,15 @@ printf '%s\n' \
   'Components: main' \
   'Signed-By: /usr/share/keyrings/onlyoffice.gpg' \
   | sudo tee /etc/apt/sources.list.d/onlyoffice.sources > /dev/null
-sudo nala update
-sudo nala install -y onlyoffice-desktopeditors
+sudo nala install --update -y onlyoffice-desktopeditors
 
 # Zotero
 curl -sL https://raw.githubusercontent.com/retorquere/zotero-pkg/master/install.sh | sudo bash
-sudo nala update
-sudo nala install -y zotero
+sudo nala install --update -y zotero
 
 # Mise
 sudo add-apt-repository -y ppa:jdxcode/mise
-sudo nala update
-sudo nala install -y mise
+sudo nala install --update -y mise
 
 sudo add-apt-repository -y ppa:libreoffice/ppa
 sudo add-apt-repository -y ppa:git-core/ppa

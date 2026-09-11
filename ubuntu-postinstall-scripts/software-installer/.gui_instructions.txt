@@ -2,7 +2,6 @@
 - Gnome Extensions
   (Essentials)
   - [x] Bluetooth Battery Meter
-  - [ ] Battery time (pomoke)
   - [x] Blur my shell
   - [x] Just Perfection
   - [x] Copyous
@@ -11,6 +10,7 @@
   - [x] AATWS
 
   (Optional)
+  - Battery time (pomoke)
   - Brightness control using ddcutil
   - Wiggle - No support
   - CHC-E

@@ -1,5 +1,10 @@
 vim.g.loaded_matchparen = 1  -- disable built-in matchparen; vim-matchup handles it
 
+-- Don't let ~/.local/state/nvim/lsp.log balloon to megabytes: nvim writes every LSP server's
+-- stderr at ERROR level, and tinymist (Typst) / taplo (TOML) chat at INFO on stderr, which nvim
+-- then logs verbatim. Re-enable with `:lua vim.lsp.log.set_level("warn")` to debug an LSP.
+vim.lsp.log.set_level("off")
+
 -- Appearance
 vim.opt.number         = true
 vim.opt.relativenumber = true

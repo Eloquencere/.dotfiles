@@ -17,8 +17,7 @@ latest_tag() {
 # KiCAD
 version="${$(latest_tag KiCad/kicad-source-mirror)%.*}"
 sudo add-apt-repository --yes ppa:kicad/kicad-$version-releases
-sudo nala update
-sudo nala install -y --install-recommends kicad
+sudo nala install --update --install-recommends -y kicad
 
 # Anki
 version="$(latest_tag ankitects/anki)"
@@ -147,6 +146,7 @@ BLOAT_SNAP=(
     "thunderbird" "firefox"
 )
 sudo snap remove --purge "${BLOAT_SNAP[@]}"
+sudo nala purge "${BLOAT_SNAP[@]}"
 
 BLOAT_APT=(
     "gnome-calculator"

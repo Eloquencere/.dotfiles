@@ -7,7 +7,9 @@ local server_map = {
     perlnavigator     = "perlnavigator",
     ["lua-language-server"]  = "lua_ls",
     pyrefly           = "pyrefly", -- Python
-    ["julia-lsp"]     = "julials",
+    -- ["julia-lsp"]     = "julials", -- enabled only after `julia` + Julia LanguageServer/SymbolServer
+    --                                -- are set up in the julia depot (see julials docs); otherwise
+    --                                -- it crashes on every Julia file opened
     ["html-lsp"]      = "html",
     ["css-lsp"]       = "cssls",
     marksman          = "marksman", -- Markdown
@@ -29,7 +31,8 @@ return {
     {
         'WhoIsSethDaniel/mason-tool-installer.nvim',
         opts = {
-            ensure_installed = vim.tbl_keys(server_map),
+            -- the LSP servers, plus shellcheck: bashls disables linting entirely without it
+            ensure_installed = vim.list_extend(vim.tbl_keys(server_map), { "shellcheck" }),
         },
     },
     {
@@ -62,6 +65,9 @@ return {
                 filetypes = { "makefile", "make" },
                 root_markers = { ".git", "Makefile" },
             })
+
+            -- (vim.lsp.log.set_level("off") lives in core/config.lua so it applies before this
+            -- lazy-loaded spec even runs.)
 
             vim.lsp.enable(vim.tbl_values(server_map))
         end,
