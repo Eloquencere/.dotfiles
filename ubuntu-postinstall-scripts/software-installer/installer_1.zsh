@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+# look into different eza themes
+
 cd "$(dirname "${(%):-%x}")" # change directory to script location
 sudo -v
 

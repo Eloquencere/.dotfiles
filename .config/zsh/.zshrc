@@ -44,7 +44,7 @@ zstyle ':fzf-tab:*' fzf-min-height 20
 zstyle ':fzf-tab:complete:*:*' fzf-preview '[[ -d $realpath ]] && eza --all --oneline --group-directories-first --color=always --icons=always -- $realpath || bat --color=always -- $realpath 2>/dev/null'
 
 function __lazy_shell_tools {
-    eval "$(starship init zsh)" &> /dev/null
+    eval "$(starship init zsh)" &> /dev/null; prompt_starship_precmd
     eval "$(atuin init zsh --disable-ctrl-r --disable-up-arrow)"
     eval "$(zoxide init --cmd cd zsh)"
     eval "$(mise activate zsh)"

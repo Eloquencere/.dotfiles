@@ -6,7 +6,7 @@ local server_map = {
     ["bash-language-server"] = "bashls",
     perlnavigator     = "perlnavigator",
     ["lua-language-server"]  = "lua_ls",
-    pyrefly           = "pyrefly", -- Python
+    ruff           = "ruff", -- Python
     -- ["julia-lsp"]     = "julials", -- enabled only after `julia` + Julia LanguageServer/SymbolServer
     --                                -- are set up in the julia depot (see julials docs); otherwise
     --                                -- it crashes on every Julia file opened

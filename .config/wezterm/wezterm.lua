@@ -30,6 +30,7 @@ local config = {
     xcursor_theme = xcursor_theme,
     xcursor_size = xcursor_size,
     max_fps = 144,
+    enable_kitty_keyboard = true,
 
     -- Window config
     enable_tab_bar = false,
@@ -81,6 +82,12 @@ local config = {
             mods = "SHIFT",
             action = wezterm.action.SendString("\x1b[200~\n\x1b[201~"),
         },
+    },
+    quick_select_patterns = {
+        "https?://\\S+",
+        "\\b[0-9a-f]{7,40}\\b",     -- git/log hash
+        "file://\\S+",
+        "\\b\\w+@[\\w.-]+\\b",       -- email
     },
 }
 
