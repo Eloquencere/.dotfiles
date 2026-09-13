@@ -19,8 +19,6 @@ uv = "latest"
 sqlite = "latest"
 usage = "latest" # tab completion (for mise, best handled by mise)
 
-# tracked via pipx:jupyterlab below (jupyterlab ships the `jupyter` command)
-
 # Cargo Stuff
 "cargo:sccache" = "latest"
 "cargo:bacon" = "latest"

@@ -1,8 +1,8 @@
 local server_map = {
     clangd            = "clangd", -- C, C++
-    neocmakelsp       = "neocmake", -- cmake
+    -- neocmakelsp       = "neocmake", -- cmake
     ["rust-analyzer"] = "rust_analyzer",
-    gopls             = "gopls",
+    -- gopls             = "gopls",
     ["bash-language-server"] = "bashls",
     perlnavigator     = "perlnavigator",
     ["lua-language-server"]  = "lua_ls",
@@ -10,14 +10,13 @@ local server_map = {
     -- ["julia-lsp"]     = "julials", -- enabled only after `julia` + Julia LanguageServer/SymbolServer
     --                                -- are set up in the julia depot (see julials docs); otherwise
     --                                -- it crashes on every Julia file opened
-    ["html-lsp"]      = "html",
-    ["css-lsp"]       = "cssls",
+    -- ["html-lsp"]      = "html",
+    -- ["css-lsp"]       = "cssls",
     marksman          = "marksman", -- Markdown
     biome             = "biome", -- Javascript, Typescript, JSON
     ["yaml-language-server"] = "yamlls",
     taplo             = "taplo", -- TOML
     mbake             = "mbake", -- makefile
-    ["just-lsp"]      = "just",
     tinymist          = "tinymist",
     -- "svls", -- good, but needs a lot of config
     -- "vhdl_ls", -- not needed at the moment

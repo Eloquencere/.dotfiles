@@ -45,10 +45,6 @@ app-manager install ./lm-studio.AppImage
 # GUI setup
 open .gui_instructions.txt
 
-# Load wallpaper
-gsettings set org.gnome.desktop.background picture-options 'zoom'
-gsettings set org.gnome.desktop.background picture-uri-dark "file://$DOTFILES_HOME/wallpapers/Noble-Numbat-Mascot.jpeg"
-
 source ./hdl_essentials.zsh
 
 # Kanata (nix) setup
@@ -70,16 +66,20 @@ mise install
 rustup toolchain install stable
 rustup default stable
 
+# uv tool install jupyterlab
+uv tool install 'aria2p[tui]'
+mkdir -p ~/.local/state/aria2 && touch ~/.local/state/aria2/session.txt
+aria2c --conf-path=~/.config/aria2/aria2.conf --daemon=true
+
 rmdir ~/{Public,Music}
 printf '%s\n' \
-  "file://$HOME/Documents" \
   "file://$HOME/Downloads" \
+  "file://$HOME/Documents" \
+  "file://$HOME/Desktop/NCSU"
   >! $XDG_CONFIG_HOME/gtk-3.0/bookmarks
-printf "file://$HOME/Desktop/NCSU" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
 mkdir -p $HOME/Projects
 echo "file://$HOME/Projects" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
 printf '%s\n' \
-  "file://$HOME/Transfers" \
   "file://$HOME/Pictures" \
   >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
 

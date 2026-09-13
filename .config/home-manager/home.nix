@@ -20,8 +20,8 @@
         zoxide eza fd bat ripgrep duf delta
         yazi fastfetch
         croc btop mprocs
-        pandoc # WARN: eval if needed
         rclone
+        aria2
 
         unstable.neovim tree-sitter
         unstable.zellij
@@ -40,6 +40,7 @@
         # scriptisto hyperfine
         # presenterm
         # carapace # needs to mature a lot
+        # pandoc # WARN: eval if needed
     ];
 
     # Nerd Fonts for terminal icons (Starship, etc.)

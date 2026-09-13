@@ -10,6 +10,8 @@ echo "Welcome to the *Ubuntu 26.04 LTS* installer :)"
 # To prevent the screen from dimming
 gsettings set org.gnome.settings-daemon.plugins.power idle-dim false
 gsettings set org.gnome.desktop.session idle-delay 0
+gsettings set org.gnome.desktop.background picture-options 'zoom'
+gsettings set org.gnome.desktop.background picture-uri-dark "file://$HOME/.dotfiles/wallpapers/Noble-Numbat-Mascot.jpeg"
 
 sudo nala full-upgrade -y
 cd ~/.dotfiles/ && stow . && cd -
@@ -103,7 +105,6 @@ echo 'vm.swappiness=10' | sudo tee /etc/sysctl.d/99-swappiness.conf
 
 sudo nala install -y gufw
 sudo ufw enable
-# GSConnect
 sudo ufw allow 1714:1764/tcp
 sudo ufw allow 1714:1764/udp
 mkdir -p $HOME/Transfers/GSConnect
@@ -125,19 +126,24 @@ echo 'ntsync' | sudo tee /etc/modules-load.d/ntsync.conf
 echo 'KERNEL=="ntsync", MODE="0660", TAG+="uaccess"' \
   | sudo tee /etc/udev/rules.d/99-ntsync.rules
 mkdir -p ~/Games/Ryujinx
-sudo nala install -y steam gamemode
+GAMES_NALA=(
+    gamemode
+    steam
+    # # Optional
+    # gnome-chess
+    # gnome-sudoku
+    # gnome-mahjongg
+    # gnome-mines
+    # gmult
+)
+sudo nala install -y "${GAMES_NALA[@]}"
 GAMES_FLATPAK=(
     "com.discordapp.Discord"
     "com.heroicgameslauncher.hgl"
     "io.github.ryubing.Ryujinx"
     # "com.parsecgaming.parsec"
     # # Optional
-    # "org.gnome.Chess"
-    # "org.gnome.Sudoku"
-    # "org.gnome.Mahjongg"
-    # "org.gnome.Mines"
     # "org.gnome.Crosswords"
-    # "app.drey.MultiplicationPuzzle"
 )
 flatpak install --assumeyes flathub "${GAMES_FLATPAK[@]}"
 
@@ -148,15 +154,14 @@ ADDITIONAL_APPS_FLATPAK=(
     "org.kde.drawy" # rnote dark mode not working
     "io.github.Qalculate"
     "org.videolan.VLC"
-    # System
-    "io.github.giantpinkrobots.varia"
     "net.epson.epsonscan2"
-    # "io.github.totoshko88.RustConn"
     # Project Management
     "com.rustdesk.RustDesk"
-    # "org.jitsi.jitsi-meet" # Jitsi-client
-    # # Coding
     # "org.ghidra_sre.Ghidra"
+    # "org.jitsi.jitsi-meet" # Jitsi-client
+    # System
+    # "io.github.giantpinkrobots.varia"
+    # "io.github.totoshko88.RustConn"
 )
 flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
 
