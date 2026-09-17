@@ -1,6 +1,7 @@
 #!/bin/zsh
 
 # look into different eza themes
+# Find out why reporting crashes doesn't actually work
 
 cd "$(dirname "${(%):-%x}")" # change directory to script location
 sudo -v

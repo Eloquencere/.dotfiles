@@ -32,7 +32,6 @@ Notes
   - [ ] Remove the 2 lines created by antigravity in ~/.zprofile
   - [ ] Setup timeshift (https://www.xda-developers.com/timeshift-saved-my-linux-install-after-i-broke-it)
     - Take 1 snapshot every 2-3 days
-  - After a reboot, change to proprietory nvidia drivers, open source drivers have bugs usually
   - [ ] Zotero
     - Under Edit -> Settings -> Advanced, set the data directory to ~/Documents/Zotero
   - [ ] AppManager
