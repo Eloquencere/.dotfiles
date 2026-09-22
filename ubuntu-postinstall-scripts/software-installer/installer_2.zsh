@@ -75,7 +75,7 @@ rmdir ~/{Public,Music}
 printf '%s\n' \
   "file://$HOME/Downloads" \
   "file://$HOME/Documents" \
-  "file://$HOME/Desktop/NCSU"
+  "file://$HOME/Desktop/NCSU" \
   >! $XDG_CONFIG_HOME/gtk-3.0/bookmarks
 mkdir -p $HOME/Projects
 echo "file://$HOME/Projects" >> $XDG_CONFIG_HOME/gtk-3.0/bookmarks
@@ -127,12 +127,12 @@ bash /tmp/vl.sh --interactive
 sudo nala install -y libportaudio2
 curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
 
-# Pi
-curl -fsSL https://pi.dev/install.sh | sh
-
 # Antigravity CLI
 curl -fsSL https://antigravity.google/cli/install.sh | bash
 agy
+
+# # Pi
+# curl -fsSL https://pi.dev/install.sh | sh
 
 AI_PKGS=(
     @github/copilot
@@ -146,7 +146,7 @@ BLOAT_SNAP=(
     "thunderbird" "firefox"
 )
 sudo snap remove --purge "${BLOAT_SNAP[@]}"
-sudo nala purge "${BLOAT_SNAP[@]}"
+sudo nala purge -y "${BLOAT_SNAP[@]}"
 
 BLOAT_APT=(
     "gnome-calculator"
