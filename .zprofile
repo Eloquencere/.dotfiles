@@ -7,7 +7,7 @@ export ANKI_WAYLAND=1
 export EDITOR="nvim"
 
 # 32-bit library path
-export LIBRARY_PATH="/usr/lib32":$LIBRARY_PATH
+# export LIBRARY_PATH="/usr/lib32":$LIBRARY_PATH # mostly not needed
 export PATH="$HOME/.local/bin":$PATH
 
 # Base path definitions

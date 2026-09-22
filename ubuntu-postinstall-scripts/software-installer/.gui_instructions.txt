@@ -27,6 +27,9 @@ Notes
   - Brave
     - [ ] Hamburger icon -> Settings -> System -> Upgrade to Brave Origin & Brave Origin -> Features, enable Tor & Wayback Machine
     - [ ] Sync the web-browser on your default machine with the current machine
+  - [ ] Enable bug reporting
+    sudo cp /etc/apport/crashdb.conf /etc/apport/crashdb.conf.bak && sudo sed -i 's/databases\["ubuntu"\]\["problem_types"\] = \["Bug", "Package"\]/databases["ubuntu"]["problem_types"] = ["Bug", "Package", "Crash"]/' /etc/apport/crashdb.conf
+  - [ ] Use the DNS server addresses in autoinstall.yaml to set it up in the Network settings
   - [ ] Setup your cloud storage service provider in nautilus
   - [ ] Setup GSConnect & KDEconnect
   - [ ] Remove the 2 lines created by antigravity in ~/.zprofile

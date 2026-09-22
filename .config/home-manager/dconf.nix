@@ -177,7 +177,6 @@ in
                 selected-breaks = ["eyesight"];
             };
 
-            # WARN: check which of these are already default
             "org/gnome/desktop/break-reminders/eyesight" = {
                 # --- Time between breaks: 20 minutes (for now) ---
                 interval-seconds = lib.gvariant.mkUint32 1200;

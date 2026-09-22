@@ -3,6 +3,7 @@
   - if some features are made default
   - if some options are depricated
 - [ ] Make note of software installed manually
+  - And that they are fully supported in the new LTS release & they support each other's versions when needed
 - [ ] GSConnect & KDEConnect settings into Notion
 - [ ] Sync Anki
 - [ ] Hermes backup memories/, skills/, terminal-sessions/, sessions/, config.yaml, .env

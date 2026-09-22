@@ -35,6 +35,7 @@ usage = "latest" # tab completion (for mise, best handled by mise)
 # "cargo:cargo-dist" = "latest"
 # "cargo:cargo-inspect" = "latest" # educational
 
+# "pipx:fusesoc" = "latest"
 # "pipx:jupyterlab" = "latest"
 
 
@@ -48,7 +49,7 @@ usage = "latest" # tab completion (for mise, best handled by mise)
 # Rayon & dashmap & crossbeam
 # Color eyre
 # Tracing
-# Clap
+# usage
 # Tokio & axum & tonic & yew & reqwest & egui
 
 # Pip stuff

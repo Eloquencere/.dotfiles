@@ -40,7 +40,7 @@
         # scriptisto hyperfine
         # presenterm
         # carapace # needs to mature a lot
-        # pandoc # WARN: eval if needed
+        # pandoc
     ];
 
     # Nerd Fonts for terminal icons (Starship, etc.)

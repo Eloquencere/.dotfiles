@@ -28,7 +28,7 @@ agy update
 
 sudo journalctl --vacuum-time=7d
 
-echo "Update your nvim plugins & restart your machine"
+echo "Update Lazy plugins & Mason, restart your machine"
 
 # # Vocalinux (official installer; rebuilds whisper.cpp with Vulkan for GPU)
 # curl -fsSL https://raw.githubusercontent.com/VocaHQ/vocalinux/main/install.sh \

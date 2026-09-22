@@ -110,7 +110,7 @@ if [[ $user_choice =~ ^[Yy]$ ]]; then
     read -r "email?Email ID: "
     git config --global user.email "$email"
     echo "you need to login to Github as well"
-    gh auth login     # WARN: include logic to give read & write access to projects
+    gh auth login --scopes project
     git config --global --replace-all 'credential.https://github.com.helper' '!'"$(which gh) auth git-credential"
     git config --global --replace-all 'credential.https://gist.github.com.helper' '!'"$(which gh) auth git-credential"
 fi

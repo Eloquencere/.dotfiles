@@ -1,18 +1,14 @@
 #!/bin/zsh
 
-# look into different eza themes
-# Find out why reporting crashes doesn't actually work
-
 cd "$(dirname "${(%):-%x}")" # change directory to script location
 sudo -v
 
 echo "Welcome to the *Ubuntu 26.04 LTS* installer :)"
 
-# To prevent the screen from dimming
 gsettings set org.gnome.settings-daemon.plugins.power idle-dim false
 gsettings set org.gnome.desktop.session idle-delay 0
-gsettings set org.gnome.desktop.background picture-options 'zoom'
 gsettings set org.gnome.desktop.background picture-uri-dark "file://$HOME/.dotfiles/wallpapers/Noble-Numbat-Mascot.jpeg"
+gsettings set org.gnome.desktop.background picture-options 'zoom'
 
 sudo nala full-upgrade -y
 cd ~/.dotfiles/ && stow . && cd -
@@ -51,7 +47,7 @@ printf '%s\n' \
   "Architectures: $(dpkg --print-architecture)" \
   'Signed-By: /etc/apt/keyrings/docker.asc' \
   | sudo tee /etc/apt/sources.list.d/docker.sources > /dev/null
-sudo nala install --update -y docker-ce docker-ce-cli containerd.io docker-compose-plugin freerdp3-x11 # try for freerdp3-wayland
+sudo nala install --update -y docker-ce docker-ce-cli containerd.io docker-compose-plugin freerdp3-x11
 sudo usermod -aG docker $USER
 
 # VSCode
@@ -101,7 +97,7 @@ APPLICATIONS_APT=(
 sudo nala install -y "${APPLICATIONS_APT[@]}"
 
 # Perf Improvement
-sudo nala install -y preload earlyoom
+sudo nala install -y preload earlyoom # earlyoom prob not needed since it's going to be built-in
 echo 'vm.swappiness=10' | sudo tee /etc/sysctl.d/99-swappiness.conf
 
 sudo nala install -y gufw
@@ -182,6 +178,7 @@ flatpak install --assumeyes flathub be.alexandervanhee.gradia
 
 # Improving nautilus
 xdg-mime default org.gnome.TextEditor.desktop text/markdown
+#  NOTE: might not be needed
 touch ~/Templates/file
 
 echo "This is the end of installer_1, run installer_2 after a reboot"
@@ -199,11 +196,6 @@ sleep 2
 # wget -O docker-desktop.deb 'https://desktop.docker.com/linux/main/amd64/docker-desktop-amd64.deb?utm_source=docker&utm_medium=webreferral&utm_campaign=docs-driven-download-linux-amd64'
 # sudo nala install -y ./docker-desktop.deb
 # rm -f ./docker-desktop.deb
-
-# # Ghostty - Starship NF icon rendering is weird but, RAM usage is low with zellij
-# sudo add-apt-repository --yes ppa:mkasberg/ghostty-ubuntu
-# sudo nala update
-# sudo nala install -y ghostty
 
 # No release file (On 26.04)
 # sudo add-apt-repository -y ppa:ubuntuhandbook1/vlc
