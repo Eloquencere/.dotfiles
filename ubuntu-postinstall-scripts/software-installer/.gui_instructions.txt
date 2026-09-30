@@ -10,6 +10,7 @@
   - [x] AATWS
 
   (Optional)
+  - winrects@cua (cua_driver)
   - Battery time (pomoke)
   - Brightness control using ddcutil
   - Wiggle - No support
@@ -35,6 +36,12 @@ Notes
   - [ ] Remove the 2 lines created by antigravity in ~/.zprofile
   - [ ] Setup timeshift (https://www.xda-developers.com/timeshift-saved-my-linux-install-after-i-broke-it)
     - Take 1 snapshot every 2-3 days
+  - [ ] Setup VSCode (Sign in with GitHub)
+  - [ ] Usually some hermes tools are not setup properly, run these commands
+    hermes tools post-setup browser_use_cli
+    hermes tools post-setup agent_browser
+    hermes doctor
+    - Make hermes fix all the tools by itself & have it give a report why certain tools could not be setup
   - [ ] Zotero
     - Under Edit -> Settings -> Advanced, set the data directory to ~/Documents/Zotero
   - [ ] AppManager

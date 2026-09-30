@@ -19,6 +19,10 @@ uv = "latest"
 sqlite = "latest"
 usage = "latest" # tab completion (for mise, best handled by mise)
 
+# "pipx:fusesoc" = "latest"
+# "pipx:jupyterlab" = "latest"
+"pipx:wavedrom" = "latest"
+
 # Cargo Stuff
 "cargo:sccache" = "latest"
 "cargo:bacon" = "latest"
@@ -35,9 +39,6 @@ usage = "latest" # tab completion (for mise, best handled by mise)
 # "cargo:cargo-dist" = "latest"
 # "cargo:cargo-inspect" = "latest" # educational
 
-# "pipx:fusesoc" = "latest"
-# "pipx:jupyterlab" = "latest"
-
 
 # # Useful rust libs
 # rustup component add miri # unavailable in stable
@@ -51,6 +52,10 @@ usage = "latest" # tab completion (for mise, best handled by mise)
 # Tracing
 # usage
 # Tokio & axum & tonic & yew & reqwest & egui
+
+# # Verification
+# pip install pyslang
+# pip install cocotb cocotb-bus cocotb-coverage cocotb-test pyuvm
 
 # Pip stuff
 # USEFUL_PIP_PKGS=(

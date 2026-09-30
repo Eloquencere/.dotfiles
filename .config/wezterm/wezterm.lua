@@ -30,7 +30,7 @@ local config = {
     xcursor_theme = xcursor_theme,
     xcursor_size = xcursor_size,
     max_fps = 144,
-    enable_kitty_keyboard = true,
+    enable_kitty_keyboard = false,
 
     -- Window config
     enable_tab_bar = false,

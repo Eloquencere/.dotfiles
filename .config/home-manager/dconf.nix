@@ -100,7 +100,7 @@ in
             "org/gnome/shell/extensions/dash-to-dock" = {
                 dash-max-icon-size = 52;
                 dock-position = "BOTTOM";
-                click-action = "minimize-or-previews";
+                click-action = "focus-minimize-or-previews";
                 autohide-in-fullscreen = true;
                 dock-fixed = false;
                 extend-height = false;
@@ -276,7 +276,7 @@ in
                 name = "Coding";
                 translate = false;
                 apps = [
-                    "code.desktop"
+                    "com.microsoft.VSCode.desktop"
                     "antigravity.desktop"
                     "logisim-evolution-snapcraft_logisim-evolution-snapcraft.desktop"
                     "org.kicad.kicad.desktop"

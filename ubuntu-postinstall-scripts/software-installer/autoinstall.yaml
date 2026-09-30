@@ -30,7 +30,8 @@ autoinstall:
             - 9.9.9.9              # Quad9
             - 2620:fe::fe          # "
 
-  # consider migrating to btrfs if ubuntu 28.04 still supports or LVM on ext4 for better paritioning user space stuff
+  # WARN: consider migrating to btrfs if ubuntu 28.04 still supports or LVM on ext4 for better paritioning user space stuff
+  # Try the combination of btrfs & wisp extension (it removes the need for timeshift)
   storage:
     config:
       - id: disk0
@@ -41,7 +42,7 @@ autoinstall:
         wipe: zero
         grub_device: true
 
-      # EFI System Partition (must be first partition)
+      # EFI System Partition
       - id: esp-partition
         type: partition
         device: disk0
