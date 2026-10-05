@@ -2,7 +2,7 @@
 
 cd "$(dirname "${(%):-%x}")" # change directory to script location
 
-sudo sh -c "nala full-upgrade -y; nala autoremove; nala clean"
+sudo sh -c "nala full-upgrade -y; nala autoremove -y; nala clean"
 sudo snap refresh
 app-manager --update-all
 flatpak update --assumeyes; flatpak uninstall --unused --delete-data --assumeyes

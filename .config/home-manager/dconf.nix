@@ -100,7 +100,7 @@ in
             "org/gnome/shell/extensions/dash-to-dock" = {
                 dash-max-icon-size = 52;
                 dock-position = "BOTTOM";
-                click-action = "focus-minimize-or-previews";
+                click-action = "minimize-or-previews";
                 autohide-in-fullscreen = true;
                 dock-fixed = false;
                 extend-height = false;
