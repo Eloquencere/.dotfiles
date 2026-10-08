@@ -1,5 +1,4 @@
 [settings]
-# python_compile = true
 experimental = true
 idiomatic_version_file_enable_tools = ["python"]
 cargo.binstall = true
@@ -55,7 +54,7 @@ usage = "latest" # tab completion (for mise, best handled by mise)
 
 # # Verification
 # pip install pyslang
-# pip install cocotb cocotb-bus cocotb-coverage cocotb-test pyuvm
+# pip install cocotb cocotb-bus cocotb-coverage cocotb-test cocotb-vivado pyuvm
 
 # Pip stuff
 # USEFUL_PIP_PKGS=(
@@ -68,5 +67,4 @@ usage = "latest" # tab completion (for mise, best handled by mise)
 #     "parse" "pendulum" "pydantic" "ruff" "mypy" "pyglet"
 #     "keras" "scikit-learn" "torch" # AI/ML
 # )
-
 

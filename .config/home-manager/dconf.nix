@@ -146,6 +146,9 @@ in
             "org/gnome/shell/extensions/blur-my-shell/panel" = {
                 blur=false;
             };
+            "/org/gnome/shell/extensions/blur-my-shell/popup" = {
+                blur=false;
+            };
 
             "org/gnome/shell/extensions/space-bar/behavior/always-show-numbers" = {
                 always-show-numbers = true;
