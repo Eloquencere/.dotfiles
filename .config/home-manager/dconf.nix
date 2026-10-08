@@ -146,7 +146,7 @@ in
             "org/gnome/shell/extensions/blur-my-shell/panel" = {
                 blur=false;
             };
-            "/org/gnome/shell/extensions/blur-my-shell/popup" = {
+            "org/gnome/shell/extensions/blur-my-shell/popup" = {
                 blur=false;
             };
 
