@@ -1,6 +1,5 @@
 [settings]
 experimental = true
-idiomatic_version_file_enable_tools = ["python"]
 cargo.binstall = true
 cargo.binstall_quickinstall = true
 
@@ -18,9 +17,13 @@ uv = "latest"
 sqlite = "latest"
 usage = "latest" # tab completion (for mise, best handled by mise)
 
+# Tools
+typst = "latest"
+"cargo:hayagriva" = { version = "latest", features = ["cli"] }
+
+"pipx:wavedrom" = "latest"
 # "pipx:fusesoc" = "latest"
 # "pipx:jupyterlab" = "latest"
-"pipx:wavedrom" = "latest"
 
 # Cargo Stuff
 "cargo:sccache" = "latest"

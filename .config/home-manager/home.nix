@@ -29,7 +29,7 @@
 
         # Documentation
         tlrc cheat
-        typst doxygen natural-docs
+        doxygen natural-docs
         hledger
 
         unstable.cargo-binstall

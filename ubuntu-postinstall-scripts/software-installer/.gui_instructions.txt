@@ -54,7 +54,9 @@ Notes
     - Disable autostart container
     - Disable animations
   - Anki Extensions
+    - Disable live mathjax rendering in the editor window
     - Scale Images - ankiweb.net/shared/info/1312865748
+    - Editor Live Preview - https://ankiweb.net/shared/info/1960039667
 
 Optional
   - Install wine from the official website

@@ -1,4 +1,4 @@
-theme "dracula"
+theme "dracula" // ao, blade-runner, dracula
 default_layout "compact"
 on_force_close "quit"
 styled_underlines true

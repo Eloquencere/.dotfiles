@@ -66,10 +66,9 @@ mise install
 rustup toolchain install stable
 rustup default stable
 
-# uv tool install jupyterlab
-uv tool install 'aria2p[tui]'
-mkdir -p ~/.local/state/aria2 && touch ~/.local/state/aria2/session.txt
-aria2c --conf-path=~/.config/aria2/aria2.conf --daemon=true
+# uv tool install 'aria2p[tui]'
+# mkdir -p ~/.local/state/aria2 && touch ~/.local/state/aria2/session.txt
+# aria2c --conf-path=~/.config/aria2/aria2.conf --daemon=true
 
 rmdir ~/{Public,Music}
 printf '%s\n' \
