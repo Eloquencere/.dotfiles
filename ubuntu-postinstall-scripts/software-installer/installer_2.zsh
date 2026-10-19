@@ -154,6 +154,7 @@ BLOAT_APT=(
     "ed" "vim-common" "nano"
 )
 sudo nala purge -y "${BLOAT_APT[@]}"
+# FUTURE: delete all libreoffice tools except draw & keep onlyoffice
 
 sudo nala install --fix-broken
 source ../continual-reference/software_updater.zsh
