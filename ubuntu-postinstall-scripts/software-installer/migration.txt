@@ -1,24 +1,23 @@
-- [ ] Do a dry run of the install scripts on a VM (Ensure that the device is in UEFI mode)
-- [ ] Check if dconf settings are still relevant
-  - if some features are made default
-  - if some options are depricated
-- [ ] Make note of software installed manually
-  - And that they are fully supported in the new LTS release & they support each other's versions when needed
-  - cocotb compatibility
-- [ ] GSConnect & KDEConnect settings into Notion
-- [ ] Sync Anki
-- [ ] Hermes backup memories/, skills/, terminal-sessions/, sessions/, config.yaml, .env
-- [ ] Backup ALL Brave profiles in another device & check if stuff like bookmarks still work
-- [ ] Backup ~/{Desktop,Documents,Downloads,Pictures,Projects,Transfers,Videos}
-  - [ ] Backup $ZDOTDIR/personal/
-  - [ ] Backup Game save data like Rocket League replay saves
-
-- autoinstall.yaml
+- [ ] Do a dry run of the existing install scripts on a VM (MUST test in UEFI mode)
+- [ ] Make note of the software installed manually
+  - New machine should support them & their dependencies (eg cocotb-vivado)
+- [ ] Save GSConnect & KDEConnect settings in Notion
+- [ ] Anki Sync
+- Backups (start backup)
+  - [ ] Pika paths (initiate sync)
+    - ~/{Desktop, Documents, Pictures, Projects}
+    - $ZDOTDIR/personal
+  - [ ] Manual paths
+    - ~/{Downloads,Transfers,Videos}
+    - Hermes: memories/, skills/, terminal-sessions/, sessions/, config.yaml, .env
+    - Game save data like Rocket League replays
+- [ ] Backup every Brave profile in other devices & confirm if things like bookmarks still work
+- [ ] autoinstall.yaml
   - Change timezone if necessary
   - Add user password hash via:     openssl passwd -6
   - Check serving machine's IP via: hostname -I
   - Initiate LAN transfer via:      python3 -m http.server <port>
       - Ensure that your firewall is not blocking <port>
   - Access from the yaml file as - http://<host-ip>:<port>/autoinstall.yaml
-  - There is an installer bug where after loading the autoinstall.yaml, the wifi disconnects, so go to settings & reconnect
+  - An installer bug casues wifi to get disconnected after the autoinstall.yaml file is loaded, go to settings & reconnect
 

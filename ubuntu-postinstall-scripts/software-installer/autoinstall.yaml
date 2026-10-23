@@ -101,7 +101,6 @@ autoinstall:
     - libnss3-tools # certificate validation tools
     - libfuse2t64 # To run appimages
     - openjdk-25-jre # To run .jar files
-    - libreoffice-java-common
     - zsh
     - curl
     - stow

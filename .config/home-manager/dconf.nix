@@ -231,7 +231,6 @@ in
                     "disk-utilities"
                     "network-utilities"
                     "language-support"
-                    "libreoffice"
                     "scrcpy"
                 ];
             };
@@ -240,7 +239,6 @@ in
                 name = "Office";
                 translate = false;
                 apps = [
-                    "libreoffice-startcenter.desktop"
                     "onlyoffice-desktopeditors.desktop"
                     "drawio_drawio.desktop"
                     "org.kde.drawy.desktop"
@@ -252,17 +250,6 @@ in
                     "org.gnome.Papers.desktop"
                     "org.gnome.Loupe.desktop"
                     "vocalinux.desktop"
-                ];
-            };
-            "org/gnome/desktop/app-folders/folders/libreoffice" = {
-                name = "LibreOffice";
-                translate = false;
-                apps = [
-                    "libreoffice-calc.desktop"
-                    "libreoffice-writer.desktop"
-                    "libreoffice-impress.desktop"
-                    "libreoffice-math.desktop"
-                    "libreoffice-draw.desktop"
                 ];
             };
             "org/gnome/desktop/app-folders/folders/project-management" = {
@@ -357,6 +344,8 @@ in
                 name = "Disk Utilities";
                 translate = false;
                 apps = [
+                    "timeshift-gtk.desktop"
+                    "org.gnome.World.PikaBackup.desktop"
                     "org.gnome.baobab.desktop" # Disk Usage Analyser
                     "org.gnome.DiskUtility.desktop"
                     "usb-creator-gtk.desktop"  # Starup Disk Creator
@@ -413,7 +402,6 @@ in
                         "anki.desktop"
                         "surfshark_surfshark.desktop"
                         "io.github.giantpinkrobots.varia.desktop"
-                        "timeshift-gtk.desktop"
                         "tv.kodi.Kodi.desktop"
                         "net.nokyan.Resources.desktop"
                     ])
@@ -423,7 +411,6 @@ in
                         "disk-utilities"
                         "network-utilities"
                         "software-management"
-                        "libreoffice"
                         "kicad"
                         "language-support"
                         "scrcpy"

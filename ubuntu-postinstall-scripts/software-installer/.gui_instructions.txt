@@ -1,14 +1,14 @@
 *finish up some GUI configuration while the installer runs*
+
 - Gnome Extensions
   (Essentials)
-  - [x] Bluetooth Battery Meter
-  - [x] Blur my shell
-  - [x] Just Perfection
-  - [x] Copyous
-  - [x] GSConnect
-  - [x] Grand Theft Focus
-  - [x] AATWS
-
+  - [ ] Bluetooth Battery Meter
+  - [ ] Blur my shell
+  - [ ] Just Perfection
+  - [ ] Copyous
+  - [ ] GSConnect
+  - [ ] Grand Theft Focus
+  - [ ] AATWS
   (Optional)
   - winrects@cua (cua_driver)
   - Battery time (pomoke)
@@ -23,54 +23,65 @@
   - V-Shell
   - Open bar
 
-Notes
-  - [ ] Enable Variable Refresh Rate under the Display settings
-  - Brave
-    - [ ] Hamburger icon -> Settings -> System -> Upgrade to Brave Origin & Brave Origin -> Features, enable Tor & Wayback Machine
-    - [ ] Sync the web-browser on your default machine with the current machine
-  - [ ] Enable bug reporting
-    sudo cp /etc/apport/crashdb.conf /etc/apport/crashdb.conf.bak && sudo sed -i 's/databases\["ubuntu"\]\["problem_types"\] = \["Bug", "Package"\]/databases["ubuntu"]["problem_types"] = ["Bug", "Package", "Crash"]/' /etc/apport/crashdb.conf
-  - [ ] Use the DNS server addresses in autoinstall.yaml to set it up in the Network settings
-  - [ ] Setup your cloud storage service provider in nautilus
-  - [ ] Setup GSConnect & KDEconnect
+- Manual setup
   - [ ] Remove the 2 lines created by antigravity in ~/.zprofile
+  - GNOME
+    - [ ] Settings -> Displays -> Enable Variable Refresh Rate (VRR)
+    - [ ] Enable bug reporting
+      $ sudo cp /etc/apport/crashdb.conf /etc/apport/crashdb.conf.bak && sudo sed -i 's/databases\["ubuntu"\]\["problem_types"\] = \["Bug", "Package"\]/databases["ubuntu"]["problem_types"] = ["Bug", "Package", "Crash"]/' /etc/apport/crashdb.conf
+    - [ ] Settings -> Network
+      - Enter the DNS address list in `autoinstall.yaml`
+    - [ ] Settings -> Online Accounts. Cloud storage service provider in nautilus
+  - [ ] Brave
+    - Settings -> Sync accounts from your old machine
+    - Settings -> System -> Upgrade to Brave Origin.
+    - Settings -> Brave Origin -> Features - Enable "Tor", "Wayback Machine"
   - [ ] Setup timeshift (https://www.xda-developers.com/timeshift-saved-my-linux-install-after-i-broke-it)
     - Take 1 snapshot every 2-3 days
-  - [ ] Setup VSCode (Sign in with GitHub)
-  - [ ] Usually some hermes tools are not setup properly, run these commands
-    hermes tools post-setup browser_use_cli
-    hermes tools post-setup agent_browser
-    hermes doctor
-    - Make hermes fix all the tools by itself & have it give a report why certain tools could not be setup
+  - [ ] Setup GSConnect & KDEconnect
+  - [ ] Setup VSCode (GitHub account)
+  - [ ] Hermes: some tools aren't setup properly, make it locate & fix any issues
+    $ hermes tools post-setup browser_use_cli
+    $ hermes tools post-setup agent_browser
+    $ hermes doctor
   - [ ] Zotero
-    - Under Edit -> Settings -> Advanced, set the data directory to ~/Documents/Zotero
+    - Edit -> Settings -> Advanced, set the data dir to ~/Documents/Zotero
   - [ ] AppManager
     - set repo url (for updates) for - winboat
     - remove from path for - winboat, lm-studio
-  - Winboat config
+  - [ ] Winboat
     - Install Windows 10 LTSC 2021
     - Allocate >= 8GB RAM & >= 2 cores & >= 100GB storage
     - Sharing home folder with linux is questionable
     - Disable autostart container
     - Disable animations
-  - Anki Extensions
+  - [ ] Anki Add-ons
     - Disable live mathjax rendering in the editor window
     - Scale Images - ankiweb.net/shared/info/1312865748
     - Editor Live Preview - https://ankiweb.net/shared/info/1960039667
-
-Optional
-  - Install wine from the official website
+  - [ ] Pika Backup
+    $ rclone config # & press n
+        name> onedrive
+        storage> onedrive
+        client_id> <blank>
+        client_secret> <blank>
+        region> global
+        tenant <blank>
+        Edit Advanced Config? -> n
+        Use browser to auto authenticate? -> y
+        config_type> onedrive
+        config_driveid> <number of the option - OneDrive (personal)>
+        keep this remote? y
+        quit
+    $ mkdir ~/Backups
+    - Pika -> Preferences -> Post-Backup command: [ "$OUTCOME" = COMPLETED ] && [ -f "$URL/config" ] && $HOME/.nix-profile/bin/rclone sync "$URL" onedrive:Dev-Hub/Workspace-Backups/pika-lnx-bkp --delete-after
+    (Restore backup on new machine)
+    $ rclone copy "onedrive:Dev-Hub/Workspace-Backups/pika-lnx-bkp" ~/Backups/pika --progress
+    $ rclone check ~/Backups/pika "onedrive:Dev-Hub/Workspace-Backups/pika-lnx-bkp" --size-only # verify the restore
+    - Add the backup list of folders from [migration.txt]
+    - Schedule: Backup daily (17:00), Keep some archives
+(Optional)
   - Install ClamAV (Anti-Virus) - youtube.com/watch?v=fCAvpFB5x6g
   - Comic book reader - Komikku or Foliage
-  - Additional screen support
-    sudo nala install ddcutil ddcci-dkms
-    echo ddcci | sudo tee /etc/modules-load.d/ddcci.conf
-    - NOTE: get {name} by running 'ddcutil detect'
-    sudo tee /etc/udev/rules.d/60-ddcci-monitor.rules >/dev/null <<'EOF'
-    ACTION=="add", KERNEL=="i2c-*", ATTR{name}=="NVIDIA i2c adapter 5 at 1:00.0", RUN+="/bin/sh -c 'echo ddcci 0x37 >/sys$devpath/new_device'"
-    EOF
-  - Setup scrcpy
-    sudo nala install scrcpy android-tools-adb
-  - If there's mouse scroll wheel issues
-    sudo apt install imwheel
+  - For mouse scroll wheel issues - sudo nala install imwheel
 

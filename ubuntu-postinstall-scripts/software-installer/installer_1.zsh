@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-cd "$(dirname "${(%):-%x}")" # change directory to script location
+cd "$(dirname "${(%):-%x}")" # change to script location
 sudo -v
 
 echo "Welcome to the *Ubuntu 26.04 LTS* installer :)"
@@ -12,8 +12,6 @@ gsettings set org.gnome.desktop.background picture-options 'zoom'
 
 sudo nala full-upgrade -y
 cd ~/.dotfiles/ && stow . && cd -
-
-sudo nala install -y ttf-mscorefonts-installer fonts-crosextra-carlito fonts-crosextra-caladea # MS fonts for LibreOffice
 
 # Browser
 name='brave-browser'
@@ -81,7 +79,6 @@ sudo nala install --update -y zotero
 sudo add-apt-repository -y ppa:jdxcode/mise
 sudo nala install --update -y mise
 
-sudo add-apt-repository -y ppa:libreoffice/ppa
 sudo add-apt-repository -y ppa:git-core/ppa
 sudo nala update
 
@@ -115,8 +112,6 @@ OFFICE_SOFTWARE_SNAP=(
     "drawio"         # flatpak is not official
 )
 sudo snap install "${OFFICE_SOFTWARE_SNAP[@]}"
-# sudo snap install --channel=6/stable lxd
-# sudo snap install --classic workshop
 
 # Games
 echo 'ntsync' | sudo tee /etc/modules-load.d/ntsync.conf
@@ -153,6 +148,7 @@ ADDITIONAL_APPS_FLATPAK=(
     "org.videolan.VLC"
     "net.epson.epsonscan2"
     # Project Management
+    "org.gnome.World.PikaBackup"
     "com.rustdesk.RustDesk"
     # "org.ghidra_sre.Ghidra"
     # "org.jitsi.jitsi-meet" # Jitsi-client
@@ -168,17 +164,16 @@ sudo sh -c 'curl -fsSL https://cpanmin.us | perl - App::cpanminus'
 # Nixpkg manager
 sh <(curl --proto "=https" --tlsv1.2 -L https://nixos.org/nix/install) --daemon --yes
 
-# Gradia - GNOME Extension
+# Gradia
+flatpak install --assumeyes flathub be.alexandervanhee.gradia
 git clone https://github.com/AlexanderVanhee/gradia-capture.git && \
 cd gradia-capture && \
 ./build.sh -i
 cd -
 rm -rf gradia-capture
-flatpak install --assumeyes flathub be.alexandervanhee.gradia
 
 # Improving nautilus
 xdg-mime default org.gnome.TextEditor.desktop text/markdown
-#  NOTE: might not be needed
 touch ~/Templates/file
 
 echo "This is the end of installer_1, run installer_2 after a reboot"

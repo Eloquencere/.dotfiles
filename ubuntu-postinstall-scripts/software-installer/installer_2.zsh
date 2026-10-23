@@ -3,8 +3,6 @@
 cd "$(dirname "${(%):-%x}")" # change directory to script location
 sudo -v
 
-# Fetch the latest release tag (without a leading 'v') for a GitHub repo.
-# Requires only curl + sed (no jq) so a fresh install works out of the box.
 latest_tag() {
     local repo="$1" tag
     tag="$(curl -fsSL -H 'Accept: application/vnd.github+json' \
@@ -61,8 +59,7 @@ home-manager switch # WARN: can freeze here
 sleep 2
 
 # Mise
-mise trust
-mise install
+mise trust; mise install
 rustup toolchain install stable
 rustup default stable
 
@@ -148,13 +145,13 @@ sudo snap remove --purge "${BLOAT_SNAP[@]}"
 sudo nala purge -y "${BLOAT_SNAP[@]}"
 
 BLOAT_APT=(
+    "libreoffice*"
     "gnome-calculator"
     "ptyxis" "deja-dup" "seahorse" "shotwell" "showtime"
     "rhythmbox" "orca" "info" "simple-scan" "transmission-gtk"
     "ed" "vim-common" "nano"
 )
 sudo nala purge -y "${BLOAT_APT[@]}"
-# FUTURE: delete all libreoffice tools except draw & keep onlyoffice
 
 sudo nala install --fix-broken
 source ../continual-reference/software_updater.zsh
