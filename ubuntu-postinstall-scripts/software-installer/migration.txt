@@ -3,15 +3,15 @@
   - New machine should support them & their dependencies (eg cocotb-vivado)
 - [ ] Save GSConnect & KDEConnect settings in Notion
 - [ ] Anki Sync
-- Backups (start backup)
+- Backups
   - [ ] Pika paths (initiate sync)
-    - ~/{Desktop, Documents, Pictures, Projects}
+    - ~/{Desktop,Documents,Pictures,Projects}
     - $ZDOTDIR/personal
   - [ ] Manual paths
     - ~/{Downloads,Transfers,Videos}
     - Hermes: memories/, skills/, terminal-sessions/, sessions/, config.yaml, .env
     - Game save data like Rocket League replays
-- [ ] Backup every Brave profile in other devices & confirm if things like bookmarks still work
+- [ ] Backup every Brave profile to other devices & confirm if things like bookmarks still work
 - [ ] autoinstall.yaml
   - Change timezone if necessary
   - Add user password hash via:     openssl passwd -6

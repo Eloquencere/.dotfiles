@@ -31,6 +31,7 @@ typst = "latest"
 "cargo:cargo-expand" = "latest"
 "cargo:cargo-information" = "latest"
 "cargo:cargo-deny" = "latest"
+hugo = "latest"
 # # Profiling
 # "cargo:cargo-bloat" = "latest"
 # "cargo:cargo-flamegraph" = "latest"

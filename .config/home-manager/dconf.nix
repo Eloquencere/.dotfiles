@@ -26,14 +26,14 @@ in
                 ];
             };
             "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-                name="Qalculate Calculator";
-                command="flatpak run io.github.Qalculate";
-                binding="XF86Calculator";
+                name = "Qalculate Calculator";
+                command = "flatpak run io.github.Qalculate";
+                binding = "XF86Calculator";
             };
             "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" = {
-                name="wezterm";
-                command="wezterm start";
-                binding="<Alt><Shift>w";
+                name = "wezterm";
+                command = "wezterm start";
+                binding = "<Alt><Shift>w";
             };
 
             "org/gnome/settings-daemon/plugins/color" = {
@@ -117,12 +117,12 @@ in
             };
 
             "org/gnome/shell/extensions/custom-hot-corners-extended/misc" = {
-                panel-menu-enable=false;
-                show-osd-monitor-indexes=false;
+                panel-menu-enable = false;
+                show-osd-monitor-indexes = false;
             };
 
             "org/gnome/shell/extensions/custom-hot-corners-extended/monitor-0-top-left-0" = {
-                action="toggle-applications";
+                action = "toggle-applications";
             };
 
             "org/gnome/shell/extensions/just-perfection" = {
@@ -141,13 +141,13 @@ in
             };
 
             "org/gnome/shell/extensions/blur-my-shell/dash-to-dock" = {
-                blur=false;
+                blur = false;
             };
             "org/gnome/shell/extensions/blur-my-shell/panel" = {
-                blur=false;
+                blur = false;
             };
-            "org/gnome/shell/extensions/blur-my-shell/popup" = {
-                blur=false;
+            "org/gnome/shell/extensions/blur-my-shell/screenshot" = {
+                blur = false;
             };
 
             "org/gnome/shell/extensions/space-bar/behavior/always-show-numbers" = {
@@ -240,9 +240,9 @@ in
                 translate = false;
                 apps = [
                     "onlyoffice-desktopeditors.desktop"
+                    "zotero.desktop"
                     "drawio_drawio.desktop"
                     "org.kde.drawy.desktop"
-                    "zotero.desktop"
                     "com.github.jeromerobert.pdfarranger.desktop"
                     "net.epson.epsonscan2.desktop"
                     "io.github.Qalculate.desktop"

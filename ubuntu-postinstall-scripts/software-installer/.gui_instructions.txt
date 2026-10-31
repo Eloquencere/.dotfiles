@@ -24,7 +24,6 @@
   - Open bar
 
 - Manual setup
-  - [ ] Remove the 2 lines created by antigravity in ~/.zprofile
   - GNOME
     - [ ] Settings -> Displays -> Enable Variable Refresh Rate (VRR)
     - [ ] Enable bug reporting
@@ -44,8 +43,10 @@
     $ hermes tools post-setup browser_use_cli
     $ hermes tools post-setup agent_browser
     $ hermes doctor
-  - [ ] Zotero
-    - Edit -> Settings -> Advanced, set the data dir to ~/Documents/Zotero
+  - [ ] Zotero - Go, Edit -> Settings -> Advanced
+    - Set the data dir to ~/Documents/Zotero
+    - Allow other applications to communicate with Zotero
+    - Tell Hermes - "set up zotero-cli for me"
   - [ ] AppManager
     - set repo url (for updates) for - winboat
     - remove from path for - winboat, lm-studio
@@ -75,6 +76,7 @@
         quit
     $ mkdir ~/Backups
     - Pika -> Preferences -> Post-Backup command: [ "$OUTCOME" = COMPLETED ] && [ -f "$URL/config" ] && $HOME/.nix-profile/bin/rclone sync "$URL" onedrive:Dev-Hub/Workspace-Backups/pika-lnx-bkp --delete-after
+    - Set the title as "pika"
     (Restore backup on new machine)
     $ rclone copy "onedrive:Dev-Hub/Workspace-Backups/pika-lnx-bkp" ~/Backups/pika --progress
     $ rclone check ~/Backups/pika "onedrive:Dev-Hub/Workspace-Backups/pika-lnx-bkp" --size-only # verify the restore

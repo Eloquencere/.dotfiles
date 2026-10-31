@@ -106,7 +106,7 @@ if [[ $user_choice =~ ^[Yy]$ ]]; then
     read -r "email?Email ID: "
     git config --global user.email "$email"
     echo "you need to login to Github as well"
-    gh auth login --scopes project
+    gh auth login --scopes project,repo,read:org,gist
     git config --global --replace-all 'credential.https://github.com.helper' '!'"$(which gh) auth git-credential"
     git config --global --replace-all 'credential.https://gist.github.com.helper' '!'"$(which gh) auth git-credential"
 fi
@@ -126,6 +126,7 @@ curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
 # Antigravity CLI
 curl -fsSL https://antigravity.google/cli/install.sh | bash
 agy
+head -n -4 ~/.dotfiles/.zprofile > temp.txt && mv -f temp.txt ~/.dotfiles/.zprofile
 
 # # Pi
 # curl -fsSL https://pi.dev/install.sh | sh
