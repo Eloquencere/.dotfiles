@@ -1,8 +1,5 @@
 # Profile file. Runs on login. Environment variables are here
 
-# Anki - Remove when wayland support is fixed
-export ANKI_WAYLAND=1
-
 # Default path
 export EDITOR="nvim"
 
@@ -28,8 +25,6 @@ export RUSTC_WRAPPER="sccache"
 export RUSTUP_HOME="$XDG_DATA_HOME/rust/rustup"
 export CARGO_HOME="$XDG_DATA_HOME/rust/cargo"
 export PATH="$PATH:$CARGO_HOME/bin"
-
-export PYTHONHISTORY="/dev/null"
 
 # Conan(C/C++)
 export CONAN_HOME="$XDG_DATA_HOME/conan"

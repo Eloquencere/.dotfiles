@@ -1,7 +1,7 @@
---ignore=wallpapers
---ignore=scripts
---ignore=archives
 --ignore=layout.kdl
+--ignore=wallpapers
+--ignore=^ubuntu-postinstall-scripts$
+--ignore=^\.archives$
 --ignore=^\.git$
 --ignore=^\.gitignore$
 --ignore=^\.stowrc$

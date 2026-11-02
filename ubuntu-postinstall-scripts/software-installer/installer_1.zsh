@@ -94,11 +94,10 @@ APPLICATIONS_APT=(
 sudo nala install -y "${APPLICATIONS_APT[@]}"
 
 # Perf Improvement
-sudo nala install -y preload earlyoom # earlyoom prob not needed since it's going to be built-in
 echo 'vm.swappiness=10' | sudo tee /etc/sysctl.d/99-swappiness.conf
 
 sudo nala install -y gufw
-sudo ufw enable
+sudo ufw --force enable
 sudo ufw allow 1714:1764/tcp
 sudo ufw allow 1714:1764/udp
 mkdir -p $HOME/Transfers/GSConnect
@@ -147,6 +146,7 @@ ADDITIONAL_APPS_FLATPAK=(
     "io.github.Qalculate"
     "org.videolan.VLC"
     "net.epson.epsonscan2"
+    "net.ankiweb.Anki"
     # Project Management
     "org.gnome.World.PikaBackup"
     "com.rustdesk.RustDesk"

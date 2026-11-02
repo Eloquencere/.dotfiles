@@ -17,15 +17,6 @@ version="${$(latest_tag KiCad/kicad-source-mirror)%.*}"
 sudo add-apt-repository --yes ppa:kicad/kicad-$version-releases
 sudo nala install --update --install-recommends -y kicad
 
-# Anki
-version="$(latest_tag ankitects/anki)"
-wget https://github.com/ankitects/anki/releases/latest/download/anki-$version-linux-x86_64.tar.zst
-tar xaf anki-$version-linux-x86_64.tar.zst
-cd anki-linux/
-sudo ./install.sh
-anki
-cd ..; rm -rf anki-*
-
 # AppManager
 version="$(latest_tag kem-a/AppManager)"
 wget -O appmanager.AppImage "https://github.com/kem-a/AppManager/releases/latest/download/AppManager-$version-anylinux-x86_64.AppImage"
@@ -46,7 +37,7 @@ open .gui_instructions.txt
 source ./hdl_essentials.zsh
 
 # Kanata (nix) setup
-sudo groupadd uinput
+sudo groupadd -f uinput
 echo 'KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"' \
   | sudo tee /etc/udev/rules.d/99-uinput.rules
 sudo udevadm control --reload-rules
@@ -131,14 +122,6 @@ head -n -4 ~/.dotfiles/.zprofile > temp.txt && mv -f temp.txt ~/.dotfiles/.zprof
 # # Pi
 # curl -fsSL https://pi.dev/install.sh | sh
 
-AI_PKGS=(
-    @github/copilot
-    cline @kilocode/cli
-    freebuff
-    opencode-ai
-)
-npm install -g "${AI_PKGS[@]}"
-
 BLOAT_SNAP=(
     "thunderbird" "firefox"
 )
@@ -154,7 +137,7 @@ BLOAT_APT=(
 )
 sudo nala purge -y "${BLOAT_APT[@]}"
 
-sudo nala install --fix-broken
+sudo nala install --fix-broken -y
 source ../continual-reference/software_updater.zsh
 
 # Clean up

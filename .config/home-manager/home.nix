@@ -1,9 +1,10 @@
-{ config, pkgs, lib, unstable, ... }:
+{ config, pkgs, lib, unstable, username, ... }:
 {
-    home.username = "eloquencer";
-    home.homeDirectory = "/home/${config.home.username}";
-
+    home.username = username;
+    home.homeDirectory = "/home/${username}";
     home.stateVersion = "26.05"; # Please check HM release notes before changing this number
+
+    news.display = "silent";
 
     imports = [
         ./dconf.nix

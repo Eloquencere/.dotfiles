@@ -399,7 +399,7 @@ in
                         "coding"
                         "virtualisation"
                         "games"
-                        "anki.desktop"
+                        "net.ankiweb.Anki.desktop"
                         "surfshark_surfshark.desktop"
                         "io.github.giantpinkrobots.varia.desktop"
                         "tv.kodi.Kodi.desktop"

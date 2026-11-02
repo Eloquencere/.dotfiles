@@ -26,6 +26,7 @@ uv pip install --python $HOME/.hermes/hermes-agent/venv \
   -r $DOTFILES_HOME/ubuntu-postinstall-scripts/continual-reference/hermes_requirements.txt
 agy update
 
+fwupdmgr refresh --force && fwupdmgr update -y
 sudo journalctl --vacuum-time=7d
 
 echo "Update Lazy plugins & Mason, restart your machine"
@@ -43,7 +44,6 @@ echo "Update Lazy plugins & Mason, restart your machine"
 
 # # Run manually
 # uv cache prune
-# npm update -g
 
 # # Not installed
 # sudo auto-cpufreq --update

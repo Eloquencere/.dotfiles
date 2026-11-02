@@ -9,7 +9,7 @@ rust = "latest"
 # clang = "latest"
 # conan = "latest"
 go = "latest"
-node = "26.8.2" # WARN: change to latest when changing machines
+node = "lts"
 # deno = "latest"
 # julia = "latest"
 python = "latest"
@@ -21,6 +21,12 @@ usage = "latest" # tab completion (for mise, best handled by mise)
 typst = "latest"
 "cargo:hayagriva" = { version = "latest", features = ["cli"] }
 
+"npm:@github/copilot" = "latest"
+"npm:cline" = "latest"
+"npm:@kilocode/cli" = "latest"
+"npm:opencode-ai" = "latest"
+"npm:freebuff" = "latest"
+
 "pipx:wavedrom" = "latest"
 # "pipx:fusesoc" = "latest"
 # "pipx:jupyterlab" = "latest"
@@ -31,7 +37,6 @@ typst = "latest"
 "cargo:cargo-expand" = "latest"
 "cargo:cargo-information" = "latest"
 "cargo:cargo-deny" = "latest"
-hugo = "latest"
 # # Profiling
 # "cargo:cargo-bloat" = "latest"
 # "cargo:cargo-flamegraph" = "latest"

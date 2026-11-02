@@ -14,6 +14,8 @@
 
   outputs = { nixpkgs, nixpkgs-unstable, home-manager, ... }:
     let
+      # Single source of truth for the account shown to Home Manager.
+      username = "eloquencer";
       system = "x86_64-linux";
       pkgs = import nixpkgs {
         inherit system;
@@ -26,9 +28,9 @@
     in
     {
       formatter = nixpkgs.legacyPackages.${system}.nixfmt-rfc-style;
-      homeConfigurations."eloquencer" = home-manager.lib.homeManagerConfiguration {
+      homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        extraSpecialArgs = { inherit unstable; };
+        extraSpecialArgs = { inherit unstable username; };
         modules = [
           ./home.nix
         ];
