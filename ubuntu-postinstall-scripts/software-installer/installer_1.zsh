@@ -22,18 +22,6 @@ xdg-settings set default-web-browser $name.desktop
 xdg-mime default $name.desktop x-scheme-handler/mailto
 $name &
 
-# Wezterm
-curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
-printf '%s\n' \
-  'Types: deb' \
-  'URIs: https://apt.fury.io/wez/' \
-  'Suites: *' \
-  'Components: *' \
-  "Architectures: $(dpkg --print-architecture)" \
-  'Signed-By: /usr/share/keyrings/wezterm-fury.gpg' \
-  | sudo tee /etc/apt/sources.list.d/wezterm.sources > /dev/null
-sudo nala install --update -y wezterm
-
 # Docker
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
 sudo chmod a+r /etc/apt/keyrings/docker.asc

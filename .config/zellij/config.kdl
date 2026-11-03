@@ -1,4 +1,4 @@
-theme "dracula" // ao, blade-runner, dracula
+theme "dracula" // dracula/ao/blade-runner/molokai-dark/retro-wave/ansi
 default_layout "compact"
 on_force_close "quit"
 styled_underlines true

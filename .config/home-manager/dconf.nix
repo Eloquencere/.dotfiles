@@ -67,7 +67,7 @@ in
                 gtk-theme               = "Yaru-blue-dark";
                 ## Dark Mode
 
-                text-scaling-factor     = 1.27;
+                text-scaling-factor     = 1.25;
                 cursor-size             = 36;
 
                 show-battery-percentage = true;
@@ -388,7 +388,7 @@ in
                     "notion-desktop_notion-desktop.desktop"
                     "md.obsidian.Obsidian.desktop"
                     "brave-browser.desktop"
-                    "org.wezfurlong.wezterm.desktop"
+                    "com.mitchellh.ghostty.desktop"
                     "org.gnome.Nautilus.desktop"
                 ];
 

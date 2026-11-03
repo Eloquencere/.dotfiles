@@ -19,12 +19,17 @@ sudo nala install --install-recommends -y kicad
 
 # AppManager
 version="$(latest_tag kem-a/AppManager)"
-wget -O appmanager.AppImage "https://github.com/kem-a/AppManager/releases/latest/download/AppManager-$version-anylinux-x86_64.AppImage"
+wget -O appmanager.AppImage "https://github.com/kem-a/AppManager/releases/download/$version/AppManager-$version-anylinux-x86_64.AppImage"
 chmod +x ./appmanager.AppImage && ./appmanager.AppImage
+
+# Ghostty
+version="$(latest_tag pkgforge-dev/ghostty-appimage)"
+wget -O ghostty.AppImage "https://github.com/pkgforge-dev/ghostty-appimage/releases/download/v$version/Ghostty-$version-x86_64.AppImage"
+app-manager install ./ghostty.AppImage
 
 # WinBoat
 version="$(latest_tag TibixDev/winboat)"
-wget -O winboat.AppImage "https://github.com/TibixDev/winboat/releases/latest/download/winboat-$version-x86_64.AppImage"
+wget -O winboat.AppImage "https://github.com/TibixDev/winboat/releases/download/$version/winboat-$version-x86_64.AppImage"
 app-manager install ./winboat.AppImage
 
 # LM Studio
@@ -51,10 +56,6 @@ sleep 2
 
 # Mise
 mise trust; mise install
-
-# uv tool install 'aria2p[tui]'
-# mkdir -p ~/.local/state/aria2 && touch ~/.local/state/aria2/session.txt
-# aria2c --conf-path=~/.config/aria2/aria2.conf --daemon=true
 
 rmdir ~/{Public,Music}
 printf '%s\n' \

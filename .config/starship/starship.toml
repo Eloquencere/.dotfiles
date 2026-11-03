@@ -21,16 +21,17 @@ palette = "Power10"
 [palettes.Power10]
 # colors
 directory = 'cyan'
+directorybold = 'bright-cyan' # WezTerm brightens ANSI 0-7 under bold; Ghostty does not
 ubuntu = '#E95420'
 
 # only lowercase names
 greydimmed = '#424242'
 greydarker = '#242424'
 ossymbol = '#AAAAAA' # dimmed white
-user = 'green'
-userroot = 'red'
-sshsymbol = 'green'
-hostname = 'green'
+user = 'bright-green'
+userroot = 'bright-red'
+sshsymbol = 'bright-green'
+hostname = 'bright-green'
 python = 'yellow'
 # git start ---
 orangegit = '#E04D27'
@@ -46,7 +47,7 @@ staged = 'green'
 renamed = 'yellow'
 deleted = 'orange'
 # git end ---
-jobs = 'blue'
+jobs = 'bright-blue'
 memory = 'purple'
 duration = 'yellow'
 fill = '#424242' # greydimmed
@@ -56,7 +57,7 @@ localip = 'green'
 
 [directory]
 format = "[  ]($style)[$read_only]($read_only_style)[$repo_root]($repo_root_style)[$path]($style)"
-style = 'fg:directory bold'
+style = 'fg:directorybold bold'
 home_symbol = "~"
 read_only = "\uf023 " # \uf023 ' '
 read_only_style = 'red'
@@ -89,13 +90,13 @@ symbol = " \uf00d" # \u2717 \uf467 \uebde  ✘
 disabled = false
 
 [cmd_duration]
-format = "[\ueab5\uf017 $duration]($style)" # \ueab5 \uf017   
+format = "[\u2039\uf017 $duration]($style)" # \u2039 \uf017   
 style = 'fg:duration'
 min_time = 500
 disabled = false
 
 [jobs]
-format = "[\ueab5](fg:jobs bold)[$symbol $number]($style)" # \u3009
+format = "[\u2039](fg:jobs bold)[$symbol $number]($style)" # \u3009
 style = 'fg:jobs'
 symbol = "\ueb7b" # \ueb7b  \uef0c 省 # '廒' # '󰜎' # ''
 symbol_threshold = 1
@@ -103,11 +104,11 @@ number_threshold = 2
 disabled = false
 
 [shell]
-format = "[\ueab5](fg:#FFB65E)[$indicator]($style)"
+format = "[\u2039](fg:#FFB65E)[$indicator]($style)"
 zsh_indicator = 'zsh'
 bash_indicator = 'bash'
 style = 'fg:#FFB65E bold'
-disabled = false
+disabled = true
 
 # Customization and activation of some modules:
 # Listed in the order of their position in the module rows above
@@ -158,7 +159,7 @@ RockyLinux = "\uf32b " # 
 Redox = "\uf331 " #   󰺕
 Solus = "\uf32d " # "" # " "
 SUSE = "\uef6d " # ""
-Ubuntu = "[\ueab5](fg:#E95420)[\uf31b](fg:#E95420) " # ""
+Ubuntu = "[\u2039](fg:ubuntu)[\uebc9](fg:ubuntu) " # ""
 Ultramarine = "󱙳 " # 🔷
 Unknown = "\uf108 " # ""
 Void = "\uf32e " #  
