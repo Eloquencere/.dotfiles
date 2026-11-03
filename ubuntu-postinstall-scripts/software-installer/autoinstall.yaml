@@ -2,6 +2,9 @@
 autoinstall:
   version: 1
 
+  interactive-sections:
+    - identity
+
   identity:
     hostname: dev-machine
     realname: eloquencer

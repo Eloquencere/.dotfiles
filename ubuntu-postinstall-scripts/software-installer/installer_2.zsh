@@ -15,7 +15,7 @@ latest_tag() {
 # KiCAD
 version="${$(latest_tag KiCad/kicad-source-mirror)%.*}"
 sudo add-apt-repository --yes ppa:kicad/kicad-$version-releases
-sudo nala install --update --install-recommends -y kicad
+sudo nala install --install-recommends -y kicad
 
 # AppManager
 version="$(latest_tag kem-a/AppManager)"
@@ -51,8 +51,6 @@ sleep 2
 
 # Mise
 mise trust; mise install
-rustup toolchain install stable
-rustup default stable
 
 # uv tool install 'aria2p[tui]'
 # mkdir -p ~/.local/state/aria2 && touch ~/.local/state/aria2/session.txt
@@ -119,9 +117,6 @@ curl -fsSL https://antigravity.google/cli/install.sh | bash
 agy
 head -n -4 ~/.dotfiles/.zprofile > temp.txt && mv -f temp.txt ~/.dotfiles/.zprofile
 
-# # Pi
-# curl -fsSL https://pi.dev/install.sh | sh
-
 BLOAT_SNAP=(
     "thunderbird" "firefox"
 )
@@ -146,7 +141,7 @@ rm -f ~/{.bash*,.profile,.zshrc,.zcompdump}
 rm -rf ~/.mozilla
 
 read "?Address all other open windows & Press Enter to reboot and consolidate the installation..."
-sudo reboot now
+sudo shutdown -r now
 
 # # Auto-cpufreq
 # git clone https://github.com/AdnanHodzic/auto-cpufreq.git

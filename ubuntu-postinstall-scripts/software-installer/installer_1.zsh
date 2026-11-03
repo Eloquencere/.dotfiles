@@ -61,7 +61,7 @@ printf '%s\n' \
 sudo nala install --update -y code
 
 # OnlyOffice
-curl -fsSL https://download.onlyoffice.com/GPG-KEY-ONLYOFFICE | sudo gpg --dearmor -o /usr/share/keyrings/onlyoffice.gpg
+curl -fsSL https://download.onlyoffice.com/GPG-KEY-ONLYOFFICE | sudo gpg --dearmor --yes -o /usr/share/keyrings/onlyoffice.gpg
 printf '%s\n' \
   'Types: deb' \
   'URIs: https://download.onlyoffice.com/repo/debian' \
@@ -77,10 +77,9 @@ sudo nala install --update -y zotero
 
 # Mise
 sudo add-apt-repository -y ppa:jdxcode/mise
-sudo nala install --update -y mise
+sudo nala install -y mise
 
 sudo add-apt-repository -y ppa:git-core/ppa
-sudo nala update
 
 APPLICATIONS_APT=(
     "gdb" "valgrind" "strace"

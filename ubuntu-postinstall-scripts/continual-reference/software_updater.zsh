@@ -22,8 +22,6 @@ zinit self-update
 zinit update --all
 
 hermes update
-uv pip install --python $HOME/.hermes/hermes-agent/venv \
-  -r $DOTFILES_HOME/ubuntu-postinstall-scripts/continual-reference/hermes_requirements.txt
 agy update
 
 fwupdmgr refresh --force && fwupdmgr update -y

@@ -9,12 +9,13 @@
     - $ZDOTDIR/personal
   - [ ] Manual paths
     - ~/{Downloads,Transfers,Videos}
-    - Hermes: memories/, skills/, terminal-sessions/, sessions/, config.yaml, .env
+    - Hermes: memories/,skills/,terminal-sessions/,sessions/,config.yaml,.env
+    (Optional)
     - Game save data like Rocket League replays
 - [ ] Backup every Brave profile to other devices & confirm if things like bookmarks still work
-- [ ] autoinstall.yaml
-  - Change timezone if necessary
-  - Add user password hash via:     openssl passwd -6
+
+
+- Loading autoinstall.yaml
   - Check serving machine's IP via: hostname -I
   - Initiate LAN transfer via:      python3 -m http.server <port>
       - Ensure that your firewall is not blocking <port>

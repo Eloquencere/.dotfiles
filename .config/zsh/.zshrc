@@ -10,7 +10,6 @@ setopt promptsubst
 
 source "$ZINIT_HOME/zinit.zsh"
 
-# Keep compinit's completion cache in XDG cache dir, not ZDOTDIR
 ZINIT[ZCOMPDUMP_PATH]="$XDG_CACHE_HOME/zinit/.zcompdump"
 
 fpath+=$ZDOTDIR/completion
@@ -68,6 +67,7 @@ function zvm_config() {
     ZVM_INIT_MODE=sourcing # github.com/jeffreytse/zsh-vi-mode#initialization-mode
 }
 function zvm_after_init() {
+	zvm_set_cursor "$(zvm_cursor_style "$ZVM_INSERT_MODE_CURSOR")"
 	zvm_bindkey viins '^r' atuin-search
 	zvm_bindkey viins '^p' atuin-up-search
     zvm_bindkey viins '^b' clear-screen
