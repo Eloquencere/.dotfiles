@@ -14,18 +14,16 @@
         kanata
         nerd-fonts.ubuntu-sans
         xdotool
+        starship unstable.atuin zoxide
+        unstable.cargo-binstall
 
-        # Prompt improvement
-        starship fzf unstable.atuin
 
         zoxide eza fd bat ripgrep duf delta
-        yazi fastfetch
+        yazi fastfetch fzf
         croc btop mprocs
         rclone
-        aria2
 
         unstable.neovim tree-sitter
-        unstable.zellij
         gh unstable.lazygit
 
         # Documentation
@@ -33,7 +31,6 @@
         doxygen natural-docs
         hledger
 
-        unstable.cargo-binstall
 
         # # optional
         # lazydocker

@@ -9,7 +9,7 @@ theme = Wez
 background-opacity = 0.65
 background-blur-radius = 20
 # credit: github.com/sahaj-b/ghostty-cursor-shaders
-custom-shader = shaders/cursor_warp_fast.glsl
+# custom-shader = shaders/cursor_warp_fast.glsl
 
 # --- Window Layout ---
 maximize = true
@@ -17,9 +17,6 @@ gtk-titlebar = false
 window-decoration = none
 window-padding-x = 0
 window-padding-y = 0
-window-save-state = always
-quit-after-last-window-closed = true
-confirm-close-surface = false
 
 # --- Mouse & Cursor ---
 cursor-style = bar
@@ -27,7 +24,7 @@ cursor-style-blink = false
 adjust-cursor-thickness = 150%
 copy-on-select = clipboard
 mouse-hide-while-typing = true
-mouse-scroll-multiplier = precision:0.1,discrete:3
+mouse-scroll-multiplier = precision:1,discrete:1
 
 # --- Key mappings ---
 # Nvim tab switching

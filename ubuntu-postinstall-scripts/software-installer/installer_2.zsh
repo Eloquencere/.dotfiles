@@ -57,6 +57,10 @@ sleep 2
 # Mise
 mise trust; mise install
 
+# Improving nautilus
+xdg-mime default org.gnome.TextEditor.desktop text/markdown
+touch ~/Templates/file
+
 rmdir ~/{Public,Music}
 printf '%s\n' \
   "file://$HOME/Downloads" \

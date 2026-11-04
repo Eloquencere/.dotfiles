@@ -129,7 +129,7 @@ flatpak install --assumeyes flathub "${GAMES_FLATPAK[@]}"
 ADDITIONAL_APPS_FLATPAK=(
     # Office
     "md.obsidian.Obsidian"
-    "org.kde.drawy" # rnote dark mode not working
+    "org.kde.drawy"
     "io.github.Qalculate"
     "org.videolan.VLC"
     "net.epson.epsonscan2"
@@ -140,16 +140,10 @@ ADDITIONAL_APPS_FLATPAK=(
     # "org.ghidra_sre.Ghidra"
     # "org.jitsi.jitsi-meet" # Jitsi-client
     # System
-    # "io.github.giantpinkrobots.varia"
+    "io.github.giantpinkrobots.varia"
     # "io.github.totoshko88.RustConn"
 )
 flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
-
-# cpanminus pkg manager for perl
-sudo sh -c 'curl -fsSL https://cpanmin.us | perl - App::cpanminus'
-
-# Nixpkg manager
-sh <(curl --proto "=https" --tlsv1.2 -L https://nixos.org/nix/install) --daemon --yes
 
 # Gradia
 flatpak install --assumeyes flathub be.alexandervanhee.gradia
@@ -159,9 +153,11 @@ cd gradia-capture && \
 cd -
 rm -rf gradia-capture
 
-# Improving nautilus
-xdg-mime default org.gnome.TextEditor.desktop text/markdown
-touch ~/Templates/file
+# cpanminus pkg manager for perl - switch to nala
+sudo sh -c 'curl -fsSL https://cpanmin.us | perl - App::cpanminus'
+
+# Nixpkg manager
+sh <(curl --proto "=https" --tlsv1.2 -L https://nixos.org/nix/install) --daemon --yes
 
 echo "This is the end of installer_1, run installer_2 after a reboot"
 sleep 2

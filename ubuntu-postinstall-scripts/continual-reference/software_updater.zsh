@@ -21,7 +21,7 @@ pip install --upgrade pip && pip cache purge
 zinit self-update
 zinit update --all
 
-hermes update
+# hermes update
 agy update
 
 fwupdmgr refresh --force && fwupdmgr update -y

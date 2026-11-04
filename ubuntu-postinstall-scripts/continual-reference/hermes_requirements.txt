@@ -1,7 +1,0 @@
-sounddevice
-
-httpx
-camoufox[geoip]
-ddgs
-playwright
-

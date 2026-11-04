@@ -21,6 +21,8 @@ usage = "latest" # tab completion (for mise, best handled by mise)
 typst = "latest"
 "cargo:hayagriva" = { version = "latest", features = ["cli"] }
 
+zellij = "latest"
+
 "npm:@github/copilot" = "latest"
 "npm:cline" = "latest"
 "npm:@kilocode/cli" = "latest"
