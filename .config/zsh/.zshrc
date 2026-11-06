@@ -1,12 +1,11 @@
 setopt nobeep
 setopt correct
 setopt glob_dots
+setopt extended_glob
 setopt no_clobber
 setopt no_flow_control
-setopt extended_glob
 setopt hist_ignore_all_dups
 setopt interactive_comments
-setopt promptsubst
 
 source "$ZINIT_HOME/zinit.zsh"
 
@@ -43,25 +42,27 @@ zstyle ':fzf-tab:*' fzf-min-height 20
 zstyle ':fzf-tab:complete:*:*' fzf-preview '[[ -d $realpath ]] && eza --all --oneline --group-directories-first --color=always --icons=always -- $realpath || bat --color=always -- $realpath 2>/dev/null'
 
 function __lazy_shell_tools {
-    eval "$(starship init zsh)" &> /dev/null; prompt_starship_precmd
+    eval "$(starship init zsh)"; prompt_starship_precmd
+
+    # os_info shells out to lsb_release (~16ms) on every repaint, and the symbol
+    # never changes for a given machine. Compute it once; starship.toml renders
+    # it through the env_var module rather than re-running the os module.
+    export STARSHIP_OS_ICON="$(starship module os 2>/dev/null)"
+
+    typeset -g _starship_prompt_tmpl=$PROMPT _starship_rprompt_tmpl=$RPROMPT
+    __prompt_starship_render() {
+        PROMPT="${(e)_starship_prompt_tmpl}"
+        RPROMPT="${(e)_starship_rprompt_tmpl}"
+    }
+    add-zsh-hook precmd __prompt_starship_render
+
     eval "$(atuin init zsh --disable-ctrl-r --disable-up-arrow)"
     eval "$(zoxide init --cmd cd zsh)"
     eval "$(mise activate zsh)"
+    __prompt_starship_render
     add-zsh-hook -d precmd __lazy_shell_tools
 }
 add-zsh-hook precmd __lazy_shell_tools
-
-if [[ -n "$ZELLIJ" ]]; then
-    TRAPWINCH() { (( LINES > 1 )) && [[ -o zle ]] && zle .redisplay 2>/dev/null; }
-fi
-
-# Personal confidential variables
-if [[ -f "$ZDOTDIR/personal/zshrc.zsh" ]]; then
-    source "$ZDOTDIR/personal/zshrc.zsh"
-fi
-
-source "$ZDOTDIR/zsh-aliases.zsh"
-source "$ZDOTDIR/zsh-functions.zsh"
 
 function zvm_config() {
     ZVM_INIT_MODE=sourcing # github.com/jeffreytse/zsh-vi-mode#initialization-mode
@@ -72,4 +73,12 @@ function zvm_after_init() {
 	zvm_bindkey viins '^p' atuin-up-search
     zvm_bindkey viins '^b' clear-screen
 }
+
+source "$ZDOTDIR/zsh-aliases.zsh"
+source "$ZDOTDIR/zsh-functions.zsh"
+
+# Personal confidential variables
+if [[ -f "$ZDOTDIR/personal/zshrc.zsh" ]]; then
+    source "$ZDOTDIR/personal/zshrc.zsh"
+fi
 

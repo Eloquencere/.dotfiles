@@ -2,14 +2,11 @@
 
 format = """\
 [╭─](fg:directory)$directory\
-$git_branch$git_metrics$git_status\
-$docker_context\
+$git_branch$git_status$docker_context\
 $fill\
-$status\
-$cmd_duration\
-$jobs\
+$status$cmd_duration$jobs\
 $shell\
-$os\
+$env_var\
 $line_break\
 [╰╴](fg:directory)\
 [$character]($style)\
@@ -23,16 +20,11 @@ palette = "Power10"
 directory = 'cyan'
 directorybold = 'bright-cyan' # WezTerm brightens ANSI 0-7 under bold; Ghostty does not
 ubuntu = '#E95420'
-
-# only lowercase names
 greydimmed = '#424242'
-greydarker = '#242424'
-ossymbol = '#AAAAAA' # dimmed white
 user = 'bright-green'
 userroot = 'bright-red'
 sshsymbol = 'bright-green'
 hostname = 'bright-green'
-python = 'yellow'
 # git start ---
 orangegit = '#E04D27'
 conflicted = 'red'
@@ -48,154 +40,87 @@ renamed = 'yellow'
 deleted = 'orange'
 # git end ---
 jobs = 'bright-blue'
-memory = 'purple'
 duration = 'yellow'
 fill = '#424242' # greydimmed
 status = 'red'
-localip = 'green'
-# shell = '#424242' # greydimmed
 
 [directory]
-format = "[  ]($style)[$read_only]($read_only_style)[$repo_root]($repo_root_style)[$path]($style)"
+format = "[ \uf07c ]($style)[$read_only]($read_only_style)[$repo_root]($repo_root_style)[$path]($style)"
 style = 'fg:directorybold bold'
 home_symbol = "~"
-read_only = "\uf023 " # \uf023 ' '
+read_only = "\uf023 "
 read_only_style = 'red'
 truncation_length = 3
 truncation_symbol = '…/'
-truncate_to_repo = false
-use_os_path_sep = true
-disabled = false
 
 [git_branch]
-format = "[ \ue0b1 $symbol$branch(:$remote_branch)]($style)" # \u3009 or u276f #\ueab6 \ue0b1
-style = 'fg:orangegit' # NOTE: try something like purple
-symbol = "\ue0a0" # \ue702 
-disabled = false
+format = "[ \ue0b1 $symbol$branch(:$remote_branch)]($style)"
+style = 'fg:orangegit'
+symbol = "\ue0a0"
 
 [git_status]
 style = "fg:orangegit"
 format = '([\[$all_status$ahead_behind\]]($style))'
 stashed = "[$](fg:stashed) "
-disabled = false
 
 [fill]
 style = 'fg:fill'
-symbol = "\u2500" # "\u2500" "─" # no line: ' '
+symbol = "\u2500" # no line: ' '
 
 [status]
-format = "[$symbol $hex_status( \uf0a2 $signal_number-$signal_name)]($style)" # \uf0a2  , \ueaa2
+format = "[$symbol $hex_status( \uf0a2 $signal_number-$signal_name)]($style)"
 style = 'fg:status'
-symbol = " \uf00d" # \u2717 \uf467 \uebde  ✘
-disabled = false
+symbol = " \uf00d"
+disabled = false # the status module ships disabled, so this line is required
 
 [cmd_duration]
-format = "[\u2039\uf017 $duration]($style)" # \u2039 \uf017   
+format = "[‹\uf017 $duration]($style)"
 style = 'fg:duration'
 min_time = 500
-disabled = false
 
 [jobs]
-format = "[\u2039](fg:jobs bold)[$symbol $number]($style)" # \u3009
+format = "[‹](fg:jobs bold)[$symbol $number]($style)"
 style = 'fg:jobs'
-symbol = "\ueb7b" # \ueb7b  \uef0c 省 # '廒' # '󰜎' # ''
+symbol = "\ueb7b"
 symbol_threshold = 1
 number_threshold = 2
-disabled = false
-
-[shell]
-format = "[\u2039](fg:#FFB65E)[$indicator]($style)"
-zsh_indicator = 'zsh'
-bash_indicator = 'bash'
-style = 'fg:#FFB65E bold'
-disabled = true
 
 # Customization and activation of some modules:
 # Listed in the order of their position in the module rows above
 [os]
 format = "$symbol"
-disabled = false
+disabled = false # the os module ships disabled, so this line is required
 
 [os.symbols]
-AIX = "AIX "
-Alpaquita = "\uf26a " # \uf26a  # \ue3a5\ue390 
-AlmaLinux = "\uf31d " # 
-Alpine = "\uf300 " # ""
-Amazon = "\uf270 " # ""
-Android = "\ue70e " # ""
-Arch = "\uf303 " # ""
-Artix = "\uf31f " # 
-CentOS = "\uf304 " # ""
-Debian = "\uf306 " # ""
-DragonFly = "\ueef8 " #    🐉
-Emscripten = "\u26A1 " # ⚡
-EndeavourOS = "\uf322 " # "" # 
-Fedora = "\uf30a " # ""
-FreeBSD = "\uf30c " # ""
-Garuda = "\uf337 " # ""
-Gentoo = "\uf30d " # ""
-HardenedBSD = "\uf132 " # 
-Illumos = "\uf326 " # "🐦"
-Kali = "\uf327 " # 
-Linux = "\uf17c " # ""
-Mabox = "\uf1b2 " #  📦
-Macos = "\uf302 " # ""
-Manjaro = "\uf312 " # ""
-Mariner = "\ue7ae " # \ue7ae 
-MidnightBSD = "\ue3e0 " # 🌘
-Mint = "\uf30e " # ""
-NetBSD = "\u2691 " # ⚑
-NixOS = "\uf313 " # ""
-OpenBSD = "\uf328 " # ""
-OpenCloudOS = "\uf0c2 " # 
-openEuler = "\u2208 " # \u2208 ∈
-openSUSE = "\uf314 " # ""
-OracleLinux = "\u213A " # \u213A ℺ # ⊂⊃ \u2282\u2283
-Pop = "\uf32a " # ""
-Raspbian = "\uf315 " # ""
-Redhat = "\uf316 " # "" # 󱄛
-RedHatEnterprise = "\uf316 " # "" # 󱄛
-RockyLinux = "\uf32b " # 
-Redox = "\uf331 " #   󰺕
-Solus = "\uf32d " # "" # " "
-SUSE = "\uef6d " # ""
-Ubuntu = "[\u2039](fg:ubuntu)[\uebc9](fg:ubuntu) " # ""
-Ultramarine = "󱙳 " # 🔷
-Unknown = "\uf108 " # ""
-Void = "\uf32e " #  
-Windows = "\uf17a " # ""
+Windows = "\uf17a " # nf-fa-windows (Win10/11)
+Macos = "\uf302 "   # nf-fa-apple
+Ubuntu = "[‹](fg:ubuntu)[\uebc9](fg:ubuntu) "
+Linux = "\uf17c "   # nf-fa-linux — also what WSL reports, there is no separate WSL key
 
-[profiles]
-transient = """\
-$character\
-"""
-rtransient = """\
-$cmd_duration\
-$time\
-"""
+# Rendered from a variable computed once per shell (see .zshrc) instead of from
+# the os module: os_info shells out to lsb_release, ~16ms on every repaint.
+[env_var.STARSHIP_OS_ICON]
+variable = 'STARSHIP_OS_ICON'
+format = '$env_value'
 
 [username]
-format = "[\ueab6 ](fg:user bold)[$user]($style)[ ]()" # \u276F ❯ \ueab6 
+format = "[\ueab6 ](fg:user bold)[$user]($style)[ ]()"
 style_user = 'fg:user bold'
 style_root = 'fg:userroot bold'
 show_always = false
-disabled = false
 
 [hostname]
 format = '[$ssh_symbol ](fg:sshsymbol bold)[$hostname](fg:hostname bold)[ ]()'
 ssh_only = true
-ssh_symbol = "\ue36e" # \ue36e '' # '⇒' # ' ' # 'ﬁ⇒'
-# trim_at = '.companyname.com'
-disabled = false
+ssh_symbol = "\ue36e"
 
 [direnv]
 symbol = 'direnv'
 style = 'fg:greydimmed'
 format = "[\u3009$symbol $loaded/$allowed ]($style)"
-allowed_msg = 'a' # 'ok' # '✓'
-not_allowed_msg = '!a' # 'nok' # '!'
-denied_msg = 'x' # '✘'
-loaded_msg = '+' # "\ueabc" # \ueabc  # '->' # 'yo' # '󰗡' # \udb81\udde1 # '󱥸✓' # '󱥸✓' # 
-unloaded_msg = '-' # "\ueabc!" # \ueabc ! # '->!' # 'no' # '󰅚' # '󱥸!' \udb86\udd78
-disabled = false
-
+allowed_msg = 'a'
+not_allowed_msg = '!a'
+denied_msg = 'x'
+loaded_msg = '+'
+unloaded_msg = '-'
+disabled = false # the direnv module ships disabled, so this line is required

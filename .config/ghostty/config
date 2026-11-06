@@ -1,6 +1,6 @@
 # --- Font Settings ---
 font-family = "UbuntuSansMono Nerd Font"
-font-size = 14
+font-size = 13.5
 font-style = Medium
 adjust-icon-height = 25%
 
@@ -17,6 +17,8 @@ gtk-titlebar = false
 window-decoration = none
 window-padding-x = 0
 window-padding-y = 0
+window-inherit-working-directory = false
+working-directory = home
 
 # --- Mouse & Cursor ---
 cursor-style = bar

@@ -19,8 +19,8 @@
 
 
         zoxide eza fd bat ripgrep duf delta
-        yazi fastfetch fzf
-        croc btop mprocs
+        yazi fzf
+        croc mprocs
         rclone
 
         unstable.neovim tree-sitter

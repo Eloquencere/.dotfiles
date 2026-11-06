@@ -22,6 +22,8 @@ typst = "latest"
 "cargo:hayagriva" = { version = "latest", features = ["cli"] }
 
 zellij = "latest"
+fastfetch = "latest"
+btop = "latest"
 
 "npm:@github/copilot" = "latest"
 "npm:cline" = "latest"
@@ -49,19 +51,89 @@ zellij = "latest"
 # "cargo:cargo-dist" = "latest"
 # "cargo:cargo-inspect" = "latest" # educational
 
-
-# # Useful rust libs
 # rustup component add miri # unavailable in stable
-# https://www.namtao.com/rust/
-# cargo clippy -- -W clippy::unwrap_used clippy::expect_used
-# itertools
-# serde
-# regex & sqlx | sqlite
-# Rayon & dashmap & crossbeam
-# Color eyre
-# Tracing
-# usage
-# Tokio & axum & tonic & yew & reqwest & egui
+# # Useful rust crates, refs - https://www.namtao.com/rust/
+# # everyday
+# itertools           # iterator adapters std is missing
+# serde               # derive + the traits every crate expects [138k deps]
+# serde_json          # JSON [118k deps]
+# toml                # TOML; mise reads it too [216k deps]
+# regex               # compiled, linear-time; the default
+# rand                # RNGs + distributions [2.1B dl]
+# indexmap            # HashMap that keeps insertion order
+# smallvec            # inline small vectors, no alloc
+# jiff                # dates/times; chrono only for interop
+#
+# # errors
+# thiserror           # typed errors in libraries [78k deps]
+# anyhow              # error reports in binaries [53k deps]
+# color-eyre          # pretty panic/backtrace reports on top
+#
+# # concurrency
+# Rayon               # data parallelism, drop-in iterators
+# parking_lot         # faster Mutex/RwLock [1.2B dl]
+# dashmap             # sharded concurrent HashMap
+# crossbeam-channel   # MPMC channels + select
+# Tokio               # async runtime
+# futures             # combinators, streams, join/select
+# tower               # middleware/service abstraction
+# tower-http          # CORS, tracing, compression for axum
+#
+# # logging
+# tracing             # structured spans + events
+# tracing-subscriber  # required: env-filter, fmt, JSON
+#
+# # cli / tui
+# clap                # the ecosystem default [50k deps]
+# usage-rs            # jdx spec-first: typed parser from KDL
+# indicatif           # progress bars
+# owo-colors          # terminal color, zero-alloc
+# comfy-table         # terminal tables
+# ratatui             # full TUI
+#
+# # data
+# rusqlite            # SQLite; sync, `bundled` = 10 deps
+# sqlx                # Postgres/MySQL async; can't mix with rusqlite
+# polars              # dataframe; heavy compile
+# csv                 # csv read/write [284M dl]
+# calamine            # xlsx read
+# rust_xlsxwriter     # xlsx write
+# ndarray             # N-d arrays, strided views
+# nalgebra            # 1D/2D + geometry, dims in the types
+# faer                # pure-Rust linalg, no LAPACK to link
+# rustfft             # FFT
+#
+# # plots
+# plotters            # fastest raster/SVG; unmaintained since 0.3.7
+# kuva                # SVG/PNG/PDF + typst backend; small community
+#
+# # web / gui
+# axum                # HTTP on Tokio
+# tonic               # gRPC
+# reqwest             # HTTP client
+# yew                 # WASM frontend
+# egui                # immediate-mode GUI
+# utoipa              # OpenAPI from axum handlers
+#
+# # testing / perf
+# insta               # snapshot tests
+# proptest            # property tests
+# rstest              # fixtures + parametrized tests
+# assert_cmd          # CLI integration tests
+# criterion           # benchmarks; divan compiles faster
+#
+# # interop / bits
+# pyo3                # Rust from Python (cocotb, pyslang)
+# bindgen             # C headers -> Rust
+# cc                  # compile C in build.rs
+# bitvec              # register/bitfield work
+#
+# # rejected / not carried up
+# crossbeam           # facade; use crossbeam-channel instead
+#
+# # considered, not added
+# charming            # ECharts HTML; PNG/SVG needs deno_core
+# plotly              # interactive HTML; static needs chromedriver
 
 # # Verification
 # pip install pyslang

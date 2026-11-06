@@ -105,11 +105,11 @@ autoinstall:
     - libfuse2t64 # To run appimages
     - default-jre # To run .jar files
     - zsh
-    - curl
+    - curl # WARN: isn't this auto installed?
+    - git  # WARN: Same here
     - stow
     - dos2unix
     - trash-cli
-    - git
     - unrar
     # Pkg managers
     - nala

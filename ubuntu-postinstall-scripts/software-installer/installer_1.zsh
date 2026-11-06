@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+# NOTE: Create a .zshenv
+
 cd "$(dirname "${(%):-%x}")" # change to script location
 sudo -v
 

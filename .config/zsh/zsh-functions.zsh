@@ -45,3 +45,7 @@ croc() {
     unset CROC_SECRET
 }
 
+# `hermes update` checks out a release tag detached, and its git calls all pass
+# `-c core.hooksPath=/dev/null` (hermes_cli/_subprocess_compat.py), so no git hook can re-apply
+# the local TUI patch. Replay it by hand after an update: ~/.hermes/local-patches/reapply.sh
+

@@ -31,8 +31,8 @@ in
                 binding = "XF86Calculator";
             };
             "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" = {
-                name = "wezterm";
-                command = "wezterm start";
+                name = "ghostty";
+                command = "ghostty";
                 binding = "<Alt><Shift>w";
             };
 
