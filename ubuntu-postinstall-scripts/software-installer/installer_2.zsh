@@ -22,11 +22,6 @@ version="$(latest_tag kem-a/AppManager)"
 wget -O appmanager.AppImage "https://github.com/kem-a/AppManager/releases/download/$version/AppManager-$version-anylinux-x86_64.AppImage"
 chmod +x ./appmanager.AppImage && ./appmanager.AppImage
 
-# Ghostty
-version="$(latest_tag pkgforge-dev/ghostty-appimage)"
-wget -O ghostty.AppImage "https://github.com/pkgforge-dev/ghostty-appimage/releases/download/v$version/Ghostty-$version-x86_64.AppImage"
-app-manager install ./ghostty.AppImage
-
 # WinBoat
 version="$(latest_tag TibixDev/winboat)"
 wget -O winboat.AppImage "https://github.com/TibixDev/winboat/releases/download/$version/winboat-$version-x86_64.AppImage"
@@ -115,12 +110,12 @@ bash /tmp/vl.sh --interactive
 
 # Hermes
 sudo nala install -y libportaudio2
-curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
+curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash -s -- --skip-setup
 
 # Antigravity CLI
 curl -fsSL https://antigravity.google/cli/install.sh | bash
-agy
-head -n -4 ~/.dotfiles/.zprofile > temp.txt && mv -f temp.txt ~/.dotfiles/.zprofile
+# agy
+# head -n -4 ~/.dotfiles/.zprofile > temp.txt && mv -f temp.txt ~/.dotfiles/.zprofile
 
 BLOAT_SNAP=(
     "thunderbird" "firefox"
@@ -160,4 +155,9 @@ sudo shutdown -r now
 # ~/.config/emacs/bin/doom install
 # echo '# Doom Emacs
 # export PATH=$XDG_CONFIG_HOME/emacs/bin:$PATH' >> ~/.zprofile
+
+# # Ghostty
+# version="$(latest_tag pkgforge-dev/ghostty-appimage)"
+# wget -O ghostty.AppImage "https://github.com/pkgforge-dev/ghostty-appimage/releases/download/v$version/Ghostty-$version-x86_64.AppImage"
+# app-manager install ./ghostty.AppImage
 

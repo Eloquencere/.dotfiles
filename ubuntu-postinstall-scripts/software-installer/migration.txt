@@ -10,6 +10,7 @@
   - [ ] Manual paths
     - ~/{Downloads,Transfers,Videos}
     - Hermes: memories/,skills/,terminal-sessions/,sessions/,config.yaml,.env
+    - Hermes: hermes uninstall <something> then, copy that dir
     (Optional)
     - Game save data like Rocket League replays
 - [ ] Backup every Brave profile to other devices & confirm if things like bookmarks still work

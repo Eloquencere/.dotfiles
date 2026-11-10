@@ -40,9 +40,7 @@
   - [ ] Setup GSConnect & KDEconnect
   - [ ] Setup VSCode (GitHub account)
   - [ ] Hermes: some tools aren't setup properly, make it locate & fix any issues
-    $ hermes tools post-setup browser_use_cli
-    $ hermes tools post-setup agent_browser
-    $ hermes doctor
+    $ hermes doctor --fix
   - [ ] Zotero - Go, Edit -> Settings -> Advanced
     - Set the data dir to ~/Documents/Zotero
     - Allow other applications to communicate with Zotero

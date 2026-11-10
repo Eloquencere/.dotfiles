@@ -35,3 +35,10 @@ keybind = ctrl+shift+tab=text:\x1b[9;6u
 # newline shell command - NOT WORKING
 keybind = shift+enter=text:\x1b[200~\n\x1b[201~
 
+# --- Recovery ---
+# If the screen ever stops painting (the wezterm failure mode): reset wipes the
+# terminal state and forces a full repaint; reload_config (ctrl+shift+, default)
+# rebuilds fonts + render state. ctrl+0 (default) resets font size.
+keybind = ctrl+shift+r=reset
+keybind = ctrl+shift+k=clear_screen
+

@@ -15,8 +15,6 @@
         nerd-fonts.ubuntu-sans
         xdotool
         starship unstable.atuin zoxide
-        unstable.cargo-binstall
-
 
         zoxide eza fd bat ripgrep duf delta
         yazi fzf

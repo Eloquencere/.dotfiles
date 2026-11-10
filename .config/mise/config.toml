@@ -3,33 +3,35 @@ experimental = true
 cargo.binstall = true
 cargo.binstall_quickinstall = true
 
+
 [tools]
+"aqua:cargo-bins/cargo-binstall" = "latest"
 # Languages
-rust = "latest"
+"core:rust" = "latest"
 # clang = "latest"
 # conan = "latest"
-go = "latest"
-node = "lts"
+"core:go" = "latest"
+"core:node" = "lts"
 # deno = "latest"
 # julia = "latest"
-python = "latest"
-uv = "latest"
-sqlite = "latest"
-usage = "latest" # tab completion (for mise, best handled by mise)
+"core:python" = "latest"
+"aqua:astral-sh/uv" = "latest"
+"conda:sqlite" = "latest"
+"packslip:github.com/jdx/usage" = "latest" # tab completion (for mise, best handled by mise)
 
 # Tools
-typst = "latest"
+"aqua:typst/typst" = "latest"
 "cargo:hayagriva" = { version = "latest", features = ["cli"] }
 
-zellij = "latest"
-fastfetch = "latest"
-btop = "latest"
+"aqua:zellij-org/zellij" = "latest"
+"aqua:fastfetch-cli/fastfetch" = "latest"
+"aqua:aristocratos/btop" = "latest"
 
 "npm:@github/copilot" = "latest"
 "npm:cline" = "latest"
 "npm:@kilocode/cli" = "latest"
-"npm:opencode-ai" = "latest"
-"npm:freebuff" = "latest"
+"npm:opencode-ai" = { version = "latest", allow_builds = ["opencode-ai"] }
+"npm:freebuff" = { version = "latest", trust_policy_excludes = ["freebuff@>=0.0.98"] }
 
 "pipx:wavedrom" = "latest"
 # "pipx:fusesoc" = "latest"

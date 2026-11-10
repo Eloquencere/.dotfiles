@@ -24,6 +24,10 @@ xdg-settings set default-web-browser $name.desktop
 xdg-mime default $name.desktop x-scheme-handler/mailto
 $name &
 
+# Ghostty
+sudo add-apt-repository -y ppa:mkasberg/ghostty-ubuntu
+sudo nala install -y ghostty
+
 # Docker
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
 sudo chmod a+r /etc/apt/keyrings/docker.asc
@@ -181,9 +185,4 @@ sleep 2
 # sudo add-apt-repository -y ppa:ubuntuhandbook1/vlc
 # sudo add-apt-repository -y ppa:teejee2008/timeshift
 # sudo add-apt-repository -y ppa:ubuntuhandbook1/transmission
-
-# # Experiment - weird artifacts in the text editor
-# echo 'APT::Architecture-Variants "amd64v3";' | sudo tee /etc/apt/apt.conf.d/99amd64v3
-# sudo apt update
-# sudo apt full-upgrade -y
 

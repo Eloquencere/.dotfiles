@@ -1,0 +1,764 @@
+#!/usr/bin/env python3
+"""hermes-session-mail — put a message into another Hermes session.
+
+    hermes-session-mail <session> "<message>"
+
+`<session>` is a roster name, a session id, a unique id prefix, or a title. The message becomes
+that session's next turn, run by its own process, model, cwd, tools and memory. The call returns
+as soon as the message is queued; when the reply lands, this session is woken with it.
+
+Three other forms, all about the project roster:
+
+    hermes-session-mail --fleet                 # who is on this project's roster
+    hermes-session-mail --join rtl-worker       # put this session on it
+    hermes-session-mail --join orchestrator     # ... and make it the orchestrator
+    hermes-session-mail --broadcast "<text>"    # every other session on the roster
+
+Two knobs on a plain send:
+
+    hermes-session-mail --no-watch              # queue it and don't wait for an answer
+    hermes-session-mail --wait 300 rtl-worker "…"   # watch for the reply for 5 minutes
+
+Why the gateway WebSocket: `hermes peer dm` reaches a peer gateway's canonical Bot Chat (one
+address per profile), and the OpenAI-compatible API server refuses a session another surface
+owns (409 permission_denied). Neither can reach a Hermes session you already have running. The
+gateway's `prompt.submit` on a session id can, and it is the same door the CLI's own chat view
+uses. Any session works — live now, or stored weeks ago (resume revives it). An id is an
+address, not a permission.
+
+Roster: `<project>/.hermes/fleet.json`, two keys, names and ids only.
+
+    {
+      "orchestrator": {"name": "orchestrator", "session_id": "local-…"},
+      "agent-teammates": [{"name": "rtl-worker", "session_id": "local-…"}]
+    }
+
+A session whose cwd is inside the project joins on its first use of this tool.
+
+This file lives in ~/.dotfiles/ubuntu-postinstall-scripts/continual-reference/ and is symlinked
+into ~/.local/bin — outside the Hermes install, so `hermes update` cannot overwrite it, and
+under version control so an edit is a diff.
+
+Exit codes: 0 delivered, 1 delivery failed, 2 usage error.
+"""
+
+from __future__ import annotations
+
+import argparse
+import asyncio
+import glob
+import hashlib
+import json
+import os
+import sqlite3
+import subprocess
+import sys
+import time
+import uuid
+from pathlib import Path
+
+ROSTER_FILE = Path(".hermes") / "fleet.json"
+ORCHESTRATOR = "orchestrator"
+TEAMMATES = "agent-teammates"
+REPLY_WAIT_SECONDS = 1800  # how long a queued message's watcher waits for the answer
+PROMPT_MATCH_GRACE = 120   # how long a watcher waits for its own prompt row before using the raw baseline
+LOG_MAX_BYTES = 1_000_000  # notify log is rotated to .1 past this
+TRUNCATE_AT = 4000         # a reply longer than this reaches the caller with a marker, not silently
+
+
+class StoreUnavailable(RuntimeError):
+    """state.db could not be read (busy, locked, unreadable). Never reported as 'no such session'."""
+
+
+
+# ---------------------------------------------------------------- bootstrap
+
+def _has_websockets(python: str) -> bool:
+    """A candidate interpreter is only useful if it can actually import the transport."""
+    try:
+        done = subprocess.run([python, "-c", "import websockets"], capture_output=True,
+                              timeout=20, stdin=subprocess.DEVNULL)
+        return done.returncode == 0
+    except (OSError, subprocess.SubprocessError):
+        return False
+
+
+def _reexec_with_runtime_python() -> None:
+    """Re-exec into an interpreter that can import `websockets`.
+
+    Hermes's own interpreter is the usual answer, but a uv-style install keeps the dependency
+    venv off that interpreter's path and exposes it through PYTHONPATH instead, so "the bundled
+    python" is not automatically the right one. Prefer $HERMES_PYTHON, then any candidate that
+    can import the package, then the bundled python as a last resort.
+    """
+    if os.environ.get("HERMES_MAIL_REEXEC"):
+        sys.exit("hermes-session-mail: needs the `websockets` package and cannot find an "
+                 f"interpreter that has it (running {sys.executable}).")
+    me = Path(sys.executable).resolve()
+    candidates: list[str] = []
+    env_python = (os.environ.get("HERMES_PYTHON") or "").strip()
+    if env_python:
+        candidates.append(env_python)
+    for pattern in ("~/.hermes/tools/python-*/bin/python3", "~/.hermes/tools/python/bin/python3"):
+        candidates.extend(sorted(glob.glob(os.path.expanduser(pattern)), reverse=True))
+    candidates.append(sys.executable)
+    usable = [c for c in candidates
+              if c and Path(c).is_file() and os.access(c, os.X_OK) and Path(c).resolve() != me]
+    ordered = [c for c in usable if _has_websockets(c)] or usable
+    if ordered:
+        os.environ["HERMES_MAIL_REEXEC"] = "1"
+        os.execv(ordered[0], [ordered[0], os.path.abspath(__file__), *sys.argv[1:]])
+    sys.exit("hermes-session-mail: needs the `websockets` package; run it with Hermes's python.")
+
+
+def _install_dir() -> Path:
+    candidates = []
+    for env in ("HERMES_INSTALL_DIR", "HERMES_PYTHON_SRC_ROOT"):
+        value = os.environ.get(env)
+        if value:
+            candidates.append(Path(value).expanduser())
+    candidates.append(Path.home() / ".hermes" / "hermes-agent")
+    for candidate in candidates:
+        if (candidate / "hermes_cli" / "gateway_client.py").is_file():
+            return candidate
+    sys.exit("hermes-session-mail: cannot find the Hermes install (set HERMES_INSTALL_DIR).")
+
+
+def _prepare_imports():
+    install = _install_dir()
+    os.environ.pop("PYTHONHOME", None)
+    # Keep PYTHONPATH. A uv-style install exposes its dependency venv (websockets and friends)
+    # only through it, and `connect_gateway` imports websockets lazily, so stripping it turned
+    # every send on that kind of install into a ModuleNotFoundError at connect time.
+    parts = [p for p in os.environ.get("PYTHONPATH", "").split(os.pathsep) if p.strip()]
+    if str(install) not in parts:
+        parts.insert(0, str(install))
+    os.environ["PYTHONPATH"] = os.pathsep.join(parts)
+    os.environ.setdefault("HERMES_HOME", str(Path.home() / ".hermes"))
+    sys.path.insert(0, str(install))
+    from hermes_cli import gateway_client  # noqa: F401  (import check)
+    return gateway_client
+
+
+def _home() -> Path:
+    return Path(os.environ.get("HERMES_HOME") or (Path.home() / ".hermes"))
+
+
+# ---------------------------------------------------------------- state.db
+# state.db is the shared truth: every session (live or stored) has a row, and every turn —
+# including one run by another process — writes its assistant reply there. WebSocket frames
+# only reach clients the gateway counts as viewers of a *live* session, so the store is what a
+# sender can always read back.
+
+def _connect(root: Path, timeout: float = 1.0):
+    return sqlite3.connect(f"file:{root / 'state.db'}?mode=ro", uri=True, timeout=timeout)
+
+
+def _homes() -> list[Path]:
+    """This home first, then every profile home that has a store — the same set the roster spans."""
+    home = _home()
+    return [home] + sorted(p for p in (home / "profiles").glob("*") if (p / "state.db").is_file())
+
+
+def _db_home_for(session_id: str) -> Path:
+    for root in _homes():
+        if _lookup_opt(root, session_id):
+            return root
+    return _home()
+
+
+def _lookup_once(root: Path, needle: str) -> dict | None:
+    con = _connect(root)
+    try:
+        rows = con.execute(
+            "SELECT id, title, cwd FROM sessions WHERE id = ? OR id LIKE ? "
+            "ORDER BY last_activity_at DESC LIMIT 1", (needle, f"{needle}%")).fetchall()
+        if not rows:
+            rows = con.execute(
+                "SELECT id, title, cwd FROM sessions WHERE title = ? "
+                "ORDER BY last_activity_at DESC LIMIT 1", (needle,)).fetchall()
+        if not rows:
+            rows = con.execute(
+                "SELECT id, title, cwd FROM sessions WHERE title LIKE ? AND title != '' "
+                "ORDER BY last_activity_at DESC LIMIT 1", (f"%{needle}%",)).fetchall()
+        if not rows:
+            return None
+        sid, title, cwd = rows[0]
+        return {"session_id": sid, "title": title or "", "cwd": cwd or ""}
+    finally:
+        con.close()
+
+
+def _db_lookup(root: Path, needle: str) -> dict | None:
+    """Resolve an id, id prefix or title inside one store.
+
+    A locked store is retried and then raised as StoreUnavailable. It is never reported as
+    "no session named X" — that sends the caller hunting a roster bug that does not exist.
+    """
+    last: sqlite3.Error | None = None
+    for delay in (0.0, 0.25, 0.75):
+        if delay:
+            time.sleep(delay)
+        try:
+            return _lookup_once(root, needle)
+        except sqlite3.OperationalError as exc:  # lock contention, store mid-migration
+            last = exc
+        except sqlite3.Error:
+            return None
+    raise StoreUnavailable(f"cannot read {root / 'state.db'} ({last})")
+
+
+def _lookup_opt(root: Path, needle: str) -> dict | None:
+    """Best-effort lookup: an unreadable store answers "not here" instead of aborting a search."""
+    try:
+        return _db_lookup(root, needle)
+    except StoreUnavailable:
+        return None
+
+
+def _db_max_rowid(root: Path, sid: str) -> int | None:
+    """High-water mark for this session, or None when the store cannot be read right now.
+
+    None is not an error for the send: the message still goes out, the caller is just told its
+    reply will not be watched.
+    """
+    for delay in (0.0, 0.25, 0.75):
+        if delay:
+            time.sleep(delay)
+        try:
+            con = _connect(root)
+            try:
+                return int(con.execute(
+                    "SELECT COALESCE(MAX(rowid), 0) FROM messages WHERE session_id = ?",
+                    (sid,)).fetchone()[0] or 0)
+            finally:
+                con.close()
+        except sqlite3.OperationalError:
+            continue
+        except sqlite3.Error:
+            return None
+    return None
+
+
+# A delivered turn ends with a terminal assistant row. A tool-using turn writes several
+# assistant rows (preamble, then "let me check…"), each `finish_reason = 'tool_calls'`; waking
+# the caller on the first non-empty row delivers the preamble and loses the answer. `active`
+# excludes rows a compression pass has retired.
+_TERMINAL_REPLY_SQL = (
+    "SELECT rowid, content FROM messages WHERE session_id = ? AND rowid > ? "
+    "AND role = 'assistant' AND content IS NOT NULL AND TRIM(content) != '' "
+    "AND finish_reason IN ('stop', 'length') AND COALESCE(active, 1) = 1 "
+    "ORDER BY rowid DESC LIMIT 1")
+
+
+def _reply_from(con, sid: str, floor: int) -> tuple[int, str] | None:
+    row = con.execute(_TERMINAL_REPLY_SQL, (sid, floor)).fetchone()
+    return (int(row[0]), row[1]) if row else None
+
+
+def _db_reply_row(root: Path, sid: str, baseline: int) -> tuple[int, str] | None:
+    """(rowid, content) of the turn's final assistant message since `baseline`, if any."""
+    try:
+        con = _connect(root)
+    except sqlite3.Error:
+        return None
+    try:
+        return _reply_from(con, sid, baseline)
+    except sqlite3.Error:
+        return None
+    finally:
+        con.close()
+
+
+def _prompt_from(con, sid: str, baseline: int, sent_sha: str) -> int | None:
+    """Rowid of the user row THIS send created, so an answer is attributed to its own prompt.
+
+    Matched on the sha of the text we submitted, because `messages` carries no correlation id.
+    None means the peer has not started the turn yet (a queued message gets its user row only
+    when the turn begins) or the row was rewritten on arrival.
+    """
+    for rowid, content in con.execute(
+            "SELECT rowid, content FROM messages WHERE session_id = ? AND rowid > ? "
+            "AND role = 'user' ORDER BY rowid LIMIT 50", (sid, baseline)):
+        if content and hashlib.sha256(str(content).strip().encode("utf-8")).hexdigest() == sent_sha:
+            return int(rowid)
+    return None
+
+
+def _sha(text: str) -> str:
+    return hashlib.sha256(text.strip().encode("utf-8")).hexdigest()
+
+
+# ---------------------------------------------------------------- delivery claims
+# Two watchers can watch the same peer (two sends before it answers). Both see the same terminal
+# row, so without a shared claim the caller is woken twice with the same text and neither wake
+# says which message it answered. The claim lives outside state.db on purpose: this tool only
+# ever reads the store.
+
+def _claims_conn():
+    path = _home() / "cache" / "session-mail" / "claims.db"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    con = sqlite3.connect(path, timeout=5.0)
+    con.execute("CREATE TABLE IF NOT EXISTS delivered ("
+                "root TEXT NOT NULL, sid TEXT NOT NULL, rowid INTEGER NOT NULL, at REAL NOT NULL, "
+                "PRIMARY KEY (root, sid, rowid))")
+    con.execute("DELETE FROM delivered WHERE at < ?", (time.time() - 7 * 86400,))
+    con.commit()
+    return con
+
+
+def _claim(root: Path, sid: str, rowid: int) -> bool:
+    """True when this watcher is the one that gets to deliver `rowid`."""
+    try:
+        con = _claims_conn()
+    except (sqlite3.Error, OSError):
+        return True  # never lose a reply because the claim store is unavailable
+    try:
+        cur = con.execute(
+            "INSERT OR IGNORE INTO delivered (root, sid, rowid, at) VALUES (?, ?, ?, ?)",
+            (str(root), sid, int(rowid), time.time()))
+        con.commit()
+        return cur.rowcount == 1
+    except sqlite3.Error:
+        return True
+    finally:
+        con.close()
+
+
+def _db_reply(root: Path, sid: str, baseline: int) -> str | None:
+    """The turn's FINAL assistant message written since `baseline`."""
+    reply = _db_reply_row(root, sid, baseline)
+    return reply[1] if reply else None
+
+
+# ---------------------------------------------------------------- roster
+
+def _roster_path() -> Path | None:
+    env = os.environ.get("HERMES_FLEET_FILE")
+    if env:
+        return Path(env).expanduser().resolve()
+    for directory in [Path.cwd(), *Path.cwd().parents]:
+        candidate = directory / ROSTER_FILE
+        if candidate.is_file():
+            return candidate
+    return None
+
+
+def _load_roster(path: Path | None) -> dict:
+    if not path or not path.is_file():
+        return {ORCHESTRATOR: None, TEAMMATES: []}
+    try:
+        data = json.loads(path.read_text(encoding="utf-8-sig"))
+    except (OSError, ValueError) as exc:
+        print(f"hermes-session-mail: cannot read {path}: {exc}", file=sys.stderr)
+        return {ORCHESTRATOR: None, TEAMMATES: []}
+    data.setdefault(ORCHESTRATOR, None)
+    data.setdefault(TEAMMATES, [])
+    return data
+
+
+def _save_roster(path: Path, data: dict) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp = path.with_name(path.name + ".tmp")
+    tmp.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
+    os.replace(tmp, path)
+
+
+def _entry_sid(entry) -> str:
+    if isinstance(entry, str):
+        return entry
+    if isinstance(entry, dict):
+        return str(entry.get("session_id") or entry.get("id") or "")
+    return ""
+
+
+def _entry_name(entry) -> str:
+    return str(entry.get("name") or "") if isinstance(entry, dict) else ""
+
+
+def _label(entry) -> str:
+    name, sid = _entry_name(entry), _entry_sid(entry)
+    return f"{name or '(unnamed)'}  {sid[:16]}…"
+
+
+def _self_id() -> str:
+    return (os.environ.get("HERMES_SESSION_CHAT_ID") or os.environ.get("HERMES_SESSION_ID") or "").strip()
+
+
+def _cwd_in_project(path: Path) -> bool:
+    info = _db_lookup(_home(), _self_id()) or {}
+    cwd = str(info.get("cwd") or "")
+    root = str(path.parent.parent)
+    return bool(cwd) and (cwd == root or cwd.startswith(root + os.sep))
+
+
+def _join(path: Path | None, data: dict, name: str | None, *, explicit: bool) -> str | None:
+    """Put the calling session on the roster. Returns a note for the caller, or None.
+
+    Implicit (first use inside the project): a teammate, or the orchestrator when that slot is
+    empty. Explicit (`--join <name>`): the name decides — `orchestrator` claims that slot,
+    anything else is a teammate. A session already on the roster is left alone.
+    """
+    sid = _self_id()
+    if not path or not sid:
+        return None
+    if not explicit and not _cwd_in_project(path):
+        return None
+    roster = data.setdefault(TEAMMATES, [])
+    orch = data.get(ORCHESTRATOR)
+    wanted_name = (name or "").strip()
+    wants_orchestrator = wanted_name.lower() == ORCHESTRATOR
+
+    if sid in {_entry_sid(e) for e in [orch, *roster] if e}:
+        if wants_orchestrator and _entry_sid(orch) != sid:
+            data[ORCHESTRATOR] = {"name": ORCHESTRATOR, "session_id": sid}
+            data[TEAMMATES] = [e for e in roster if _entry_sid(e) != sid]
+            _save_roster(path, data)
+            return f"took the {ORCHESTRATOR} slot"
+        # Rename in place. A session already on the roster keeps its id; only the label changes,
+        # so `--join <new name>` is the rename path (there is no separate verb).
+        current = next((e for e in [orch, *roster] if e and _entry_sid(e) == sid), None)
+        if wanted_name and wanted_name != _entry_name(current):
+            renamed = {"name": wanted_name, "session_id": sid}
+            if _entry_sid(orch) == sid:
+                data[ORCHESTRATOR] = renamed
+            else:
+                data[TEAMMATES] = [renamed if _entry_sid(e) == sid else e for e in roster]
+            _save_roster(path, data)
+            return f"renamed to {wanted_name}"
+        return None
+
+    entry = {"name": wanted_name or f"agent-{sid[6:12]}", "session_id": sid}
+    if wants_orchestrator or (orch is None and not explicit):
+        previous = _entry_name(orch)
+        data[ORCHESTRATOR] = entry
+        _save_roster(path, data)
+        return (f"joined as {ORCHESTRATOR} ({entry['name']}), replacing {previous}"
+                if previous and previous != entry["name"] else
+                f"joined as {ORCHESTRATOR} ({entry['name']})")
+    roster.append(entry)
+    _save_roster(path, data)
+    return f"joined as a teammate ({entry['name']})"
+
+
+def _resolve(target: str, data: dict) -> tuple[str | None, str | None]:
+    """(session_id, label). Roster names first, then any session in the store, then as given."""
+    needle = (target or "").strip().lstrip("@")
+    if not needle:
+        return None, None
+    orch = data.get(ORCHESTRATOR)
+    if orch and needle.lower() in {ORCHESTRATOR, _entry_name(orch).lower()}:
+        return _entry_sid(orch), _entry_name(orch) or ORCHESTRATOR
+    for entry in data.get(TEAMMATES) or []:
+        sid = _entry_sid(entry)
+        if needle.lower() == _entry_name(entry).lower() or (sid and sid.startswith(needle)):
+            return sid, _entry_name(entry) or sid[:16]
+    # Every home the roster can span, not just the default one: a teammate living in another
+    # profile resolves by name/title exactly like a local one.
+    unreadable = 0
+    for root in _homes():
+        try:
+            info = _db_lookup(root, needle)
+        except StoreUnavailable:
+            unreadable += 1
+            continue
+        if info:
+            return info["session_id"], info.get("title") or info["session_id"][:16]
+    if unreadable and unreadable == len(_homes()):
+        raise StoreUnavailable("state.db is busy — cannot resolve the target right now")
+    return None, None
+
+
+# ---------------------------------------------------------------- delivery
+
+async def _submit(client, sid: str, text: str) -> dict:
+    # `session.resume` ATTACHES this client alongside whoever already streams the session (it
+    # never takes the slot from them) and revives a stored one. Without it the gateway refuses
+    # a submit from a client that never attached: 4090 permission_denied.
+    await client.rpc("session.resume", session_id=sid, omit_messages=True)
+    return await client.rpc("prompt.submit", session_id=sid, input_id=uuid.uuid4().hex, text=text)
+
+
+def _notify_log(message: str) -> None:
+    try:
+        path = _home() / "logs" / "session-mail-notify.log"
+        path.parent.mkdir(parents=True, exist_ok=True)
+        if path.is_file() and path.stat().st_size > LOG_MAX_BYTES:
+            os.replace(path, path.with_name(path.name + ".1"))  # keep one generation, not a case of them
+        with path.open("a", encoding="utf-8") as handle:
+            handle.write(f"{time.strftime('%Y-%m-%d %H:%M:%S')} {message}\n")
+    except OSError:
+        pass
+
+
+def _spawn_watcher(item: dict, caller: str) -> None:
+    """Background process: wait for the reply, then wake the caller with it."""
+    import subprocess
+    argv = [sys.executable, os.path.abspath(__file__), "--watch-reply",
+            "--sid", item["sid"], "--baseline", str(item["baseline"]),
+            "--root", str(item["root"]), "--label", item["label"], "--notify", caller,
+            "--sent-sha", item.get("sent_sha", ""),
+            "--wait", str(item.get("wait") or REPLY_WAIT_SECONDS)]
+    try:
+        subprocess.Popen(argv, stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL,
+                         stderr=subprocess.DEVNULL, start_new_session=True,
+                         env=dict(os.environ, HERMES_MAIL_REEXEC="1"))
+    except OSError as exc:
+        _notify_log(f"watcher for {item['sid'][:16]} failed to start: {exc}")
+
+
+async def watch_reply(gateway_client, sid: str, root: Path, baseline: int, label: str,
+                      notify: str, sent_sha: str = "", wait: int | None = None) -> int:
+    """Wait for the answer to THIS message, then wake the caller with it.
+
+    Three things a naive poll gets wrong, all handled here: the reply must be the turn's
+    *terminal* row (not a tool-call preamble), it must be attributed to the prompt this send
+    created, and two watchers on one peer must not both deliver the same row.
+    """
+    budget = REPLY_WAIT_SECONDS if wait is None else max(0, wait)
+    deadline = time.monotonic() + budget
+    floor = baseline
+    prompt_seen = not sent_sha          # no hash (older caller / test) → nothing to attribute
+    grace_until = time.monotonic() + PROMPT_MATCH_GRACE
+    text = None
+    con = None
+    while time.monotonic() < deadline:
+        if con is None:
+            try:
+                con = _connect(root)
+            except sqlite3.Error:
+                await asyncio.sleep(3.0)
+                continue
+        try:
+            if not prompt_seen:
+                prompt_rowid = _prompt_from(con, sid, baseline, sent_sha)
+                if prompt_rowid is not None:
+                    floor, prompt_seen = prompt_rowid, True
+                elif time.monotonic() > grace_until:
+                    # A queued message gets its user row only when the turn starts, and text can
+                    # be rewritten on arrival: past the grace window, take the raw baseline.
+                    prompt_seen = True
+            if prompt_seen:
+                row = _reply_from(con, sid, floor)
+                if row and _claim(root, sid, row[0]):
+                    text = row[1]
+                    break
+        except sqlite3.Error:
+            try:
+                con.close()
+            except sqlite3.Error:
+                pass
+            con = None
+        await asyncio.sleep(3.0)
+    if con is not None:
+        try:
+            con.close()
+        except sqlite3.Error:
+            pass
+    if not text:
+        _notify_log(f"no reply from {label} ({sid[:16]}) within {budget}s")
+        return 1
+    body = text.strip()
+    if len(body) > TRUNCATE_AT:
+        body = (body[:TRUNCATE_AT].rstrip()
+                + f"\n…[truncated — {len(text) - TRUNCATE_AT} chars left; read the turn in {sid}]")
+    text = (f"Reply from {label} — answer it only if it changes your plan; otherwise just tell the "
+            f"user what it said.\n\n{body}")
+    try:
+        async with gateway_client.connect_gateway() as client:
+            await _submit(client, notify, text)
+    except Exception as exc:  # noqa: BLE001 — a watcher must never die on its own report
+        _notify_log(f"waking {notify[:16]} failed: {exc}")
+        return 1
+    _notify_log(f"delivered reply from {label} ({sid[:16]}) to {notify[:16]}")
+    return 0
+
+
+async def deliver(gateway_client, data: dict, targets: list[tuple[str, str]], message: str,
+                  *, watch: bool = True, wait: int | None = None) -> int:
+    GatewayRPCError = gateway_client.GatewayRPCError
+    GatewayClientError = gateway_client.GatewayClientError
+    caller = _self_id()
+    if not caller:
+        print("hermes-session-mail: no calling session (HERMES_SESSION_CHAT_ID is unset), so there "
+              "is nowhere to deliver the reply — sending anyway.", file=sys.stderr)
+    sent_sha = _sha(message)
+    queued = 0
+    watched = 0
+    failed = 0
+    unwatchable = 0
+    try:
+        async with gateway_client.connect_gateway() as client:
+            for sid, label in targets:
+                root = _db_home_for(sid)
+                item = {"sid": sid, "label": label, "root": root, "sent_sha": sent_sha,
+                        "wait": wait, "baseline": _db_max_rowid(root, sid)}
+                try:
+                    receipt = await _submit(client, sid, message)
+                except GatewayRPCError as exc:
+                    reason = getattr(exc, "data", None)
+                    reason = reason.get("reason") if isinstance(reason, dict) else None
+                    print(f"hermes-session-mail: {label} refused: {exc}"
+                          + (f" (reason: {reason})" if reason else ""), file=sys.stderr)
+                    failed += 1
+                    continue
+                receipt = receipt or {}
+                if receipt.get("voice_stopped"):
+                    print(f"hermes-session-mail: {label}: voice chat was stopped; nothing queued.",
+                          file=sys.stderr)
+                    failed += 1
+                    continue
+                print(f"-> {label}  {sid[:16]}…  [{str(receipt.get('admission_id') or '?')[:12]} · "
+                      f"{receipt.get('status') or 'queued'}]")
+                # A self-addressed send must not watch its own session: the watcher reads this
+                # session's next terminal assistant row and echoes it back as a "reply", which
+                # on a roster project also gets forwarded to real peers as our own words.
+                if not watch or not caller or sid == caller:
+                    pass
+                elif item["baseline"] is None:
+                    print(f"hermes-session-mail: {label}: state.db unreadable, so the reply will "
+                          f"not be watched — read the turn with `hermes sessions list`.", file=sys.stderr)
+                    unwatchable += 1
+                else:
+                    _spawn_watcher(item, caller)
+                    watched += 1
+                queued += 1
+    except GatewayClientError as exc:
+        print(f"hermes-session-mail: gateway unavailable: {exc}", file=sys.stderr)
+        return 1
+    except StoreUnavailable as exc:
+        print(f"hermes-session-mail: {exc}", file=sys.stderr)
+        return 1
+    if queued and caller:
+        print(f"... {queued} queued; this turn is free — "
+              + ("you will be woken with the reply." if watched else
+                 f"{unwatchable} reply(ies) could not be watched." if unwatchable else
+                 "no reply watched for."),
+              file=sys.stderr)
+    return 0 if (queued and not failed) else 1
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(
+        prog="hermes-session-mail",
+        description="Message another Hermes session, or manage this project's roster.",
+        epilog='Examples:  hermes-session-mail rtl-worker "run the sim and report"   ·   '
+               'hermes-session-mail --broadcast "does anyone know the DNL target?"')
+    parser.add_argument("target", nargs="?", help="session name, id, id prefix, or title")
+    parser.add_argument("message", nargs="?", help="the message")
+    parser.add_argument("--fleet", action="store_true", help="show this project's roster")
+    parser.add_argument("--join", action="store_true",
+                        help="put this session on the roster (name it by passing a name)")
+    parser.add_argument("--broadcast", action="store_true",
+                        help="send the message to every other session on the roster")
+    parser.add_argument("--no-watch", action="store_true",
+                        help="send without waiting for a reply (no wake-up turn, no watcher process)")
+    parser.add_argument("--wait", type=int, metavar="SECONDS",
+                        help=f"how long to watch for the reply (default {REPLY_WAIT_SECONDS})")
+    # internal: the detached reply watcher
+    parser.add_argument("--watch-reply", action="store_true", help=argparse.SUPPRESS)
+    parser.add_argument("--sid", help=argparse.SUPPRESS)
+    parser.add_argument("--baseline", type=int, help=argparse.SUPPRESS)
+    parser.add_argument("--root", help=argparse.SUPPRESS)
+    parser.add_argument("--label", help=argparse.SUPPRESS)
+    parser.add_argument("--notify", help=argparse.SUPPRESS)
+    parser.add_argument("--sent-sha", help=argparse.SUPPRESS)
+    args = parser.parse_args(argv)
+
+    if args.watch_reply:
+        try:
+            gateway_client = _prepare_imports()
+        except ImportError as exc:  # pragma: no cover
+            _notify_log(f"cannot import hermes_cli: {exc}")
+            return 1
+        return asyncio.run(watch_reply(gateway_client, args.sid, Path(args.root), args.baseline,
+                                       args.label, args.notify,
+                                       sent_sha=args.sent_sha or "", wait=args.wait))
+
+    roster_path = _roster_path()
+    data = _load_roster(roster_path)
+
+    if args.fleet:
+        orch = data.get(ORCHESTRATOR)
+        print(f"roster: {roster_path}" if roster_path else "roster: (none in this project)")
+        print(f"  {ORCHESTRATOR}: {_label(orch) if orch else '(unset)'}")
+        peers = data.get(TEAMMATES) or []
+        print(f"  {TEAMMATES}: {len(peers)}")
+        for entry in peers:
+            print(f"    - {_label(entry)}")
+        return 0
+
+    # The name for a join is the positional ONLY on an explicit `--join`; on a plain send the
+    # positional is the recipient, and treating it as a name would put the sender in the
+    # recipient's slot (that corrupted a roster in testing).
+    join_note = _join(roster_path, data, args.target if args.join else None, explicit=args.join)
+    if join_note:
+        print(f"hermes-session-mail: {join_note} → {roster_path}", file=sys.stderr)
+    if args.join:
+        if not roster_path:
+            print("hermes-session-mail: no roster in this project (need .hermes/fleet.json).",
+                  file=sys.stderr)
+            return 2
+        if not _self_id():
+            print("hermes-session-mail: HERMES_SESSION_CHAT_ID is unset — run --join from inside a "
+                  "Hermes session.", file=sys.stderr)
+            return 2
+        print(f"{roster_path}: {join_note or 'already on the roster'}")
+        return 0
+
+    if args.broadcast:
+        parts = [part for part in (args.target, args.message) if (part or "").strip()]
+        if len(parts) > 1:
+            print("hermes-session-mail: --broadcast takes ONE message — quote it as a single "
+                  "argument.", file=sys.stderr)
+            return 2
+        message = (parts[0] if parts else "").strip()
+        targets, seen = [], set()
+        for entry in [data.get(ORCHESTRATOR), *(data.get(TEAMMATES) or [])]:
+            sid = _entry_sid(entry) if entry else ""
+            if not sid or sid == _self_id() or sid in seen:
+                continue
+            seen.add(sid)
+            targets.append((sid, _entry_name(entry) or sid[:16]))
+        if not targets:
+            print("hermes-session-mail: this project's roster has no other sessions "
+                  "(`--join` adds this one).", file=sys.stderr)
+            return 2
+    else:
+        if not args.target or not (args.message or "").strip():
+            parser.print_help(sys.stderr)
+            return 2
+        message = args.message.strip()
+        try:
+            sid, label = _resolve(args.target, data)
+        except StoreUnavailable as exc:
+            print(f"hermes-session-mail: {exc}", file=sys.stderr)
+            return 1
+        if not sid:
+            if len(args.target.strip()) >= 8 and "-" in args.target:
+                sid, label = args.target.strip(), args.target.strip()[:16]
+            else:
+                print(f"hermes-session-mail: no session named '{args.target}'.", file=sys.stderr)
+                return 2
+        targets = [(sid, label)]
+
+    if not message:
+        print("hermes-session-mail: empty message — nothing sent.", file=sys.stderr)
+        return 2
+
+    try:
+        gateway_client = _prepare_imports()
+    except ImportError as exc:  # pragma: no cover
+        print(f"hermes-session-mail: cannot import hermes_cli ({exc}); set HERMES_INSTALL_DIR.",
+              file=sys.stderr)
+        return 1
+    return asyncio.run(deliver(gateway_client, data, targets, message,
+                               watch=not args.no_watch, wait=args.wait))
+
+
+if __name__ == "__main__":
+    try:
+        import websockets  # noqa: F401
+    except ImportError:
+        _reexec_with_runtime_python()
+    sys.exit(main())
