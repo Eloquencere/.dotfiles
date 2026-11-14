@@ -42,6 +42,7 @@ echo "Update Lazy plugins & Mason, restart your machine"
 
 # # Run manually
 # uv cache prune
+# ./fetch-oss-cad-suite.sh
 
 # # Not installed
 # sudo auto-cpufreq --update

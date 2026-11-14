@@ -1,16 +1,11 @@
 theme "dracula" // dracula/ao/blade-runner/molokai-dark/retro-wave/ansi
 default_layout "compact"
+stacked_pane_list_orientation "horizontal"
 on_force_close "quit"
+on_quit "ask_quit"
 styled_underlines true
 show_startup_tips false
 mouse_hover_effects false
-
-plugins {
-    zj-quit location="file:~/.config/zellij/plugins/zj-quit.wasm"
-    zellij-forgot location="file:~/.config/zellij/plugins/zellij_forgot.wasm"
-    // multitask location="file:~/.config/zellij/plugins/multitask.wasm"
-    // ghost location="file:~/.config/zellij/plugins/ghost.wasm"
-}
 
 keybinds clear-defaults=true {
     shared_except "locked" {
@@ -23,10 +18,11 @@ keybinds clear-defaults=true {
         bind "Alt h"  { GoToPreviousTab; }
         bind "Alt l"  { GoToNextTab; }
 
-        // Plugins
+        // Keybindings / settings
         bind "Ctrl g" {
-            LaunchOrFocusPlugin "zellij-forgot" {
+            LaunchOrFocusPlugin "zellij:configuration" {
                 floating true
+                move_to_focused_tab true
             };
             SwitchToMode "Normal";
         }
@@ -140,8 +136,9 @@ keybinds clear-defaults=true {
         bind "Esc"    { SwitchToMode "Normal"; }
         bind "Ctrl s" { SwitchToMode "Tmux"; }
         bind "d"      { Detach; }
-        bind "q" {
-            LaunchOrFocusPlugin "zj-quit" {
+        bind "q"      { Quit; SwitchToMode "Normal"; }
+        bind "c" {
+            LaunchOrFocusPlugin "zellij:configuration" {
                 floating true
                 move_to_focused_tab true
             };

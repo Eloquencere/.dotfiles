@@ -18,6 +18,7 @@ cargo.binstall_quickinstall = true
 "aqua:astral-sh/uv" = "latest"
 "conda:sqlite" = "latest"
 "packslip:github.com/jdx/usage" = "latest" # tab completion (for mise, best handled by mise)
+"yazi" = "latest"
 
 # Tools
 "aqua:typst/typst" = "latest"

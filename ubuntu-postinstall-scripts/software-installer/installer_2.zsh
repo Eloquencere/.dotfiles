@@ -35,6 +35,7 @@ app-manager install ./lm-studio.AppImage
 open .gui_instructions.txt
 
 source ./hdl_essentials.zsh
+../continual-reference/fetch-oss-cad-suite.sh
 
 # Kanata (nix) setup
 sudo groupadd -f uinput

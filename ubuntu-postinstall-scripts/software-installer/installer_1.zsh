@@ -27,6 +27,10 @@ $name &
 # Ghostty
 sudo add-apt-repository -y ppa:mkasberg/ghostty-ubuntu
 sudo nala install -y ghostty
+mkdir -p $HOME/.local/share/applications
+sed 's/ --gtk-single-instance=true//' /usr/share/applications/com.mitchellh.ghostty.desktop \
+  > $HOME/.local/share/applications/com.mitchellh.ghostty.desktop
+update-desktop-database $HOME/.local/share/applications
 
 # Docker
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc

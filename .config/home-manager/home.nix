@@ -17,8 +17,7 @@
         starship unstable.atuin zoxide
 
         zoxide eza fd bat ripgrep duf delta
-        yazi fzf
-        croc mprocs
+        fzf croc mprocs
         rclone
 
         unstable.neovim tree-sitter
