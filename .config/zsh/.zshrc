@@ -2,7 +2,6 @@ setopt nobeep
 setopt correct
 setopt glob_dots
 setopt extended_glob
-setopt no_clobber
 setopt no_flow_control
 setopt hist_ignore_all_dups
 setopt interactive_comments
@@ -32,7 +31,6 @@ zinit wait lucid compile atload'
 zinit wait lucid compile for \
     jeffreytse/zsh-vi-mode \
     hlissner/zsh-autopair \
-    Eloquencere/zsh-goto-cli \
     zdharma-continuum/fast-syntax-highlighting
 
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'

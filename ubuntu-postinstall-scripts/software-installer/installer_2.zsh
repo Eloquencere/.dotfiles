@@ -4,27 +4,32 @@ cd "$(dirname "${(%):-%x}")" # change directory to script location
 sudo -v
 
 latest_tag() {
-    local repo="$1" tag
-    tag="$(curl -fsSL -H 'Accept: application/vnd.github+json' \
+    local repo="$1"
+    curl -fsSL -H 'Accept: application/vnd.github+json' \
         "https://api.github.com/repos/$repo/releases/latest" \
-        | sed -n 's/.*"tag_name": *"\([^"]*\)".*/\1/p' | head -1)"
-    tag="${tag#v}" # strip leading 'v' (e.g. v0.9.0 -> 0.9.0)
-    print -r -- "$tag"
+        | sed -n 's/.*"tag_name": *"\([^"]*\)".*/\1/p' | head -1
 }
 
 # KiCAD
-version="${$(latest_tag KiCad/kicad-source-mirror)%.*}"
+tag="$(latest_tag KiCad/kicad-source-mirror)"
+version="${${tag#v}%.*}"
 sudo add-apt-repository --yes ppa:kicad/kicad-$version-releases
 sudo nala install --install-recommends -y kicad
 
+tag="$(latest_tag subhra74/xdm)"
+wget -O xdm-app.deb \
+  "https://github.com/subhra74/xdm/releases/download/$tag/xdm-app_${tag#v}_$(dpkg --print-architecture).deb"
+sudo nala install -y ./xdm-app.deb
+rm -f ./xdm-app.deb
+
 # AppManager
-version="$(latest_tag kem-a/AppManager)"
-wget -O appmanager.AppImage "https://github.com/kem-a/AppManager/releases/download/$version/AppManager-$version-anylinux-x86_64.AppImage"
+tag="$(latest_tag kem-a/AppManager)"
+wget -O appmanager.AppImage "https://github.com/kem-a/AppManager/releases/download/$tag/AppManager-${tag#v}-anylinux-x86_64.AppImage"
 chmod +x ./appmanager.AppImage && ./appmanager.AppImage
 
 # WinBoat
-version="$(latest_tag TibixDev/winboat)"
-wget -O winboat.AppImage "https://github.com/TibixDev/winboat/releases/download/$version/winboat-$version-x86_64.AppImage"
+tag="$(latest_tag TibixDev/winboat)"
+wget -O winboat.AppImage "https://github.com/TibixDev/winboat/releases/download/$tag/winboat-${tag#v}-x86_64.AppImage"
 app-manager install ./winboat.AppImage
 
 # LM Studio
@@ -112,6 +117,7 @@ bash /tmp/vl.sh --interactive
 # Hermes
 sudo nala install -y libportaudio2
 curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash -s -- --skip-setup
+hermes pm install --extra voice
 
 # Antigravity CLI
 curl -fsSL https://antigravity.google/cli/install.sh | bash
@@ -158,7 +164,8 @@ sudo shutdown -r now
 # export PATH=$XDG_CONFIG_HOME/emacs/bin:$PATH' >> ~/.zprofile
 
 # # Ghostty
-# version="$(latest_tag pkgforge-dev/ghostty-appimage)"
-# wget -O ghostty.AppImage "https://github.com/pkgforge-dev/ghostty-appimage/releases/download/v$version/Ghostty-$version-x86_64.AppImage"
+# tag="$(latest_tag pkgforge-dev/ghostty-appimage)"
+# version="${tag#v}"
+# wget -O ghostty.AppImage "https://github.com/pkgforge-dev/ghostty-appimage/releases/download/$tag/Ghostty-$version-x86_64.AppImage"
 # app-manager install ./ghostty.AppImage
 

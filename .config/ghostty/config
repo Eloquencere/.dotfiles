@@ -2,12 +2,10 @@
 font-family = "UbuntuSansMono Nerd Font"
 font-size = 13.5
 font-style = Medium
-adjust-icon-height = 25%
 
 # --- Theme & Visuals ---
 theme = Wez
 background-opacity = 0.65
-background-blur-radius = 20
 # credit: github.com/sahaj-b/ghostty-cursor-shaders
 # custom-shader = shaders/cursor_warp_fast.glsl
 
@@ -34,11 +32,7 @@ keybind = ctrl+tab=text:\x1b[9;5u
 keybind = ctrl+shift+tab=text:\x1b[9;6u
 # newline shell command - NOT WORKING
 keybind = shift+enter=text:\x1b[200~\n\x1b[201~
-
-# --- Recovery ---
-# If the screen ever stops painting (the wezterm failure mode): reset wipes the
-# terminal state and forces a full repaint; reload_config (ctrl+shift+, default)
-# rebuilds fonts + render state. ctrl+0 (default) resets font size.
+# Recovery
 keybind = ctrl+shift+r=reset
 keybind = ctrl+shift+k=clear_screen
 

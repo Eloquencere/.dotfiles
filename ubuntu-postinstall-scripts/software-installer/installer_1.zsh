@@ -113,7 +113,7 @@ sudo snap install "${OFFICE_SOFTWARE_SNAP[@]}"
 echo 'ntsync' | sudo tee /etc/modules-load.d/ntsync.conf
 echo 'KERNEL=="ntsync", MODE="0660", TAG+="uaccess"' \
   | sudo tee /etc/udev/rules.d/99-ntsync.rules
-mkdir -p ~/Games/Ryujinx
+mkdir -p ~/Games/{Manual,Ryujinx}
 GAMES_NALA=(
     gamemode
     steam
@@ -134,6 +134,7 @@ GAMES_FLATPAK=(
     # "org.gnome.Crosswords"
 )
 flatpak install --assumeyes flathub "${GAMES_FLATPAK[@]}"
+flatpak override --user --filesystem=~/Downloads com.heroicgameslauncher.hgl
 
 # Flatpaks
 ADDITIONAL_APPS_FLATPAK=(
@@ -150,7 +151,6 @@ ADDITIONAL_APPS_FLATPAK=(
     # "org.ghidra_sre.Ghidra"
     # "org.jitsi.jitsi-meet" # Jitsi-client
     # System
-    "io.github.giantpinkrobots.varia"
     # "io.github.totoshko88.RustConn"
 )
 flatpak install --assumeyes flathub "${ADDITIONAL_APPS_FLATPAK[@]}"
@@ -171,6 +171,13 @@ sh <(curl --proto "=https" --tlsv1.2 -L https://nixos.org/nix/install) --daemon 
 
 echo "This is the end of installer_1, run installer_2 after a reboot"
 sleep 2
+
+# # Wine
+# sudo mkdir -pm755 /etc/apt/keyrings
+# wget -O - https://dl.winehq.org/wine-builds/winehq.key | sudo gpg --dearmor -o /etc/apt/keyrings/winehq-archive.key -
+# sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/resolute/winehq-resolute.sources
+# sudo nala update
+# sudo nala install -y --install-recommends winehq-stable
 
 # # Signal
 # wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg;
