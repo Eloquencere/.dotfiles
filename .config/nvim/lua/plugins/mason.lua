@@ -40,6 +40,7 @@ return {
 
         init = function()
             vim.env.PATH = vim.fn.stdpath("data") .. "/mason/bin:" .. vim.env.PATH
+            vim.env.CPATH = vim.env.HOME .. "/Tools/xilinx/2025.1/Vitis/include"
 
             vim.diagnostic.config({
                 virtual_text = { current_line = true },

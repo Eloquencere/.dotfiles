@@ -58,7 +58,6 @@ in
                 event-sounds = true;
             };
 
-            # TODO: Enable variable refresh rate
             "org/gnome/desktop/interface" = {
                 ## Dark Mode
                 color-scheme            = "prefer-dark";
@@ -186,7 +185,7 @@ in
                 # Short eyesight break: glance away ~20s (20-20-20)
                 duration-seconds = lib.gvariant.mkUint32 20;
                 # Snooze delay when you postpone a break
-                delay-seconds    = lib.gvariant.mkUint32 120; # 2 minutes
+                delay-seconds    = lib.gvariant.mkUint32 (5*60);
 
                 # --- Screen behaviour during a break ---
                 fade-screen = true;    # dim the screen for the break
@@ -401,7 +400,7 @@ in
                         "games"
                         "net.ankiweb.Anki.desktop"
                         "surfshark_surfshark.desktop"
-                        "io.github.giantpinkrobots.varia.desktop"
+                        "xdm-app.desktop"
                         "tv.kodi.Kodi.desktop"
                         "net.nokyan.Resources.desktop"
                     ])

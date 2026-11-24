@@ -48,6 +48,14 @@
   - [ ] AppManager
     - set repo url (for updates) for - winboat
     - remove from path for - winboat, lm-studio
+  - [ ] XDM
+    - General
+      - Show progress window -> no
+      - Start Downloads immediately -> yes
+      - Notify me with -> notification
+      - Download list -> Classic
+    - Advanced
+      - Launch at login -> no
   - [ ] Winboat
     - Install Windows 10 LTSC 2021
     - Allocate >= 8GB RAM & >= 2 cores & >= 100GB storage

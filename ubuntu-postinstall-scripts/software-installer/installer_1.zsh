@@ -134,7 +134,7 @@ GAMES_FLATPAK=(
     # "org.gnome.Crosswords"
 )
 flatpak install --assumeyes flathub "${GAMES_FLATPAK[@]}"
-flatpak override --user --filesystem=~/Downloads com.heroicgameslauncher.hgl
+flatpak override --user --filesystem=~/Downloads --filesystem=~/Games/Manual com.heroicgameslauncher.hgl
 
 # Flatpaks
 ADDITIONAL_APPS_FLATPAK=(
